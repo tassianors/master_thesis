@@ -1,0 +1,54 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-+
+%+ \TODO[<wer>]{<text>}
+%+-
+%- Erzeugt am Seitenrand den <text> mit dem zusätzlichen
+%- Vermerk, für <wen> dieses TODO noch offen ist.
+%-
+\newcommand{\TODO}[2][ICH]{%
+\marginpar{\footnotesize \color{red} TODO [#1]:\\%
+#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \todobf{text}
+%
+\newcommand{\todobf}[1]{{\color{red}\textbf{TODO:  #1}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \note{text}
+%
+\newcommand{\note}[1]{{\color{red}\rule{0.5em}{1ex} \textbf{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \tred{text}
+%
+\newcommand{\tred}[1]{{\textcolor{red}{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Change the standard name "Bibliography" to "References", which is required by ABNT
+%
+\renewcommand\bibname{References}
+
+
+
+%\newcounter{example}[chapter]
+%\newenvironment{example}{\refstepcounter{example}
+%  \subsubsection{Exemplo
+%    \thechapter.\arabic{example}}}{\\}
+%  %%\thechapter.\arabic{example}}\em}{\\}  %% O \em define o estilo da fonte utilizada no ambiente exemplo
+%
+%\renewcommand{\theexample}{\thechapter.\arabic{example}}
+
+
+
+
+
+
+

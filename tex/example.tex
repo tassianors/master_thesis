@@ -1,0 +1,71 @@
+
+\input{tex/preamble.tex}
+
+\input{tex/info.tex}
+
+%
+% inicio do documento
+%
+\begin{document}
+
+% O comando \maketile gera a capa, a folha de rosto e a folha de aprovacao 
+% (se for o caso)
+% às vezes é necessário redefinir algum comando logo antes de produzir
+% a Capa, folha de rosto e folha de aprovacao:
+% \renewcommand{\coordname}{Coordenadora do Curso}
+\maketitle
+
+\input{tex/dedic.tex}
+\input{tex/abstract.tex}
+\input{tex/lists.tex}
+
+
+\input{tex/intro.tex}
+
+% AQUI COMEÇA O TEXTO PROPRIAMENTE DITO
+
+
+% e aqui vai a parte principal
+%
+% \chapter{Estado da arte}
+% \chapter{Mais estado da arte}
+% \chapter{A minha contribuição}
+% \chapter{Prova de que a minha contribuição é válida}
+% \chapter{Conclusão}
+
+% referencias
+% Aqui pode ser usado o ambiente padrao `thebibliography'; porém, faça um
+% favor a sí mesmo e use o \bibtex\ e o estilo abnt.bst (veja na página do
+% UTUG). 
+
+\bibliographystyle{abnt}
+
+%\bibliography{exemplo,modelo} 	% pode-se ter vários arquivos .bib separados
+\bibliography{example} 	% pode-se ter vários arquivos .bib separados
+				% por vírgulas. Segundo a NBR6023, as
+				% referências devem ser alinhadas apenas a
+				% esquerda. É esquisito, mas é assim.
+
+% Apêndices
+\appendix
+
+% Pode-se ter diversos apêndices
+\chapter{Título do Apêndice}
+
+Nos apêndices aparecem textos ou documentos elaborados pelo autor  a fim de
+complementar sua argumentação sem prejuízo do trabalho. Eles sempre deverão
+estar depois das referências e antes dos anexos.
+
+
+% Anexos
+\annex
+
+% Pode-se ter diversos anexos
+\chapter{Título do Anexo}
+
+Já os anexos serão textos, trabalhos e materiais que não foram elaborados
+pelo autor, mas que servem de comprovação, fundamentação ou ilustração dos
+argumentos contidos no texto. Neste ponto, deve-se dar especial atenção à
+questão dos direitos autorais.
+
+\end{document}

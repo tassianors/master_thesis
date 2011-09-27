@@ -1,0 +1,228 @@
+% introducao
+\chapter{Introdução}
+
+No início dos tempos, Donald E. Knuth criou o \TeX. Algum tempo depois,
+Leslie Lamport criou o \LaTeX. Graças a eles, não somos obrigados a usar o
+Word nem o StarOffice.
+
+\section{Figuras e tabelas}
+
+Esta seção faz referência às Figuras~\ref{fig:ex1} e~\ref{fig:ex2}, a título
+de exemplo. A primeira representa o caso mais comum, onde a figura
+propriamente dita é importada de um arquivo \texttt{.eps} (aplicativos como
+\emph{xfig} e \emph{dia} estão entre os mais usados para gerar figuras no
+formato \texttt{.eps}). A segunda exemplifica o uso do ambiente
+\texttt{picture}, para desenhar usando o próprio~\LaTeX.
+
+%\begin{figure}[htbp]
+%        \centerline{\includegraphics[width=8em]{fig/fig.eps}}
+%        \caption{Exemplo de figura importada de um arquivo \texttt{.eps} e também exemplo de caption muito grande que ocupa mais de uma linha na Lista de~Figuras.}
+%        \label{fig:ex1}
+%\end{figure}
+
+% O `[htbp]'  é um parâmetro opcional que SUGERE que o LaTeX coloque a
+% figura exatamente neste ponto do texto, ou no topo da página, ou no final
+% da página, ou em uma página separada, nesta ordem de prioridade. Somente
+% preocupe-se com esse tipo de formatação quando o texto estiver
+% completamente pronto (uma frase a mais pode fazer o LaTeX mudar
+% completamente de idéia sobre onde colocar as  figuras e tabelas).
+% O parâmetro `[H]' FORÇA que a figura seja colocada exatamente neste ponto
+% do texto.
+
+\begin{figure}[H]
+        \begin{center}
+        \setlength{\unitlength}{.1em}
+        \begin{picture}(100,100)
+                \put(20,20){\circle{20}}
+                \put(20,20){\small\makebox(0,0){a}}
+                \put(80,80){\circle{20}}
+                \put(80,80){\small\makebox(0,0){b}}
+                \put(28,28){\vector(1,1){44}}
+        \end{picture}
+        \end{center}
+        \caption{Exemplo de figura desenhada com o ambiente \texttt{picture}.}
+        \label{fig:ex2}
+\end{figure}
+
+Tabelas são construídas com praticamente os mesmos comandos. Lembre-se,
+porém, que o caption das tabelas deve ir em cima, como pode ser visto na
+Tabela~\ref{tab:desempenho}. 
+
+\begin{table*}[htbp]
+\begin{center}
+\caption{Desempenho do sistema de controle.}
+\label{tab:desempenho}
+\begin{tabular}{l|cccc}
+\hline
+Controle & ISE & IAE & ITSE & ITAE \\
+\hline
+local 			& $79,7715$& $69,8436$& $10,9993$& $57,0757$\\
+em rede 		& $1802,18$& $1292,39$& $9765,84$& $6943,23$\\
+com compensa\c{c}\~ao de atrasos & $64,1702$& $70,4040$& $9,2710$& $137,8003$\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+\subsection{Classificação dos etc.}
+
+O formato adotado pela ABNT prevê apenas três níveis (capítulo, seção e
+subseção). Assim, \texttt{\char'134subsubsection} não é aconselhado.
+
+\section{Sobre as referências bibliográficas}
+
+Recomenda-se seriamente fazer uso do pacote \emph{bibabnt}, 
+disponibilizado na página do UTUG~\citeyearpar{UTUG:Homepage-01}. Esse
+pacote provê um estilo BIBTeX para formatação de referências
+bibliográficas combinando normas da ABNT e do Departamento de Engenharia
+Elétrica da UFRGS.
+
+As seguintes referências são colocadas aqui a título de exemplo:
+\cite{Patashnik:bibTeXing-88, Silberschatz:OSC-3-91, IEEE:Pthreads-95}.
+
+O pacote \DeLeTeX\ faz uso do pacote \emph{natbib}. Esse pacote
+disponibiliza diversos comandos alternativos para citações. Os mais úteis
+são o \texttt{\char'134citeyearpar}, que produz somente o ano
+(ex.~``[\ldots] são apresentados por Caromel, Klauser e
+Vayssiere~\citeyearpar{Caromel:TSC-CPE-10-11-98}.'') e o
+\texttt{\char'134citep*}, que produz a citação com a lista completa de
+autores (ex.~``[\ldots] na linguagem
+Panda~\citep*{Assenmacher:Panda-ECOOP93}.'')
+
+
+
+
+
+
+
+
+
+
+
+
+
+Redes de sensores sem fio têm sido utilizadas em inúmeras aplicações tanto com
+objetivo de prover informações a sistemas computacionais que auxiliam o homem
+na tomada de decisão~\cite{HANN}, quanto para prover aos próprios sistemas
+computacionais informações para que estes atuem de maneira autônoma de forma a
+realizar atividades de interesse de seus usuários, como por exemplo, em
+serviços de localização utilizados em sistemas ubíquos e em computação
+pervasiva~\cite{HIGHTOWER}.
+
+Uma maneira de aumentar as possibilidades de uso das redes de sensores e fazer
+com que elas sejam capazes de fornecer informações mais ricas se dá pelo uso de
+sensores com capacidades e características heterogêneas. Estas características
+vão desde o tipo de dado que o sensor é capaz de fornecer, passando pelas
+diferentes plataformas computacionais que suportam a sua atividade, até chegar
+a sua capacidade de mobilidade.
+
+Uma rede de sensores consiste em múltiplos nós-sensores trocando dados normalmente
+em um ambiente sem fio. Cada sensor pode coletar, processar e transferir informações
+do ambiente~\cite{IAN} sem precisar mandar os dados coletados para outro nó que
+concentre a fusão dos dados. Cada sensor pode fazer seu processamento local
+e enviar os dados já processados, diminuindo o tráfego e também a energia gasta pela rede.
+A figura~\ref{fig:sensnet} mostra um caso típico de nós trocando dados em uma rede de
+sensores. O nó A processa sua informação, passando-a para o nó mais próximo até chegarmos
+em um nó que se comunique com um concentrador, que por sua vez enviará os dados para a
+internet, onde o usuário final terá acesso através de um gerenciador de tarefas.
+
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.85\textwidth]{fig/sensornet.eps}
+%	\caption{Nós sensores trocando dados em uma rede de sensores}
+%	\label{fig:sensnet}
+%\end{figure}
+
+Existem muitas áreas que podem se beneficiar pelo uso de redes de sensores, como
+por exemplo automação residencial~\cite{JIAN} com sensores espalhados pelo ambiente
+monitorando temperatura da casa, ou ainda monitorando as condições climáticas. Outro
+exemplo de uso reside em aplicações militares~\cite{SENSMIL} onde se faz uso de
+redes de sensores para monitoramento de ambiente e proteção de tropas. Tem-se também
+utilização de redes de sensores em campos de engenharia biomédica~\cite{SENSHEALTH}
+no monitoramento de pacientes em enfermarias.
+
+Devido a descentralização do processamento que é intrínseco à topologia de
+redes de sensores, inúmeras aplicações podem se beneficiar da utilização deste
+tipo de arquitetura, tais como:
+
+\begin{itemize}
+	\item Monitoramento de áreas de desastre.
+	\item Monitoramento de afluentes em rios.
+	\item Monitoramento de qualidade de produtos.
+\end{itemize}
+
+%TODO: Citar VANTS
+A eficiência energética é um desafio a ser superado em arquiteturas de
+redes de sensores. Muitas vezes não se têm acesso aos nós e então torna-se
+inviável a substituição da bateria dos mesmos. Alguns estudos~\cite{MACROUTE}
+usam protocolos de roteamentos mais eficientes para tentar diminuir a perda
+de energia na transmissão de dados entre os nós, enquanto outros~\cite{DATARED}
+procuram diminuir o tamanho dos pacotes que são transmitidos entre os nós.
+
+Uma arquitetura de hardware para um nó sensor pode conter:
+
+\begin{itemize}
+	\item Unidade de processamento (CPU).
+	\item Memória.
+	\item Hardware Reconfigurável (FPGAs).
+	\item Unidade de comunicação.
+\end{itemize}
+
+Nós sensores têm hardware heterogêneo e com capacidade de processamento e
+memória limitados. Em uma topologia comum de redes de sensores, é normal
+se ter nós fazendo um trabalho colaborativo onde diferentes nós fazem partes
+diferentes deste trabalho. Uma abordagem para as dificuldades impostas pela
+arquitetura de redes de sensores é utilizar a {\it{migração de tarefas}} para
+superar os desafios relacionados à limitação de hardware.
+
+A utilização de migração de tarefas~\cite{PROCMIGR} em redes de sensores traz
+consigo alguns benefícios, dentre os quais se destacam:
+
+\begin{itemize}
+	\item Dinâmica distribuição de carga;
+	\item Resiliencia à falhas.
+	\item Facilidade à admnistração do sistema.
+\end{itemize}
+
+Migrar uma tarefa pressupõe-se começar a rodar uma tarefa remotamente a partir
+do mesmo contexto que se tem localmente. Isso significa que o {\it{contexto}}
+da tarefa é migrado junto com a tarefa. Os problemas que surgem neste tipo
+de abordagem têm relação tanto com a heteorogeneidade de hardware, pois é necessário
+fazer a mesma tarefa rodar em hardwares diferentes, que não necessariamente têm
+o mesmo processador.
+
+Uma das grandes barreiras ainda impostas pela computação pervasiva reside na
+manutenção e execução de diferentes aplicações em plataformas que são heterogêneas.
+Neste contexto, existe a possibilidade de criação de um {\it{middleware}}~\cite{MIAO}
+servindo como uma camada de abstração ao hardware de cada nó sensor. Este tipo de
+abordagem aliada ao uso de uma arquitetura de hardware {\it{reconfigurável}} nos
+permite diminuirmos o {\it{time to market}} ou o tempo que leva desde o
+desenvolvimento do projeto de um dispositivo até a sua chegada ao mercado.
+
+Para permitir uma melhor disseminação de dados em redes de sensores sem fio, existem
+propostas de utilização de Agentes Móveis~\cite{CHEN} para realizar estas tarefas.
+Agentes no contexto de migração de tarefas, são uma ou mais tarefas responsáveis
+por controlar a migração de tarefas entre um nó e outro. Um agente é uma inteligência
+capaz de tomar decisões baseadas nas características do nó sensor que ele está inserido
+e ainda na rede de sensores que este nó está inserido.
+
+Como podemos ter um hardware reconfigurável em uma arquitetura de um nó sensor, podemos
+ter agentes que controlam a migração da tarefa para o hardware local, buscando homogeneizar
+o processamento que é feito em software, ou seja, pela CPU, e o processamento que é feito
+em hardware pelo FPGA. A distribuição de tarefas entre software e hardware é um problema que
+pode ser resolvido de diversas formas~\cite{GANTEL} onde podemos ter tarefas que rodam parte
+em software e parte em hardware.
+
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.65\textwidth]{fig/sketch.eps}
+%	\caption{Exemplo de agentes para migração de tarefas}
+%	\label{fig:taskmig}
+%\end{figure}
+
+A Figura~{\ref{fig:taskmig}} mostra o exemplo de agentes que controlam a migração de tarefas
+de hardware para software e também entre diversos nós sensores. No caso, poderíamos ter tarefas
+que rodam em hardware em um nó sensor, sendo migradas para tarefas que vão rodar em outro nó
+sensor, sejam elas em software ou em hardware.
+
+
