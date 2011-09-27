@@ -2,11 +2,11 @@ MAINDIR := ./tex
 OUTDIR 	:= .
 BIBDIR := .
 
-PAPERNAME	:= example
+PAPERNAME	:= disssertacao_neuhaus
 
 TEX		:=	$(MAINDIR)/$(PAPERNAME).tex
 BIB		:=	$(BIBDIR)/$(PAPERNAME)
-OUTFILE	:=	$(OUTDIR)/example
+OUTFILE	:=	$(OUTDIR)/$(PAPERNAME)
 
 all: $(OUTFILE).pdf #slide
 
