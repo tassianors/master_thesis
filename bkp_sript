@@ -6,8 +6,8 @@ cp -r thesis thesis_bkp
 cd thesis_bkp
 git clean -fdxq
 cd -
-tar czf $filename.tag.gz thesis_bkp
+tar czf $filename.tar.gz thesis_bkp
 #zip -r -q $filename.zip thesis_bkp
 rm -r thesis_bkp
-mv $filename.tar.gz /home/neuhaus/Document/Dropbox/mestrado/bkp_tese
+mv $filename.tar.gz /home/neuhaus/Documents/Dropbox/mestrado/bkp_tese
 echo DONE...

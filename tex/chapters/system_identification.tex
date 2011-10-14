@@ -3,20 +3,38 @@
 %===============================================================================
 
 % Todo: Adicionar alguma breve introducão do que existirá neste capitulo.
+devaneios:
 
-\input{tex/chapters/si_modeling}
+Primeiro escreve-se uma pequena introducao do que eh system identification e que existem alguns topicos importantes:
+- dados coletados
+	- falar que os dados devem ser informativos.  8.2 ljung
+	- falar dos tipos de experimentos: capitulo 13 do ljung tem informacoes de experiemntos em laco aberto e fechado.
+- estrutura dos modelos
+	- capitulo 4.2 do ljung com os tipos de modelos normalmente usados.
+- determinando a melhor identifficacao
+	- aqui devo colocar os métodos basicos para identificacao. falar sobre o fato de que se encontra, os melhores parametros
+	para o modelo escolhido.
+	- falar que se se os dados sao corelacionados há erro de polarizacao..
+	- falar sobre os estimadores/preditores 
 
-\section{Coleta de dados}
+
+%===============================================================================
+\section{Conjunto de dados coletados}
 \label{sec:sys_ident_data_acquisition}
+\input{tex/chapters/si_data_acquisition}
+
 %===============================================================================
 
 \section{Escolha do modelo}
 \label{sec:sys_ident_modelling_choosing}
+\input{tex/chapters/si_modeling}
+
 %===============================================================================
 
 \section{Estimativa de parametros}
 \label{sec:sys_ident_parameters_estimation}
+\input{tex/chapters/si_lsm}
+
 %===============================================================================
-\input{tex/chapters/si_mmq}
 
 
