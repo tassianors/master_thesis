@@ -29,11 +29,11 @@ $(OUTFILE).pdf:$(OUTFILE).ps
 	ps2pdf -dMaxSubsetPct=100 -dSubsetFonts=true -dEmbedAllFonts=true -dCompatibilityLevel=1.2 -sPAPERSIZE=a4 $(OUTFILE).ps
 		
 clean:
-	rm -f  *~ *.bak *.o *.ps *.dvi *.aux *.log *.backup *.bbl *.blg *.loa *.los html.sty *.out *.lof *.lot *.toc
+	rm -f  *~ *.bak *.o *.ps *.dvi *.aux *.log *.backup *.blg *.loa *.los html.sty *.out *.lof *.lot *.toc
 #	make -C slide-1.0 clean
 
 clobber: clean
-	rm -f $(OUTFILE).pdf 
+	rm -f $(OUTFILE).pdf *.bbl
 #	make -C slide-1.0 distclean
 
 install:
