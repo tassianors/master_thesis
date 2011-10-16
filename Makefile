@@ -16,12 +16,7 @@ all: $(OUTFILE).pdf #slide
 $(OUTFILE).dvi:$(TEX) $(BIB).bib
 	latex $(TEX)
 	latex $(TEX)
-	latex $(TEX)
-	latex $(TEX)
 	bibtex $(BIB)
-	latex $(TEX)
-	latex $(TEX)
-	latex $(TEX)
 	latex $(TEX)
 
 html.sty:

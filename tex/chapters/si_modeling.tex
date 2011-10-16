@@ -69,3 +69,30 @@ lei. Normalmente refere-se a esta lei como a dinâmica do sistema. Portanto, ser 
 esta estático, mas certamente implica que a dinâmica que esta regulando a evolução temporal e a mesma. 
 
 Formalmente diz-se que um sistema é invariante se um deslocamento no tempo na entrada causa um deslocamento no tempo na saída.
+
+\subsection{Forma geral de familias de modelos}
+\label{sec:si_modeling_family_models}
+%===============================================================================
+
+Como já foi dito, o modelo de um sistema é a descrição de algumas propriedades deste. Nesta seção será 
+apresentado modelos de sistemas invariantes no tempo.
+
+Um modelo linear pode ser representado como em (\ref{eq:si_modeling_lti}).
+
+\begin{equation}
+y(t)=G(q)u(t)+H(q)e(t)
+\label{eq:si_modeling_lti}
+\end{equation}
+
+com:
+
+\begin{equation}
+G(q)=\sum_{k=1}^{\infty}g(k)q^{-k}\\
+\\
+H(q)=1+\sum_{k=1}^{\infty}h(k)q^{-k}
+\label{eq:si_modeling_lti_det}
+\end{equation}
+
+Uma forma bem direta para a identificação de sistemas é tornar as funções $G(q)$ e $H(q)$ de (\ref{eq:si_modeling_lti_det})
+como funções racionais e que os coeficientes do denominador e numerador destes polinimios sejam os objetivos do processo
+de identificação.

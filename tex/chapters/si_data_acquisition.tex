@@ -1,13 +1,9 @@
 
 
 Identificacao de sistemas é baseada no conjunto de dados que se tem do sistema observado. Estes dados podem ser
-coletados em regime normal de operacao ou sob condices pre determinadas, onde é possivel escolher previamente
+coletados em regime normal de operacao ou sob condices pré determinadas, onde é possivel escolher previamente
 o sinal de entrada que será aplicado sobre o sistema. Isso é feito para que os dados coletados sejam o mais 
 informativos possíveis. \cite{ljung}
-
-Toda a identificacão de sistemas discutidas neste trabalho é sobre os dados coletados, estes podem ser obtidos
-por meio da operacão normal do sistema ou podem ser feitos por projetos de experimentos para se consiga
-trazer a máxima quantidade de informacões sobre o sistema. \cite{campestrini}
 
 Um conjunto de dados obtidos tanto por malha aberta quanto por malha fechada pode ser descrito como em 
 \ref{eq:si_data_acq}. 
@@ -17,5 +13,64 @@ z^N=\left \{  u(1), y(1), ... ,u(N), y(N) \right \}
 \label{eq:si_data_acq}
 \end{equation}
 
+\section{Persistência de Excitação}
+\label{sec:si_data_persistently_excitation}
+%===============================================================================
 
+Um sinal quasi-estacionario $\left \{ u(t) \right \}$, com espectro $\Phi _u(\omega)$ é dito
+{\it{persistentemente excitante de ordem n}} se, para todos os filtros de forma:
+
+\begin{equation}
+M_n(q)=m_1q^{-1}+...+m_nq^{-n}
+\label{eq:si_data_persistence}
+\end{equation}
+
+a relação
+
+\begin{equation}
+\left | M_n(e^{i\omega}) \right |^2 \Phi_u(\omega)\equiv 0 \;\; implica\;que\; M_n(e^{i\omega}) \equiv 0
+\label{eq:si_data_persistence_2}
+\end{equation}
+
+Outra caracterização pode ser dada em termos da função de covariancia $R_u(\tau)$: $u(t)$ é um
+sinal quasi-estacionario, e $\bar{R}_n$ uma matriz $n\times n$ definida como:
+
+\begin{equation}
+\bar{R}_n=\begin{bmatrix}
+R_u(0) & R_u(1) & ... & R_u(n-1)\\ 
+R_u(1) & R_u(2) & ... & R_u(n-2)\\ 
+\vdots & \vdots & \vdots & \vdots \\ 
+R_u(n-1) & R_u(n-2) & ... & R_u(0)
+\end{bmatrix}
+\label{eq:si_data_persistently_rn}
+\end{equation}
+
+Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se, $\bar{R}_n$ for não singular.
+\cite{ljung}
+
+
+\section{Experimentos Informativos}
+%===============================================================================
+
+Pelo que foi visto anteriormente (Seção \ref{sec:si_data_persistently_excitation}) é facil caracterizar
+experimntos que são suficientemente informativos.
+
+Considere um conjunto $\mathcal{M}^*$ de um modelo SISO descrito por (\ref{eq:si_data_model_def}) tendo
+a função de transferência $G(q,\theta)$ a função racional (\ref{eq:si_data_g_rational}).
+
+\begin{equation}
+\mathcal{M}^*=\left \{ G(q,\theta), H(q,\theta)|\theta \in D_{\mathcal{M}} \right \}
+\label{eq:si_data_model_def}
+\end{equation}
+
+\begin{equation}
+G(q,\theta)=\frac{B(q,\theta)}{F(q,\theta)}=\frac{q^{n_k}(b_1+b_2q^{-1}+...+b_{nb}q^{-nb+1})}{1+f_1q^{-1}+...+f_{nf}q^{-nf}}
+\label{eq:si_data_g_rational}
+\end{equation}
+
+Então um experimento em malha aberta com uma entrada que é persistentemente excitante de ordem $nb +nf$ é
+suficientemente informativo com relação a $\mathcal{M}^*$.
+
+Chega-se então ao fato de que um experimento em malha aberta é informativo se a sua entrada for
+persistentemente excitante. \cite{ljung}
 
