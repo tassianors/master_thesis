@@ -8,46 +8,60 @@
 \label{sec:sys_ident_modeling}
 %===============================================================================
 
-Sistemas existem em toda nossa volta, podem ser simples, complexos, podemos percebe-los como um sistema
-ou podemos nem perceber que estamos interagindo com um. Ao dirigir um carro por exemplo, construímos um
-modelo mental para o sistema que é o carro e por meio das percepções que temos agimos sobre o sistema
-a fim de controla-lo da forma como desejamos.
+Sistemas existem em toda nossa volta, podem ser simples, complexos, podemos
+percebe-los como um sistema ou podemos nem perceber que estamos interagindo com
+um. Ao dirigir um carro por exemplo, construímos um modelo mental para o
+sistema que é o carro e por meio das percepções que temos agimos sobre o
+sistema a fim de controla-lo da forma como desejamos.
 
-Modelos são formas ou representações de como vemos e entendemos os sistemas. Para um mesmo sistema podemos ter
-diversos modelos. No caso de dirigir um carro, por exemplo, estamos mais acostumados a dirigir um carro em 
-especifico. Ao trocar de carro, passamos a ter a percepção de que alguma coisa não esta funcionando corretamente, 
-a resposta da aceleração, embreagem é diferente. Desta forma o modelo mental que temos para o nosso carro não 
-é 100 \% compatível com o novo carro, devemos então adequar nosso modelo mentar à resposta do novo carro aos
-nossos comandos.
+Modelos são formas ou representações de como vemos e entendemos os sistemas.
+Para um mesmo sistema podemos ter diversos modelos. No caso de dirigir um
+carro, por exemplo, estamos mais acostumados a dirigir um carro em especifico.
+Ao trocar de carro, passamos a ter a percepção de que alguma coisa não esta
+funcionando corretamente, a resposta da aceleração, embreagem é diferente.
+Desta forma o modelo mental que temos para o nosso carro não é 100 \%
+compatível com o novo carro, devemos então adequar nosso modelo mentar à
+resposta do novo carro aos nossos comandos.
 
-Modelos, portanto, são fundamentais para o conhecimento, para a análise, para o controle de sistemas. \cite{aguirre}.
-A modelagem do processo de dirigir é um modelo mental, existem outros tipos de modelos para sistemas que são
-mais consistentes e podem ser difundidos e compartilhados entre as pessoas sem haver a necessidade de entender 
-o que a pessoa formulou mentalmente para o sistema. Modelos que possam se relacionar de forma matemática são
-de grande apelo, e assim como os modelos mentais, modelos matemáticos também são formados por por observação
-e dados coletados que descrevem o funcionamento do sistema.
+Modelos, portanto, são fundamentais para o conhecimento, para a análise, para o
+controle de sistemas. \cite{aguirre}.  A modelagem do processo de dirigir é um
+modelo mental, existem outros tipos de modelos para sistemas que são mais
+consistentes e podem ser difundidos e compartilhados entre as pessoas sem haver
+a necessidade de entender o que a pessoa formulou mentalmente para o sistema.
+Modelos que possam se relacionar de forma matemática são de grande apelo, e
+assim como os modelos mentais, modelos matemáticos também são formados por por
+observação e dados coletados que descrevem o funcionamento do sistema.
 
-Existem dois principais ramos para modelagem de sistemas, um deles parte-se do conhecimento intrínseco do mesmo
-para obter-se o modelo, enquanto que o outro não possui este pré-requisito, focando-se em técnicas que tornem o
-processo de modelagem o mais independente possível da necessidade de se conhecer o sistema, antes de modela-lo. 
-Estes dois processos são conhecidos como {\it{Modelagem caixa branca}} e {\it{Modelagem caixa preta}} respectivamente.
+Existem dois principais ramos para modelagem de sistemas, um deles parte-se do
+conhecimento intrínseco do mesmo para obter-se o modelo, enquanto que o outro
+não possui este pré-requisito, focando-se em técnicas que tornem o processo de
+modelagem o mais independente possível da necessidade de se conhecer o sistema,
+antes de modela-lo.  Estes dois processos são conhecidos como
+{\it{Modelagem caixa branca}} e {\it{Modelagem caixa preta}} respectivamente.
 
-No caso de modelagem caixa branca, faz-se necessário conhecer a fundo o sistema modelado. Além de estar bem 
-familiarizado cm o sistema é necessário conhecer as relações matemáticas que descrevem os fenômenos envolvidos.
-Modelagem caixa branca também é conhecida como {\it{Modelagem pela Física}}, {\it{Natureza do processo}} ou 
-{\it{conceitual}}. Para uma modelagem caixa branca normalmente gasta-se um elevado tempo para que todos os 
-fenômenos envolvidos sejam conhecidos e caracterizado, devido a isso nem sempre é viável seguir este procedimento.
-\cite{aguirre}.
+No caso de modelagem caixa branca, faz-se necessário conhecer a fundo o sistema
+modelado. Além de estar bem familiarizado cm o sistema é necessário conhecer as
+relações matemáticas que descrevem os fenômenos envolvidos.  Modelagem caixa
+branca também é conhecida como {\it{Modelagem pela Física}}, {\it{Natureza do
+processo}} ou {\it{conceitual}}. Para uma modelagem caixa branca
+normalmente gasta-se um elevado tempo para que todos os fenômenos
+envolvidos sejam conhecidos e caracterizado, devido a isso nem sempre é
+viável seguir este procedimento.  \cite{aguirre}.
 
-Identificação de sistemas é uma área do conhecimento que estuda técnicas alternativas para modelagem matemática.
-Uma das características destas técnicas é que pouco ou nenhum conhecimento prévio do sistema é necessário. Este tipo 
-de técnica é também conhecido como {\it{Modelagem (ou identificação) caixa preta}} ou {\it{modelagem empírica}}.
+Identificação de sistemas é uma área do conhecimento que estuda técnicas
+alternativas para modelagem matemática.  Uma das características destas
+técnicas é que pouco ou nenhum conhecimento prévio do sistema é necessário.
+Este tipo de técnica é também conhecido como {\it{Modelagem (ou identificação)
+	caixa preta}} ou {\it{modelagem empírica}}.
 
-Algo importante a se destacar antes do processo de modelagem do sistema é a escolha do que deseja-se modelar deste
-sistema. Uma modelagem completa de todas as características é muitas vezes inviável e na maioria dos sistemas reais, 
-desnecessário. Usualmente, temos a necessidade de interagir, seja controlando ou observando, um conjunto restrito 
-de informações do sistema. No exemplo de dirigir, não necessidade de que seja modelado a transferência de calor do 
-motor, este tipo de informação não ajudaria no processo de dirigir o carro, podendo ser desconsiderado da modelagem.
+Algo importante a se destacar antes do processo de modelagem do sistema é a
+escolha do que deseja-se modelar deste sistema. Uma modelagem completa de todas
+as características é muitas vezes inviável e na maioria dos sistemas reais,
+   desnecessário. Usualmente, temos a necessidade de interagir, seja
+   controlando ou observando, um conjunto restrito de informações do sistema.
+   No exemplo de dirigir, não necessidade de que seja modelado a transferência
+   de calor do motor, este tipo de informação não ajudaria no processo de
+   dirigir o carro, podendo ser desconsiderado da modelagem.
 
 
 %===============================================================================
@@ -55,26 +69,36 @@ motor, este tipo de informação não ajudaria no processo de dirigir o carro, pode
 \label{sec:sys_ident_basic_definitions}
 %===============================================================================
 
-Geralmente, na modelagem de sistemas, fazem-se algumas considerações sobre o sistema:
+Geralmente, na modelagem de sistemas, fazem-se algumas considerações sobre o
+sistema:
 
-{\it{Linearidade}}. Uma consideração frequentemente feita é a de se supor que o sistema sendo modelado se comporta 
-de forma aproximadamente linear. Tal suposição é normalmente verificada observando-se o comportamento em uma faixa
+{\it{Linearidade}}. Uma consideração frequentemente feita é a de se supor que o
+sistema sendo modelado se comporta de forma aproximadamente linear. Tal
+suposição é normalmente verificada observando-se o comportamento em uma faixa
 relativamente estreita de operações. \cite{aguirre}
 
-Formalmente diz-se que um sistema é linear se ele obedece o {\it{principio da superposição}} [todo:achar a bibliografia disso].
-A consideração da linearidade normalmente simplifica bastante p modelo a ser construído. Entretanto, há situações em que 
-esta consideração não é adequada, como por exemplo, para sistemas como dinâmica fortemente bilinear (que não podem ser descritos
-adequadamente por um único modelo linear, independentemente de quão estreita seja a faixa de operação considerada). E também
-no caso onde se deseja estudar características dinâmicas não-lineares do sistema, tais como oscilações e bifurcações.
-\cite{aguirre}
+Formalmente diz-se que um sistema é linear se ele obedece o {\it{principio da
+superposição}} [todo:achar a bibliografia disso].  A consideração da
+linearidade normalmente simplifica bastante p modelo a ser construído.
+Entretanto, há situações em que esta consideração não é adequada, como por
+exemplo, para sistemas como dinâmica fortemente bilinear (que não podem ser
+descritos adequadamente por um único modelo linear,
+independentemente de quão estreita seja a faixa de operação
+considerada). E também no caso onde se deseja estudar
+características dinâmicas não-lineares do sistema, tais como oscilações e
+bifurcações.  \cite{aguirre}
 
-{\it{Invariância no tempo}}. A consideração de invariância temporal implica que o comportamento do sistema sendo modelado não 
-varia com o tempo. Isso não significa que as variáveis do sistema tenham valores constantes. Pelo contrario, normalmente os
-valores das variáveis que caracterizam um sistema flutuam com o tempo, sendo que tal evolução temporal é determinada por uma 
-lei. Normalmente refere-se a esta lei como a dinâmica do sistema. Portanto, ser invariante no tempo não quer dizer que o sistema
-esta estático, mas certamente implica que a dinâmica que esta regulando a evolução temporal e a mesma. 
+{\it{Invariância no tempo}}. A consideração de invariância temporal implica que
+o comportamento do sistema sendo modelado não varia com o tempo. Isso não
+significa que as variáveis do sistema tenham valores constantes. Pelo
+contrario, normalmente os valores das variáveis que caracterizam um sistema
+flutuam com o tempo, sendo que tal evolução temporal é determinada por uma lei.
+Normalmente refere-se a esta lei como a dinâmica do sistema. Portanto, ser
+invariante no tempo não quer dizer que o sistema esta estático, mas certamente
+implica que a dinâmica que esta regulando a evolução temporal e a mesma. 
 
-Formalmente diz-se que um sistema é invariante se um deslocamento no tempo na entrada causa um deslocamento no tempo na saída.
+Formalmente diz-se que um sistema é invariante se um deslocamento no tempo na
+entrada causa um deslocamento no tempo na saída.
 
 %===============================================================================
 \subsection{Forma geral de famílias de modelos}

@@ -1,5 +1,5 @@
 %===============================================================================
-\section{Estimativa de parametros}
+\section{Estimativa de parâmetros}
 \label{sec:sys_ident_parameters_estimation}
 %===============================================================================
 
@@ -24,8 +24,8 @@ y(t)=G(q)u(t)+\upsilon (t)
 \label{eq:si_par_estim_yt}
 \end{equation}
 
-Fazendo-se as substiruições necessárias chega-se ao estimador (\ref{eq:si_par_estim_predictor})
-onde enfatiza-se a dependência com o parametro $\theta$. \cite{ljung}
+Fazendo-se as substituições necessárias chega-se ao estimador (\ref{eq:si_par_estim_predictor})
+onde enfatiza-se a dependência com o parâmetro $\theta$. \cite{ljung}
 
 \begin{equation}
 \hat{y}(t|\theta)=H^{-1}(q,\theta)G(q,\theta)u(t)+\left [ 1- H^{-1}(q,\theta)\right ]y(t)
@@ -72,7 +72,7 @@ y(t)=\Phi ^T(t)\theta
 \end{equation}
 
 Onde $y(t)$ é um vetor de $p$ posições, $\Phi(t)$ uma matriz $n \times p$ e $\theta$ é um 
-vetor de $n$ posições.
+vetor de $N$ posições.
 
 A ideia é encontrar uma estimativa $\hat{\theta}$ dos parâmetros de $\theta$ a partir de medidas
 de $y(1),\varphi(1),\cdots,y(N),\varphi(N)$. 
@@ -80,16 +80,40 @@ de $y(1),\varphi(1),\cdots,y(N),\varphi(N)$.
 A partir de (\ref{eq:si_par_estim_err_predic}) e (\ref{eq:si_lsm_multi_var}) temos 
 
 \begin{equation}
-\varepsilon (t)=y(t)-\Phi ^T(t)\theta
+\varepsilon (t)=y(t)-\varphi ^T(t)\theta
 \nonumber
 \end{equation}
 
-A {\it{ estimativa dos mínimos quadrados}} de $\theta$ é defnido como o vetor $\hat{\theta}$ 
+A {\it{ estimativa dos mínimos quadrados}} de $\theta$ é definido como o vetor $\hat{\theta}$ 
 que minimiza a função custo (\ref{eq:si_par_etim_lsm_v}).
 
 \begin{equation}
 V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \| \varepsilon \right \|
-\label{eq:si_lsm_multi_var}
+\label{eq:si_par_etim_lsm_v}
 \end{equation}
 
+O valor de $\hat{\theta}$ que minimiza (\ref{eq:si_lsm_multi_var}) é dado por:
+
+\begin{equation}
+\hat{\theta}=(\varphi ^T \varphi )^{-1}\varphi  ^T y
+\label{eq:si_par_etim_lsm_theta}
+\end{equation}
+
+O mínimo da função custo fica como em:
+
+\begin{equation}
+\underset{\theta}{min}\;V(\theta)=V(\hat{\theta})=\frac{1}{2}\left [ y^Ty-y^T\varphi (\varphi ^T \varphi )^{-1}\varphi ^T y \right ]
+\end{equation}
+
+%===============================================================================
+\subsection{Incertezas nos parâmetros estimados}
+\label{sec:si_par_estim_uncertanties}
+%===============================================================================
+
+
+
+%===============================================================================
+\subsection{Considerações Finais}
+\label{sec:si_par_estim_conclusions}
+%===============================================================================
 
