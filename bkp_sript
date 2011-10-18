@@ -2,12 +2,13 @@
 
 filename="thesis_"`eval date +%Y%m%d`
 cd ..
-cp -r thesis thesis_bkp
+sudo cp -r thesis thesis_bkp
+sudo chmod 755 -R thesis_bkp
 cd thesis_bkp
 git clean -fdxq
 cd -
 tar czf $filename.tar.gz thesis_bkp
 #zip -r -q $filename.zip thesis_bkp
-rm -r thesis_bkp
+sudo rm -r thesis_bkp
 mv $filename.tar.gz /home/neuhaus/Documents/Dropbox/mestrado/bkp_tese
 echo DONE...
