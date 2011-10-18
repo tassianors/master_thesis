@@ -1,4 +1,9 @@
+%===============================================================================
+\section{Escolha do modelo}
+\label{sec:sys_ident_modelling_choosing}
+%===============================================================================
 
+%===============================================================================
 \subsection{Modelagem de Sistemas}
 \label{sec:sys_ident_modeling}
 %===============================================================================
@@ -45,6 +50,7 @@ de informações do sistema. No exemplo de dirigir, não necessidade de que seja mo
 motor, este tipo de informação não ajudaria no processo de dirigir o carro, podendo ser desconsiderado da modelagem.
 
 
+%===============================================================================
 \subsubsection{Considerações em modelagem}
 \label{sec:sys_ident_basic_definitions}
 %===============================================================================
@@ -70,12 +76,13 @@ esta estático, mas certamente implica que a dinâmica que esta regulando a evoluç
 
 Formalmente diz-se que um sistema é invariante se um deslocamento no tempo na entrada causa um deslocamento no tempo na saída.
 
-\subsection{Forma geral de familias de modelos}
+%===============================================================================
+\subsection{Forma geral de famílias de modelos}
 \label{sec:si_modeling_family_models}
 %===============================================================================
 
-Como já foi dito, o modelo de um sistema é a descrição de algumas propriedades deste. Nesta seção será 
-apresentado modelos de sistemas invariantes no tempo.
+O modelo de um sistema é a descrição de algumas propriedades deste. Nesta seção será 
+apresentado modelos de sistemas invariantes no tempo e alguns dos mais comuns modelos utilizados.
 
 Um modelo linear pode ser representado como em (\ref{eq:si_modeling_lti}).
 
@@ -94,5 +101,107 @@ H(q)=1+\sum_{k=1}^{\infty}h(k)q^{-k}
 \end{equation}
 
 Uma forma bem direta para a identificação de sistemas é tornar as funções $G(q)$ e $H(q)$ de (\ref{eq:si_modeling_lti_det})
-como funções racionais e que os coeficientes do denominador e numerador destes polinimios sejam os objetivos do processo
+como funções racionais e que os coeficientes do denominador e numerador destes polinomios sejam os objetivos do processo
 de identificação.
+
+Provavelmente o modelo mais simples para descrever a relação entre entrada e saída é obtido
+descrevendo o sistema como uma equação linear das diferenças (\ref{eq:si_modeling_arx}). \cite{ljung}
+
+\begin{equation}
+y(t)+a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)+e(t)
+\label{eq:si_modeling_arx}
+\end{equation}
+
+O ruido branco $e(t)$ aqui entra como um erro direto na equação. O parametros ajustaveis neste caso são:
+
+\begin{equation}
+\theta = \begin{bmatrix}
+a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} 
+\end{bmatrix}^T
+\end{equation}
+
+Definem-se os polinomios como:
+
+\begin{equation}
+A(q)=1+a_1q^{-1}+...+a_{na}q^{-n_a}
+\nonumber
+\end{equation}
+
+\begin{equation}
+B(q)=b_1q^{-1}+...+b_{nb}q^{-n_b}
+\nonumber
+\end{equation}
+
+O modelo definido em (\ref{eq:si_modeling_arx}) também é conhecido como {\bf{ARX}}, onde {\it{AR}} refere-se 
+a parte de $A(q)y(t)$ autoregressiva, e {\it{X}} como a entrada extra $B(q)u(t)$.
+
+Uma das desvantagens do modelo (\ref{eq:si_modeling_arx}) é a falta de liberdade para descrever as propriedades
+dos disturbios sobre o sistema. Pode-se então adicionar certo grau de liberdade descrevendo a equação do erro 
+como uma média móvel do ruido branco, isso nos remete a (\ref{eq:si_modeling_armax}).
+
+\begin{equation}
+\begin{matrix}
+y(t) & +a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)\\ 
+ & +e(t) +c_1 e(t-1)+...+c_{nc} e(t-n_c)
+\end{matrix}
+\label{eq:si_modeling_armax}
+\end{equation}
+
+Com a equação abaixo correspondendo com as funções de transferência de (\ref{eq:si_modeling_lti_det_armax}).
+
+\begin{equation}
+C(q)=1+c_1q^{-1}+...+c_{nc}q^{-n_c}
+\nonumber
+\end{equation}
+
+\begin{equation}
+G(q, \theta)=\frac{B(q)}{A(q)} , \;\;
+H(q, \theta)=\frac{C(q)}{A(q)}
+\label{eq:si_modeling_lti_det_armax}
+\end{equation}
+
+Onde os parametros para a identificação são:
+
+\begin{equation}
+\theta = \begin{bmatrix}
+a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
+\end{bmatrix}^T
+\end{equation}
+
+O modelo definido em (\ref{eq:si_modeling_armax}) também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
+a média móvel ($C(q)e(t)$)
+
+A partir do equacionamento do sistema apresentado em (\ref{eq:si_modeling_lti_det_armax}) e (\ref{eq:si_modeling_lti})
+podemos facilmente generalizar para o equacionamento apresentado em (\ref{eq:si_modeling_lti_det_global}).
+
+\begin{equation}
+A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
+\label{eq:si_modeling_lti_det_global}
+\end{equation}
+
+Quando usamos apenas um conjunto dos polinomis de $A(q) \;...\; F(q)$ obtemos as estruturas de modelos que
+pode ser visto na Tabela \ref{table:si_modeling_models}.
+
+
+\begin{table*}[htbp]
+\begin{center}
+\caption{Alguns modelos comuns para sistemas SISO. Casos especias de (\ref{eq:si_modeling_lti_det_global}).}
+\label{table:si_modeling_models}
+\begin{tabular}{cl}
+\hline
+        Polinomios usados em (\ref{eq:si_modeling_lti_det_global}) & Mome da estrutura do modelo   \\
+\hline
+        B                 & FIR (finite impulse response) \\ 
+        AB                & ARX                           \\ 
+        ABC               & ARMAX                         \\ 
+        AC                & ARMA                          \\ 
+        ABD               & ARARX                         \\ 
+        ABCD              & ARARMAX                       \\ 
+        BF                & OE (output error)             \\ 
+        BFCD              & Box-Jenkins                   \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+
