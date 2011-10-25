@@ -83,7 +83,7 @@
 %\usepackage[portuguese,ruled,noline]{algorithm2e}
 
 %\usepackage{amsmath}
-%\usepackage{amsthm}
+\usepackage{amsthm}
 %\usepackage{amsfonts}
 %\usepackage{amssymb}
 %\usepackage{thmtools}
@@ -219,4 +219,8 @@ escapechar=$}
 %\parindent 0pt
 %\parskip 1.5ex
 
-
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{defn}[theorem]{Definition}
