@@ -41,6 +41,62 @@ encontra. Como será visto a seguir.
 \label{eq:si_par_estim_err_predic}
 \end{equation}
 
+Que pode ser escrito como 
+
+\begin{equation}
+\varepsilon (t,\theta)=\frac{D(q)}{C(q)}\left [ A(q)y(t) - \frac{B(q)}{F(q)}u(t)\right ]
+\nonumber
+\end{equation}
+
+Definimos então duas variáveis auxiliares \eqref{eq:si_estim_predict_w} e \eqref{eq:si_estim_predict_v}
+
+\begin{equation}
+w(t,\theta)=\frac{B(q)}{F(q)}u(t)
+\label{eq:si_estim_predict_w}
+\end{equation}
+
+\begin{equation}
+\upsilon (t,\theta)=A(q)y(t)-w(t,\theta)
+\label{eq:si_estim_predict_v}
+\end{equation}
+
+Então:
+
+\begin{equation}
+\varepsilon (t,\theta)=y(t)-\hat{y}(t|\theta)=\frac{D(q)}{C(q)}\upsilon (t,\theta)
+\nonumber
+\end{equation}
+
+Desta forma introduz-se o vetor de estados \eqref{eq:si_estim_predic_state}.\cite{ljung}
+
+
+\begin{eqnarray*}
+  \varphi (t,\theta)= & [ -y(t-1), ... , -y(t-n_a), u(t-1), ..., u(t-n_b), \\
+   &  -w(t-1, \theta),..., -w(t-n_f, \theta), \varepsilon (t-1, \theta), ...,\varepsilon (t-n_c, \theta), \\
+   &  \upsilon (t-1, \theta), ...,\upsilon (t-n_d, \theta) ]^T
+\label{eq:si_estim_predic_state}
+\end{eqnarray*}
+
+E o vetor de parametros:
+
+\begin{equation}
+\theta = \left [ a_1 \; ... \; a_{na} \; b_1 \; ... \; b_{nb} \; f_1 \; ... \; f_{nf} \; c_1 \; ... \; c_{nc} \; d_1 \; ... \; d_{nd}\right ]^T
+\label{eq:si_estim_predict_theta}
+\end{equation}
+
+Chega-se então a seguinte equação para o erro de predição:
+
+\begin{equation}
+\varepsilon (t,\theta)=y(t)-\theta^T\varphi (t,\theta)
+\label{eq:si_estim_predict_erro}
+\end{equation}
+
+Onde:
+
+\begin{equation}
+\hat{y}(t| \theta)=\theta^T\varphi (t,\theta)=\varphi ^T(t,\theta)\theta
+\nonumber
+\end{equation}
 
 %===============================================================================
 \subsection{Método dos mínimos quadrados}
@@ -111,20 +167,46 @@ O mínimo da função custo fica como em:
 %===============================================================================
 
 
+A identificabilidade de um sistema pode ser definido pelo teorema (\ref{theorem:identificability}).
+
 \begin{theorem} 
-\cit{ljung}
+\cite{ljung}
 
 Considerando a estrutura de modelo $\mathcal{M}$ correspondente a: 
 \begin{equation}
 A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
-\nonumber
+\label{eq:si_par_estim_sys_theorem}
 \end{equation}
 
+e com $\theta$ como em \eqref{eq:si_estim_predict_theta} sendo o coeficiente dos polinômios envolvidos.
+Os graus dos polinômios são $n_a$, $n_b$ e assim por diante. A estrutura deste modelo 
+é globalmente identificável se, e somente se, todos os itens de (i) até (vi) forem verdadeiros.
 
-adicionar o resto da pagina 112.
+\begin{enumerate}[(i)]
+\item Não existe fator comum para todos os $z^{na}A^*(z), z^{nb}B^*(z), and, \; z^{nc}C^*(z)$.
+\item Não existe fator comum para $z^{nb}B^*(z), and, \; z^{nf}F^*(z)$.
+\item Não existe fator comum para $z^{nc}C^*(z), and, \; z^{nd}D^*(z)$.
+\item Se $n_a \geq 1$ então não pode existir fator comum entre $z^{nf}F^*(z), and, \; z^{nd}D^*(z)$.
+\item Se $n_d \geq 1$ então não pode existir fator comum entre $z^{na}A^*(z), and, \; z^{nb}B^*(z)$.
+\item Se $n_f \geq 1$ então não pode existir fator comum entre $z^{na}A^*(z), and, \; z^{nc}C^*(z)$.
+\end{enumerate}
 
+Os polinômios com $*$ correspondem a $\theta^*$
+\label{theorem:identificability}
 \end{theorem}
 
+Note que as condições de (i) até (vi) são satisfeitas para o caso comum de \eqref{eq:si_par_estim_sys_theorem}.
+Observe também que nenhuma das condições pode ser violada por qualquer \"especial\" valor de $\theta^*$, posto na
+hiper-superfície de $\Re ^d$. Isso nos leva ao seguinte corolário:
+
+\begin{cor} 
+A estrutura de modelo apresentada em \eqref{eq:si_par_estim_sys_theorem} é globalmente identificável.
+\label{corollary:identificability}
+\end{cor} 
+
+A partir do Corolário (\ref{corollary:identificability}) temos que a identificação de sistemas
+utilizando os modelos descritos pela Tabela \ref{table:si_modeling_models} são globalmente identificáveis
+se tivermos os dados de entrada suficientemente informativos.
 
 %===============================================================================
 \subsection{Incertezas nos parâmetros estimados}
