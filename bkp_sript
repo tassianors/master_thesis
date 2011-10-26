@@ -1,6 +1,6 @@
 #!/bin/sh
 
-filename="thesis_"`eval date +%Y%m%d`
+filename="thesis_"`eval date +%Y%m%d-%H%M`
 cd ..
 sudo cp -r thesis thesis_bkp
 sudo chmod 755 -R thesis_bkp
@@ -11,4 +11,5 @@ tar czf $filename.tar.gz thesis_bkp
 #zip -r -q $filename.zip thesis_bkp
 sudo rm -r thesis_bkp
 mv $filename.tar.gz /home/neuhaus/Documents/Dropbox/mestrado/bkp_tese
+sudo chmod 755 -R /home/neuhaus/Documents/Dropbox/mestrado/bkp_tese
 echo DONE...
