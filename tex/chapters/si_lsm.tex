@@ -140,7 +140,7 @@ A partir de (\ref{eq:si_par_estim_err_predic}) e (\ref{eq:si_lsm_multi_var}) tem
 \nonumber
 \end{equation}
 
-A {\it{ estimativa dos mínimos quadrados}} de $\theta$ é definido como o vetor $\hat{\theta}$ 
+A {\it{estimativa dos mínimos quadrados}} de $\theta$ é definido como o vetor $\hat{\theta}$ 
 que minimiza a função custo (\ref{eq:si_par_etim_lsm_v}).
 
 \begin{equation}
@@ -213,7 +213,111 @@ se tivermos os dados de entrada suficientemente informativos.
 \label{sec:si_par_estim_uncertanties}
 %===============================================================================
 
+O desejo principal para a estimativa de um sistema é que este não possua erros, ou ao menos que este erro, 
+se existir, seja o menor possível. Para tanto é necessário caracterizar este tipo de informação do sistema.
+Existem dois tipos principais de erro na estimativa de parâmetros. Um deles é o {\it{erro de variância}} e
+outro é o {\it{erro de polarização}}.
 
+Seja, $\theta^*$ o limite de convergência para a minimização do erro de predição:
+
+\begin{equation}
+\lim_{N \rightarrow \infty }\hat{\theta}_N = \theta^*
+\label{eq:si_par_estim_under_theta}
+\end{equation}
+
+Sejam os vetores:
+
+\begin{equation}
+	Q(q)=\begin{bmatrix}
+G_0(q) & H_0(q)
+\end{bmatrix}^T
+\nonumber
+\end{equation}
+
+
+\begin{equation}
+\hat{Q}_N(q)=\begin{bmatrix}
+G_0(q, \hat{\theta}_N) & H_0(q, \hat{\theta}_N)
+\end{bmatrix}^T
+\nonumber
+\end{equation}
+
+A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q(q)_0$ e o 
+melhor sistema que o modelo pode atingir (quando a quantidade de dados é ilimitada ($N\rightarrow \infty$)) tem-se
+então a estimativa do modelo $G(q)_N$.\cite{campestrini, solari}
+
+\begin{equation}
+\Delta Q_N(q) \equiv \hat{Q}_N-Q(q)
+\label{eq:si_par_estim_under_diff}
+\end{equation}
+
+Define-se então:
+
+\begin{equation}
+Q^*(q) = \left [ G(q, \theta^*) \; H(q, \theta^*) \right ]^T
+\label{eq:si_par_estim_under_q*}
+\end{equation}
+
+Entende-se por $Q(q)^*$ como a melhor aproximação que o método pode proporcionar (com $N \rightarrow \infty$) ou 
+como sendo a média de todas as estimativas efetuadas.
+
+Adicionando e subtraindo a \eqref{eq:si_par_estim_under_q*} na equação \eqref{eq:si_par_estim_under_diff}
+chega-se a definição do erro de polarização e de variância \eqref{eq:si_par_estim_under_errors}.
+
+\begin{equation}
+\Delta Q_N(q) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N-Q^*(q)}}+  \underset{\text{Erro de variância}}{\underbrace{Q^*(q)-Q(q)}}
+\label{eq:si_par_estim_under_errors}
+\end{equation}
+
+A partir da \eqref{eq:si_par_estim_under_errors} compreende-se o erro de polarização como sendo a distância
+entre a melhor aproximação possível e o valor real para o parâmetro. Já o erro de variância é a média que cada uma
+das estimativas está distante do valor ótimo possível para a estimativa.
+
+\begin{theorem}
+Supondo um sistema linear $\mathcal{M}$ parametrizado com em \eqref{eq:si_par_estim_theorem_sys}
+e  que os dados de entrada sejam suficientemente informativos.
+
+\begin{equation}
+\theta=\begin{bmatrix}
+\rho \\ 
+\eta 
+\end{bmatrix}\;\;
+G(q,\theta)=G(q,\rho), \;\;
+H(q,\theta)=G(q,\eta)
+\label{eq:si_par_estim_theorem_sys}
+\end{equation}
+
+Considerando que o sistema opera em malha aberta, ou seja:
+
+\begin{equation}
+u(t) \;e\; e_0(t)\text{ são independentes.}
+\nonumber
+\end{equation}
+
+Seja:
+
+\begin{equation}
+\hat{\theta}_N=\begin{bmatrix}
+\hat{\rho}_N \\ 
+\hat{\eta}_N
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+Obtido pelo método de predição apresentado %%achar a ref 
+obtém-se:
+
+\begin{equation}
+\begin{matrix}
+G(e^{j\omega},\hat{\theta}_N)\rightarrow G_0(e^{j\omega})\\ 
+\text{quando:}\\
+N\rightarrow \infty
+\end{matrix}
+\label{eq:si_par_estim_theorem_end}
+\end{equation}
+
+
+\end{theorem}
 
 %===============================================================================
 \subsection{Considerações Finais}

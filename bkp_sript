@@ -8,8 +8,8 @@ cd thesis_bkp
 git clean -fdxq
 cd -
 tar czf $filename.tar.gz thesis_bkp
-#zip -r -q $filename.zip thesis_bkp
 sudo rm -r thesis_bkp
 mv $filename.tar.gz /home/neuhaus/Documents/Dropbox/mestrado/bkp_tese
 sudo chmod 755 -R /home/neuhaus/Documents/Dropbox/mestrado/bkp_tese
-echo DONE...
+sudo chown neuhaus.neuhaus -R /home/neuhaus/Documents/Dropbox/mestrado/bkp_tese
+echo DONE... $filename.tag.gz

@@ -13,7 +13,7 @@ all: $(OUTFILE).pdf #slide
 #slide:
 #	make -C slide-1.0
 
-$(OUTFILE).dvi:$(TEX) $(BIB).bib
+$(OUTFILE).dvi:$(TEX) $(BIB).bib clean
 	latex $(TEX)
 	latex $(TEX)
 	bibtex $(BIB)
