@@ -2,7 +2,7 @@
 \section{Escolha do modelo}
 \label{sec:sys_ident_modelling_choosing}
 %===============================================================================
-
+% poderia colocar o capitulo seguinte resumidamente como uma intro a modelagem?
 %===============================================================================
 \subsection{Modelagem de Sistemas}
 \label{sec:sys_ident_modeling}
@@ -101,11 +101,11 @@ Formalmente diz-se que um sistema é invariante se um deslocamento no tempo na
 entrada causa um deslocamento no tempo na saída.
 
 %===============================================================================
-\section{Forma geral de famílias de modelos}
+\subsection{Forma geral de famílias de modelos}
 \label{sec:si_modeling_family_models}
 %===============================================================================
 
-O modelo de um sistema é a descrição de algumas propriedades deste. Nesta seção será 
+Modelo de um sistema é a descrição de {\it{algumas}} de suas propriedades. Nesta seção será 
 apresentado modelos de sistemas invariantes no tempo e alguns dos mais comuns modelos utilizados.
 
 Um modelo linear pode ser representado como em (\ref{eq:si_modeling_lti}).
@@ -124,7 +124,7 @@ H(q)=1+\sum_{k=1}^{\infty}h(k)q^{-k}
 \label{eq:si_modeling_lti_det}
 \end{equation}
 
-Uma forma bem direta para a identificação de sistemas é tornar as funções $G(q)$ e $H(q)$ de (\ref{eq:si_modeling_lti_det})
+Uma forma direta para a identificação de sistemas é tornar as funções $G(q)$ e $H(q)$ de (\ref{eq:si_modeling_lti_det})
 como funções racionais e que os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo
 de identificação.
 
@@ -184,7 +184,7 @@ H(q, \theta)=\frac{C(q)}{A(q)}
 \label{eq:si_modeling_lti_det_armax}
 \end{equation}
 
-Onde os parâmetros para a identificação são:
+Onde os parâmetros a estimar são:
 
 \begin{equation}
 \theta = \begin{bmatrix}
