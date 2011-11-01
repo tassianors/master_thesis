@@ -3,3 +3,15 @@
 \label{sec:non_linear_si_linearization}
 %===============================================================================
 
+Talvez o mais comum uso de sistemas lineares variantes no tempo esta relacionado
+a linearização de sistema não lineares em torno de uma trajetória. Suponha que
+o sistema não linear é descrito por:
+
+\begin{equation}
+\left\{\begin{matrix}
+x(k+1) = f(x(k),u(k))+r(x(k),u(k))w(k)\\ 
+y(k)  = h(x(k))+m(x(k),u(k))\upsilon (k)
+\end{matrix}\right.
+\label{eq:nl_linearization_sys}
+\end{equation}
+

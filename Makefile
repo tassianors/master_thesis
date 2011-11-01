@@ -2,7 +2,7 @@ MAINDIR := ./tex
 OUTDIR 	:= .
 BIBDIR := .
 
-PAPERNAME	:= disssertacao_neuhaus
+PAPERNAME	:= neuhaus
 
 TEX		:=	$(MAINDIR)/$(PAPERNAME).tex
 BIB		:=	$(BIBDIR)/$(PAPERNAME)
