@@ -12,13 +12,43 @@
 % ljung 143
 %===============================================================================
 
+Em uma situação onde a dinâmica do sistema pode ser bem descrita por um sistema linear, 
+mas existem algumas não linearidades estáticas atreladas a entrada e/ou a saída.
+Este será o caso de atuadores serem não lineares como por exemplo: devido a saturação, 
+ou se o sensor tem características não lineares. 
+
+Um modelo com não linearidades na entrada é chamado de {\it{modelo de Hammerstein}} e 
+para não linearidades na saída chama-se {\it{modelo de Wiener}}. \cite{ljung}
+
+Considere o sistema apresentado em \eqref{eq:nl_linearization_sys} e o caso de 
+Hammerstein, tem-se que a função estática não linear $f(\cdot)$ pode ser parametrizado
+tanto em termos de parâmetros físicos, como ponto ou nível de saturação, como pode
+ser parametrizado por modelo caixa preta.
+
+% daria para por uma figura aqui ... aprender a fazer figuras simples latex
 
 %===============================================================================
-\subsection{Serie de volterra}
+\subsection{Serie de Volterra}
 \label{sec:nl_models_volterra}
 % Aguirre 334
 %===============================================================================
 
+Um sistema não linear pode ser descrito pela serie de Voltera \eqref{eq:nl_models_voltera}:
+
+\begin{equation}
+y(t)=\sum_{j=1}^{\infty}\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}
+h_j(\tau_1, ... ,\tau_j) \prod_{i=1}^{j}u(t-\tau_i)d\tau_i
+\label{eq:nl_models_voltera}
+\end{equation}
+
+Onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para
+um sistema linear com $j=1$ a equação de Voltera se reduz a integral de convolução.
+\cite{aguirre}
+
+Grande dificuldade de utilizar a serie de Voltera \eqref{eq:nl_models_voltera} é que
+até para sistemas pouco não lineares, o numero de parâmetros a estimar é grande. Isso
+se dá pelo fato da série tentar explicar a saída do sistema apenas baseado nos valores
+da entrada deste.
 
 %===============================================================================
 \subsection{Funções Radiais de Base}
