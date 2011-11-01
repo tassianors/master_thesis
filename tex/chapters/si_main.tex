@@ -3,28 +3,29 @@
 \label{chapter:system_identification}
 %===============================================================================
 
-% Todo: Adicionar alguma breve introducão do que existirá neste capitulo.
-devaneios:
+Identificação de sistemas consiste em caracterizar um sistema físico em um modelo matemático.
+Baseado na observação deste sistema é possível coletar informações a respeito de seu comportamento.
+De posse destes dados é possível prever quais serão as próximas saídas do sistema baseado 
+nos seus valores passados. Chamamos esta etapa de {\it{predição}} e baseado nesta equação, que
+descreve o comportamento do sistema em todos os instantes é possível determinar um {\it{critério de 
+minimização}} do erro entre estes valores estimados, e os valores reis coletados do sistema.
 
-Primeiro escreve-se uma pequena introducao do que eh system identification e que existem alguns topicos importantes:
-- dados coletados
-	- falar que os dados devem ser informativos.  8.2 ljung
-	- falar dos tipos de experimentos: capitulo 13 do ljung tem informacoes de experiemntos em laco aberto e fechado.
-- estrutura dos modelos
-	- capitulo 4.2 do ljung com os tipos de modelos normalmente usados.
-- determinando a melhor identifficacao
-	- aqui devo colocar os métodos basicos para identificacao. falar sobre o fato de que se encontra, os melhores parametros
-	para o modelo escolhido.
-	- falar que se se os dados sao corelacionados há erro de polarizacao..
-	- falar sobre os estimadores/preditores 
+A fim de tornar a função preditora o mais próximo possível dos dados coletados, chega-se ao
+ajuste dos parâmetros que provém o menor erro possível baseado no critério escolhido. 
+Normalmente o critério escolhido é quem dá nome ao método de identificação.
 
+Neste capitulo será também discutido algumas características da estimativa fornecida pelo método 
+quando existem incertezas, ruídos, ou quando os dados coletados não são suficientes para que
+tenhamos uma estimativa confiável e que consiga descrever o sistema real de forma unívoca.
+
+% Todo: Adicionar o que quando os cados saõ correlacionados há erro na predição.
 
 %===============================================================================
 % Chapters
 %===============================================================================
 \input{tex/chapters/si_data_acquisition}
 \input{tex/chapters/si_modeling}
-\input{tex/chapters/si_lsm}
+\input{tex/chapters/si_estim}
 \input{tex/chapters/si_project_experiment}
 \input{tex/chapters/si_conclusions}
 %===============================================================================
