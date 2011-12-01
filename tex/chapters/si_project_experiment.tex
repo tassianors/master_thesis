@@ -2,3 +2,37 @@
 \section{Projeto de Experimento}
 \label{sec:si_project_experiments}
 %===============================================================================
+
+Projeto de experimentos pode ser entendido como o procedimento para que se escolha o melhor 
+sinal de entrada para a identificação dos parâmetros desejados para o experimento. 
+Desta forma muitas variáveis podem ser levadas em consideração, refletindo em propriedades que
+podem ou não ser o foco do projeto de experimentos.
+
+Uma forma de organizar o projeto de experimento é desenvolve-lo como um problema de otimização 
+convexa, onde entre muitas vantagens está o fato de que é possível a utilização de métodos matemáticos
+para o seu cálculo e sua formulação pode ser feita por LMI ({\it{Linear Matrix Inequality}}. Em \cite{jasson}
+este tópico é explorado em mais profundidade, sendo aqui apenas apresentado a sua ideia básica.
+
+%===============================================================================
+\subsection{Modelagem como um problema de otimização}
+\label{sec:si_project_optimization}
+%===============================================================================
+
+O problema de projeto de experimento pode ser considerado como uma forma geral apresentada em \eqref{eq:si_project_optimization}
+
+\begin{equation}
+\begin{matrix}
+\underset{\Phi_{\chi_0}}{\text{minimize}} &  & \text{Objetivo}\\ 
+\text{Sujeito a:} &  & \text{Requisitos de qualidade}\\ 
+ &  & \text{Requisitos de sinais}
+\end{matrix}
+\label{eq:si_project_optimization}
+\end{equation}
+
+De forma geral os requisitos de qualidades são funções da covariância de $P$. Por esta razão é natural usar
+o espectro da entrada $\Phi_u$ e eventualmente o espectro cruzado $\Phi_{ue}$ como variáveis do projeto.
+A inclusão de limitações nos sinais e sua inclusão como variáveis de projeto são úteis para evitar que se chegue
+em resultados onde a energia de entrada precise ser infinita para se obter os critérios desejados, ou largura
+de banda que não são facilmente atingíveis em projetos reais. \cite{jasson}
+
+
