@@ -188,6 +188,12 @@ O mínimo da função custo fica como em:
 \end{equation}
 
 %===============================================================================
+\subsection{Método das variáveis instrumentais}
+\label{sec:si_par_estim_iv}
+%===============================================================================
+% bibliografia principal: aguirre e ljung
+
+%===============================================================================
 \subsection{Identificabilidade de sistemas}
 \label{sec:si_par_estim_sys_ident}
 %===============================================================================
@@ -341,7 +347,86 @@ N\rightarrow \infty
 \end{matrix}
 \label{eq:si_par_estim_theorem_end}
 \end{equation}
-
-
 \end{theorem}
+
+%===============================================================================
+\subsubsection{Covariância nos parâmetros}
+\label{sec:si_par_estim_uncertanties_covariance}
+%===============================================================================
+
+Um comum meio de medir a qualidade das estimativas é estudar suas propriedades assintóticas. Quando o valor
+de $N$ (quantidade de dados) cresce muito, a estimativa pertencerá a alguma distribuição. As propriedades desta
+irão determinar a qualidade das estimativas obtidas.\cite{jansson}
+
+\begin{equation}
+\begin{matrix}
+\sqrt{N}(\hat{\theta}_N-\theta_0) \to \mathcal{N}(0,P) \;\; \text{quando} \;\; N\to \infty \\ \\
+\lim_{N\to \infty}N\;E(\hat{\theta}_N-\theta_0)()\hat{\theta}_N-\theta_0)^T=P\\\\
+P(\theta_0)=\lambda_0(E\left [ \psi (t,\theta_0)\psi^T(t,\theta_0) \right ])^{-1}\\ \\
+\psi (t,\theta_0)=\frac{\partial }{\partial \theta}\hat{y}(t,\theta)\mid_{\theta=\theta_0}
+\end{matrix}
+\label{eq:si_par_estim_conv_def}
+\end{equation}
+
+Não é apenas o tamanho (quantidade de pontos) do experimento que irá influenciar na qualidade da estimativa.
+Na equação \eqref{eq:si_par_estim_cov_spectrum} apresenta-se o espectro onde $\Phi_u$ é o espectro da entrada $u(t)$, 
+$\Phi_{ue}$ é o espectro cruzado entre a entrada e o erro $e_0$. Esta distribuição do espectro, $\Phi_{\chi 0}$
+também influenciará na qualidade da estimativa, como pode ser visto no 
+
+\begin{equation}
+\Phi_{\chi 0}=\begin{bmatrix}
+\Phi_u & \Phi_{ue}\\ 
+\Phi_{ue} & \lambda_0
+\end{bmatrix}
+\label{eq:si_par_estim_cov_spectrum}
+\end{equation}
+
+\begin{lemma}
+A inversa da matriz de covariancia, $P^{-1}(\theta_0)$, é uma função linear do espectro $\Phi_{\chi 0}$ dado por
+\eqref{eq:si_par_estim_cov_lemma}.
+
+\begin{equation}
+P^{-1}(\theta_0)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta_0)
+\Phi_{\chi_0}(\theta_0)\mathcal{F}^*(\theta_0) d \omega
+\label{eq:si_par_estim_cov_lemma}
+\end{equation}
+
+Onde $\mathcal{F}(q, \theta_0)=\left [ \mathcal{F}_u(q, \theta_0) \;\;\;\mathcal{F}_e(q, \theta_0) \right ]$ e:
+
+\begin{equation}
+\mathcal{F}_u(\theta_0) = H^{-1}(\theta_0)\frac{\mathrm{d} G(\theta_0)}{\mathrm{d} \theta} 
+\nonumber
+\end{equation}
+
+\begin{equation}
+\mathcal{F}_e(\theta_0) = H^{-1}(\theta_0)\frac{\mathrm{d} H(\theta_0)}{\mathrm{d} \theta}
+\nonumber
+\end{equation}
+\label{lemma:si_par_estim_covariance}
+\end{lemma}
+
+Como $P$ é a medida do tamanho do erro nos parametros, o Lemma \ref{lemma:si_par_estim_covariance} mostra
+como este erro é relacionado com o espectro $\Phi_{\chi 0}$. O espectro cruzado $\Phi_{ue}$ é zero quando 
+o sistema esta operando em laço aberto. \cite{jasson}
+
+%===============================================================================
+\subsubsection{Margens de confiança das estimativas}
+\label{sec:si_par_estim_uncertanties_confidence_bounds}
+%===============================================================================
+
+A partir da distribuição assintótica normal em \eqref{eq:si_par_estim_conv_def} segue:
+
+\begin{equation}
+(\hat{\theta}_N-\theta_0)^T P^{-1}_{N}(\hat{\theta}_N-\theta_0)\rightarrow \chi^2(N)\;\; \text{quando}\; N\to \infty
+\nonumber
+\end{equation}
+
+Com $P_N=P/N$ e onde \eqref{eq:si_par_estim_confidence_region} é a região de confiança, onde assintoticamente
+inclui $\theta_0$ com probabilidade $\alpha$. desta forma tem-se que as estimativas estarão centradas em $\theta_0$
+e com probabilidade $\alpha$ estarão contidas em uma esfera definida por $P_N$ e $\chi_{\alpha}^2(N)$
+
+\begin{equation}
+U_\theta=\left \{ \theta \mid (\hat{\theta}_N-\theta_0)^T P^{-1}_{N}(\hat{\theta}_N-\theta_0) \le \chi^2_{\alpha}(N)  \right \}
+\label{eq:si_par_estim_confidence_region}
+\end{equation}
 

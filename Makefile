@@ -15,7 +15,6 @@ all: $(OUTFILE).pdf #slide
 
 $(OUTFILE).dvi:$(TEX) $(BIB).bib clean
 	latex $(TEX)
-	latex $(TEX)
 	bibtex $(BIB)
 	latex $(TEX)
 
