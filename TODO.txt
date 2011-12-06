@@ -1,6 +1,9 @@
 Adicionar as informacoes corretas da tese da luciola.
-adicionar o livro do ljjung a bibliografia
-comprar um teclado, porque escrever neste note nao da.
-
-
 Adicionar a lista de simbolos SISO
+
+REVIEW:
+
+\section{Conjunto de dados coletados} - Dá para melhorar horrores. bastaria achar uma outra bibliografia.
+
+\subsection{Experimentos Informativos} - poderia ser colocado em forma de teorema.
+

@@ -12,6 +12,53 @@ Uma forma de organizar o projeto de experimento é desenvolve-lo como um problema
 convexa, onde entre muitas vantagens está o fato de que é possível a utilização de métodos matemáticos
 para o seu cálculo e sua formulação pode ser feita por LMI ({\it{Linear Matrix Inequality}}. Em \cite{jasson}
 este tópico é explorado em mais profundidade, sendo aqui apenas apresentado a sua ideia básica.
+Este tópico é abordado na seção (\ref{sec:si_projec_optimization}).
+
+O projeto de experimento é uma alternativa ao uso de sinais como PRBS ({\it{Pseudo Randon Binary Sequence}}).
+A escolha de um sinal mais apropriado para o experimento traz diversas vantagens, que podem ser bastante
+significativas para o tempo e esforço despendido sobre o projeto do controlador, ou da identificação do sistema.
+Uma destas vantagens é o tempo de dados coletados, aplicando-se sinais com componentes de frequência que são
+mais informativos, tem-se uma eficiência maior nos dados amostrados, bastando um montante menor de data, para que
+sejam obtidos os mesmos índices de qualidade, quando comparado com projetos utilizando sinais mais simples.
+
+%===============================================================================
+\subsection{Sinais de entrada mais comumente utilizados}
+\label{sec:si_project_signal_input}
+%===============================================================================
+
+Como foi apresentado no capitulo (\ref{sec:si_data_persistently_excitation}}) é
+possível formar sinais persistentes, apenas adicionando um número suficiente de componentes
+de frequência a fim de que todos os parâmetros possam ser estimados. Não é estranho
+que se pense que quanto mais componentes tiver o sinal, melhor. 
+
+Desta maneira, vários sinais que podem ser gerados de maneira fácil e que possuem 
+um grande range de componentes de frequência foram elaborados.
+
+%===============================================================================
+\subsubsection{Sinal Binário Randômico}
+\label{sec:si_project_signal_input_rbs}
+%===============================================================================
+
+Um sinal binário por definição assume apenas dois valores (0 ou 1). Partindo deste
+principio, um sinal binário randomico, é uma sequencia aleatória de zeros e uns, que
+formam o sinal.
+
+
+%===============================================================================
+\subsubsection{Sinal Binário Pseudo-Randômico  - PRBS}
+\label{sec:si_project_signal_input_prbs}
+%===============================================================================
+
+%===============================================================================
+\subsubsection{Ruido Branco Filtrado}
+\label{sec:si_project_signal_input_wn_filtered}
+%===============================================================================
+
+Um das escolhas mais simples de sinais, é gerar um ruido Gausiano e então filtra-lo com 
+algum filtro linear. Desta forma, teoricamente, é possível de se atingir qualquer espectro de
+sinal, bastando apenas a correta escolha do filtro. Como este sinal é gerado {\it{off-line}}, 
+é possível aplicar filtros não causais e eliminar efeitos transientes do sinal, o que
+proporciona um comportamento espectral melhor. \cite{campestrini, ljung}
 
 %===============================================================================
 \subsection{Modelagem como um problema de otimização}
