@@ -27,7 +27,8 @@ Algo importante a se destacar antes do processo de modelagem do sistema é a
 escolha do que deseja-se modelar deste sistema. Uma modelagem completa de todas
 as características é muitas vezes inviável e na maioria dos sistemas reais,
 desnecessário. Usualmente, temos a necessidade de interagir, seja controlando ou
-observando, um conjunto restrito de informações do sistema.
+observando, um conjunto restrito de informações do sistema, deve-se então focar
+o modelo nestas características desejadas.
 
 
 %===============================================================================
@@ -35,8 +36,8 @@ observando, um conjunto restrito de informações do sistema.
 \label{sec:sys_ident_basic_definitions}
 %===============================================================================
 
-Geralmente, na modelagem de sistemas, fazem-se algumas considerações sobre o
-sistema:
+Geralmente, na modelagem de sistemas algumas considerações são feitas sobre o
+este:
 
 {\it{Linearidade}}. Uma consideração frequentemente feita é a de se supor que o
 sistema sendo modelado se comporta de forma aproximadamente linear. Tal
@@ -44,7 +45,7 @@ suposição é normalmente verificada observando-se o comportamento em uma faixa
 relativamente estreita de operações. \cite{aguirre}
 
 Formalmente diz-se que um sistema é linear se ele obedece o {\it{principio da
-superposição}} [todo:achar a bibliografia disso].  A consideração da
+superposição}}.  A consideração da
 linearidade normalmente simplifica bastante p modelo a ser construído.
 Entretanto, há situações em que esta consideração não é adequada, como por
 exemplo, para sistemas como dinâmica fortemente bilinear (que não podem ser
@@ -110,7 +111,7 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb}
 \end{bmatrix}^T
 \end{equation}
 
-Definem-se os polinômios como:
+Definem-se os polinômios:
 
 \begin{equation}
 A(q)=1+a_1q^{-1}+...+a_{na}q^{-n_a}
@@ -125,7 +126,7 @@ B(q)=b_1q^{-1}+...+b_{nb}q^{-n_b}
 O modelo definido em (\ref{eq:si_modeling_arx}) também é conhecido como {\bf{ARX}}, onde {\it{AR}} refere-se 
 a parte de $A(q)y(t)$ auto-regressiva, e {\it{X}} como a entrada extra $B(q)u(t)$.
 
-Uma das desvantagens do modelo (\ref{eq:si_modeling_arx}) é a falta de liberdade para descrever as propriedades
+Uma das desvantagens deste modelo é a falta de liberdade para descrever as propriedades
 dos distúrbios sobre o sistema. Pode-se então adicionar certo grau de liberdade descrevendo a equação do erro 
 como uma média móvel do ruido branco, isso nos remete a (\ref{eq:si_modeling_armax}).
 
@@ -137,7 +138,7 @@ y(t) & +a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)\\
 \label{eq:si_modeling_armax}
 \end{equation}
 
-Com a equação abaixo correspondendo com as funções de transferência de (\ref{eq:si_modeling_lti_det_armax}).
+Com a equação abaixo correspondendo com as funções de transferência em (\ref{eq:si_modeling_lti_det_armax}).
 
 \begin{equation}
 C(q)=1+c_1q^{-1}+...+c_{nc}q^{-n_c}
@@ -159,7 +160,7 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
 \end{equation}
 
 O modelo definido em (\ref{eq:si_modeling_armax}) também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
-a média móvel ($C(q)e(t)$)
+a média móvel ($C(q)e(t)$) do ruido.
 
 A partir do equacionamento do sistema apresentado em (\ref{eq:si_modeling_lti_det_armax}) e (\ref{eq:si_modeling_lti})
 podemos facilmente generalizar para o equacionamento apresentado em (\ref{eq:si_modeling_lti_det_global}).
@@ -193,4 +194,18 @@ pode ser visto na Tabela \ref{table:si_modeling_models}.
 \end{center}
 \end{table*}
 
+As equações que descrevem a saída do sistema em função da entrada $u(t)$ e o ruido $e(t)$ como apresentado em \eqref{eq:si_modeling_lti}
+e que podem ser caracterizados pela utilização de vários polinômios, nada mais são do que famílias de modelos $\mathcal{M}$.
+Existem para cada família de modelo uma infinidade de possíveis saídas para uma mesma entrada, bastando para isso que os
+parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente. O objetivo na identificação de sistemas é encontrar um conjunto de
+coeficientes que consiga melhor descrever os dados observados na saída, para uma determinada entrada.
+
+Da mesma forma que com um modelo pode-se obter diversas saídas diferentes, vários modelos diferentes podem chegar a uma mesma 
+saída. Este é de certa forma um problema para a escolha do modelo que será utilizado, pois se ambos chegam teoricamente a mesma
+resposta, qual dos modelos é o melhor? Este é um dos motivos pelos quais a correta escolha de um modelo, ou família de modelos, é
+importante.
+
+Escolher um modelo que não consegue representar o sistema físico propicia erros na estimativa dos parâmetros. (Mais informações sobre
+estes erros serão abordados na seção (\ref{sec:si_par_estim_uncertanties})). Por outro lado a super estimativa da ordem do modelo
+pode adicionar complexidade em desnecessária além de comportamentos transientes no modelo que não existem na planta real.
 

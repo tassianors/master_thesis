@@ -7,7 +7,9 @@ Identificação de sistemas é baseada no conjunto de dados coletados do sistema
 observado. Estes dados podem ser obtidos em regime normal de operação ou sob
 condições pré determinadas, onde é possível escolher previamente o sinal de
 entrada que será aplicado sobre o sistema. Isso é feito para que os dados
-coletados sejam o mais informativos possíveis. \cite{ljung}
+coletados sejam o mais informativos possíveis. \cite{ljung} Maiores detalhes
+sobre escolha de sinais para alimentação serão abordados no capitulo sobre 
+projeto de experimentos (seção (\ref{sec:si_project_experiments})).
 
 Um conjunto de dados obtidos tanto por malha aberta quanto por malha fechada
 pode ser descrito como em \eqref{eq:si_data_acq}. 
@@ -22,6 +24,10 @@ z^N=\left \{  u(1), y(1), ... ,u(N), y(N) \right \}
 \label{sec:si_data_persistently_excitation}
 % most part of it came from ljung pg 412
 %===============================================================================
+
+Um sinal persistentemente excitante com relação ao modelo $\mathcal{M}^*$ significa que 
+os dados coletados permitem a discriminação entre dois modelos diferentes dentro do modelo
+$\mathcal{M}^*$.
 
 Um sinal quasi-estacionário $\left \{ u(t) \right \}$, com espectro $\Phi _u(\omega)$ é dito
 {\it{persistentemente excitante de ordem n}} se, para todos os filtros de forma:
@@ -38,7 +44,7 @@ a relação
 \label{eq:si_data_persistence_2}
 \end{equation}
 
-Outra caracterização pode ser dada em termos da função de covariância $R_u(\tau)$: $u(t)$ é um
+Outra caracterização pode ser dada em termos da função de covariância $R_u(\tau)$= $u(t)$ é um
 sinal quasi-estacionário, e $\bar{R}_n$ uma matriz $n\times n$ definida como:
 
 \begin{equation}
@@ -55,12 +61,12 @@ Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se, $\bar{R}
 \cite{ljung}
 
 A partir da equação \eqref{eq:si_data_persistence_2} pode-se extrair interpretações mais explicitas.
-Claramente a função $M_n(z)M_n(z^{-1})$ pode ter no máximo $n-1$ polos diferentes dentro do circulo 
+Uma delas é que a função $M_n(z)M_n(z^{-1})$ pode ter no máximo $n-1$ polos diferentes dentro do circulo 
 unitário (desde que um zero esteja sempre na origem) levando a simetria em conta. Por isso $u(t)$ é
-persistentemente excitante de ordem $n$, se $\Phi _u(\omega)$ for diferente de de zero em pelo menos 
-$n$ pontos no intervalo $-\pi< \omega \le \pi$. \cite{ljung}
+persistentemente excitante de ordem $n$, se o espectro do sinal de entrada, $\Phi _u(\omega)$, for
+diferente de de zero em pelo menos $n$ pontos no intervalo $-\pi< \omega \le \pi$. \cite{ljung}
 
-Considere o somatório de senoides \eqref{eq:si_data_persistently_sum_cos}, cada senoide possui duas
+Considere o somatório de senoides em \eqref{eq:si_data_persistently_sum_cos}, cada senoide possui duas
 linhas espectrais em $\pm \omega_k$. Este sinal é então persistentemente excitante de ordem $2n$.
 
 \begin{equation}
@@ -74,7 +80,7 @@ u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \om
 %===============================================================================
 
 Na Seção \ref{sec:si_data_persistently_excitation} foi visto que é fácil caracterizar
-experimentos que são suficientemente informativos.Considere um conjunto $\mathcal{M}^*$ de um modelo
+sinais que são suficientemente informativos.Considere um conjunto $\mathcal{M}^*$ de um modelo
 SISO descrito por (\ref{eq:si_data_model_def}) tendo a função de transferência $G(q,\theta)$ a
 função racional descrita em (\ref{eq:si_data_g_rational}).
 
@@ -91,9 +97,7 @@ G(q,\theta)=\frac{B(q,\theta)}{F(q,\theta)}=\frac{q^{n_k}(b_1+b_2q^{-1}+...+b_{n
 Então um experimento em malha aberta com uma entrada que é persistentemente excitante de ordem $nb +nf$ é
 suficientemente informativo com relação a $\mathcal{M}^*$.
 
-Chega-se então ao fato de que um experimento em malha aberta é informativo se a sua entrada for
-persistentemente excitante. Observa-se que é necessário que a ordem de excitação seja igual ao 
-número de parâmetros a serem estimados. \cite{ljung}
-
-
+Um experimento em malha aberta é informativo se a sua entrada for persistentemente excitante.
+Observa-se que é necessário que a ordem de excitação seja igual ao número de parâmetros a
+serem estimados. \cite{ljung}
 

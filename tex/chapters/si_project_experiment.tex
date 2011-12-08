@@ -10,9 +10,9 @@ podem ou não ser o foco do projeto de experimentos.
 
 Uma forma de organizar o projeto de experimento é desenvolve-lo como um problema de otimização 
 convexa, onde entre muitas vantagens está o fato de que é possível a utilização de métodos matemáticos
-para o seu cálculo e sua formulação pode ser feita por LMI ({\it{Linear Matrix Inequality}}. Em \cite{jasson}
+para o seu cálculo e sua formulação pode ser feita por LMI ({\it{Linear Matrix Inequality}}. Em \cite{jansson}
 este tópico é explorado em mais profundidade, sendo aqui apenas apresentado a sua ideia básica.
-Este tópico é abordado na seção (\ref{sec:si_projec_optimization}).
+Este tópico é abordado na seção (\ref{sec:si_project_optimization}).
 
 O projeto de experimento é uma alternativa ao uso de sinais como PRBS ({\it{Pseudo Randon Binary Sequence}}).
 A escolha de um sinal mais apropriado para o experimento traz diversas vantagens, que podem ser bastante
@@ -26,7 +26,7 @@ sejam obtidos os mesmos índices de qualidade, quando comparado com projetos util
 \label{sec:si_project_signal_input}
 %===============================================================================
 
-Como foi apresentado no capitulo (\ref{sec:si_data_persistently_excitation}}) é
+Como foi apresentado no capitulo (\ref{sec:si_data_persistently_excitation}) é
 possível formar sinais persistentes, apenas adicionando um número suficiente de componentes
 de frequência a fim de que todos os parâmetros possam ser estimados. Não é estranho
 que se pense que quanto mais componentes tiver o sinal, melhor. 
@@ -40,14 +40,91 @@ um grande range de componentes de frequência foram elaborados.
 %===============================================================================
 
 Um sinal binário por definição assume apenas dois valores (0 ou 1). Partindo deste
-principio, um sinal binário randomico, é uma sequencia aleatória de zeros e uns, que
+principio, um sinal binário randômico, é uma sequencia aleatória de zeros e uns, que
 formam o sinal.
 
+A forma mais simples para a gerar este sinal é, baseado em um ruido Gausiano branco
+de média zero, aplicar um filtro linear previamente escolhido. Assim pode-se teoricamente
+gerar qualquer sinal binário de qualquer nível.
+
+O inconveniente desta forma é que aplicando um filtro ao sinal Gausiano irá alterar o
+seu espectro, não sendo a forma desta alteração algo conhecido. Deve-se então sempre 
+antes de aplicar o sinal no sistema, verificar o espectro gerado. \cite{ljung}
+
 
 %===============================================================================
-\subsubsection{Sinal Binário Pseudo-Randômico  - PRBS}
+\subsubsection{Sinal Binário Pseudo-Randômico - PRBS}
 \label{sec:si_project_signal_input_prbs}
 %===============================================================================
+% ref: ljung pages 418
+
+Um {\it{sinal binário pseudo-randômico}} é um sinal periódico com algumas propriedades
+semelhantes a de ruido branco. Este sinal é gerado pela equação \eqref{eq:si_project_signal_prbs}.
+
+\begin{equation}
+u(t)=rem(A(q)u(t), 2)=rem(a_1 u(t-1)+...+a_n u(t-n), 2)
+\label{eq:si_project_signal_prbs}
+\end{equation}
+
+Onde $rem(x, 2)$ é o resto inteiro da divisão de $x$ por 2. O sinal $u(t)$ deve ser periódico 
+de pelo menos $2^n$ valores diferentes, como uma sequencia de zeros não é um sinal válido, por ser nulo, 
+temos que o máximo período é de tamanho $M=2^n -1$. Na verdade o período vai depender da
+escolha de $A(q)$. Pode-se entretanto mostrar que para cada $n$ existem escolhas de $A(q)$ que 
+proporcionam o tamanho máximo. Tais escolhas são apresentadas na Tabela (\ref{table:si_project_input_prbs}).
+\cite{ljung}
+
+\begin{table*}[htbp]
+\begin{center}
+\caption{Polinômios $A(q)$ que geram o máximo período $M$ para sinais PRBS de ordem $n$. $a_k=1$ para os $k$
+   	indicados, 0 para os demais. Diversas outras escolhas existem para os mesmos $n$.}
+\label{table:si_project_input_prbs}
+\begin{tabular}{ccc}
+\hline
+        Ordem $n$ & $M=2^n-1$ & $a_k$ não zeros para $k$   \\
+\hline
+        2       & 3        & 1, 2       \\
+        3       & 7        & 2, 3       \\
+        4       & 15       & 1, 4       \\
+        5       & 31       & 2, 5       \\
+        6       & 63       & 1, 6       \\
+        7       & 127      & 3, 7       \\
+        8       & 255      & 1, 2, 7, 8 \\
+        9       & 511      & 4, 9       \\
+        10      & 1023     & 7, 10      \\
+        11      & 2047     & 9, 11      \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+O espectro de um sinal PRBS é dado por:
+
+\begin{equation}
+\Phi_u(\omega)=\frac{2 \pi \bar{u}^2}{M}\sum_{k=1}^{M-1}\delta (\omega -2 \pi k/M), \;\; 0\le \omega < 2 \pi
+\label{eq:si_project_signal_prbs_spectrum}
+\end{equation}
+
+Observa-se que este é um sinal persistentemente excitante de ordem $M-1$. Na Figura 
+(\ref{fig:si_project_prbs}) é apresentado um exemplo de sinal PRBS para $n=7$.
+
+\begin{figure}[htbp]
+	\center
+	\includegraphics[width=0.95\columnwidth]{figures/si_project_prbs.eps}
+	\caption{Sinal PRBS para $n=7$}
+	\label{fig:si_project_prbs}
+\end{figure}
+
+As vantagens e desvantagens do sinal PRBS comparado com um ruido randômico binário pode ser
+listado: \cite{ljung}
+
+\begin{enumerate}[(I)]
+\item Se o PRBS possuir períodos inteiros a sua matriz de covariância terá alguns padrões bem específicos que permitem 
+analiticamente se faça uma inversão desta matriz. Isso facilita certas computações.
+\item Existem essencialmente apenas um PRBS para cada escolha de $A(q)$. Diferentes valores iniciais apenas deslocam a
+sequencia.
+\item Para que as propriedades vantajosas do PRBS possam ser utilizadas, é necessário que um numero inteiro de períodos
+seja utilizado, o que limita a escolha do tamanho do experimento.
+\end{enumerate}
 
 %===============================================================================
 \subsubsection{Ruido Branco Filtrado}
