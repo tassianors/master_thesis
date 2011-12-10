@@ -138,7 +138,7 @@ sinal, bastando apenas a correta escolha do filtro. Como este sinal é gerado {\i
 proporciona um comportamento espectral melhor. \cite{campestrini, ljung}
 
 %===============================================================================
-\subsection{Modelagem como um problema de otimização}
+\subsection{Projeto de experimento como um problema de otimização}
 \label{sec:si_project_optimization}
 %===============================================================================
 
@@ -157,6 +157,78 @@ De forma geral os requisitos de qualidades são funções da covariância de $P$. Po
 o espectro da entrada $\Phi_u$ e eventualmente o espectro cruzado $\Phi_{ue}$ como variáveis do projeto.
 A inclusão de limitações nos sinais e sua inclusão como variáveis de projeto são úteis para evitar que se chegue
 em resultados onde a energia de entrada precise ser infinita para se obter os critérios desejados, ou largura
-de banda que não são facilmente atingíveis em projetos reais. \cite{jasson}
+de banda que não são facilmente atingíveis em projetos reais.
+
+Típicos projetos de experimentos são intratáveis em sua forma original, pelos seguintes motivos: \cite{jansson}
+
+\begin{enumerate}[(I)]
+\item Algumas restrições são tipicamente não convexas, e problemas com estas características podem ser difíceis
+de resolver.
+\item Existem restrições que são de dimensão infinita, o que exigem um certo grau de cuidado no procedimento de
+otimização.
+\item Existe ainda o problema de encontrar um sinal realizável que tenha as propriedades desejadas para o espectro.
+\item A variância assintótica depende tipicamente dos parâmetros do sistema $\theta_0$, $P=P(\theta_0)$ que são
+desconhecidos.
+\end{enumerate}
+
+Os primeiros 3 itens listados acima são contornáveis pela inserção de uma parametrização finita do espectro de entrada
+e algumas vezes até do espectro cruzado, tornando o problema convexo, que pode ser tratado de forma bem mais fácil.
+
+O último item onde a solução do problema depende das características do sistema a ser identificado é intrínseco de quase
+todos os problemas de otimização, sendo então inevitável. Em problemas reais este fato pode ser contornado utilizando alguns
+métodos conhecidos. \cite{jansson}
+
+A formulação de um projeto de experimento pode ser particionado nas seguintes partes:
+
+\renewcommand{\labelitemi}{$\bullet$}
+\begin{itemize}
+
+\item {\it{Parametrização do espectro}}
+
+A escolha de usar uma parametrização finita do espectro ou uma parametrização parcial da correlação é regido pelos seguintes
+aspectos:
+
+\begin{itemize}
+\item relativos a otimização
+\item Computacionais
+\item limitação de sinais
+\item robustez
+\end{itemize}
+
+A parametrização parcial da correlação é ótima e pode usar um número mínimo de parâmetros, utilizando assim, menos processamento
+computacional. Entretanto certas limitações de sinais não podem ser garantidas nesta situação, e a parametrização
+pode depender do sistema real. Parametrização finita do espectro geralmente não atinge um mínimo global mas as funções bases
+não precisam ser funções do sistema real. Este método pode gerenciar problemas de limitações de sinal de frequência por frequência.
+%-------------------------
+\item {\it{Restrições de qualidade}}
+
+Assumindo que erros de variância são de grande importância é natural que qualquer medida de qualidade do modelo leve em conta 
+a matriz de covariância $P$. Esta matriz pode ser manipulada pelos espectros de entrada $\Phi_{u}$ e o espectro cruzado $\Phi_{ue}$
+como apresentado em \eqref{eq:si_project_optimization_quality}.
+
+\begin{equation}
+P^{-1}(\theta_0)=\frac{1}{2 \pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(e^{j\omega}, \theta_0)\begin{bmatrix}
+\Phi_u(\omega) & \Phi_{ue}(\omega)\\ 
+\Phi_{ue}^{*}(\omega) & \lambda_0 
+\end{bmatrix}\mathcal{F}(e^{j\omega}, \theta_0)\;d\omega
+\label{eq:si_project_optimization_quality}
+\end{equation}
+
+O principal desafio neste ponto é tornar as restrições convexas em $P^{-1}$.
+
+%-------------------------
+\item {\it{Restrições de sinal}}
+
+Podem ser incluídos, restrições de energia para os sinais de entrada e saída do sistema bem como restrições no sinal dependentes da
+frequência deste.
+%-------------------------
+\item {\it{Restrições de robustez}}
+
+A solução de boa parte dos problemas de otimização recaem na necessidade de se conhecer o sistema real. Isso nem sempre é possível 
+e uma das formas de contornar este problema é substituir o sistema real por uma aproximação deste. Devido aos erros de estimativa deste
+sistema, tem-se a necessidade de se utilizar métodos que garantam robustez deste sistema, para que quando submetido ao sistema real, 
+o projeto ainda seja válido.
+%-------------------------
+\end{itemize}
 
 
