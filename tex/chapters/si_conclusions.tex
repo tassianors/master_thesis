@@ -2,3 +2,38 @@
 \section{Considerações Finais}
 \label{sec:si_conclusions}
 %===============================================================================
+
+Neste capitulo foram apresentados os principais aspectos de um projeto para identificação 
+de sistemas. Partindo-se da escolha do sinal de excitação para o experimento onde podemos 
+determinar o que é de fundamental importância para a identificação e focar os esforços para
+reduzir ao máximo erros nestes aspectos.
+
+Apresentou-se neste quesito de projeto de experimento, a ideia de tornar a escolha do sinal, um
+problema de otimização, onde as restrições são as margens de qualidade que desejamos para as
+propriedades assintóticas da estimativa, limitações de sinais que conseguimos produzir e margens de 
+robustez.
+
+Apresentou-se conceitos sobre a escolha do modelo que será utilizado para caracterizar o sistema
+observado e as propriedades assintóticas da estimativa para casos onde o sistema real $\mathcal{S}$ não
+faz parte da família de modelos $\mathcal{M}$. Esta situação onde o sistema real não consegue ser
+representado completamente pelo modelo adotado, faz com que erros de polarização e de variância 
+recaiam sobre a estimativa atingida. Também foram apresentados os modelos mais comumente utilizados
+para a identificação de sistemas lineares.
+
+De posse dos dados coletados e da família de modelos que acredita-se conter o sistema real, é possível, 
+com a ajuda de preditores, determinar os parâmetros do modelo que descrevem o comportamento do sistema
+observado.
+
+Elege-se então uma função dependente do erro entre os dados coletados e os dados gerados pelo preditor. 
+Afim de que se tenha a melhor estimativa possível, métodos de minimização são utilizados para que esta 
+função dependente do erro, seja minimizada. Obtendo-se assim a melhor estimativa possível 
+para aquele conjunto de dados, modelo e critério de minimização escolhidos.
+
+É perceptível que a identificação de um sistema é uma tarefa que depende de um grande conjunto
+relativamente grande de de fatores. De um lado isso é extremamente interessante, pois temos liberdade
+de escolha e a possibilidade de focar nosso projeto pontos que são mais interessantes, em detrimento
+de outros que não são relevantes para o sistema em questão. Por outro lado temos um conjunto de
+variáveis que, se não compreendidas corretamente, podem tornar este processo algo oneroso e muitas
+vezes até ineficiente.
+
+
