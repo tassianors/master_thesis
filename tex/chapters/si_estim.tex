@@ -194,6 +194,63 @@ O mínimo da função custo fica como em:
 %===============================================================================
 % bibliografia principal: aguirre e ljung
 
+O método dos mínimos quadrados apresentados na seção (\ref{sec:si_par_estim_lsm}) é
+simples de ser aplicado, mas tem o inconveniente de que para que não existam erros de 
+polarização na estimativa, a variável de regressão $\phi(t)$ não pode estar
+correlacionada com o distúrbio estocástico $\nu(t)$. Assume-se que o sistema real é dado
+por:
+
+\begin{equation}
+y(t)=\varphi^T(t)\theta_0+\nu(t)
+\label{eq:si_par_etim_iv_true_sys}
+\end{equation}
+
+No método dos mínimos quadrados $\varphi(t)$ depende da saída e implicitamente dos valores passados
+de $\nu(t)$, desta forma \eqref{eq:si_par_etim_iv_estim} seria bem restritivo, mas de fato o que
+pode ser demonstrado é que \eqref{eq:si_par_etim_iv_estim} é satisfeito somente se $\nu(t)$
+for ruido branco. Esta desvantagem do método dos mínimos quadrados pode ser visto como uma
+vantagem para a introdução do método de variáveis instrumentais. \cite{system_identification}
+
+\begin{equation}
+E(\varphi(t) \; \nu(t)) = 0
+\label{eq:si_par_etim_iv_estim}
+\end{equation}
+
+Assume-se que $Z(t)$ é uma matriz $n\times n$ que possuem sinais não correlacionados com o 
+distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \eqref{eq:si_par_estim_iv_theta}:
+
+\begin{equation}
+\frac{1}{N}\sum_{t=1}^{N}Z(t)\varepsilon (t)=\frac{1}{N}\sum_{t=1}^{N}Z(t)\left [ y(t)-\varphi^T(t)\theta \right ]= 0
+\label{eq:si_par_estim_iv_theta}
+\end{equation}
+
+Se a dimensão da matriz $Z(t)$ for a mesma dimensão de $\theta$ temos o estimados dos método de 
+variáveis instrumentais \eqref{eq:si_par_estim_iv}:
+
+\begin{equation}
+\hat{\theta}=\left [ \sum_{t=1}^{N}Z(t)\varphi^T(t) \right ]^{-1}\left [  \sum_{t=1}^{N}Z(t)y(t) \right ]
+\label{eq:si_par_estim_iv}
+\end{equation}
+
+Os elementos da matriz $Z(t)$ são normalmente chamados de instrumentos. O estimador das variáveis instrumentais 
+é uma generalização do estimador dos mínimos quadrados, quando $Z(t)=\varphi(t)$. \cite{system_identification}
+
+O estimador de variáveis instrumentais evita a polarização garantido  que o vetor de erro seja não correlacionado
+com as variáveis instrumentais. Esta condição e menos restritiva que a condição dos mínimos quadrados para que
+não haja erro de polarização \eqref{eq:si_par_etim_iv_estim}. O valor a ser pago por isso envolve: \cite{aguirre}
+
+\begin{enumerate}[(I)]
+\item Escolha das variáveis instrumentais.
+\item O estimador resultante é assintoticamente não polarizado, ao invés de ser apenas não polarizado.
+\end{enumerate}
+
+Ao escolher as variáveis instrumentais é importante notar que a escolha não deve ser apenas para evitar 
+a correlação entre o vetor de erro e os instrumentos. A razão para isso é que as variáveis instrumentais 
+devem ser tão correlacionadas quanto possível com os regressores do modelo, caso contrário $Z(t)\varphi(t)^T$ 
+seria próxima a singular e sua inversa muito mal condicionada. Portanto os instrumentos devem ser, idealmente, 
+pouco correlacionados com o erro e muito correlacionados com os regressores do modelo. \cite{aguirre}
+
+
 %===============================================================================
 \subsection{Identificabilidade de sistemas}
 \label{sec:si_par_estim_sys_ident}
