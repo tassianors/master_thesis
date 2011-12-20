@@ -9,3 +9,108 @@
 % Aguirre 393
 % Tese do corrêa - pg 27
 %===============================================================================
+
+Esta seção descreve um algoritmo para determinar os parametros de modelos racionais
+do tipo \eqref{eq:nl_model_narmax_rat_simp}. Este algoritmo foi proposto por
+\cite{correa} e é uma modificação do algoritmos originalmente proposto por
+\cite{billings_zhu}. Assume-se que o modelo pode ser aproximado por: \cite{aguirre}
+
+\begin{eqnarray}\nonumber
+y(t)&=&\frac
+{a(y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u))}
+{b(y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u))}\\
+&&  +c(e(t-1), ... , e(t-n_e)) +e(t)
+\label{eq:nl_alg_rational}
+\end{eqnarray}
+
+Onde o ruido é modelado por um polinômio que pode ou não ser linear. A consederação básica 
+por trás de \eqref{eq:nl_alg_rational} é que o erro de regressão pode ser representado por
+um modelo {\it{MA}}({\it{Move average}}), possívelmente não linear. Assim sendo sugere-se o 
+seguinte procedimento: \cite{aguirre}
+
+\begin{enumerate}
+
+%==========================================================================
+% Step 1
+\item Faça $i=0$. Monte a matriz de regressão e estime os coeficiente usando
+o método dos mínimos quadrados.
+
+\begin{equation}
+\begin{bmatrix}
+\hat{\theta}_n^i\\ 
+\hat{\theta}_{d1}^i
+\end{bmatrix}=\left [ \Psi ^T \Psi \right ]^{-1}\Psi^T y^*
+\label{nl_alg_rational_step_1}
+\end{equation}
+
+Onde o indice $i$ indica a iteração. Além disso a matriz de regressores $\Psi$ é 
+formada tornando-se os vetores de regressores $\psi_n(t-1)$ e $\psi_{d1}(t-1)$ ao longo
+da janela de dados do tamanho $N$, ou seja:
+
+\begin{equation}
+\psi=\begin{bmatrix}
+\psi_n^T(t-1) & \psi_{d1}^T(t-1)\\ 
+\vdots & \vdots \\ 
+\psi_n^T(t+N-2) & \psi_{d1}^T(t+N-2)
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+Analogamente o vetor $y^* \in \mathbb{R} ^{N \times 1}$ é formado tomando os dados,
+ou seja:
+
+\begin{equation}
+y^{*T}=\left [ y^*(t), y^*(t+1), ..., y^*(t+N-1) \right ]
+\nonumber
+\end{equation}
+
+%==========================================================================
+% Step 2
+\item Faça $i=i+1$. Determine os residuos e sua variância, respectivamente como:
+
+\begin{equation}
+\varepsilon ^i(t)=y(t)-\frac{\psi_n^T(t-1)\hat{\theta}_n}{\psi_{d}^T(t-1)\hat{\theta}_d}
+\label{nl_alg_rational_step2_res}
+\end{equation}
+
+\begin{equation}
+\left ( \sigma _{\varepsilon}^2 \right )^i=\frac{1}{N-m_d}\sum_{i=m_d+1}^{N}\left ( \varepsilon ^i(t) \right )^2
+\label{nl_alg_rational_step2_var}
+\end{equation}
+
+Sendo que $N$ é o tamanho dos dados e $m_d=max(n_y, n_u, n_e)$.
+
+%==========================================================================
+% Step 3
+\item 
+
+\begin{equation}
+\Psi=\begin{bmatrix}
+\psi_{n}^T(t-1) & y(t)\psi_{d1}^T(t-1)  & \psi_{\varepsilon }^T(t-1) \\ 
+\vdots & \vdots & \vdots\\ 
+\psi_{n}^T(t+N-2) & y(t)\psi_{d1}^T(t+N-2)  & \psi_{\varepsilon }^T(t+N-2)
+\end{bmatrix}
+\label{nl_alg_rational_step3_psi}
+\end{equation}
+
+%==========================================================================
+% Step 4
+\item 
+
+\begin{equation}
+\Phi =\begin{bmatrix}
+0      & \dots & 0      & 0 & \dots & 0 & \dots & 0 & \dots & 0\\ 
+\vdots &       & \vdots & \vdots &  & \vdots &  & \vdots &  & \vdots\\ 
+0      & \dots & 0      & \sum_{t=1}^{N}p_{d2}^2 & \dots & \sum_{t=1}^{N}p_{d2}p_{d_{N_d}}  & \dots & 0 & \dots & 0\\ 
+\vdots &       & \vdots & \vdots &  & \vdots &  & \vdots &  & \vdots\\ 
+0      & \dots & 0      & \sum_{t=1}^{N}p_{dN_d}p_{d2} & \dots & \sum_{t=1}^{N}p_{d_{N_d}}^2 & \dots & 0 & \dots & 0 
+\end{bmatrix}
+\label{nl_alg_rational_step5_Psi}
+\end{equation}
+
+
+%==========================================================================
+% Step 5
+\item 
+\end{enumerate} % Aguirre algorithm for rational model identification pg 394
+

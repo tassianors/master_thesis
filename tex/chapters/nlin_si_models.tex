@@ -80,19 +80,19 @@ de Hammerstein e Wiener.
 % Aguirre 334
 %===============================================================================
 
-Um sistema não linear pode ser descrito pela serie de Voltera \eqref{eq:nl_models_voltera}:
+Um sistema não linear pode ser descrito pela serie de Volterra \eqref{eq:nl_models_volterra}:
 
 \begin{equation}
 y(t)=\sum_{j=1}^{\infty}\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}
 h_j(\tau_1, ... ,\tau_j) \prod_{i=1}^{j}u(t-\tau_i)d\tau_i
-\label{eq:nl_models_voltera}
+\label{eq:nl_models_volterra}
 \end{equation}
 
 Onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para
-um sistema linear com $j=1$ a equação de Voltera se reduz a integral de convolução.
+um sistema linear com $j=1$ a equação de Volterra se reduz a integral de convolução.
 \cite{aguirre}
 
-Grande dificuldade de utilizar a serie de Voltera \eqref{eq:nl_models_voltera} é que
+Grande dificuldade de utilizar a serie de Volterra \eqref{eq:nl_models_volterra} é que
 até para sistemas pouco não lineares, o numero de parâmetros a estimar é grande. Isso
 se dá pelo fato da série tentar explicar a saída do sistema apenas baseado nos valores
 da entrada deste.
@@ -167,15 +167,129 @@ y(k-1) & ... & y(k-n_y) & u(k-1) & ... & u(k-n_u)
 \end{bmatrix}$.
 
 %===============================================================================
-\subsection{Modelo polinomial NARMAX}
-\label{sec:nl_models_pol_narmax}
+\section{Modelos NARMAX}
+\label{sec:nl_models_narmax}
 % Aguirre 343
 %===============================================================================
 
+Os modelos {\it{NARX}} (do termo ingles {\it{nonlinear autoregressive model with
+exogenous variables}}) são modelos discretos no tempo que caracterizam o valor da 
+saída em função dos valor passados da entrada e saída. Algumas vezes, para evitar 
+a polarização da estimativa dos parametros adiciona-se termos do ruido no modelo.
+Quando isso é feito o modelo passa a ser chamado de um modelo {\it{NARMAX}} (do
+termo ingles {\it{nonlinear autoregressive moving average model with exogenous
+variables}}) que pode ser representado pla equação \eqref{eq:nl_model_narmax}. 
+\cite{aguirre}
+
+\begin{eqnarray}\nonumber
+y(t)&=&F [ y(t-1), ..., y(t-n_y), u(t-1), ... , u(t-n_u),\\
+&&  e(t),e(t-1), ... , e(t-n_e) ]
+\label{eq:nl_model_narmax}
+\end{eqnarray}
+
+%\begin{equation}
+%y(t)=F\left [ y(t-1), ..., y(t-n_y), u(t-1), ... , u(t-n_u), e(t),e(t-1), ... , e(t-n_e) \right ]
+%\label{eq:nl_model_narmax}
+%\end{equation}
+
+Onde $e(t)$ é o ruido e $n_e$ é o maior atraso no modelo do ruido. O modelo apresentado
+em \eqref{eq:nl_model_narmax} é bastante genérico, caracterizando uma dificuldade 
+para sua utilização. A caracterização da equação $F$ geralmente é feita pelas 
+representações polinomial e racional. Um modelo polinomial {\it{NARMAX}} sem atraso
+puro de tempo tem a forma apresentada em \eqref{eq:nl_model_narmax_pol}.
+
+\begin{equation}
+y(t)=\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=0}^{n_e}e(t-q)
+\label{eq:nl_model_narmax_pol}
+\end{equation}
+
+Os modelos polinomiais {\it{bilineares}} são casos particulares do modelo polinomial 
+\eqref{eq:nl_model_narmax_pol} quando todos os termos não lineares são do tipo 
+$y(t-i)u(t-j), \; \forall i,j$. \cite{aguirre}
+
+Modelos racionais são formados pela razão entre dois polinomios \eqref{eq:nl_model_narmax_rat}.
+
+\begin{equation}
+y(t)=\frac{\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=0}^{n_e}e(t-q)}
+{\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=0}^{n_e}e(t-q)} + e(t)
+\label{eq:nl_model_narmax_rat}
+\end{equation}
+
+Em função de terem uma estrutura mais floxivel, os modelos racionais opdem vir a ser
+mais eficientes na modelagem de certos sistemas quando comparados com modelos polinomiais.
+Entretanto, os modelos racionais são mais sensíveis ao ruido. \cite{aguirre}
+
+%===============================================================================
+\subsection{Modelo polinomial NARMAX}
+\label{sec:nl_models_narmax_pol}
+% Aguirre 343
+%===============================================================================
+Com relação ao modelo generico polinomial {\it{NARMAX}} apresentado em \eqref{eq:nl_model_narmax_pol}
+duas considerações serão levadas em conta:
+
+\begin{enumerate}
+\item O sistema tem um atraso puro de tempo $\tau _d$ 
+\item Nenhum termo cujo parametro tenha que ser estimado pode depender de $e(t)$.
+\end{enumerate}
+
+A segunda consideração implica em tornar $F$ independente de $e(t)$. O que equivale a dizer
+que $q=1$ em \eqref{eq:nl_model_narmax_pol} resultando em  \eqref{eq:nl_model_narmax_pol_espec}.
+
+\begin{eqnarray}\nonumber
+y(t) &=& F[ y(t-1), ..., y(t-n_y), u(t-\tau_d), ..., u(t-\tau_d-n_u+1),\\
+&& e(t-1), ..., e(t-n_e)] +e(t)
+\label{eq:nl_model_narmax_pol_espec}
+\end{eqnarray}
+
+Sendo que $e(t)$ indica que todos os efeitos não podem ser bem representados por 
+$F^l\left [ \cdot  \right ]$, é uma função polinomial de $y(t)$, $u(t)$ e 
+$e(t)$ com grau de não linearidade $l\in \mathbb{N}$. Portanto a parte 
+não deterministica de \eqref{eq:nl_model_narmax_pol_espec} pode ser espandida como
+um somatório de termos com grau de não linearidade variando de $1 \le m \le l$. 
+Assim sendo, cada termo de grau $m$ poderá conter um falor de grau $p$ do tipo $y(t-i)$
+e um fator de grau $(m-p)$ do tipo $u(t-i)$ sendo multiplicado por um parametro representado 
+por $c_{p,m-p}(n_1, ..., n_m$. Resultando em: \cite{aguirre}
+
+\begin{equation}
+y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
+\nonumber
+\end{equation}
 
 
 %===============================================================================
 \subsection{Modelo Racional NARMAX}
-\label{sec:nl_models_rational_narmax}
-% Aguirre 343
+\label{sec:nl_models_narmax_rat}
+% Aguirre 345
 %===============================================================================
+
+Um modelo racional {\it{NARMAX}} tem a seguinte forma geral apresentada em 
+\eqref{eq:nl_model_narmax_rat} e de forma simplificada como apresentado em
+\eqref{eq:nl_model_narmax_rat_simp}.
+
+\begin{equation}
+y(k)=\frac{a(\Upsilon)}{b(\Upsilon)}+e(t)
+\label{eq:nl_model_narmax_rat_simp}
+\end{equation}
+
+Onde:
+
+\begin{equation}
+\Upsilon=\left \{ y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u), e(t-1), ..., e(t-n_e)\right \}
+\nonumber
+\end{equation}
+
+No modelo apresentado em \eqref{eq:nl_model_narmax_rat}, as funções $a(\Upsilon)$ e $b(\Upsilon)$
+são polinomios, mas poderiam ser quaisquer funções. Assumindo que o modelo é formado pela razão de
+dois polinomios, é conveniente definir o numerador e denominador de \eqref{eq:nl_model_narmax_rat}
+como em \eqref{eq:nl_model_narmax_rat_num} e \eqref{eq:nl_model_narmax_rat_den}
+
+\begin{equation}
+a(t-1)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(k-1)\theta_n
+\label{eq:nl_model_narmax_rat_num}
+\end{equation}
+
+
+\begin{equation}
+b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(k-1)\theta_d
+\label{eq:nl_model_narmax_rat_num}
+\end{equation}
