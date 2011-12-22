@@ -1,7 +1,67 @@
 %===============================================================================
-\section{Linearização de sistemas}
-\label{sec:nlin_si_linearization}
+\section{Conceitos básicos}
+\label{sec:nlin_si_basic}
 %===============================================================================
+
+Existem duas básicas limitações para sistemas linearizados. Primeiro que a linearização
+é uma aproximação ao redor do ponto de operação, ele pode prever apenas o comportamento
+nesta localidade do sistema e não o comportamento global do sistema. Segundo as dinâmicas
+de sistemas não lineares são muito mais ricas que as de sistemas lineares. Existem alguns
+{\it{essenciais}} fenômenos não lineares que não conseguem ser descritos ou preditos por
+modelos lineares, estes são: \cite{khalil}
+
+\renewcommand{\labelitemi}{$\bullet$}
+\begin{itemize}
+
+\item Tempo de fuga finito
+
+O estado de um sistema linear instável tende ao infinito na medida que o tempo 
+tende ao infinito. Um sistema não linear estável, entretanto, pode ir para o
+infinito em um tempo finito.
+
+
+\item Múltiplos pontos de equilíbrios isolados
+
+Um sistema linear tem apenas um ponto de equilíbrio. Desta forma, este sistema pode
+ter apenas um ponto do espaço de estados que atraem o estado do sistema, independentemente
+do estado inicial. Um sistema não linear pode ter mais de um ponto de equilíbrio isolado. 
+Desta forma o estado do sistema pode convergir para um destes equilíbrios ou outro,
+dependendo do estado inicial do sistema.
+
+\item Ciclos limites
+
+Para um sistema linear e invariante no tempo oscilar ele deve ter um par de autovalores
+sobre o eixo imaginário, o que é uma condição não robusta praticamente impossível de manter
+na presença de perturbações. Mesmo que isso seja possível de manter, a amplitude da 
+oscilação dependerá das condições iniciais do sistema. Na vida real, oscilações estáveis
+são atingidas com sistemas não lineares. Alguns sistemas possuem oscilações com
+amplitude e frequência constantes, independente das condições iniciais. Chama-se isso de
+ciclos limites.
+
+\item Sub harmônicas, harmônicas ou quase periódicas oscilações
+
+Um sistema linear estável sobre uma entrada periódica produz uma saída na mesma frequência.
+Sistemas não lineares alimentados por sinais periódicos podem oscilar com frequências que
+podem ser sub múltiplos ou múltiplos da frequência de entrada.
+
+\item Caos
+
+Um sistema não linear pode ter um espaço de estados mais complexo que seu comportamento não 
+pode ser descrito por oscilações periódicas, ou quase periódicas oscilações. Este comportamento
+normalmente é conhecido como caos. Alguns destes movimentos caóticos exibem comportamento
+randômico, independentemente da natureza do sistema.
+
+\item Múltiplos modos de comportamento
+
+É comum para um sistema não linear exibir dois ou mais modos de comportamento distintos.
+\end{itemize}
+
+
+
+
+
+
+
 
 Talvez o mais comum uso de sistemas lineares variantes no tempo esta relacionado
 a linearização de sistema não lineares em torno de uma trajetória. Suponha que
