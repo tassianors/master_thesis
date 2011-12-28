@@ -1,9 +1,9 @@
-Adicionar as informacoes corretas da tese da luciola.
-Adicionar a lista de simbolos SISO
-
 REVIEW:
 
-\section{Conjunto de dados coletados} - Dá para melhorar horrores. bastaria achar uma outra bibliografia.
+- Ler papers sobre systemas não lineares.
+- No capitlo sobre não linearidades, conceitos basicos colocar uma descrição sobre o que é ser não linear.. caracteristicas, propriedade gerais etc.
+- em algoritmos de systemas nl, adicionar outros metodos alem do narmax racional.
+- Achar ref para redes neurais. Escrever a section.
+- tenho 21 ref no bibtex, e apenas 12 citações.. arrumar umas citações dos que estão faltando.
 
-\subsection{Experimentos Informativos} - poderia ser colocado em forma de teorema.
 

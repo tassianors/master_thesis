@@ -2,10 +2,32 @@
 \section{Modelos para sistemas não lineares}
 \label{sec:nl_models}
 %===============================================================================
+% ideia aqui é colocar uma pequena introdução sobre modelos.. no mesmo estilo
+% que foi para sistemas lineares.
 
-\cite{CampiSacvaresi-vrft_nonlinear}
+Na seção (\ref{sec:sys_ident_modelling_choosing}) foi apresentado o conceito de modelos para
+sistemas lineares. Nesta seção será apresentado de forma análoga o conceito de modelos e tipos de
+modelos para sistemas não lineares.
 
-%===============================================================================
+Na seção (\ref{sec:nl_models_wiener_hammerstein}) será apresentado um dos modelos mais antigos e que
+juntamente com o modelo de Voltera (seção (\ref{sec:nl_models_volterra})) iniciaram o
+desenvolvimento dos modelos matemáticos para sistemas não lineares. 
+
+Também será apresentado modelos mais recentes, como as funções radiais de base (seção
+(\ref{sec:nl_models_radiais})) derivadas do conceito de redes neurais (\ref{sec:nl_models_neurals}).
+Por fim será apresentado o conceito de modelos {\it{NARX}} e duas de suas representações:
+Polinomiais (seção (\ref{sec:nl_models_narmax_pol})) e Racionais (seção
+(\ref{sec:nl_models_narmax_rat})) que são amplamente utilizadas para caracterização de sistemas não
+lineares, devido entre outros fatores aos algoritmos desenvolvidos e a quantidade de sistemas reais
+que podem ser descritos por estes modelos.
+
+Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
+modelo. Quando este modelo é não linear, existe uma grande quantidade de opções e com isso o perigo
+de se escolher um modelo desnecessariamente complexo. Isso se baseia no {\it{principio da
+parsemonia}} que basicamente detemina que o modelo deve ser o mais simples possível.
+\cite{aguirre_maps}
+
+% ===============================================================================
 \subsection{Modelos de Wiener e Hammerstein}
 \label{sec:nl_models_wiener_hammerstein}
 % Aguirre: 334
@@ -98,12 +120,20 @@ se dá pelo fato da série tentar explicar a saída do sistema apenas baseado nos v
 da entrada deste.
 
 %===============================================================================
+\subsection{Redes Neurais}
+\label{sec:nl_models_neurals}
+% TODO: Search for bib
+%===============================================================================
+
+%===============================================================================
 \subsection{Funções Radiais de Base}
 \label{sec:nl_models_radiais}
 % Aguirre 337
 %===============================================================================
 
-Funções radiais de base ({\it{RBF - Radial basis functions}} são mapeamentos do tipo:
+Funções radiais de base  ({\it{RBF - Radial basis functions}}  são uma tradicional tecnica para
+interpolação em espaços multidimensional \cite{chen_billings_narmax} e podem ser descritos como
+mapeamentos do tipo \eqref{eq:nl_models_rbf}:
 
 \begin{equation}
 f(y)-w_0+\sum_{i}w_i \phi (\left \| y-c_i \right \|)
@@ -171,6 +201,14 @@ y(k-1) & ... & y(k-n_y) & u(k-1) & ... & u(k-n_u)
 \label{sec:nl_models_narmax}
 % Aguirre 343
 %===============================================================================
+The NARMAX model (Leontaritis and Billings 1985,Chen
+and Billings 1989 a) provides a unified representation for a wide class of discrete-time
+non-linear systems. In a NARMAX description the system is modelled in terms of a
+non-linear functional expansion of lagged inputs, outputs and prediction errors. Two
+considerations are of practical importance for the application of the NARMAX
+approach. The functional describing a real-world system can be very complex and
+the explicit form of this functional is usually unknown, so that any practical modelling
+of a real-world process must be based upon a chosen model set of known functions
 
 Os modelos {\it{NARX}} (do termo ingles {\it{nonlinear autoregressive model with
 exogenous variables}}) são modelos discretos no tempo que caracterizam o valor da 
@@ -178,8 +216,9 @@ saída em função dos valor passados da entrada e saída. Algumas vezes, para evita
 a polarização da estimativa dos parametros adiciona-se termos do ruido no modelo.
 Quando isso é feito o modelo passa a ser chamado de um modelo {\it{NARMAX}} (do
 termo ingles {\it{nonlinear autoregressive moving average model with exogenous
-variables}}) que pode ser representado pla equação \eqref{eq:nl_model_narmax}. 
-\cite{aguirre}
+variables}}) que pode ser representado pla equação \eqref{eq:nl_model_narmax} 
+\cite{aguirre}. Este modelo provê uma representação unificada para a descrição de sistemas discretos
+não lineares \cite{chen_billings_narmax}
 
 \begin{eqnarray}\nonumber
 y(t)&=&F [ y(t-1), ..., y(t-n_y), u(t-1), ... , u(t-n_u),\\
@@ -215,7 +254,7 @@ mais eficientes na modelagem de certos sistemas quando comparados com modelos po
 Entretanto, os modelos racionais são mais sensíveis ao ruido. \cite{aguirre}
 
 %===============================================================================
-\subsection{Modelo polinomial NARMAX}
+\subsection{Modelo polinomial}
 \label{sec:nl_models_narmax_pol}
 % Aguirre 343
 %===============================================================================
@@ -252,7 +291,7 @@ y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)
 
 
 %===============================================================================
-\subsection{Modelo Racional NARMAX}
+\subsection{Modelo Racional}
 \label{sec:nl_models_narmax_rat}
 % Aguirre 345
 %===============================================================================
@@ -288,3 +327,5 @@ a(t-1)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(k-1)\theta_n
 b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(k-1)\theta_d
 \label{eq:nl_model_narmax_rat_num}
 \end{equation}
+
+

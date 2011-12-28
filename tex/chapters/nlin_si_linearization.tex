@@ -3,12 +3,32 @@
 \label{sec:nlin_si_basic}
 %===============================================================================
 
+%===============================================================================
+\subsection{Linearização}
+\label{sec:nlin_si_basic_linearization}
+%===============================================================================
+% Khalil
+% ljng 		142
+% Aguirre
+
+Talvez o mais comum uso de sistemas lineares variantes no tempo esta relacionado
+a linearização de sistema não lineares em torno de uma trajetória. Suponha que
+o sistema não linear é descrito por:\cite{ljung}
+
+\begin{equation}
+\left\{\begin{matrix}
+x(k+1) = f(x(k),u(k))+r(x(k),u(k))w(k)\\ 
+y(k)  = h(x(k))+m(x(k),u(k))\upsilon (k)
+\end{matrix}\right.
+\label{eq:nl_linearization_sys}
+\end{equation}
+
 Existem duas básicas limitações para sistemas linearizados. Primeiro que a linearização
 é uma aproximação ao redor do ponto de operação, ele pode prever apenas o comportamento
-nesta localidade do sistema e não o comportamento global do sistema. Segundo as dinâmicas
+nesta localidade do sistema e não o comportamento global. Segundo as dinâmicas
 de sistemas não lineares são muito mais ricas que as de sistemas lineares. Existem alguns
-{\it{essenciais}} fenômenos não lineares que não conseguem ser descritos ou preditos por
-modelos lineares, estes são: \cite{khalil}
+fenômenos {\it{essenciais}}, não lineares, que não conseguem ser descritos ou
+preditos por modelos lineares, estes são: \cite{khalil}
 
 \renewcommand{\labelitemi}{$\bullet$}
 \begin{itemize}
@@ -63,15 +83,4 @@ randômico, independentemente da natureza do sistema.
 
 
 
-Talvez o mais comum uso de sistemas lineares variantes no tempo esta relacionado
-a linearização de sistema não lineares em torno de uma trajetória. Suponha que
-o sistema não linear é descrito por:
-
-\begin{equation}
-\left\{\begin{matrix}
-x(k+1) = f(x(k),u(k))+r(x(k),u(k))w(k)\\ 
-y(k)  = h(x(k))+m(x(k),u(k))\upsilon (k)
-\end{matrix}\right.
-\label{eq:nl_linearization_sys}
-\end{equation}
 
