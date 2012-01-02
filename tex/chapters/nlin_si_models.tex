@@ -7,7 +7,9 @@
 
 Na seção (\ref{sec:sys_ident_modelling_choosing}) foi apresentado o conceito de modelos para
 sistemas lineares. Nesta seção será apresentado de forma análoga o conceito de modelos e tipos de
-modelos para sistemas não lineares.
+modelos para sistemas não lineares. Um problema fundamental referente a modelos parametrizados 
+refere-se ao fato do parametro poder ou não ser determinado nos valores medidos de entrada e saída
+dos dados. \cite{glad_ljung}
 
 Na seção (\ref{sec:nl_models_wiener_hammerstein}) será apresentado um dos modelos mais antigos e que
 juntamente com o modelo de Voltera (seção (\ref{sec:nl_models_volterra})) iniciaram o
@@ -26,6 +28,15 @@ modelo. Quando este modelo é não linear, existe uma grande quantidade de opções 
 de se escolher um modelo desnecessariamente complexo. Isso se baseia no {\it{principio da
 parsemonia}} que basicamente detemina que o modelo deve ser o mais simples possível.
 \cite{aguirre_maps}
+
+Uma das primeiras razões para o desenvolvimento de metodos para a escolha de modelos é a grande
+dificuldade de trablhar com modelos muito grandes e complexos. Existe o problema destes modelos
+serem numericamente mal condicionados. Existe também uma convicção de que estes modelos com muitos
+parametros são redundantes e poderiam ser removidos do modelo. Um modelo com um número exessivo de
+parametros podem exibir dinamicas que não são observadas no sistema real, desta forma não existe
+apenas o problema numérico para estes sistemas, mas também um problema de dinâmica.
+\cite{aguirre_jacome}
+
 
 % ===============================================================================
 \subsection{Modelos de Wiener e Hammerstein}
@@ -124,7 +135,111 @@ da entrada deste.
 \label{sec:nl_models_neurals}
 % TODO: Search for bib
 %===============================================================================
+\cite{narenda_parthasarathy}
 
+Multilayer Networks
+A typical multilayer network with an input layer, an
+output layer, and two hidden layers is shown in Fig. 2.
+For convenience we denote this in block diagram form as
+shown in Fig. 3 with three weight matrices W', W2, and
+W3 and a diagonal nonlinear operator r with identical sigmoidal
+elements y [i.e., y(x) = 1 - e P x / l + e-"] following
+each of the weight matrices. Each layer of the network
+can then be represented by the operato
+
+
+\begin{figure}[htbp]
+\center
+\begin{pspicture}(0,-2.5525)(10.635938,2.5125)
+\pscircle[linewidth=0.04,dimen=outer](3.27,2.0025){0.51}
+\pscircle[linewidth=0.04,dimen=outer](3.27,0.6025){0.51}
+\pscircle[linewidth=0.04,dimen=outer](3.27,-1.3975){0.51}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.37875,2.0025){$\sum$}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.2723436,0.6025){$\sum$}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.2723436,-1.3975){$\sum$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.7545314,2.0025){$\gamma$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.763125,0.6025){$\gamma$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.763125,-1.3975){$\gamma$}
+\psdots[dotsize=0.12](0.58,-1.5075)
+\psdots[dotsize=0.12](0.58,0.4925)
+\psdots[dotsize=0.12](0.58,1.8925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.22,arrowlength=2.0,arrowinset=0.4]{->}(0.58,1.8925)(2.78,1.8925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(0.58,0.4925)(2.78,0.4925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(0.58,-1.5075)(2.78,-1.5075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(0.58,1.8925)(2.78,-1.5075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(0.58,1.8925)(2.78,0.4925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(0.58,0.4925)(2.78,1.8925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(0.58,0.4925)(2.78,-1.5075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(0.58,-1.5075)(2.78,1.8925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(0.58,-1.5075)(2.78,0.4925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.22,arrowlength=2.0,arrowinset=0.4]{->}(5.18,1.8925)(7.38,1.8925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(5.18,0.4925)(7.38,0.4925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(5.18,-1.5075)(7.38,-1.5075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(5.18,1.8925)(7.38,-1.5075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(5.18,1.8925)(7.38,0.4925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(5.18,0.4925)(7.38,1.8925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(5.18,0.4925)(7.38,-1.5075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(5.18,-1.5075)(7.38,1.8925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=2.0,arrowinset=0.4]{->}(5.18,-1.5075)(7.38,0.4925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.78,2.0925)(4.18,2.0925)
+\psframe[linewidth=0.04,dimen=outer](5.18,2.4925)(4.18,1.4925)
+\psframe[linewidth=0.04,dimen=outer](5.18,1.0925)(4.18,0.0925)
+\psframe[linewidth=0.04,dimen=outer](5.18,-0.9075)(4.18,-1.9075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.78,0.6925)(4.18,0.6925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.78,-1.3075)(4.18,-1.3075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.78,2.0725257)(10.18,2.0725257)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.78,0.6807505)(10.18,0.6807505)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.78,-1.3075)(10.18,-1.3075)
+\pscircle[linewidth=0.04,dimen=outer](7.87,2.0025){0.51}
+\pscircle[linewidth=0.04,dimen=outer](7.87,0.6025){0.51}
+\pscircle[linewidth=0.04,dimen=outer](7.87,-1.3975){0.51}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.97875,2.0025){$\sum$}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.8723435,0.6025){$\sum$}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.8723435,-1.3975){$\sum$}
+\usefont{T1}{ptm}{m}{n}
+\rput(9.354531,2.0025){$\gamma$}
+\usefont{T1}{ptm}{m}{n}
+\rput(9.363125,0.6025){$\gamma$}
+\usefont{T1}{ptm}{m}{n}
+\rput(9.363125,-1.3975){$\gamma$}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.38,2.0925)(8.78,2.0925)
+\psframe[linewidth=0.04,dimen=outer](9.78,2.4925)(8.78,1.4925)
+\psframe[linewidth=0.04,dimen=outer](9.78,1.0925)(8.78,0.0925)
+\psframe[linewidth=0.04,dimen=outer](9.78,-0.9075)(8.78,-1.9075)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.38,0.6925)(8.78,0.6925)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.38,-1.3075)(8.78,-1.3075)
+\usefont{T1}{ptm}{m}{n}
+\rput(10.382656,2.2025){$y_1$}
+\usefont{T1}{ptm}{m}{n}
+\rput(10.382656,0.8025){$y_2$}
+\usefont{T1}{ptm}{m}{n}
+\rput(10.382656,-1.1975){$y_n$}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.17265625,2.0025){$u_1$}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.17265625,0.6025){$u_2$}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.17265625,-1.3975){$u_n$}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.64390624,-2.3975){Entrada}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.09375,-2.3975){Camada Oculta}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.40375,-2.3975){Camada Saída}
+\end{pspicture} 
+  \caption{Acima: modelo de Hammerstein. Abaixo: Modelo de Wiener.}
+\label{fig:nl_models_hammerstein_wiener}
+\end{figure}
+  
 %===============================================================================
 \subsection{Funções Radiais de Base}
 \label{sec:nl_models_radiais}
@@ -201,14 +316,6 @@ y(k-1) & ... & y(k-n_y) & u(k-1) & ... & u(k-n_u)
 \label{sec:nl_models_narmax}
 % Aguirre 343
 %===============================================================================
-The NARMAX model (Leontaritis and Billings 1985,Chen
-and Billings 1989 a) provides a unified representation for a wide class of discrete-time
-non-linear systems. In a NARMAX description the system is modelled in terms of a
-non-linear functional expansion of lagged inputs, outputs and prediction errors. Two
-considerations are of practical importance for the application of the NARMAX
-approach. The functional describing a real-world system can be very complex and
-the explicit form of this functional is usually unknown, so that any practical modelling
-of a real-world process must be based upon a chosen model set of known functions
 
 Os modelos {\it{NARX}} (do termo ingles {\it{nonlinear autoregressive model with
 exogenous variables}}) são modelos discretos no tempo que caracterizam o valor da 
@@ -328,4 +435,5 @@ b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(k-1)\theta_d
 \label{eq:nl_model_narmax_rat_num}
 \end{equation}
 
-
+Sendo $\theta_{nj}$ e $\theta_{dj}$ são os parametros dos regressores, possuindo informações até o
+instante $t-1$. Desta forma o valor de parametros a ser estimados é $N_n + N_d$
