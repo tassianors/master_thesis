@@ -1,0 +1,13 @@
+.project
+.settings
+.texlipse
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.lof
+*.log
+*.out
+*.ps
+*.toc
+*.lot
