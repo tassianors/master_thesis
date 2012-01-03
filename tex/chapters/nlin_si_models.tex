@@ -135,18 +135,33 @@ da entrada deste.
 \label{sec:nl_models_neurals}
 % TODO: Search for bib
 %===============================================================================
+As redes neurais artificiais são compostas por camadas de neuronios interconectados. A saída de um
+neurônio com $n$ entradas é apresentado na equação \eqref{eq:nl_models_neural}
+
+\begin{equation}
+x=\emph{f}\left ( \sum_{j=1}^{n}\omega_j x_j +b \right )
+\label{eq:nl_models_neural}
+\end{equation}
+
+Sendo que $b$ (bias) e $\omega_j$ são constantes e $\emph{f}$ é chamada de função de ativação. A
+função de ativação mais comum é: \cite{aguirre}
+
+\begin{equation}
+\emph{f}(z)=\frac{1}{1+e^{-z}}
+\nonumber
+\end{equation}
+
+
+%===============================================================================
+\subsubsection{Redes Neurais multicamadas}
+\label{sec:nl_models_neurals_multilayer}
+%===============================================================================
+
+Uma tipica rede multimamadas pode ser descrita como na Figura
+(\ref{fig:nl_models_neural_multilayer}).  Na pratica redes neurais multicamadas tem grande apelo no
+reconhecimento de padrões. Do ponto de vista teórico os sistemas de redes multicamadas podem ser
+considerados como mapas não lineares onde os elementos das matrizes de peso são os parâmetros.
 \cite{narenda_parthasarathy}
-
-Multilayer Networks
-A typical multilayer network with an input layer, an
-output layer, and two hidden layers is shown in Fig. 2.
-For convenience we denote this in block diagram form as
-shown in Fig. 3 with three weight matrices W', W2, and
-W3 and a diagonal nonlinear operator r with identical sigmoidal
-elements y [i.e., y(x) = 1 - e P x / l + e-"] following
-each of the weight matrices. Each layer of the network
-can then be represented by the operato
-
 
 \begin{figure}[htbp]
 \center
@@ -236,10 +251,130 @@ can then be represented by the operato
 \usefont{T1}{ptm}{m}{n}
 \rput(8.40375,-2.3975){Camada Saída}
 \end{pspicture} 
-  \caption{Acima: modelo de Hammerstein. Abaixo: Modelo de Wiener.}
-\label{fig:nl_models_hammerstein_wiener}
+\caption{Rede neural multicamadas.}
+\label{fig:nl_models_neural_multilayer}
 \end{figure}
-  
+
+A saída do sistema para uma rede multicamada pode ser descrito como em
+\eqref{eq:nl_models_neural_multilayer}.
+
+\begin{equation}
+y(t)=f_s\left \{ \sum_{i=1}^{m} \omega_i f_i \left ( \sum_{j=1}^{n}\omega_{ij} x_j + b_i \right ) +
+b_s \right \}
+\label{eq:nl_models_neural_multilayer}
+\end{equation}
+
+Sendo que $f_s$ é a função de ativação do neurônio da camada de saída. Esta função não precisa ser
+igual a $f_i$, $i=1, \ldots , m$ que por sua vez não precisam ser iguais entre si. $b_s$ é o termo
+de polarização do neurônio da camada de saída, $\omega_i$ são os pesos da saída de cada neuronio da
+camada oculta e $\omega_{ij}$ são os pesos da entrada $j$, vista pelo $i-$ésimo neurônio da camada
+oculta. \cite{aguirre}
+%===============================================================================
+\subsubsection{Redes Neurais recorrentes}
+\label{sec:nl_models_neurals_multilayer}
+%===============================================================================
+Redes neurais recorrentes, trabalho introduzido por Hopfield em \cite{hopfield} provê uma
+alternativa para o reconhecimento de pradrões. O metodo proposto consiste em ter uma rede neural de
+apenas uma camada adicionado de uma realimentação com um atraso de tempo como apresetado na Figura
+(\ref{fig:nl_models_neural_recurrent}). \cite{narenda_parthasarathy}
+
+\begin{figure}[htbp]
+\center
+\scalebox{0.85} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-7.3)(11.82,7.3)
+\psframe[linewidth=0.04,dimen=outer](9.4,7.3)(8.4,6.3)
+\usefont{T1}{ptm}{m}{n}
+\rput(9.021093,6.81){$\gamma$}
+\psframe[linewidth=0.04,dimen=outer](9.4,5.3)(8.4,4.3)
+\usefont{T1}{ptm}{m}{n}
+\rput(9.021093,4.81){$\gamma$}
+\psframe[linewidth=0.04,dimen=outer](9.4,2.1)(8.4,1.1)
+\usefont{T1}{ptm}{m}{n}
+\rput(9.021093,1.61){$\gamma$}
+\psframe[linewidth=0.04,dimen=outer](6.0,-1.1)(5.0,-2.1)
+\usefont{T1}{ptm}{m}{n}
+\rput(5.478906,-1.59){$z^{-1}$}
+\pscircle[linewidth=0.04,dimen=outer](7.2,6.7){0.4}
+\pscircle[linewidth=0.04,dimen=outer](7.2,1.5){0.4}
+\pscircle[linewidth=0.04,dimen=outer](7.2,4.7){0.4}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.2210937,1.41){$\sum$}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.2210937,4.61){$\sum$}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.2210937,6.61){$\sum$}
+\psdots[dotsize=0.12](6.6,6.7)
+\psdots[dotsize=0.12](6.6,4.7)
+\psdots[dotsize=0.12](6.6,1.5)
+\psdots[dotsize=0.12](2.4,6.7)
+\psdots[dotsize=0.12](2.4,4.7)
+\psdots[dotsize=0.12](2.4,1.5)
+\psline[linewidth=0.04cm](2.4,6.7)(6.6,6.7)
+\psline[linewidth=0.04cm](2.4,6.7)(6.6,4.7)
+\psline[linewidth=0.04cm](2.4,6.7)(6.6,1.5)
+\psline[linewidth=0.04cm](2.4,1.5)(6.6,6.7)
+\psline[linewidth=0.04cm](2.4,4.7)(6.6,6.7)
+\psline[linewidth=0.04cm](2.4,4.7)(6.6,4.7)
+\psline[linewidth=0.04cm](2.4,4.7)(6.6,1.5)
+\psline[linewidth=0.04cm](2.4,1.5)(6.6,4.7)
+\psline[linewidth=0.04cm](2.4,1.5)(6.6,1.5)
+\psline[linewidth=0.04cm](9.4,1.5)(10.2,1.5)
+\psline[linewidth=0.04cm](10.2,1.5)(10.2,-1.7)
+\psline[linewidth=0.04cm](10.2,-1.7)(6.0,-1.7)
+\psline[linewidth=0.04cm](5.0,-1.7)(1.2,-1.7)
+\psline[linewidth=0.04cm](1.2,-1.7)(1.2,1.5)
+\psline[linewidth=0.04cm](1.2,1.5)(2.4,1.5)
+\psline[linewidth=0.04cm](7.6,1.5)(8.4,1.5)
+\psline[linewidth=0.04cm](6.6,1.5)(6.8,1.5)
+\psline[linewidth=0.04cm](7.6,4.7)(8.4,4.7)
+\psline[linewidth=0.04cm](6.6,4.7)(6.8,4.7)
+\psline[linewidth=0.04cm](6.6,6.7)(6.8,6.7)
+\psline[linewidth=0.04cm](7.6,6.7)(8.4,6.7)
+\psline[linewidth=0.04cm](9.4,4.7)(11.0,4.7)
+\psline[linewidth=0.04cm](11.0,4.7)(11.0,-3.7)
+\psline[linewidth=0.04cm](6.0,-3.7)(11.0,-3.7)
+\psline[linewidth=0.04cm](9.4,6.7)(11.8,6.7)
+\psline[linewidth=0.04cm](11.8,6.7)(11.8,-6.9)
+\psline[linewidth=0.04cm](11.8,-6.9)(6.0,-6.9)
+\psline[linewidth=0.04cm](5.0,-3.7)(0.6,-3.7)
+\psline[linewidth=0.04cm](0.6,-3.7)(0.6,4.7)
+\psline[linewidth=0.04cm](0.6,4.7)(2.4,4.7)
+\psline[linewidth=0.04cm](2.4,6.7)(0.0,6.7)
+\psline[linewidth=0.04cm](0.0,6.7)(0.0,-6.9)
+\psline[linewidth=0.04cm](0.0,-6.9)(5.0,-6.9)
+\psdots[dotsize=0.12](9.0,3.5)
+\psdots[dotsize=0.12](9.0,3.3)
+\psdots[dotsize=0.12](9.0,3.1)
+\psdots[dotsize=0.12](5.6,-4.9)
+\psdots[dotsize=0.12](5.6,-5.1)
+\psdots[dotsize=0.12](5.6,-5.3)
+\usefont{T1}{ptm}{m}{n}
+\rput(10.269531,7.01){$x_1(t+1)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(10.269531,5.01){$x_2(t+1)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(10.269531,1.81){$x_n(t+1)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.8095312,7.01){$x_1(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.8095312,5.01){$x_2(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.8095312,1.81){$x_n(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.389531,7.01){{$\omega_i$}}
+\psframe[linewidth=0.04,dimen=outer](6.0,-3.1)(5.0,-4.1)
+\usefont{T1}{ptm}{m}{n}
+\rput(5.478906,-3.59){$z^{-1}$}
+\psframe[linewidth=0.04,dimen=outer](6.0,-6.3)(5.0,-7.3)
+\usefont{T1}{ptm}{m}{n}
+\rput(5.478906,-6.79){$z^{-1}$}
+\end{pspicture}  
+}
+\caption{Rede neural recorrentes.}
+\label{fig:nl_models_neural_recurrent}
+\end{figure}
+
 %===============================================================================
 \subsection{Funções Radiais de Base}
 \label{sec:nl_models_radiais}
