@@ -48,7 +48,7 @@ formada tornando-se os vetores de regressores $\psi_n(t-1)$ e $\psi_{d1}(t-1)$ a
 da janela de dados do tamanho $N$, ou seja:
 
 \begin{equation}
-\psi=\begin{bmatrix}
+\Psi=\begin{bmatrix}
 \psi_n^T(t-1) & \psi_{d1}^T(t-1)\\ 
 \vdots & \vdots \\ 
 \psi_n^T(t+N-2) & \psi_{d1}^T(t+N-2)
@@ -69,33 +69,38 @@ y^{*T}=\left [ y^*(t), y^*(t+1), ..., y^*(t+N-1) \right ]
 \item Faça $i=i+1$. Determine os residuos e sua variância, respectivamente como:
 
 \begin{equation}
-\varepsilon ^i(t)=y(t)-\frac{\psi_n^T(t-1)\hat{\theta}_n}{\psi_{d}^T(t-1)\hat{\theta}_d}
+\xi ^i(t)=y(t)-\frac{\psi_n^T(t-1)\hat{\theta}_n}{\psi_{d}^T(t-1)\hat{\theta}_d}
 \label{nl_alg_rational_step2_res}
 \end{equation}
 
 \begin{equation}
-\left ( \sigma _{\varepsilon}^2 \right )^i=\frac{1}{N-m_d}\sum_{i=m_d+1}^{N}\left ( \varepsilon ^i(t) \right )^2
-\label{nl_alg_rational_step2_var}
+\left ( \sigma _{\xi}^2 \right )^i=\frac{1}{N-m_d}\sum_{i=m_d+1}^{N}\left ( \xi ^i(t) \right )^2
+\label{eq:nl_alg_rational_step2_var}
 \end{equation}
 
 Sendo que $N$ é o tamanho dos dados e $m_d=max(n_y, n_u, n_e)$.
 
 %==========================================================================
 % Step 3
-\item 
+\item Usando-se os residuos determinados no passo anterior, atualize $\Psi ^T \Psi$ e $\Psi^T y^*$
+usando \eqref{eq:nl_alg_rational_step3_psi}
+
 
 \begin{equation}
 \Psi=\begin{bmatrix}
-\psi_{n}^T(t-1) & y(t)\psi_{d1}^T(t-1)  & \psi_{\varepsilon }^T(t-1) \\ 
+\psi_{n}^T(t-1) & y(t)\psi_{d1}^T(t-1)  & \psi_{\xi }^T(t-1) \\ 
 \vdots & \vdots & \vdots\\ 
-\psi_{n}^T(t+N-2) & y(t)\psi_{d1}^T(t+N-2)  & \psi_{\varepsilon }^T(t+N-2)
+\psi_{n}^T(t+N-2) & y(t)\psi_{d1}^T(t+N-2)  & \psi_{\xi }^T(t+N-2)
 \end{bmatrix}
-\label{nl_alg_rational_step3_psi}
+\label{eq:nl_alg_rational_step3_psi}
 \end{equation}
+
+onde $\psi_{\xi }$ é o vetor de regressores do modelo do ruido. Pelo fato do ruido não ser medido,
+os residuos do passao (2) são utilizados.
 
 %==========================================================================
 % Step 4
-\item 
+\item Determine
 
 \begin{equation}
 \Phi =\begin{bmatrix}
@@ -105,12 +110,52 @@ Sendo que $N$ é o tamanho dos dados e $m_d=max(n_y, n_u, n_e)$.
 \vdots &       & \vdots & \vdots &  & \vdots &  & \vdots &  & \vdots\\ 
 0      & \dots & 0      & \sum_{t=1}^{N}p_{dN_d}p_{d2} & \dots & \sum_{t=1}^{N}p_{d_{N_d}}^2 & \dots & 0 & \dots & 0 
 \end{bmatrix}
-\label{nl_alg_rational_step5_Psi}
+\label{eq:nl_alg_rational_step5_Psi}
+\end{equation}
+
+\begin{equation}
+\phi =\begin{bmatrix}
+0\\ 
+\vdots\\ 
+0\\ 
+-\sum_{k=1}^{N} p_{d2}p_{d1}\\ 
+\vdots\\ 
+-\sum_{k=1}^{N} p_{dN_d}p_{d1}\\ 
+0\\ 
+\vdots\\
+0
+\end{bmatrix}
+\label{eq:nl_alg_rational_step5_phi}
 \end{equation}
 
 
+E estime novamente os parametros utilizando:
+
+\begin{equation}
+\begin{bmatrix}
+\hat{\theta}_n^i\\ 
+\hat{\theta}_{d1}^i
+\end{bmatrix}=\left [ \Psi^T \Psi - (\sigma _{\xi}^2)^i \Phi  \right ]^{-1}
+\left [ \Psi^T y^* - (\sigma _{\xi}^2)^i \phi \right ]
+\label{eq:nl_alg_rational_step5}
+\end{equation}
+
 %==========================================================================
 % Step 5
-\item 
+\item Volte ao passo 2 até atingir convergência (de parametro ou de variância de residuo).
 \end{enumerate} % Aguirre algorithm for rational model identification pg 394
 
+%===============================================================================
+\subsubsection{Conversor CC-CC Buck}
+\label{sec:nl_si_algorithms_rationals_buck}
+% Aguirre 397
+% Tese do corrêa - pg 27
+%===============================================================================
+O conversor de corrente contua do tipo buck possui um mapa que pode ser obtido apartir da equação do
+circuito que tem a forma como em \eqref{eq:nl_alg_rational_buck}. O circuito do
+conversor é apresentado na Figura (\ref{fig:nl_alg_rational_buck_circuit}). \cite{tse_buck}
+
+
+
+
+Para aplicar o algoritmo, escolhe-se inicialmente um modelo para o sistema em análise. O modelo
