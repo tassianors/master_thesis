@@ -3,4 +3,104 @@
 \label{sec:vrft_control_data_based}
 %===============================================================================
 
+O projeto de controladores baseados em dados consiste obter ou ajustar os parametros de um modelo
+para os controladores, baseado nos dados obtidos da planta em análise. Os dados utilizados para esta
+tarefa são basicamente o sinal de entrada e saída do sistema.
 
+Como já foi discutido na seção (\ref{sec:si_project_experiments}) estes dados podem ser obtidos de
+diversas formas. Algumas vezes estas informações podem ser a operação normal da planta em malha
+fechada com a presença de algum controlador, situação esta que tem um apelo grande em plantas
+industriais, onde a parada do processo para levantamento de informações é indesejavel, e muitas
+vezes até inviável. Se existe a possíbilidade de parar a planta e aplicar-se sinais predeterminados,
+o projeto de experimentos pode trazer muitas vantagens.
+
+\begin{figure}[htbp]
+\center
+\scalebox{1} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-1.1092187)(9.868125,1.1292187)
+\pscircle[linewidth=0.04,dimen=outer](1.4,-0.08921875){0.2}
+\psframe[linewidth=0.04,dimen=outer](4.4,0.31078124)(2.6,-0.48921874)
+\psframe[linewidth=0.04,dimen=outer](7.2,0.31078124)(5.6,-0.48921874)
+\pscircle[linewidth=0.04,dimen=outer](8.4,-0.08921875){0.2}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,-0.08921875)(1.2,-0.08921875)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.6,-0.08921875)(2.6,-0.08921875)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.4,-0.08921875)(5.6,-0.08921875)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(7.2,-0.08921875)(8.2,-0.08921875)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.4,0.7107813)(8.4,0.11078125)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.6,-0.08921875)(9.8,-0.08921875)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.4,-0.28921875)(1.4,-1.0892187)
+\psline[linewidth=0.04cm](1.4,-1.0892187)(9.2,-1.0892187)
+\psline[linewidth=0.04cm](9.2,-1.0892187)(9.2,-0.08921875)
+\usefont{T1}{ptm}{m}{n}
+\rput(1.1126562,0.22078125){+}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.112657,0.22078125){+}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.112657,-0.37921876){+}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.6473438,-0.37921876){-}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.47,0.21078125){\small $r(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.59,-0.08921875){\small $C(z, \rho)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(6.36,-0.10921875){\small $G_0(z)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(5.11,0.21078125){\small $u(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.21,0.21078125){\small $\xi(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.48,0.93078125){\small $\nu(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(9.3,0.21078125){\small $y(t)$}
+\end{pspicture} 
+}
+\caption{Rede neural recorrentes.}
+\label{fig:nl_models_neural_recurrent}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\center
+\scalebox{1} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-1.4292188)(9.02,1.4692187)
+\pscircle[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](1.4,0.97078127){0.2}
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](4.8,1.3707813)(3.0,0.57078123)
+\psframe[linewidth=0.04,dimen=outer](7.6,1.3707813)(6.0,0.57078123)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,0.97078127)(1.2,0.97078127)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.6,0.97078127)(3.0,0.97078127)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.8,0.97078127)(6.0,0.97078127)
+\psline[linewidth=0.04cm](7.6,0.97078127)(9.0,0.97078127)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.4,0.7707813)(1.4,-0.02921875)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](1.4,-0.02921875)(8.4,-0.02921875)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](8.4,-0.02921875)(8.4,0.97078127)
+\usefont{T1}{ptm}{m}{n}
+\rput(1.1126562,1.2807813){+}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.6473438,0.68078125){-}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.47,1.2707813){\small $r(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.99,0.97078127){\small $C(z, \rho)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(6.76,0.9507812){\small $G_0(z)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(5.51,1.2707813){\small $u(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.25,1.2707813){\small $\bar{e}(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.3,1.2707813){\small $y(t)$}
+\psframe[linewidth=0.04,dimen=outer](6.0,-0.62921876)(3.8,-1.4292188)
+\usefont{T1}{ptm}{m}{n}
+\rput(4.91,-1.0492188){\small $M^{-1}(z)$}
+\psline[linewidth=0.04cm](9.0,0.97078127)(9.0,-1.0292188)
+\psline[linewidth=0.04cm](9.0,-1.0292188)(6.0,-1.0292188)
+\psline[linewidth=0.04cm](3.8,-1.0292188)(0.0,-1.0292188)
+\psline[linewidth=0.04cm](0.0,-1.0292188)(0.0,0.97078127)
+\end{pspicture} 
+}
+\caption{Rede neural recorrentes.}
+\label{fig:nl_models_neural_recurrent}
+\end{figure}

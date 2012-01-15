@@ -1,13 +1,6 @@
 %===============================================================================
-\section{Algoritmos para identificação}
-\label{sec:nl_si_algorithms}
-%===============================================================================
-
-%===============================================================================
-\subsection{Modelos Racionais}
+\section{Algoritmos para identificação de modelos racionais}
 \label{sec:nl_si_algorithms_rationals}
-% Aguirre 393
-% Tese do corrêa - pg 27
 %===============================================================================
 
 Esta seção descreve um algoritmo para determinar os parametros de modelos racionais
@@ -146,7 +139,7 @@ E estime novamente os parametros utilizando:
 \end{enumerate} % Aguirre algorithm for rational model identification pg 394
 
 %===============================================================================
-\subsubsection{Conversor CC-CC Buck}
+\subsection{Conversor CC-CC Buck}
 \label{sec:nl_si_algorithms_rationals_buck}
 % Aguirre 397
 % Tese do corrêa - pg 27
@@ -173,6 +166,13 @@ d_n & \text{caso contrario.}
 \nonumber
 \end{equation}
 
+\begin{figure}[htbp]
+	\center
+	\includegraphics[width=0.55\columnwidth]{figures/nl_models_buck_circuit.eps}
+	\caption{Circuito do conversor CC-CC Buck}
+	\label{fig:nl_models_buck_circuit}
+\end{figure}
+
 Modelos polinomiais não resultam em bons modelos para a dinâmica de \eqref{eq:nl_alg_buck_circ}. Um
 modelo con estrutura {\it{ad rock}}, que aproxima relativamente bem a caracteristica estatica do
 conversor é: \cite{aguirre_maps}
@@ -193,9 +193,15 @@ y(t)=\frac{8.658+0.1223\times10^{-2}y(t-1)^3-0.441\times10^{-1}y(t-1)^2}
 \label{eq:nl_alg_buck_rational}
 \end{equation}
 
-\begin{figure}[htbp]
-	\center
-	\includegraphics[width=0.6\columnwidth]{figures/nl_models_buck_circuit.eps}
-	\caption{Circuito do conversor CC-CC Buck}
-	\label{fig:nl_models_buck_circuit}
-\end{figure}
+Tendo o modelo escolhido é possível aplicar o algoritmo apresentdo na seção
+(\ref{sec:nl_si_algorithms_rationals}). 
+
+%===============================================================================
+\subsubsection{Etimativa dos parametros sem presença de ruido}
+\label{sec:nl_si_algorithms_rationals_buck_no_noise}
+%===============================================================================
+
+%===============================================================================
+\subsubsection{Etimativa dos parametros com presença de ruido}
+\label{sec:nl_si_algorithms_rationals_buck_noise}
+%===============================================================================

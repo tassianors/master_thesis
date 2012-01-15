@@ -567,8 +567,60 @@ a(t-1)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(k-1)\theta_n
 
 \begin{equation}
 b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(k-1)\theta_d
-\label{eq:nl_model_narmax_rat_num}
+\label{eq:nl_model_narmax_rat_den}
 \end{equation}
 
 Sendo $\theta_{nj}$ e $\theta_{dj}$ são os parametros dos regressores, possuindo informações até o
 instante $t-1$. Desta forma o valor de parametros a ser estimados é $N_n + N_d$
+
+A equação \eqref{eq:nl_model_narmax_rat_simp} possui não linearidade nos parametros, tornando a
+identificação mais complexa por não ser possível utilizar o método dos minimos quadrados para a
+estimativa dos parametros. Uma alternativa para este problema é multiplicar a equação
+\eqref{eq:nl_model_narmax_rat_simp} pela equação \eqref{eq:nl_model_narmax_rat_den} em ambos os seus
+lados. \cite{billings_zhu91}
+
+\begin{equation}
+Y(t)=a(t)-y(t)\sum_{j=2}^{den}p_{dj}(t)\theta_{dj}+b(t)e(t)
+\nonumber
+\end{equation}
+
+
+\begin{equation}
+Y(t)=\sum_{j=1}^{num}p_{nj}(t)\theta_{nj}-\sum_{j=2}^{den}y(t)p_{dj}(t)\theta_{dj}+\xi (t)
+\label{eq:nl_model_narmax_rat_linear_param}
+\end{equation}
+
+Onde:
+
+\begin{equation}
+Y(t)=y(t)p_{d1}\mid_{\theta_{d1}=1} =p_{d1}(t)\frac{a(t)}{b(t)}+p_{d1}(t)e(t)
+\nonumber
+\end{equation}
+
+e
+
+\begin{equation}
+\xi(t)=b(t)e(t)=\left ( \sum_{j=1}^{den}p_{dj}(t)\theta_{dj} \right )e(t)
+\nonumber
+\end{equation}
+
+Pelo fato de $e(t)$ ser independente de $b(t)$ e ter média nula, tem-se:
+
+\begin{equation}
+E\left [ \xi(t) \right ]=E\left [ b(t) \right ]E\left [ e(t) \right ]=0
+\label{eq:nl_model_narmax_rat_noise_var}
+\end{equation}
+
+A equação \eqref{nl_model_narmax_rat_linear_param} mostra que todos os termos $t(t)p_{dj}(t)$
+incluem o termo de ruido $e(t)$ através de $y(t)$ que este por sua vez é altamente relacionado com
+$\xi(t)$, o que resultará em polarização dos parametros, mesmo que $e(t)$ seja um ruido branco com
+média zero. Este é de certa forma o preço que se paga ao linearizar os parametros e ser possível
+utilizar o método dos minimos quadrados. \cite{aguirre}
+
+%===============================================================================
+\subsubsection{Estimador usando métodos dos minimos quadrados}
+\label{sec:nl_models_narmax_rat_lsm}
+% correa 31 - billings e zhu 1991
+%===============================================================================
+
+
