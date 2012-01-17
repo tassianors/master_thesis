@@ -4,8 +4,8 @@
 %===============================================================================
 
 Esta seção descreve um algoritmo para determinar os parametros de modelos racionais
-do tipo \eqref{eq:nl_model_narmax_rat_simp}. Este algoritmo foi proposto por
-\cite{correa} e é uma modificação do algoritmos originalmente proposto por
+do tipo apresentado em \eqref{eq:nl_model_narmax_rat_simp}. Este algoritmo foi proposto por
+\cite{correa} e é uma modificação do algoritmo originalmente proposto por
 \cite{billings_zhu}. Assume-se que o modelo pode ser aproximado por: \cite{aguirre}
 
 \begin{eqnarray}\nonumber
@@ -16,7 +16,7 @@ y(t)&=&\frac
 \label{eq:nl_alg_rational}
 \end{eqnarray}
 
-Onde o ruido é modelado por um polinômio que pode ou não ser linear. A consederação básica 
+Onde o ruido é modelado por um polinômio que pode ou não ser linear. A consideração básica 
 por trás de \eqref{eq:nl_alg_rational} é que o erro de regressão pode ser representado por
 um modelo {\it{MA}}({\it{Move average}}), possívelmente não linear. Assim sendo sugere-se o 
 seguinte procedimento: \cite{aguirre}
@@ -37,7 +37,7 @@ o método dos mínimos quadrados.
 \end{equation}
 
 Onde o indice $i$ indica a iteração. Além disso a matriz de regressores $\Psi$ é 
-formada tornando-se os vetores de regressores $\psi_n(t-1)$ e $\psi_{d1}(t-1)$ ao longo
+formada tomando-se os vetores de regressores $\psi_n(t-1)$ e $\psi_{d1}(t-1)$ ao longo
 da janela de dados do tamanho $N$, ou seja:
 
 \begin{equation}

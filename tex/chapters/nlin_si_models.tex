@@ -126,8 +126,8 @@ um sistema linear com $j=1$ a equação de Volterra se reduz a integral de convolu
 \cite{aguirre}
 
 Grande dificuldade de utilizar a serie de Volterra \eqref{eq:nl_models_volterra} é que
-até para sistemas pouco não lineares, o numero de parâmetros a estimar é grande. Isso
-se dá pelo fato da série tentar explicar a saída do sistema apenas baseado nos valores
+até para sistemas pouco não lineares, o número de parâmetros a estimar é grande. Isso
+é devido ao fato da série tentar explicar a saída do sistema apenas baseado nos valores
 da entrada deste.
 
 %===============================================================================
@@ -262,7 +262,7 @@ considerados como mapas não lineares onde os elementos das matrizes de peso são 
 \label{fig:nl_models_neural_multilayer}
 \end{figure}
 
-A saída do sistema para uma rede multicamada pode ser descrito como em
+A saída do sistema para uma rede multicamadas pode ser descrito como em
 \eqref{eq:nl_models_neural_multilayer}.
 
 \begin{equation}
@@ -282,7 +282,7 @@ oculta. \cite{aguirre}
 %===============================================================================
 Redes neurais recorrentes, trabalho introduzido por Hopfield em \cite{hopfield} provê uma
 alternativa para o reconhecimento de pradrões. O metodo proposto consiste em ter uma rede neural de
-apenas uma camada adicionado de uma realimentação com um atraso de tempo como apresetado na Figura
+apenas uma camada adicionada de uma realimentação com um atraso de tempo como apresetado na Figura
 (\ref{fig:nl_models_neural_recurrent}). \cite{narenda_parthasarathy}
 
 \begin{figure}[htbp]
@@ -388,7 +388,7 @@ apenas uma camada adicionado de uma realimentação com um atraso de tempo como ap
 % Aguirre 337
 %===============================================================================
 
-Funções radiais de base  ({\it{RBF - Radial basis functions}}  são uma tradicional tecnica para
+Funções radiais de base  ({\it{RBF - Radial basis functions}})  são uma tradicional tecnica para
 interpolação em espaços multidimensional \cite{chen_billings_narmax} e podem ser descritos como
 mapeamentos do tipo \eqref{eq:nl_models_rbf}:
 
@@ -398,7 +398,7 @@ f(y)-w_0+\sum_{i}w_i \phi (\left \| y-c_i \right \|)
 \end{equation}
 
 Sendo que $y \in \mathbb{R}^{d_e}$ ($d_e$ é conhecido como dimensão de imersão),
-$\left \| \cdot \right \|$ é a norma euclidiana, $w_i \in \mathbb(R)$ são pesos, 
+$\left \| \cdot \right \|$ é a norma euclidiana, $w_i \in \mathbb{R}$ são pesos, 
 $c_i \in \mathbb{R}^{d_e}$ são centros e $\phi(\cdot):\mathbb{R}^+ \to \mathbb{R}$ 
 é uma função, normalmente escolhida a priori, como por exemplo: \cite{aguirre}
 
@@ -411,7 +411,7 @@ Outras funções de base usadas são apresentadas na Tabela \ref{table:nl_models_rb
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Algumas funções Radiais de base comumente usadas.}
+\caption{Algumas funções Radiais de base comumente utilizadas.}
 \label{table:nl_models_rbf}
 \begin{tabular}{ll}
 \hline
@@ -494,11 +494,11 @@ Modelos racionais são formados pela razão entre dois polinomios \eqref{eq:nl_mod
 
 \begin{equation}
 y(t)=\frac{\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=0}^{n_e}e(t-q)}
-{\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=0}^{n_e}e(t-q)} + e(t)
+{\sum_{i}d_i \prod_{j=1}^{d_y}y(t-j) \prod_{r=1}^{d_u}u(t-r) \prod_{q=0}^{d_e}e(t-q)} + e(t)
 \label{eq:nl_model_narmax_rat}
 \end{equation}
 
-Em função de terem uma estrutura mais floxivel, os modelos racionais opdem vir a ser
+Em função de terem uma estrutura mais floxivel, os modelos racionais podem vir a ser
 mais eficientes na modelagem de certos sistemas quando comparados com modelos polinomiais.
 Entretanto, os modelos racionais são mais sensíveis ao ruido. \cite{aguirre}
 
@@ -511,7 +511,7 @@ Com relação ao modelo generico polinomial {\it{NARMAX}} apresentado em \eqref{eq
 duas considerações serão levadas em conta:
 
 \begin{enumerate}
-\item O sistema tem um atraso puro de tempo $\tau _d$ 
+\item O sistema tem um atraso puro de tempo $\tau _d$.
 \item Nenhum termo cujo parametro tenha que ser estimado pode depender de $e(t)$.
 \end{enumerate}
 
@@ -524,14 +524,13 @@ y(t) &=& F[ y(t-1), ..., y(t-n_y), u(t-\tau_d), ..., u(t-\tau_d-n_u+1),\\
 \label{eq:nl_model_narmax_pol_espec}
 \end{eqnarray}
 
-Sendo que $e(t)$ indica que todos os efeitos não podem ser bem representados por 
-$F^l\left [ \cdot  \right ]$, é uma função polinomial de $y(t)$, $u(t)$ e 
-$e(t)$ com grau de não linearidade $l\in \mathbb{N}$. Portanto a parte 
-não deterministica de \eqref{eq:nl_model_narmax_pol_espec} pode ser espandida como
+$e(t)$ indica que todos os efeitos não podem ser bem representados. $F^l\left [ \cdot  \right ]$ é
+uma função polinomial de $y(t)$, $u(t)$ e $e(t)$ com grau de não linearidade $l\in \mathbb{N}$. 
+Portanto a parte não deterministica de \eqref{eq:nl_model_narmax_pol_espec} pode ser espandida como
 um somatório de termos com grau de não linearidade variando de $1 \le m \le l$. 
-Assim sendo, cada termo de grau $m$ poderá conter um falor de grau $p$ do tipo $y(t-i)$
+Assim sendo, cada termo de grau $m$ poderá conter um valor de grau $p$ do tipo $y(t-i)$
 e um fator de grau $(m-p)$ do tipo $u(t-i)$ sendo multiplicado por um parametro representado 
-por $c_{p,m-p}(n_1, ..., n_m$. Resultando em: \cite{aguirre}
+por $c_{p,m-p}(n_1, ..., n_m)$. Resultando em: \cite{aguirre}
 
 \begin{equation}
 y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
@@ -546,7 +545,7 @@ y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)
 %===============================================================================
 
 Um modelo racional {\it{NARMAX}} tem a seguinte forma geral apresentada em 
-\eqref{eq:nl_model_narmax_rat} e de forma simplificada como apresentado em
+\eqref{eq:nl_model_narmax_rat} e de forma simplificada pode ser apresentado como em
 \eqref{eq:nl_model_narmax_rat_simp}.
 
 \begin{equation}
@@ -577,8 +576,8 @@ b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(k-1)\theta_d
 \label{eq:nl_model_narmax_rat_den}
 \end{equation}
 
-Sendo $\theta_{nj}$ e $\theta_{dj}$ são os parametros dos regressores, possuindo informações até o
-instante $t-1$. Desta forma o valor de parametros a ser estimados é $N_n + N_d$
+Sendo que $\theta_{nj}$ e $\theta_{dj}$ são os parametros dos regressores, possuindo informações até
+o instante $t-1$. Desta forma o valor de parametros a ser estimados é $N_n + N_d$
 
 A equação \eqref{eq:nl_model_narmax_rat_simp} possui não linearidade nos parametros, tornando a
 identificação mais complexa por não ser possível utilizar o método dos minimos quadrados para a
@@ -618,11 +617,11 @@ E\left [ \xi(t) \right ]=E\left [ b(t) \right ]E\left [ e(t) \right ]=0
 \label{eq:nl_model_narmax_rat_noise_var}
 \end{equation}
 
-A equação \eqref{nl_model_narmax_rat_linear_param} mostra que todos os termos $t(t)p_{dj}(t)$
+A equação \eqref{eq:nl_model_narmax_rat_noise_var} mostra que todos os termos $y(t)p_{dj}(t)$
 incluem o termo de ruido $e(t)$ através de $y(t)$ que este por sua vez é altamente relacionado com
 $\xi(t)$, o que resultará em polarização dos parametros, mesmo que $e(t)$ seja um ruido branco com
-média zero. Este é de certa forma o preço que se paga ao linearizar os parametros e ser possível
-utilizar o método dos minimos quadrados. \cite{aguirre}
+média zero. Este é de certa forma o preço que se paga ao linearizar os parametros para que seja
+possível utilizar o método dos minimos quadrados. \cite{aguirre}
 
 %===============================================================================
 \subsubsection{Estimador usando métodos dos minimos quadrados}
