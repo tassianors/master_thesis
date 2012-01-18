@@ -14,9 +14,42 @@ industriais, onde a parada do processo para levantamento de informações é indese
 vezes até inviável. Se existe a possíbilidade de parar a planta e aplicar-se sinais predeterminados,
 o projeto de experimentos pode trazer muitas vantagens.
 
+Seja a esperança de um valor $E\left [ \cdot \right ]$ definido por: \cite{ljung}
+
+\begin{equation}
+\bar{E}\left [ f(t) \right ]\equiv \lim_{N \to \infty } \frac{1}{N}\sum_{t=1}^{N}E\left [ f(t)
+\right]
+\label{eq:vrft_db_hope}
+\end{equation}
+
+Um sinal é dito quasi-estacionario se a média e autocorrelação do mesmo convergem para um valor
+finito quando o tamanho da amostra cresce, conforme definição a seguir: \cite{campestrini}
+
+
+\begin{defn}
+\cite{ljung}
+
+Um Sinal $s(t)$ é um processo quasi-estacionario se:
+\begin{itemize}
+	\item $\bar{E}\left [ s(t) \right ] = \mid m_s \mid \le C, \;\forall t$;
+	\item $\bar{E}\left [ s(t)s(r) \right ] = \mid R_s(t,s) \mid \le C, \;\forall t,r$;
+	\item $\lim_{N \to \infty}\frac{1}{N}\sum_{t=1}^{N}R_s(t, t-\tau)=R_s(\tau), \; \forall \tau$,
+\end{itemize}
+Onde $m_s(t)$ é o valor médio do sinal $s(t)$ e $R_s(t,r)$ é a covariancia do sinal $s$ nos
+instantes $t$ e $r$.
+\end{defn}
+
+O ruido é um processo quasi-estacionario, que pode ser descrito como $\nu(t)=H_0(z)e(t)$, onde
+$e(t)$ é ruido branco com variância $\sigma_e^2$. Ambas funções de transferência, $G(z)$ e $H(z)$,
+são racionais e causais. Assume-se que $H(\infty)=1$, ou seja, a resposta impulsiva do filtro
+$H_0(z)$ saitisfaz $h(0)=1$. \cite{campestrini}
+
+Na Figura (\ref{fig:vrft_db_control_loop}) é apresentado uma malha de controle onde o controlador
+$C(z, \rho) \in \mathcal{C}$ onde $ \mathcal{C}$ é a classe de controladores definida pelo usuário.
+
 \begin{figure}[htbp]
 \center
-\scalebox{1} % Change this value to rescale the drawing.
+\scalebox{0.8} % Change this value to rescale the drawing.
 {
 \begin{pspicture}(0,-1.1092187)(9.868125,1.1292187)
 \pscircle[linewidth=0.04,dimen=outer](1.4,-0.08921875){0.2}
@@ -57,8 +90,36 @@ o projeto de experimentos pode trazer muitas vantagens.
 \end{pspicture} 
 }
 \caption{Rede neural recorrentes.}
-\label{fig:nl_models_neural_recurrent}
+\label{fig:vrft_db_control_loop}
 \end{figure}
+
+A equação \eqref{eq:vrft_db_closed_loop} descreve o comportamento do sistem da Figura
+(\ref{fig:vrft_db_control_loop}).
+
+\begin{equation}
+T(z, \rho)=\frac{C(z,\rho)G_0(z)}{1+C(z,\rho)G_0(z)}
+\label{eq:vrft_db_closed_loop}
+\end{equation}
+
+Controle baseado em dados pode ser dividido em dois grupos principais: metodos iterativos onde
+experimentos são realizados sobre o sistema atualizand-se o controlador, o processo então é repetido
+até que se atinja um valor minimo para a função custo deste sistema. O segundo grupo é o de metodos
+não iterativos, onde apenas com um experimento, ou um conjunto de dados, os parametros do
+controlador são estimados.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \begin{figure}[htbp]
