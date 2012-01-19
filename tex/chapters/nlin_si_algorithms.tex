@@ -3,7 +3,7 @@
 \label{sec:nl_si_algorithms_rationals}
 %===============================================================================
 
-Esta seção descreve um algoritmo para determinar os parametros de modelos racionais
+Esta seção descreve um algoritmo para determinar os parâmetros de modelos racionais
 do tipo apresentado em \eqref{eq:nl_model_narmax_rat_simp}. Este algoritmo foi proposto por
 \cite{correa} e é uma modificação do algoritmo originalmente proposto por
 \cite{billings_zhu}. Assume-se que o modelo pode ser aproximado por: \cite{aguirre}
@@ -18,7 +18,7 @@ y(t)&=&\frac
 
 Onde o ruido é modelado por um polinômio que pode ou não ser linear. A consideração básica 
 por trás de \eqref{eq:nl_alg_rational} é que o erro de regressão pode ser representado por
-um modelo {\it{MA}}({\it{Move average}}), possívelmente não linear. Assim sendo sugere-se o 
+um modelo {\it{MA}}({\it{Move average}}), possivelmente não linear. Assim sendo sugere-se o 
 seguinte procedimento: \cite{aguirre}
 
 \begin{enumerate}
@@ -36,7 +36,7 @@ o método dos mínimos quadrados.
 \label{nl_alg_rational_step_1}
 \end{equation}
 
-Onde o indice $i$ indica a iteração. Além disso a matriz de regressores $\Psi$ é 
+Onde o índice $i$ indica a iteração. Além disso a matriz de regressores $\Psi$ é 
 formada tomando-se os vetores de regressores $\psi_n(t-1)$ e $\psi_{d1}(t-1)$ ao longo
 da janela de dados do tamanho $N$, ou seja:
 
@@ -59,7 +59,7 @@ y^{*T}=\left [ y^*(t), y^*(t+1), ..., y^*(t+N-1) \right ]
 
 %==========================================================================
 % Step 2
-\item Faça $i=i+1$. Determine os residuos e sua variância, respectivamente como:
+\item Faça $i=i+1$. Determine os resíduos e sua variância, respectivamente como:
 
 \begin{equation}
 \xi ^i(t)=y(t)-\frac{\psi_n^T(t-1)\hat{\theta}_n}{\psi_{d}^T(t-1)\hat{\theta}_d}
@@ -75,7 +75,7 @@ Sendo que $N$ é o tamanho dos dados e $m_d=max(n_y, n_u, n_e)$.
 
 %==========================================================================
 % Step 3
-\item Usando-se os residuos determinados no passo anterior, atualize $\Psi ^T \Psi$ e $\Psi^T y^*$
+\item Usando-se os resíduos determinados no passo anterior, atualize $\Psi ^T \Psi$ e $\Psi^T y^*$
 usando \eqref{eq:nl_alg_rational_step3_psi}
 
 
@@ -88,8 +88,8 @@ usando \eqref{eq:nl_alg_rational_step3_psi}
 \label{eq:nl_alg_rational_step3_psi}
 \end{equation}
 
-onde $\psi_{\xi }$ é o vetor de regressores do modelo do ruido. Pelo fato do ruido não ser medido,
-os residuos do passao (2) são utilizados.
+Onde $\psi_{\xi }$ é o vetor de regressores do modelo do ruido. Pelo fato do ruido não ser medido,
+os resíduos do passo (2) são utilizados.
 
 %==========================================================================
 % Step 4
@@ -122,7 +122,7 @@ os residuos do passao (2) são utilizados.
 \end{equation}
 
 
-E estime novamente os parametros utilizando:
+E estime novamente os parâmetros utilizando:
 
 \begin{equation}
 \begin{bmatrix}
@@ -135,7 +135,7 @@ E estime novamente os parametros utilizando:
 
 %==========================================================================
 % Step 5
-\item Volte ao passo 2 até atingir convergência (de parametro ou de variância de residuo).
+\item Volte ao passo 2 até atingir convergência (de parâmetro ou de variância de resíduo).
 \end{enumerate} % Aguirre algorithm for rational model identification pg 394
 
 %===============================================================================
@@ -144,7 +144,7 @@ E estime novamente os parametros utilizando:
 % Aguirre 397
 % Tese do corrêa - pg 27
 %===============================================================================
-O conversor de corrente contua do tipo buck possui um mapa que pode ser obtido apartir da equação do
+O conversor de corrente continua do tipo buck possui um mapa que pode ser obtido a partir da equação do
 circuito que tem a forma como em \eqref{eq:nl_alg_buck_circ}. O circuito do
 conversor é apresentado na Figura (\ref{fig:nl_models_buck_circuit}). \cite{tse_buck}
 
@@ -174,7 +174,7 @@ d_n & \text{caso contrario.}
 \end{figure}
 
 Modelos polinomiais não resultam em bons modelos para a dinâmica de \eqref{eq:nl_alg_buck_circ}. Um
-modelo con estrutura {\it{ad rock}}, que aproxima relativamente bem a caracteristica estatica do
+modelo com estrutura {\it{ad rock}}, que aproxima relativamente bem a característica estática do
 conversor é: \cite{aguirre_maps}
 
 \begin{equation}
@@ -193,15 +193,15 @@ y(t)=\frac{8.658+0.1223\times10^{-2}y(t-1)^3-0.441\times10^{-1}y(t-1)^2}
 \label{eq:nl_alg_buck_rational}
 \end{equation}
 
-Tendo o modelo escolhido é possível aplicar o algoritmo apresentdo na seção
+Tendo o modelo escolhido é possível aplicar o algoritmo apresentado na seção
 (\ref{sec:nl_si_algorithms_rationals}). 
 
 %===============================================================================
-\subsubsection{Etimativa dos parametros sem presença de ruido}
+\subsubsection{Estimativa dos parâmetros sem presença de ruido}
 \label{sec:nl_si_algorithms_rationals_buck_no_noise}
 %===============================================================================
 
 %===============================================================================
-\subsubsection{Etimativa dos parametros com presença de ruido}
+\subsubsection{Estimativa dos parâmetros com presença de ruido}
 \label{sec:nl_si_algorithms_rationals_buck_noise}
 %===============================================================================

@@ -3,4 +3,73 @@
 \label{sec:vrft_vrft}
 %===============================================================================
 
+VRFT do inglês {\it{Virtual reference feedback tuning}} é um método direto para identificação de
+controladores, ou seja, não é necessário o conhecimento ou identificação da planta para que este
+método seja utilizado. Este método pode ser utilizado usando apenas uma conjunto de dados, não
+necessitando de experimentos específicos. O procedimento procura pelo ponto ótimo do critério
+escolhido para a identificação do controlador. \cite{CampiSacvaresi-vrft_new_direct_approach}
+
+Assume-se que a planta do sistema é {\it{linear}} SISO ({\it{single input single output}}) de tempo
+discreto descrito pela função de transferência racional $P(z)$. Tal que esta função de
+transferência é desconhecida e tem-se apenas acesso ao conjunto de dados coletados do experimento.
+\cite{CampiLecciniSacvaresi-vrft_direct_method}
+
+O controlador a ser identificado pode ser parametrizado como em \eqref{eq:vrft_method_controller} 
+
+\begin{equation}
+C(z,\theta)=\beta^T(z)\theta
+\label{eq:vrft_method_controller}
+\end{equation}
+
+Onde $\beta(z) = \left [ \beta_1(z)\;\; \beta_2(z)\;\; \cdots \;\; \beta_n(z)\right ]^T$ é um vetor
+linear de funções de transferências de tempo discreto e $\theta = \left [ \vartheta_1 \;\;
+\vartheta_2 \;\; \cdots \;\; \vartheta_n \right ]^T \in \mathcal{R}^n$ é um vetor $n$ dimensional de
+parâmetros. 
+
+O problema de identificação do controlador consiste em encontrar um $\hat{\theta}$ que minimize o
+critério performance \eqref{eq:vrft_method_cost_func} que é dependente do modelo de referência.
+
+\begin{equation}
+J_{M\,R}(\theta) = \left \| \left ( \frac{P(z)C(z,\theta)}{1+P(z)C(z,\theta)} -M(z) \right )W(z)
+\right \|_2^2 
+\label{eq:vrft_method_cost_func}
+\end{equation} 
+
+Sendo que $M(z)$ é o modelo de referência a ser atingido em malha fechada quando o controlador
+obtido é posto na planta e $W(z)$ é uma matriz para ponderação escolhida pelo usuário.
+
+Como já mencionado, VRFT é um método {\it{direto}}, onde os dados coletados da planta são utilizados
+diretamente para identificar o controlador e não para uma identificação da planta e em seguida de um
+controlador. Métodos diretos são conceitualmente mais naturais que os indiretos, mas mesmo com o
+apelo que estes métodos possuem, apenas alguns métodos genuinamente diretos são encontrados na
+literatura, dois destes são VRFT e IFT (seção \ref{sec:vrft_control_ift}), mesmo estes dois métodos
+pertencendo a mesma classe de métodos, algumas diferenças são ressaltadas:
+\cite{CampiSacvaresi-vrft_new_direct_approach}
+
+\begin{itemize}
+	\item {\it{IFT}} é baseado em um métodos de gradiente decrescente e além disso é uma técnica
+	iterativa. Usualmente este método converge para o minimo local mais próximo das condições iniciais.
+	Ele requer experimentos específicos sobre a planta, com entradas especificas.
+	\item {\it{VRFT}} é um procedimento não iterativo que procura pelo minimo global do critério de
+	performance \eqref{eq:vrft_method_cost_func}. Este método não requer experimentos específicos sobre
+	a planta, podendo inclusive utilizar os dados do funcionamento normal da planta.
+\end{itemize}
+
+%===============================================================================
+\subsection{O método}
+\label{sec:vrft_framework}
+%===============================================================================
+
+Nesta seção será apresentado uma breve descrição de como o algoritmo para obtenção do controlador
+utilizando o método VRFT é formulado. Para maiores detalhes e discussões mais aprofundadas: 
+\cite{CampiSacvaresi-vrft_new_direct_approach}, \cite{CampiLecciniSacvaresi-vrft_direct_method},
+\cite{campestrini_nonminumum_phase}.
+
+Suponha que o controlador $c(z, \theta)$ resulta um sistema em malha fechada cuja função de
+transferência é dada por $M(z)$. Desta forma, se $M(z)$ é alimentado com qualquer sinal $r(t)$ sua
+saída é $M(z)r(t)$. Então uma premissa para que o sistema em malha fechada tenha a mesma função de
+transferência que o modelo de referência é que a saída dos dois seja o mesmo para um dado
+$\bar{r}(t)$.
+
+
 

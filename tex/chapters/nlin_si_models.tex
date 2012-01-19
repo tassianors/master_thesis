@@ -8,7 +8,7 @@
 Na seção (\ref{sec:sys_ident_modelling_choosing}) foi apresentado o conceito de modelos para
 sistemas lineares. Nesta seção será apresentado de forma análoga o conceito de modelos e tipos de
 modelos para sistemas não lineares. Um problema fundamental referente a modelos parametrizados 
-refere-se ao fato do parametro poder ou não ser determinado nos valores medidos de entrada e saída
+refere-se ao fato do parâmetro poder ou não ser determinado nos valores medidos de entrada e saída
 dos dados. \cite{glad_ljung}
 
 Na seção (\ref{sec:nl_models_wiener_hammerstein}) será apresentado um dos modelos mais antigos e que
@@ -26,16 +26,16 @@ que podem ser descritos por estes modelos.
 Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
 modelo. Quando este modelo é não linear, existe uma grande quantidade de opções e com isso o perigo
 de escolher um modelo desnecessariamente complexo é evidente. Isso baseia-se no {\it{principio
-da parsemonia}} que basicamente detemina que o modelo deve ser o mais simples possível.
+da parsemônia}} que basicamente determina que o modelo deve ser o mais simples possível.
 \cite{aguirre_maps}
 
-Uma das primeiras justificativas para o desenvolvimento de metodos para a escolha de modelos é a
-grande dificuldade de trablhar com modelos muito grandes e complexos. Existe o problema destes modelos
+Uma das primeiras justificativas para o desenvolvimento de métodos para a escolha de modelos é a
+grande dificuldade de trabalhar com modelos muito grandes e complexos. Existe o problema destes modelos
 serem numericamente mal condicionados. Existe também uma convicção de que estes modelos, com muitos
-parametros, são redundantes e poderiam ser removidos do modelo. Um modelo com um número exessivo de
-parametros podem exibir dinamicas que não são observadas no sistema real, desta forma não existe
+parâmetros, são redundantes e poderiam ser removidos do modelo. Um modelo com um número excessivo de
+parâmetros podem exibir dinâmicas que não são observadas no sistema real, desta forma não existe
 apenas o problema numérico para estes sistemas, mas também um problema de dinâmica em utilizar um
-modelo sobreestimado. \cite{aguirre_jacome}
+modelo sobre-estimado. \cite{aguirre_jacome}
 
 
 % ===============================================================================
@@ -135,7 +135,7 @@ da entrada deste.
 \label{sec:nl_models_neurals}
 % TODO: Search for bib
 %===============================================================================
-As redes neurais artificiais são compostas por camadas de neuronios interconectados. A saída de um
+As redes neurais artificiais são compostas por camadas de neurônios interconectados. A saída de um
 neurônio com $n$ entradas é apresentado na equação \eqref{eq:nl_models_neural}
 
 \begin{equation}
@@ -153,13 +153,13 @@ função de ativação mais comum é: \cite{aguirre}
 
 
 %===============================================================================
-\subsubsection{Redes Neurais multicamadas}
+\subsubsection{Redes Neurais multi-camadas}
 \label{sec:nl_models_neurals_multilayer}
 %===============================================================================
 
-Uma tipica rede multimamadas pode ser descrita como na Figura
-(\ref{fig:nl_models_neural_multilayer}).  Na pratica redes neurais multicamadas tem grande apelo no
-reconhecimento de padrões. Do ponto de vista teórico os sistemas de redes multicamadas podem ser
+Uma tipica rede multi-camadas pode ser descrita como na Figura
+(\ref{fig:nl_models_neural_multilayer}).  Na pratica redes neurais multi-camadas tem grande apelo no
+reconhecimento de padrões. Do ponto de vista teórico os sistemas de redes multi-camadas podem ser
 considerados como mapas não lineares onde os elementos das matrizes de peso são os parâmetros.
 \cite{narenda_parthasarathy}
 
@@ -258,11 +258,11 @@ considerados como mapas não lineares onde os elementos das matrizes de peso são 
 \end{pspicture} 
 }
 
-\caption{Rede neural multicamadas.}
+\caption{Rede neural multi-camadas.}
 \label{fig:nl_models_neural_multilayer}
 \end{figure}
 
-A saída do sistema para uma rede multicamadas pode ser descrito como em
+A saída do sistema para uma rede multi-camadas pode ser descrito como em
 \eqref{eq:nl_models_neural_multilayer}.
 
 \begin{equation}
@@ -273,7 +273,7 @@ b_s \right \}
 
 Sendo que $f_s$ é a função de ativação do neurônio da camada de saída. Esta função não precisa ser
 igual a $f_i$, $i=1, \ldots , m$ que por sua vez não precisam ser iguais entre si. $b_s$ é o termo
-de polarização do neurônio da camada de saída, $\omega_i$ são os pesos da saída de cada neuronio da
+de polarização do neurônio da camada de saída, $\omega_i$ são os pesos da saída de cada neurônio da
 camada oculta e $\omega_{ij}$ são os pesos da entrada $j$, vista pelo $i-$ésimo neurônio da camada
 oculta. \cite{aguirre}
 %===============================================================================
@@ -281,8 +281,8 @@ oculta. \cite{aguirre}
 \label{sec:nl_models_neurals_multilayer}
 %===============================================================================
 Redes neurais recorrentes, trabalho introduzido por Hopfield em \cite{hopfield} provê uma
-alternativa para o reconhecimento de pradrões. O metodo proposto consiste em ter uma rede neural de
-apenas uma camada adicionada de uma realimentação com um atraso de tempo como apresetado na Figura
+alternativa para o reconhecimento de padrões. O método proposto consiste em ter uma rede neural de
+apenas uma camada adicionada de uma realimentação com um atraso de tempo como apresentado na Figura
 (\ref{fig:nl_models_neural_recurrent}). \cite{narenda_parthasarathy}
 
 \begin{figure}[htbp]
@@ -388,7 +388,7 @@ apenas uma camada adicionada de uma realimentação com um atraso de tempo como ap
 % Aguirre 337
 %===============================================================================
 
-Funções radiais de base  ({\it{RBF - Radial basis functions}})  são uma tradicional tecnica para
+Funções radiais de base  ({\it{RBF - Radial basis functions}})  são uma tradicional técnica para
 interpolação em espaços multidimensional \cite{chen_billings_narmax} e podem ser descritos como
 mapeamentos do tipo \eqref{eq:nl_models_rbf}:
 
@@ -420,7 +420,7 @@ Outras funções de base usadas são apresentadas na Tabela \ref{table:nl_models_rb
         Multi quadrática inversa  & $\phi(r)=(r^2+\sigma ^2)^{-1/2}$ \\ 
         Linear                    & $\phi(r)=r$                      \\ 
         Cúbica                    & $\phi(r)=r^3$                    \\ 
-        Multiquadrática           & $\phi(r)=\sqrt{r^2+\sigma^2}$    \\ 
+        Multi-quadrática           & $\phi(r)=\sqrt{r^2+\sigma^2}$    \\ 
         {\it{Thin - plate spline}} & $\phi(r)=r^2\; \text{log}(r)$   \\ 
 \hline
 \end{tabular}
@@ -439,7 +439,7 @@ funções gausianas e das multiquadráticas, como pode ser visto na figura (\ref{fi
 
 Este tipo de representação tem boas propriedades locais e pode ser interpretada como 
 uma técnica de interpolação global. Funções radiais de base são casos particulares
-de redes neurais, porem neste caso lineares nos parametros $w_i$.\cite{aguirre} 
+de redes neurais, porem neste caso lineares nos parâmetros $w_i$.\cite{aguirre} 
 
 No contexto de identificação de sistemas é comum adicionar termos auto-regressivos
 lineares, bem como termos de entrada à equação \eqref{eq:nl_models_rbf} resultando em:
@@ -462,10 +462,10 @@ y(k-1) & ... & y(k-n_y) & u(k-1) & ... & u(k-n_u)
 Os modelos {\it{NARX}} (do termo ingles {\it{nonlinear autoregressive model with
 exogenous variables}}) são modelos discretos no tempo que caracterizam o valor da 
 saída em função dos valor passados da entrada e saída. Algumas vezes, para evitar 
-a polarização da estimativa dos parametros adiciona-se termos do ruido no modelo.
+a polarização da estimativa dos parâmetros adiciona-se termos do ruido no modelo.
 Quando isso é feito o modelo passa a ser chamado de um modelo {\it{NARMAX}} (do
-termo ingles {\it{nonlinear autoregressive moving average model with exogenous
-variables}}) que pode ser representado pla equação \eqref{eq:nl_model_narmax} 
+termo inglês {\it{nonlinear autoregressive moving average model with exogenous
+variables}}) que pode ser representado pela equação \eqref{eq:nl_model_narmax} 
 \cite{aguirre}. Este modelo provê uma representação unificada para a descrição de sistemas discretos
 não lineares \cite{chen_billings_narmax}
 
@@ -490,7 +490,7 @@ Os modelos polinomiais {\it{bilineares}} são casos particulares do modelo polino
 \eqref{eq:nl_model_narmax_pol} quando todos os termos não lineares são do tipo 
 $y(t-i)u(t-j), \; \forall i,j$. \cite{aguirre}
 
-Modelos racionais são formados pela razão entre dois polinomios \eqref{eq:nl_model_narmax_rat}.
+Modelos racionais são formados pela razão entre dois polinômios \eqref{eq:nl_model_narmax_rat}.
 
 \begin{equation}
 y(t)=\frac{\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=0}^{n_e}e(t-q)}
@@ -498,7 +498,7 @@ y(t)=\frac{\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=
 \label{eq:nl_model_narmax_rat}
 \end{equation}
 
-Em função de terem uma estrutura mais floxivel, os modelos racionais podem vir a ser
+Em função de terem uma estrutura mais flexível, os modelos racionais podem vir a ser
 mais eficientes na modelagem de certos sistemas quando comparados com modelos polinomiais.
 Entretanto, os modelos racionais são mais sensíveis ao ruido. \cite{aguirre}
 
@@ -507,12 +507,12 @@ Entretanto, os modelos racionais são mais sensíveis ao ruido. \cite{aguirre}
 \label{sec:nl_models_narmax_pol}
 % Aguirre 343
 %===============================================================================
-Com relação ao modelo generico polinomial {\it{NARMAX}} apresentado em \eqref{eq:nl_model_narmax_pol}
+Com relação ao modelo genérico polinomial {\it{NARMAX}} apresentado em \eqref{eq:nl_model_narmax_pol}
 duas considerações serão levadas em conta:
 
 \begin{enumerate}
 \item O sistema tem um atraso puro de tempo $\tau _d$.
-\item Nenhum termo cujo parametro tenha que ser estimado pode depender de $e(t)$.
+\item Nenhum termo cujo parâmetro tenha que ser estimado pode depender de $e(t)$.
 \end{enumerate}
 
 A segunda consideração implica em tornar $F$ independente de $e(t)$. O que equivale a dizer
@@ -526,10 +526,10 @@ y(t) &=& F[ y(t-1), ..., y(t-n_y), u(t-\tau_d), ..., u(t-\tau_d-n_u+1),\\
 
 $e(t)$ indica que todos os efeitos não podem ser bem representados. $F^l\left [ \cdot  \right ]$ é
 uma função polinomial de $y(t)$, $u(t)$ e $e(t)$ com grau de não linearidade $l\in \mathbb{N}$. 
-Portanto a parte não deterministica de \eqref{eq:nl_model_narmax_pol_espec} pode ser espandida como
+Portanto a parte não determinística de \eqref{eq:nl_model_narmax_pol_espec} pode ser expandida como
 um somatório de termos com grau de não linearidade variando de $1 \le m \le l$. 
 Assim sendo, cada termo de grau $m$ poderá conter um valor de grau $p$ do tipo $y(t-i)$
-e um fator de grau $(m-p)$ do tipo $u(t-i)$ sendo multiplicado por um parametro representado 
+e um fator de grau $(m-p)$ do tipo $u(t-i)$ sendo multiplicado por um parâmetro representado 
 por $c_{p,m-p}(n_1, ..., n_m)$. Resultando em: \cite{aguirre}
 
 \begin{equation}
@@ -561,8 +561,8 @@ Onde:
 \end{equation}
 
 No modelo apresentado em \eqref{eq:nl_model_narmax_rat}, as funções $a(\Upsilon)$ e $b(\Upsilon)$
-são polinomios, mas poderiam ser quaisquer funções. Assumindo que o modelo é formado pela razão de
-dois polinomios, é conveniente definir o numerador e denominador de \eqref{eq:nl_model_narmax_rat}
+são polinômios, mas poderiam ser quaisquer funções. Assumindo que o modelo é formado pela razão de
+dois polinômios, é conveniente definir o numerador e denominador de \eqref{eq:nl_model_narmax_rat}
 como em \eqref{eq:nl_model_narmax_rat_num} e \eqref{eq:nl_model_narmax_rat_den}
 
 \begin{equation}
@@ -576,12 +576,12 @@ b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(k-1)\theta_d
 \label{eq:nl_model_narmax_rat_den}
 \end{equation}
 
-Sendo que $\theta_{nj}$ e $\theta_{dj}$ são os parametros dos regressores, possuindo informações até
-o instante $t-1$. Desta forma o valor de parametros a ser estimados é $N_n + N_d$
+Sendo que $\theta_{nj}$ e $\theta_{dj}$ são os parâmetros dos regressores, possuindo informações até
+o instante $t-1$. Desta forma o valor de parâmetros a ser estimados é $N_n + N_d$
 
-A equação \eqref{eq:nl_model_narmax_rat_simp} possui não linearidade nos parametros, tornando a
-identificação mais complexa por não ser possível utilizar o método dos minimos quadrados para a
-estimativa dos parametros. Uma alternativa para este problema é multiplicar a equação
+A equação \eqref{eq:nl_model_narmax_rat_simp} possui não linearidade nos parâmetros, tornando a
+identificação mais complexa por não ser possível utilizar o método dos mínimos quadrados para a
+estimativa dos parâmetros. Uma alternativa para este problema é multiplicar a equação
 \eqref{eq:nl_model_narmax_rat_simp} pela equação \eqref{eq:nl_model_narmax_rat_den} em ambos os seus
 lados. \cite{billings_zhu91}
 
@@ -603,7 +603,7 @@ Y(t)=y(t)p_{d1}\mid_{\theta_{d1}=1} =p_{d1}(t)\frac{a(t)}{b(t)}+p_{d1}(t)e(t)
 \nonumber
 \end{equation}
 
-e
+E
 
 \begin{equation}
 \xi(t)=b(t)e(t)=\left ( \sum_{j=1}^{den}p_{dj}(t)\theta_{dj} \right )e(t)
@@ -619,12 +619,12 @@ E\left [ \xi(t) \right ]=E\left [ b(t) \right ]E\left [ e(t) \right ]=0
 
 A equação \eqref{eq:nl_model_narmax_rat_noise_var} mostra que todos os termos $y(t)p_{dj}(t)$
 incluem o termo de ruido $e(t)$ através de $y(t)$ que este por sua vez é altamente relacionado com
-$\xi(t)$, o que resultará em polarização dos parametros, mesmo que $e(t)$ seja um ruido branco com
-média zero. Este é de certa forma o preço que se paga ao linearizar os parametros para que seja
-possível utilizar o método dos minimos quadrados. \cite{aguirre}
+$\xi(t)$, o que resultará em polarização dos parâmetros, mesmo que $e(t)$ seja um ruido branco com
+média zero. Este é de certa forma o preço que se paga ao linearizar os parâmetros para que seja
+possível utilizar o método dos mínimos quadrados. \cite{aguirre}
 
 %===============================================================================
-\subsubsection{Estimador usando métodos dos minimos quadrados}
+\subsubsection{Estimador usando métodos dos mínimos quadrados}
 \label{sec:nl_models_narmax_rat_lsm}
 % correa 31 - billings e zhu 1991
 %===============================================================================
