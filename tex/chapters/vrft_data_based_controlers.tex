@@ -114,9 +114,70 @@ controlador são estimados.
 \label{sec:vrft_control_ift}
 %===============================================================================
 
+O método IFT utiliza um algoritmo iterativo para minimizar uma função custo $H_2$. O método
+considera que o sistema é controlado por um controlador com dois graus de liberdade:
 
+\begin{equation}
+u(t)=C_r(z)r(t)-C_y(z)y(t)
+\label{eq:vrft_db_ift_controller}
+\end{equation}
 
+Na Figura (\ref{fig:vrft_db_ift}) é apresentado a organização dos blocos dos controladores
+apresentados em \eqref{eq:vrft_db_ift_controller}, $C_r(z)$ e $C_y(z)$. O controlador pode ser
+entendido como o conjunto destes dois:\cite{ift_theory_and_applications}
 
+\begin{equation}
+C(z) \equiv  \left \{ C_r(z),\, C_y(z)  \right \} 
+\nonumber
+\end{equation}
+
+\begin{figure}[htbp]
+\center
+\scalebox{1} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-1.68)(9.48,1.72)
+\usefont{T1}{ptm}{m}{n}
+\rput(7.691875,1.5215625){\small $\nu(t)$}
+\pscircle[linewidth=0.04,dimen=outer](4.0,0.32){0.2}
+\pscircle[linewidth=0.04,dimen=outer](8.0,0.32){0.2}
+\psframe[linewidth=0.04,dimen=outer](6.8,0.72)(5.2,-0.08)
+\psframe[linewidth=0.04,dimen=outer](2.8,0.72)(1.2,-0.08)
+\psframe[linewidth=0.04,dimen=outer](6.8,-0.88)(5.2,-1.68)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,0.32)(1.2,0.32)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.8,0.32)(3.8,0.32)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.2,0.32)(5.2,0.32)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.8,0.32)(7.8,0.32)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.2,0.32)(9.2,0.32)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(6.8,-1.28)(8.0,-1.28)
+\psline[linewidth=0.04cm](8.0,-1.28)(8.0,0.12)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(4.0,0.12)(4.0,-1.28)
+\psline[linewidth=0.04cm](4.0,-1.28)(5.2,-1.28)
+\usefont{T1}{ptm}{m}{n}
+\rput(8.911875,0.5215625){\small $y(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.481875,0.5215625){\small $r(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.901875,0.3215625){\small $C_r(z)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(5.951875,0.3215625){\small $G_0(z)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(5.931875,-1.2784375){\small $C_y(z)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.721875,0.7215625){\small $u(t)$}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.0,1.32)(8.0,0.52)
+\usefont{T1}{ptm}{m}{n}
+\rput(4.2592187,0.1315625){-}
+\end{pspicture} 
+}
+\caption{Diagrama de bloco do sistema utilizado na identificação IFT.}
+\label{fig:vrft_db_ift}
+\end{figure}
+
+\begin{equation}
+J(\rho)=\frac{1}{2N}E\left [ \sum_{t=1}^{N}(L_y \tilde{y}_t(\rho))^2 +\lambda  \sum_{t=1}^{N}(L_u
+u_t(\rho))^2 \right ]
+\label{eq:vrft_db_ift_j_cost}
+\end{equation}
 
 
 
