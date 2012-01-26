@@ -3,6 +3,18 @@
 \label{sec:vrft_control_data_based}
 %===============================================================================
 
+Em muitas aplicações praticas de controle, uma descrição nmatematica da planta não é disponível e o
+controlador deve ser projetado baseado nas medidas obtidas deste sistema. Este assunto tem atraido a
+atenção de diversos engenheiros de controle desde 1940 com o pioneiro trabalho de Ziegler e Nichols
+(1942) em ajuste de controladores PID industriais. Depois deste trabalho de Ziegler e Nichols
+divesos trabalhos surgiram, muitos em formas de aperfeiçoamento e extensões das tecnicas ja
+apresentadas, e algumas com desenvolvimento em novas direções (\cite{mcmillan1983tuning},
+\cite{Haalman1965}). A caracteristica principal destes metodos é que eles podem
+ser facilmente implementados: Simples experimentos sobre a planta são executados e simples regras 
+são aplicadas sobre os dados obtidos. O metodo VRFT que será abordado aqui tem algumas destas 
+caracteristicas, pois só requer que um experimento sobre a planta seja executado. 
+\cite{CampiLecciniSacvaresi-vrft_direct_method}
+
 O projeto de controladores baseados em dados consiste obter ou ajustar os parâmetros de um modelo
 para os controladores, baseado nos dados obtidos da planta em análise. Os dados utilizados para esta
 tarefa são basicamente o sinal de entrada e saída do sistema.
@@ -179,11 +191,48 @@ u_t(\rho))^2 \right ]
 \label{eq:vrft_db_ift_j_cost}
 \end{equation}
 
+O primeiro termo em \eqref{eq:vrft_db_ift_j_cost} é o erro entre a resposta obtida e a resposta
+desejada, balanceada por um filtro $L_y$ a segunda parte é o custo de controle balanceado pelo
+filtro $L_u$. Com $T_0(\rho)$ e $S_0(\rho)$ sendo representados como sendo a função de transferência
+em malha fechada e a função sensibilidade, respectivamente.
 
 
+\begin{equation}
+T_0(\rho)=\frac{C_r(\rho)G_0}{1+C_y(\rho)G_0}
+\nonumber
+\end{equation}
 
+\begin{equation}
+S_0(\rho)=\frac{1}{1+C_y(\rho)G_0}
+\nonumber
+\end{equation}
 
+E sendo $r$ e $\nu$ independentes, \eqref{eq:vrft_db_ift_j_cost} pode ser rescrito como
+\eqref{eq:vrft_db_ift_j_cost_parts}
 
+\begin{equation}
+J(\rho)=\frac{1}{2N}\sum_{t=1}^{N}\left \{ L_y(T_d r-T_0(\rho)r) \right \}^2+\frac{1}{2} E\left [ \left \{ L_y S_0(\rho) \nu \right \}^2 \right ]
++ \lambda \frac{1}{2N}E\left [ \sum_{t=1}^{N}(L_u u_t(\rho))^2 \right ]
+\label{eq:vrft_db_ift_j_cost_parts}
+\end{equation}
+
+Onde o primeiro termo é o erro de seguimento de referência, o segundo é a contribuição do disturbio
+e o terceiro é o esforço de controle.
+
+Para minimizar \eqref{eq:vrft_db_ift_j_cost_parts}, busca-se encontrar um ponto
+estacionário da equação, para isso calcula-se o gradiente desta euqação e aplica-se o
+algoritmo para a convergência \eqref{eq:vrft_db_ift_algoritm}. \cite{hajalmson_ift_non_linear}
+
+\begin{equation}
+\rho_{i+1}=\rho_i - \gamma_i R_i^{-1}\frac{\partial J}{\partial \rho}(\rho_i)
+\label{eq:vrft_db_ift_algoritm}
+\end{equation}
+
+$R_i$ é uma matriz positiva definida, tipicamente uma estimativa da Hessiana de $J$, como a
+aproximação de Gauss-Newton.
+
+Para cada iteração $i$ em \eqref{eq:vrft_db_ift_algoritm} IFT usa dois experimentos, cada um de
+tamanho $N$. 
 
 
 \begin{figure}[htbp]
