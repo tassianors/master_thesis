@@ -5,14 +5,17 @@
 
 VRFT do inglês {\it{Virtual reference feedback tuning}} é um método direto para identificação de
 controladores, ou seja, não é necessário o conhecimento ou identificação da planta para que este
-método seja utilizado. Este método pode ser utilizado usando apenas uma conjunto de dados, não
+método seja utilizado. Desta forma pode ser utilizado usando apenas uma conjunto de dados, não
 necessitando de experimentos específicos. O procedimento procura pelo ponto ótimo do critério
-escolhido para a identificação do controlador. \cite{CampiSacvaresi-vrft_new_direct_approach}
+escolhido para a identificação do controlador. \cite{campi_savaresi2000}
+
+Diferentemente de métodos iterativos, o VRFT não recai sobre minimos locais, sempre procurando o
+mínimo global do critério escolhido.
 
 Assume-se que a planta do sistema é {\it{linear}} SISO ({\it{single input single output}}) de tempo
 discreto descrito pela função de transferência racional $P(z)$. Tal que esta função de
 transferência é desconhecida e tem-se apenas acesso ao conjunto de dados coletados do experimento.
-\cite{CampiLecciniSacvaresi-vrft_direct_method}
+\cite{campi_leccini_savaresi2002}
 
 O controlador a ser identificado pode ser parametrizado como em \eqref{eq:vrft_method_controller} 
 
@@ -44,7 +47,7 @@ controlador. Métodos diretos são conceitualmente mais naturais que os indiretos,
 apelo que estes métodos possuem, apenas alguns métodos genuinamente diretos são encontrados na
 literatura, dois destes são VRFT e IFT (seção \ref{sec:vrft_control_ift}), mesmo estes dois métodos
 pertencendo a mesma classe de métodos, algumas diferenças são ressaltadas:
-\cite{CampiSacvaresi-vrft_new_direct_approach}
+\cite{campi_savaresi2000}
 
 \begin{itemize}
 	\item {\it{IFT}} é baseado em um métodos de gradiente decrescente e além disso é uma técnica
@@ -61,15 +64,232 @@ pertencendo a mesma classe de métodos, algumas diferenças são ressaltadas:
 %===============================================================================
 
 Nesta seção será apresentado uma breve descrição de como o algoritmo para obtenção do controlador
-utilizando o método VRFT é formulado. Para maiores detalhes e discussões mais aprofundadas: 
-\cite{CampiSacvaresi-vrft_new_direct_approach}, \cite{CampiLecciniSacvaresi-vrft_direct_method},
-\cite{campestrini_nonminumum_phase}.
+utilizando o método VRFT é formulado. Para maiores detalhes e discussões mais aprofundadas é
+idicada a leitura de \cite{campi_savaresi2000}, 
+\cite{campi_leccini_savaresi2002} e \cite{campestrini_nonminumum_phase}.
 
 Suponha que o controlador $c(z, \theta)$ resulta um sistema em malha fechada cuja função de
 transferência é dada por $M(z)$. Desta forma, se $M(z)$ é alimentado com qualquer sinal $r(t)$ sua
 saída é $M(z)r(t)$. Então uma premissa para que o sistema em malha fechada tenha a mesma função de
 transferência que o modelo de referência é que a saída dos dois seja o mesmo para um dado
 $\bar{r}(t)$.
+
+Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $M(z)\bar{r}(t)=y(t)$.
+Esta referência é conhecida como {\it{virtual}} pois ela não existe e não foi utilizada para gerar o
+sinal $y(t)$. A figura (\ref{fig:vrft_method_cl}) apresenta o sistema em malha fechada e os sinais
+utilizados.
+
+\begin{figure}[htbp]
+\center
+%\scalebox{1} % Change this value to rescale the drawing.
+%{
+\begin{pspicture}(0,-1.4292188)(9.02,1.4692187)
+\pscircle[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](1.4,0.97078127){0.2}
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](4.8,1.3707813)(3.0,0.57078123)
+\psframe[linewidth=0.04,dimen=outer](7.6,1.3707813)(6.0,0.57078123)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,0.97078127)(1.2,0.97078127)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.6,0.97078127)(3.0,0.97078127)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.8,0.97078127)(6.0,0.97078127)
+\psline[linewidth=0.04cm](7.6,0.97078127)(9.0,0.97078127)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.4,0.7707813)(1.4,-0.02921875)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](1.4,-0.02921875)(8.4,-0.02921875)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](8.4,-0.02921875)(8.4,0.97078127)
+\usefont{T1}{ptm}{m}{n}
+\rput(1.1126562,1.2807813){+}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.6473438,0.68078125){-}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.47,1.2707813){\small $\bar{r}(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.99,0.97078127){\small $C(z, \rho)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(6.76,0.9507812){\small $G_0(z)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(5.51,1.2707813){\small $u(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.25,1.2707813){\small $e(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.3,1.2707813){\small $y(t)$}
+\psframe[linewidth=0.04,dimen=outer](6.0,-0.62921876)(3.8,-1.4292188)
+\usefont{T1}{ptm}{m}{n}
+\rput(4.91,-1.0492188){\small $M^{-1}(z)$}
+\psline[linewidth=0.04cm](9.0,0.97078127)(9.0,-1.0292188)
+\psline[linewidth=0.04cm](9.0,-1.0292188)(6.0,-1.0292188)
+\psline[linewidth=0.04cm](3.8,-1.0292188)(0.0,-1.0292188)
+\psline[linewidth=0.04cm](0.0,-1.0292188)(0.0,0.97078127)
+\end{pspicture} 
+%}
+\caption{dlkjhsfjdhf kljh dfh sdlf}
+\label{fig:vrft_method_cl}
+\end{figure}
+
+O sinal $e(t)$ é o erro entre os sinais $y(t)$ e $\bar{r}(t)$. Sabe-se que quando a planta é
+alimentada com o sinal $u(t)$, o sinal $y(t)$ é obtido e em um controlador, quando este é
+alimentado com o sinal $e(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
+controlador, como os sinais $u(t)$ e $e(t)$ são conhecidos, a tarefa se reduz a um problema de
+identificação. Commumente, usa-se um pre-filtro nos dados coletados, a ideia principal do uso deste
+filtro será explicada posteriormente na seção (\ref{sec:vrft_framework_filter}). 
+
+O algoritmo pode ser descrito pelos passos a seguir \cite{campi_savaresi2000}:
+
+\begin{enumerate}
+	\item Filtra-se os sinais de entrada e saída com algum filtro $L(z)$:
+
+\begin{equation}
+y_L (t)=L(z)y(t), \;\;\; u_L (t)=L(z)u(t) 
+\label{eq:vrft_method_algorithm_filter_io}
+\end{equation}
+
+\item Encontra-se um sinal de referência $\bar{r}_L (t)$ no qual a saída do modelo de referência
+$M(z)$ seja exatamente $y_L (t)$ quando alimentado por este sinal.
+
+\begin{equation}
+y_L (t)=M(z) \bar{r}_L (t)
+\label{eq:vrft_method_algorithm_ref}
+\end{equation}
+
+\item Selecione o vetor de parametos do controlador $\hat{\theta}$ que minimize o critério
+\eqref{eq:vrft_method_algorithm_criter}
+
+\begin{equation}
+J_{VR}^N(\theta)=\frac{1}{N}\sum_{t=1}^{N}(u_L(t)-\varphi_L^T(t)\theta)^2
+\label{eq:vrft_method_algorithm_criter}
+\end{equation}
+
+\begin{equation}
+\varphi_L(t)=\beta(z)e_L(t)
+\nonumber
+\end{equation}
+
+Desde que \eqref{eq:vrft_method_algorithm_criter} seja quadrática em $\theta$ o vetor de parametros
+$\hat{\theta}$ que minimiza esta função custo pode ser calculado como
+\eqref{eq:vrft_method_algorithm_result}
+
+
+\begin{equation}
+\hat{\theta}= \left [ \sum_{t=1}^{N}\varphi_L(t) \varphi_L(t)^T\right ]^{-1}
+\sum_{t=1}^{N}\varphi_L(t) u_L(t)
+\label{eq:vrft_method_algorithm_result}
+\end{equation}
+
+\end{enumerate}
+
+%===============================================================================
+\subsubsection{Filtro $L(z)$}
+\label{sec:vrft_framework_filter}
+%===============================================================================
+
+Considerando a função custo $J_{MR}(\theta)$ apresentada em \eqref{eq:vrft_method_cost_func} e o
+critério do método de referência virtual $J_{VR}(\theta)$ apresentado em
+\eqref{eq:vrft_method_algorithm_criter} eles são diferentes. A escolha correta do filtro $L(z)$
+propicia que estas duas equações tenham mínimos muito proximos.
+\cite{campi_leccini_savaresi2002}
+
+A utilização do filtro é de grande importância em situações onde a escolha do modelo não consegue
+representar a totalidade do controlador ótimo necessário para o sistema. Em outras palavras, quando
+o controlador ótimo não consegue ser representado pela classe de modelos do controlador
+escolhido $\mathcal{C}(z, \theta)$:
+
+\begin{equation}
+C_0(z) \notin \mathcal{C}(z, \theta)
+\nonumber
+\end{equation}
+
+O critério $J_{MR}(\theta)$ pode ser reescrito utilizando-se o controlador ótimo $C_0(z)$ como em 
+\eqref{eq:vrft_method_filter_cost_func}
+
+\begin{equation}
+J_{MR}(\theta)= \frac{1}{2\pi} \int_{-pi}^{\pi} \frac{\left | G \right |^2 \left | W \right |^2 }
+{\left | 1+GC(\theta) \right |^2} 
+\frac{\left |C(\theta)-C_0  \right |^2}{\left |1+GC_0 \right |^2}d\omega 
+\label{eq:vrft_method_filter_cost_func}
+\end{equation}
+
+Considerando que $J_{VR}^N$ é conhecido, quando a quantidade de dados cresce: $N \to \infty$ tem-se
+\eqref{eq:vrft_method_filter_criter_assim} 
+
+\begin{equation}
+J_{VR}^N(\theta) \to J_{VR}(\theta = E \left [ (u_L(t) - C(z, theta)e_L(t))^2\right ])
+\label{eq:vrft_method_filter_criter_assim}
+\end{equation}
+
+Utilizando as definições de $u_L(t)$, $e_L(t)$ e dada a definição de $C_0(z)$ juntament com o
+teorema de Perseval \cite{ljung}, o critério assintótico \eqref{eq:vrft_method_filter_criter_assim}
+tem sua representação como em \eqref{eq:vrft_method_filter_vr}
+
+\begin{equation}
+J_{VR}(\theta)= \frac{1}{2\pi} \int_{-pi}^{\pi} \left | G \right |^2 \left | C(\theta)-C_0 \right
+|^2 \left | 1-M \right |^2 \frac{\left | L \right |^2}{\left | M \right |^2} \Phi_u \; d\omega
+\label{eq:vrft_method_filter_criter_vr}
+\end{equation}
+
+Onde $\Phi_u $ é a densidade do espectro de $u(t)$.
+
+Para o caso onde $C_0 \in C(z, theta)$ a escolha de $L(z)$ não afeta o resultado, usualmente
+escolhe-se $L(z)=1$. Caso o controlador não consiga ser representado pelo modelo, a escolha de
+$L(z)$ pode ser feita por:
+
+\begin{equation}
+\left | L \right | ^2 = \left | 1-M \right | ^2 \left | M \right | ^2 \left | W \right | ^2 \frac{1}
+{\Phi_u}, \;\;\; \forall \omega \in [-\pi; \pi].
+\label{eq:vrft_method_filter_l}
+\end{equation}
+
+
+
+
+%===============================================================================
+\subsubsection{VRFT em sistemas não lineares}
+\label{sec:vrft_nonlinear}
+%===============================================================================
+ref: \cite{campi_savaresi2006}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

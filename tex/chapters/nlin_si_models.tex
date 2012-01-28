@@ -18,10 +18,10 @@ desenvolvimento dos modelos matemáticos para sistemas não lineares.
 Também serão apresentados modelos mais recentes, como as funções radiais de base (seção
 (\ref{sec:nl_models_radiais})) derivadas do conceito de redes neurais (\ref{sec:nl_models_neurals}).
 Por fim será apresentado o conceito de modelos {\it{NARX}} e duas de suas representações:
-Polinomiais (seção \ref{sec:nl_models_narmax_pol}) e Racionais (seção
+Polinomiais (seção \ref{sec:nl_models_narmax_pol}) e Racionais (seção 
 \ref{sec:nl_models_narmax_rat}), que são amplamente utilizadas para caracterização de sistemas não
-lineares, devido entre outros fatores, aos algoritmos desenvolvidos e a quantidade de sistemas reais
-que podem ser descritos por estes modelos.
+lineares, devido entre outros fatores, aos algoritmos desenvolvidos e a quantidade de sistemas
+reais que podem ser descritos por estes modelos.
 
 Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
 modelo. Quando este modelo é não linear, existe uma grande quantidade de opções e com isso o perigo
@@ -460,14 +460,18 @@ y(k-1) & ... & y(k-n_y) & u(k-1) & ... & u(k-n_u)
 %===============================================================================
 
 Os modelos {\it{NARX}} (do termo ingles {\it{nonlinear autoregressive model with
-exogenous variables}}) são modelos discretos no tempo que caracterizam o valor da 
-saída em função dos valor passados da entrada e saída. Algumas vezes, para evitar 
-a polarização da estimativa dos parâmetros adiciona-se termos do ruido no modelo.
-Quando isso é feito o modelo passa a ser chamado de um modelo {\it{NARMAX}} (do
-termo inglês {\it{nonlinear autoregressive moving average model with exogenous
-variables}}) que pode ser representado pela equação \eqref{eq:nl_model_narmax} 
-\cite{aguirre}. Este modelo provê uma representação unificada para a descrição de sistemas discretos
-não lineares \cite{chen_billings_narmax}
+exogenous variables}}) são modelos discretos no tempo que caracterizam o valor da saída em função
+dos valor passados da entrada e saída. Algumas vezes, para evitar a polarização da estimativa dos
+parâmetros adiciona-se termos do ruido no modelo. Quando isso é feito o modelo passa a ser chamado
+de um modelo {\it{NARMAX}} (do termo inglês {\it{nonlinear autoregressive moving average model with
+exogenous variables}}), introduzidos por \cite{leontaritis_billings1985}, que pode ser representado
+pela equação \eqref{eq:nl_model_narmax} \cite{aguirre}. Este modelo provê uma representação
+unificada para a descrição de sistemas discretos não lineares \cite{chen_billings_narmax}
+
+O modelo {\it{NARMAX}} surgiu, ou foi motivado, pelo exessivo esforço para a estimativa dos
+parametros e pela dificuldade em interpretar os resultados obtidos com modelos baseados em series
+(Wienner, Hammerstein e Voltera). A necessidade do uso de entradas espaciais são também uma
+desvantagem detes modelos. \cite{leontaritis_billings1985}
 
 \begin{eqnarray}\nonumber
 y(t)&=&F [ y(t-1), ..., y(t-n_y), u(t-1), ... , u(t-n_u),\\
