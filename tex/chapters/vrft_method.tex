@@ -288,6 +288,35 @@ Os parametros do controlador $\hat{\theta}^{IV}_N $ pode então ser calculado com
 \label{eq:vrft_framework_noise_theta_iv}
 \end{equation}
 
+São propostas duas alternativas para a escolha da variável instrumental. A primeira garante
+assimtoticamente que $\hat{\theta}^{IV}= \hat{\theta}$, entretanto um experimento adicional é
+requisitado, o segundo não garante rigorosamente $\hat{\theta}^{IV}= \hat{\theta}$, mas o erro
+que se espera é pequeno, além disso um segundo experimento não é necessário.
+\cite{campi_leccini_savaresi2002}
+
+\begin{itemize}
+	\item {\it{Experimento Repetido:}} Executa-se um segundo experimento com a mesma entrada $u(t)$,
+	adquirindo-se a saida $\tilde{y}(t)'$. Como o rudio entre um experimento e outro é independente,
+	$\tilde{y}(t)$ e $\tilde{y}(t)'$ serão diferentes. Obtem-se então a variavel instrumental:
+	
+	\begin{equation}
+	\zeta(y)=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\tilde{y}(t)'
+	\nonumber
+	\end{equation}
+	
+	\item {\it{Identificação da planta:}} Identifica-se um modelo para a planta $\hat{G}(z)$ a partir
+	do conjunto de dados $\left \{ u(t), \; \tilde{y}(t) \right \}_{t=1,..., N}$  e então gera-se o
+	sinal simulado $\hat{y}=\hat{G}u(t)$, obtendo a variavel instrumental como:
+
+	\begin{equation}
+	\zeta(y)=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\hat{y}(t)
+	\nonumber
+	\end{equation}
+	
+	Devido as incertezas na estimativa de $\hat{G}(z)$, este segundo método não garante que a
+	estimativa tenda assimtoticamente a $\hat{\theta}$.
+	
+\end{itemize}
 
 %===============================================================================
 \subsection{VRFT em sistemas não lineares}
