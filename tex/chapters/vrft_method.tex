@@ -215,7 +215,7 @@ J_{VR}^N(\theta) \to J_{VR}(\theta = E \left [ (u_L(t) - C(z, theta)e_L(t))^2\ri
 
 Utilizando as definições de $u_L(t)$, $e_L(t)$ e dada a definição de $C_0(z)$ juntament com o
 teorema de Perseval \cite{ljung}, o critério assintótico \eqref{eq:vrft_method_filter_criter_assim}
-tem sua representação como em \eqref{eq:vrft_method_filter_vr}
+tem sua representação como em \eqref{eq:vrft_method_filter_criter_vr}
 
 \begin{equation}
 J_{VR}(\theta)= \frac{1}{2\pi} \int_{-pi}^{\pi} \left | G \right |^2 \left | C(\theta)-C_0 \right
@@ -235,11 +235,62 @@ $L(z)$ pode ser feita por:
 \label{eq:vrft_method_filter_l}
 \end{equation}
 
+%===============================================================================
+\subsubsection{VRFT e dados corrompidos por ruido}
+\label{sec:vrft_framework_noise}
+%===============================================================================
 
+Todos os equacionamentos até aqui apresentadso, consideraram que o sistema não era afetado por
+ruido. Nesta seção será apresentado brevemente o comportamento do método quando o sinal $y(t)$ é
+corrompido por um ruido aditivo, como:
+
+\begin{equation}
+\tilde{y}(t)=G(z)u(t) + \xi(t)
+\label{eq:vrft_framework_noise_y}
+\end{equation}
+
+Assume-se que o sinal $u(t)$ e $\xi(t)$ são descorrelacionados e também que os dados são coletados
+com a planta trabalhando em laço aberto. \cite{campi_leccini_savaresi2002}. Para a idéia extendida
+de dados coletados com a planta em laço fechado, uma explicação mais detalhada pode ser encontrada
+em \cite{lecchini}.
+
+Ao aplicar o algoritmo descrito na seção (\ref{sec:vrft_framework}) com dados sugeitos a ruidos, o
+resultado obtido possui erro de polarização (seção (\ref{sec:si_par_estim_uncertanties})). Isso pode
+ser compreendido analizando a expressão do critério $J_{VR}(\theta)$ quando se utiliza o sina
+$\tilde{y}(t)$:
+
+
+\begin{equation}
+J_{VR}(\theta)= \frac{1}{2\pi} \int_{-pi}^{\pi} \left [ \left | G \right |^2 \left | C(\theta)-C_0 \right
+|^2 \left | 1-M \right |^2 \frac{\left | L \right |^2}{\left | M \right |^2} \Phi_u +\frac{\left | 
+C(\theta) \right |^2}{\left | G \right |^2 \left | C_0 \right |^2}\left | L \right |^2\Phi _d
+\right ] \; d\omega
+\label{eq:vrft_framework_noise_vr}
+\end{equation}
+
+Onde $\Phi_d$ é a densidade do espectro do ruido.
+
+Para que haja rejeição a este rudo no método, em \cite{campi_leccini_savaresi2002} foi sugerido a
+adição da variável instrumental $\zeta(t)$, em \eqref{eq:vrft_framework_noise_iv} apresenta-se o
+regressor do instrumento:
+
+\begin{equation}
+\tilde{\varphi }_L=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\tilde{y}(t)
+\label{eq:vrft_framework_noise_iv}
+\end{equation}
+
+Os parametros do controlador $\hat{\theta}^{IV}_N $ pode então ser calculado como em
+\eqref{eq:vrft_framework_noise_theta_iv}.
+
+\begin{equation}
+\hat{\theta}_{N}^{IV}=\left [ \sum_{t=1}^{N}\zeta(t) \tilde{\varphi}_L(t)^T \right ]^{-1}\left [ 
+\sum_{t=1}^{N}\zeta(t)u_L(t) \right ]
+\label{eq:vrft_framework_noise_theta_iv}
+\end{equation}
 
 
 %===============================================================================
-\subsubsection{VRFT em sistemas não lineares}
+\subsection{VRFT em sistemas não lineares}
 \label{sec:vrft_nonlinear}
 %===============================================================================
 ref: \cite{campi_savaresi2006}
