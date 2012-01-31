@@ -3,26 +3,26 @@
 \label{sec:vrft_control_data_based}
 %===============================================================================
 
-Em muitas aplicações praticas de controle, uma descrição nmatematica da planta não é disponível e o
+Em muitas aplicações praticas de controle, uma descrição matematica da planta não é disponível e o
 controlador deve ser projetado baseado nas medidas obtidas deste sistema. Este assunto tem atraido a
 atenção de diversos engenheiros de controle desde 1940 com o pioneiro trabalho de Ziegler e Nichols
-(1942) em ajuste de controladores PID industriais. Depois deste trabalho de Ziegler e Nichols
+(1942) com ajuste de controladores PID industriais. Depois do trabalho de Ziegler e Nichols
 divesos trabalhos surgiram, muitos em formas de aperfeiçoamento e extensões das tecnicas ja
-apresentadas, e algumas com desenvolvimento em novas direções (\cite{mcmillan1983tuning},
+apresentadas, e algumas com desenvolvimentos em novas direções (\cite{mcmillan1983tuning},
 \cite{Haalman1965}). A caracteristica principal destes metodos é que eles podem
-ser facilmente implementados: Simples experimentos sobre a planta são executados e simples regras 
+ser facilmente implementados: simples experimentos sobre a planta são executados e simples regras 
 são aplicadas sobre os dados obtidos. O metodo VRFT que será abordado aqui tem algumas destas 
-caracteristicas, pois só requer que um experimento sobre a planta seja executado. 
+caracteristicas, pois só requer que um experimento seja executado sobre a planta. 
 \cite{campi_leccini_savaresi2002}
 
-O projeto de controladores baseados em dados consiste obter ou ajustar os parâmetros de um modelo
+O projeto de controladores baseados em dados consiste obter ou estimar os parâmetros de um modelo
 para os controladores, baseado nos dados obtidos da planta em análise. Os dados utilizados para esta
 tarefa são basicamente o sinal de entrada e saída do sistema.
 
 Como já foi discutido na seção (\ref{sec:si_project_experiments}) estes dados podem ser obtidos de
-diversas formas. Algumas vezes estas informações podem ser a operação normal da planta em malha
-fechada com a presença de algum controlador, situação esta que tem um apelo grande em plantas
-industriais, onde a parada do processo para levantamento de informações é indesejável, e muitas
+diversas formas. Algumas vezes estas informações podem vir da operação normal da planta em malha
+fechada com a presença de algum controlador. Situação esta que tem um grande apelo em plantas
+industriais, onde a parada do processo, para levantamento de informações, é indesejável e muitas
 vezes até inviável. Se existe a possibilidade de parar a planta e aplicar-se sinais predeterminados,
 o projeto de experimentos pode trazer muitas vantagens.
 
@@ -35,7 +35,7 @@ Seja a esperança de um valor $E\left [ \cdot \right ]$ definido por: \cite{ljung
 \end{equation}
 
 Um sinal é dito quasi-estacionario se a média e autocorrelação do mesmo convergem para um valor
-finito quando o tamanho da amostra cresce, conforme definição a seguir: \cite{campestrini}
+finito quando o tamanho da amostra cresce, conforme definição a seguir:
 
 
 \begin{defn}
@@ -43,7 +43,7 @@ finito quando o tamanho da amostra cresce, conforme definição a seguir: \cite{ca
 
 Um Sinal $s(t)$ é um processo quasi-estacionario se:
 \begin{itemize}
-	\item $\bar{E}\left [ s(t) \right ] = \mid m_s \mid \le C, \;\forall t$;
+	\item $\bar{E}\left [ s(t) \right ] = \mid m_s(t) \mid \le C, \;\forall t$;
 	\item $\bar{E}\left [ s(t)s(r) \right ] = \mid R_s(t,s) \mid \le C, \;\forall t,r$;
 	\item $\lim_{N \to \infty}\frac{1}{N}\sum_{t=1}^{N}R_s(t, t-\tau)=R_s(\tau), \; \forall \tau$,
 \end{itemize}
@@ -101,12 +101,12 @@ $C(z, \rho) \in \mathcal{C}$ onde $ \mathcal{C}$ é a classe de controladores def
 \rput(9.3,0.21078125){\small $y(t)$}
 \end{pspicture} 
 }
-\caption{Rede neural recorrentes.}
+\caption{Sistema de controle em malha fechada, com presença do sinal de ruido.}
 \label{fig:vrft_db_control_loop}
 \end{figure}
 
-A equação \eqref{eq:vrft_db_closed_loop} descreve o comportamento do sistema da Figura
-(\ref{fig:vrft_db_control_loop}).
+A equação \eqref{eq:vrft_db_closed_loop} descreve a relação entre entrada e saída do sistema
+apresentado na Figura (\ref{fig:vrft_db_control_loop}).
 
 \begin{equation}
 T(z, \rho)=\frac{C(z,\rho)G_0(z)}{1+C(z,\rho)G_0(z)}
@@ -118,8 +118,6 @@ experimentos são realizados sobre o sistema atualizando-se o controlador, o proc
 até que se atinja um valor minimo para a função custo deste sistema. O segundo grupo é o de métodos
 não iterativos, onde apenas com um experimento, ou um conjunto de dados, os parâmetros do
 controlador são estimados.
-
-
 
 %===============================================================================
 \subsection{Iterative feedback tuning}
@@ -135,7 +133,7 @@ u(t)=C_r(z)r(t)-C_y(z)y(t)
 \end{equation}
 
 Na Figura (\ref{fig:vrft_db_ift}) é apresentado a organização dos blocos dos controladores
-apresentados em \eqref{eq:vrft_db_ift_controller}, $C_r(z)$ e $C_y(z)$. O controlador pode ser
+de \eqref{eq:vrft_db_ift_controller}, $C_r(z)$ e $C_y(z)$. O controlador pode ser
 entendido como o conjunto destes dois:\cite{ift_theory_and_applications}
 
 \begin{equation}
@@ -185,6 +183,8 @@ C(z) \equiv  \left \{ C_r(z),\, C_y(z)  \right \}
 \label{fig:vrft_db_ift}
 \end{figure}
 
+A função custo utilizada como critério no método é apresentada em \eqref{eq:vrft_db_ift_j_cost}. 
+
 \begin{equation}
 J(\rho)=\frac{1}{2N}E\left [ \sum_{t=1}^{N}(L_y \tilde{y}_t(\rho))^2 +\lambda  \sum_{t=1}^{N}(L_u
 u_t(\rho))^2 \right ]
@@ -193,8 +193,8 @@ u_t(\rho))^2 \right ]
 
 O primeiro termo em \eqref{eq:vrft_db_ift_j_cost} é o erro entre a resposta obtida e a resposta
 desejada, balanceada por um filtro $L_y$ a segunda parte é o custo de controle balanceado pelo
-filtro $L_u$. Com $T_0(\rho)$ e $S_0(\rho)$ sendo representados como sendo a função de transferência
-em malha fechada e a função sensibilidade, respectivamente.
+filtro $L_u$. Com $T_0(\rho)$ e $S_0(\rho)$ sendo a função de transferência em malha fechada e a
+função sensibilidade, respectivamente:
 
 
 \begin{equation}
@@ -221,18 +221,19 @@ e o terceiro é o esforço de controle.
 
 Para minimizar \eqref{eq:vrft_db_ift_j_cost_parts}, busca-se encontrar um ponto
 estacionário da equação, para isso calcula-se o gradiente desta euqação e aplica-se o
-algoritmo para a convergência \eqref{eq:vrft_db_ift_algoritm}. \cite{hajalmson_ift_non_linear}
+algoritmo para a convergência apresentado em \eqref{eq:vrft_db_ift_algoritm}.
+\cite{hajalmson_ift_non_linear}
 
 \begin{equation}
 \rho_{i+1}=\rho_i - \gamma_i R_i^{-1}\frac{\partial J}{\partial \rho}(\rho_i)
 \label{eq:vrft_db_ift_algoritm}
 \end{equation}
 
-$R_i$ é uma matriz positiva definida, tipicamente uma estimativa da Hessiana de $J$, como a
-aproximação de Gauss-Newton.
+$R_i$ é uma matriz positiva definida, tipicamente uma estimativa da Hessiana de $J$, como por
+exemplo a aproximação de Gauss-Newton.
 
-Para cada iteração $i$ em \eqref{eq:vrft_db_ift_algoritm} IFT usa dois experimentos, cada um de
-tamanho $N$. 
+Para cada iteração $i$ em \eqref{eq:vrft_db_ift_algoritm}, o metodo IFT necessita de dois
+experimentos, cada um de tamanho $N$. 
 
 %===============================================================================
 \subsection{CbT - Correlation Based Tuning}
