@@ -1,9 +1,8 @@
 REVIEW:
 
-- Ler papers sobre systemas não lineares.
-- No capitlo sobre não linearidades, conceitos basicos colocar uma descrição sobre o que é ser não linear.. caracteristicas, propriedade gerais etc.
-- em algoritmos de systemas nl, adicionar outros metodos alem do narmax racional.
-- Achar ref para redes neurais. Escrever a section.
-- tenho 21 ref no bibtex, e apenas 12 citações.. arrumar umas citações dos que estão faltando.
+- Nos scripts do matlab, criar uma functions que calcula o custo da função atingida.. isso é MTO importante. FAZER!!!!
+
+- Arrumar os scripts do matlab para  conseguir calcular o custo J do critério.
+
 
 
