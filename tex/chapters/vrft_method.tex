@@ -342,7 +342,7 @@ descrito na Tabela \ref{table:si_modeling_models}, resultando em um polinomio
 como em:
 
 \begin{equation}
-y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
+y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)=G_0(z)u(t)+H_0(z)e(t)
 \nonumber
 \end{equation}
 
@@ -381,14 +381,14 @@ C(z, \rho)=\frac { \rho_1 z +\rho_2}{ z-1 }
 
 Utilizando o método do VRFT para identificação do controlador quando este está
 submetido a um ruido $\sigma _\upsilon ^2=0.005$ obtem-se a estimativas dos
-parametros $\rho_1$ e $\rho_2$ o resultado de 100 simulações com 1270 pontos
-cada é apresentado na Figura (\ref{fig:vrft_bj_M10_var005}). O sinal de entrada
-utilizado para a simulação foi PRBS (Seção
+parametro s $\rho_1$ e $\rho_2$ apresentados na Figura
+(\ref{fig:vrft_bj_M10_var005}) com um resultado de 100 simulações de 1270
+pontos cada. O sinal de entrada utilizado para a simulação foi PRBS (Seção
 (\ref{sec:si_project_signal_input_prbs})).
 
 \begin{figure}[htbp]
 	\center
-	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var005_.eps}
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var005.eps}
 	\caption{100 estimativas Monte Carlo dos parametros $\rho_1$ e $\rho_2$ para o
 	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c}}
 	\label{fig:vrft_bj_M10_var005}
@@ -397,13 +397,39 @@ utilizado para a simulação foi PRBS (Seção
 Observa-se que os parametros reais esperados para o controlador (equação
 \eqref{eq:vrft_methos_ex_bj_cd}) e a média de todas as estimativas (valor
 representado por uma estrela na Figura (\ref{fig:vrft_bj_M10_var005})) não são
-os mesmos. Isso se deve ao fato de que os dados são afetados por ruido e que
-neste caso o método VRFT utilizando minimos quadrados irá estimar os valores com
-algum erro de polarização.
+os mesmos. Em uma situação onde o erro de polarização das estimativas não
+existe, o aumento de N (numero de amostras) implica que esta diferença diminui.
+Em um cenário onde há erro de polarização, se aumentarmos a variância do ruido
+do sistema, será observado um aumento desta diferença.
 
-% poderia colocar aqui o mesmo sistema mas utilizando IV.
+Na figura (\ref{fig:vrft_bj_M10_var02}) quadruplicou-se a variância do ruido
+inserido no sistema. Observa-se então que o erro de polarização existe na
+estimativa. Como descrito em \cite{campi_leccini_savaresi2002} quando o método
+do VRFT é utilizado com ruido nas amostras, a estimativa é inevitavelmente
+polarizada. Neste mesmo trabalho é sugerido a utilização de variaveis
+instrumentais para que este erro de polarização seja minimizado.
 
+\begin{figure}[htbp]
+	\center
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02.eps}
+	\caption{100 estimativas Monte Carlo dos parametros $\rho_1$ e $\rho_2$ para o
+	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c} com varancia do
+	ruido de 0.02}
+	\label{fig:vrft_bj_M10_var02}
+\end{figure}
 
+Utilizando o procedimento descrito na seção (\ref{sec:vrft_framework_noise})
+para dados corrompidos por ruido o resultado obtido, para a mesma variância de
+0.02 do ruido, é apresentado na Figura (\ref{fig:vrft_bj_M10_var02})  
+
+\begin{figure}[htbp]
+	\center
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02_iv.eps}
+	\caption{100 estimativas Monte Carlo dos parametros $\rho_1$ e $\rho_2$ para o
+	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c} com varancia do
+	ruido de 0.02. Utilizando variáveis instrumentais para estimar os parametros.}
+	\label{fig:vrft_bj_M10_var02_iv}
+\end{figure}
 
 %===============================================================================
 \subsubsection{Controlador PID - sistema ARX}
