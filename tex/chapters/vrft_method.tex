@@ -36,7 +36,7 @@ critério performance \eqref{eq:vrft_method_cost_func} que é dependente do modelo
 escolhido.
 
 \begin{equation}
-J_{M\,R}(\theta) = \left \| \left ( \frac{G(z)C(z,\theta)}{1+G(z)C(z,\theta)} -M(z) \right )W(z)
+J_{MR}(\theta) = \left \| \left ( \frac{G(z)C(z,\theta)}{1+G(z)C(z,\theta)} -M(z) \right )W(z)
 \right \|_2^2 
 \label{eq:vrft_method_cost_func}
 \end{equation} 
@@ -382,7 +382,7 @@ C(z, \rho)=\frac { \rho_1 z +\rho_2}{ z-1 }
 Utilizando o método do VRFT para identificação do controlador quando este está
 submetido a um ruido $\sigma _\upsilon ^2=0.005$ obtem-se a estimativas dos
 parametro s $\rho_1$ e $\rho_2$ apresentados na Figura
-(\ref{fig:vrft_bj_M10_var005}) com um resultado de 100 simulações de 1270
+(\ref{fig:vrft_bj_M10_var005}) com um resultado de 100 simulações de 2540
 pontos cada. O sinal de entrada utilizado para a simulação foi PRBS (Seção
 (\ref{sec:si_project_signal_input_prbs})).
 
@@ -420,7 +420,7 @@ instrumentais para que este erro de polarização seja minimizado.
 
 Utilizando o procedimento descrito na seção (\ref{sec:vrft_framework_noise})
 para dados corrompidos por ruido o resultado obtido, para a mesma variância de
-0.02 do ruido, é apresentado na Figura (\ref{fig:vrft_bj_M10_var02})  
+0.02 do ruido, é apresentado na Figura (\ref{fig:vrft_bj_M10_var02}).
 
 \begin{figure}[htbp]
 	\center
@@ -430,6 +430,68 @@ para dados corrompidos por ruido o resultado obtido, para a mesma variância de
 	ruido de 0.02. Utilizando variáveis instrumentais para estimar os parametros.}
 	\label{fig:vrft_bj_M10_var02_iv}
 \end{figure}
+
+Observa-se que o erro de polarização foi minimizado e que o resultado obtido
+possui um custo $J_{VR}^N(\theta) = 5.1242$ e a variância dos parametros
+estimados foi de $0.5064e-06$ para $\rho_1$ e de $0.5495e-06$ para $\rho_2$.	
+
+A fim de comparar o metodo VRFT utilizando e não utilizando variaveis
+instrumentais são apresentados abaixo as Tabelas (\ref{table:vrft_method_bj}) e
+(\ref{table:vrft_method_bj_iv}) onde o custo $J_{MR}$ (equação
+\eqref{eq:vrft_method_cost_func}) e o custo $J_{VR}^N$ (equação
+\eqref{eq:vrft_method_filter_criter_assim}) são apresentados para diferentes
+valores de variância do ruido para o mesmo sismtema BJ.
+
+\begin{table*}[htbp]
+\begin{center}
+\caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
+estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o metodo
+VRFT não utiliza variáveis instrumentais para a estimativa dos parametros
+$\rho$}
+\label{table:vrft_method_bj}
+\begin{tabular}{cccc}
+\hline
+        Variância $\sigma _\upsilon ^2$ & $J_{VR}^N(\theta)$ &
+        $J_{MR}(\theta)$ & Variância estimativas $\rho$   \\
+\hline
+	    0.06    & 45.0064  &  0.0082 & 1.0e-05\;[0.4754    0.4434] \\
+	    0.05    & 32.9786  &  0.0057 & 1.0e-05\;[0.2671    0.3244] \\
+        0.04    & 19.9199  &  0.0036 & 1.0e-05\;[0.1534    0.1583] \\
+        0.01    & 1.2783   &  2.4402e-04 & 1.0e-06\;[0.0963    0.1035] \\
+        0.005   & 0.3213   &  4.5483e-05 & 1.0e-07\;[0.2999    0.3114] \\
+        0.001   & 0.0126   &  2.1167e-06 & 1.0e-08\;[0.1301    0.1223] \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*} 
+    
+
+\begin{table*}[htbp]
+\begin{center}
+\caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
+estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o metodo
+VRFT utiliza variáveis instrumentais para a estimativa dos parametros $\rho$}
+\label{table:vrft_method_bj_iv}
+\begin{tabular}{cccc}
+\hline
+        Variância $\sigma _\upsilon ^2$ & $J_{VR}^N(\theta)$ &
+        $J_{MR}(\theta)$ & Variância estimativas $\rho$   \\
+\hline
+	    0.06    & 45.1719  &  9.7345e-05 & 1.0e-05\;[0.5161    0.5332] \\
+	    0.05    & 33.2600  &  2.0457e-05 & 1.0e-05\;[0.2481    0.2652] \\
+        0.04    & 21.2652  &  1.1665e-04 & 1.0e-05\;[0.2040    0.2084] \\
+        0.01    & 1.2956   &  8.9695e-06 & 1.0e-06\;[0.1246    0.1138] \\
+        0.005   & 0.3264   &  7.4764e-06 & 1.0e-07\;[0.3063    0.2917] \\
+        0.001   & 0.0126   &  5.2443e-07 & 1.0e-08\;[0.1059    0.1017] \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+Utilizando variáveis instrumentais observa-se que o custo $J_{MR}(\theta)$ é
+significativamente mais baixo quando comparado com o metodo onde não são
+utilizadas variáveis instrumentais. Demonstrando assim que o comportamento
+desejado do sistema foi atingido com uma melhor aproximação.
 
 %===============================================================================
 \subsubsection{Controlador PID - sistema ARX}
