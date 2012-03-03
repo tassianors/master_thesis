@@ -562,7 +562,8 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parametros $\rho$ do 
 	    0.04    & 1.6013e-3  & 0.5106e-3  & 1.0e-06\;[0.2195    0.7908    0.2379] \\
         0.01    & 10.0077e-5 & 13.7142e-5 & 1.0e-07\;[0.1552    0.5469    0.1822] \\
         0.005   & 2.5081e-5  & 10.3482e-5 & 1.0e-07\;[0.0406    0.1260    0.0375] \\
-		0.001   & 0.1009e-5  & 2.0487e-5  & 1.0e-09\;[0.1277    0.4035    0.1239]
+		0.001   & 0.1009e-5  & 2.0487e-5  & 1.0e-09\;[0.1277    0.4035    0.1239] \\
+\hline
 \end{tabular}
 \end{center}
 \end{table*}
@@ -571,6 +572,107 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parametros $\rho$ do 
 \subsubsection{Controlador não pertence a classe}
 \label{sec:vrft_examples_not_in_class}
 %===============================================================================
+
+Até este ponto foram apresentados exemplos de uso do método VRFT quando o controlador que leva o sistema para
+o comportamento desejado $M(z)$ faz parte da classe escolhida para a identificação. Em outras palavras quando
+$C(z, \rho) \in \mathcal{C}$. Nesta seção será apresentado um exemplo onde o modelo do controlador escolhido
+para o sistema não consegue levar este para $M(z)$.
+
+Considerando o sistema descrito por
+\begin{equation}
+G_{ 0 }(z)=\frac { 0.2(z-0.7) }{ (z-0.9)(z-0.5) } ,\quad \quad \quad H_{ 0 }(z)=\frac { z }{ z-0.3 } 
+\nonumber
+\end{equation}
+
+Deseja-se que em malha fechada ele se comporte como em \eqref{eq:vrft_methos_ex_pid_not_M}. 
+
+\begin{equation}
+M(z)=\frac { 0.16z }{ (z-0.6)^2 }
+\label{eq:vrft_methos_ex_pid_not_M}
+\end{equation}
+
+Neste caso o controlador ideal é definido por \eqref{eq:vrft_methos_ex_pid_not_cd}
+
+\begin{equation}
+C_{ d }(z)=\frac { 0.8z(z-0.9)(z-0.5) }{ (z-1)(z-0.36)(z-0.7) } 
+\label{eq:vrft_methos_ex_pid_not_cd}
+\end{equation}
+
+Para esta identificação optou-se por um controlador do tipo PID como em \eqref{eq:vrft_methos_ex_pid_not_c}
+ 
+\begin{equation}
+C(z,\rho )=\frac { \rho _{ 1 }z^2+\rho _{ 2 }z+\rho _{ 3 } }{ z(z-1) } 
+\label{eq:vrft_methos_ex_pid_not_c}
+\end{equation}
+
+Observa-se que \eqref{eq:vrft_methos_ex_pid_not_c} não consegue representar todas as dinâmicas apresentadas em
+\eqref{eq:vrft_methos_ex_pid_not_cd}. Utilizando o procedimento descrito na Seção
+(\ref{sec:vrft_framework_noise}) e o procedimento de experimento repetido, foram feitos 100 experimentos de
+Monte Carlo e o resultado obtido para a média das estimativas foi:
+
+\begin{equation}
+\rho_L =\left[ 0.8101 \quad -0.1691  \quad -0.3358 \right]
+\nonumber
+\end{equation}
+
+Onde o indice $L$ indica que este resultado foi obtido utilizando-se o filtro $L$.
+
+Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro $L$ descrito na seção
+(\ref{sec:vrft_framework_noise}), obteve-se o resultado seguinte:
+
+\begin{equation}
+\rho =\left[ 0.5846 \quad -0.2108  \quad -0.1525 \right]
+\nonumber
+\end{equation}
+
+Aplicando-se estes resultados ao controlador apresentado em \eqref{eq:vrft_methos_ex_pid_not_c} e de posse do
+comportamento desejado para o sistema em malha fechada ($M(z)$) é possivel fazer um comparativo da resposta de
+ao salto para o sistema utilizando os dois controladores obtidos. O resultado é apresentado na Figura
+(\ref{fig:vrft_notinclass_step}).
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_notinclass_step.eps}
+	\caption{Comparativo da resposta do sistema a um degrau unitário quando o controlador inserido é obtido pelo
+	metodo VRFT utilizando o filtro L e quando não se utiliza este artificio. O sistema foi simulado com um
+	ruido de variância $\sigma_\upsilon ^2=0.1$}
+	\label{fig:vrft_notinclass_step}
+\end{figure}
+
+Observa-se que para o sistema que utiliza o controlador estimado utilizando-se o filtro $L$, a resposta ao
+degrau unitário tem significativamente menos erro que o sistema utilizando o outro controlador. Ficando este
+promeiro muito mais próximo da função $M(z)$ desejada.
+
+Os custos destes dois sistemas é apresentado na Tabela (\ref{vrft_method_notinclass}).
+
+\begin{table*}[htbp]
+\begin{center}
+\caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ para o sistema controlado por $C(z)$ e $C_L(z)$}
+\label{table:vrft_method_notinclass}
+\begin{tabular}{ccc}
+\hline
+        Controlador & $J_{VR}^N(\theta)$ & $J_{MR}(\theta)$ \\
+\hline
+	$C(z)$   & 0.2877 &  0.1270 \\
+	$C_L(z)$ & 0.4481 &  0.0542 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+A fim de comparar as duas estimativas, na figura (\ref{fig:vrft_notinclass_bode}) é apresentado o diagrama de
+Bode dos controladores obtidos (utilizando a média das estimativas obtidas).
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_notinclass_bode.eps}
+	\caption{Diagrama de Bode para as funções de transferência dos controladores estimados utilizando VRFT com e
+	sem o artificio do filtro L e variaveis instrumentais}
+	\label{fig:vrft_notinclass_bode}
+\end{figure}
+
+
+
 
 
 %===============================================================================
