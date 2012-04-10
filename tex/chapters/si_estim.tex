@@ -133,19 +133,7 @@ Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, reme
 ao ano de 1809 utilizado por Gauss para determinação da orbita dos planetas. 
 \cite{system_identification}. Método este chamado de Método dos mínimos quadrados (MMQ).
 
-A regressão linear é o tipo mais simples de modelo paramétrico. A estrutura do modelo
-pode ser descrita como em (\ref{eq:si_lsm_single_var}).
-
-\begin{equation}
-y(t)=\varphi ^T(t)\theta
-\label{eq:si_lsm_single_var}
-\end{equation}
-
-Onde $y(t)$ é chamada de {\it{variável regredida}} e é medida do processo.
-$\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor de
-parâmetros.
-
-O modelo apresentado em (\ref{eq:si_lsm_single_var}) é facilmente estendido para o modelo
+O modelo apresentado em (\ref{eq:si_obj_single_var}) é facilmente estendido para o modelo
 multivariáveis (\ref{eq:si_lsm_multi_var}).
 
 \begin{equation}
@@ -153,13 +141,10 @@ y(t)=\Phi ^T(t)\theta
 \label{eq:si_lsm_multi_var}
 \end{equation}
 
-Onde $y(t)$ é um vetor de $p$ posições, $\Phi(t)$ uma matriz $n \times p$ e $\theta$ é um 
+Onde $y(t)$ é um vetor de $p$ elementos, $\Phi(t)$ uma matriz $n \times p$ e $\theta$ é um 
 vetor de $N$ posições.
 
-A ideia do método é encontrar uma estimativa $\hat{\theta}$ dos parâmetros de $\theta$ a partir de medidas
-de $y(1),\varphi(1),\cdots,y(N),\varphi(N)$. 
-
-A partir de (\ref{eq:si_par_estim_err_predic}) e (\ref{eq:si_lsm_single_var}) temos 
+A partir de (\ref{eq:si_par_estim_err_predic}) e (\ref{eq:si_obj_single_var}) temos 
 
 \begin{equation}
 \varepsilon (t)=y(t)-\varphi ^T(t)\theta
@@ -167,15 +152,11 @@ A partir de (\ref{eq:si_par_estim_err_predic}) e (\ref{eq:si_lsm_single_var}) te
 \end{equation}
 
 A {\it{estimativa dos mínimos quadrados}} de $\theta$ é definido como o vetor $\hat{\theta}$ 
-que minimiza a função custo (\ref{eq:si_par_etim_lsm_v}). Este é o critério de minimização do 
+que minimiza a função custo (\ref{eq:si_obj_etim_lsm_v}). Este é o critério de minimização do 
 erro de predição para o método dos mínimos quadrados.
 
-\begin{equation}
-V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \| \varepsilon \right \|
-\label{eq:si_par_etim_lsm_v}
-\end{equation}
-
-O valor de $\hat{\theta}$ que minimiza (\ref{eq:si_lsm_single_var}) é dado por:
+O valor de $\hat{\theta}$ que minimiza (\ref{eq:si_obj_single_var}) é então dado
+por:\cite{system_identification}
 
 \begin{equation}
 \hat{\theta}=(\varphi ^T \varphi )^{-1}\varphi  ^T y
@@ -188,33 +169,33 @@ O mínimo da função custo fica como em:
 \underset{\theta}{min}\;V(\theta)=V(\hat{\theta})=\frac{1}{2}\left [ y^Ty-y^T\varphi (\varphi ^T \varphi )^{-1}\varphi ^T y \right ]
 \end{equation}
 
+O método dos mínimos quadrados é simples de ser aplicado, mas tem o inconveniente de que para que não existam
+erros de polarização na estimativa, a variável de regressão $\phi(t)$ não pode estar correlacionada com o
+distúrbio estocástico $\nu(t)$. Assume-se que o sistema real é dado por:
+
+\begin{equation}
+y(t)=\varphi^T(t)\theta_0+\nu(t)
+\label{eq:si_par_etim_lsm_true_sys}
+\end{equation}
+
+A correlação entre os regressores $\varphi(t)$ e $\nu(t)$ somente será nulo se o ruido for branco, o que de
+certa forma é bastante restri
+
+\begin{equation}
+E(\varphi(t) \; \nu(t)) = 0
+\label{eq:si_par_etim_iv_estim}
+\end{equation}
+satisfeito somente se $\nu(t)$
+for ruido branco. Esta desvantagem do método dos mínimos quadrados pode ser visto como uma
+vantagem para a introdução do método de variáveis instrumentais. \cite{system_identification}
+
 %===============================================================================
 \subsection{Método das variáveis instrumentais}
 \label{sec:si_par_estim_iv}
 %===============================================================================
 % bibliografia principal: aguirre e ljung
 
-O método dos mínimos quadrados apresentados na seção (\ref{sec:si_par_estim_lsm}) é
-simples de ser aplicado, mas tem o inconveniente de que para que não existam erros de 
-polarização na estimativa, a variável de regressão $\phi(t)$ não pode estar
-correlacionada com o distúrbio estocástico $\nu(t)$. Assume-se que o sistema real é dado
-por:
 
-\begin{equation}
-y(t)=\varphi^T(t)\theta_0+\nu(t)
-\label{eq:si_par_etim_iv_true_sys}
-\end{equation}
-
-No método dos mínimos quadrados $\varphi(t)$ depende da saída e implicitamente dos valores passados
-de $\nu(t)$, desta forma \eqref{eq:si_par_etim_iv_estim} seria bem restritivo, mas de fato o que
-pode ser demonstrado é que \eqref{eq:si_par_etim_iv_estim} é satisfeito somente se $\nu(t)$
-for ruido branco. Esta desvantagem do método dos mínimos quadrados pode ser visto como uma
-vantagem para a introdução do método de variáveis instrumentais. \cite{system_identification}
-
-\begin{equation}
-E(\varphi(t) \; \nu(t)) = 0
-\label{eq:si_par_etim_iv_estim}
-\end{equation}
 
 Assume-se que $Z(t)$ é uma matriz $n\times n$ que possuem sinais não correlacionados com o 
 distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \eqref{eq:si_par_estim_iv_theta}:
@@ -249,53 +230,6 @@ a correlação entre o vetor de erro e os instrumentos. A razão para isso é que as
 devem ser tão correlacionadas quanto possível com os regressores do modelo, caso contrário $Z(t)\varphi(t)^T$ 
 seria próxima a singular e sua inversa muito mal condicionada. Portanto os instrumentos devem ser, idealmente, 
 pouco correlacionados com o erro e muito correlacionados com os regressores do modelo. \cite{aguirre}
-
-
-%===============================================================================
-\subsection{Identificabilidade de sistemas}
-\label{sec:si_par_estim_sys_ident}
-%===============================================================================
-
-A identificabilidade de um sistema pode ser definido pelo teorema (\ref{theorem:identificability}).
-
-\begin{theorem} 
-\cite{ljung}
-
-Considerando a estrutura de modelo $\mathcal{M}$ correspondente a: 
-\begin{equation}
-A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
-\label{eq:si_par_estim_sys_theorem}
-\end{equation}
-
-e com $\theta$ como em \eqref{eq:si_estim_predict_theta} sendo o coeficiente dos polinômios envolvidos.
-Os graus dos polinômios são $n_a$, $n_b$ e assim por diante. A estrutura deste modelo 
-é globalmente identificável se, e somente se, todos os itens de (i) até (vi) forem verdadeiros.
-
-\begin{enumerate}[(i)]
-\item Não existe fator comum para todos os $z^{na}A^*(z), z^{nb}B^*(z), and, \; z^{nc}C^*(z)$.
-\item Não existe fator comum para $z^{nb}B^*(z), and, \; z^{nf}F^*(z)$.
-\item Não existe fator comum para $z^{nc}C^*(z), and, \; z^{nd}D^*(z)$.
-\item Se $n_a \geq 1$ então não pode existir fator comum entre $z^{nf}F^*(z), and, \; z^{nd}D^*(z)$.
-\item Se $n_d \geq 1$ então não pode existir fator comum entre $z^{na}A^*(z), and, \; z^{nb}B^*(z)$.
-\item Se $n_f \geq 1$ então não pode existir fator comum entre $z^{na}A^*(z), and, \; z^{nc}C^*(z)$.
-\end{enumerate}
-
-Os polinômios com $*$ correspondem a $\theta^*$
-\label{theorem:identificability}
-\end{theorem}
-
-Note que as condições de (i) até (vi) são satisfeitas para o caso comum de \eqref{eq:si_par_estim_sys_theorem}.
-Observe também que nenhuma das condições pode ser violada por qualquer {\it{especial}} valor de $\theta^*$, posto na
-hiper-superfície de $\Re ^d$. Isso nos leva ao seguinte corolário:
-
-\begin{cor} 
-A estrutura de modelo apresentada em \eqref{eq:si_par_estim_sys_theorem} é globalmente identificável.
-\label{corollary:identificability}
-\end{cor} 
-
-A partir do Corolário (\ref{corollary:identificability}) temos que a identificação de sistemas
-utilizando os modelos descritos pela Tabela \ref{table:si_modeling_models} são globalmente identificáveis
-se tivermos os dados de entrada suficientemente informativos.
 
 %===============================================================================
 \subsection{Incertezas nos parâmetros estimados}

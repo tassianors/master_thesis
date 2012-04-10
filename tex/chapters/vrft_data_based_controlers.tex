@@ -3,27 +3,16 @@
 \label{sec:vrft_control_data_based}
 %===============================================================================
 
-Em muitas aplicações praticas de controle, uma descrição matematica da planta não é disponível e o
-controlador deve ser projetado baseado nas medidas obtidas deste sistema. Este assunto tem atraido a
-atenção de diversos engenheiros de controle desde 1940 com o pioneiro trabalho de Ziegler e Nichols
-(1942) com ajuste de controladores PID industriais. Depois do trabalho de Ziegler e Nichols
-divesos trabalhos surgiram, muitos em formas de aperfeiçoamento e extensões das tecnicas ja
-apresentadas, e algumas com desenvolvimentos em novas direções (\cite{mcmillan1983tuning},
-\cite{Haalman1965}). A caracteristica principal destes metodos é que eles podem
-ser facilmente implementados: simples experimentos sobre a planta são executados e simples regras 
-são aplicadas sobre os dados obtidos. O metodo VRFT que será abordado aqui tem algumas destas 
-caracteristicas, pois só requer que um experimento seja executado sobre a planta. 
-\cite{campi_leccini_savaresi2002}
 
 O projeto de controladores baseados em dados consiste obter ou estimar os parâmetros de um modelo
-para os controladores, baseado nos dados obtidos da planta em análise. Os dados utilizados para esta
-tarefa são basicamente o sinal de entrada e saída do sistema.
+baseado nos dados obtidos da planta sob análise. Os dados utilizados para esta
+tarefa são usualmente o sinal de entrada e saída do sistema.
 
 Como já foi discutido na seção (\ref{sec:si_project_experiments}) estes dados podem ser obtidos de
 diversas formas. Algumas vezes estas informações podem vir da operação normal da planta em malha
 fechada com a presença de algum controlador. Situação esta que tem um grande apelo em plantas
 industriais, onde a parada do processo, para levantamento de informações, é indesejável e muitas
-vezes até inviável. Se existe a possibilidade de parar a planta e aplicar-se sinais predeterminados,
+vezes até inviável. Se existe a possibilidade de parar a planta e aplicar sinais predeterminados,
 o projeto de experimentos pode trazer muitas vantagens.
 
 Seja a esperança de um valor $E\left [ \cdot \right ]$ definido por: \cite{ljung}
@@ -33,23 +22,6 @@ Seja a esperança de um valor $E\left [ \cdot \right ]$ definido por: \cite{ljung
 \right]
 \label{eq:vrft_db_hope}
 \end{equation}
-
-Um sinal é dito quasi-estacionario se a média e autocorrelação do mesmo convergem para um valor
-finito quando o tamanho da amostra cresce, conforme definição a seguir:
-
-
-\begin{defn}
-\cite{ljung}
-
-Um Sinal $s(t)$ é um processo quasi-estacionario se:
-\begin{itemize}
-	\item $\bar{E}\left [ s(t) \right ] = \mid m_s(t) \mid \le C, \;\forall t$;
-	\item $\bar{E}\left [ s(t)s(r) \right ] = \mid R_s(t,s) \mid \le C, \;\forall t,r$;
-	\item $\lim_{N \to \infty}\frac{1}{N}\sum_{t=1}^{N}R_s(t, t-\tau)=R_s(\tau), \; \forall \tau$,
-\end{itemize}
-Onde $m_s(t)$ é o valor médio do sinal $s(t)$ e $R_s(t,r)$ é a covariância do sinal $s$ nos
-instantes $t$ e $r$.
-\end{defn}
 
 O ruido é um processo quasi-estacionario, que pode ser descrito como $\nu(t)=H_0(z)e(t)$, onde
 $e(t)$ é ruido branco com variância $\sigma_e^2$. Ambas funções de transferência, $G(z)$ e $H(z)$,

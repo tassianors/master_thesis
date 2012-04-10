@@ -15,7 +15,7 @@ antes de modela-lo.  Estes dois processos são conhecidos como
 {\it{Modelagem caixa branca}} e {\it{Modelagem caixa preta}} respectivamente.
 
 No caso de modelagem caixa branca, faz-se necessário conhecer a fundo o sistema
-modelado. Além de estar bem familiarizado cm o sistema é necessário conhecer as
+modelado. Além de estar bem familiarizado com o sistema é necessário conhecer as
 relações matemáticas que descrevem os fenômenos envolvidos. Devido a isso o tempo
 gasto para este tipo de abordagem é elevado, tornando por muitas vezes inviável
 este procedimento.  \cite{aguirre}.
@@ -36,67 +36,56 @@ o modelo nestas características desejadas.
 \label{sec:sys_ident_basic_definitions}
 %===============================================================================
 
-Geralmente, na modelagem de sistemas algumas considerações são feitas sobre o
-este:
+Geralmente, na modelagem de sistemas algumas considerações são feitas sobre o este:
 
-{\it{Linearidade}}. Uma consideração frequentemente feita é a de se supor que o
-sistema sendo modelado se comporta de forma aproximadamente linear. Tal
-suposição é normalmente verificada observando-se o comportamento em uma faixa
-relativamente estreita de operações. \cite{aguirre}
+{\it{Linearidade}}. Uma consideração frequentemente feita é a de se supor que o sistema sendo modelado se
+comporta de forma aproximadamente linear. Tal suposição é normalmente verificada observando-se o comportamento
+em uma faixa relativamente estreita de operações. \cite{aguirre}
 
-Formalmente diz-se que um sistema é linear se ele obedece o {\it{principio da
-superposição}}.  A consideração da
-linearidade normalmente simplifica bastante p modelo a ser construído.
-Entretanto, há situações em que esta consideração não é adequada, como por
-exemplo, para sistemas como dinâmica fortemente bilinear (que não podem ser
-descritos adequadamente por um único modelo linear,
-independentemente de quão estreita seja a faixa de operação
-considerada). E também no caso onde se deseja estudar
-características dinâmicas não-lineares do sistema, tais como oscilações e
-bifurcações.  \cite{aguirre}
+Formalmente diz-se que um sistema é linear se ele obedece o {\it{princípio da superposição}}.  A consideração
+da linearidade normalmente simplifica bastante o modelo a ser construído.
+Entretanto, há situações em que esta consideração não é adequada, como por exemplo, para sistemas como
+dinâmica fortemente bilinear (que não podem ser descritos adequadamente por um único modelo linear,
+independentemente de quão estreita seja a faixa de operação considerada). E também no caso onde se deseja
+estudar características dinâmicas não-lineares do sistema, tais como oscilações e bifurcações.  \cite{aguirre}
 
-{\it{Invariância no tempo}}. A consideração de invariância temporal implica que
-o comportamento do sistema sendo modelado não varia com o tempo. Isso não
-significa que as variáveis do sistema tenham valores constantes. Pelo
-contrario, normalmente os valores das variáveis que caracterizam um sistema
-flutuam com o tempo, sendo que tal evolução temporal é determinada por uma lei.
-Normalmente refere-se a esta lei como a dinâmica do sistema. Portanto, ser
-invariante no tempo não quer dizer que o sistema esta estático, mas certamente
-implica que a dinâmica que esta regulando a evolução temporal e a mesma. 
-
-Formalmente diz-se que um sistema é invariante se um deslocamento no tempo na
-entrada causa um deslocamento no tempo na saída.
+{\it{Invariância no tempo}}. A consideração de invariância temporal implica que o comportamento do sistema
+sendo identificado não varia com o tempo. Formalmente diz-se que um sistema é invariante se um deslocamento no
+tempo na entrada causa um deslocamento no tempo na saída.
 
 %===============================================================================
 \subsection{Forma geral de famílias de modelos}
 \label{sec:si_modeling_family_models}
 %===============================================================================
 
-Modelo de um sistema é a descrição de {\it{algumas}} de suas propriedades. Nesta seção será 
-apresentado modelos de sistemas invariantes no tempo e alguns dos mais comuns modelos utilizados.
+Modelo de um sistema é a descrição de {\it{algumas}} de suas propriedades. Nesta seção serão 
+apresentados modelos de sistemas invariantes no tempo e alguns dos mais comuns modelos utilizados.
 
-Um modelo linear pode ser representado como em (\ref{eq:si_modeling_lti}).
+Um modelo linear de tempo discreto pode ser representado como em (\ref{eq:si_modeling_lti}).
 
 \begin{equation}
 y(t)=G(q)u(t)+H(q)e(t)
 \label{eq:si_modeling_lti}
 \end{equation}
 
-Com:
+Com $G(q)$ sendo a representação da planta e $H(q)$ a dscrição do ruido que afeta o sistema. Representados
+como abaixo:
 
 \begin{equation}
-G(q)=\sum_{k=1}^{\infty}g(k)q^{-k}\\
-\\
-H(q)=1+\sum_{k=1}^{\infty}h(k)q^{-k}
-\label{eq:si_modeling_lti_det}
+G(q)=\sum_{k=1}^{\infty}g(k)q^{-k}
+\nonumber
 \end{equation}
 
-Uma forma direta para a identificação de sistemas é tornar as funções $G(q)$ e $H(q)$ de (\ref{eq:si_modeling_lti_det})
-como funções racionais e que os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo
-de identificação.
+\begin{equation}
+H(q)=1+\sum_{k=1}^{\infty}h(k)q^{-k}
+\nonumber
+\end{equation}
+
+Uma forma direta para a identificação de sistemas é tornar as funções $G(q)$ e $H(q)$ em funções racionais e
+que os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo de identificação.
 
 Provavelmente o modelo mais simples para descrever a relação entre entrada e saída é obtido
-descrevendo o sistema como uma equação linear das diferenças (\ref{eq:si_modeling_arx}). \cite{ljung}
+descrevendo o sistema como uma equação linear (\ref{eq:si_modeling_arx}). \cite{ljung}
 
 \begin{equation}
 y(t)+a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)+e(t)
@@ -124,11 +113,11 @@ B(q)=b_1q^{-1}+...+b_{nb}q^{-n_b}
 \end{equation}
 
 O modelo definido em (\ref{eq:si_modeling_arx}) também é conhecido como {\bf{ARX}}, onde {\it{AR}} refere-se 
-a parte de $A(q)y(t)$ auto-regressiva, e {\it{X}} como a entrada extra $B(q)u(t)$.
+à parte de $A(q)y(t)$ auto-regressiva, e {\it{X}} como a entrada extra $B(q)u(t)$.
 
-Uma das desvantagens deste modelo é a falta de liberdade para descrever as propriedades
+Uma das limitações deste modelo é a falta de liberdade para descrever as propriedades
 dos distúrbios sobre o sistema. Pode-se então adicionar certo grau de liberdade descrevendo a equação do erro 
-como uma média móvel do ruido branco, isso nos remete a (\ref{eq:si_modeling_armax}).
+como uma média móvel do ruído branco, isso nos remete a (\ref{eq:si_modeling_armax}).
 
 \begin{equation}
 \begin{matrix}
@@ -194,16 +183,16 @@ pode ser visto na Tabela \ref{table:si_modeling_models}.
 \end{center}
 \end{table*}
 
-As equações que descrevem a saída do sistema em função da entrada $u(t)$ e o ruido $e(t)$ como apresentado em \eqref{eq:si_modeling_lti}
-e que podem ser caracterizados pela utilização de vários polinômios, nada mais são do que famílias de modelos $\mathcal{M}$.
+As equações que descrevem a saída do sistema em função da entrada $u(t)$ e do ruido $e(t)$ como apresentado
+em \eqref{eq:si_modeling_lti} e que podem ser caracterizados pela utilização de vários polinômios, nada mais são do que famílias de modelos.
 Existem para cada família de modelo uma infinidade de possíveis saídas para uma mesma entrada, bastando para isso que os
 parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente. O objetivo na identificação de sistemas é encontrar um conjunto de
 coeficientes que consiga melhor descrever os dados observados na saída, para uma determinada entrada.
 
 Da mesma forma que com um modelo pode-se obter diversas saídas diferentes, vários modelos diferentes podem chegar a uma mesma 
-saída. Este é de certa forma um problema para a escolha do modelo que será utilizado, pois se ambos chegam teoricamente a mesma
-resposta, qual dos modelos é o melhor? Este é um dos motivos pelos quais a correta escolha de um modelo, ou família de modelos, é
-importante.
+saída. Este é de certa forma um problema para a escolha do modelo que será utilizado, pois se ambos chegam
+teoricamente à mesma resposta, qual dos modelos é o melhor? Este é um dos motivos pelos quais a correta
+escolha de uma família de modelos, é importante.
 
 Escolher um modelo que não consegue representar o sistema físico propicia erros na estimativa dos parâmetros. (Mais informações sobre
 estes erros serão abordados na seção (\ref{sec:si_par_estim_uncertanties})). Por outro lado a super estimativa da ordem do modelo
