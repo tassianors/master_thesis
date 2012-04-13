@@ -184,17 +184,15 @@ pode ser visto na Tabela \ref{table:si_modeling_models}.
 \end{table*}
 
 As equações que descrevem a saída do sistema em função da entrada $u(t)$ e do ruido $e(t)$ como apresentado
-em \eqref{eq:si_modeling_lti} e que podem ser caracterizados pela utilização de vários polinômios, nada mais são do que famílias de modelos.
-Existem para cada família de modelo uma infinidade de possíveis saídas para uma mesma entrada, bastando para isso que os
-parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente. O objetivo na identificação de sistemas é encontrar um conjunto de
-coeficientes que consiga melhor descrever os dados observados na saída, para uma determinada entrada.
+em \eqref{eq:si_modeling_lti} e que podem ser caracterizados pela utilização de vários polinômios, nada mais
+são do que famílias ou conjuntos de modelos.
+Existe para cada conjunto de modelos uma infinidade de possíveis saídas para uma mesma entrada, bastando para
+isso que os parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente. O objetivo na
+identificação de sistemas é encontrar um conjunto de coeficientes que consiga melhor descrever os dados
+observados na saída, para o maior conjunto de sinais de entrada possíveis.
 
-Da mesma forma que com um modelo pode-se obter diversas saídas diferentes, vários modelos diferentes podem chegar a uma mesma 
-saída. Este é de certa forma um problema para a escolha do modelo que será utilizado, pois se ambos chegam
-teoricamente à mesma resposta, qual dos modelos é o melhor? Este é um dos motivos pelos quais a correta
-escolha de uma família de modelos, é importante.
-
-Escolher um modelo que não consegue representar o sistema físico propicia erros na estimativa dos parâmetros. (Mais informações sobre
-estes erros serão abordados na seção (\ref{sec:si_par_estim_uncertanties})). Por outro lado a super estimativa da ordem do modelo
-pode adicionar complexidade em desnecessária além de comportamentos transientes no modelo que não existem na planta real.
+Escolher um conjunto de modelo que não consegue representar o sistema físico, proporciona erros na estimativa
+dos parâmetros. (Mais informações sobre estes erros serão abordados na seção
+(\ref{sec:si_par_estim_uncertanties})). Por outro lado a super estimativa da ordem do conjunto de modelos pode
+adicionar complexidade desnecessária além de comportamentos transientes no modelo que não existem na planta real.
 

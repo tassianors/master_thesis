@@ -3,20 +3,20 @@
 \label{sec:sys_ident_parameters_estimation}
 %===============================================================================
 
-A estimativa dos parâmetros dos modelos dependem de vários fatores, até agora foi apresentado
+A estimativa dos parâmetros dos modelos dependem de vários fatores. Até agora foi apresentado
 a importância dos dados coletados (Seção (\ref{sec:sys_ident_data_acquisition})) e da 
 escolha do modelo (Seção (\ref{sec:sys_ident_modelling_choosing})). Nesta seção serão 
-apresentados algumas formas para a estimativa dos parâmetros, bem como algumas de suas
+apresentadas algumas formas para a estimativa dos parâmetros, bem como algumas de suas
 características probabilísticas. 
 
-A identificação é baseada em um conjunto de dados coletados do sistema, um modelo para caracteriza-lo.
+A identificação é baseada em um conjunto de dados coletados do sistema, um modelo para caracterizá-lo.
 Um preditor é uma equação que tenta prever o próximo valor do sistema baseado nos dados passados deste.
 Com o preditor atinge-se um conjunto de dados que deve ser muito próximo aos dados verdadeiros
 coletados do sistema. Escolhe-se então um método para minimização do erro existente entre
 os dados coletados e os dados calculados pelo preditor.
 
-Por fim será apresentado algumas das características para a estimação quando alguns 
-requisitos para a identificação não não atingidos, como por exemplo quando o modelo
+Por fim serão apresentados algumas das características para a estimação quando alguns 
+requisitos para a identificação não são atingidos, como por exemplo quando o modelo
 escolhido não consegue representar o sistema, ou quando o dados de entrada não são 
 suficientemente informativos. Nestas situações teremos erros na estimativa dos parâmetros.
 Erros diferentes que serão abordados na seção (\ref{sec:si_par_estim_uncertanties}).
@@ -28,45 +28,62 @@ Erros diferentes que serão abordados na seção (\ref{sec:si_par_estim_uncertantie
 % ljung pg 68
 %===============================================================================
 
-Preditores são equações que tentam prever qual será o próximo valor de saída do sistema
+Preditores são equações que predizem qual será o próximo valor de saída do sistema
 baseado no modelo deste e nos valores de dados coletados até aquele momento.
-Considere o sistema apresentado em (\ref{eq:si_modeling_lti}). Assume-se que os
-sinais $y(p)$ e $u(p)$ são conhecidos para $p \le t-1$. A partir de (\ref{eq:si_par_estim_vs})
-tem-se que até $\upsilon (p)$ é definido. O objetivo então é prever $y(t)$ como
-em (\ref{eq:si_par_estim_yt}).
+Considere o sistema apresentado em (\ref{eq:si_modeling_lti}). Assume-se que para um preditor de um passo a
+frente os sinais $y(p)$ e $u(p)$ são conhecidos para $p \le t-1$. A partir de
 
 \begin{equation}
 \upsilon (p)=y(p) -G(q)u(p)
 \label{eq:si_par_estim_vs}
 \end{equation}
 
+tem-se que até $\upsilon (p)$ é definido para $p \le t-1$. Como $e(t)$ pode ser estimado por
+
+\begin{equation}
+e(t)=\widetilde { H } (q)\upsilon (t)
+\label{eq:si_par_estim_e}
+\end{equation}
+
+O objetivo então é prever $y(t)$ como em:
+
 \begin{equation}
 y(t)=G(q)u(t)+\upsilon (t)
 \label{eq:si_par_estim_yt}
 \end{equation}
 
-Fazendo-se as substituições necessárias chega-se ao estimador (\ref{eq:si_par_estim_predictor})
-onde enfatiza-se a dependência com o parâmetro $\theta$ \cite{ljung}. Este preditor também
-é conhecido como preditor ótimo, sendo utilizado em diversos métodos de identificação de
-sistemas.
+Fazendo-se as substituições necessárias chega-se ao estimador 
+
+\begin{equation}
+\hat { y } (t|t-1)={ H }^{ -1 }(q)G(q)u(t)+\left[ 1-{ H }^{ -1 }(q) \right] y(t)
+\label{eq:si_par_estim_predict}
+\end{equation}
+
+Enfatiza-se a dependência com o parâmetro $\theta$ \cite{ljung}:
 
 \begin{equation}
 \hat{y}(t|\theta)=H^{-1}(q,\theta)G(q,\theta)u(t)+\left [ 1- H^{-1}(q,\theta)\right ]y(t)
 \label{eq:si_par_estim_predictor}
 \end{equation}
 
-O erro de predição é a diferença entre os valores atingido pelo preditor e os valores 
-reais coletados do sistema como apresentado em \eqref{eq:si_par_estim_err_predic}.
-Este erro é amplamente utilizado para determinar a qualidade da estimativa que se 
-encontra. Como será visto a seguir.
+Este preditor também é conhecido como preditor ótimo, sendo utilizado em diversos métodos de identificação de
+sistemas.
 
+O erro de predição é a diferença entre os valores atingido pelo preditor e os valores 
+reais coletados do sistema como apresentado em:
+ 
 \begin{equation}
 \varepsilon (t| \theta)=y(t)-\hat{y}(t|\theta)
 \label{eq:si_par_estim_err_predic}
 \end{equation}
 
 Onde $y(t)$ são os dados coletados do sistema e $\hat{y}(t|\theta)$ os dados provenientes da 
-estimativa. A equação do erro (\eqref{eq:si_par_estim_err_predic} pode ser reescrita como:
+estimativa.
+
+Este erro é amplamente utilizado para determinar a qualidade da estimativa que se 
+encontra. Como será visto a seguir.
+
+A equação do erro (\eqref{eq:si_par_estim_err_predic} pode ser reescrita como:
 
 \begin{equation}
 \varepsilon (t,\theta)=\frac{D(q)}{C(q)}\left [ A(q)y(t) - \frac{B(q)}{F(q)}u(t)\right ]
@@ -92,7 +109,7 @@ Então:
 \nonumber
 \end{equation}
 
-Desta forma introduz-se o vetor de estados \eqref{eq:si_estim_predic_state}.\cite{ljung}
+Desta forma introduz-se: .\cite{ljung}
 
 \begin{equation}
 \begin{matrix}
@@ -103,25 +120,25 @@ Desta forma introduz-se o vetor de estados \eqref{eq:si_estim_predic_state}.\cit
 \label{eq:si_estim_predic_state}
 \end{equation}
 
-E o vetor de parâmetros \eqref{eq:si_estim_predict_theta}:
+E o vetor de parâmetros:
 
 \begin{equation}
 \theta = \left [ a_1 \; ... \; a_{na} \; b_1 \; ... \; b_{nb} \; f_1 \; ... \; f_{nf} \; c_1 \; ... \; c_{nc} \; d_1 \; ... \; d_{nd}\right ]^T
 \label{eq:si_estim_predict_theta}
 \end{equation}
 
-Chega-se então a seguinte equação para o erro de predição:
+Chega-se então à seguinte equação para o erro de predição:
 
 \begin{equation}
 \varepsilon (t,\theta)=y(t)-\theta^T\varphi (t,\theta)
-\label{eq:si_estim_predict_erro}
+\label{eq:si_estim_predict_erro_epsilon}
 \end{equation}
 
 Onde:
 
 \begin{equation}
 \hat{y}(t| \theta)=\theta^T\varphi (t,\theta)=\varphi ^T(t,\theta)\theta
-\nonumber
+\label{eq:si_estim_predict_erro}
 \end{equation}
 
 %===============================================================================
@@ -131,7 +148,7 @@ Onde:
 
 Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, remete
 ao ano de 1809 utilizado por Gauss para determinação da orbita dos planetas. 
-\cite{system_identification}. Método este chamado de Método dos mínimos quadrados (MMQ).
+\cite{system_identification}. Método este chamado de mínimos quadrados (MMQ).
 
 O modelo apresentado em (\ref{eq:si_obj_single_var}) é facilmente estendido para o modelo
 multivariáveis (\ref{eq:si_lsm_multi_var}).
@@ -141,7 +158,7 @@ y(t)=\Phi ^T(t)\theta
 \label{eq:si_lsm_multi_var}
 \end{equation}
 
-Onde $y(t)$ é um vetor de $p$ elementos, $\Phi(t)$ uma matriz $n \times p$ e $\theta$ é um 
+Onde $y(t)$ é um vetor de $p$ posições, $\Phi(t)$ uma matriz $n \times p$ e $\theta$ é um 
 vetor de $N$ posições.
 
 A partir de (\ref{eq:si_par_estim_err_predic}) e (\ref{eq:si_obj_single_var}) temos 
