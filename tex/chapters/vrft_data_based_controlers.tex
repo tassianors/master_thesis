@@ -2,9 +2,7 @@
 \section{Controle baseado em dados}
 \label{sec:vrft_control_data_based}
 %===============================================================================
-
-
-O projeto de controladores baseados em dados consiste obter ou estimar os parâmetros de um modelo
+O projeto de controladores baseados em dados consiste em obter ou estimar os parâmetros de um modelo
 baseado nos dados obtidos da planta sob análise. Os dados utilizados para esta
 tarefa são usualmente o sinal de entrada e saída do sistema.
 
@@ -23,8 +21,8 @@ Seja a esperança de um valor $E\left [ \cdot \right ]$ definido por: \cite{ljung
 \label{eq:vrft_db_hope}
 \end{equation}
 
-O ruido é um processo quasi-estacionario, que pode ser descrito como $\nu(t)=H_0(z)e(t)$, onde
-$e(t)$ é ruido branco com variância $\sigma_e^2$. Ambas funções de transferência, $G(z)$ e $H(z)$,
+O ruído é um processo quasi-estacionario, que pode ser descrito como $\nu(t)=H_0(z)e(t)$, onde
+$e(t)$ é ruído branco com variância $\sigma_e^2$. Ambas funções de transferência, $G_0(z)$ e $H_0(z)$,
 são racionais e causais. Assume-se que $H(\infty)=1$, ou seja, a resposta impulsiva do filtro
 $H_0(z)$ satisfaz $h(0)=1$. \cite{campestrini}
 
@@ -73,7 +71,7 @@ $C(z, \rho) \in \mathcal{C}$ onde $ \mathcal{C}$ é a classe de controladores def
 \rput(9.3,0.21078125){\small $y(t)$}
 \end{pspicture} 
 }
-\caption{Sistema de controle em malha fechada, com presença do sinal de ruido.}
+\caption{Sistema de controle em malha fechada, com presença do sinal de ruído.}
 \label{fig:vrft_db_control_loop}
 \end{figure}
 
@@ -206,12 +204,4 @@ exemplo a aproximação de Gauss-Newton.
 
 Para cada iteração $i$ em \eqref{eq:vrft_db_ift_algoritm}, o metodo IFT necessita de dois
 experimentos, cada um de tamanho $N$. 
-
-%===============================================================================
-\subsection{CbT - Correlation Based Tuning}
-\label{sec:vrft_control_cbt}
-%===============================================================================
-
-
-
 

@@ -9,10 +9,12 @@ utilizado. Desta forma pode ser utilizado com apenas um conjunto de dados, não n
 específicos. O procedimento procura pelo ponto ótimo do critério escolhido para a identificação do
 controlador. \cite{campi_savaresi2000}
 
-Diferentemente de métodos iterativos, o VRFT não recai sobre minimos locais, sempre procurando o mínimo global
-do critério escolhido. É importante salientar que o valor de minimo global encontrado é relativo. O valor
-encontrado pelo método é um minimo dentro das limitações de qualidade e exitabilidade do sinal utilizado para
-se adquirir os dados utilizados no processo.
+Diferentemente de métodos iterativos, o VRFT não recai sobre minimos locais, sempre procurando o mínimo
+global do critério escolhido. Isso só não é  verdade sempre pois esta aformativa depende das limitações de
+qualidade e exitabilidade do sinal utilizado para se adquirir os dados utilizados no processo. Dentro destas
+limitações é possivel afirmar que o método VRFT irá procurar pelo menor mínimo possível. Se o sinal utilizado
+para exitar o sistema for suficientemente informativo, então o minimo encontrado pelo método será um minimo
+global.
 
 Assume-se que a planta do sistema é {\it{linear}} SISO ({\it{single input single output}}) de tempo discreto
 descrito pela função de transferência racional $G(z)$. Tal que esta função de transferência é desconhecida e
