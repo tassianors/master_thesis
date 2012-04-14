@@ -1,0 +1,285 @@
+% ===============================================================================
+\section{VRFT para sistemas não lineares}
+\label{sec:vrft_nonlinear}
+%===============================================================================
+
+Como visto na seção \ref{sec:vrft_vrft}, o método VRFT tem um grande apelo, e produz resultados
+significativamente satisfátorios para diversos modelos lineares. 
+
+Nesta seção o objetivo é demosntrar como este método de coporta com sistemas não lineares. Duas
+não linearidades serão apresentadas: estáticas, para isso será utilizado o modelo de Wiener (apresentado na
+seção \ref{sec:nl_models_wiener_hammerstein}) e não linearidades dinâmicas, a classe de modelos escolhido
+foram modelos NARMAX racionais (apresentados na seção \ref{sec:nl_models_narmax_rat}).
+
+A função custo que pretende-se minimizar pode ser expressa como:
+
+\begin{equation}
+J(\theta)=\left \| y_{\theta}-M \tilde{r} \right \|^2
+\label{eq:vrft_nl_j}
+\end{equation} 
+
+Onde $y_{\theta}=G\left [ C_{\theta}\left [ \tilde{r} -D y_{\theta} \right ] \right ]$ e $D$ é o atraso da
+planta.
+
+Desta forma o que se observa é que o custo a ser minimizado é dependente da planta que a-priori é
+desconhecida. Então é sugerido a minimização de outra função custo que possui a o mesmo minimo que
+\eqref{eq:vrft_nl_j}: \cite{campi_savaresi2006}
+
+\begin{equation}
+J_{VRFT}(\theta)=\left \| F\left [ C_{\theta}[\tilde{e}] - F[\tilde{u}] \right ] \right \|^2
+\label{eq:vrft_nl_jvrft}
+\end{equation} 
+
+Onde $F: \mathbb{R}^N\to \mathbb{R}^N$ é um filtro de que deve ser escolhido.
+
+Em \cite{campi_savaresi2006} indica-se a utilização do filtro:
+
+\begin{equation}
+F=(I-MD) \left ( \frac{\partial G\left [ u \right ]}{\partial u}|_{\tilde{u}} \right ) 
+\label{eq:vrft_nl_filter}
+\end{equation} 
+
+Onde $ \frac{\partial G\left [ u \right ]}{\partial u}$ deve ser calculado a partir dos dados coletados.
+Imprecisões nesta estimativa apenas indicam que a segunda derivada de $J_{VRFT}$ não irá precisamente
+ter o mesmo mínimo que $J$. \cite{campi_savaresi2006}
+
+Devido ao custo e dificuldade de se obter $ \frac{\partial G\left [ u \right ]}{\partial u}$ e com o intuito
+de utilizar o algotirmo de identificação de sistemas racionais apresentados na seção
+\ref{sec:nl_si_algorithms_rationals} optous-se em utilizar sistemas não lineares que pudessem ser aproximados
+por equações não lineares racionais ou polinomiais. E desta forma utilizar a metodologia VRFT para gerar os
+sinais $\bar{r}(t)$ e $e(t)$, e com isso alimentar o algoritmo de identificação de modelos racionais.
+
+Como já foi discutido, utilizando o método VRFT, pode-se obter os sinais de alimentação do controlador, e de
+posse do sinal de saída deste é possível identificar o controlador que melhor atinge o almejado comportamento
+da planta em malha fechada, descrito por $M(z)$.
+
+Desta forma, o que foi alterado do método classido do VRFT foi a utilização do algoritmo de identificação de
+modelos racionais, alimentando-o com o sinal de referência virtual $\bar{r}(t)$ e a saída $u(t)$.
+
+A seguir serão apresentados alguns exemplos do uso deste procedimento e os resultados obtidos. Os exemplos
+serão divididos em dois grupos principais: onde existe uma não linearidade estática na planta, e onde a não
+linearidade é dinâmica.
+
+%===============================================================================
+\subsection{Não linearidades estáticas}
+\label{sec:vrft_nl_wiener}
+%===============================================================================
+
+Como não linearidade estática escolheu-se a classe de modelos de Wiener. Na Figura \ref{fig:vrft_nl_wiener} é
+apresentado o diagrama de blocos do sistema, sendo $\Phi$ e $\Phi^{-1}$ os blocos não lineares da planta e do
+controlador respectivamente.
+
+\begin{figure}[htbp]
+\center
+\scalebox{1} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-0.92)(11.62,0.9)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,0.3)(0.8,0.3)
+\pscircle[linewidth=0.04,dimen=outer](1.0,0.3){0.2}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.2,0.3)(2.0,0.3)
+\psframe[linewidth=0.04,dimen=outer](3.2,0.7)(2.0,-0.1)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.2,0.3)(4.2,0.3)
+\psframe[linewidth=0.04,dimen=outer](5.4,0.7)(4.2,-0.1)
+\psframe[linewidth=0.04,dimen=outer](8.0,0.7)(6.8,-0.1)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.0,0.3)(9.0,0.3)
+\psframe[linewidth=0.04,dimen=outer](10.2,0.7)(9.0,-0.1)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.4,0.3)(6.8,0.3)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(10.2,0.3)(11.6,0.3)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.0,0.1)(1.0,-0.9)
+\psline[linewidth=0.04cm](1.0,-0.9)(10.8,-0.9)
+\psline[linewidth=0.04cm](10.8,-0.9)(10.8,0.3)
+\usefont{T1}{ptm}{m}{n}
+\rput(0.45828125,0.61){r(t)}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.4946876,0.61){e(t)}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.699375,0.61){v(t)}
+\usefont{T1}{ptm}{m}{n}
+\rput(6.089375,0.61){u(t)}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.464531,0.61){$\omega(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(10.899375,0.61){y(t)}
+\psline[linewidth=0.04cm](1.2,0.1)(1.4,0.1)
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](5.6,0.9)(1.8,-0.3)
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](10.4,0.9)(6.6,-0.3)
+\usefont{T1}{ptm}{m}{n}
+\rput(3.5345314,-0.59){C(z)}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.544531,-0.59){G(z)}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.6745312,0.41){$\Phi^{-1}$}
+\usefont{T1}{ptm}{m}{n}
+\rput(9.524531,0.41){$\Phi$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.7745314,0.41){C'(z)}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.384531,0.41){G'(z)}
+\end{pspicture} 
+}
+\caption{Diagrama de blocos para um sistema não linear do tipo Wiener}
+\label{fig:vrft_nl_wiener}
+\end{figure}
+
+Para este exmplo serão utilizadas as seguintes definições para o sistema:
+
+\begin{equation}
+G'(z)=\frac{0.5}{z-0.9}
+\label{eq:vrft_nl_wiener_g}
+\end{equation} 
+
+\begin{equation}
+M(z)=\frac{0.4}{z-0.6}
+\label{eq:vrft_nl_wiener_m}
+\end{equation}  
+
+E a não linearidade escolhida foi:
+
+\begin{equation}
+\Phi(\omega)=y(k)=1.5\omega(k)+0.2\omega^3(k)
+\label{eq:vrft_nl_wiener_phi}
+\end{equation}  
+
+Espera-se então que por $M(z)$ ser linear, que o controlador tenha um bloco que seja o inverso de $\Phi$, para
+que a não linearidade seja cancelada completamente.
+
+Atingir uma expressão analitica que descreva $\Phi^{-1}$ não é uma tarefa simples. Optou-se então por
+aproximar esta função por outro polinômio de ordem 4:
+
+\begin{equation}
+\Phi^{-1}(e)= v(k) = a_1e(t) + a_2 e^2(k) +a_3 e^3(k) +a_4 e^4(k)
+\label{eq:vrft_nl_wiener_phi_inv}
+\end{equation}  
+
+A partir da porção linear da planta é possível observar que a parte linear do controlador ótimo será:
+
+\begin{equation}
+C_d(z)= \frac{0.8z-0.72}{z-1}
+\label{eq:vrft_nl_wiener_cd}
+\end{equation}  
+
+Existe um integrador presente no controlador. Para evitar problemas de seguimento de referência optou-se por
+não identificar esta parte do controlador. Mantendo o denominador como um integrador e identificando o
+numerador, além do polinômio da equação \eqref{eq:vrft_nl_wiener_phi_inv}.
+
+Fazendo-se as substituições matemáticas necessárias, chega-se a expressão do sinal de saída do controlador que
+se quer identificar:
+
+\begin{equation}
+u(k)=\begin{bmatrix}
+\theta_1 & \theta_2 & \theta_3 & \theta_4 & \theta_5 & \theta_6 & \theta_7 & \theta_8
+\end{bmatrix}
+\begin{bmatrix}
+e(k)\\ 
+e^2(k)\\ 
+e^3(k)\\ 
+e^4(k)\\ 
+e(k-1)\\ 
+e^2(k-1)\\ 
+e^3(k-1)\\ 
+e^4(k-1)
+\end{bmatrix}
+\label{eq:vrft_nl_wiener_u}
+\end{equation}  
+
+Foram feitos 100 esperimentos de Monte Carlo e a média das estimativas obtidas foi de:
+
+\begin{equation}
+\text{média }\;\theta =\begin{bmatrix}
+0.4471 \\ 0.0020 \\ -6.5105\times10^{-4} \\ -1.5959\times10^{-5} \\ -0.4043 \\ -0.0016 \\ 6.1194\times10^{-4}
+\\ 1.4562\times10^{-5}
+\end{bmatrix}^T
+\nonumber
+\end{equation}
+
+Com um desvio padrão de:
+
+\begin{equation}
+\text{média }\;\theta = 1\times10^{-3}\begin{bmatrix}
+0.2430 \\ 0.0246 \\ 0.0015 \\ 0.0001 \\ 0.2613 \\ 0.0259 \\ 0.0016 \\ 0.0001
+\end{bmatrix}^T
+\nonumber
+\end{equation}
+
+O custo $J_{MR}(\theta)= 0.3820$ (custo entre os sinais de saída do sistema obtido e esperado) e o custo
+$J_{VR}=1.0119$ (custo dos sinais de saída do controlador, esperado e obtido).
+
+Como a estimativa de $\Phi^{-1}$ é apenas uma aproximação do que esperaria-se ser a inversa de $\Phi$, a
+classe de modelos escolhida para o controlador não consegue representar a totalidade do controlador ideal.
+
+Na Figura \ref{fig:vrft_nl_wiener_step} é apresentado um comparativo entre o sinal de saída do sistema $M(z)$
+quando submetido a um degrau unitário e o sinal do sistema com o controlador identificado.
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_step.eps}
+	\caption{resposta dos sistemas: desejado e obtido a um degrau unitário}
+	\label{fig:vrft_nl_wiener_step}
+\end{figure}
+
+Na Figura \ref{fig:vrft_nl_wiener_vw_step} é apresentado o comportamento dos sinais de saída e entrada das não
+linearidades $\Phi^{-1}$ e $\Phi$ respectivamente.
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_vw_step.eps}
+	\caption{sinais $v(k)$ e $\omega(k)$ quando o sistema é alimentado por um degrau unitário}
+	\label{fig:vrft_nl_wiener_vw_step}
+\end{figure}
+
+%===============================================================================
+\subsection{Não linearidades dinâmicas}
+\label{sec:vrft_nl_dinamic}
+%===============================================================================
+
+ref: 
+
+\cite{lecchini_campi_savaresi_2dof}
+
+
+\cite{Guardabassi}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
