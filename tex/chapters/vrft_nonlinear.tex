@@ -136,7 +136,7 @@ M(z)=\frac{0.4}{z-0.6}
 E a não linearidade escolhida foi:
 
 \begin{equation}
-\Phi(\omega)=y(k)=1.5\omega(k)+0.2\omega^3(k)
+\Phi(\omega)=y(t)=1.5\omega(t)+0.2\omega^3(t)
 \label{eq:vrft_nl_wiener_phi}
 \end{equation}  
 
@@ -147,7 +147,7 @@ Atingir uma expressão analitica que descreva $\Phi^{-1}$ não é uma tarefa simple
 aproximar esta função por outro polinômio de ordem 4:
 
 \begin{equation}
-\Phi^{-1}(e)= v(k) = a_1e(t) + a_2 e^2(k) +a_3 e^3(k) +a_4 e^4(k)
+\Phi^{-1}(e)= v(t) = a_1e(t) + a_2 e^2(t) +a_3 e^3(t) +a_4 e^4(t)
 \label{eq:vrft_nl_wiener_phi_inv}
 \end{equation}  
 
@@ -166,18 +166,18 @@ Fazendo-se as substituições matemáticas necessárias, chega-se a expressão do sin
 se quer identificar:
 
 \begin{equation}
-u(k)=\begin{bmatrix}
+u(t)=\begin{bmatrix}
 \theta_1 & \theta_2 & \theta_3 & \theta_4 & \theta_5 & \theta_6 & \theta_7 & \theta_8
 \end{bmatrix}
 \begin{bmatrix}
-e(k)\\ 
-e^2(k)\\ 
-e^3(k)\\ 
-e^4(k)\\ 
-e(k-1)\\ 
-e^2(k-1)\\ 
-e^3(k-1)\\ 
-e^4(k-1)
+e(t)\\ 
+e^2(t)\\ 
+e^3(t)\\ 
+e^4(t)\\ 
+e(t-1)\\ 
+e^2(t-1)\\ 
+e^3(t-1)\\ 
+e^4(t-1)
 \end{bmatrix}
 \label{eq:vrft_nl_wiener_u}
 \end{equation}  
@@ -223,8 +223,19 @@ linearidades $\Phi^{-1}$ e $\Phi$ respectivamente.
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_vw_step.eps}
-	\caption{sinais $v(k)$ e $\omega(k)$ quando o sistema é alimentado por um degrau unitário}
+	\caption{sinais $v(t)$ e $\omega(t)$ quando o sistema é alimentado por um degrau unitário}
 	\label{fig:vrft_nl_wiener_vw_step}
+\end{figure}
+
+A relação entre os sinais $v(t)$ e $\omega(t)$ é apresentado na Figura (\ref{fig:vrft_nl_wiener_vw}).
+Observa-se que a relação destes sinais é praticamente linear, garantidno que a aproximação de $\Phi^{-1}$ foi
+satisfatória para representar a inversa do sinal $\Phi$.
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_vw.eps}
+	\caption{relação entre os sinais $v(t)$ e $\omega(t)$ quando o sistema é alimentado por um degrau unitário}
+	\label{fig:vrft_nl_wiener_vw}
 \end{figure}
 
 %===============================================================================
