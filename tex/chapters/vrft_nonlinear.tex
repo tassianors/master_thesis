@@ -4,9 +4,9 @@
 %===============================================================================
 
 Como visto na seção \ref{sec:vrft_vrft}, o método VRFT tem um grande apelo, e produz resultados
-significativamente satisfátorios para diversos modelos lineares. 
+significativamente satisfatórios para diversos modelos lineares. 
 
-Nesta seção o objetivo é demosntrar como este método de coporta com sistemas não lineares. Duas
+Nesta seção o objetivo é demonstrar como este método de comporta com sistemas não lineares. Duas
 não linearidades serão apresentadas: estáticas, para isso será utilizado o modelo de Wiener (apresentado na
 seção \ref{sec:nl_models_wiener_hammerstein}) e não linearidades dinâmicas, a classe de modelos escolhido
 foram modelos NARMAX racionais (apresentados na seção \ref{sec:nl_models_narmax_rat}).
@@ -44,8 +44,8 @@ Imprecisões nesta estimativa apenas indicam que a segunda derivada de $J_{VRFT}$
 ter o mesmo mínimo que $J$. \cite{campi_savaresi2006}
 
 Devido ao custo e dificuldade de se obter $ \frac{\partial G\left [ u \right ]}{\partial u}$ e com o intuito
-de utilizar o algotirmo de identificação de sistemas racionais apresentados na seção
-\ref{sec:nl_si_algorithms_rationals} optous-se em utilizar sistemas não lineares que pudessem ser aproximados
+de utilizar o algoritmo de identificação de sistemas racionais apresentados na seção
+\ref{sec:nl_si_algorithms_rationals} optou-se em utilizar sistemas não lineares que pudessem ser aproximados
 por equações não lineares racionais ou polinomiais. E desta forma utilizar a metodologia VRFT para gerar os
 sinais $\bar{r}(t)$ e $e(t)$, e com isso alimentar o algoritmo de identificação de modelos racionais.
 
@@ -53,7 +53,7 @@ Como já foi discutido, utilizando o método VRFT, pode-se obter os sinais de alim
 posse do sinal de saída deste é possível identificar o controlador que melhor atinge o almejado comportamento
 da planta em malha fechada, descrito por $M(z)$.
 
-Desta forma, o que foi alterado do método classido do VRFT foi a utilização do algoritmo de identificação de
+Desta forma, o que foi alterado do método clássico do VRFT foi a utilização do algoritmo de identificação de
 modelos racionais, alimentando-o com o sinal de referência virtual $\bar{r}(t)$ e a saída $u(t)$.
 
 A seguir serão apresentados alguns exemplos do uso deste procedimento e os resultados obtidos. Os exemplos
@@ -121,19 +121,23 @@ controlador respectivamente.
 \label{fig:vrft_nl_wiener}
 \end{figure}
 
-Para este exmplo serão utilizadas as seguintes definições para o sistema:
+Para este exemplo serão utilizadas as seguintes definições para o sistema:
 
 \begin{equation}
 G'(z)=\frac{0.5}{z-0.9}
 \label{eq:vrft_nl_wiener_g}
 \end{equation} 
 
+$G'(z)$ é a parte linear da planta do sistema. O comportamento do sistema em malha fechada esperado foi
+definido como em $M(z)$:
+
 \begin{equation}
 M(z)=\frac{0.4}{z-0.6}
 \label{eq:vrft_nl_wiener_m}
 \end{equation}  
 
-E a não linearidade escolhida foi:
+A não linearidade presente na planta do sistema foi escolhida como sendo um polinômio de terceira ordem
+descrito como abaixo:
 
 \begin{equation}
 \Phi(\omega)=y(t)=1.5\omega(t)+0.2\omega^3(t)
@@ -141,26 +145,28 @@ E a não linearidade escolhida foi:
 \end{equation}  
 
 Espera-se então que por $M(z)$ ser linear, que o controlador tenha um bloco que seja o inverso de $\Phi$, para
-que a não linearidade seja cancelada completamente.
+que a não linearidade possa ser cancelada completamente.
 
-Atingir uma expressão analitica que descreva $\Phi^{-1}$ não é uma tarefa simples. Optou-se então por
+Atingir uma expressão analítica que descreva $\Phi^{-1}$ não é uma tarefa simples. Optou-se então por
 aproximar esta função por outro polinômio de ordem 4:
 
 \begin{equation}
-\Phi^{-1}(e)= v(t) = a_1e(t) + a_2 e^2(t) +a_3 e^3(t) +a_4 e^4(t)
+\Phi^{-1}(e(t))= v(t) = a_1e(t) + a_2 e^2(t) +a_3 e^3(t) +a_4 e^4(t)
 \label{eq:vrft_nl_wiener_phi_inv}
 \end{equation}  
 
-A partir da porção linear da planta é possível observar que a parte linear do controlador ótimo será:
+Desconsiderando a parte não linear presente na planta, é simples de observar que o controlador ótimo que
+levaria a planta em malha fechada a ter o comportamento descrito por $M(z)$ é:
 
 \begin{equation}
 C_d(z)= \frac{0.8z-0.72}{z-1}
 \label{eq:vrft_nl_wiener_cd}
 \end{equation}  
 
-Existe um integrador presente no controlador. Para evitar problemas de seguimento de referência optou-se por
-não identificar esta parte do controlador. Mantendo o denominador como um integrador e identificando o
-numerador, além do polinômio da equação \eqref{eq:vrft_nl_wiener_phi_inv}.
+O controlador $C_d(z)$ possui uma integrador em sua estrutura. Para evitar problemas de seguimento de
+referência optou-se por não identificar esta parte do controlador. Mantendo o denominador como um integrador
+e identificando apenas o numerador. Juntamente com a identificação do controlador da porção linear $C_d(z)$ é
+necessário identificar o polinômio da equação \eqref{eq:vrft_nl_wiener_phi_inv}.
 
 Fazendo-se as substituições matemáticas necessárias, chega-se a expressão do sinal de saída do controlador que
 se quer identificar:
@@ -182,7 +188,7 @@ e^4(t-1)
 \label{eq:vrft_nl_wiener_u}
 \end{equation}  
 
-Foram feitos 100 esperimentos de Monte Carlo e a média das estimativas obtidas foi de:
+Foram feitos 100 experimentos de Monte Carlo e a média das estimativas obtidas foi de:
 
 \begin{equation}
 \text{média }\;\theta =\begin{bmatrix}
@@ -201,14 +207,18 @@ Com um desvio padrão de:
 \nonumber
 \end{equation}
 
-O custo $J_{MR}(\theta)= 0.3820$ (custo entre os sinais de saída do sistema obtido e esperado) e o custo
-$J_{VR}=1.0119$ (custo dos sinais de saída do controlador, esperado e obtido).
+O custo entre os sinais de saída do sistema obtido e o sistema esperado $M(z)$ foi de  $J_{MR}(\theta)=
+0.3820$ e o custo dos sinais de saída do controlador esperado e obtido foi de $J_{VR}=1.0119$.
 
-Como a estimativa de $\Phi^{-1}$ é apenas uma aproximação do que esperaria-se ser a inversa de $\Phi$, a
-classe de modelos escolhida para o controlador não consegue representar a totalidade do controlador ideal.
+Como a estimativa de $\Phi^{-1}(e(t))$ é apenas uma aproximação do que espera-se ser a inversa de
+$\Phi(\omega(t))$, a classe de modelos escolhida para o controlador não consegue representar a totalidade do
+controlador ideal. Desta forma é esperado que a identificação não consiga atingir a totalidade da função
+$M(z)$ inicialmente escolhido. Para as estimativas foram utilizados sinais PRBS de 127 pontos para a
+excitação da planta.
 
-Na Figura \ref{fig:vrft_nl_wiener_step} é apresentado um comparativo entre o sinal de saída do sistema $M(z)$
-quando submetido a um degrau unitário e o sinal do sistema com o controlador identificado.
+Na Figura (\ref{fig:vrft_nl_wiener_step}) é apresentado um comparativo entre o sinal de saída do sistema
+$M(z)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado é
+aplicado sobre a planta em malha fechada.
 
 \begin{figure}[htbp] 
 	\center 
@@ -217,8 +227,8 @@ quando submetido a um degrau unitário e o sinal do sistema com o controlador ide
 	\label{fig:vrft_nl_wiener_step}
 \end{figure}
 
-Na Figura \ref{fig:vrft_nl_wiener_vw_step} é apresentado o comportamento dos sinais de saída e entrada das não
-linearidades $\Phi^{-1}$ e $\Phi$ respectivamente.
+Na Figura (\ref{fig:vrft_nl_wiener_vw_step}) é apresentado o comportamento dos sinais de saída e entrada das
+não linearidades $\Phi^{-1}(e(t))$ e $\Phi(\omega(t))$ respectivamente.
 
 \begin{figure}[htbp] 
 	\center 
@@ -228,7 +238,7 @@ linearidades $\Phi^{-1}$ e $\Phi$ respectivamente.
 \end{figure}
 
 A relação entre os sinais $v(t)$ e $\omega(t)$ é apresentado na Figura (\ref{fig:vrft_nl_wiener_vw}).
-Observa-se que a relação destes sinais é praticamente linear, garantidno que a aproximação de $\Phi^{-1}$ foi
+Observa-se que a relação destes sinais é praticamente linear, garantido que a aproximação de $\Phi^{-1}$ foi
 satisfatória para representar a inversa do sinal $\Phi$.
 
 \begin{figure}[htbp] 
@@ -242,7 +252,46 @@ satisfatória para representar a inversa do sinal $\Phi$.
 \subsection{Não linearidades dinâmicas}
 \label{sec:vrft_nl_dinamic}
 %===============================================================================
+para um ruido de 0.005
 
+mtheta =
+
+    0.4000    0.5999    0.1001    0.1501    0.5000
+
+
+vartheta =
+
+   1.0e-06 *
+
+    0.0498    0.4714    0.0581    0.4647    0.0911
+
+
+stdtheta =
+
+   1.0e-03 *
+
+    0.2231    0.6866    0.2411    0.6817    0.3019
+
+
+covtheta =
+
+   1.0e-06 *
+
+    0.0498    0.0585   -0.0353   -0.0362   -0.0018
+    0.0585    0.4714   -0.0449   -0.3690    0.0057
+   -0.0353   -0.0449    0.0581    0.0745   -0.0040
+   -0.0362   -0.3690    0.0745    0.4647   -0.0070
+   -0.0018    0.0057   -0.0040   -0.0070    0.0911
+
+
+Jvr_nl =
+
+   2.7291e-08
+
+
+Jmr_nl =
+
+    0.0033
 ref: 
 
 \cite{lecchini_campi_savaresi_2dof}
@@ -252,6 +301,44 @@ ref:
 
 
 
+ruido de 0.01
+
+mtheta =
+
+    0.4000    0.5997    0.1000    0.1503    0.5007
+
+
+vartheta =
+
+   1.0e-04 *
+
+    0.0609    0.6407    0.0593    0.4256    0.0970
+
+
+stdtheta =
+
+    0.0025    0.0080    0.0024    0.0065    0.0031
+
+
+covtheta =
+
+   1.0e-04 *
+
+    0.0609    0.1062   -0.0435   -0.0642   -0.0062
+    0.1062    0.6407   -0.0792   -0.4292    0.0071
+   -0.0435   -0.0792    0.0593    0.0902   -0.0097
+   -0.0642   -0.4292    0.0902    0.4256   -0.0194
+   -0.0062    0.0071   -0.0097   -0.0194    0.0970
+
+
+Jvr_nl =
+
+   1.9177e-06
+
+
+Jmr_nl =
+
+    0.0148
 
 
 

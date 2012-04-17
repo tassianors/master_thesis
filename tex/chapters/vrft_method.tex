@@ -9,10 +9,10 @@ utilizado. Desta forma pode ser utilizado com apenas um conjunto de dados, não n
 específicos. O procedimento procura pelo ponto ótimo do critério escolhido para a identificação do
 controlador. \cite{campi_savaresi2000}
 
-Diferentemente de métodos iterativos, o VRFT não recai sobre minimos locais, sempre procurando o mínimo
-global do critério escolhido. Isso só não é  verdade sempre pois esta aformativa depende das limitações de
-qualidade e exitabilidade do sinal utilizado para se adquirir os dados utilizados no processo. Dentro destas
-limitações é possivel afirmar que o método VRFT irá procurar pelo menor mínimo possível. Se o sinal utilizado
+Diferentemente de métodos iterativos, o VRFT não recai sobre mínimos locais, sempre procurando o mínimo
+global do critério escolhido. Isso só não é  verdade sempre pois esta afirmativa depende das limitações de
+qualidade e excitabilidade do sinal utilizado para se adquirir os dados utilizados no processo. Dentro destas
+limitações é possível afirmar que o método VRFT irá procurar pelo menor mínimo possível. Se o sinal utilizado
 para exitar o sistema for suficientemente informativo, então o minimo encontrado pelo método será um minimo
 global.
 
@@ -47,7 +47,7 @@ Sendo $M(z)$ o modelo de referência a ser atingido em malha fechada quando o con
 obtido é aplicado sobre a planta e $W(z)$ é uma matriz para ponderação escolhida pelo usuário.
 
 Como já mencionado, VRFT é um método {\it{direto}}, onde os dados coletados da planta são utilizados
-diretamente para identificar o controlador e não há necessidaade de identificação da planta para
+diretamente para identificar o controlador e não há necessidade de identificação da planta para
 então haver a identificação do controlador. Métodos diretos são conceitualmente mais naturais que
 os indiretos, mas mesmo com o apelo que estes métodos possuem, apenas alguns métodos genuinamente
 diretos são encontrados na literatura, dois destes são VRFT e IFT (seção
@@ -153,7 +153,7 @@ y_L (t)=M(z) \bar{r}_L (t)
 \label{eq:vrft_method_algorithm_ref}
 \end{equation}
 
-\item Selecione o vetor de parametros do controlador $\hat{\theta}$ que minimize o critério
+\item Selecione o vetor de parâmetros do controlador $\hat{\theta}$ que minimize o critério
 \eqref{eq:vrft_method_algorithm_criter}
 
 \begin{equation}
@@ -166,7 +166,7 @@ J_{VR}^N(\theta)=\frac{1}{N}\sum_{t=1}^{N}(u_L(t)-\varphi_L^T(t)\theta)^2
 \nonumber
 \end{equation}
 
-Desde que \eqref{eq:vrft_method_algorithm_criter} seja quadrática em $\theta$ o vetor de parametros
+Desde que \eqref{eq:vrft_method_algorithm_criter} seja quadrática em $\theta$ o vetor de parâmetros
 $\hat{\theta}$ que minimizam esta função custo podem ser calculados com
 \eqref{eq:vrft_method_algorithm_result}.
 
@@ -187,7 +187,7 @@ $\hat{\theta}$ que minimizam esta função custo podem ser calculados com
 Considerando a função custo $J_{MR}(\theta)$ apresentada em \eqref{eq:vrft_method_cost_func} e o
 critério do método de referência virtual $J_{VR}(\theta)$ apresentado em
 \eqref{eq:vrft_method_algorithm_criter} serem diferentes. A escolha correta do filtro $L(z)$
-propicia que estas duas equações tenham mínimos muito proximos.
+propicia que estas duas equações tenham mínimos muito próximos.
 \cite{campi_leccini_savaresi2002}
 
 A utilização do filtro é de grande importância em situações onde a escolha do modelo $\mathcal{C}(z,
@@ -217,7 +217,7 @@ J_{VR}^N(\theta) \to J_{VR}(\theta = E \left [ (u_L(t) - C(z, \theta)e_L(t))^2\r
 \label{eq:vrft_method_filter_criter_assim}
 \end{equation}
 
-Utilizando as definições de $u_L(t)$, $e_L(t)$ e dada a definição de $C_0(z)$ juntament com o
+Utilizando as definições de $u_L(t)$, $e_L(t)$ e dada a definição de $C_0(z)$ juntamente com o
 teorema de Perseval \cite{ljung}, o critério assintótico \eqref{eq:vrft_method_filter_criter_assim}
 tem sua representação como em \eqref{eq:vrft_method_filter_criter_vr}
 
@@ -239,13 +239,13 @@ $L(z)$ pode ser feita por:
 \label{eq:vrft_method_filter_l}
 \end{equation}
 
-Obtem-se com a utilização do filtro, uma estimativa onde o erro de polarização é minimizado.
+Obtém-se com a utilização do filtro, uma estimativa onde o erro de polarização é minimizado.
 %===============================================================================
 \subsubsection{VRFT e dados corrompidos por ruido}
 \label{sec:vrft_framework_noise}
 %===============================================================================
 
-Todos os equacionamentos até aqui apresentadso, consideraram que o sistema não seja afetado por
+Todos os equacionamentos até aqui apresentadas consideraram que o sistema não seja afetado por
 ruido. Nesta seção será apresentado brevemente o comportamento do método quando o sinal $y(t)$ é
 corrompido por um ruido aditivo como:
 
@@ -255,13 +255,13 @@ corrompido por um ruido aditivo como:
 \end{equation}
 
 Assume-se que o sinal $u(t)$ e $\xi(t)$ sejam descorrelacionados e também que os dados são coletados
-com a planta trabalhando em laço aberto. \cite{campi_leccini_savaresi2002}. Para a idéia extendida
+com a planta trabalhando em laço aberto. \cite{campi_leccini_savaresi2002}. Para a ideia estendida
 de dados coletados com a planta em laço fechado, uma explicação mais detalhada pode ser encontrada
 em \cite{lecchini}.
 
-Ao aplicar o algoritmo descrito na seção (\ref{sec:vrft_framework}) com dados sugeitos a ruidos, o
+Ao aplicar o algoritmo descrito na seção (\ref{sec:vrft_framework}) com dados sujeitos a ruídos, o
 resultado obtido possui erro de polarização (seção (\ref{sec:si_par_estim_uncertanties})). Isso pode
-ser compreendido analizando a expressão do critério $J_{VR}(\theta)$ quando utiliza-se o sinal
+ser compreendido analisando a expressão do critério $J_{VR}(\theta)$ quando utiliza-se o sinal
 $\tilde{y}(t)$:
 
 
@@ -284,7 +284,7 @@ regressor deste instrumento:
 \label{eq:vrft_framework_noise_iv}
 \end{equation}
 
-Os parametros do controlador $\hat{\theta}^{IV}_N $ podem então ser calculados como em
+Os parâmetros do controlador $\hat{\theta}^{IV}_N $ podem então ser calculados como em
 \eqref{eq:vrft_framework_noise_theta_iv}.
 
 \begin{equation}
@@ -294,15 +294,15 @@ Os parametros do controlador $\hat{\theta}^{IV}_N $ podem então ser calculados c
 \end{equation}
 
 São propostas duas alternativas para a escolha da variável instrumental. A primeira garante
-assimtoticamente que $\hat{\theta}^{IV}= \hat{\theta}$, entretanto um experimento adicional é
+assintoticamente que $\hat{\theta}^{IV}= \hat{\theta}$, entretanto um experimento adicional é
 requisitado, o segundo não garante rigorosamente $\hat{\theta}^{IV}= \hat{\theta}$, mas o erro
 esperado é pequeno, além disso um segundo experimento não é necessário.
 \cite{campi_leccini_savaresi2002}
 
 \begin{itemize}
 	\item {\it{Experimento Repetido:}} Executa-se um segundo experimento com a mesma entrada $u(t)$,
-	adquirindo-se a saida $\tilde{y}(t)'$. Como o rudio entre um experimento e outro é independente,
-	$\tilde{y}(t)$ e $\tilde{y}(t)'$ serão diferentes. Obtem-se então a variavel instrumental:
+	adquirindo-se a saída $\tilde{y}(t)'$. Como o ruido entre um experimento e outro é independente,
+	$\tilde{y}(t)$ e $\tilde{y}(t)'$ serão diferentes. Obtém-se então a variável instrumental:
 	
 	\begin{equation}
 	\zeta(y)=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\tilde{y}(t)'
@@ -311,7 +311,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 	
 	\item {\it{Identificação da planta:}} Identifica-se um modelo para a planta $\hat{G}(z)$ a partir
 	do conjunto de dados $\left \{ u(t), \; \tilde{y}(t) \right \}_{t=1,..., N}$  e então gera-se o
-	sinal simulado $\hat{y}=\hat{G}u(t)$, obtendo a variavel instrumental como:
+	sinal simulado $\hat{y}=\hat{G}u(t)$, obtendo a variável instrumental como:
 
 	\begin{equation}
 	\zeta(y)=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\hat{y}(t)
@@ -319,7 +319,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 	\end{equation}
 	
 	Devido as incertezas na estimativa de $\hat{G}(z)$, este segundo método não garante que a
-	estimativa tenda assimtoticamente a $\hat{\theta}$.
+	estimativa tenda assintoticamente a $\hat{\theta}$.
 	
 \end{itemize}
 
@@ -377,18 +377,18 @@ C(z, \rho)=\frac { \rho_1 z +\rho_2}{ z-1 }
 \end{equation}
 
 Utilizando o método do VRFT para identificação do controlador quando este está submetido a um ruido $\sigma
-_\upsilon ^2=0.005$ obtem-se a estimativas dos parametro s $\rho_1$ e $\rho_2$ apresentados na Figura
+_\upsilon ^2=0.005$ obtém-se a estimativas dos parâmetro s $\rho_1$ e $\rho_2$ apresentados na Figura
 (\ref{fig:vrft_bj_M10_var005}) com um resultado de 100 simulações de 2540 amostras cada.
 
 \begin{figure}[htbp]
 	\center
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var005.eps}
-	\caption{100 estimativas Monte Carlo dos parametros $\rho_1$ e $\rho_2$ para o
+	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o
 	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c}}
 	\label{fig:vrft_bj_M10_var005}
 \end{figure}
 
-Os parametros reais esperados para o controlador (equação \eqref{eq:vrft_methos_ex_bj_cd}) e a média de todas
+Os parâmetros reais esperados para o controlador (equação \eqref{eq:vrft_methos_ex_bj_cd}) e a média de todas
 as estimativas (valor representado por uma estrela na Figura (\ref{fig:vrft_bj_M10_var005})) não são os
 mesmos. Em uma situação onde o erro de polarização das estimativas não existe, o aumento de N (número de
 amostras) implica que esta diferença diminui, tendendo a zero. Em um cenário onde há erro de polarização, se 
@@ -397,14 +397,14 @@ aumentarmos a variância do ruido do sistema, será observado um aumento desta dif
 Na figura (\ref{fig:vrft_bj_M10_var02}) quadruplicou-se a variância do ruido inserido no sistema ($\sigma
 _\upsilon ^2=0.02$). Observa-se então que o erro de polarização existe na estimativa. Como descrito em
 \cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruido nas amostras, a estimativa é
-inevitavelmente polarizada. Neste mesmo trabalho é sugerido a utilização de {\it{variaveis instrumentais}}
+inevitavelmente polarizada. Neste mesmo trabalho é sugerido a utilização de {\it{variáveis instrumentais}}
 (Seção (\ref{sec:si_par_estim_iv})) para que este erro de polarização seja minimizado.
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02.eps}
-	\caption{100 estimativas Monte Carlo dos parametros $\rho_1$ e $\rho_2$ para o controlador apresentado em
-	\eqref{eq:vrft_methos_ex_bj_c} com varancia do ruido de 0.02}
+	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o controlador apresentado em
+	\eqref{eq:vrft_methos_ex_bj_c} com variância do ruido de 0.02}
 	\label{fig:vrft_bj_M10_var02}
 \end{figure}
 
@@ -415,26 +415,26 @@ o resultado obtido, para a mesma variância de $\sigma_\upsilon ^2=0.02$ do ruido
 \begin{figure}[htbp]
 	\center
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02_iv.eps}
-	\caption{100 estimativas Monte Carlo dos parametros $\rho_1$ e $\rho_2$ para o
-	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c} com varancia do
-	ruido de 0.02. Utilizando variáveis instrumentais para estimar os parametros.}
+	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o
+	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c} com variância do
+	ruido de 0.02. Utilizando variáveis instrumentais para estimar os parâmetros.}
 	\label{fig:vrft_bj_M10_var02_iv}
 \end{figure}
 
 Observa-se que o erro de polarização foi minimizado e que o resultado obtido possui um custo $J_{VR}^N(\theta)
-= 5.1242$ e a variância dos parametros estimados foi de $0.5064e-06$ para $\rho_1$ e de $0.5495e-06$ para
+= 5.1242$ e a variância dos parâmetros estimados foi de $0.5064e-06$ para $\rho_1$ e de $0.5495e-06$ para
 $\rho_2$.
 
-A fim de comparar o metodo VRFT utilizando e não utilizando variaveis instrumentais são apresentados abaixo as
+A fim de comparar o método VRFT utilizando e não utilizando variáveis instrumentais são apresentados abaixo as
 Tabelas (\ref{table:vrft_method_bj}) e (\ref{table:vrft_method_bj_iv}) onde o custo $J_{MR}$ (equação
 \eqref{eq:vrft_method_cost_func}) e o custo $J_{VR}^N$ (equação \eqref{eq:vrft_method_filter_criter_assim})
-são apresentados para diferentes valores de variância do ruido para o mesmo sismtema BJ.
+são apresentados para diferentes valores de variância do ruido para o mesmo sistema BJ.
 
 \begin{table*}[htbp]
 \begin{center}
 \caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
-estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o metodo
-VRFT não utiliza variáveis instrumentais para a estimativa dos parametros
+estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
+VRFT não utiliza variáveis instrumentais para a estimativa dos parâmetros
 $\rho$}
 \label{table:vrft_method_bj}
 \begin{tabular}{cccc}
@@ -457,8 +457,8 @@ $\rho$}
 \begin{table*}[htbp]
 \begin{center}
 \caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
-estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o metodo
-VRFT utiliza variáveis instrumentais para a estimativa dos parametros $\rho$}
+estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
+VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\rho$}
 \label{table:vrft_method_bj_iv}
 \begin{tabular}{cccc}
 \hline
@@ -477,7 +477,7 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parametros $\rho$}
 \end{table*}
 
 Utilizando variáveis instrumentais observa-se que o custo $J_{MR}(\theta)$ é significativamente mais baixo
-quando comparado com o metodo onde não são utilizadas variáveis instrumentais. Demonstrando assim que o
+quando comparado com o método onde não são utilizadas variáveis instrumentais. Demonstrando assim que o
 comportamento desejado do sistema foi atingido com uma melhor aproximação.
 
 %===============================================================================
@@ -517,30 +517,30 @@ C(z,\rho )=\frac { \rho _{ 1 }z^2+\rho _{ 2 }z+\rho _{ 3 } }{ z(z-1) }
 \label{eq:vrft_methos_ex_arx_c}
 \end{equation}
 
-Na Figura (\ref{fig:vrft_arx_M10_var005}) é apresentado o resultado da estimativa dos parametros do
-controlador quando não são utilizados variaveis instrumentais. Obteve-se desta forma um custo
+Na Figura (\ref{fig:vrft_arx_M10_var005}) é apresentado o resultado da estimativa dos parâmetros do
+controlador quando não são utilizados variáveis instrumentais. Obteve-se desta forma um custo
 $J_{VR}^N(\theta) = 2.5008e-05$ e $J_{MR}(\theta) = 1.7746e-05$ além de uma variância para as estimativas de
 $1.0e-07 \; [0.0364\;    0.1261\;    0.0377]$ para $\rho_1$, $\rho_2$ e $\rho_3$ respectivamente.
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_arx_M10_var005_.eps}
-	\caption{100 estimativas Monte Carlo dos parametros $\rho_1$, $\rho_2$ e $\rho_3$ para o controlador
-	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com varancia do ruido $\sigma_\upsilon ^2=0.005$}
+	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$, $\rho_2$ e $\rho_3$ para o controlador
+	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com variância do ruido $\sigma_\upsilon ^2=0.005$}
 	\label{fig:vrft_arx_M10_var005}
 \end{figure}
 
-Como já foi observado a utilização de variaveis instrumentais melhora significativamente o erro existente nas
-estimativas. Desta forma as informações apresentadas a seguir serão feitas utilizando variaveis instrumentais.
-Na figura (\ref{fig:vrft_arx_M10_var05_iv}) é apresentado a estimativa dos parametros do controlador para um
+Como já foi observado a utilização de variáveis instrumentais melhora significativamente o erro existente nas
+estimativas. Desta forma as informações apresentadas a seguir serão feitas utilizando variáveis instrumentais.
+Na figura (\ref{fig:vrft_arx_M10_var05_iv}) é apresentado a estimativa dos parâmetros do controlador para um
 ruido com variância $\sigma_\upsilon ^2=0.05$. Observa-se que não há erro de polarização nas estimativas. 
 O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft_method_arx_iv}).
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_arx_M10_var05_iv.eps}
-	\caption{100 estimativas Monte Carlo dos parametros $\rho_1$, $\rho_2$ e $\rho_3$ para o controlador
-	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com varancia do ruido $\sigma_\upsilon ^2=0.05$ utilizando
+	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$, $\rho_2$ e $\rho_3$ para o controlador
+	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com variância do ruido $\sigma_\upsilon ^2=0.05$ utilizando
 	variáveis instrumentais}
 	\label{fig:vrft_arx_M10_var05_iv}
 \end{figure}
@@ -549,8 +549,8 @@ O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft
 \begin{table*}[htbp]
 \begin{center}
 \caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
-estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o metodo
-VRFT utiliza variáveis instrumentais para a estimativa dos parametros $\rho$ do controlador
+estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
+VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\rho$ do controlador
 \eqref{eq:vrft_methos_ex_arx_c}}
 \label{table:vrft_method_arx_iv}
 \begin{tabular}{cccc}
@@ -617,7 +617,7 @@ Monte Carlo e o resultado obtido para a média das estimativas foi:
 \nonumber
 \end{equation}
 
-Onde o indice $L$ indica que este resultado foi obtido utilizando-se o filtro $L$.
+Onde o índice $L$ indica que este resultado foi obtido utilizando-se o filtro $L$.
 
 Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro $L$ descrito na seção
 (\ref{sec:vrft_framework_noise}), obteve-se o resultado seguinte:
@@ -628,7 +628,7 @@ Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro 
 \end{equation}
 
 Aplicando-se estes resultados ao controlador apresentado em \eqref{eq:vrft_methos_ex_pid_not_c} e de posse do
-comportamento desejado para o sistema em malha fechada ($M(z)$) é possivel fazer um comparativo da resposta de
+comportamento desejado para o sistema em malha fechada ($M(z)$) é possível fazer um comparativo da resposta de
 ao salto para o sistema utilizando os dois controladores obtidos. O resultado é apresentado na Figura
 (\ref{fig:vrft_notinclass_step}).
 
@@ -636,14 +636,14 @@ ao salto para o sistema utilizando os dois controladores obtidos. O resultado é 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_notinclass_step.eps}
 	\caption{Comparativo da resposta do sistema a um degrau unitário quando o controlador inserido é obtido pelo
-	metodo VRFT utilizando o filtro L e quando não se utiliza este artificio. O sistema foi simulado com um
+	método VRFT utilizando o filtro L e quando não se utiliza este artificio. O sistema foi simulado com um
 	ruido de variância $\sigma_\upsilon ^2=0.1$}
 	\label{fig:vrft_notinclass_step}
 \end{figure}
 
 Observa-se que para o sistema que utiliza o controlador estimado utilizando-se o filtro $L$, a resposta ao
 degrau unitário tem significativamente menos erro que o sistema utilizando o outro controlador. Ficando este
-promeiro muito mais próximo da função $M(z)$ desejada.
+primeiro muito mais próximo da função $M(z)$ desejada.
 
 Os custos destes dois sistemas é apresentado na Tabela (\ref{vrft_method_notinclass}).
 
@@ -669,7 +669,7 @@ Bode dos controladores obtidos (utilizando a média das estimativas obtidas).
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_notinclass_bode.eps}
 	\caption{Diagrama de Bode para as funções de transferência dos controladores estimados utilizando VRFT com e
-	sem o artificio do filtro L e variaveis instrumentais}
+	sem o artificio do filtro L e variáveis instrumentais}
 	\label{fig:vrft_notinclass_bode}
 \end{figure}
 
