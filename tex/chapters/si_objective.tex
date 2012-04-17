@@ -5,7 +5,7 @@
 
 Identificação de sistemas possui uma vasta aplicabilidade em inúmeros ramos do conhecimento,
 não é escopo deste trabalho enumerar todas as possibilidades de utilização desta ferramenta, nem tão pouco 
-esmiuçar sua teoria. Será aqui abordado as principais características e princípios que compõem a teoria de 
+esmiuçar sua teoria. Serão aqui abordadas as principais características e princípios que compõem a teoria de 
 identificação de sistemas lineares.
 
 O principal objetivo da identificação de um sistema é encontrar um modelo matemático que melhor consiga
@@ -32,12 +32,12 @@ y(t)=\varphi ^T(t)\theta
 
 Onde $y(t)$ é chamada de {\it{variável regredida}} e é medida do processo.
 $\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor de
-parâmetros.
+parâmetros a ser identificado.
 
 Assim, o erro pode ser reescrito como:
 
 \begin{equation}
-\varepsilon (t)=y(t)-\varphi ^T(t)\theta
+\varepsilon (t)=\hat{y}(t)-\varphi ^T(t)\theta
 \nonumber
 \end{equation} 
 
@@ -48,6 +48,9 @@ minimize a função custo:
 V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \| \varepsilon \right \|
 \label{eq:si_obj_etim_lsm_v}
 \end{equation}
+
+Com a minimização do erro $\varepsilon (t)$ encontra-se um conjunto de parametros $\theta$ que melhor
+consegue representar o relacionamento entre os sinais de entrada $u(t)$ e de saída $\hat{y}(t)$. 
 
 %===============================================================================
 \subsection{Identificabilidade de sistemas}
@@ -65,9 +68,9 @@ A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
 \label{eq:si_par_estim_sys_theorem}
 \end{equation}
 
-e com $\theta$ como em \eqref{eq:si_estim_predict_theta} sendo o coeficiente dos polinômios envolvidos.
-Os graus dos polinômios são $n_a$, $n_b$ e assim por diante. A estrutura deste modelo 
-é globalmente identificável se, e somente se, todos os itens de (i) até (vi) forem verdadeiros.
+e com $\theta$ sendo o coeficiente dos polinômios envolvidos. Os graus dos polinômios são $n_a$, $n_b$ e
+assim por diante. A estrutura deste modelo é globalmente identificável se, e somente se, todos os itens de
+(i) até (vi) forem verdadeiros.
 
 \begin{enumerate}[(i)]
 \item Não existe fator comum para todos os $z^{na}A^*(z), z^{nb}B^*(z), and, \; z^{nc}C^*(z)$.
@@ -92,6 +95,6 @@ A estrutura de modelo apresentada em \eqref{eq:si_par_estim_sys_theorem} é globa
 \end{cor} 
 
 A partir do Corolário (\ref{corollary:identificability}) temos que a identificação de sistemas
-utilizando os modelos descritos pela Tabela \ref{table:si_modeling_models} são globalmente identificáveis
-se tivermos os dados de entrada suficientemente informativos.
+utilizando os famílias ou conjuntos de modelos descritos por \eqref{eq:si_par_estim_sys_theorem}
+são globalmente identificáveis se tivermos dados de entrada suficientemente informativos.
 

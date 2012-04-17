@@ -252,96 +252,164 @@ satisfatória para representar a inversa do sinal $\Phi$.
 \subsection{Não linearidades dinâmicas}
 \label{sec:vrft_nl_dinamic}
 %===============================================================================
-para um ruido de 0.005
+Nesta seção serão apresentados alguns exemplos do algoritmo apresentado na Seção
+\ref{sec:nl_si_algorithms_rationals} em conjunto com o principio básico do método VRFT para a obtenção dos
+sinais $r(t)$ e $e(t)$, além do sinal escolhido $u(t)$ utilizado para excitar a planta e o próprio sinal de
+saída da planta $y(t)$.
 
-mtheta =
+\TODO: escrever algo mais aqui !!!!!!
 
-    0.4000    0.5999    0.1001    0.1501    0.5000
+%===============================================================================
+\subsubsection{Controlador sendo representado pelo modelo}
+\label{sec:vrft_nl_dinamic_c_match}
+%===============================================================================
+
+Considere a planta descrita por:
+
+\begin{equation}
+y(t)=\frac{0.1u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
+\label{eq:vrft_nl_dinamic_ex1_y}
+\end{equation}
+
+Deseja-se que em malha fechada seu comportamento seja como em:
+
+\begin{equation}
+M(z)=\frac{Y(z)}{R(z)}=\frac{0.4}{z-0.6}
+\label{eq:vrft_nl_dinamic_ex1_mz}
+\end{equation}
+
+A equação de $M(z)$ pode ser reescrita em função do tempo como em:
+
+\begin{equation}
+y(t)=0.4r(t-1)+0.6y(t-1)
+\label{eq:vrft_nl_dinamic_ex1_mt}
+\end{equation}
+
+Ao igualarmos a equação \eqref{eq:vrft_nl_dinamic_ex1_y} com \eqref{eq:vrft_nl_dinamic_ex1_mt} e isolando o
+sinal $u(t)$ temos a equação que descreve o comportamento do controlador que levará a planta a ter o
+comportamento descrito por $M(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
+
+\begin{equation}
+u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-2)r(t-1)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
+\label{eq:vrft_nl_dinamic_ex1_cd}
+\end{equation}
+
+Escolhendo um conjunto de modelos que consegue representar o controlador ótimo:
+
+\begin{equation}
+u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 y^2(t-2)r(t-1)+ \theta_4 y(t)y^2(t-1)}{1+ \theta_5 y(t)}
+\label{eq:vrft_nl_dinamic_ex1_c}
+\end{equation}
+
+Utilizando um sinal PRBS de tamanho 254 e o método do VRFT para gerar os sinais $r(t)$ e $e(t)$. 
+Adicionando-se um ruido de variância $\sigma^2 = 0.005$, a média da estimativa para 100 experimentos de
+Monte Carlo foi de:
 
 
-vartheta =
+\begin{equation}
+\text{média de }\theta=\begin{bmatrix}
+0.4000 & 0.5999 & 0.1001 & 0.1501 & 0.5000
+\end{bmatrix}
+\nonumber
+\end{equation}
 
-   1.0e-06 *
+\begin{equation}
+\text{Desvio padrão de }\theta=1.0\times 10^{-3}\begin{bmatrix}
+0.2231 & 0.6866 & 0.2411 & 0.6817 & 0.3019
+\end{bmatrix}
+\nonumber
+\end{equation}
 
-    0.0498    0.4714    0.0581    0.4647    0.0911
+\begin{equation}
+\text{Covariância }\theta=1.0\times 10^{-6}\begin{bmatrix}
+ 0.0498 &  0.0585 & -0.0353 & -0.0362 & -0.0018 \\
+ 0.0585 &  0.4714 & -0.0449 & -0.3690 &  0.0057 \\
+-0.0353 & -0.0449 &  0.0581 &  0.0745 & -0.0040 \\
+-0.0362 & -0.3690 &  0.0745 &  0.4647 & -0.0070 \\
+-0.0018 &  0.0057 & -0.0040 & -0.0070 &  0.0911
+\end{bmatrix}
+\nonumber
+\end{equation}
 
+Simulando o sistema obtido com o controlador estimado e o sistema em malha fechada desejado, o erro observado
+é apresentado na figura \ref{fig:vrft_nl_dynamic_step_erro}.
 
-stdtheta =
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_dynamic_erro_step.eps}
+	\caption{Erro entre o a resposta esperada e obtida para uma entrada do tipo degrau unitário}
+	\label{fig:vrft_nl_dynamic_step_erro}
+\end{figure}
 
-   1.0e-03 *
+E a fim de ilustrar as estimativas obtidas pelo método, na Figura \ref{fig:vrft_nl_dynamic_t1_t2} são
+apresentados as estimativas para os 100 experimentos realizados, além da elipse de confiança de $\chi^2=95\%$
+para os parametros $\theta_1$ e $\theta_2$.
 
-    0.2231    0.6866    0.2411    0.6817    0.3019
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_dynamic_t1_t2.eps}
+	\caption{100 esperimentos de Monte Carlo das variáveis $\theta_1$ e $\theta_2$}
+	\label{fig:vrft_nl_dynamic_t1_t2}
+\end{figure}
 
+O custo $J_{VRFT}=2.7291\times10{-8}$ foi obtido utilizando-se os sinais de saída do controlador obtido e
+esperado. Já o custo entre os sinais de saída do sistema em malha fechada estimado e desejado foi de
+$J_{MR}=0.0033$.
 
-covtheta =
-
-   1.0e-06 *
-
-    0.0498    0.0585   -0.0353   -0.0362   -0.0018
-    0.0585    0.4714   -0.0449   -0.3690    0.0057
-   -0.0353   -0.0449    0.0581    0.0745   -0.0040
-   -0.0362   -0.3690    0.0745    0.4647   -0.0070
-   -0.0018    0.0057   -0.0040   -0.0070    0.0911
-
-
-Jvr_nl =
-
-   2.7291e-08
-
-
-Jmr_nl =
-
-    0.0033
-ref: 
 
 \cite{lecchini_campi_savaresi_2dof}
-
-
 \cite{Guardabassi}
 
 
 
-ruido de 0.01
+%ruido de 0.01
+%
+%mtheta =
+%
+%    0.4000    0.5997    0.1000    0.1503    0.5007
+%
+%
+%vartheta =
+%
+%   1.0e-04 *
+%
+%    0.0609    0.6407    0.0593    0.4256    0.0970
+%
+%
+%stdtheta =
+%
+%    0.0025    0.0080    0.0024    0.0065    0.0031
+%
+%
+%covtheta =
+%
+%   1.0e-04 *
+%
+%    0.0609    0.1062   -0.0435   -0.0642   -0.0062
+%    0.1062    0.6407   -0.0792   -0.4292    0.0071
+%   -0.0435   -0.0792    0.0593    0.0902   -0.0097
+%   -0.0642   -0.4292    0.0902    0.4256   -0.0194
+%   -0.0062    0.0071   -0.0097   -0.0194    0.0970
+%
+%
+%Jvr_nl =
+%
+%   1.9177e-06
+%
+%
+%Jmr_nl =
+%
+%    0.0148
+%
+%===============================================================================
+\subsubsection{Controlador sendo representado pelo modelo 2}
+\label{sec:vrft_nl_dinamic_c_match2}
+%===============================================================================
 
-mtheta =
-
-    0.4000    0.5997    0.1000    0.1503    0.5007
-
-
-vartheta =
-
-   1.0e-04 *
-
-    0.0609    0.6407    0.0593    0.4256    0.0970
-
-
-stdtheta =
-
-    0.0025    0.0080    0.0024    0.0065    0.0031
-
-
-covtheta =
-
-   1.0e-04 *
-
-    0.0609    0.1062   -0.0435   -0.0642   -0.0062
-    0.1062    0.6407   -0.0792   -0.4292    0.0071
-   -0.0435   -0.0792    0.0593    0.0902   -0.0097
-   -0.0642   -0.4292    0.0902    0.4256   -0.0194
-   -0.0062    0.0071   -0.0097   -0.0194    0.0970
-
-
-Jvr_nl =
-
-   1.9177e-06
-
-
-Jmr_nl =
-
-    0.0148
-
-
-
+%===============================================================================
+\subsubsection{Controlador não sendo representado pelo modelo}
+\label{sec:vrft_nl_dinamic_c_not_match}
+%===============================================================================
 
 
 
