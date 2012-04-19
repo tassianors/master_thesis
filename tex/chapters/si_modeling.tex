@@ -68,8 +68,8 @@ y(t)=G(q)u(t)+H(q)e(t)
 \label{eq:si_modeling_lti}
 \end{equation}
 
-Com $G(q)$ sendo a representação da planta e $H(q)$ a descrição do ruido que afeta o sistema. Representados
-como abaixo:
+Com $G(q)$ sendo a representação da planta e $H(q)$ a descrição do ruido que afeta o sistema.
+Ambos sendo representados como abaixo:
 
 \begin{equation}
 G(q)=\sum_{k=1}^{\infty}g(k)q^{-k}
@@ -82,7 +82,7 @@ H(q)=1+\sum_{k=1}^{\infty}h(k)q^{-k}
 \end{equation}
 
 Uma forma direta para a identificação de sistemas é tornar as funções $G(q)$ e $H(q)$ em funções racionais e
-que os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo de identificação.
+os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo de identificação.
 
 Provavelmente o modelo mais simples para descrever a relação entre entrada e saída é obtido
 descrevendo o sistema como uma equação linear (\ref{eq:si_modeling_arx}). \cite{ljung}
@@ -92,7 +92,7 @@ y(t)+a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)+e(t)
 \label{eq:si_modeling_arx}
 \end{equation}
 
-O ruido branco $e(t)$ aqui entra como um erro direto na equação. O parâmetros ajustáveis neste caso são:
+O ruido branco $e(t)$ aqui entra como um erro direto na equação. Os parâmetros ajustáveis neste caso são:
 
 \begin{equation}
 \theta = \begin{bmatrix}
@@ -127,12 +127,14 @@ y(t) & +a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)\\
 \label{eq:si_modeling_armax}
 \end{equation}
 
-Com a equação abaixo correspondendo com as funções de transferência em (\ref{eq:si_modeling_lti_det_armax}).
+Define-se o polinômio que filtra o ruído como:
 
 \begin{equation}
 C(q)=1+c_1q^{-1}+...+c_{nc}q^{-n_c}
 \nonumber
 \end{equation}
+
+E as funções de transferência como abaixo:
 
 \begin{equation}
 G(q, \theta)=\frac{B(q)}{A(q)} , \;\;
@@ -140,7 +142,7 @@ H(q, \theta)=\frac{C(q)}{A(q)}
 \label{eq:si_modeling_lti_det_armax}
 \end{equation}
 
-Onde os parâmetros a estimar são:
+Tem-se então que os parâmetros à estimar são:
 
 \begin{equation}
 \theta = \begin{bmatrix}
