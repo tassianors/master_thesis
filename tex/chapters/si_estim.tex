@@ -40,6 +40,13 @@ $\hat{y}(t)$ é o sinal de saída do preditor. A diferênça entre o valor do predit
 \end{equation}
 
 
+A Figura (\ref{fig:si_estim_pem}) apresenta um diagrama de blocos de como é organizado o método do erro de
+predição. Existe um processo que gostaria de ser estimado, para isso escolhe-se uma classe de modelos onde os
+parametros a serem ajustados são $\theta$. O preditor é ajustado, baseado nas diferentes possíbilidades de
+escolha de $\theta$, este ajuste é feito baseado no erro entre o sistema real ($y(t)$) e a saída do preditor
+$\hat{y}(t, \theta)$.
+
+
 \begin{figure}[htbp]
 \center
 %\scalebox{1} % Change this value to rescale the drawing.
@@ -93,147 +100,32 @@ $\hat{y}(t)$ é o sinal de saída do preditor. A diferênça entre o valor do predit
 \rput(4.2632813,-0.69){Ajustável ($\theta$)}
 \end{pspicture} 
 %}
-\caption{dlkjhsfjdhf kljh dfh sdlf}
-\label{fig:vrft_method_cl}
+\caption{Diagrama de blocos para o método do erro de predição}
+\label{fig:si_estim_pem}
 \end{figure}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Considere o sistema apresentado em (\ref{eq:si_modeling_lti}). Assume-se que para um preditor de um passo a
-frente os sinais $y(p)$ e $u(p)$ são conhecidos para $p \le t-1$. A partir de
+Considerando o sistema linear:
 
 \begin{equation}
-\upsilon (p)=y(p) -G(q)u(p)
-\label{eq:si_par_estim_vs}
+y(t)=G(q^{-1}, \theta)u(t)+H(q^{-1}, \theta)e(t)
+\label{eq:si_par_estim_system}
 \end{equation}
 
-tem-se que até $\upsilon (p)$ é definido para $p \le t-1$. Como $e(t)$ pode ser estimado por
+Assumindo que $G(0, \theta)=0$, $H(0,\theta)=I$ e que $H^{-1}(q^{-1}, \theta)$ e $H^{-1}(q^{-1},\theta)
+G(q^{-1},\theta)$ são assisntóticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$ não forem correlacionados
+então o preditor ótimo pode ser apresentado como: \cite{system_identification}
 
 \begin{equation}
-e(t)=\widetilde { H } (q)\upsilon (t)
-\label{eq:si_par_estim_e}
-\end{equation}
-
-O objetivo então é prever $y(t)$ como em:
-
-\begin{equation}
-y(t)=G(q)u(t)+\upsilon (t)
-\label{eq:si_par_estim_yt}
-\end{equation}
-
-Fazendo-se as substituições necessárias chega-se ao estimador 
-
-\begin{equation}
-\hat { y } (t|t-1)={ H }^{ -1 }(q)G(q)u(t)+\left[ 1-{ H }^{ -1 }(q) \right] y(t)
-\label{eq:si_par_estim_predict}
-\end{equation}
-
-Enfatiza-se a dependência com o parâmetro $\theta$ \cite{ljung}:
-
-\begin{equation}
-\hat{y}(t|\theta)=H^{-1}(q,\theta)G(q,\theta)u(t)+\left [ 1- H^{-1}(q,\theta)\right ]y(t)
+\hat{y}(t|t-1, \theta)= H^{-1}(q^{-1}, \theta)G(q^{-1}, \theta)u(t)+\left \{ I-H^{-1}(q^{-1}, \theta) \right
+\}y(t)
 \label{eq:si_par_estim_predictor}
 \end{equation}
 
-Este preditor também é conhecido como preditor ótimo, sendo utilizado em diversos métodos de identificação de
-sistemas.
-
-O erro de predição é a diferença entre os valores atingido pelo preditor e os valores 
-reais coletados do sistema como apresentado em:
- 
 \begin{equation}
-\varepsilon (t| \theta)=y(t)-\hat{y}(t|\theta)
-\label{eq:si_par_estim_err_predic}
-\end{equation}
-
-Onde $y(t)$ são os dados coletados do sistema e $\hat{y}(t|\theta)$ os dados provenientes da 
-estimativa.
-
-Este erro é amplamente utilizado para determinar a qualidade da estimativa que se 
-encontra. Como será visto a seguir.
-
-A equação do erro (\eqref{eq:si_par_estim_err_predic} pode ser reescrita como:
-
-\begin{equation}
-\varepsilon (t,\theta)=\frac{D(q)}{C(q)}\left [ A(q)y(t) - \frac{B(q)}{F(q)}u(t)\right ]
+\varepsilon (t,\theta)=e(t)=H^{-1}(q^{-1}, \theta)\left \{ y(t)-G(q^{-1}, \theta)u(t) \right \}
 \nonumber
 \end{equation}
 
-Definimos então duas variáveis auxiliares \eqref{eq:si_estim_predict_w} e \eqref{eq:si_estim_predict_v}
-
-\begin{equation}
-w(t,\theta)=\frac{B(q)}{F(q)}u(t)
-\label{eq:si_estim_predict_w}
-\end{equation}
-
-\begin{equation}
-\upsilon (t,\theta)=A(q)y(t)-w(t,\theta)
-\label{eq:si_estim_predict_v}
-\end{equation}
-
-Então:
-
-\begin{equation}
-\varepsilon (t,\theta)=y(t)-\hat{y}(t|\theta)=\frac{D(q)}{C(q)}\upsilon (t,\theta)
-\nonumber
-\end{equation}
-
-Desta forma introduz-se: .\cite{ljung}
-
-\begin{equation}
-\begin{matrix}
-\varphi (t,\theta)= & [ -y(t-1), ... , -y(t-n_a), u(t-1), ..., u(t-n_b),\\ 
- & -w(t-1, \theta),..., -w(t-n_f, \theta), \varepsilon (t-1, \theta), ...,\varepsilon (t-n_c, \theta),\\ 
- & \upsilon (t-1, \theta), ...,\upsilon (t-n_d, \theta) ]^T
-\end{matrix}
-\label{eq:si_estim_predic_state}
-\end{equation}
-
-E o vetor de parâmetros:
-
-\begin{equation}
-\theta = \left [ a_1 \; ... \; a_{na} \; b_1 \; ... \; b_{nb} \; f_1 \; ... \; f_{nf} \; c_1 \; ... \; c_{nc} \; d_1 \; ... \; d_{nd}\right ]^T
-\label{eq:si_estim_predict_theta}
-\end{equation}
-
-Chega-se então à seguinte equação para o erro de predição:
-
-\begin{equation}
-\varepsilon (t,\theta)=y(t)-\theta^T\varphi (t,\theta)
-\label{eq:si_estim_predict_erro_epsilon}
-\end{equation}
-
-Onde:
-
-\begin{equation}
-\hat{y}(t| \theta)=\theta^T\varphi (t,\theta)=\varphi ^T(t,\theta)\theta
-\label{eq:si_estim_predict_erro}
-\end{equation}
 
 %===============================================================================
 \subsection{Método dos mínimos quadrados}
@@ -244,18 +136,8 @@ Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, reme
 ao ano de 1809 utilizado por Gauss para determinação da órbita dos planetas. 
 \cite{system_identification}. Método este chamado de mínimos quadrados (MMQ).
 
-O modelo apresentado em (\ref{eq:si_obj_single_var}) é facilmente estendido para o modelo
-multivariáveis (\ref{eq:si_lsm_multi_var}).
-
-\begin{equation}
-y(t)=\Phi ^T(t)\theta
-\label{eq:si_lsm_multi_var}
-\end{equation}
-
-Onde $y(t)$ é um vetor de $p$ posições, $\Phi(t)$ uma matriz $n \times p$ e $\theta$ é um 
-vetor de $N$ posições.
-
-A partir de (\ref{eq:si_par_estim_err_predic}) e (\ref{eq:si_obj_single_var}) temos 
+A partir d erro de predição (\ref{eq:si_estim_prediction_error}) e (\ref{eq:si_obj_single_var}) podemos
+redefinir o erro de predição como:
 
 \begin{equation}
 \varepsilon (t)=y(t)-\varphi ^T(t)\theta
@@ -263,25 +145,22 @@ A partir de (\ref{eq:si_par_estim_err_predic}) e (\ref{eq:si_obj_single_var}) te
 \end{equation}
 
 A {\it{estimativa dos mínimos quadrados}} de $\theta$ é definido como o vetor $\hat{\theta}$ 
-que minimiza a função custo (\ref{eq:si_obj_etim_lsm_v}). Este é o critério de minimização do 
-erro de predição para o método dos mínimos quadrados.
-
-O valor de $\hat{\theta}$ que minimiza (\ref{eq:si_obj_single_var}) é então dado
-por:\cite{system_identification}
+que minimiza a função custo (\ref{eq:si_obj_etim_lsm_v}). O valor de $\hat{\theta}$ que minimiza
+esta função custo é dada por: \cite{system_identification}
 
 \begin{equation}
 \hat{\theta}=(\varphi ^T \varphi )^{-1}\varphi  ^T y
 \label{eq:si_par_etim_lsm_theta}
 \end{equation}
 
-O mínimo da função custo fica como em:
+Desta forma o mínimo da função custo fica como em:
 
 \begin{equation}
 \underset{\theta}{min}\;V(\theta)=V(\hat{\theta})=\frac{1}{2}\left [ y^Ty-y^T\varphi (\varphi ^T \varphi )^{-1}\varphi ^T y \right ]
 \end{equation}
 
 O método dos mínimos quadrados é simples de ser aplicado, mas tem o inconveniente de que para que não existam
-erros de polarização na estimativa, a variável de regressão $\phi(t)$ não pode estar correlacionada com o
+erros de polarização na estimativa, a variável de regressão $\varphi(t)$ não pode estar correlacionada com o
 distúrbio estocástico $\nu(t)$. Assume-se que o sistema real é dado por:
 
 \begin{equation}
@@ -296,9 +175,10 @@ certa forma é bastante restritivo.
 E(\varphi(t) \; \nu(t)) = 0
 \label{eq:si_par_etim_iv_estim}
 \end{equation}
-satisfeito somente se $\nu(t)$
-for ruido branco. Esta desvantagem do método dos mínimos quadrados pode ser visto como uma
-vantagem para a introdução do método de variáveis instrumentais. \cite{system_identification}
+
+satisfeito somente se $\nu(t)$ for ruido branco. Esta desvantagem do método dos mínimos quadrados pode ser
+visto como uma oportunidade para a introdução do método de variáveis instrumentais.
+\cite{system_identification}
 
 %===============================================================================
 \subsection{Método das variáveis instrumentais}
@@ -306,7 +186,10 @@ vantagem para a introdução do método de variáveis instrumentais. \cite{system_id
 %===============================================================================
 % bibliografia principal: aguirre e ljung
 
-
+Como foi visto anteriormente o método dos mínimos quadrados é simples e fácil de ser aplicado mas carece
+quando existe correlação entre o regressor $\varphi$ e o ruído estocástico $\nu$. Nesta seção será apresentado
+uma breve discussão sobre um dos métodos que se propõem a sanar esta fraqueza do método dos mínimos quadrados:
+método das vairáveis instrumentais.
 
 Assume-se que $Z(t)$ é uma matriz $n\times n$ que possuem sinais não correlacionados com o 
 distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \eqref{eq:si_par_estim_iv_theta}:
@@ -316,7 +199,7 @@ distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \e
 \label{eq:si_par_estim_iv_theta}
 \end{equation}
 
-Se a dimensão da matriz $Z(t)$ for a mesma dimensão de $\theta$ temos o estimados dos método de 
+Se a dimensão da matriz $Z(t)$ for a mesma dimensão de $\theta$ temos o estimador do método das 
 variáveis instrumentais \eqref{eq:si_par_estim_iv}:
 
 \begin{equation}
@@ -333,7 +216,7 @@ não haja erro de polarização \eqref{eq:si_par_etim_iv_estim}. O valor a ser pago
 
 \begin{enumerate}[(I)]
 \item Escolha das variáveis instrumentais.
-\item O estimador resultante é assintoticamente não polarizado, ao invés de ser apenas não polarizado.
+\item O estimador resultante é assintoticamente não polarizado, ao invés de ser apenas não polarizado. 
 \end{enumerate}
 
 Ao escolher as variáveis instrumentais é importante notar que a escolha não deve ser apenas para evitar 
