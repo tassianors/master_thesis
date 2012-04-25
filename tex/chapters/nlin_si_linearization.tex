@@ -3,6 +3,19 @@
 \label{sec:nlin_si_basic}
 %===============================================================================
 
+Muitos, se não todos, os sistemas são não lineares. Existe entretanto um grande número destes sistemas que
+podem e são representados por sistemas lineares em determinadas faixas de atuação, e conseguem desta forma
+representar de forma satisfatória o sistema observado. Todavia alguns sistemas para serem linearizados exigem
+uma faixa de atuação muito estreita, fazendo com que o sistema em sua operação normal já saida desta faixa,
+tornando o modelo linear erroneo para aquela faixa de operação.
+
+Tem-se desta forma uma das justificativas de se escolher um modelo não linear para caracterizar o sistema em
+questão. Ganha-se de um lado no quisito de faixa de atuação mais ampla e perde-se por abdicar da simplicidade
+de sistemas lineares para entrar em um mundo não tão bem explorado dos sistemas não lineares.
+
+A seguir serão abordados algumas caracteristicas de sistemas não lineares linearizados ao redor do ponto de
+operação.
+
 %===============================================================================
 \subsection{Linearização}
 \label{sec:nlin_si_basic_linearization}
@@ -11,19 +24,7 @@
 % ljng 		142
 % Aguirre
 
-Talvez o mais comum uso de sistemas lineares variantes no tempo esteja relacionado
-a linearização de sistema não lineares em torno de uma trajetória. Suponha que
-o sistema não linear é descrito por:\cite{ljung}
-
-\begin{equation}
-\left\{\begin{matrix}
-x(k+1) = f(x(k),u(k))+r(x(k),u(k))w(k)\\ 
-y(k)  = h(x(k))+m(x(k),u(k))\upsilon (k)
-\end{matrix}\right.
-\label{eq:nl_linearization_sys}
-\end{equation}
-
-Existem duas básicas limitações para sistemas linearizados. Primeiro que a linearização
+Existem duas limitações básicas para sistemas linearizados. Primeiro que a linearização
 é uma aproximação ao redor do ponto de operação, ele pode prever apenas o comportamento
 nesta localidade do sistema e não o comportamento global. Segundo, as dinâmicas
 de sistemas não lineares são muito mais ricas que as de sistemas lineares. Existem portanto alguns
@@ -58,7 +59,7 @@ são atingidas com sistemas não lineares. Alguns sistemas possuem oscilações com
 amplitude e frequência constantes, independente das condições iniciais. Chama-se isso de
 ciclos limites.
 
-\item Sub harmônicas, harmônicas ou quase periódicas oscilações
+\item Sub harmônicas, harmônicas ou oscilações quase periódicas 
 
 Um sistema linear estável sobre uma entrada periódica produz uma saída na mesma frequência.
 Sistemas não lineares alimentados por sinais periódicos podem oscilar com frequências que
@@ -75,12 +76,4 @@ randômico, independentemente da natureza do sistema.
 
 É comum para um sistema não linear exibir dois ou mais modos de comportamento distintos.
 \end{itemize}
-
-
-
-
-
-
-
-
 

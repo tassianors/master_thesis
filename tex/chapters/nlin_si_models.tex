@@ -5,23 +5,25 @@
 % ideia aqui é colocar uma pequena introdução sobre modelos.. no mesmo estilo
 % que foi para sistemas lineares.
 
-Na seção (\ref{sec:sys_ident_modelling_choosing}) foi apresentado o conceito de modelos para
-sistemas lineares. Nesta seção será apresentado de forma análoga o conceito de modelos e tipos de
-modelos para sistemas não lineares. Um problema fundamental referente a modelos parametrizados 
-refere-se ao fato do parâmetro poder ou não ser determinado nos valores medidos de entrada e saída
-dos dados. \cite{glad_ljung}
+Na seção (\ref{sec:sys_ident_modelling_choosing}) foi apresentado o conceito de conjunto de modelos para
+sistemas lineares. Nesta seção será apresentado de forma análoga o conceito de conjunto de modelos  para
+sistemas não lineares. 
 
-Na seção (\ref{sec:nl_models_wiener_hammerstein}) será apresentado um dos modelos mais antigos e que
-juntamente com o modelo de Voltera (seção (\ref{sec:nl_models_volterra})) iniciaram o
-desenvolvimento dos modelos matemáticos para sistemas não lineares. 
+Modelos para sistemas podem ser divididos em dois grupos principais, baseados na natureza de suas não
+linearidades: não linearidades estáticas, onde a dinâmica do sistema pode ser bem caracterizada por um modelo
+linear enquanto que a parte naõ linear está concentrado ou na entrada ou na saída do sistema estaticamente.
+Para estes sistemas a forma mais usual para caracterizar é utilizando o método de Wiener para não lineridades
+na saída do sistem ou o modelo de Hammerstein, quando a não linearidade está na entrada do processo.
 
-Também serão apresentados modelos mais recentes, como as funções radiais de base (seção
-(\ref{sec:nl_models_radiais})) derivadas do conceito de redes neurais (\ref{sec:nl_models_neurals}).
-Por fim será apresentado o conceito de modelos {\it{NARX}} e duas de suas representações:
-Polinomiais (seção \ref{sec:nl_models_narmax_pol}) e Racionais (seção 
-\ref{sec:nl_models_narmax_rat}), que são amplamente utilizadas para caracterização de sistemas não
-lineares, devido entre outros fatores, aos algoritmos desenvolvidos e a quantidade de sistemas
-reais que podem ser descritos por estes modelos.
+Para os demais casos, onde a não linearidade está na dinâmica do processo existem várias familias de modelos
+que podem ser utilizados como será visto no decorrer deste capítulo. De forma geral todos estes conjuntos
+possuem em comum a idéia da escolha de uma base que seja representativa e que possa reduzir a quantidade de
+termos a ser identificada e com isso ter uma boa aproximação do sistema real com a menor quantidade de
+parametros possível.
+
+Percebe-se então que um mesmo sistema pode ser representado por diversos destes modelos, mas dependendo das
+caracteristicas deste sistema, uma das famílias de modelos será mais adequada, por sua baser possuir mais
+facilidade em representar certo tipo de não linearidades.
 
 Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
 modelo. Quando este modelo é não linear, existe uma grande quantidade de opções e com isso o perigo
@@ -29,14 +31,17 @@ de escolher um modelo desnecessariamente complexo é evidente. Isso baseia-se no 
 da parsemônia}} que basicamente determina que o modelo deve ser o mais simples possível.
 \cite{aguirre_maps}
 
-Uma das primeiras justificativas para o desenvolvimento de métodos para a escolha de modelos é a
-grande dificuldade de trabalhar com modelos muito grandes e complexos. Existe o problema destes modelos
-serem numericamente mal condicionados. Existe também uma convicção de que estes modelos, com muitos
-parâmetros, são redundantes e poderiam ser removidos do modelo. Um modelo com um número excessivo de
-parâmetros podem exibir dinâmicas que não são observadas no sistema real, desta forma não existe
+Uma das primeiras justificativas para o desenvolvimento de métodos para a escolha de famílias de modelos é a
+grande dificuldade de trabalhar com modelos com muitos parametros, por tornarem-se desta forma complexos e
+grandes. Existe o problema destes modelos serem numericamente mal condicionadosalém da convicção de que estes
+modelos (com muitos parâmetros) são redundantes e poderiam ser removidos do modelo. Um modelos com um número
+excessivo de parâmetros podem exibir dinâmicas que não são observadas no sistema real, desta forma não existe
 apenas o problema numérico para estes sistemas, mas também um problema de dinâmica em utilizar um
 modelo sobre-estimado. \cite{aguirre_jacome}
 
+%TODO: achar onde por isso e se nao tem nada melhor no paper para adicionar
+%Um problema fundamental referente a modelos parametrizados refere-se ao fato do
+%parâmetro poder ou não ser determinado a partir dos valores medidos de entrada e saída. \cite{glad_ljung}
 
 % ===============================================================================
 \subsection{Modelos de Wiener e Hammerstein}
