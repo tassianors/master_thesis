@@ -1,8 +1,12 @@
 REVIEW:
 
-- Nos scripts do matlab, criar uma functions que calcula o custo da função atingida.. isso é MTO importante. FAZER!!!!
+Linear system identification:
+- Introducao sobre classes de modelos classicas
+- escrever secao sobre modelagem do ruido.
+- introdução sobre propriedade das estimativas obtidas.
+ 
+Non-linear system identification:
+- simulaçao de quando o sistema racional nao pode ser representado pela classe de modelos.
 
-- Arrumar os scripts do matlab para  conseguir calcular o custo J do critério.
-
-
-
+Data based controller
+- rever toda a seçao sobre vrft para modelos racionais. faltam simulações e eh necessario escrever varias coisas melhor.
