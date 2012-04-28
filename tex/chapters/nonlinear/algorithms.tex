@@ -143,7 +143,102 @@ Claramente a convergência do algoritmo depende da convergência da estimativa da 
 \cite{billings_zhu91} 
 
 %===============================================================================
-\subsection{Conversor CC-CC Buck}
+\subsection{Exemplos ilustrativos}
+\label{sec:nl_si_algorithms_rationals_examples}
+%===============================================================================
+
+Nesta seção serão apresentados alguns casos de uso do algoritmo descrito anteriormente. 
+Inicia-se com um exemplo simples, onde o sistema é racional e a classe de modelos escolhida consegue representar
+completamente este sistema ($\mathcal{S} \in \mathcal{M}$). Em seguida será apresentado um exemplo onde o sistema ainda
+é racional, mas a classe de modelos escolhida não consegue representar completamente o sistema em questão, ou seja,
+$\mathcal{S} \notin \mathcal{M}$.
+
+Por fim será apresentado um exemplo real de um conversor de corrente continua para corrente continua do tipo Buck. Será
+utilizado um conjunto de modelos $\mathcal{M}$ para representar este sistema.
+
+Serão apresentados os resultados obtidos afim de verificar a qualidade dos resultados obtidos e a confiabilidade do
+algoritmo em questão.
+
+%===============================================================================
+\subsubsection{Sistemas originalmente racionais}
+\label{sec:nl_si_algorithms_rationals}
+%===============================================================================
+
+O sistema descrito abaixo será utilizado para a simulação. 
+
+\begin{equation}
+y(t)=\frac{\theta_1y(t-1)+\theta_2y(t-1)u(t-1)+\theta_3u(t-1)}{1+\theta_4y^{2}(t-1)+\theta_5y^{2}(t-2)}
+\label{eq:nl_rat_exemple2}
+\end{equation}
+
+Para o sistema real utilizou-se os valores de referência: $\theta= $
+
+\begin{equation}
+\theta = 
+\begin{bmatrix}
+0.2 & 0.1 & 1 & 1 & 1
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+Utilizando par a simulação um sinal PRBS de 635 pontos e um ruído de variância $\sigma^2=0.005$ os resultados
+da média de 100 estimativas de Monte Carlo foram:
+
+\begin{equation}
+\text{média }\;\theta =\begin{bmatrix}
+0.1991  &  0.0995  &  0.9963  &  0.9899  &  0.9912
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+A variância encontrada foi de:
+
+\begin{equation}
+\text{variância }\;\theta =1.0\times 10^{-4} \begin{bmatrix}
+0.0089  &  0.0073  &  0.1082  &  0.7179  &  0.7910
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+E a matriz de covariância é:
+
+\begin{equation}
+cov(\theta) =1.0\times 10^{-4} \begin{bmatrix}
+    0.0089 & -0.0005 & 0.0112 & 0.0213 & 0.0339 \\
+   -0.0005 &  0.0073 & 0.0057 & 0.0220 & 0.0091 \\
+    0.0112 &  0.0057 & 0.1082 & 0.2529 & 0.2589 \\
+    0.0213 &  0.0220 & 0.2529 & 0.7179 & 0.4987 \\
+    0.0339 &  0.0091 & 0.2589 & 0.4987 & 0.7910
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+Utilizando a média das estimativas para simular a saída do modelo obtido com o sistema real, obteve-se um
+custo:
+
+\begin{equation}
+V(\theta)=1.1269\times 10^{-4}
+\nonumber
+\end{equation}
+
+A fim de melhor ilustrar a estimativa obtida, na Figura \ref{fig:nl_rat_example2} são apresentadas as
+estimativas dos parâmetros $\theta_1$ e $\theta_2$ e a elipse de confiança para $\chi^2=95\%$.
+
+\begin{figure}[htbp]
+	\center
+	\includegraphics[width=0.9\columnwidth]{figures/rat_example2_a1_a2.eps}
+	\caption{Estimativas obtidas nos 100 experimentos de Monte Carlo realizados para as variáveis $\theta_1$ e
+	$\theta_2$.}
+	\label{fig:nl_rat_example2}
+\end{figure}
+
+%===============================================================================
+\subsubsection{Sistemas originalmente racionais, quando $\mathcal{S} \notin \mathcal{M}$}
+\label{sec:nl_si_algorithms_rationals}
+%===============================================================================
+
+%===============================================================================
+\subsubsection{Conversor CC-CC Buck}
 \label{sec:nl_si_algorithms_rationals_buck}
 % Aguirre 397
 % Tese do corrêa - pg 27
@@ -249,75 +344,3 @@ com uma covariância de
 \nonumber
 \end{equation}
 
-%===============================================================================
-\subsection{Outros Exemplos}
-\label{sec:nl_si_algorithms_rationals}
-%===============================================================================
-
-O sistema descrito abaixo será utilizado para a simulação. 
-
-\begin{equation}
-y(t)=\frac{\theta_1y(t-1)+\theta_2y(t-1)u(t-1)+\theta_3u(t-1)}{1+\theta_4y^{2}(t-1)+\theta_5y^{2}(t-2)}
-\label{eq:nl_rat_exemple2}
-\end{equation}
-
-Para o sistema real utilizou-se os valores de referência: $\theta= $
-
-\begin{equation}
-\theta = 
-\begin{bmatrix}
-0.2 & 0.1 & 1 & 1 & 1
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-Utilizando par a simulação um sinal PRBS de 635 pontos e um ruído de variância $\sigma^2=0.005$ os resultados
-da média de 100 estimativas de Monte Carlo foram:
-
-\begin{equation}
-\text{média }\;\theta =\begin{bmatrix}
-0.1991  &  0.0995  &  0.9963  &  0.9899  &  0.9912
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-A variância encontrada foi de:
-
-\begin{equation}
-\text{variância }\;\theta =1.0\times 10^{-4} \begin{bmatrix}
-0.0089  &  0.0073  &  0.1082  &  0.7179  &  0.7910
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-E a matriz de covariância é:
-
-\begin{equation}
-cov(\theta) =1.0\times 10^{-4} \begin{bmatrix}
-    0.0089 & -0.0005 & 0.0112 & 0.0213 & 0.0339 \\
-   -0.0005 &  0.0073 & 0.0057 & 0.0220 & 0.0091 \\
-    0.0112 &  0.0057 & 0.1082 & 0.2529 & 0.2589 \\
-    0.0213 &  0.0220 & 0.2529 & 0.7179 & 0.4987 \\
-    0.0339 &  0.0091 & 0.2589 & 0.4987 & 0.7910
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-Utilizando a média das estimativas para simular a saída do modelo obtido com o sistema real, obteve-se um
-custo:
-
-\begin{equation}
-V(\theta)=1.1269\times 10^{-4}
-\nonumber
-\end{equation}
-
-A fim de melhor ilustrar a estimativa obtida, na Figura \ref{fig:nl_rat_example2} são apresentadas as
-estimativas dos parâmetros $\theta_1$ e $\theta_2$ e a elipse de confiança para $\chi^2=95\%$.
-
-\begin{figure}[htbp]
-	\center
-	\includegraphics[width=0.9\columnwidth]{figures/rat_example2_a1_a2.eps}
-	\caption{Estimativas obtidas nos 100 experimentos de Monte Carlo realizados para as variáveis $\theta_1$ e
-	$\theta_2$.}
-	\label{fig:nl_rat_example2}
-\end{figure}
