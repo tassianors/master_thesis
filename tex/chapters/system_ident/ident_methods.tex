@@ -1,6 +1,6 @@
 %===============================================================================
 \section{Métodos de identificação}
-\label{sec:sys_ident_ident_methods}
+\label{sec:sys_ident_methods}
 %===============================================================================
 % mains idea of this section:
 % MQ
@@ -31,6 +31,18 @@ Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, reme
 ao ano de 1809 utilizado por Gauss para determinação da órbita dos planetas. 
 \cite{system_identification}. Método este chamado de mínimos quadrados (MMQ).
 
+A regressão linear é tavez o tipo mais simples de modelo paramétrico. A estrutura do modelo
+pode ser descrita como abaixo. \cite{system_identification}
+
+\begin{equation}
+\hat{y}(t)=\varphi ^T(t)\theta
+\label{eq:si_obj_single_var}
+\end{equation}
+
+Onde $y(t)$ é chamada de {\it{variável regredida}} e é medida do processo.
+$\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor de
+parâmetros a ser identificado.
+
 A partir d erro de predição (\ref{eq:si_estim_prediction_error}) e (\ref{eq:si_obj_single_var}) podemos
 redefinir o erro de predição como:
 
@@ -39,7 +51,7 @@ redefinir o erro de predição como:
 \nonumber
 \end{equation}
 
-A {\it{estimativa dos mínimos quadrados}} de $\theta$ é definido como o vetor $\hat{\theta}$ 
+A {\it{estimativa dos mínimos quadrados}} é definido como o vetor $\hat{\theta}$ 
 que minimiza a função custo (\ref{eq:si_obj_etim_lsm_v}). O valor de $\hat{\theta}$ que minimiza
 esta função custo é dada por: \cite{system_identification}
 
@@ -63,7 +75,7 @@ y(t)=\varphi^T(t)\theta_0+\nu(t)
 \label{eq:si_par_etim_lsm_true_sys}
 \end{equation}
 
-A correlação entre os regressores $\varphi(t)$ e $\nu(t)$ somente será nulo se o ruido for branco, o que de
+A correlação entre os regressores $\varphi(t)$ e $\nu(t)$ será nulo se o ruido for branco, o que de
 certa forma é bastante restritivo.
 
 \begin{equation}
@@ -71,7 +83,11 @@ E(\varphi(t) \; \nu(t)) = 0
 \label{eq:si_par_etim_iv_estim}
 \end{equation}
 
-satisfeito somente se $\nu(t)$ for ruido branco. Esta desvantagem do método dos mínimos quadrados pode ser
+A equação \eqref{eq:si_par_etim_iv_estim} é também conhecida como {\it{bias}} ou erro de polarização da estimativa. Este
+valor é o quanto em média as estimativas $\hat{\theta}$ ficarão afastadas do valor real $\theta^*$. Obviamente esta não
+é uma informação conhecida por parte do projetista do experimento de identificação.
+
+Satisfeito somente se $\nu(t)$ for ruido branco. Esta desvantagem do método dos mínimos quadrados pode ser
 visto como uma oportunidade para a introdução do método de variáveis instrumentais.
 \cite{system_identification}
 

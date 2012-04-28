@@ -78,13 +78,8 @@ u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \om
 
 Na Seção \ref{sec:si_data_persistently_excitation} foi visto como caracterizar
 sinais que são suficiente informativos.Considere um conjunto $\mathcal{M}$ de um modelo
-SISO descrito por (\ref{eq:si_data_model_def}) tendo a função de transferência $G(q,\theta)$ a
+SISO descrito por (\ref{eq:si_intro_model}) tendo a função de transferência $G(q,\theta)$ a
 função racional descrita em (\ref{eq:si_data_g_rational}).
-
-\begin{equation}
-\mathcal{M}^*=\left \{ G(q,\theta), H(q,\theta)|\theta \in D_{\mathcal{M}} \right \}
-\label{eq:si_data_model_def}
-\end{equation}
 
 \begin{equation}
 G(q,\theta)=\frac{B(q,\theta)}{F(q,\theta)}=\frac{q^{n_k}(b_1+b_2q^{-1}+...+b_{nb}q^{-nb+1})}{1+f_1q^{-1}+...+f_{nf}q^{-nf}}
@@ -92,7 +87,7 @@ G(q,\theta)=\frac{B(q,\theta)}{F(q,\theta)}=\frac{q^{n_k}(b_1+b_2q^{-1}+...+b_{n
 \end{equation}
 
 Então um experimento em malha aberta com uma entrada que é persistentemente excitante de ordem $nb +nf$ é
-suficientemente informativo com relação a $\mathcal{M}^*$.
+suficientemente informativo com relação a $\mathcal{M}$.
 
 Um experimento em malha aberta é informativo se a sua entrada for persistentemente excitante.
 Observa-se que é necessário que a ordem de excitação seja igual ao número de parâmetros a
