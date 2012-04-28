@@ -1,0 +1,109 @@
+%===============================================================================
+\section{Premissas básicas para identificação}
+\label{sec:sys_ident_experiments}
+%===============================================================================
+% mains idea of this section:
+% unicidade da solução
+% persistência de excitação
+% não sobre modelagem
+
+Em aplicações de engenharia, deseja-se sempre que a solução do sistema seja único. Desta forma existem algumas
+premissas que devem ser seguidas para que o processo de identificação consiga resultar em um único e satisfatório
+resultado.
+
+%===============================================================================
+\subsection{Persistência de Excitação}
+\label{sec:si_data_persistently_excitation}
+% most part of it came from ljung pg 412
+%===============================================================================
+
+Um sinal é dito suficiente informativo se permite a distinção entre dois modelos 
+$\mathcal{M}$ em um mesmo conjunto de modelos.
+
+Um sinal quasi-estacionário $\left \{ u(t) \right \}$, com espectro $\Phi _u(\omega)$ é dito
+{\it{persistentemente excitante de ordem n}} se, para todos os filtros de forma:
+
+\begin{equation}
+M_n(q)=m_1q^{-1}+...+m_nq^{-n}
+\label{eq:si_data_persistence}
+\end{equation}
+
+a relação
+
+\begin{equation}
+\left | M_n(e^{i\omega}) \right |^2 \Phi_u(\omega)\equiv 0, \;\; \text{implica que}\; M_n(e^{i\omega}) \equiv 0
+\label{eq:si_data_persistence_2}
+\end{equation}
+
+Outra caracterização pode ser dada em termos da função de covariância $R_u(\tau)$= $u(t)$ é um
+sinal quasi-estacionário, e $\bar{R}_n$ uma matriz $n\times n$ definida como:
+
+\begin{equation}
+\bar{R}_n=\begin{bmatrix}
+R_u(0) & R_u(1) & ... & R_u(n-1)\\ 
+R_u(1) & R_u(2) & ... & R_u(n-2)\\ 
+\vdots & \vdots & \vdots & \vdots \\ 
+R_u(n-1) & R_u(n-2) & ... & R_u(0)
+\end{bmatrix}
+\label{eq:si_data_persistently_rn}
+\end{equation}
+
+Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se, $\bar{R}_n$ for não singular.
+\cite{ljung}
+
+A partir da equação \eqref{eq:si_data_persistence_2} pode-se extrair interpretações mais explícitas.
+Uma delas é que a função $M_n(z)M_n(z^{-1})$ pode ter no máximo $n-1$ zeros diferentes dentro do círculo 
+unitário (desde que um zero está sempre na origem) levando a simetria em conta. Por isso $u(t)$ é
+persistentemente excitante de ordem $n$, se o espectro do sinal de entrada, $\Phi _u(\omega)$, for
+diferente de de zero em pelo menos $n$ pontos no intervalo $-\pi< \omega \le \pi$. \cite{ljung} %page 413
+
+Se um sinal quasi-estacionário é filtrado foi uma função de transferência estável, então o sinal resultante 
+também é um sinal quasi-estacionário e desta forma se ${ \left| { M }_{ n }({ e }^{ j\omega  }) \right|  }^{ 2
+}{ \Phi  }_{ u }(\omega )$ é o espectro do sinal $\nu (t)={ M }_{ n }(q)u(t)$ então este sinal não perde sua
+persistência de excitação se filtrado pelo filtro  ${ M }_{ n }(q)$.
+
+Considere o somatório de senoides em \eqref{eq:si_data_persistently_sum_cos}, cada
+uma possui duas linhas espectrais em $\pm \omega_k$. Este sinal é então persistentemente excitante de ordem
+$2n$.
+
+\begin{equation}
+u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \omega_k \neq 0, \; \omega_k \neq \pi
+\label{eq:si_data_persistently_sum_cos}
+\end{equation}
+
+
+%===============================================================================
+\subsection{Experimentos Informativos}
+% most part of it came from ljung pg 414
+%===============================================================================
+
+Na Seção \ref{sec:si_data_persistently_excitation} foi visto como caracterizar
+sinais que são suficiente informativos.Considere um conjunto $\mathcal{M}^*$ de um modelo
+SISO descrito por (\ref{eq:si_data_model_def}) tendo a função de transferência $G(q,\theta)$ a
+função racional descrita em (\ref{eq:si_data_g_rational}).
+
+\begin{equation}
+\mathcal{M}^*=\left \{ G(q,\theta), H(q,\theta)|\theta \in D_{\mathcal{M}} \right \}
+\label{eq:si_data_model_def}
+\end{equation}
+
+\begin{equation}
+G(q,\theta)=\frac{B(q,\theta)}{F(q,\theta)}=\frac{q^{n_k}(b_1+b_2q^{-1}+...+b_{nb}q^{-nb+1})}{1+f_1q^{-1}+...+f_{nf}q^{-nf}}
+\label{eq:si_data_g_rational}
+\end{equation}
+
+Então um experimento em malha aberta com uma entrada que é persistentemente excitante de ordem $nb +nf$ é
+suficientemente informativo com relação a $\mathcal{M}^*$.
+
+Um experimento em malha aberta é informativo se a sua entrada for persistentemente excitante.
+Observa-se que é necessário que a ordem de excitação seja igual ao número de parâmetros a
+serem estimados. \cite{ljung}
+
+Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
+o sinal terá componentes de frequência suficiente para excitar o sistema ao ponto de ser possível observar sua dinâmica
+de forma mais completa. Incluir desta forma na identificação informações suficientes para que todos os parametros da
+família de modelos possa ser identificada de forma satisfatória.
+
+%===============================================================================
+\subsection{Sobre modelagem}
+%===============================================================================

@@ -3,13 +3,7 @@
 \label{sec:sys_ident_objective}
 %===============================================================================
 
-Identificação de sistemas possui uma vasta aplicabilidade em inúmeros ramos do conhecimento,
-não é escopo deste trabalho enumerar todas as possibilidades de utilização desta ferramenta, nem tão pouco 
-esmiuçar sua teoria. Serão aqui abordadas as principais características e princípios que compõem a teoria de 
-identificação de sistemas lineares.
 
-O principal objetivo da identificação de um sistema é encontrar um modelo matemático que melhor consiga
-descrever o sistema real sob observação, nas características desejadas escolhidas.
 
 Pode-se considerar $y(t)$ como a saída do modelo matemático quando submetido a uma entrada $u(t)$ e
 $\hat{y}(t)$ a saída real do sistema quando excitado pelo sinal de entrada $u(t)$. Os sinais $u(t)$
@@ -51,50 +45,4 @@ V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t)=\frac{1}{2}\varepsilon^T\va
 
 Com a minimização do erro $\varepsilon (t)$ encontra-se um conjunto de parametros $\theta$ que melhor
 consegue representar o relacionamento entre os sinais de entrada $u(t)$ e de saída $\hat{y}(t)$. 
-
-%===============================================================================
-\subsection{Identificabilidade de sistemas}
-\label{sec:si_par_estim_sys_ident}
-%===============================================================================
-
-A identificabilidade de um sistema pode ser definido pelo teorema (\ref{theorem:identificability}).
-
-\begin{theorem} 
-\cite{ljung}
-
-Considerando a estrutura de modelo $\mathcal{M}$ correspondente a: 
-\begin{equation}
-A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
-\label{eq:si_par_estim_sys_theorem}
-\end{equation}
-
-e com $\theta$ sendo o coeficiente dos polinômios envolvidos. Os graus dos polinômios são $n_a$, $n_b$ e
-assim por diante. A estrutura deste modelo é globalmente identificável se, e somente se, todos os itens de
-(i) até (vi) forem verdadeiros.
-
-\begin{enumerate}[(i)]
-\item Não existe fator comum para todos os $z^{na}A^*(z), z^{nb}B^*(z), and, \; z^{nc}C^*(z)$.
-\item Não existe fator comum para $z^{nb}B^*(z), and, \; z^{nf}F^*(z)$.
-\item Não existe fator comum para $z^{nc}C^*(z), and, \; z^{nd}D^*(z)$.
-\item Se $n_a \geq 1$ então não pode existir fator comum entre $z^{nf}F^*(z), and, \; z^{nd}D^*(z)$.
-\item Se $n_d \geq 1$ então não pode existir fator comum entre $z^{na}A^*(z), and, \; z^{nb}B^*(z)$.
-\item Se $n_f \geq 1$ então não pode existir fator comum entre $z^{na}A^*(z), and, \; z^{nc}C^*(z)$.
-\end{enumerate}
-
-Os polinômios com $*$ correspondem a $\theta^*$
-\label{theorem:identificability}
-\end{theorem}
-
-Note que as condições de (i) até (vi) são satisfeitas para o caso comum de \eqref{eq:si_par_estim_sys_theorem}.
-Observe também que nenhuma das condições pode ser violada por qualquer {\it{especial}} valor de $\theta^*$, posto na
-hiper-superfície de $\Re ^d$. Isso nos leva ao seguinte corolário:
-
-\begin{cor} 
-A estrutura de modelo apresentada em \eqref{eq:si_par_estim_sys_theorem} é globalmente identificável.
-\label{corollary:identificability}
-\end{cor} 
-
-A partir do Corolário (\ref{corollary:identificability}) temos que a identificação de sistemas
-utilizando os famílias ou conjuntos de modelos descritos por \eqref{eq:si_par_estim_sys_theorem}
-são globalmente identificáveis se tivermos dados de entrada suficientemente informativos.
 
