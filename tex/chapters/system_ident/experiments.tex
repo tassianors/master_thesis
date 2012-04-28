@@ -8,8 +8,7 @@
 % não sobre modelagem
 
 Em aplicações de engenharia, deseja-se sempre que a solução do sistema seja único. Desta forma existem algumas
-premissas que devem ser seguidas para que o processo de identificação consiga resultar em um único e satisfatório
-resultado.
+premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos.
 
 %===============================================================================
 \subsection{Persistência de Excitação}
@@ -18,7 +17,7 @@ resultado.
 %===============================================================================
 
 Um sinal é dito suficiente informativo se permite a distinção entre dois modelos 
-$\mathcal{M}$ em um mesmo conjunto de modelos.
+em um mesmo conjunto de modelos $\mathcal{M}$.
 
 Um sinal quasi-estacionário $\left \{ u(t) \right \}$, com espectro $\Phi _u(\omega)$ é dito
 {\it{persistentemente excitante de ordem n}} se, para todos os filtros de forma:
@@ -78,7 +77,7 @@ u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \om
 %===============================================================================
 
 Na Seção \ref{sec:si_data_persistently_excitation} foi visto como caracterizar
-sinais que são suficiente informativos.Considere um conjunto $\mathcal{M}^*$ de um modelo
+sinais que são suficiente informativos.Considere um conjunto $\mathcal{M}$ de um modelo
 SISO descrito por (\ref{eq:si_data_model_def}) tendo a função de transferência $G(q,\theta)$ a
 função racional descrita em (\ref{eq:si_data_g_rational}).
 
@@ -105,5 +104,16 @@ de forma mais completa. Incluir desta forma na identificação informações suficie
 família de modelos possa ser identificada de forma satisfatória.
 
 %===============================================================================
-\subsection{Sobre modelagem}
+\subsection{Sobremodelagem}
 %===============================================================================
+
+Um aspecto comumente indesejado para aplicações de engenharia é quando a solução do problema não possui apenas uma
+solução. A escolha de um conjunto de modelos $\mathcal{M}$ onde a ordem do modelo é maior do que a ordem do sistema real
+$\mathcal{S}$ faz com que existam infinitos modelos dentro de $\mathcal{M}$ que conseguem descrever o sistema
+$\mathcal{S}$.
+
+Devido a isso a escolha da classe de modelos deve ser um aspecto de muita atenção para que não se recaia em problemas
+deste tipo. O que dificulta esta tarefa é o fato de nem sempre a ordem do sistema ser algo conhecido. É necessário então
+por parte do engenheiro executando a identificação, fazer uma estimativa sobre a ordem do sistema, evitando sempre a
+sobremodelagem, ou {\it{overmodeling}} também encontrado na literatura relacionada.
+
