@@ -18,8 +18,8 @@ y(t)=G_0(q)u(t)+H_0(q)e(t)
 Onde $G_0(q)$ é a função de transferência que descreve o comportamento da planta
 real, usualmente desconhecida e a qual tem-se o intúito de identificar.
 Análogamente $H_0(q)$ é a função de transferência que atua sobre o ruído branco
-$e(t)$. $u(t)$ é o sinal de entrada aplicado sobre a planta e $y(t)$ é o sinal
-de saída medido da planta.
+$e(t)$.  Sendo $u(t)$ o sinal de entrada aplicado sobre a planta e $y(t)$ o sinal
+de saída, ambos medidos e conhecidos.
 
 Para identificar o sistema apresentado em \eqref{eq:si_intro_system} utiliza-se uma família de modelos
 parametrizada por $\theta$ que genericamente pode ser representado como:
@@ -67,15 +67,15 @@ instantes $t$ e $r$.
 \label{sec:sys_ident_elements}
 %===============================================================================
 
-Identificação de sistemas é dependente de três componentes básicas. Primeiro delas é o sistema real observado, definido
-pela letra $\mathcal{S}$ e que pode ser definido a partir de \eqref{eq:si_intro_system} como abaixo:
+A identificação de sistemas é dependente de três componentes básicas: Primeiro delas é o sistema real observado,
+definido pela simbolo $\mathcal{S}$ e que pode ser definido a partir de \eqref{eq:si_intro_system} como abaixo:
 
 \begin{equation}
 \mathcal{S}:\;\; y(t)=G_0(q)u(t)+H_0(q)e(t)
 \label{eq:si_intro_true_system}
 \end{equation}
 
-Outro ponto é a classe de modelos, denotada por $\mathcal{M}$:
+Segunda componente é a classe de modelos escolhida, denotada por $\mathcal{M}$:
 
 \begin{equation}
 \mathcal{M}: \;\;\left \{ G(q, \theta), H(q, \theta) | \theta \in D_{\mathcal{M}} \right \}
@@ -84,26 +84,27 @@ Outro ponto é a classe de modelos, denotada por $\mathcal{M}$:
 
 %TODO> o que é DM
 
-O terceiro componente é o critério de escolha que diz qual modelo dentro da classe é melhor que outro, em
-outras palavras, qual modelo que melhor consegue representar o sistema real $\mathcal{S}$.
+O terceiro componente é o critério de escolha que diz qual modelo, dentro da classe. é melhor que outro, em
+outras palavras, qual modelo melhor consegue representar o sistema real $\mathcal{S}$ de acordo com o critério
+escolhido.
 
-O critério mais utilizado é o de erro de predição. 
+Uaualmente o critério mais utilizado é o de erro de predição. 
 
 Preditores são equações que predizem qual será o próximo valor de saída do sistema
-baseado na família do modelo e nos valores de dados coletados até aquele momento.
+baseado noconjunto do modelo e nos valores de dados coletados até aquele momento.
 Os sinais $y(t)$ e $u(t)$ são os sinais da saída e entrada medidas do sistema real enquanto que o sinal
-$\hat{y}(t)$ é o sinal de saída do preditor. A diferênça entre o valor do preditor e o valor do sistema real,
+$\hat{y}(t, \theta)$ é o sinal de saída do preditor. A diferênça entre o valor do preditor e o valor do sistema real,
 é conhecido como erro de predição:
 
 \begin{equation}
-\varepsilon(t)=y(t) - \hat{y}(t, \theta)
+\varepsilon(t)=y(t) - \hat{y}(t, \theta)	
 \label{eq:si_estim_prediction_error}
 \end{equation}
 
 A Figura (\ref{fig:si_estim_pem}) apresenta um diagrama de blocos de como é organizado o método do erro de
-predição. Existe um processo que gostaria de ser estimado, para isso escolhe-se uma classe de modelos onde os
+predição. Existe um processo que se deseja estimar, para isso escolhe-se uma classe de modelos onde os
 parametros a serem ajustados são $\theta$. O preditor é ajustado, baseado nas diferentes possíbilidades de
-escolha de $\theta$, este ajuste é feito baseado no erro entre o sistema real ($y(t)$) e a saída do preditor
+escolha de $\theta$, este ajuste é feito baseado no erro entre o sistema real $y(t)$ e a saída do preditor
 $\hat{y}(t, \theta)$.
 
 
@@ -172,8 +173,8 @@ y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
 \end{equation}
 
 Assumindo que $G(0, \theta)=0$, $H(0,\theta)=I$ e que $H^{-1}(q, \theta)$ e $H^{-1}(,\theta)
-G(q,\theta)$ são assisntóticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$ não forem correlacionados.
-Então o preditor ótimo pode ser apresentado como: \cite{system_identification}
+G(q,\theta)$ são assisntóticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$ não forem correlacionados,
+então o preditor ótimo pode ser apresentado como: \cite{system_identification}
 
 \begin{equation}
 \hat{y}(t|t-1, \theta)= H^{-1}(q, \theta)G(q, \theta)u(t)+\left \{ I-H^{-1}(q, \theta) \right \}y(t)
@@ -185,16 +186,14 @@ Então o preditor ótimo pode ser apresentado como: \cite{system_identification}
 \nonumber
 \end{equation}
 
-Como já foi comentado o critério mais utilizado para elencar qual é o melhor modelo dentro da classe dentre os
-infinitos possíveis é definida como :
+De posse da definição do erro de predição $\varepsilon (t,\theta)$ é conveniente introduzir o  critério mais utilizado
+para elencar qual é o melhor modelo dentro da classe dentre os infinitos possíveis. Este critério será utilizado no
+decorrer do texto e é a base para a maioria dos métodos de identificação usualmente utilizados.
 
 \begin{equation}
 V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \| \varepsilon \right \|
 \label{eq:si_obj_etim_lsm_v}
 \end{equation}
 
- 
-
-
-
-
+Este critério é também conhecido como função custo da identificação de sistemas por apresentar o valor do erro
+quadratico entre os dados obtidos do sistema real $\mathcal{S}$ e os dados obtidos por meio do modelo estimado.

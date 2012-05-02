@@ -7,8 +7,11 @@
 % persistência de excitação
 % não sobre modelagem
 
-Em aplicações de engenharia, deseja-se sempre que a solução do sistema seja único. Desta forma existem algumas
+Em aplicações de engenharia, deseja-se sempre que a solução do sistema seja única. Desta forma existem algumas
 premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos.
+
+Devem ser levadas em consideração algumas premissas básicas sobre o sinal de excitação do sistema e sobre a escolha da
+classe de modelos que irá representar o sistema real $\mathcal{S}$.
 
 %===============================================================================
 \subsection{Persistência de Excitação}
@@ -19,7 +22,7 @@ premissas que devem ser satisfeitas para que o processo de identificação consiga
 Um sinal é dito suficiente informativo se permite a distinção entre dois modelos 
 em um mesmo conjunto de modelos $\mathcal{M}$.
 
-Um sinal quasi-estacionário $\left \{ u(t) \right \}$, com espectro $\Phi _u(\omega)$ é dito
+Um sinal quasi-estacionário $u(t)$, com espectro $\Phi _u(\omega)$ é dito
 {\it{persistentemente excitante de ordem n}} se, para todos os filtros de forma:
 
 \begin{equation}
@@ -51,25 +54,23 @@ Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se, $\bar{R}
 \cite{ljung}
 
 A partir da equação \eqref{eq:si_data_persistence_2} pode-se extrair interpretações mais explícitas.
-Uma delas é que a função $M_n(z)M_n(z^{-1})$ pode ter no máximo $n-1$ zeros diferentes dentro do círculo 
-unitário (desde que um zero está sempre na origem) levando a simetria em conta. Por isso $u(t)$ é
-persistentemente excitante de ordem $n$, se o espectro do sinal de entrada, $\Phi _u(\omega)$, for
-diferente de de zero em pelo menos $n$ pontos no intervalo $-\pi< \omega \le \pi$. \cite{ljung} %page 413
+Uma delas é que a função $M_n(q)$ pode ter no máximo $n-1$ zeros diferentes dentro do círculo 
+unitário (desde que um zero esteja sempre na origem). Por isso $u(t)$ é persistentemente excitante de ordem $n$, se o
+espectro do sinal de entrada, $\Phi _u(\omega)$, for diferente de de zero em pelo menos $n$ pontos no intervalo $-\pi<
+\omega \le \pi$. \cite{ljung} %page 413
 
 Se um sinal quasi-estacionário é filtrado foi uma função de transferência estável, então o sinal resultante 
 também é um sinal quasi-estacionário e desta forma se ${ \left| { M }_{ n }({ e }^{ j\omega  }) \right|  }^{ 2
 }{ \Phi  }_{ u }(\omega )$ é o espectro do sinal $\nu (t)={ M }_{ n }(q)u(t)$ então este sinal não perde sua
 persistência de excitação se filtrado pelo filtro  ${ M }_{ n }(q)$.
 
-Considere o somatório de senoides em \eqref{eq:si_data_persistently_sum_cos}, cada
-uma possui duas linhas espectrais em $\pm \omega_k$. Este sinal é então persistentemente excitante de ordem
-$2n$.
+Considere o somatório de senoides em \eqref{eq:si_data_persistently_sum_cos}. Cada uma possui duas linhas espectrais em
+$\pm \, \omega_k$. Este sinal é então persistentemente excitante de ordem $2n$.
 
 \begin{equation}
 u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \omega_k \neq 0, \; \omega_k \neq \pi
 \label{eq:si_data_persistently_sum_cos}
 \end{equation}
-
 
 %===============================================================================
 \subsection{Experimentos Informativos}
@@ -77,16 +78,16 @@ u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \om
 %===============================================================================
 
 Na Seção \ref{sec:si_data_persistently_excitation} foi visto como caracterizar
-sinais que são suficiente informativos.Considere um conjunto $\mathcal{M}$ de um modelo
+sinais que são suficiente informativos. Considere um conjunto de modelos $\mathcal{M}$ para um sistema 
 SISO descrito por (\ref{eq:si_intro_model}) tendo a função de transferência $G(q,\theta)$ a
-função racional descrita em (\ref{eq:si_data_g_rational}).
+função racional apresentada em (\ref{eq:si_data_g_rational}):
 
 \begin{equation}
 G(q,\theta)=\frac{B(q,\theta)}{F(q,\theta)}=\frac{q^{n_k}(b_1+b_2q^{-1}+...+b_{nb}q^{-nb+1})}{1+f_1q^{-1}+...+f_{nf}q^{-nf}}
 \label{eq:si_data_g_rational}
 \end{equation}
 
-Então um experimento em malha aberta com uma entrada que é persistentemente excitante de ordem $nb +nf$ é
+Um experimento em malha aberta com entrada persistentemente excitante de ordem $nb +nf$ é
 suficientemente informativo com relação a $\mathcal{M}$.
 
 Um experimento em malha aberta é informativo se a sua entrada for persistentemente excitante.
@@ -94,9 +95,9 @@ Observa-se que é necessário que a ordem de excitação seja igual ao número de par
 serem estimados. \cite{ljung}
 
 Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
-o sinal terá componentes de frequência suficiente para excitar o sistema ao ponto de ser possível observar sua dinâmica
-de forma mais completa. Incluir desta forma na identificação informações suficientes para que todos os parametros da
-família de modelos possa ser identificada de forma satisfatória.
+o sinal terá componentes de frequência suficientes para excitar o sistema ao ponto de ser possível observar sua dinâmica
+de forma satisfatória. Inclui-se desta forma na identificação informações suficientes para que todos os
+parâmetros da família de modelos possam ser identificados de forma satisfatória.
 
 %===============================================================================
 \subsection{Sobremodelagem}
@@ -104,11 +105,11 @@ família de modelos possa ser identificada de forma satisfatória.
 
 Um aspecto comumente indesejado para aplicações de engenharia é quando a solução do problema não possui apenas uma
 solução. A escolha de um conjunto de modelos $\mathcal{M}$ onde a ordem do modelo é maior do que a ordem do sistema real
-$\mathcal{S}$ faz com que existam infinitos modelos dentro de $\mathcal{M}$ que conseguem descrever o sistema
-$\mathcal{S}$.
+$\mathcal{S}$ faz com que existam infinitas combinações de $\theta$, resultando em infinitos modelos dentro do conjunto
+$\mathcal{M}$ que conseguem descrever o sistema $\mathcal{S}$.
 
-Devido a isso a escolha da classe de modelos deve ser um aspecto de muita atenção para que não se recaia em problemas
-deste tipo. O que dificulta esta tarefa é o fato de nem sempre a ordem do sistema ser algo conhecido. É necessário então
-por parte do engenheiro executando a identificação, fazer uma estimativa sobre a ordem do sistema, evitando sempre a
-sobremodelagem, ou {\it{overmodeling}} também encontrado na literatura relacionada.
+A escolha da classe de modelos deve ser feita com muita atenção para que não se recaia em problemas
+deste tipo. O que dificulta esta tarefa é o fato de nem sempre a ordem do sistema ser algo conhecido. É necessário
+então por parte do executor da identificação, fazer uma estimativa sobre a ordem do sistema, evitando
+sempre a sobremodelagem, ou {\it{overmodeling}} também encontrado na literatura relacionada.
 

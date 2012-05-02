@@ -5,12 +5,6 @@
 % mains idea of this section:
 % ARX ARMAX \ldots
 
-
-%===============================================================================
-\subsection{Escolha do modelo}
-\label{sec:sys_ident_modelling_choosing}
-%===============================================================================
-
 Modelos são formas ou representações de como vemos e entendemos os sistemas.
 Para um mesmo sistema podemos ter diversos modelos, portanto, modelos são
 fundamentais para o conhecimento, para a análise, para o controle de sistemas. \cite{aguirre}
@@ -42,16 +36,18 @@ o modelo nestas características desejadas.
 %===============================================================================
 
 Modelo de um sistema é a descrição de {\it{algumas}} de suas propriedades. Nesta seção serão 
-apresentados modelos de sistemas invariantes no tempo de tempo discreto e alguns dos mais comuns modelos utilizados.
+apresentados conjuntos de modelos para sistemas SISO discretos invariantes no tempo e algumas das famílias mais
+comumente utilizadas.
 
-Na seção (\ref{sec:sys_ident_intro}) apresentou-se a definição para um modelo:
+Na seção (\ref{sec:sys_ident_intro}) apresentou-se a definição para um conjunto de modelos:
 
 \begin{equation}
 y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
 \nonumber
 \end{equation}
 
-Onde as funções de transferência $G(q, \theta)$ e $H(q, \theta)$ podem ser definidos como a seguir:
+Onde as funções de transferência $G(q, \theta)$ e $H(q, \theta)$  são parametrizadas por $\theta$ e para cada
+combinação de $\theta$, um novo modelo é definido. Podendo desta forma serem definidos como:
 
 \begin{equation}
 G(q, \theta)=\sum_{k=1}^{\infty}g(k, \theta)q^{-k}
@@ -64,7 +60,8 @@ H(q, \theta)=1+\sum_{k=1}^{\infty}h(k, \theta)q^{-k}
 \end{equation}
 
 Uma forma direta para a identificação de sistemas é tornar as funções $G(q, \theta)$ e $H(q, \theta)$ em funções
-racionais e os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo de identificação.
+racionais e os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo de identificação
+($\theta$).
 
 Provavelmente o modelo mais simples para descrever a relação entre entrada e saída é obtido
 descrevendo o sistema como uma equação linear (\ref{eq:si_modeling_arx}). \cite{ljung}
@@ -133,26 +130,26 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
 \end{equation}
 
 O modelo definido em (\ref{eq:si_modeling_armax}) também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
-a média móvel ($C(q)e(t)$) do ruido.
+a média móvel $C(q)$ do ruido $e(t)$.
 
-A partir do equacionamento do sistema apresentado em (\ref{eq:si_modeling_lti_det_armax}) e (\ref{eq:si_modeling_lti})
-podemos facilmente generalizar para o equacionamento apresentado em (\ref{eq:si_modeling_lti_det_global}).
+A partir do equacionamento do sistema apresentado em \eqref{eq:si_modeling_lti_det_armax} e \eqref{eq:si_intro_system}
+pode-se facilmente generalizar para o equacionamento apresentado em \eqref{eq:si_modeling_lti_det_global}.
 
 \begin{equation}
 A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
 \label{eq:si_modeling_lti_det_global}
 \end{equation}
 
-Quando usamos apenas um conjunto dos polinômios de $A(q) \;...\; F(q)$ obtemos as estruturas de modelos que
-pode ser visto na Tabela \ref{table:si_modeling_models}.
+Quando usa-se apenas um conjunto dos polinômios de $A(q) \;\cdot\; F(q)$ obtemos as estruturas de modelos
+da Tabela \ref{table:si_modeling_models}.
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Alguns modelos comuns para sistemas SISO. Casos especias de (\ref{eq:si_modeling_lti_det_global}).}
+\caption{Alguns modelos comuns para sistemas SISO. Casos especias de \eqref{eq:si_modeling_lti_det_global}}
 \label{table:si_modeling_models}
 \begin{tabular}{cl}
 \hline
-        Polinômios usados em (\ref{eq:si_modeling_lti_det_global}) & Mome da estrutura do modelo   \\
+        Polinômios usados em \eqref{eq:si_modeling_lti_det_global} & Mome da estrutura do modelo   \\
 \hline
         B                 & FIR (finite impulse response) \\ 
         AB                & ARX                           \\ 
@@ -168,14 +165,9 @@ pode ser visto na Tabela \ref{table:si_modeling_models}.
 \end{table*}
 
 As equações que descrevem a saída do sistema em função da entrada $u(t)$ e do ruido $e(t)$ como apresentado
-em \eqref{eq:si_modeling_lti} e que podem ser caracterizados pela utilização de vários polinômios, nada mais
+em \eqref{eq:si_intro_system} e que podem ser caracterizados pela utilização de vários polinômios, nada mais
 são do que famílias ou conjuntos de modelos.
 Existe para cada conjunto de modelos uma infinidade de possíveis saídas para uma mesma entrada, bastando para
 isso que os parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente. O objetivo na
 identificação de sistemas é encontrar um conjunto de coeficientes que consiga melhor descrever os dados
 observados na saída, para o maior conjunto de sinais de entrada possíveis.
-
-Escolher um conjunto de modelo que não consegue representar o sistema físico, proporciona erros na estimativa
-dos parâmetros. (Mais informações sobre estes erros serão abordados na seção
-(\ref{sec:si_par_estim_uncertanties})). Por outro lado a super estimativa da ordem do conjunto de modelos pode
-adicionar complexidade desnecessária além de comportamentos transientes no modelo que não existem na planta real.

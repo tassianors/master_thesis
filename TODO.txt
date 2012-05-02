@@ -1,8 +1,7 @@
 REVIEW:
 
 Linear system identification:
-- Introducao sobre classes de modelos classicas
-- escrever secao sobre modelagem do ruido.
+- escrever secao sobre modelagem do ruido. ENCONTRAR BIBLIOGRAFIA PARA ISSO!!
 - introdução sobre propriedade das estimativas obtidas.
  
 Non-linear system identification:
