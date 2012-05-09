@@ -11,18 +11,18 @@ sistemas não lineares.
 
 Modelos para sistemas podem ser divididos em dois grupos principais, baseados na natureza de suas não
 linearidades: não linearidades estáticas, onde a dinâmica do sistema pode ser bem caracterizada por um modelo
-linear enquanto que a parte naõ linear está concentrado ou na entrada ou na saída do sistema estaticamente.
-Para estes sistemas a forma mais usual para caracterizar é utilizando o método de Wiener para não lineridades
-na saída do sistem ou o modelo de Hammerstein, quando a não linearidade está na entrada do processo.
+linear enquanto que a parte naõ linear está concentrado ou na entrada ou na saída do sistema de forma estática.
+Para estes sistemas a forma mais usual de caracterizar é utilizando o método de Wiener para não lineridades
+na saída do processo ou o modelo de Hammerstein, quando a não linearidade está na entrada do processo.
 
 Para os demais casos, onde a não linearidade está na dinâmica do processo existem várias familias de modelos
 que podem ser utilizados como será visto no decorrer deste capítulo. De forma geral todos estes conjuntos
 possuem em comum a idéia da escolha de uma base que seja representativa e que possa reduzir a quantidade de
-termos a ser identificada e com isso ter uma boa aproximação do sistema real com a menor quantidade de
+termos a ser identificado e com isso ter uma boa aproximação do sistema real com a menor quantidade de
 parametros possível.
 
 Percebe-se então que um mesmo sistema pode ser representado por diversos destes modelos, mas dependendo das
-caracteristicas deste sistema, uma das famílias de modelos será mais adequada, por sua baser possuir mais
+caracteristicas deste sistema, uma das famílias de modelos será mais adequada, por sua base possuir mais
 facilidade em representar certo tipo de não linearidades.
 
 Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
@@ -33,7 +33,7 @@ da parsemônia}} que basicamente determina que o modelo deve ser o mais simples p
 
 Uma das primeiras justificativas para o desenvolvimento de métodos para a escolha de famílias de modelos é a
 grande dificuldade de trabalhar com modelos com muitos parametros, por tornarem-se desta forma complexos e
-grandes. Existe o problema destes modelos serem numericamente mal condicionadosalém da convicção de que estes
+grandes. Existe o problema destes modelos serem numericamente mal condicionados além da convicção de que estes
 modelos (com muitos parâmetros) são redundantes e poderiam ser removidos do modelo. Um modelos com um número
 excessivo de parâmetros podem exibir dinâmicas que não são observadas no sistema real, desta forma não existe
 apenas o problema numérico para estes sistemas, mas também um problema de dinâmica em utilizar um
@@ -50,18 +50,13 @@ modelo sobre-estimado. \cite{aguirre_jacome}
 % ljung 143
 %===============================================================================
 
-Estes modelos são normalmente utilizados em situações  onde a dinâmica do sistema pode ser bem
+Modelos de Wiener e Hammerstein são normalmente utilizados em situações onde a dinâmica do sistema pode ser bem
 descrita por um sistema linear, mas existem algumas não linearidades estáticas atreladas a entrada
 e/ou a saída. Este será o caso de atuadores serem não lineares como por exemplo: devido a saturação,
 ou se o sensor tem características não lineares.
 
 Um modelo com não linearidades na entrada é chamado de {\it{modelo de Hammerstein}} e 
 para não linearidades na saída chama-se {\it{modelo de Wiener}}. \cite{ljung}
-
-Considere o sistema apresentado em \eqref{eq:nl_linearization_sys} e o caso de 
-Hammerstein. Tem-se que a função estática não linear $f(\cdot)$ pode ser parametrizada
-tanto em termos de parâmetros físicos, como ponto ou nível de saturação, como pode
-ser parametrizado por modelo caixa preta.
 
 Na Figura (\ref{fig:nl_models_hammerstein_wiener}) observa-se o diagrama de bloco para os modelos
 de Hammerstein e Wiener.
@@ -569,10 +564,10 @@ Onde:
 \nonumber
 \end{equation}
 
-No modelo apresentado em \eqref{eq:nl_model_narmax_rat}, as funções $a(\Upsilon)$ e $b(\Upsilon)$
+No modelo apresentado em \eqref{eq:nl_model_narmax_rat_simp}, as funções $a(\Upsilon)$ e $b(\Upsilon)$
 são polinômios, mas poderiam ser quaisquer funções. Assumindo que o modelo é formado pela razão de
-dois polinômios, é conveniente definir o numerador e denominador de \eqref{eq:nl_model_narmax_rat}
-como em \eqref{eq:nl_model_narmax_rat_num} e \eqref{eq:nl_model_narmax_rat_den}
+dois polinômios, é conveniente definir o numerador e denominador de \eqref{eq:nl_model_narmax_rat_simp}
+como em:
 
 \begin{equation}
 a(t-1)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(k-1)\theta_n

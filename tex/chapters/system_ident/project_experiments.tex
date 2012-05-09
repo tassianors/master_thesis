@@ -12,7 +12,6 @@ Uma forma de organizar o projeto de experimento é desenvolve-lo como um problema
 convexa, onde entre muitas vantagens está o fato de que é possível a utilização de métodos matemáticos
 para o seu cálculo e sua formulação pode ser feita por LMI ({\it{Linear Matrix Inequality}}. Em \cite{jansson}
 este tópico é explorado em mais profundidade, sendo aqui apenas apresentado a sua ideia básica.
-Este tópico é abordado na seção (\ref{sec:si_project_optimization}).
 
 O projeto de experimento é uma alternativa ao uso de sinais como PRBS ({\it{Pseudo Randon Binary Sequence}}).
 A escolha de um sinal mais apropriado para o experimento traz diversas vantagens, que podem ser bastante
@@ -167,7 +166,7 @@ de resolver.
 \item Existem restrições que são de dimensão infinita, o que exigem um certo grau de cuidado no procedimento de
 otimização.
 \item Existe ainda o problema de encontrar um sinal realizável que tenha as propriedades desejadas para o espectro.
-\item A variância assintótica depende tipicamente dos parâmetros do sistema $\theta_0$, $P=P(\theta_0)$ que são
+\item A variância assintótica depende tipicamente dos parâmetros do sistema $\theta^*$, $P=P(\theta^*)$ que são
 desconhecidos.
 \end{enumerate}
 
@@ -207,10 +206,10 @@ a matriz de covariância $P$. Esta matriz pode ser manipulada pelos espectros de 
 como apresentado em \eqref{eq:si_project_optimization_quality}.
 
 \begin{equation}
-P^{-1}(\theta_0)=\frac{1}{2 \pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(e^{j\omega}, \theta_0)\begin{bmatrix}
+P^{-1}(\theta^*)=\frac{1}{2 \pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(e^{j\omega}, \theta^*)\begin{bmatrix}
 \Phi_u(\omega) & \Phi_{ue}(\omega)\\ 
 \Phi_{ue}^{*}(\omega) & \lambda_0 
-\end{bmatrix}\mathcal{F}(e^{j\omega}, \theta_0)\;d\omega
+\end{bmatrix}\mathcal{F}(e^{j\omega}, \theta^*)\;d\omega
 \label{eq:si_project_optimization_quality}
 \end{equation}
 

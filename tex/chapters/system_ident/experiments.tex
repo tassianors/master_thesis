@@ -10,7 +10,7 @@
 Em aplicações de engenharia, deseja-se sempre que a solução do sistema seja única. Desta forma existem algumas
 premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos.
 
-Devem ser levadas em consideração algumas premissas básicas sobre o sinal de excitação do sistema e sobre a escolha da
+Devem ser levadas em consideração algumas caracteristicas sobre o sinal de excitação do sistema e sobre a escolha da
 classe de modelos que irá representar o sistema real $\mathcal{S}$.
 
 %===============================================================================
@@ -78,7 +78,7 @@ u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \om
 %===============================================================================
 
 Na Seção \ref{sec:si_data_persistently_excitation} foi visto como caracterizar
-sinais que são suficiente informativos. Considere um conjunto de modelos $\mathcal{M}$ para um sistema 
+sinais que são suficiente informativos. Considere um conjunto de modelos ($\mathcal{M}$) para um sistema 
 SISO descrito por (\ref{eq:si_intro_model}) tendo a função de transferência $G(q,\theta)$ a
 função racional apresentada em (\ref{eq:si_data_g_rational}):
 
@@ -97,7 +97,7 @@ serem estimados. \cite{ljung}
 Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
 o sinal terá componentes de frequência suficientes para excitar o sistema ao ponto de ser possível observar sua dinâmica
 de forma satisfatória. Inclui-se desta forma na identificação informações suficientes para que todos os
-parâmetros da família de modelos possam ser identificados de forma satisfatória.
+parâmetros da família de modelos possam ser identificados.
 
 %===============================================================================
 \subsection{Sobremodelagem}
@@ -109,7 +109,7 @@ $\mathcal{S}$ faz com que existam infinitas combinações de $\theta$, resultando 
 $\mathcal{M}$ que conseguem descrever o sistema $\mathcal{S}$.
 
 A escolha da classe de modelos deve ser feita com muita atenção para que não se recaia em problemas
-deste tipo. O que dificulta esta tarefa é o fato de nem sempre a ordem do sistema ser algo conhecido. É necessário
+deste tipo. O que dificulta esta tarefa é o fato de nem sempre a ordem do sistema ser conhecida. É necessário
 então por parte do executor da identificação, fazer uma estimativa sobre a ordem do sistema, evitando
 sempre a sobremodelagem, ou {\it{overmodeling}} também encontrado na literatura relacionada.
 

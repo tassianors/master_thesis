@@ -15,7 +15,8 @@ função custo, chamada de critério. Na seção \ref{sec:sys_ident_intro} foi aprese
 utilizado para a identificação:
 
 \begin{equation}
-V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \| \varepsilon \right \|
+V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t, \theta)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \|
+\varepsilon \right \|
 \label{eq:si_method_criteria}
 \end{equation}
 
@@ -35,24 +36,24 @@ A regressão linear é tavez o tipo mais simples de modelo paramétrico. A estrutur
 pode ser descrita como abaixo. \cite{system_identification}
 
 \begin{equation}
-\hat{y}(t)=\varphi ^T(t)\theta
+\hat{y}(t, \theta)=\varphi ^T(t)\theta
 \label{eq:si_obj_single_var}
 \end{equation}
 
-Onde $y(t)$ é chamada de {\it{variável regredida}} e é medida do processo.
+Onde $\hat{y}(t)$ é chamada de {\it{variável regredida}}.
 $\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor de
 parâmetros a ser identificado.
 
-A partir d erro de predição (\ref{eq:si_estim_prediction_error}) e (\ref{eq:si_obj_single_var}) podemos
+A partir do erro de predição (\ref{eq:si_estim_prediction_error}) e (\ref{eq:si_obj_single_var}) podemos
 redefinir o erro de predição como:
 
 \begin{equation}
-\varepsilon (t)=y(t)-\varphi ^T(t)\theta
+\varepsilon (t, \theta)=y(t)-\varphi ^T(t)\theta
 \nonumber
 \end{equation}
 
 A {\it{estimativa dos mínimos quadrados}} é definido como o vetor $\hat{\theta}$ 
-que minimiza a função custo (\ref{eq:si_obj_etim_lsm_v}). O valor de $\hat{\theta}$ que minimiza
+que minimiza a função custo (\ref{eq:si_method_criteria}). O valor de $\hat{\theta}$ que minimiza
 esta função custo é dada por: \cite{system_identification}
 
 \begin{equation}
@@ -71,8 +72,15 @@ erros de polarização na estimativa, a variável de regressão $\varphi(t)$ não pod
 distúrbio estocástico $\nu(t)$. Assume-se que o sistema real é dado por:
 
 \begin{equation}
-y(t)=\varphi^T(t)\theta_0+\nu(t)
+y(t)=\varphi^T(t)\theta^*+\nu(t)
 \label{eq:si_par_etim_lsm_true_sys}
+\end{equation}
+
+Onde $\theta^*$ proporciona:
+
+\begin{equation}
+G(q, \theta^*)=G_0(q)
+\nonumber
 \end{equation}
 
 A correlação entre os regressores $\varphi(t)$ e $\nu(t)$ será nulo se o ruido for branco, o que de
@@ -87,8 +95,8 @@ A equação \eqref{eq:si_par_etim_iv_estim} é também conhecida como {\it{bias}} ou
 valor é o quanto em média as estimativas $\hat{\theta}$ ficarão afastadas do valor real $\theta^*$. Obviamente esta não
 é uma informação conhecida por parte do projetista do experimento de identificação.
 
-Satisfeito somente se $\nu(t)$ for ruido branco. Esta desvantagem do método dos mínimos quadrados pode ser
-visto como uma oportunidade para a introdução do método de variáveis instrumentais.
+O erro de polarização só é nulo se $\nu(t)$ for ruido branco ou se $E(\varphi(t)) = 0$. Esta desvantagem do
+método dos mínimos quadrados pode ser visto como uma oportunidade para a introdução do método de variáveis instrumentais.
 \cite{system_identification}
 
 %===============================================================================
@@ -97,10 +105,10 @@ visto como uma oportunidade para a introdução do método de variáveis instrumenta
 %===============================================================================
 % bibliografia principal: aguirre e ljung
 
-Como foi visto anteriormente o método dos mínimos quadrados é simples e fácil de ser aplicado mas carece
-quando existe correlação entre o regressor $\varphi$ e o ruído estocástico $\nu$. Nesta seção será apresentado
-uma breve discussão sobre um dos métodos que se propõem a sanar esta fraqueza do método dos mínimos quadrados:
-método das vairáveis instrumentais.
+Como foi visto anteriormente o método dos mínimos quadrados é simples de ser aplicado mas carece
+quando existe correlação entre o regressor $\varphi$ e o ruído estocástico $\nu$ causando {\it{bias}} ou erro de
+polarização. Nesta seção será apresentado uma breve discussão sobre um dos métodos que se propõe a sanar este
+inconveniente do método dos mínimos quadrados: método das vairáveis instrumentais.
 
 Assume-se que $Z(t)$ é uma matriz $n\times n$ que possuem sinais não correlacionados com o 
 distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \eqref{eq:si_par_estim_iv_theta}:
@@ -110,7 +118,7 @@ distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \e
 \label{eq:si_par_estim_iv_theta}
 \end{equation}
 
-Se a dimensão da matriz $Z(t)$ for a mesma dimensão de $\theta$ temos o estimador do método das 
+Se a dimensão da matriz $Z(t)$ for a mesma dimensão do vetor $\theta$ temos o estimador do método das 
 variáveis instrumentais \eqref{eq:si_par_estim_iv}:
 
 \begin{equation}
@@ -123,7 +131,7 @@ Os elementos da matriz $Z(t)$ são normalmente chamados de instrumentos. O estima
 
 O estimador de variáveis instrumentais evita a polarização garantido  que o vetor de erro seja não correlacionado
 com as variáveis instrumentais. Esta condição e menos restritiva que a condição dos mínimos quadrados para que
-não haja erro de polarização \eqref{eq:si_par_etim_iv_estim}. O valor a ser pago por isso envolve: \cite{aguirre}
+não haja erro de polarização. O valor a ser pago por isso envolve: \cite{aguirre}
 
 \begin{enumerate}[(I)]
 \item Escolha das variáveis instrumentais.

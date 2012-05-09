@@ -24,7 +24,7 @@ Seja, $\theta^*$ o limite de convergência para a minimização do erro de predição
 Sejam os vetores:
 
 \begin{equation}
-	Q(q)=\begin{bmatrix}
+Q(q)=\begin{bmatrix}
 G_0(q) & H_0(q)
 \end{bmatrix}^T
 \nonumber
@@ -33,7 +33,7 @@ G_0(q) & H_0(q)
 
 \begin{equation}
 \hat{Q}_N(q)=\begin{bmatrix}
-G_0(q, \hat{\theta}_N) & H_0(q, \hat{\theta}_N)
+G(q, \hat{\theta}_N) & H(q, \hat{\theta}_N)
 \end{bmatrix}^T
 \nonumber
 \end{equation}
@@ -61,73 +61,32 @@ Adicionando e subtraindo a \eqref{eq:si_par_estim_under_q*} na equação \eqref{eq
 chega-se a definição do erro de polarização e de variância \eqref{eq:si_par_estim_under_errors}.
 
 \begin{equation}
-\Delta Q_N(q) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N-Q^*(q)}}+  \underset{\text{Erro de variância}}{\underbrace{Q^*(q)-Q(q)}}
+\Delta Q_N(q) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N(q)-Q^*(q)}}+  \underset{\text{Erro de
+polarização}}{\underbrace{Q^*(q)-Q(q)}}
 \label{eq:si_par_estim_under_errors}
 \end{equation}
+
+Onde $Q^*(q)=\left [ G(q, \theta^*) \;\;\; H(q, \theta^*)\right ]$.
 
 A partir da \eqref{eq:si_par_estim_under_errors} compreende-se o erro de polarização como sendo a distância
 entre a melhor aproximação possível e o valor real para o parâmetro. Já o erro de variância é a média que cada uma
 das estimativas está distante do valor ótimo possível para a estimativa.
-
-\begin{theorem}
-Supondo um sistema linear $\mathcal{M}$ parametrizado com em \eqref{eq:si_par_estim_theorem_sys}
-e  que os dados de entrada sejam suficientemente informativos.
-
-\begin{equation}
-\theta=\begin{bmatrix}
-\rho \\ 
-\eta 
-\end{bmatrix},\;\;
-G(q,\theta)=G(q,\rho), \;\;
-H(q,\theta)=G(q,\eta)
-\label{eq:si_par_estim_theorem_sys}
-\end{equation}
-
-Considerando que o sistema opera em malha aberta, ou seja:
-
-\begin{equation}
-u(t) \;e\; e_0(t)\text{ são independentes.}
-\nonumber
-\end{equation}
-
-Seja:
-
-\begin{equation}
-\hat{\theta}_N=\begin{bmatrix}
-\hat{\rho}_N \\ 
-\hat{\eta}_N
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-Obtido pelo método de predição apresentado %%achar a ref 
-obtém-se:
-
-\begin{equation}
-\begin{matrix}
-G(e^{j\omega},\hat{\theta}_N)\rightarrow G_0(e^{j\omega})\\ 
-\text{quando:}\\
-N\rightarrow \infty
-\end{matrix}
-\label{eq:si_par_estim_theorem_end}
-\end{equation}
-\end{theorem}
 
 %===============================================================================
 \subsubsection{Covariância nos parâmetros}
 \label{sec:si_par_estim_uncertanties_covariance}
 %===============================================================================
 
-Um comum meio de medir a qualidade das estimativas é estudar suas propriedades assintóticas. Quando o valor
+Um meio comum de medir a qualidade das estimativas é estudar suas propriedades assintóticas. Quando o valor
 de $N$ (quantidade de dados) cresce muito, a estimativa pertencerá a alguma distribuição. As propriedades desta
 irão determinar a qualidade das estimativas obtidas.\cite{jansson}
 
 \begin{equation}
 \begin{matrix}
-\sqrt{N}(\hat{\theta}_N-\theta_0) \to \mathcal{N}(0,P) \;\; \text{quando} \;\; N\to \infty \\ \\
-\lim_{N\to \infty}N\;E(\hat{\theta}_N-\theta_0)()\hat{\theta}_N-\theta_0)^T=P\\\\
-P(\theta_0)=\lambda_0(E\left [ \psi (t,\theta_0)\psi^T(t,\theta_0) \right ])^{-1}\\ \\
-\psi (t,\theta_0)=\frac{\partial }{\partial \theta}\hat{y}(t,\theta)\mid_{\theta=\theta_0}
+\sqrt{N}(\hat{\theta}_N-\theta^*) \to \mathcal{N}(0,P) \;\; \text{quando} \;\; N\to \infty \\ \\
+\lim_{N\to \infty}N\;E(\hat{\theta}_N-\theta^*)()\hat{\theta}_N-\theta^*)^T=P\\\\
+P(\theta^*)=\lambda_0(E\left [ \psi (t,\theta^*)\psi^T(t,\theta^*) \right ])^{-1}\\ \\
+\psi (t,\theta^*)=\frac{\partial }{\partial \theta}\hat{y}(t,\theta)\mid_{\theta=\theta^*}
 \end{matrix}
 \label{eq:si_par_estim_conv_def}
 \end{equation}
@@ -146,16 +105,16 @@ também influenciará na qualidade da estimativa, como pode ser visto no Lemma \re
 \end{equation}
 
 \begin{lemma}
-A inversa da matriz de covariância, $P^{-1}(\theta_0)$, é uma função linear do espectro $\Phi_{\chi 0}$ dado por
+A inversa da matriz de covariância, $P^{-1}(\theta^*)$, é uma função linear do espectro $\Phi_{\chi 0}$ dado por
 \eqref{eq:si_par_estim_cov_lemma}.
 
 \begin{equation}
-P^{-1}(\theta_0)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta_0)
-\Phi_{\chi_0}(\theta_0)\mathcal{F}^*(\theta_0) d \omega
+P^{-1}(\theta^*)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta^*)
+\Phi_{\chi_0}(\theta^*)\mathcal{F}^*(\theta^*) d \omega
 \label{eq:si_par_estim_cov_lemma}
 \end{equation}
 
-Onde $\mathcal{F}(q, \theta_0)=\left [ \mathcal{F}_u(q, \theta_0) \;\;\;\mathcal{F}_e(q, \theta_0) \right ]$ e:
+Onde $\mathcal{F}(q, \theta^*)=\left [ \mathcal{F}_u(q, \theta^*) \;\;\;\mathcal{F}_e(q, \theta^*) \right ]$ e:
 
 \begin{equation}
 \mathcal{F}_u(\theta_0) = H^{-1}(\theta_0)\frac{\mathrm{d} G(\theta_0)}{\mathrm{d} \theta} 
@@ -186,11 +145,11 @@ A partir da distribuição assintótica normal em \eqref{eq:si_par_estim_conv_def} 
 \end{equation}
 
 Com $P_N=P/N$ e onde \eqref{eq:si_par_estim_confidence_region} é a região de confiança, onde assintoticamente
-inclui $\theta_0$ com probabilidade $\alpha$. Desta forma tem-se que as estimativas estarão centradas em $\theta_0$
-e com probabilidade $\alpha$ estarão contidas em uma esfera definida por $P_N$ e $\chi_{\alpha}^2(N)$
+inclui $\theta_0$ com probabilidade $\alpha$. Desta forma tem-se que as estimativas estarão centradas em
+$\hat{\theta}_N$ e com probabilidade $\alpha$ estarão contidas em uma esfera definida por $P_N$ e $\chi_{\alpha}^2(N)$
 
 \begin{equation}
-U_\theta=\left \{ \theta \mid (\hat{\theta}_N-\theta_0)^T P^{-1}_{N}(\hat{\theta}_N-\theta_0) \le \chi^2_{\alpha}(n)  \right \}
+U_\theta=\left \{ \theta \mid (\hat{\theta}_N-\theta^*)^T P^{-1}_{N}(\hat{\theta}_N-\theta^*) \le \chi^2_{\alpha}(n) \right \}
 \label{eq:si_par_estim_confidence_region}
 \end{equation}
 

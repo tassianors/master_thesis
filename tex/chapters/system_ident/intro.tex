@@ -41,9 +41,14 @@ H(q, \theta)=1+\sum_{k=1}^{\infty}h(k, \theta)q^{-k}
 \nonumber
 \end{equation}
 
-A intenção da identificação de sistemas é encontrar um valor para o vetor $\theta$ que faça com que $G(q,
+O objetivo da identificação de sistemas é encontrar um valor para o vetor $\theta$ que faça com que $G(q,
 \theta)$ seja o mais próximo possível de $G_0(q)$. O vetor $\theta$ que faz com que estas duas funções de
-transferências sejam iguais é denotado por $\theta^*$.
+transferências sejam iguais é denotado por $\theta^*$. Segue então que:
+
+\begin{equation}
+G(q, \theta^*)=G_0(q)
+\label{eq:si_intro_true_theta}
+\end{equation}
 
 Outra definição que acompanha tudo que aqui será abordado é a definição de 	sinal quasi-estacionário:
 Um sinal é dito quasi-estacionário se a média e a autocorrelação do mesmo convergem para um valor
@@ -84,29 +89,27 @@ Segunda componente é a classe de modelos escolhida, denotada por $\mathcal{M}$:
 
 %TODO> o que é DM
 
-O terceiro componente é o critério de escolha que diz qual modelo, dentro da classe. é melhor que outro, em
-outras palavras, qual modelo melhor consegue representar o sistema real $\mathcal{S}$ de acordo com o critério
-escolhido.
+O terceiro componente é o critério de escolha que diz qual modelo, dentro da classe é melhor que outro, em
+outras palavras, qual modelo melhor representa o sistema real $\mathcal{S}$ de acordo com o critério escolhido.
 
-Uaualmente o critério mais utilizado é o de erro de predição. 
+Usualmente o critério mais utilizado é o de erro de predição. 
 
 Preditores são equações que predizem qual será o próximo valor de saída do sistema
-baseado noconjunto do modelo e nos valores de dados coletados até aquele momento.
+baseado no conjunto do modelo e nos valores de dados coletados até aquele momento.
 Os sinais $y(t)$ e $u(t)$ são os sinais da saída e entrada medidas do sistema real enquanto que o sinal
 $\hat{y}(t, \theta)$ é o sinal de saída do preditor. A diferênça entre o valor do preditor e o valor do sistema real,
 é conhecido como erro de predição:
 
 \begin{equation}
-\varepsilon(t)=y(t) - \hat{y}(t, \theta)	
+\varepsilon(t, \theta)=y(t) - \hat{y}(t, \theta)	
 \label{eq:si_estim_prediction_error}
 \end{equation}
 
 A Figura (\ref{fig:si_estim_pem}) apresenta um diagrama de blocos de como é organizado o método do erro de
-predição. Existe um processo que se deseja estimar, para isso escolhe-se uma classe de modelos onde os
-parametros a serem ajustados são $\theta$. O preditor é ajustado, baseado nas diferentes possíbilidades de
-escolha de $\theta$, este ajuste é feito baseado no erro entre o sistema real $y(t)$ e a saída do preditor
-$\hat{y}(t, \theta)$.
-
+predição. Existe um processo o qual se deseja estimar, para isso escolhe-se uma classe de modelos onde os
+parametros a serem ajustados são representados por $\theta$. O preditor é então ajustado, baseado nas diferentes
+possíbilidades de escolha de $\theta$. Este ajuste é feito a partir do erro entre o sistema real $y(t)$ e a saída do
+preditor $\hat{y}(t, \theta)$.
 
 \begin{figure}[htbp]
 \center
@@ -172,7 +175,7 @@ y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
 \label{eq:si_par_estim_system}
 \end{equation}
 
-Assumindo que $G(0, \theta)=0$, $H(0,\theta)=I$ e que $H^{-1}(q, \theta)$ e $H^{-1}(,\theta)
+Assumindo que $G(0, \theta)=0$, $H(0,\theta)=I$ e que $H^{-1}(q, \theta)$ e $H^{-1}(q,\theta)
 G(q,\theta)$ são assisntóticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$ não forem correlacionados,
 então o preditor ótimo pode ser apresentado como: \cite{system_identification}
 
@@ -191,7 +194,8 @@ para elencar qual é o melhor modelo dentro da classe dentre os infinitos possíve
 decorrer do texto e é a base para a maioria dos métodos de identificação usualmente utilizados.
 
 \begin{equation}
-V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \| \varepsilon \right \|
+V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t, \theta)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \|
+\varepsilon \right \|
 \label{eq:si_obj_etim_lsm_v}
 \end{equation}
 

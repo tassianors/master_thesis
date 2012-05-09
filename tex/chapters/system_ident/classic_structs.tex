@@ -20,8 +20,8 @@ No caso de modelagem caixa branca, faz-se necessário conhecer a fundo o sistema
 modelado. Além de estar bem familiarizado com o sistema é necessário conhecer as
 relações matemáticas que descrevem os fenômenos envolvidos. \cite{aguirre}.
 
-Para o caso de modelagem caixa preta é que pouco ou nenhum conhecimento prévio
-do sistema é necessário. Este tipo de técnica é também conhecido como {\it{modelagem empírica}}.
+Para o caso de modelagem caixa preta exige-se que pouco ou nenhum conhecimento prévio
+do sistema seja necessário. Este tipo de técnica é também conhecida como {\it{modelagem empírica}}.
 
 Algo importante a se destacar antes do processo de modelagem do sistema é a
 escolha do que deseja-se modelar deste sistema. Uma modelagem completa de todas
@@ -35,19 +35,23 @@ o modelo nestas características desejadas.
 \label{sec:si_modeling_family_models}
 %===============================================================================
 
-Modelo de um sistema é a descrição de {\it{algumas}} de suas propriedades. Nesta seção serão 
-apresentados conjuntos de modelos para sistemas SISO discretos invariantes no tempo e algumas das famílias mais
-comumente utilizadas.
+Modelo de um sistema é a descrição matemática de {\it{algumas}} de suas propriedades. 
 
 Na seção (\ref{sec:sys_ident_intro}) apresentou-se a definição para um conjunto de modelos:
 
 \begin{equation}
-y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
+\mathcal{M}: \;\;\left \{ G(q, \theta), H(q, \theta) | \theta \in D_{\mathcal{M}} \right \}
 \nonumber
 \end{equation}
 
+Resultando em um sistema que pode ser descrito como abaixo: 
+
+\begin{equation}
+y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
+\end{equation}
+
 Onde as funções de transferência $G(q, \theta)$ e $H(q, \theta)$  são parametrizadas por $\theta$ e para cada
-combinação de $\theta$, um novo modelo é definido. Podendo desta forma serem definidos como:
+combinação de $\theta$, um novo modelo é definido. Pode-se desta forma defini-los como:
 
 \begin{equation}
 G(q, \theta)=\sum_{k=1}^{\infty}g(k, \theta)q^{-k}
@@ -63,8 +67,8 @@ Uma forma direta para a identificação de sistemas é tornar as funções $G(q, \the
 racionais e os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo de identificação
 ($\theta$).
 
-Provavelmente o modelo mais simples para descrever a relação entre entrada e saída é obtido
-descrevendo o sistema como uma equação linear (\ref{eq:si_modeling_arx}). \cite{ljung}
+Provavelmente o modelo mais simples para descrever a relação entre entrada e saída de um sistema seja obtido
+descrevendo-o como uma equação linear (\ref{eq:si_modeling_arx}). \cite{ljung}
 
 \begin{equation}
 y(t)+a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)+e(t)
@@ -140,7 +144,7 @@ A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
 \label{eq:si_modeling_lti_det_global}
 \end{equation}
 
-Quando usa-se apenas um conjunto dos polinômios de $A(q) \;\cdot\; F(q)$ obtemos as estruturas de modelos
+Quando usam-se apenas um conjunto dos polinômios de $A(q) \; \cdot \; F(q)$ obtemos as estruturas de modelos
 da Tabela \ref{table:si_modeling_models}.
 
 \begin{table*}[htbp]

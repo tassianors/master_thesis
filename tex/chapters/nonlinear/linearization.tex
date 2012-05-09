@@ -4,23 +4,23 @@
 %===============================================================================
 
 Muitos, se não todos, os sistemas reais são não lineares. Existe entretanto um grande número destes sistemas que
-podem, e assim o são, representados por sistemas lineares em determinadas faixas de atuação. Conseguem desta forma
+podem, e assim o são, representados por sistemas lineares em determinadas faixas de operação. Conseguem desta forma
 representar de forma satisfatória o sistema observado. Todavia alguns sistemas para serem linearizados exigem
 uma faixa de atuação muito estreita, fazendo com que o sistema em sua operação normal já saida desta faixa,
 tornando o modelo linear erroneo para aquela faixa de operação.
 
-Tem-se desta forma uma das justificativas de se escolher um modelo não linear para caracterizar o sistema em
-questão. Ganha-se de um lado no quisito de faixa de atuação mais ampla e perde-se por abdicar da simplicidade
-de sistemas lineares para entrar em um mundo não tão bem explorado dos sistemas não lineares.
+Tem-se desta forma uma das justificativas de escolher um modelo não linear para caracterizar o sistema em
+questão. Ganha-se de um lado no quesito de faixa de atuação mais ampla e perde-se por abdicar da simplicidade
+de sistemas lineares e entrar em um mundo não tão bem explorado dos sistemas não lineares.
 
 Um sistema não linear pode ser genericamente descrito por:
 
 \begin{equation}
-y(t)=\mathcal{f}(u(t), e(t))
+y(t)=f(u(t), e(t))
 \label{eq:nlin_system}
 \end{equation}
 
-Onde $\mathcal{f}$ é uma função não linear, $u(t)$ é o sinal de entrada, $e(t)$ é o ruído do sistema e $y(t)$ é a saída
+Onde $f(\dot)$ é uma função não linear, $u(t)$ é o sinal de entrada, $e(t)$ é o ruído do sistema e $y(t)$ é a saída
 do sistema.
 
 A seguir serão abordados algumas caracteristicas de sistemas não lineares linearizados ao redor do ponto de
