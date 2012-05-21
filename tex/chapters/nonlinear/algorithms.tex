@@ -237,6 +237,69 @@ estimativas dos parâmetros $\theta_1$ e $\theta_2$ e a elipse de confiança para 
 \label{sec:nl_si_algorithms_rationals}
 %===============================================================================
 
+O sistema descrito abaixo será utilizado para a simulação: 
+
+\begin{equation}
+y(t)=\frac{\theta_1y(t-1)+\theta_2y(t-1)u(t-1)+\theta_3u(t-1)}{1+\theta_4y^{2}(t-1)+\theta_5y^{2}(t-2)}
+\label{eq:nl_rat_exemple3}
+\end{equation}
+
+Para o sistema real utilizou-se os valores de referência: $\theta= $
+
+\begin{equation}
+\theta = 
+\begin{bmatrix}
+0.2 & 0.1 & 1 & 1 & 1
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+
+Escolheu-se um modelo que não consegue representar totalmente o comportamento do sistema \eqref{eq:nl_rat_exemple3}:
+
+\begin{equation}
+y(t)=\frac{\theta_1y(t-1)+\theta_2u(t-1)}{1+\theta_3y^{2}(t-1)+\theta_4y^{2}(t-2)}
+\label{eq:nl_rat_exemple3_model}
+\end{equation}
+
+Utilizando par a simulação um sinal PRBS de 635 pontos e um ruído de variância $\sigma^2=0.005$ os resultados
+da média de 100 estimativas de Monte Carlo foram:
+
+\begin{equation}
+\text{média }\;\theta =\begin{bmatrix}
+0.2279  &  1.1341  &  1.2716  &  1.3769
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+A variância encontrada foi de:
+
+\begin{equation}
+\text{variância }\;\theta =1.0\times 10^{-3} \begin{bmatrix}
+0.0020  &  0.0535  &  0.3402  &	  0.3217
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+A fim de comparar a qualidade dos resultados obtidos, na Figura (\ref{fig:nl_rat_example3}) é apresentado a resposta do
+sistema real \eqref{eq:nl_rat_exemple3} e o sistema obtido pela estimativa utilizando o a classe de modelos
+\eqref{eq:nl_rat_exemple3_model} para uma entrada do tipo degrau unitário.
+
+\begin{figure}[htbp]
+	\center
+	\includegraphics[width=0.9\columnwidth]{figures/rat_example3.eps}
+	\caption{Comparação do sistema real e do sistema estimado do modelo \eqref{eq:nl_rat_exemple3_model}. Comparativo dos
+	sistemas para uma entrada do tipo degrau unitário.}
+	\label{fig:nl_rat_example3}
+\end{figure}
+
+O custo obtido para o modelo estimado foi de:
+
+\begin{equation}
+V(\theta)=1.1239
+\nonumber
+\end{equation}
+
 %===============================================================================
 \subsubsection{Conversor CC-CC Buck}
 \label{sec:nl_si_algorithms_rationals_buck}

@@ -108,27 +108,27 @@ de Hammerstein e Wiener.
 \end{figure}
 
 %===============================================================================
-\subsection{Serie de Voltera}
-\label{sec:nl_models_voltera}
+\subsection{Serie de volterra}
+\label{sec:nl_models_volterra}
 % Aguirre 334
 %===============================================================================
 
-Um sistema não linear pode ser descrito pela serie de Voltera \eqref{eq:nl_models_voltera}:
+Um sistema não linear pode ser descrito pela serie de Volterra \eqref{eq:nl_models_volterra}:
 
 \begin{equation}
 y(t)=\sum_{j=1}^{\infty}\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}
 h_j(\tau_1, ... ,\tau_j) \prod_{i=1}^{j}u(t-\tau_i)d\tau_i
-\label{eq:nl_models_voltera}
+\label{eq:nl_models_volterra}
 \end{equation}
 
 Onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para
-um sistema linear com $j=1$ a equação de Voltera se reduz a integral de convolução.
+um sistema linear com $j=1$ a equação de Volterra se reduz a integral de convolução.
 \cite{aguirre}
 
-Grande dificuldade de utilizar a serie de Voltera \eqref{eq:nl_models_voltera} é que
-até para sistemas pouco não lineares, o número de parâmetros a estimar é grande. Isso
-é devido ao fato da série tentar explicar a saída do sistema apenas baseado nos valores
-da entrada deste.
+As expansões funcionais em series de Volterra relacionam os sinais passados da entrada com o valor atual da saída do
+sistema e isso inevitavelmente significa que que um conjnto exessivo de parametros é necessário para descrever até mesmo
+sismples sistemas não lineares e consequentemente apenas poucas aplicações práticas foram apresentadas.
+\cite{chen_billings1989}
 
 %===============================================================================
 \subsection{Redes Neurais}
@@ -276,10 +276,12 @@ igual a $f_i$, $i=1, \ldots , m$ que por sua vez não precisam ser iguais entre s
 de polarização do neurônio da camada de saída, $\omega_i$ são os pesos da saída de cada neurônio da
 camada oculta e $\omega_{ij}$ são os pesos da entrada $j$, vista pelo $i-$ésimo neurônio da camada
 oculta. \cite{aguirre}
+
 %===============================================================================
 \subsubsection{Redes Neurais recorrentes}
 \label{sec:nl_models_neurals_multilayer}
 %===============================================================================
+
 Redes neurais recorrentes, trabalho introduzido por Hopfield em \cite{hopfield} provê uma
 alternativa para o reconhecimento de padrões. O método proposto consiste em ter uma rede neural de
 apenas uma camada adicionada de uma realimentação com um atraso de tempo como apresentado na Figura
@@ -468,9 +470,28 @@ exogenous variables}}), introduzidos por \cite{leontaritis_billings1985}, que po
 pela equação \eqref{eq:nl_model_narmax} \cite{aguirre}. Este modelo provê uma representação
 unificada para a descrição de sistemas discretos não lineares \cite{chen_billings_narmax}
 
+Leontaritis e Billings em \cite{chen_billings1989} rigorozamente provaram que um sistema não linear
+de tempo discreto LTI pode sempre ser representado por um modelo do tipo:
+
+\begin{equation}
+y(t)=F(y(t-1), \cdots, y(t-n_y),u(t-1), \cdots, u(t-n_u) )
+\label{eq:nlin_models_narmax_generic}
+\end{equation}
+
+Em uma região ao redor do ponto de equilibrio sugeito a duas condições:
+
+\begin{enumerate}
+\item a resposta da função $F$ do sistema deve ser finitamente realizavel.
+\item Um modelo linearizado existe se o sistema é operado próximo ao ponto de equilibrio escolhido.
+\end{enumerate}
+
+Observa-se que a condição (1) apenas exclui sistemas de parametros distribuidos e a condição (2) implica que se o
+sistema for perturbado com uma amplitude pequena, em volta da região do ponto de quilibrio, um modelo linearizado do
+sistema existe. \cite{chen_billings1989}
+
 O modelo {\it{NARMAX}} surgiu, ou foi motivado, pelo exessivo esforço para a estimativa dos
 parametros e pela dificuldade em interpretar os resultados obtidos com modelos baseados em series
-(Wienner, Hammerstein e Voltera). A necessidade do uso de entradas espaciais são também uma
+(Wienner, Hammerstein e Volterra). A necessidade do uso de entradas espaciais são também uma
 desvantagem detes modelos. \cite{leontaritis_billings1985}
 
 \begin{eqnarray}\nonumber
@@ -627,3 +648,6 @@ $\xi(t)$, o que resultará em polarização dos parâmetros, mesmo que $e(t)$ seja u
 média zero. Este é de certa forma o preço que se paga ao linearizar os parâmetros para que seja
 possível utilizar o método dos mínimos quadrados. \cite{aguirre}
 
+Uma das maiores desvantagens da modelo racional quando comparado com o modelo polinomial é que o modelo polinomial é
+linear nos parametros. Muitos resultados para identificação de sistemas lineares podem ser extendidos para modelos
+polinomiais não lineares e várias rotinas de determinação de estrutura foram desenvolvidas. \cite{chen_billings1989}

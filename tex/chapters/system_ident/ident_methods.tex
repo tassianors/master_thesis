@@ -8,10 +8,10 @@
 % Modelagem do ruído
 
 Identificação de sistemas é formado por três premissas básicas: o sistema real $\mathcal{S}$ a classe de modelos
-escolhida $\mathcal{M}$ e o critério que elenca qual é o melhor modelo dentro da classe baseado em algum critério.
+escolhida $\mathcal{M}$ e o critério que elenca qual é o melhor modelo dentro da classe, baseado em algum critério.
 
-Métodos de identificação de sistemas nada mais são do que procedimentos ou algoritmos para encontrar o mínimo de uma
-função custo, chamada de critério. Na seção \ref{sec:sys_ident_intro} foi apresentado o critério de minimização mais
+Métodos de identificação de sistemas nada mais são do que procedimentos, ou algoritmos, para encontrar o mínimo de uma
+função custo, chamada critério. Na seção \ref{sec:sys_ident_intro} foi apresentado o critério de minimização mais
 utilizado para a identificação:
 
 \begin{equation}
@@ -148,4 +148,14 @@ pouco correlacionados com o erro e muito correlacionados com os regressores do m
 \subsection{Modelagem do ruído}
 \label{sec:si_par_estim_noise_modeling}
 %===============================================================================
+
+A opção de modelagem do ruido pode ser utilizado para a obtenção de estimativas não polarizadas, mesmo quando
+utiliza-se o método dos mínimos quadrados e o ruído sobre o sistema não é branco.
+
+A classe de modelos definida na equação \eqref{eq:si_intro_model} apresenta além da classe de modelos para a planta
+$G(q, \theta)$ o modelos do sistema que atua sobre o ruído $H(q, \theta)$. Desta forma considera-se que o sistema possui
+um ruído aditivo que não é branco, também chamado de ruído colorido.
+
+É simples observar que um modelo que leve em consideração não apenas o modelo da planta, mas também a modelagem do ruído
+atuante sobre este será mais completo.   
 

@@ -2,10 +2,6 @@ REVIEW:
 
 Linear system identification:
 - escrever secao sobre modelagem do ruido. ENCONTRAR BIBLIOGRAFIA PARA ISSO!!
-- introdução sobre propriedade das estimativas obtidas.
  
-Non-linear system identification:
-- simulaçao de quando o sistema racional nao pode ser representado pela classe de modelos.
-
 Data based controller
 - rever toda a seçao sobre vrft para modelos racionais. faltam simulações e eh necessario escrever varias coisas melhor.
