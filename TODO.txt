@@ -5,3 +5,8 @@ Linear system identification:
  
 Data based controller
 - rever toda a seçao sobre vrft para modelos racionais. faltam simulações e eh necessario escrever varias coisas melhor.
+
+
+Achar paper:
+
+Ljung and Söderström 1983 - theory and practice of recursive identification. MIT press cambridge mass.
