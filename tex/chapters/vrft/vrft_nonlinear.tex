@@ -71,9 +71,15 @@ controlador respectivamente.
 
 \begin{figure}[htbp]
 \center
+% Generated with LaTeXDraw 2.0.8
+% Sat May 26 23:30:48 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
 \scalebox{1} % Change this value to rescale the drawing.
 {
-\begin{pspicture}(0,-0.92)(11.62,0.9)
+\begin{pspicture}(0,-1.32)(11.62,1.3)
 \psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,0.3)(0.8,0.3)
 \pscircle[linewidth=0.04,dimen=outer](1.0,0.3){0.2}
 \psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.2,0.3)(2.0,0.3)
@@ -85,36 +91,40 @@ controlador respectivamente.
 \psframe[linewidth=0.04,dimen=outer](10.2,0.7)(9.0,-0.1)
 \psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.4,0.3)(6.8,0.3)
 \psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(10.2,0.3)(11.6,0.3)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.0,0.1)(1.0,-0.9)
-\psline[linewidth=0.04cm](1.0,-0.9)(10.8,-0.9)
-\psline[linewidth=0.04cm](10.8,-0.9)(10.8,0.3)
-\usefont{T1}{ptm}{m}{n}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.0,0.1)(1.0,-1.3)
+\psline[linewidth=0.04cm](1.0,-1.3)(10.8,-1.3)
+\psline[linewidth=0.04cm](10.8,-1.3)(10.8,0.3)
+\usefont{T1}{ppl}{m}{n}
 \rput(0.45828125,0.61){r(t)}
-\usefont{T1}{ptm}{m}{n}
-\rput(1.4946876,0.61){e(t)}
-\usefont{T1}{ptm}{m}{n}
+\usefont{T1}{ppl}{m}{n}
+\rput(1.5445312,0.61){$\epsilon (t)$}
+\usefont{T1}{ppl}{m}{n}
 \rput(3.699375,0.61){v(t)}
-\usefont{T1}{ptm}{m}{n}
+\usefont{T1}{ppl}{m}{n}
 \rput(6.089375,0.61){u(t)}
-\usefont{T1}{ptm}{m}{n}
+\usefont{T1}{ppl}{m}{n}
 \rput(8.464531,0.61){$\omega(t)$}
-\usefont{T1}{ptm}{m}{n}
+\usefont{T1}{ppl}{m}{n}
 \rput(10.899375,0.61){y(t)}
 \psline[linewidth=0.04cm](1.2,0.1)(1.4,0.1)
-\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](5.6,0.9)(1.8,-0.3)
-\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](10.4,0.9)(6.6,-0.3)
-\usefont{T1}{ptm}{m}{n}
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](5.6,1.3)(1.8,-0.3)
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](10.4,1.3)(6.6,-0.3)
+\usefont{T1}{ppl}{m}{n}
 \rput(3.5345314,-0.59){C(z)}
-\usefont{T1}{ptm}{m}{n}
+\usefont{T1}{ppl}{m}{n}
 \rput(8.544531,-0.59){G(z)}
-\usefont{T1}{ptm}{m}{n}
-\rput(2.6745312,0.41){$\Phi^{-1}$}
-\usefont{T1}{ptm}{m}{n}
-\rput(9.524531,0.41){$\Phi$}
-\usefont{T1}{ptm}{m}{n}
-\rput(4.7745314,0.41){C'(z)}
-\usefont{T1}{ptm}{m}{n}
-\rput(7.384531,0.41){G'(z)}
+\usefont{T1}{ppl}{m}{n}
+\rput(2.5945313,0.29){$\vartheta(t)$}
+\usefont{T1}{ppl}{m}{n}
+\rput(9.594531,0.31){$\Phi(t)$}
+\usefont{T1}{ppl}{m}{n}
+\rput(4.7945313,0.31){C'(z)}
+\usefont{T1}{ppl}{m}{n}
+\rput(7.4045315,0.31){G'(z)}
+\usefont{T1}{ppl}{m}{n}
+\rput(8.438125,1.01){Wiener}
+\usefont{T1}{ppl}{m}{n}
+\rput(3.7610939,1.01){Hammerstein}
 \end{pspicture} 
 }
 \caption{Diagrama de blocos para um sistema não linear do tipo Wiener}
@@ -148,10 +158,10 @@ Espera-se então que por $M(z)$ ser linear, que o controlador tenha um bloco que 
 que a não linearidade possa ser cancelada completamente.
 
 Atingir uma expressão analítica que descreva $\Phi^{-1}$ não é uma tarefa simples. Optou-se então por
-aproximar esta função por outro polinômio de ordem 4:
+aproximar esta função por outro polinômio de ordem 4, definido por $\vartheta (t)$:
 
 \begin{equation}
-\Phi^{-1}(e(t))= v(t) = a_1e(t) + a_2 e^2(t) +a_3 e^3(t) +a_4 e^4(t)
+\vartheta (\epsilon(t))= v(t) = a_1\epsilon (t) + a_2 \epsilon ^2(t) +a_3 \epsilon ^3(t) +a_4 \epsilon ^4(t)
 \label{eq:vrft_nl_wiener_phi_inv}
 \end{equation}  
 
@@ -176,14 +186,14 @@ u(t)=\begin{bmatrix}
 \theta_1 & \theta_2 & \theta_3 & \theta_4 & \theta_5 & \theta_6 & \theta_7 & \theta_8
 \end{bmatrix}
 \begin{bmatrix}
-e(t)\\ 
-e^2(t)\\ 
-e^3(t)\\ 
-e^4(t)\\ 
-e(t-1)\\ 
-e^2(t-1)\\ 
-e^3(t-1)\\ 
-e^4(t-1)
+\epsilon (t)\\ 
+\epsilon ^2(t)\\ 
+\epsilon^3(t)\\ 
+\epsilon^4(t)\\ 
+\epsilon(t-1)\\ 
+\epsilon^2(t-1)\\ 
+\epsilon^3(t-1)\\ 
+\epsilon^4(t-1)
 \end{bmatrix}
 \label{eq:vrft_nl_wiener_u}
 \end{equation}  
@@ -210,7 +220,7 @@ Com um desvio padrão de:
 O custo entre os sinais de saída do sistema obtido e o sistema esperado $M(z)$ foi de  $J_{MR}(\theta)=
 0.3820$ e o custo dos sinais de saída do controlador esperado e obtido foi de $J_{VR}=1.0119$.
 
-Como a estimativa de $\Phi^{-1}(e(t))$ é apenas uma aproximação do que espera-se ser a inversa de
+Como a estimativa de $\vartheta (\epsilon(t))$ é apenas uma aproximação do que espera-se ser a inversa de
 $\Phi(\omega(t))$, a classe de modelos escolhida para o controlador não consegue representar a totalidade do
 controlador ideal. Desta forma é esperado que a identificação não consiga atingir a totalidade da função
 $M(z)$ inicialmente escolhido. Para as estimativas foram utilizados sinais PRBS de 127 pontos para a
