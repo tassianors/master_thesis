@@ -277,7 +277,7 @@ saída da planta $y(t)$.
 Considere a planta descrita por:
 
 \begin{equation}
-y(t)=\frac{0.1u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
+y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
 \label{eq:vrft_nl_dinamic_ex1_y}
 \end{equation}
 
@@ -288,15 +288,15 @@ M(z)=\frac{Y(z)}{R(z)}=\frac{0.4}{z-0.6}
 \label{eq:vrft_nl_dinamic_ex1_mz}
 \end{equation}
 
-A equação de $M(z)$ pode ser reescrita em função do tempo como em:
+A equação \eqref{eq:vrft_nl_dinamic_ex1_mz} pode ser reescrita em função do tempo como em:
 
 \begin{equation}
 y(t)=0.4r(t-1)+0.6y(t-1)
 \label{eq:vrft_nl_dinamic_ex1_mt}
 \end{equation}
 
-Ao igualarmos a equação \eqref{eq:vrft_nl_dinamic_ex1_y} com \eqref{eq:vrft_nl_dinamic_ex1_mt} e isolando o
-sinal $u(t)$ temos a equação que descreve o comportamento do controlador que levará a planta a ter o
+Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex1_y} com \eqref{eq:vrft_nl_dinamic_ex1_mt} e isolar o
+sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
 comportamento descrito por $M(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
 
 \begin{equation}
@@ -314,7 +314,6 @@ u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 y^2(t-2)r(t-1)+ \theta_4 y(t)y
 Utilizando um sinal PRBS de tamanho 254 e o método do VRFT para gerar os sinais $r(t)$ e $e(t)$. 
 Adicionando-se um ruido de variância $\sigma^2 = 0.005$, a média da estimativa para 100 experimentos de
 Monte Carlo foi de:
-
 
 \begin{equation}
 \text{média de }\theta=\begin{bmatrix}
@@ -366,51 +365,36 @@ O custo $J_{VRFT}=2.7291\times10{-8}$ foi obtido utilizando-se os sinais de saíd
 esperado. Já o custo entre os sinais de saída do sistema em malha fechada estimado e desejado foi de
 $J_{MR}=0.0033$.
 
+Aumentando a variância para $\sigma^2 = 0.01$ os resultados obtidos foram:
 
-\cite{lecchini_campi_savaresi_2dof}
-\cite{Guardabassi}
+\begin{equation}
+\text{média de }\theta=\begin{bmatrix}
+0.4000 & 0.5997 & 0.1000 & 0.1503 & 0.5007
+\end{bmatrix}
+\nonumber
+\end{equation}
 
+\begin{equation}
+\text{Desvio padrão de }\theta=\begin{bmatrix}
+0.0025 & 0.0080 & 0.0024 & 0.0065 & 0.0031
+\end{bmatrix}
+\nonumber
+\end{equation}
 
+\begin{equation}
+\text{Covariância }\theta=1.0\times 10^{-4}\begin{bmatrix}
+ 0.0609 &   0.1062 &  -0.0435 &  -0.0642 &  -0.0062 \\
+ 0.1062 &   0.6407 &  -0.0792 &  -0.4292 &   0.0071 \\
+-0.0435 &  -0.0792 &   0.0593 &   0.0902 &  -0.0097 \\
+-0.0642 &  -0.4292 &   0.0902 &   0.4256 &  -0.0194 \\
+-0.0062 &   0.0071 &  -0.0097 &  -0.0194 &   0.0970
+\end{bmatrix}
+\nonumber
+\end{equation}
 
-%ruido de 0.01
-%
-%mtheta =
-%
-%    0.4000    0.5997    0.1000    0.1503    0.5007
-%
-%
-%vartheta =
-%
-%   1.0e-04 *
-%
-%    0.0609    0.6407    0.0593    0.4256    0.0970
-%
-%
-%stdtheta =
-%
-%    0.0025    0.0080    0.0024    0.0065    0.0031
-%
-%
-%covtheta =
-%
-%   1.0e-04 *
-%
-%    0.0609    0.1062   -0.0435   -0.0642   -0.0062
-%    0.1062    0.6407   -0.0792   -0.4292    0.0071
-%   -0.0435   -0.0792    0.0593    0.0902   -0.0097
-%   -0.0642   -0.4292    0.0902    0.4256   -0.0194
-%   -0.0062    0.0071   -0.0097   -0.0194    0.0970
-%
-%
-%Jvr_nl =
-%
-%   1.9177e-06
-%
-%
-%Jmr_nl =
-%
-%    0.0148
-%
+Com os custos de $J_{VRFT}=1.9177\times10{-6}$ e $J_{MR}=0.0148$, corroborando para o fato de que os custos não foram
+significativamente afetados pelo aumento do ruído. Fazendo assim com que a estimativa ainda seja confiável.
+
 %===============================================================================
 \subsubsection{Controlador sendo representado pelo modelo 2}
 \label{sec:vrft_nl_dinamic_c_match2}
@@ -421,6 +405,8 @@ $J_{MR}=0.0033$.
 \label{sec:vrft_nl_dinamic_c_not_match}
 %===============================================================================
 
+posso usar este. esta tudo pronto. só escrever.
+% vrft13_nl_rat_SisnotinM_2.m
 
 
 
@@ -440,7 +426,8 @@ $J_{MR}=0.0033$.
 
 
 
-
+\cite{lecchini_campi_savaresi_2dof}
+\cite{Guardabassi}
 
 
 
