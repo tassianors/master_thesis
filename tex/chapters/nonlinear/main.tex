@@ -17,29 +17,31 @@
 % no meu capitulo.
 %
 % Conclusões: Resumo do que foi visto aqui 
-No capítulo \ref{chapter:system_identification} foram apresentados conceitos básicos para
-identificação de sistemas lineares. Neste capitulo serão abordados conceitos de identificação de
-sistemas não lineares, suas características, peculiaridades e desafios.
 
-A maioria dos sistemas de controle encontrados na pratica são não lineares e mesmo sendo
+Anteriormente foram introduzidos conceitos básicos de identificação de sistemas lineares invariantes no tempo.
+Este capitulo tem como objetivo apresentar os principais conceitos para identificação de sistemas não lineares de tempo
+discreto.
+
+A maioria dos sistemas de controle encontrados na pratica são não lineares e mesmo podendo ser
 caracterizados por um sistema linear quando operando em uma região restrita, a maioria dos sistemas
-não lineares só pode ser mais amplamente caracterizado por um modelo não linear.
+não lineares só pode ser amplamente caracterizado por um modelo não linear.
 \cite{billings_nl_survey} 
 
 Na seção \ref{sec:nlin_si_basic} serão apresentados conceitos básicos
-de não linearidades e algumas características de sistemas não lineares quando são linearizados em
+sobre não linearidades. Algumas características de sistemas não lineares quando são linearizados em
 torno de um ponto de operação serão apresentados na seção \ref{sec:nlin_si_basic_types}.
 
 Na seção \ref{sec:nl_models} serão apresentados alguns modelos usualmente utilizados para
 caracterização de sistemas não lineares. Dando enfase aos modelos {\it{NARMAX}} onde na seção
 \ref{sec:nl_si_algorithms_rationals} serão apresentados algoritmos utilizados para a identificação de
-sistemas não lineares baseados neste modelo.
+sistemas não lineares para este modelo.
 
 Ao fim, serão apresentados breves conclusões sobre identificação de sistemas não lineares (seção
 \ref{sec:nl_conclusions}).
 %===============================================================================
 \input{tex/chapters/nonlinear/linearization}
 \input{tex/chapters/nonlinear/models}
+\input{tex/chapters/nonlinear/models_narmax}
 \input{tex/chapters/nonlinear/algorithms}
 \input{tex/chapters/nonlinear/conclusions}
 %===============================================================================

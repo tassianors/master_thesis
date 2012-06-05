@@ -171,7 +171,7 @@ y(t)=\frac{\theta_1y(t-1)+\theta_2y(t-1)u(t-1)+\theta_3u(t-1)}{1+\theta_4y^{2}(t
 \label{eq:nl_rat_exemple2}
 \end{equation}
 
-Para o sistema real utilizou-se os valores de referência: $\theta= $
+Para o sistema real utilizou-se os valores de referência:
 
 \begin{equation}
 \theta = 
@@ -181,11 +181,11 @@ Para o sistema real utilizou-se os valores de referência: $\theta= $
 \nonumber
 \end{equation}
 
-Utilizando par a simulação um sinal PRBS de 635 pontos e um ruído de variância $\sigma^2=0.005$ os resultados
-da média de 100 estimativas de Monte Carlo foram:
+Utilizando par a simulação um sinal PRBS de 635 pontos e adicionando-se um ruído de variância $\sigma^2=0.005$ os
+resultados da média de 100 estimativas de Monte Carlo foram:
 
 \begin{equation}
-\text{média }\;\theta =\begin{bmatrix}
+\theta_{\text{média}} =\begin{bmatrix}
 0.1991  &  0.0995  &  0.9963  &  0.9899  &  0.9912
 \end{bmatrix}
 \nonumber
@@ -194,7 +194,7 @@ da média de 100 estimativas de Monte Carlo foram:
 A variância encontrada foi de:
 
 \begin{equation}
-\text{variância }\;\theta =1.0\times 10^{-4} \begin{bmatrix}
+\theta_{\text{variância}} =1.0\times 10^{-4} \begin{bmatrix}
 0.0089  &  0.0073  &  0.1082  &  0.7179  &  0.7910
 \end{bmatrix}
 \nonumber
@@ -203,7 +203,7 @@ A variância encontrada foi de:
 E a matriz de covariância é:
 
 \begin{equation}
-cov(\theta) =1.0\times 10^{-4} \begin{bmatrix}
+\theta_{\text{Covariância}} =1.0\times 10^{-4} \begin{bmatrix}
     0.0089 & -0.0005 & 0.0112 & 0.0213 & 0.0339 \\
    -0.0005 &  0.0073 & 0.0057 & 0.0220 & 0.0091 \\
     0.0112 &  0.0057 & 0.1082 & 0.2529 & 0.2589 \\
@@ -244,7 +244,7 @@ y(t)=\frac{\theta_1y(t-1)+\theta_2y(t-1)u(t-1)+\theta_3u(t-1)}{1+\theta_4y^{2}(t
 \label{eq:nl_rat_exemple3}
 \end{equation}
 
-Para o sistema real utilizou-se os valores de referência: $\theta= $
+Para o sistema real utilizou-se os valores de referência:
 
 \begin{equation}
 \theta = 
@@ -266,7 +266,7 @@ Utilizando par a simulação um sinal PRBS de 635 pontos e um ruído de variância $
 da média de 100 estimativas de Monte Carlo foram:
 
 \begin{equation}
-\text{média }\;\theta =\begin{bmatrix}
+\theta_{\text{média}} =\begin{bmatrix}
 0.2279  &  1.1341  &  1.2716  &  1.3769
 \end{bmatrix}
 \nonumber
@@ -275,7 +275,7 @@ da média de 100 estimativas de Monte Carlo foram:
 A variância encontrada foi de:
 
 \begin{equation}
-\text{variância }\;\theta =1.0\times 10^{-3} \begin{bmatrix}
+\theta+{\text{variância}} =1.0\times 10^{-3} \begin{bmatrix}
 0.0020  &  0.0535  &  0.3402  &	  0.3217
 \end{bmatrix}
 \nonumber
@@ -306,7 +306,7 @@ V(\theta)=1.1239
 % Aguirre 397
 % Tese do corrêa - pg 27
 %===============================================================================
-O conversor de corrente continua do tipo buck possui um mapa que pode ser obtido a partir da equação do
+O conversor de corrente continua do tipo Buck possui um mapa que pode ser obtido a partir da equação do
 circuito que tem a forma como em \eqref{eq:nl_alg_buck_circ}. O circuito do
 conversor é apresentado na Figura (\ref{fig:nl_models_buck_circuit}). \cite{tse_buck}
 
@@ -387,7 +387,7 @@ Os resultados obtidos foram de uma média de:
 e uma variância de
 
 \begin{equation}
-\text{variância }\;\theta =\begin{bmatrix}
+\theta_{\text{variância}} =\begin{bmatrix}
 0.4842\times 10^{-3}  \\ 1.8004\times 10^{-12} \\ 3.5416\times 10^{-9} \\ 1.9850\times 10^{-9} \\ 2.4100\times
 10^{-12}
 \end{bmatrix}^T
@@ -397,7 +397,7 @@ e uma variância de
 com uma covariância de 
 
 \begin{equation}
-\text{Covariância de }\;\theta = 1.0\times 10^{-3}\begin{bmatrix}
+\theta_{\text{Covariância}} = 1.0\times 10^{-3}\begin{bmatrix}
  0.4842 &  0.0000 & -0.0011 &  0.0007 &-0.0000 \\
  0.0000 &  0.0000 & -0.0000 & -0.0000 & 0.0000 \\
 -0.0011 & -0.0000 &  0.0000 & -0.0000 & 0.0000 \\

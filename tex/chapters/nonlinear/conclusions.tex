@@ -3,4 +3,30 @@
 \label{sec:nl_conclusions}
 %===============================================================================
 
-precisa ser escrito ainda :)
+Neste capítulo apresentou-se conceitos básicos de identificação de sistemas não lineares. Inicialmente foram
+apresentados os tipos de linearidades existentes. Muitas vezes os sistemas comportam-se de forma linear entorno da
+região de operação do sistema, desta forma identificar um sistema com um modelo linear é o que normalmente se utiliza.
+Para os casos onde há necessidade de modelar a dinâmica não linear, ou que se deseja modelar características
+especificas do sistema, uma classe de modelos não linear é mais apropriado.
+
+Apresentou-se alguns dos conjuntos de modelos mais utilizados para identificação de sistemas não lineares de tempo
+discreto e algumas de suas características. Destacou-se que a escolha de um modelo em detrimento de outro é um aspecto
+muito importante para a identificação de sistemas não lineares. A escolha de uma base e a ordem do modelo são muito
+importantes para que não sejam acrescidos ao modelo matemático dinâmicas que não existem no sistema real.
+
+Deu-se especial atenção a classe de modelos NARMAX em suas duas formas mais conhecidas: polinomial e racional. Estes
+conjuntos de modelos conseguem representar uma grande variedade de sistemas não lineares utilizando uma estrutura
+simples de compreender e que por ser linear nos parâmetros a estimar com relação aos regressores, faz com que existam
+diversos algoritmos para a identificação de seus parâmetros.
+
+Apresentou-se um algoritmo para identificação de modelos racionais, que pode ser utilizado para modelos
+polinomiais sem dificuldades. Este algoritmo iterativo obteve bons resultados para os experimentos efetuados e estes
+resultados foram apresentados para diversos tipos de classes de modelos escolhidas.
+
+Observou-se o desempenho deste algoritmo para situações onde a classe de modelo do sistema consegue representar
+totalmente o sistema real sob análise ($\mathcal{M} \in \mathcal{S}$), situação onde isso não é verdade ($\mathcal{M}
+\notin \mathcal{S}$) e um exemplo prático onde a classe de modelo escolhida para identificar o sistema real é racional.
+
+O algoritmo implementado não contemplou a modelagem do ruído do sistema, sendo este um aspecto para ser desenvolvido em
+trabalhos futuros, visto que este fato é bastante importante para situações onde $\mathcal{M} \notin \mathcal{S}$,
+podendo o algoritmo nestas situações convergir para pontos onde os parâmetros identificados não sejam os reais.

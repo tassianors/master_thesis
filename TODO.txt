@@ -10,3 +10,6 @@ Data based controller
 Achar paper:
 
 Ljung and Söderström 1983 - theory and practice of recursive identification. MIT press cambridge mass.
+
+06/12 - Achar mais informação sobre modelos polinomiais e racionais de modelos NARMAX.
+
