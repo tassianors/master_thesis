@@ -2,16 +2,42 @@
 \section{Definições}
 \label{sec:vrft_control_data_based}
 %===============================================================================
-O projeto de controladores baseados em dados consiste em obter ou estimar os parâmetros de um modelo
-baseado nos dados obtidos da planta sob análise. Os dados utilizados para esta
-tarefa são usualmente o sinal de entrada e saída do sistema.
+O projeto de controladores baseados em dados consiste em obter, ou estimar, os parâmetros de uma família ou conjunto de 
+modelos baseados nos dados obtidos da planta sob análise. Os dados utilizados para esta tarefa são usualmente os sinais
+de entrada e saída do sistema.
 
 Como já foi discutido na seção (\ref{sec:si_project_experiments}) estes dados podem ser obtidos de
 diversas formas. Algumas vezes estas informações podem vir da operação normal da planta em malha
 fechada com a presença de algum controlador. Situação esta que tem um grande apelo em plantas
 industriais, onde a parada do processo, para levantamento de informações, é indesejável e muitas
 vezes até inviável. Se existe a possibilidade de parar a planta e aplicar sinais predeterminados,
-o projeto de experimentos pode trazer muitas vantagens.
+o projeto de experimentos pode trazer muitas vantagens (seção \ref{sec:si_project_experiments}).
+
+O projeto de controladores baseados em dados consiste em estimar os parametros da estrutura do controlador usando os
+dados de entrada e saída coletados do sistema. A estimativa é feita de forma direta, ou seja, sem a necessidade de um
+passo intermediário para identificação da planta do processo. \cite{eckard_campestrini}
+
+% http://www.sciencedirect.com/science/article/pii/S0005109808002288
+Several data-based control design methods explicitly optimizing performance criteria have appeared in the literature,
+with different approaches and for different performance criteria. These criteria express either one or a combination  of
+the fundamental control objectives: reference tracking, noise rejection, and economic use of control energy. In Kammer,
+Bitmead, and Bartlett (2000) an iterative procedure based on spectral analysis, named Frequency Domain Tuning (FDT), 
+has been proposed for the minimization of an H2 performance criterion for a system with zero reference; hence, no
+tracking objective is pursued. The Virtual Reference Feedback Tuning (VRFT) method ( [Campi et al., 2002] and [Campi
+and Savaresi, 2006]) is based on a clever manipulation of variables which transforms an H2 performance criterion into
+one which is quadratic in the design parameters. The resulting quadratic cost function can be minimized directly, so
+that no iterations are required. However, only the reference tracking objective is treated (unless a two degree of
+freedom controller is used, as in Lecchini, Campi, and Savaresi (2002)) and the global minimum of the resulting
+quadratic function coincides with that of the original criterion only under ideal conditions. Not suffering from this
+second limitation, but again an iterative procedure, is Correlation-based Tuning (CbT) ( [Karimi et al., 2003] and
+[Karimi et al., 2004]), which uses instrumental variable ideas to eliminate the deleterious effect of noise on the
+achievement of its reference tracking objective. Data-based optimization of a general H2 performance criterion appears
+in Hjalmarsson, Gunnarsson, and Gevers (1994). There, a method for obtaining an unbiased estimate of the gradient of
+the cost function directly from closed-loop data is proposed; this method has been named Iterative Feedback Tuning
+(IFT). IFT is discussed in depth in Hjalmarsson, Gevers, Gunnarsson, and Lequin (1998), Hjalmarsson (2002) and extended
+in Procházka, Gevers, Anderson, and Ferrera (2005) to even more general performance criteria, which contain robustness
+enhancement objectives.
+\cite{Bazanella_h2criteria2008} 
 
 Seja a esperança de um valor $E\left [ \cdot \right ]$ definido por: \cite{ljung}
 
@@ -26,49 +52,61 @@ $e(t)$ é ruído branco com variância $\sigma_e^2$. Ambas funções de transferência
 são racionais e causais. Assume-se que $H(\infty)=1$, ou seja, a resposta impulsiva do filtro
 $H_0(z)$ satisfaz $h(0)=1$. \cite{campestrini}
 
-Na Figura (\ref{fig:vrft_db_control_loop}) é apresentado uma malha de controle onde o controlador
-$C(z, \rho) \in \mathcal{C}$ onde $ \mathcal{C}$ é a classe de controladores definida pelo usuário.
+Na Figura (\ref{fig:vrft_db_control_loop}) é apresentado um usual sistema com realimentação de saída onde são
+destacados os blocos do controlador, da planta e da funçaõ que modifica o ruído branch $e(t)$.
 
 \begin{figure}[htbp]
 \center
+% Generated with LaTeXDraw 2.0.8
+% Tue Jun 05 22:30:25 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
 \scalebox{1} % Change this value to rescale the drawing.
 {
-\begin{pspicture}(0,-1.1092187)(9.868125,1.1292187)
-\pscircle[linewidth=0.04,dimen=outer](1.4,-0.08921875){0.2}
-\psframe[linewidth=0.04,dimen=outer](4.4,0.31078124)(2.6,-0.48921874)
-\psframe[linewidth=0.04,dimen=outer](7.2,0.31078124)(5.6,-0.48921874)
-\pscircle[linewidth=0.04,dimen=outer](8.4,-0.08921875){0.2}
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,-0.08921875)(1.2,-0.08921875)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.6,-0.08921875)(2.6,-0.08921875)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.4,-0.08921875)(5.6,-0.08921875)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(7.2,-0.08921875)(8.2,-0.08921875)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.4,0.7107813)(8.4,0.11078125)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.6,-0.08921875)(9.8,-0.08921875)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.4,-0.28921875)(1.4,-1.0892187)
-\psline[linewidth=0.04cm](1.4,-1.0892187)(9.2,-1.0892187)
-\psline[linewidth=0.04cm](9.2,-1.0892187)(9.2,-0.08921875)
+\begin{pspicture}(0,-2.0492187)(9.84,2.0692186)
+\pscircle[linewidth=0.04,dimen=outer](1.401875,-1.0292188){0.2}
+\psframe[linewidth=0.04,dimen=outer](4.401875,-0.62921876)(2.601875,-1.4292188)
+\psframe[linewidth=0.04,dimen=outer](7.201875,-0.62921876)(5.601875,-1.4292188)
+\pscircle[linewidth=0.04,dimen=outer](8.401875,-1.0292188){0.2}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.001875,-1.0292188)(1.201875,-1.0292188)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.601875,-1.0292188)(2.601875,-1.0292188)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.401875,-1.0292188)(5.601875,-1.0292188)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(7.201875,-1.0292188)(8.201875,-1.0292188)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.4,0.16921872)(8.401875,-0.82921875)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.601875,-1.0292188)(9.801875,-1.0292188)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.401875,-1.2292187)(1.401875,-2.0292187)
+\psline[linewidth=0.04cm](1.401875,-2.0292187)(9.201875,-2.0292187)
+\psline[linewidth=0.04cm](9.201875,-2.0292187)(9.201875,-1.0292188)
 \usefont{T1}{ptm}{m}{n}
-\rput(1.1126562,0.22078125){+}
+\rput(1.0771874,-0.7192188){+}
 \usefont{T1}{ptm}{m}{n}
-\rput(8.112657,0.22078125){+}
+\rput(8.0771885,-0.7192188){+}
 \usefont{T1}{ptm}{m}{n}
-\rput(8.112657,-0.37921876){+}
+\rput(8.0771885,-1.3192188){+}
 \usefont{T1}{ptm}{m}{n}
-\rput(1.6473438,-0.37921876){-}
+\rput(1.6265626,-1.3192188){-}
 \usefont{T1}{ptm}{m}{n}
-\rput(0.47,0.21078125){\small $r(t)$}
+\rput(0.441875,-0.7292188){\small $r(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(3.59,-0.08921875){\small $C(z, \rho)$}
+\rput(3.561875,-1.0292188){\small $C(z, \rho)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(6.36,-0.10921875){\small $G_0(z)$}
+\rput(6.331875,-1.0492188){\small $G_0(z)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(5.11,0.21078125){\small $u(t)$}
+\rput(5.081875,-0.7292188){\small $u(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(2.21,0.21078125){\small $\xi(t)$}
+\rput(1.941875,-0.7292188){\small $\varepsilon (t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(8.48,0.93078125){\small $\nu(t)$}
+\rput(7.851875,-0.20921877){\small $\nu(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(9.3,0.21078125){\small $y(t)$}
+\rput(9.271875,-0.7292188){\small $y(t)$}
+\psframe[linewidth=0.04,dimen=outer](9.201875,0.9707812)(7.601875,0.17078124)
+\usefont{T1}{ptm}{m}{n}
+\rput(8.331875,0.55078125){\small $H_0(z)$}
+\psline[linewidth=0.04cm](8.4,0.96921873)(8.4,1.5692188)
+\usefont{T1}{ptm}{m}{n}
+\rput(8.271875,1.8707812){\small $e(t)$}
 \end{pspicture} 
 }
 \caption{Sistema de controle em malha fechada, com presença do sinal de ruído.}
