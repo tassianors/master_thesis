@@ -18,26 +18,46 @@ dados de entrada e saída coletados do sistema. A estimativa é feita de forma dir
 passo intermediário para identificação da planta do processo. \cite{eckard_campestrini}
 
 % http://www.sciencedirect.com/science/article/pii/S0005109808002288
-Several data-based control design methods explicitly optimizing performance criteria have appeared in the literature,
-with different approaches and for different performance criteria. These criteria express either one or a combination  of
-the fundamental control objectives: reference tracking, noise rejection, and economic use of control energy. In Kammer,
-Bitmead, and Bartlett (2000) an iterative procedure based on spectral analysis, named Frequency Domain Tuning (FDT), 
-has been proposed for the minimization of an H2 performance criterion for a system with zero reference; hence, no
-tracking objective is pursued. The Virtual Reference Feedback Tuning (VRFT) method ( [Campi et al., 2002] and [Campi
-and Savaresi, 2006]) is based on a clever manipulation of variables which transforms an H2 performance criterion into
-one which is quadratic in the design parameters. The resulting quadratic cost function can be minimized directly, so
-that no iterations are required. However, only the reference tracking objective is treated (unless a two degree of
-freedom controller is used, as in Lecchini, Campi, and Savaresi (2002)) and the global minimum of the resulting
-quadratic function coincides with that of the original criterion only under ideal conditions. Not suffering from this
-second limitation, but again an iterative procedure, is Correlation-based Tuning (CbT) ( [Karimi et al., 2003] and
-[Karimi et al., 2004]), which uses instrumental variable ideas to eliminate the deleterious effect of noise on the
-achievement of its reference tracking objective. Data-based optimization of a general H2 performance criterion appears
-in Hjalmarsson, Gunnarsson, and Gevers (1994). There, a method for obtaining an unbiased estimate of the gradient of
-the cost function directly from closed-loop data is proposed; this method has been named Iterative Feedback Tuning
-(IFT). IFT is discussed in depth in Hjalmarsson, Gevers, Gunnarsson, and Lequin (1998), Hjalmarsson (2002) and extended
-in Procházka, Gevers, Anderson, and Ferrera (2005) to even more general performance criteria, which contain robustness
-enhancement objectives.
-\cite{Bazanella_h2criteria2008} 
+% Several data-based control design methods explicitly optimizing performance criteria have appeared in the
+% literature, with different approaches and for different performance criteria. These criteria express either one or a combination  of
+% the fundamental control objectives: reference tracking, noise rejection, and economic use of control energy. In Kammer,
+% Bitmead, and Bartlett (2000) an iterative procedure based on spectral analysis, named Frequency Domain Tuning (FDT), 
+% has been proposed for the minimization of an H2 performance criterion for a system with zero reference; hence, no
+% tracking objective is pursued. The Virtual Reference Feedback Tuning (VRFT) method ( [Campi et al., 2002] and [Campi
+% and Savaresi, 2006]) is based on a clever manipulation of variables which transforms an H2 performance criterion into
+% one which is quadratic in the design parameters. The resulting quadratic cost function can be minimized directly, so
+% that no iterations are required. However, only the reference tracking objective is treated (unless a two degree of
+% freedom controller is used, as in Lecchini, Campi, and Savaresi (2002)) and the global minimum of the resulting
+% quadratic function coincides with that of the original criterion only under ideal conditions. Not suffering from this
+% second limitation, but again an iterative procedure, is Correlation-based Tuning (CbT) ( [Karimi et al., 2003] and
+% [Karimi et al., 2004]), which uses instrumental variable ideas to eliminate the deleterious effect of noise on the
+% achievement of its reference tracking objective. Data-based optimization of a general H2 performance criterion appears
+% in Hjalmarsson, Gunnarsson, and Gevers (1994). There, a method for obtaining an unbiased estimate of the gradient of
+% the cost function directly from closed-loop data is proposed; this method has been named Iterative Feedback Tuning
+% (IFT). IFT is discussed in depth in Hjalmarsson, Gevers, Gunnarsson, and Lequin (1998), Hjalmarsson (2002) and
+% extended in Procházka, Gevers, Anderson, and Ferrera (2005) to even more general performance criteria, which contain
+% robustness enhancement objectives.
+ 
+Diversos métodos de projetos de controladores baseados em dados que otimizam algum critério de performance apareceram na
+literaatura, com diferentes focos para diferentes critérios. Estes critérios expressam um ou uma combinação de objetivos
+fundamentais de controle: seguimento de referência, rejeição a ruído e uso economico da energia de controle.
+Em \cite{Kammer2000} um procedimento iterativo baseado na análise espectral chamado de {\it{Frequency Domain Tuning}}
+(FDT) foi proposto para a minimização do critério $H_2$ de performance para um sistema com referência zero, portanto
+nenhum objetivo de seguimento de referência é almejado. O método {\it{Virtual Reference Feedback Tuning}} (VRFT)
+(\cite{campi_leccini_savaresi2002, campi_savaresi2006}) é baseado na manipulação de variáveis que transforma um critério
+$H_2$ de performance em um quadrático nos parametros. A função custo quadrática resultante pode ser minimizado
+diretamente, ou seja, nenhuma iteração é necessária. Entretanto apenas o objetivo de seguimento de referência é tratato
+(a não ser que um controlador com dois níveis de liberdade seja usado \cite{lecchini_campi_savaresi_2dof}) e o minimo
+global resultante desta função quadráica coincide com o do critério original somente sob condições ideais.
+{\it{Correlation-based Tuning}} (CbT) (\cite{ Karimi_cbt2003, Karimi_cbt2004}) não sofre desta segunda limitação, mas é
+um método iterativo que usa a ideia de variáveis instrumentais para remover o indesejado efeito do ruído enquanto busca
+seu objetivo de seguimento de referência. \cite{Bazanella_h2criteria2008} 
+
+Otimização baseada em dados para um critério de performance genérico $H_2$ aparece em \cite{Hjalmarsson1994}, onde um
+método para obter estimativas não polarizadas diretamente do gradiente da função custo apartir de dados do sistema em
+malha fechada é proposto. Este método é chamado de {\it{Iterative Feedback Tuning}} (IFT). IFT é discutido a fundo em
+\cite{Hjalmarsson_ift1998, Hjalmarsson2002} e extendido em \cite{Prochazka2005} para critério de performances mais
+gerais, que contém melhorias em objetivos de robustes. \cite{Bazanella_h2criteria2008} 
 
 Seja a esperança de um valor $E\left [ \cdot \right ]$ definido por: \cite{ljung}
 
@@ -142,7 +162,7 @@ u(t)=C_r(z)r(t)-C_y(z)y(t)
 
 Na Figura (\ref{fig:vrft_db_ift}) é apresentado a organização dos blocos dos controladores
 de \eqref{eq:vrft_db_ift_controller}, $C_r(z)$ e $C_y(z)$. O controlador pode ser
-entendido como o conjunto destes dois:\cite{ift_theory_and_applications}
+entendido como o conjunto destes dois:\cite{Hjalmarsson_ift1998}
 
 \begin{equation}
 C(z) \equiv  \left \{ C_r(z),\, C_y(z)  \right \} 
