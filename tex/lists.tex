@@ -7,28 +7,56 @@
 
 % lista de abreviaturas e siglas em ordem alfabética
 % o parametro deve ser a abreviatura mais longa
-\begin{listofabbrv}{SPMD}
-        \item[SISO] Single input single output
-        \item[VRFT] Virtual Reference Feedback Tuning
-        \item[MMQ] Método dos mínimos quadrados
-        \item[LMI] Linear Matrix Inequality
-        \item[PRBS] Pseudo randon binary sequence
-        
-        
-        
-        
-        
-        \item[ABNT] Associação Brasileira de Normas Técnicas
-        \item[NUMA] Non-Uniform Memory Access
-        \item[SIMD] Single Instruction Multiple Data
-        \item[SMP] Symmetric Multi-Processor
-        \item[SPMD] Single Program Multiple Data
+\begin{listofabbrv}{NARMAX}
+	\item[LTI] Linear time invariant
+	\item[SISO] Single input single output
+	\item[ARX] Auto regressive witg exogenous input
+	\item[ARMAX] Auto regressive moving average with exogenous input]
+	\item[NARMAX] Nonlinear autoregressive moving average model with exogenous variables
+	\item[NARX] nonlinear autoregressive model with exogenous variables
+	\item[RBF] Radial basis functions
+	\item[BJ] Box-Jenkins
+	\item[OE] Output Error
+	\item[VRFT] Virtual Reference Feedback Tuning
+	\item[MMQ] Método dos mínimos quadrados
+	\item[LMI] Linear Matrix Inequality
+	\item[PRBS] Pseudo randon binary sequence
+	\item[CC] Corrente continua
+	\item[FDT] Frequency domain Tuning
+	\item[CbT] Correlation-based Tuning
+	\item[IFT] Iterative feedback tuning
+	\item[PI] Proporcional Integral
+	\item[PID] Proporcional Integral Derivativo
 \end{listofabbrv}
 
 % lista de símbolos em ordem alfabética (opcional)
-\begin{listofsymbols}{$\alpha\beta\pi\omega$}
-       \item[$\alpha\beta\pi\omega$] Fator de inconstância do resultado
-       \item[$\sum$] Somatório
+\begin{listofsymbols}{$H(q, \theta)$}
+	\item [$G_0(z)$] Função de transferência que representa a planta real do sistema.
+	\item [$G(q, \theta)$] Função de transferência que representa a planta a ser estimada na identificação.
+	\item [$H_0(z)$] Função de transferência desconhecida que altera o ruído branco que atua sobre o sistema.
+	\item [$H(q, \theta)$] Função de transferência que altera o ruído branco que atua sobre o sistema, a qual se quer
+	identificar.
+	\item [$\theta^*$] Representa o conjunto de parametros que faz com que o modelo identificado seja igual ao sistema
+	real.
+	\item [$\theta$] representa um conjunto de parametros estimado do sistema.
+	\item [$\hat{\theta}_N$] representa a estimativa para um certo valor de N pontos.
+	\item [$\mathcal{S}$] Representa o sistema real sob análise.
+	\item [$\mathcal{M}$] representa a classe de modelos utilizada para identificar o sistema real.
+	\item [$M(z)$] representa o comportamento do sistema em malha fechada desejado.
+	\item [$T(z)$] representa o comportamento do sistema em malha fechada.
+	\item [$u(t)$] Sinal de saída do controlador ou entrada da planta.
+	\item [$y(t)$] sinal de saída da planta.
+	\item [$e(t)$] Ruido branco.
+	\item [$\nu(t)$] ruído resultante depois que o ruídio branco é alterado por $H_0(z)$
+	\item [$\phi$] variável de regressão utilizada para identificação do sistema.
+	\item [$Z(t)$] instrumento utilizado no método de variáveis instrumentais.
+	\item [$E(\cdot)$] representa a esperança de valor.
+	\item [$\Phi$ ] representa o espectro de um sinal.
+	\item [$\prod$] Produtório
+	\item [$\sum$] Somatório
+	\item [$L(z)$] Filtro utilizado no método VRFT.
+	\item [$\sigma^2$] Variância
+	\item [$\chi^2$] Nivel de confiança 
 \end{listofsymbols}
 
 % Conforme a NBR 6027, secao 4, o sumário deve ser o último elemento
