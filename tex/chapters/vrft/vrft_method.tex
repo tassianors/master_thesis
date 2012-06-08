@@ -5,23 +5,20 @@
 
 VRFT do inglês {\it{Virtual reference feedback tuning}} é um método direto para identificação de
 controladores, ou seja, não é necessário o conhecimento ou identificação da planta para que este método seja
-utilizado. Desta forma pode ser utilizado com apenas um conjunto de dados, não necessitando de experimentos
-específicos. O procedimento procura pelo ponto ótimo do critério escolhido para a identificação do
-controlador. \cite{campi_savaresi2000}
+utilizado. O método se baseia na utilização de apenas um conjunto de dados, não necessitando de experimentos
+específicos. O procedimento procura pelo ponto ótimo do critério escolhido para a identificação do controlador.
+\cite{campi_savaresi2000}
 
 Diferentemente de métodos iterativos, o VRFT não recai sobre mínimos locais, sempre procurando o mínimo
-global do critério escolhido. Isso só não é  verdade sempre pois esta afirmativa depende das limitações de
-qualidade e excitabilidade do sinal utilizado para se adquirir os dados utilizados no processo. Dentro destas
-limitações é possível afirmar que o método VRFT irá procurar pelo menor mínimo possível. Se o sinal utilizado
-para exitar o sistema for suficientemente informativo, então o minimo encontrado pelo método será um minimo
-global.
+global do critério escolhido, sob condições ideais. Ele irá buscar o mínimo da função custo dentro das limitações de
+excitabilidade do sinal utilizado. Se o sinal utilizado para exitar o sistema for suficientemente informativo, então o
+minimo encontrado pelo método será um minimo global.
 
-Assume-se que a planta do sistema é {\it{linear}} SISO ({\it{single input single output}}) de tempo discreto
-descrito pela função de transferência racional $G(z)$. Tal que esta função de transferência é desconhecida e
-tem-se apenas acesso ao conjunto de dados coletados do experimento.
-\cite{campi_leccini_savaresi2002}
+Assume-se que a planta do sistema é {\it{linear}} SISO ({\it{single input single output}}) de tempo discreto,
+descrito pela função de transferência racional $G_0(z)$. Tal que esta função de transferência é desconhecida e
+tem-se apenas acesso ao conjunto de dados coletados do experimento. \cite{campi_leccini_savaresi2002}
 
-O controlador a ser identificado pode ser parametrizado como em \eqref{eq:vrft_method_controller}
+O controlador a ser identificado pode ser parametrizado como abaixo:
 
 \begin{equation}
 C(z,\theta)=\beta^T(z)\theta
@@ -46,13 +43,9 @@ J_{MR}(\theta) = \left \| \left ( \frac{G(z)C(z,\theta)}{1+G(z)C(z,\theta)} -M(z
 Sendo $M(z)$ o modelo de referência a ser atingido em malha fechada quando o controlador
 obtido é aplicado sobre a planta e $W(z)$ é uma matriz para ponderação escolhida pelo usuário.
 
-Como já mencionado, VRFT é um método {\it{direto}}, onde os dados coletados da planta são utilizados
-diretamente para identificar o controlador e não há necessidade de identificação da planta para
-então haver a identificação do controlador. Métodos diretos são conceitualmente mais naturais que
-os indiretos, mas mesmo com o apelo que estes métodos possuem, apenas alguns métodos genuinamente
-diretos são encontrados na literatura, dois destes são VRFT e IFT (seção
-(\ref{sec:vrft_control_ift})), mesmo estes dois métodos pertencendo uma a mesma classe de métodos,
-algumas diferenças são ressaltadas: \cite{campi_savaresi2000}
+Métodos diretos são conceitualmente mais naturais que os indiretos, mas mesmo com o apelo que possuem,
+apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT, mesmo
+estes dois métodos pertencendo uma a mesma classe, algumas diferenças são ressaltadas: \cite{campi_savaresi2000}
 
 \begin{itemize}
 	\item {\it{IFT}} é baseado em um métodos de gradiente decrescente e além disso é uma técnica
@@ -68,13 +61,12 @@ algumas diferenças são ressaltadas: \cite{campi_savaresi2000}
 \label{sec:vrft_framework}
 %===============================================================================
 
-Nesta seção será apresentado uma breve descrição de como o algoritmo para obtenção do controlador
-utilizando o método VRFT é formulado. Para maiores detalhes e discussões aprofundadas é
-indicada a leitura de \cite{campi_savaresi2000}, 
-\cite{campi_leccini_savaresi2002} e \cite{campestrini_nonminumum_phase}.
+Nesta seção será apresentado uma breve descrição de como funciona o algoritmo para obtenção do controlador
+utilizando o método VRFT. Para maiores detalhes e discussões aprofundadas é indicada a leitura de
+\cite{campi_savaresi2000, campi_leccini_savaresi2002, campestrini_nonminumum_phase}.
 
 Suponha que o controlador $C(z, \theta)$ resulta um sistema em malha fechada cuja função de
-transferência é dada por $M(z)$. Desta forma, se $M(z)$ for alimentado com qualquer sinal $r(t)$,
+transferência é dada por $M(z)$. Desta forma, se $M(z)$ for excitado com qualquer sinal $r(t)$,
 sua saída será $M(z)r(t)$. Uma premissa para que o sistema em malha fechada tenha a mesma
 função de transferência que o modelo de referência é que a saída dos dois seja a mesma para um dado
 sinal $\bar{r}(t)$.
@@ -112,7 +104,7 @@ utilizados.
 \usefont{T1}{ptm}{m}{n}
 \rput(5.51,1.2707813){\small $u(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(2.25,1.2707813){\small $e(t)$}
+\rput(2.25,1.2707813){\small $\varepsilon (t)$}
 \usefont{T1}{ptm}{m}{n}
 \rput(8.3,1.2707813){\small $y(t)$}
 \psframe[linewidth=0.04,dimen=outer](6.0,-0.62921876)(3.8,-1.4292188)
@@ -124,14 +116,15 @@ utilizados.
 \psline[linewidth=0.04cm](0.0,-1.0292188)(0.0,0.97078127)
 \end{pspicture} 
 %}
-\caption{dlkjhsfjdhf kljh dfh sdlf}
+\caption{Diagrama de blocos para o método VRFT. São destacados os sinais reais $u(t)$ e $y(t)$ além dos sinais virtuais
+$\varepsilon (t)$ e $\bar{r}(t)$.}
 \label{fig:vrft_method_cl}
 \end{figure}
 
-O sinal $e(t)$ é o erro entre os sinais $y(t)$ e $\bar{r}(t)$. Sabe-se que quando a planta é
-alimentada com o sinal $u(t)$, o sinal $y(t)$ é obtido. Em um controlador, quando este é
-alimentado com o sinal $e(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
-controlador, como os sinais $u(t)$ e $e(t)$ são conhecidos, a tarefa reduz-se a um problema de
+O sinal $\varepsilon(t)$ é o erro entre os sinais $y(t)$ e $\bar{r}(t)$. Sabe-se que quando a planta é
+excitada com o sinal $u(t)$, o sinal $y(t)$ é obtido. Analogamente para um controlador, quando este é
+excitado com o sinal $\varepsilon(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
+controlador, como os sinais $u(t)$ e $\varepsilon(t)$ são conhecidos, a tarefa reduz-se a um problema de
 identificação. Comumente, usa-se um pré-filtro nos dados coletados. A ideia principal do uso deste
 filtro será explicada posteriormente na seção (\ref{sec:vrft_framework_filter}). 
 
@@ -167,9 +160,7 @@ J_{VR}^N(\theta)=\frac{1}{N}\sum_{t=1}^{N}(u_L(t)-\varphi_L^T(t)\theta)^2
 \end{equation}
 
 Desde que \eqref{eq:vrft_method_algorithm_criter} seja quadrática em $\theta$ o vetor de parâmetros
-$\hat{\theta}$ que minimizam esta função custo podem ser calculados com
-\eqref{eq:vrft_method_algorithm_result}.
-
+$\hat{\theta}$ que minimiza esta função custo pode ser calculado por:
 
 \begin{equation}
 \hat{\theta}= \left [ \sum_{t=1}^{N}\varphi_L(t) \varphi_L(t)^T\right ]^{-1}
@@ -199,8 +190,7 @@ C_0(z) \notin \mathcal{C}(z, \theta)
 \nonumber
 \end{equation}
 
-O critério $J_{MR}(\theta)$ pode ser reescrito utilizando-se o controlador ótimo $C_0(z)$ como em 
-\eqref{eq:vrft_method_filter_cost_func}
+O critério $J_{MR}(\theta)$ pode ser reescrito utilizando-se o controlador ótimo $C_0(z)$ como em:
 
 \begin{equation}
 J_{MR}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{\left | G \right |^2 \left | W \right |^2 }
@@ -213,13 +203,13 @@ Considerando que $J_{VR}^N$ seja conhecido, quando a quantidade de dados cresce:
 tem-se \eqref{eq:vrft_method_filter_criter_assim}. 
 
 \begin{equation}
-J_{VR}^N(\theta) \to J_{VR}(\theta = E \left [ (u_L(t) - C(z, \theta)e_L(t))^2\right ])
+J_{VR}^N(\theta) \to J_{VR}(\theta = E \left [ (u_L(t) - C(z, \theta)\varepsilon_L(t))^2\right ])
 \label{eq:vrft_method_filter_criter_assim}
 \end{equation}
 
-Utilizando as definições de $u_L(t)$, $e_L(t)$ e dada a definição de $C_0(z)$ juntamente com o
+Utilizando as definições de $u_L(t)$, $\varepsilon_L(t)$ e dada a definição de $C_0(z)$ juntamente com o
 teorema de Perseval \cite{ljung}, o critério assintótico \eqref{eq:vrft_method_filter_criter_assim}
-tem sua representação como em \eqref{eq:vrft_method_filter_criter_vr}
+tem sua representação como em:
 
 \begin{equation}
 J_{VR}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \left | G \right |^2 \left | C(\theta)-C_0 \right
@@ -231,7 +221,7 @@ Onde $\Phi_u $ é a densidade do espectro do sinal $u(t)$.
 
 Para o caso onde $C_0 \in C(z, \theta)$ a escolha de $L(z)$ não afeta o resultado, usualmente
 escolhe-se então $L(z)=1$. Caso o controlador não consiga ser representado pelo modelo, a escolha de
-$L(z)$ pode ser feita por:
+$L(z)$ pode ser feita por:\cite{campi_leccini_savaresi2002}
 
 \begin{equation}
 \left | L \right | ^2 = \left | 1-M \right | ^2 \left | M \right | ^2 \left | W \right | ^2 \frac{1}
@@ -241,20 +231,20 @@ $L(z)$ pode ser feita por:
 
 Obtém-se com a utilização do filtro, uma estimativa onde o erro de polarização é minimizado.
 %===============================================================================
-\subsubsection{VRFT e dados corrompidos por ruido}
+\subsubsection{Dados corrompidos por ruido}
 \label{sec:vrft_framework_noise}
 %===============================================================================
 
-Todos os equacionamentos até aqui apresentadas consideraram que o sistema não seja afetado por
-ruido. Nesta seção será apresentado brevemente o comportamento do método quando o sinal $y(t)$ é
+Todos os equacionamentos até aqui apresentados consideraram que o sistema não fosse afetado por
+ruído. Nesta seção será apresentado brevemente o comportamento do método quando o sinal $y(t)$ é
 corrompido por um ruido aditivo como:
 
 \begin{equation}
-\tilde{y}(t)=G(z)u(t) + \xi(t)
+\tilde{y}(t)=G_0(z)u(t) + \nu(t)
 \label{eq:vrft_framework_noise_y}
 \end{equation}
 
-Assume-se que o sinal $u(t)$ e $\xi(t)$ sejam descorrelacionados e também que os dados são coletados
+Assume-se que o sinal $u(t)$ e $\nu(t)$ sejam descorrelacionados e também que os dados são coletados
 com a planta trabalhando em laço aberto. \cite{campi_leccini_savaresi2002}. Para a ideia estendida
 de dados coletados com a planta em laço fechado, uma explicação mais detalhada pode ser encontrada
 em \cite{lecchini}.
@@ -311,7 +301,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 	
 	\item {\it{Identificação da planta:}} Identifica-se um modelo para a planta $\hat{G}(z)$ a partir
 	do conjunto de dados $\left \{ u(t), \; \tilde{y}(t) \right \}_{t=1,..., N}$  e então gera-se o
-	sinal simulado $\hat{y}=\hat{G}u(t)$, obtendo a variável instrumental como:
+	sinal simulado $\hat{y}=\hat{G}(z)u(t)$, obtendo a variável instrumental como:
 
 	\begin{equation}
 	\zeta(y)=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\hat{y}(t)
@@ -329,9 +319,8 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 %===============================================================================
 
 Nesta seção serão apresentados alguns exemplos ilustrativos da utilização do método do VFRT. Para isso serão
-utilizados sistemas lineares modelados utilizando modelos ARX e BJ quando o controlador $C(z, \rho)$ faz parte
-da classe de controladores que representa completamente o controlador ideal. Sendo este o controlador que
-consegue levar o sistema para o comportamento escolhido $M(z)$.
+utilizados sistemas lineares modelados pelas classes de modelos ARX e BJ quando o controlador $C(z, \rho)$ faz parte
+da classe de controladores que representa completamente o controlador ideal. 
 
 Nas identificações apresentadas a seguir será sempre utilizado um sina PRBS (Seção
 (\ref{sec:si_project_signal_input_prbs})) de ordem 7.
@@ -351,8 +340,7 @@ z-0.4 }
 
 Este sistema pode ser compreendido como um sistema {\it{Box-Jenkins}} (BJ)
 (Tabela (\ref{table:si_modeling_models})). Deseja-se que o sistema em malha
-fechada comporte-se o mais próximo possível do modelo apresentado em
-\eqref{eq:vrft_methos_ex_bj_M}.
+fechada comporte-se o mais próximo possível do modelo apresentado em:
 
 \begin{equation}
 M(z)=\frac { 0.4 }{ z-0.6 }
@@ -383,8 +371,8 @@ _\upsilon ^2=0.005$ obtém-se a estimativas dos parâmetro s $\rho_1$ e $\rho_2$ a
 \begin{figure}[htbp]
 	\center
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var005.eps}
-	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o
-	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c}}
+	\caption{Resultado das 100 estimativas de Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o controlador
+	apresentado em \eqref{eq:vrft_methos_ex_bj_c}.}
 	\label{fig:vrft_bj_M10_var005}
 \end{figure}
 
@@ -410,20 +398,20 @@ inevitavelmente polarizada. Neste mesmo trabalho é sugerido a utilização de {\it
 
 Utilizando o procedimento descrito na seção (\ref{sec:vrft_framework_noise}) para dados corrompidos por ruido
 o resultado obtido, para a mesma variância de $\sigma_\upsilon ^2=0.02$ do ruido, é apresentado na Figura
-(\ref{fig:vrft_bj_M10_var02}).
+(\ref{fig:vrft_bj_M10_var02_iv}).
 
 \begin{figure}[htbp]
 	\center
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02_iv.eps}
-	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o
+	\caption{Resultado das 100 estimativas de Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o
 	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c} com variância do
 	ruido de 0.02. Utilizando variáveis instrumentais para estimar os parâmetros.}
 	\label{fig:vrft_bj_M10_var02_iv}
 \end{figure}
 
 Observa-se que o erro de polarização foi minimizado e que o resultado obtido possui um custo $J_{VR}^N(\theta)
-= 5.1242$ e a variância dos parâmetros estimados foi de $0.5064e-06$ para $\rho_1$ e de $0.5495e-06$ para
-$\rho_2$.
+= 5.1242$ e a variância dos parâmetros estimados foi de $0.5064\times10^{-6}$ para $\rho_1$ e de
+$0.5495\times10^{-6}$ para $\rho_2$.
 
 A fim de comparar o método VRFT utilizando e não utilizando variáveis instrumentais são apresentados abaixo as
 Tabelas (\ref{table:vrft_method_bj}) e (\ref{table:vrft_method_bj_iv}) onde o custo $J_{MR}$ (equação
@@ -492,8 +480,7 @@ G_{ 0 }(z)=\frac { z }{ (z-0.9)(z-0.8) } ,\quad \quad \quad H_{ 0 }(z)=\frac { z
 \nonumber
 \end{equation}
 
-Deseja-se que o sistema em malha fechada comporte-se o mais próximo possível do modelo apresentado em
-\eqref{eq:vrft_methos_ex_arx_M}.
+Deseja-se que o sistema em malha fechada comporte-se o mais próximo possível do modelo apresentado em:
 
 \begin{equation}
 M(z)=\frac { 0.4 }{ z-0.6 }
@@ -519,8 +506,9 @@ C(z,\rho )=\frac { \rho _{ 1 }z^2+\rho _{ 2 }z+\rho _{ 3 } }{ z(z-1) }
 
 Na Figura (\ref{fig:vrft_arx_M10_var005}) é apresentado o resultado da estimativa dos parâmetros do
 controlador quando não são utilizados variáveis instrumentais. Obteve-se desta forma um custo
-$J_{VR}^N(\theta) = 2.5008e-05$ e $J_{MR}(\theta) = 1.7746e-05$ além de uma variância para as estimativas de
-$1.0e-07 \; [0.0364\;    0.1261\;    0.0377]$ para $\rho_1$, $\rho_2$ e $\rho_3$ respectivamente.
+$J_{VR}^N(\theta) = 2.5008\times10^{-5}$ e $J_{MR}(\theta) = 1.7746\times10^{-5}$ além de uma variância para as
+estimativas de $1.0\times10^{-7} \; [0.0364\;    0.1261\;    0.0377]$ para $\rho_1$, $\rho_2$ e $\rho_3$
+respectivamente.
 
 \begin{figure}[htbp] 
 	\center 
@@ -530,8 +518,8 @@ $1.0e-07 \; [0.0364\;    0.1261\;    0.0377]$ para $\rho_1$, $\rho_2$ e $\rho_3$
 	\label{fig:vrft_arx_M10_var005}
 \end{figure}
 
-Como já foi observado a utilização de variáveis instrumentais melhora significativamente o erro existente nas
-estimativas. Desta forma as informações apresentadas a seguir serão feitas utilizando variáveis instrumentais.
+Como já foi observado a utilização de variáveis instrumentais melhora significativamente o erro de polarização existente
+nas estimativas. Desta forma as informações apresentadas a seguir serão feitas utilizando variáveis instrumentais.
 Na figura (\ref{fig:vrft_arx_M10_var05_iv}) é apresentado a estimativa dos parâmetros do controlador para um
 ruido com variância $\sigma_\upsilon ^2=0.05$. Observa-se que não há erro de polarização nas estimativas. 
 O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft_method_arx_iv}).
@@ -577,8 +565,9 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\rho$ do 
 
 Até este ponto foram apresentados exemplos de uso do método VRFT quando o controlador que leva o sistema para
 o comportamento desejado $M(z)$ faz parte da classe escolhida para a identificação. Em outras palavras quando
-$C(z, \rho) \in \mathcal{C}$. Nesta seção será apresentado um exemplo onde o modelo do controlador escolhido
-para o sistema não consegue levar este para $M(z)$.
+$C_0(z) \in \mathcal{C(z, \theta)}$. Nesta seção será apresentado um exemplo onde o modelo do controlador escolhido
+para o sistema não consegue levar este para $M(z)$, ou seja, não consegue representar a totalidade das dinâmicas de
+$C_0(z)$.
 
 Considerando o sistema descrito por
 \begin{equation}
@@ -586,7 +575,7 @@ G_{ 0 }(z)=\frac { 0.2(z-0.7) }{ (z-0.9)(z-0.5) } ,\quad \quad \quad H_{ 0 }(z)=
 \nonumber
 \end{equation}
 
-Deseja-se que em malha fechada ele se comporte como em \eqref{eq:vrft_methos_ex_pid_not_M}. 
+Deseja-se que em malha fechada ele se comporte como em: 
 
 \begin{equation}
 M(z)=\frac { 0.16z }{ (z-0.6)^2 }
@@ -628,8 +617,8 @@ Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro 
 \end{equation}
 
 Aplicando-se estes resultados ao controlador apresentado em \eqref{eq:vrft_methos_ex_pid_not_c} e de posse do
-comportamento desejado para o sistema em malha fechada ($M(z)$) é possível fazer um comparativo da resposta de
-ao salto para o sistema utilizando os dois controladores obtidos. O resultado é apresentado na Figura
+comportamento desejado para o sistema em malha fechada ($M(z)$) é possível fazer um comparativo da resposta
+ao salto unitário para o sistema utilizando os dois controladores obtidos. O resultado é apresentado na Figura
 (\ref{fig:vrft_notinclass_step}).
 
 \begin{figure}[htbp] 
@@ -645,7 +634,7 @@ Observa-se que para o sistema que utiliza o controlador estimado utilizando-se o
 degrau unitário tem significativamente menos erro que o sistema utilizando o outro controlador. Ficando este
 primeiro muito mais próximo da função $M(z)$ desejada.
 
-Os custos destes dois sistemas é apresentado na Tabela (\ref{vrft_method_notinclass}).
+Os custos destes dois sistemas é apresentado na Tabela (\ref{table:vrft_method_notinclass}).
 
 \begin{table*}[htbp]
 \begin{center}
@@ -667,7 +656,7 @@ Bode dos controladores obtidos (utilizando a média das estimativas obtidas).
 
 \begin{figure}[htbp] 
 	\center 
-	\includegraphics[width=0.95\columnwidth]{figures/vrft_notinclass_bode.eps}
+	\includegraphics[width=0.99\columnwidth]{figures/vrft_notinclass_bode.eps}
 	\caption{Diagrama de Bode para as funções de transferência dos controladores estimados utilizando VRFT com e
 	sem o artificio do filtro L e variáveis instrumentais}
 	\label{fig:vrft_notinclass_bode}
