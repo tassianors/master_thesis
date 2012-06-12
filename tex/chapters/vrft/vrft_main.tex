@@ -3,18 +3,29 @@
 \label{chapter:vfrt}
 %===============================================================================
 
-%\TODO:: REVER ESTE PARAGRAFO:
-%
-%Em aplicações práticas, a descrição matemática da planta não é disponível e o sistema deve ser identificado
-%baseado nas medidas obtidas deste sistema. Este assunto tem atraído a atenção de diversos engenheiros de
-%controle desde 1940 com o pioneiro trabalho de Ziegler e Nichols (1942) com ajuste de controladores PID
-%industriais. Depois do trabalho de Ziegler e Nichols diversos trabalhos surgiram, muitos em formas de
-%aperfeiçoamento e extensões das técnicas já apresentadas, e algumas com desenvolvimentos em novas direções
-%(\cite{mcmillan1983tuning}, \cite{Haalman1965}). A característica principal destes métodos é que eles podem
-%ser facilmente utilizados: simples experimentos sobre a planta são executados e simples regras 
-%são aplicadas sobre os dados obtidos. O método VRFT que será abordado aqui tem algumas destas 
-%características, pois só requer que apenas um experimento seja executado sobre a planta. 
-%\cite{campi_leccini_savaresi2002}
+Neste capítulo tem-se o objetivo de introduzir a idéia de projeto de controladores baseado em dados, a ideia de
+referência virtual e o uso disso em conjunto para a identificação de controladores não lineares.
+
+Inicialmente na seção \ref{sec:vrft_control_data_based} será introduzido o conceito de projeto de controlaodres baseados
+em dados. Alguns dos principais métodos e suas subdivisões em métodos diretos: onde não existe a necessidade de
+identificação da planta, para então identificar o controlador; métodos iterativos: onde a cada conjunto de dados
+coletados da planta um novo controlador é encontrado e aplicado sobre a planta até que se convirja para o valor mínimo
+da função custo.
+
+Deseja-se adicionar um enfoque ao método direto que utiliza referência virtual: VRFT (seção \ref{sec:vrft_vrft}).
+Quer-se com isso introduzir e exeplificar a utilização de referência virtual para a obtenção dos sinais necessários para
+a identificação do controlador ideal para este sistema.
+
+Na seção \ref{sec:vrft_nonlinear} introduz-se a idéia de utilização de métodos de projeto de controladores baseados em
+dados, juntamente com a utilziação de referência virtual para a obtenção dos sinais necessários. Esta seção utiliza o
+algoritmo apresentado na seção \ref{sec:nl_si_algorithms_rationals} para identificação de sistemas não lineares que
+podem ser descritos por classes de modelos NARMAX polinomiais ou racionais. Alguns exemplos serão apresentados para que
+se possa avaliar a qualidade das estimativas obtidas.
+
+Ao fim, na seção \ref{sec:vrft_conclusions}, serão apresentadas as considerações finais a respeito do que foi visto
+neste capitulo.
+
+
 
 %===============================================================================
 \input{tex/chapters/vrft/vrft_data_based_controlers}

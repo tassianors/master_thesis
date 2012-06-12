@@ -3,6 +3,8 @@
 \label{sec:vrft_nonlinear}
 %===============================================================================
 
+\cite{Guardabassi}
+
 Esta seção tem por objetivo introduzir o conceito de identiicação de sistemas não lineares utilizando referência
 virtual. Em \cite{campi_savaresi2006} foi apresentado uma generalização do método VRFT para sistemas não lineares,
 existe entretanto a necessidade de um filtro dependente dos dados coletados do sistema e derivar esta informação com
@@ -47,7 +49,9 @@ acoplada de forma estática e outra quando a não linearidade está na dinâmica do 
 A planta do sistema utilizada neste exemplo possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
 encontra-se na saída do processo. Na Figura \ref{fig:vrft_nl_wiener} é apresentado o diagrama de blocos do sistema,
 sendo $\Phi(t)$ e $\vartheta(t)$ os blocos não lineares da planta e do controlador respectivamente. Análogamente
-$G'(z)$ e $C'(z)$ são os blocos lineares da planta e do controlador.
+$G'(z)$ e $C'(z)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na
+entrda deste, pode ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe de modelos
+NARMAX racional.
 
 \begin{figure}[htbp]
 \center
@@ -500,8 +504,7 @@ degrau unitário.
 
 
 
-\cite{lecchini_campi_savaresi_2dof}
-\cite{Guardabassi}
+
 
 
 
