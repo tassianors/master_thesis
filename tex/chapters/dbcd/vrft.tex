@@ -68,7 +68,7 @@ estes dois métodos pertencendo uma a mesma classe, algumas diferenças são ressal
 
 %===============================================================================
 \subsection{O método}
-\label{sec:vrft_framework}
+\label{sec:dbcd_vrft_framework}
 %===============================================================================
 
 Nesta seção será apresentado uma breve descrição de como funciona o algoritmo para obtenção do controlador
@@ -136,7 +136,7 @@ excitada com o sinal $u(t)$, o sinal $y(t)$ é obtido. Analogamente para um contr
 excitado com o sinal $\varepsilon(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
 controlador, como os sinais $u(t)$ e $\varepsilon(t)$ são conhecidos, a tarefa reduz-se a um problema de
 identificação. Comumente, usa-se um pré-filtro nos dados coletados. A ideia principal do uso deste
-filtro será explicada posteriormente na seção (\ref{sec:vrft_framework_filter}). 
+filtro será explicada posteriormente na seção (\ref{sec:dbcd_vrft_framework_filter}). 
 
 O algoritmo pode ser descrito pelos passos a seguir \cite{campi_savaresi2000}:
 
@@ -181,8 +181,8 @@ $\hat{\theta}$ que minimiza esta função custo pode ser calculado por:
 \end{enumerate}
 
 %===============================================================================
-\subsubsection{Filtro $L(z)$}
-\label{sec:vrft_framework_filter}
+\subsection{Utilização do Filtro $L(z)$}
+\label{sec:dbcd_vrft_framework_filter}
 %===============================================================================
 
 Considerando a função custo $J_{MR}(\theta)$ apresentada em \eqref{eq:vrft_method_cost_func} e o
@@ -241,8 +241,8 @@ $L(z)$ pode ser feita por:\cite{campi_leccini_savaresi2002}
 
 Obtém-se com a utilização do filtro, uma estimativa onde o erro de polarização é minimizado.
 %===============================================================================
-\subsubsection{Dados corrompidos por ruido}
-\label{sec:vrft_framework_noise}
+\subsection{Dados corrompidos por ruido}
+\label{sec:dbcd_vrft_framework_noise}
 %===============================================================================
 
 Todos os equacionamentos até aqui apresentados consideraram que o sistema não fosse afetado por
@@ -259,7 +259,7 @@ com a planta trabalhando em laço aberto. \cite{campi_leccini_savaresi2002}. Para
 de dados coletados com a planta em laço fechado, uma explicação mais detalhada pode ser encontrada
 em \cite{lecchini}.
 
-Ao aplicar o algoritmo descrito na seção (\ref{sec:vrft_framework}) com dados sujeitos a ruídos, o
+Ao aplicar o algoritmo descrito na seção (\ref{sec:dbcd_vrft_framework}) com dados sujeitos a ruídos, o
 resultado obtido possui erro de polarização (seção (\ref{sec:si_par_estim_uncertanties})). Isso pode
 ser compreendido analisando a expressão do critério $J_{VR}(\theta)$ quando utiliza-se o sinal
 $\tilde{y}(t)$:
@@ -325,7 +325,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 
 %===============================================================================
 \subsection{Exemplos ilustrativos}
-\label{sec:vrft_examples}
+\label{sec:dbcd_vrft_examples}
 %===============================================================================
 
 Nesta seção serão apresentados alguns exemplos ilustrativos da utilização do método do VFRT. Para isso serão
@@ -337,7 +337,7 @@ Nas identificações apresentadas a seguir será sempre utilizado um sina PRBS (Seç
 
 %===============================================================================
 \subsubsection{Controlador PI - sistema Box-Jenkins}
-\label{sec:vrft_examples_pi_bj}
+\label{sec:dbcd_vrft_examples_pi_bj}
 %===============================================================================
 
 Para um sistema onde $G_0(z)$ e $H_0(z)$ podem ser definidos como:
@@ -406,7 +406,7 @@ inevitavelmente polarizada. Neste mesmo trabalho é sugerido a utilização de {\it
 	\label{fig:vrft_bj_M10_var02}
 \end{figure}
 
-Utilizando o procedimento descrito na seção (\ref{sec:vrft_framework_noise}) para dados corrompidos por ruido
+Utilizando o procedimento descrito na seção (\ref{sec:dbcd_vrft_framework_noise}) para dados corrompidos por ruido
 o resultado obtido, para a mesma variância de $\sigma_\upsilon ^2=0.02$ do ruido, é apresentado na Figura
 (\ref{fig:vrft_bj_M10_var02_iv}).
 
@@ -480,7 +480,7 @@ comportamento desejado do sistema foi atingido com uma melhor aproximação.
 
 %===============================================================================
 \subsubsection{Controlador PID - sistema ARX}
-\label{sec:vrft_examples_pid_arx}
+\label{sec:dbcd_vrft_examples_pid_arx}
 %===============================================================================
 
 Para um sistema {\it{ARX}} onde $G_0(z)$ e $H_0(z)$ podem ser definidos como:
@@ -570,7 +570,7 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\rho$ do 
 
 %===============================================================================
 \subsubsection{Controlador não pertence a classe}
-\label{sec:vrft_examples_not_in_class}
+\label{sec:dbcd_vrft_examples_not_in_class}
 %===============================================================================
 
 Até este ponto foram apresentados exemplos de uso do método VRFT quando o controlador que leva o sistema para
@@ -608,7 +608,7 @@ C(z,\rho )=\frac { \rho _{ 1 }z^2+\rho _{ 2 }z+\rho _{ 3 } }{ z(z-1) }
 
 Observa-se que \eqref{eq:vrft_methos_ex_pid_not_c} não consegue representar todas as dinâmicas apresentadas em
 \eqref{eq:vrft_methos_ex_pid_not_cd}. Utilizando o procedimento descrito na Seção
-(\ref{sec:vrft_framework_noise}) e o procedimento de experimento repetido, foram feitos 100 experimentos de
+(\ref{sec:dbcd_vrft_framework_noise}) e o procedimento de experimento repetido, foram feitos 100 experimentos de
 Monte Carlo e o resultado obtido para a média das estimativas foi:
 
 \begin{equation}
@@ -619,7 +619,7 @@ Monte Carlo e o resultado obtido para a média das estimativas foi:
 Onde o índice $L$ indica que este resultado foi obtido utilizando-se o filtro $L$.
 
 Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro $L$ descrito na seção
-(\ref{sec:vrft_framework_noise}), obteve-se o resultado seguinte:
+(\ref{sec:dbcd_vrft_framework_noise}), obteve-se o resultado seguinte:
 
 \begin{equation}
 \rho =\left[ 0.5846 \quad -0.2108  \quad -0.1525 \right]

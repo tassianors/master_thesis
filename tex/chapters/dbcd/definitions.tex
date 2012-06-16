@@ -2,9 +2,16 @@
 \section{Definições}
 \label{sec:dbcd_definition}
 %===============================================================================
-O projeto de controladores baseados em dados consiste em obter, ou estimar, os parâmetros de uma família ou conjunto de 
-modelos baseados nos dados obtidos da planta sob análise. Os dados utilizados para esta tarefa são usualmente os sinais
-de entrada e saída do sistema.
+
+Desde meados dos anos 1990 uma variedade de projetos de controladores que são construidos diretamente sobre os dados de
+entrada e saída coletados do sistema tem surgido na literatura. Estes métodos contrastam com os de projetos de
+controladores baseados em modelos em dois aspectos principais: eles não são baseados no conhecimento do modelo do
+processo e eles não tem a intenção de determinar livremente a função de transferência do modelo. Ao invéz disso usa-se
+diretamente o montante de informação carregada pelos dados coletados para ajustar os parametros de um conjunto de
+modelos cuja estrutura é previamente especificada. \cite{bazanella_datadriven} 
+
+Estes métodos são conhecidos como projeto de controladores baseados em dados ou do ingles {\it{data-driven or data
+based controller design}}.
 
 Como já foi discutido na seção (\ref{sec:si_project_experiments}) estes dados podem ser obtidos de
 diversas formas. Algumas vezes estas informações podem vir da operação normal da planta em malha
@@ -17,27 +24,6 @@ O projeto de controladores baseados em dados consiste em estimar os parametros d
 dados de entrada e saída coletados do sistema. A estimativa é feita de forma direta, ou seja, sem a necessidade de um
 passo intermediário para identificação da planta do processo. \cite{eckard_campestrini}
 
-% http://www.sciencedirect.com/science/article/pii/S0005109808002288
-% Several data-based control design methods explicitly optimizing performance criteria have appeared in the
-% literature, with different approaches and for different performance criteria. These criteria express either one or a combination  of
-% the fundamental control objectives: reference tracking, noise rejection, and economic use of control energy. In Kammer,
-% Bitmead, and Bartlett (2000) an iterative procedure based on spectral analysis, named Frequency Domain Tuning (FDT), 
-% has been proposed for the minimization of an H2 performance criterion for a system with zero reference; hence, no
-% tracking objective is pursued. The Virtual Reference Feedback Tuning (VRFT) method ( [Campi et al., 2002] and [Campi
-% and Savaresi, 2006]) is based on a clever manipulation of variables which transforms an H2 performance criterion into
-% one which is quadratic in the design parameters. The resulting quadratic cost function can be minimized directly, so
-% that no iterations are required. However, only the reference tracking objective is treated (unless a two degree of
-% freedom controller is used, as in Lecchini, Campi, and Savaresi (2002)) and the global minimum of the resulting
-% quadratic function coincides with that of the original criterion only under ideal conditions. Not suffering from this
-% second limitation, but again an iterative procedure, is Correlation-based Tuning (CbT) ( [Karimi et al., 2003] and
-% [Karimi et al., 2004]), which uses instrumental variable ideas to eliminate the deleterious effect of noise on the
-% achievement of its reference tracking objective. Data-based optimization of a general H2 performance criterion appears
-% in Hjalmarsson, Gunnarsson, and Gevers (1994). There, a method for obtaining an unbiased estimate of the gradient of
-% the cost function directly from closed-loop data is proposed; this method has been named Iterative Feedback Tuning
-% (IFT). IFT is discussed in depth in Hjalmarsson, Gevers, Gunnarsson, and Lequin (1998), Hjalmarsson (2002) and
-% extended in Procházka, Gevers, Anderson, and Ferrera (2005) to even more general performance criteria, which contain
-% robustness enhancement objectives.
- 
 Existem na literatura diversos métodos de projetos de controladores baseados em dados que otimizam algum critério de
 performance, com diferentes focos para diferentes critérios. Estes critérios expressam um ou uma combinação de objetivos
 fundamentais de controle: seguimento de referência, rejeição a ruído e uso economico da energia de controle.
@@ -148,7 +134,7 @@ experimento, ou um conjunto de dados, os parâmetros do controlador são estimados
 
 %===============================================================================
 \subsection{Iterative feedback tuning}
-\label{sec:vrft_control_ift}
+\label{sec:dbcd_ift}
 %===============================================================================
 
 O método IFT utiliza um algoritmo iterativo para minimizar uma função custo $H_2$. O método
