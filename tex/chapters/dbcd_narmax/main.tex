@@ -1,33 +1,14 @@
 %===============================================================================
-\chapter{Controle baseado em dados}
-\label{chapter:vfrt}
+\chapter{Identificação de sistemas não lineares utilizando referência virtual}
+\label{chapter:dbnarmax}
 %===============================================================================
-
-Neste capítulo tem-se o objetivo de introduzir a idéia de projeto de controladores baseado em dados, a ideia de
-referência virtual e o uso disso em conjunto para a identificação de controladores não lineares.
-
-Inicialmente na seção \ref{sec:vrft_control_data_based} será introduzido o conceito de projeto de controlaodres baseados
-em dados. Alguns dos principais métodos e suas subdivisões em métodos diretos: onde não existe a necessidade de
-identificação da planta, para então identificar o controlador; métodos iterativos: onde a cada conjunto de dados
-coletados da planta um novo controlador é encontrado e aplicado sobre a planta até que se convirja para o valor mínimo
-da função custo.
-
-Deseja-se adicionar um enfoque ao método direto que utiliza referência virtual: VRFT (seção \ref{sec:vrft_vrft}).
-Quer-se com isso introduzir e exeplificar a utilização de referência virtual para a obtenção dos sinais necessários para
-a identificação do controlador ideal para este sistema.
-
-Na seção \ref{sec:vrft_nonlinear} introduz-se a idéia de utilização de métodos de projeto de controladores baseados em
-dados, juntamente com a utilziação de referência virtual para a obtenção dos sinais necessários. Esta seção utiliza o
+Na seção \ref{sec:dbnarmax_nonlinear} introduz-se a idéia de utilização de métodos de projeto de controladores baseados
+em dados, juntamente com a utilziação de referência virtual para a obtenção dos sinais necessários. Esta seção utiliza o
 algoritmo apresentado na seção \ref{sec:nl_si_algorithms_rationals} para identificação de sistemas não lineares que
 podem ser descritos por classes de modelos NARMAX polinomiais ou racionais. Alguns exemplos serão apresentados para que
 se possa avaliar a qualidade das estimativas obtidas.
 
-Ao fim, na seção \ref{sec:dbnarmax_conclusions}, serão apresentadas as considerações finais a respeito do que foi visto
-neste capitulo.
-
-
-
 %===============================================================================
-%\input{tex/chapters/dbcd/nonlinear}
+\input{tex/chapters/dbcd_narmax/nonlinear}
+\input{tex/chapters/dbcd_narmax/conclusions}
 %===============================================================================
-
