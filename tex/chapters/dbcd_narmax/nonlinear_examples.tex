@@ -22,7 +22,7 @@ acoplada de forma estática e outra quando a não linearidade está na dinâmica do 
 
 A planta do sistema utilizada neste exemplo possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
 encontra-se na saída do processo. Na Figura \ref{fig:vrft_nl_wiener} é apresentado o diagrama de blocos do sistema,
-sendo $\zeta(t)$ e $\iota(t)$ os blocos não lineares da planta e do controlador respectivamente. Análogamente
+sendo $\zeta(t)$ e $\gamma(t)$ os blocos não lineares da planta e do controlador respectivamente. Análogamente
 $G'(z)$ e $C'(z)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na
 entrda deste, pode ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe de modelos
 NARMAX racional.
@@ -53,17 +53,17 @@ NARMAX racional.
 \psline[linewidth=0.04cm](1.2,-1.7)(12.4,-1.7)
 \psline[linewidth=0.04cm](12.4,-1.7)(12.4,0.7)
 \usefont{T1}{ppl}{m}{n}
-\rput(0.45828125,1.01){r(t)}
+\rput(0.45828125,1.01){$r(t)$}
 \usefont{T1}{ppl}{m}{n}
 \rput(1.9445312,1.01){$\epsilon (t)$}
 \usefont{T1}{ppl}{m}{n}
 \rput(4.514531,1.01){$v(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(7.089375,1.01){u(t)}
+\rput(7.089375,1.01){$u(t)$}
 \usefont{T1}{ppl}{m}{n}
 \rput(9.664532,1.01){$\omega(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(12.499375,1.01){y(t)}
+\rput(12.499375,1.01){$y(t)$}
 \psline[linewidth=0.04cm](1.6,0.5)(1.8,0.5)
 \psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](6.6,1.7)(2.4,-0.3)
 \psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](11.8,1.7)(7.6,-0.3)
@@ -72,7 +72,7 @@ NARMAX racional.
 \usefont{T1}{ppl}{m}{n}
 \rput(9.744532,-0.59){G(z)}
 \usefont{T1}{ppl}{m}{n}
-\rput(3.3945312,0.69){$\iota(t)$}
+\rput(3.3945312,0.69){$\gamma(t)$}
 \usefont{T1}{ppl}{m}{n}
 \rput(10.794531,0.71){$\zeta(t)$}
 \usefont{T1}{ppl}{m}{n}
@@ -120,7 +120,7 @@ v(t)=r(t)-\omega(t)
 Tem-se entretanto:
 
 \begin{equation}
-v(t)=\epsilon(t)\iota (t)
+v(t)=\epsilon(t)\gamma (t)
 \nonumber
 \end{equation}
 
@@ -131,31 +131,31 @@ e que
 \nonumber
 \end{equation}
  
-Obtem-se então o relacionamento entre os sinais $\iota (t) $ e $\zeta(t)$:
+Obtem-se então o relacionamento entre os sinais $\gamma (t) $ e $\zeta(t)$:
 
 \begin{equation}
-( r(t) - \omega(t) \zeta(t)) \iota (t) = r(t) - \omega(t) 
+( r(t) - \omega(t) \zeta(t)) \gamma (t) = r(t) - \omega(t) 
 \nonumber
 \end{equation}
 
 Resultando:
 
 \begin{equation}
-\iota (t) = \frac{r(t)-\omega(t)}{r(t) - \omega(t)\zeta(t)} 
+\gamma (t) = \frac{r(t)-\omega(t)}{r(t) - \omega(t)\zeta(t)} 
 \end{equation}
 
-Pecebe-se claramente que quando não há sinal de referência $r(t)$, o relacionamento entre os polinomios $\iota (t) $
+Pecebe-se claramente que quando não há sinal de referência $r(t)$, o relacionamento entre os polinomios $\gamma (t) $
 e $\zeta(t)$ fica simplificado a:
 
 \begin{equation}
-\iota (t) = \frac{1}{\zeta(t)}
+\gamma (t) = \frac{1}{\zeta(t)}
 \nonumber 
 \end{equation}
 
-Define-se então $\iota (t)$ como sendo:
+Define-se então $\gamma (t)$ como sendo:
 
 \begin{equation}
-\iota (\epsilon(t))= v(t) = a_1\epsilon (t) + a_2 \epsilon ^2(t) +a_3 \epsilon ^3(t) +a_4 \epsilon ^4(t)
+\gamma (\epsilon(t))= v(t) = a_1\epsilon (t) + a_2 \epsilon ^2(t) +a_3 \epsilon ^3(t) +a_4 \epsilon ^4(t)
 \label{eq:vrft_nl_wiener_phi_inv}
 \end{equation}  
 
@@ -216,7 +216,7 @@ Com um desvio padrão de:
 O custo entre os sinais de saída do sistema obtido e o sistema esperado $M(z)$ foi de  $J_{MR}(\theta)=
 0.3820$ e o custo dos sinais de saída do controlador ($u(t)$) esperado e obtido foi de $J_{VR}=1.0119$.
 
-Como a estimativa de $\iota (\epsilon(t))$ é apenas uma aproximação do que espera-se ser a inversa de
+Como a estimativa de $\gamma (\epsilon(t))$ é apenas uma aproximação do que espera-se ser a inversa de
 $\zeta(\omega(t))$, a classe de modelos escolhida para o controlador não consegue representar a totalidade do
 controlador ideal. Desta forma é esperado que a identificação não consiga atingir a totalidade da função
 $M(z)$ inicialmente escolhida. Para as estimativas foram utilizados sinais de entrada do tipo PRBS com 127 pontos para a
@@ -234,7 +234,7 @@ aplicado sobre a planta em malha fechada.
 \end{figure}
 
 Na Figura (\ref{fig:vrft_nl_wiener_vw_step}) é apresentado o comportamento dos sinais de saída e entrada das
-não linearidades $\iota(\epsilon(t))$ e $\zeta(\omega(t))$ respectivamente.
+não linearidades $\gamma(\epsilon(t))$ e $\zeta(\omega(t))$ respectivamente.
 
 \begin{figure}[htbp] 
 	\center 
@@ -244,7 +244,7 @@ não linearidades $\iota(\epsilon(t))$ e $\zeta(\omega(t))$ respectivamente.
 \end{figure}
 
 A relação entre os sinais $v(t)$ e $\omega(t)$ é apresentado na Figura (\ref{fig:vrft_nl_wiener_vw}).
-Observa-se que a relação destes sinais é praticamente linear, garantido que a aproximação de $\iota(\epsilon(t))$
+Observa-se que a relação destes sinais é praticamente linear, garantido que a aproximação de $\gamma(\epsilon(t))$
 foi satisfatória para representar a inversa do sinal $\zeta(\omega(t))$.
 
 \begin{figure}[htbp] 
