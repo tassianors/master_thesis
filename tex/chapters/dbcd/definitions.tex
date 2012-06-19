@@ -96,7 +96,7 @@ destacados os blocos do controlador, da planta e da funçaõ que modifica o ruído 
 \usefont{T1}{ptm}{m}{n}
 \rput(0.441875,-0.7292188){\small $r(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(3.561875,-1.0292188){\small $C(z, \rho)$}
+\rput(3.561875,-1.0292188){\small $C(z, \theta)$}
 \usefont{T1}{ptm}{m}{n}
 \rput(6.331875,-1.0492188){\small $G_0(z)$}
 \usefont{T1}{ptm}{m}{n}
@@ -119,18 +119,74 @@ destacados os blocos do controlador, da planta e da funçaõ que modifica o ruído 
 \label{fig:vrft_db_control_loop}
 \end{figure}
 
-A equação \eqref{eq:vrft_db_closed_loop} descreve a relação entre entrada e saída do sistema
-apresentado na Figura (\ref{fig:vrft_db_control_loop}).
+A equação: 
 
 \begin{equation}
-T(z, \rho)=\frac{C(z,\rho)G_0(z)}{1+C(z,\rho)G_0(z)}
+T(z, \theta)=\frac{C(z,\theta)G_0(z)}{1+C(z,\theta)G_0(z)}
 \label{eq:vrft_db_closed_loop}
 \end{equation}
 
-projeto de controladires baseados em dados podem ser divididos em dois grupos principais: métodos iterativos onde
-experimentos são realizados sobre o sistema atualizando-se o controlador a cada iteração, repete-se o processo  até que
-se atinja um valor minimo para a função custo. O segundo grupo é o de métodos não iterativos, onde apenas com um
-experimento, ou um conjunto de dados, os parâmetros do controlador são estimados.
+Descreve a relação entre entrada e saída do sistema apresentado na Figura (\ref{fig:vrft_db_control_loop}).  Em outras
+palavras:
+
+\begin{equation}
+y(t)=T(z, \theta)r(t)
+\label{eq:dbcd_def_yr}
+\end{equation}
+
+%===============================================================================
+\subsection{Critérios de performance}
+\label{sec:dbcd_performance_criteria}
+%===============================================================================
+
+Como já foi apresentado para identificação de sistemas, existe um critério para elencar qual é o melhor conjunto de
+parametros $\theta$ pra a classe de modelos escolhida. Para identificação de sistemas lineares, foi apresentado na
+equação \eqref{eq:si_obj_etim_lsm_v} um dos critérios mais utilizados. Para sistemas de controle existem desdobramentos
+deste critério em função dos objetivos básicos de controle: Seguimento de referência, rejeição a ruído e uso reduzido de
+esforço de controle.
+
+Um destes objetivos fundamentais de sistemas de controle é fazer a saída do processo a mais próxima possível da
+referência. A performance, por este ponto de vista pode ser avaliado pela norma: \cite{bazanella_datadriven}
+
+\begin{equation}
+J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d(t) \right ]^2 = \bar{E}\left [
+(T(z,\theta)-T_d(z))r(t) \right ]^2
+\label{eq:dbcd_def_track_error}
+\end{equation}
+
+Onde $y(t)$ é a saída medida do sistema e $y_d(t)$ é a saída desejada.
+
+Com base nas equações \eqref{eq:dbcd_def_track_error} e \eqref{eq:vrft_db_closed_loop} é possível determinar o
+equacionamento para o controlador ideal ou desejado. Aquele que irá fazer com que o sistema em malha fechada se comporte como o
+desejado.
+
+\begin{equation}
+C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))}
+\label{eq:dbcd_perf_tracking_cd}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %===============================================================================
 \subsection{Iterative feedback tuning}
@@ -199,33 +255,33 @@ C(z) \equiv  \left \{ C_r(z),\, C_y(z)  \right \}
 A função custo utilizada como critério no método é apresentada em \eqref{eq:vrft_db_ift_j_cost}. 
 
 \begin{equation}
-J(\rho)=\frac{1}{2N}E\left [ \sum_{t=1}^{N}(L_y \tilde{y}_t(\rho))^2 +\lambda  \sum_{t=1}^{N}(L_u
-u_t(\rho))^2 \right ]
+J(\theta)=\frac{1}{2N}E\left [ \sum_{t=1}^{N}(L_y \tilde{y}_t(\theta))^2 +\lambda  \sum_{t=1}^{N}(L_u
+u_t(\theta))^2 \right ]
 \label{eq:vrft_db_ift_j_cost}
 \end{equation}
 
 O primeiro termo em \eqref{eq:vrft_db_ift_j_cost} é o erro entre a resposta obtida e a resposta
 desejada, balanceada por um filtro $L_y$ a segunda parte é o custo de controle balanceado pelo
-filtro $L_u$. Com $T_0(\rho)$ e $S_0(\rho)$ sendo a função de transferência em malha fechada e a
+filtro $L_u$. Com $T_0(\theta)$ e $S_0(\theta)$ sendo a função de transferência em malha fechada e a
 função sensibilidade, respectivamente:
 
 
 \begin{equation}
-T_0(\rho)=\frac{C_r(\rho)G_0}{1+C_y(\rho)G_0}
+T_0(\theta)=\frac{C_r(\theta)G_0}{1+C_y(\theta)G_0}
 \nonumber
 \end{equation}
 
 \begin{equation}
-S_0(\rho)=\frac{1}{1+C_y(\rho)G_0}
+S_0(\theta)=\frac{1}{1+C_y(\theta)G_0}
 \nonumber
 \end{equation}
 
-E sendo $r$ e $\nu$ independentes, \eqref{eq:vrft_db_ift_j_cost} pode ser rescrito como
+E sendo $r$ e $\nu(t)$ independentes, \eqref{eq:vrft_db_ift_j_cost} pode ser rescrito como
 \eqref{eq:vrft_db_ift_j_cost_parts}
 
 \begin{equation}
-J(\rho)=\frac{1}{2N}\sum_{t=1}^{N}\left \{ L_y(T_d r-T_0(\rho)r) \right \}^2+\frac{1}{2} E\left [ \left \{ L_y S_0(\rho) \nu \right \}^2 \right ]
-+ \lambda \frac{1}{2N}E\left [ \sum_{t=1}^{N}(L_u u_t(\rho))^2 \right ]
+J(\theta)=\frac{1}{2N}\sum_{t=1}^{N}\left \{ L_y(T_d r-T_0(\theta)r) \right \}^2+\frac{1}{2} E\left [ \left \{ L_y S_0(\theta) \nu(t) \right \}^2 \right ]
++ \lambda \frac{1}{2N}E\left [ \sum_{t=1}^{N}(L_u u_t(\theta))^2 \right ]
 \label{eq:vrft_db_ift_j_cost_parts}
 \end{equation}
 
@@ -238,7 +294,7 @@ algoritmo para a convergência apresentado em \eqref{eq:vrft_db_ift_algoritm}.
 \cite{hajalmson_ift_non_linear}
 
 \begin{equation}
-\rho_{i+1}=\rho_i - \gamma_i R_i^{-1}\frac{\partial J}{\partial \rho}(\rho_i)
+\theta_{i+1}=\theta_i - \gamma_i R_i^{-1}\frac{\partial J}{\partial \theta}(\theta_i)
 \label{eq:vrft_db_ift_algoritm}
 \end{equation}
 

@@ -108,7 +108,7 @@ utilizados.
 \usefont{T1}{ptm}{m}{n}
 \rput(0.47,1.2707813){\small $\bar{r}(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(3.99,0.97078127){\small $C(z, \rho)$}
+\rput(3.99,0.97078127){\small $C(z, \theta)$}
 \usefont{T1}{ptm}{m}{n}
 \rput(6.76,0.9507812){\small $G_0(z)$}
 \usefont{T1}{ptm}{m}{n}
@@ -329,7 +329,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 %===============================================================================
 
 Nesta seção serão apresentados alguns exemplos ilustrativos da utilização do método do VFRT. Para isso serão
-utilizados sistemas lineares modelados pelas classes de modelos ARX e BJ quando o controlador $C(z, \rho)$ faz parte
+utilizados sistemas lineares modelados pelas classes de modelos ARX e BJ quando o controlador $C(z, \theta)$ faz parte
 da classe de controladores que representa completamente o controlador ideal. 
 
 Nas identificações apresentadas a seguir será sempre utilizado um sina PRBS (Seção
@@ -370,18 +370,18 @@ Observa-se que este controlador pode ser representado como um controlador
 {\it{PI}} como em \eqref{eq:vrft_methos_ex_bj_c}. 
 
 \begin{equation}
-C(z, \rho)=\frac { \rho_1 z +\rho_2}{ z-1 }
+C(z, \theta)=\frac { \theta_1 z +\theta_2}{ z-1 }
 \label{eq:vrft_methos_ex_bj_c}
 \end{equation}
 
 Utilizando o método do VRFT para identificação do controlador quando este está submetido a um ruido $\sigma
-_\upsilon ^2=0.005$ obtém-se a estimativas dos parâmetro s $\rho_1$ e $\rho_2$ apresentados na Figura
+_\upsilon ^2=0.005$ obtém-se a estimativas dos parâmetro s $\theta_1$ e $\theta_2$ apresentados na Figura
 (\ref{fig:vrft_bj_M10_var005}) com um resultado de 100 simulações de 2540 amostras cada.
 
 \begin{figure}[htbp]
 	\center
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var005.eps}
-	\caption{Resultado das 100 estimativas de Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o controlador
+	\caption{Resultado das 100 estimativas de Monte Carlo dos parâmetros $\theta_1$ e $\theta_2$ para o controlador
 	apresentado em \eqref{eq:vrft_methos_ex_bj_c}.}
 	\label{fig:vrft_bj_M10_var005}
 \end{figure}
@@ -401,7 +401,7 @@ inevitavelmente polarizada. Neste mesmo trabalho é sugerido a utilização de {\it
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02.eps}
-	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o controlador apresentado em
+	\caption{100 estimativas Monte Carlo dos parâmetros $\theta_1$ e $\theta_2$ para o controlador apresentado em
 	\eqref{eq:vrft_methos_ex_bj_c} com variância do ruido de 0.02}
 	\label{fig:vrft_bj_M10_var02}
 \end{figure}
@@ -413,15 +413,15 @@ o resultado obtido, para a mesma variância de $\sigma_\upsilon ^2=0.02$ do ruido
 \begin{figure}[htbp]
 	\center
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02_iv.eps}
-	\caption{Resultado das 100 estimativas de Monte Carlo dos parâmetros $\rho_1$ e $\rho_2$ para o
+	\caption{Resultado das 100 estimativas de Monte Carlo dos parâmetros $\theta_1$ e $\theta_2$ para o
 	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c} com variância do
 	ruido de 0.02. Utilizando variáveis instrumentais para estimar os parâmetros.}
 	\label{fig:vrft_bj_M10_var02_iv}
 \end{figure}
 
 Observa-se que o erro de polarização foi minimizado e que o resultado obtido possui um custo $J_{VR}^N(\theta)
-= 5.1242$ e a variância dos parâmetros estimados foi de $0.5064\times10^{-6}$ para $\rho_1$ e de
-$0.5495\times10^{-6}$ para $\rho_2$.
+= 5.1242$ e a variância dos parâmetros estimados foi de $0.5064\times10^{-6}$ para $\theta_1$ e de
+$0.5495\times10^{-6}$ para $\theta_2$.
 
 A fim de comparar o método VRFT utilizando e não utilizando variáveis instrumentais são apresentados abaixo as
 Tabelas (\ref{table:vrft_method_bj}) e (\ref{table:vrft_method_bj_iv}) onde o custo $J_{MR}$ (equação
@@ -433,12 +433,12 @@ são apresentados para diferentes valores de variância do ruido para o mesmo sist
 \caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
 estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
 VRFT não utiliza variáveis instrumentais para a estimativa dos parâmetros
-$\rho$}
+$\theta$}
 \label{table:vrft_method_bj}
 \begin{tabular}{cccc}
 \hline
         Variância $\sigma _\upsilon ^2$ & $J_{VR}^N(\theta)$ &
-        $J_{MR}(\theta)$ & Variância estimativas $\rho$   \\
+        $J_{MR}(\theta)$ & Variância estimativas $\theta$   \\
 \hline
 	    0.06    & 1.7893$\times10^{-2}$ & 8.2367$\times10^{-3}$ & 1.0$\times10^{-5}$\;[0.4754    0.4434] \\
 	    0.05    & 1.2515$\times10^{-2}$ & 5.5366$\times10^{-3}$ & 1.0$\times10^{-5}$\;[0.2671    0.3244] \\
@@ -456,12 +456,12 @@ $\rho$}
 \begin{center}
 \caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
 estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
-VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\rho$}
+VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$}
 \label{table:vrft_method_bj_iv}
 \begin{tabular}{cccc}
 \hline
         Variância $\sigma _\upsilon ^2$ & $J_{VR}^N(\theta)$ &
-        $J_{MR}(\theta)$ & Variância estimativas $\rho$   \\
+        $J_{MR}(\theta)$ & Variância estimativas $\theta$   \\
 \hline
 	    0.06    & 45.1719  &  $9.7345\times10^{-5}$ & $1.0\times10^{-5}\;[0.5161    0.5332]$ \\
 	    0.05    & 33.2600  &  $2.0457\times10^{-5}$ & $1.0\times10^{-5}\;[0.2481    0.2652]$ \\
@@ -510,20 +510,20 @@ Observa-se que este controlador pode ser representado como um controlador
 {\it{PID}} como em \eqref{eq:vrft_methos_ex_arx_c}. 
 
 \begin{equation}
-C(z,\rho )=\frac { \rho _{ 1 }z^2+\rho _{ 2 }z+\rho _{ 3 } }{ z(z-1) } 
+C(z,\theta )=\frac { \theta _{ 1 }z^2+\theta _{ 2 }z+\theta _{ 3 } }{ z(z-1) } 
 \label{eq:vrft_methos_ex_arx_c}
 \end{equation}
 
 Na Figura (\ref{fig:vrft_arx_M10_var005}) é apresentado o resultado da estimativa dos parâmetros do
 controlador quando não são utilizados variáveis instrumentais. Obteve-se desta forma um custo
 $J_{VR}^N(\theta) = 2.5008\times10^{-5}$ e $J_{MR}(\theta) = 1.7746\times10^{-5}$ além de uma variância para as
-estimativas de $1.0\times10^{-7} \; [0.0364\;    0.1261\;    0.0377]$ para $\rho_1$, $\rho_2$ e $\rho_3$
+estimativas de $1.0\times10^{-7} \; [0.0364\;    0.1261\;    0.0377]$ para $\theta_1$, $\theta_2$ e $\theta_3$
 respectivamente.
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_arx_M10_var005_.eps}
-	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$, $\rho_2$ e $\rho_3$ para o controlador
+	\caption{100 estimativas Monte Carlo dos parâmetros $\theta_1$, $\theta_2$ e $\theta_3$ para o controlador
 	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com variância do ruido $\sigma_\upsilon ^2=0.005$}
 	\label{fig:vrft_arx_M10_var005}
 \end{figure}
@@ -537,7 +537,7 @@ O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_arx_M10_var05_iv.eps}
-	\caption{100 estimativas Monte Carlo dos parâmetros $\rho_1$, $\rho_2$ e $\rho_3$ para o controlador
+	\caption{100 estimativas Monte Carlo dos parâmetros $\theta_1$, $\theta_2$ e $\theta_3$ para o controlador
 	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com variância do ruido $\sigma_\upsilon ^2=0.05$ utilizando
 	variáveis instrumentais}
 	\label{fig:vrft_arx_M10_var05_iv}
@@ -548,13 +548,13 @@ O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft
 \begin{center}
 \caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
 estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
-VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\rho$ do controlador
+VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$ do controlador
 \eqref{eq:vrft_methos_ex_arx_c}}
 \label{table:vrft_method_arx_iv}
 \begin{tabular}{cccc}
 \hline
         Variância $\sigma _\upsilon ^2$ & $J_{VR}^N(\theta)$ &
-        $J_{MR}(\theta)$ & Variância estimativas $\rho$   \\
+        $J_{MR}(\theta)$ & Variância estimativas $\theta$   \\
 \hline
    0.1     & $10.0743\times10^{-3}$ &  2.2871$\times10^{-3}$ & $1\times10^{-5}\;[0.1253 \; 0.4683 \; 0.1600]$ \\
    0.06    & $ 3.6093\times10^{-3}$ &  1.1279$\times10^{-3}$ & $1\times10^{-5}\;[0.0516 \; 0.1793 \; 0.0575]$ \\
@@ -602,7 +602,7 @@ C_{ d }(z)=\frac { 0.8z(z-0.9)(z-0.5) }{ (z-1)(z-0.36)(z-0.7) }
 Para esta identificação optou-se por um controlador do tipo PID como em \eqref{eq:vrft_methos_ex_pid_not_c}
  
 \begin{equation}
-C(z,\rho )=\frac { \rho _{ 1 }z^2+\rho _{ 2 }z+\rho _{ 3 } }{ z(z-1) } 
+C(z,\theta )=\frac { \theta _{ 1 }z^2+\theta _{ 2 }z+\theta _{ 3 } }{ z(z-1) } 
 \label{eq:vrft_methos_ex_pid_not_c}
 \end{equation}
 
@@ -612,7 +612,7 @@ Observa-se que \eqref{eq:vrft_methos_ex_pid_not_c} não consegue representar toda
 Monte Carlo e o resultado obtido para a média das estimativas foi:
 
 \begin{equation}
-\rho_L =\left[ 0.8101 \quad -0.1691  \quad -0.3358 \right]
+\theta_L =\left[ 0.8101 \quad -0.1691  \quad -0.3358 \right]
 \nonumber
 \end{equation}
 
@@ -622,7 +622,7 @@ Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro 
 (\ref{sec:dbcd_vrft_framework_noise}), obteve-se o resultado seguinte:
 
 \begin{equation}
-\rho =\left[ 0.5846 \quad -0.2108  \quad -0.1525 \right]
+\theta =\left[ 0.5846 \quad -0.2108  \quad -0.1525 \right]
 \nonumber
 \end{equation}
 

@@ -15,7 +15,7 @@ função custo, chamada critério. Na seção \ref{sec:sys_ident_intro} foi apresenta
 utilizado para a identificação:
 
 \begin{equation}
-V(\theta)=\frac{1}{2}\sum_{t=1}^{N}\varepsilon ^2(t, \theta)=\frac{1}{2}\varepsilon^T\varepsilon=\frac{1}{2}\left \|
+V(\theta)=\frac{1}{N}\sum_{t=1}^{N}\varepsilon ^2(t, \theta)=\frac{1}{N}\varepsilon^T\varepsilon=\frac{1}{N}\left \|
 \varepsilon \right \|
 \label{eq:si_method_criteria}
 \end{equation}
@@ -65,7 +65,8 @@ esta função custo é dada por: \cite{system_identification}
 Desta forma o mínimo da função custo fica como em:
 
 \begin{equation}
-\underset{\theta}{min}\;V(\theta)=V(\hat{\theta})=\frac{1}{2}\left [ y^Ty-y^T\varphi (\varphi ^T \varphi )^{-1}\varphi ^T y \right ]
+\underset{\theta}{min}\;V(\theta)=V(\hat{\theta})=\frac{1}{N}\left [ y^Ty-y^T\varphi (\varphi ^T \varphi )^{-1}\varphi
+^T y \right ]
 \end{equation}
 
 O método dos mínimos quadrados é simples de ser aplicado, mas tem o inconveniente de que para que não existam
@@ -95,13 +96,13 @@ A primeira condição é normalmente satisfeita. Algumas excessões são: \cite{syste
 
 \begin{itemize}
   \item Se a entrada não for persistentemente excitante.]
-  \item Os dados não são afetados por ruído ($\nu \equiv 0$) e a ordem da classe de modelos é escolhida com um valor
+  \item Os dados não são afetados por ruído ($\nu(t) \equiv 0$) e a ordem da classe de modelos é escolhida com um valor
   muito alto. O que implica que $A_0(q)$ e $B_0(q)$ possuem fatores comuns.
   \item A entrada $u(t)$ é gerada por uma realimentação de saída linear de ordem baixa.
 \end{itemize}
 
-Ao contrario da condição (1), a condição (2) normalmente não é verdadeira. Uma importante excessão é quando $\nu$ é
-ruído branco. Para este caso o $\nu$ será descorrelacionado com todos os dados passados e em especial com
+Ao contrario da condição (1), a condição (2) normalmente não é verdadeira. Uma importante excessão é quando $\nu(t)$ é
+ruído branco. Para este caso o $\nu(t)$ será descorrelacionado com todos os dados passados e em especial com
 $\varphi(t)$.\cite{system_identification}
 
 Quando o número de amostras tende ao infinito e a estimativa tende para um valor diferente de $\theta^*$, este erro é
@@ -117,7 +118,7 @@ instrumentais e modelagem do rúido.
 % bibliografia principal: aguirre e ljung
 
 Como foi visto anteriormente o método dos mínimos quadrados é simples de ser aplicado mas carece
-quando existe correlação entre o regressor $\varphi$ e o ruído estocástico $\nu$ causando {\it{bias}} ou erro de
+quando existe correlação entre o regressor $\varphi$ e o ruído estocástico $\nu(t)$ causando {\it{bias}} ou erro de
 polarização. Nesta seção será apresentado uma breve discussão sobre um dos métodos que se propõe a sanar este
 inconveniente do método dos mínimos quadrados: método das vairáveis instrumentais.
 

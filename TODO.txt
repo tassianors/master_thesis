@@ -1,15 +1,5 @@
 REVIEW:
 
-Linear system identification:
-- escrever secao sobre modelagem do ruido. ENCONTRAR BIBLIOGRAFIA PARA ISSO!!
- 
-Data based controller
-- rever toda a seçao sobre vrft para modelos racionais. faltam simulações e eh necessario escrever varias coisas melhor.
+- Dizer que a função custo que eu estou usando agora é um critério de performance h2. achar o melhor lugar para colocar isso.
 
-
-Achar paper:
-
-Ljung and Söderström 1983 - theory and practice of recursive identification. MIT press cambridge mass.
-
-06/12 - Achar mais informação sobre modelos polinomiais e racionais de modelos NARMAX.
 
