@@ -13,15 +13,15 @@ Existem dois principais ramos para modelagem de sistemas, um deles parte-se do
 conhecimento intrínseco do mesmo para obter-se o modelo, enquanto que o outro
 não possui este pré-requisito, focando-se em técnicas que tornem o processo de
 modelagem o mais independente possível da necessidade de se conhecer o sistema,
-antes de modela-lo.  Estes dois processos são conhecidos como
+antes de modelá-lo.  Estes dois processos são conhecidos como
 {\it{Modelagem caixa branca}} e {\it{Modelagem caixa preta}} respectivamente.
 
 No caso de modelagem caixa branca, faz-se necessário conhecer a fundo o sistema
 modelado. Além de estar bem familiarizado com o sistema é necessário conhecer as
 relações matemáticas que descrevem os fenômenos envolvidos. \cite{aguirre}.
 
-Para o caso de modelagem caixa preta exige-se que pouco ou nenhum conhecimento prévio
-do sistema seja necessário. Este tipo de técnica é também conhecida como {\it{modelagem empírica}}.
+Para o caso de modelagem caixa preta exige-se pouco ou nenhum conhecimento prévio
+do sistema. Este tipo de técnica é também conhecida como {\it{modelagem empírica}}.
 
 Algo importante a se destacar antes do processo de modelagem do sistema é a
 escolha do que deseja-se modelar deste sistema. Uma modelagem completa de todas
@@ -51,21 +51,7 @@ y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
 \end{equation}
 
 Onde as funções de transferência $G(q, \theta)$ e $H(q, \theta)$  são parametrizadas por $\theta$ e para cada
-combinação de $\theta$, um novo modelo é definido. Pode-se desta forma defini-los como:
-
-\begin{equation}
-G(q, \theta)=\sum_{k=1}^{\infty}g(k, \theta)q^{-k}
-\nonumber
-\end{equation}
-
-\begin{equation}
-H(q, \theta)=1+\sum_{k=1}^{\infty}h(k, \theta)q^{-k}
-\nonumber
-\end{equation}
-
-Uma forma direta para a identificação de sistemas é tornar as funções $G(q, \theta)$ e $H(q, \theta)$ em funções
-racionais e os coeficientes do denominador e numerador destes polinômios sejam os objetivos do processo de identificação
-($\theta$).
+combinação de $\theta$, um novo modelo é definido. 
 
 Provavelmente o modelo mais simples para descrever a relação entre entrada e saída de um sistema seja obtido
 descrevendo-o como uma equação linear (\ref{eq:si_modeling_arx}). \cite{ljung}
@@ -86,12 +72,12 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb}
 Definem-se os polinômios:
 
 \begin{equation}
-A(q)=1+a_1q^{-1}+...+a_{na}q^{-n_a}
+A(q, \theta)=1+a_1q^{-1}+...+a_{na}q^{-n_a}
 \nonumber
 \end{equation}
 
 \begin{equation}
-B(q)=b_1q^{-1}+...+b_{nb}q^{-n_b}
+B(q, \theta)=b_1q^{-1}+...+b_{nb}q^{-n_b}
 \nonumber
 \end{equation}
 
@@ -100,7 +86,7 @@ O modelo definido em (\ref{eq:si_modeling_arx}) também é conhecido como {\bf{ARX
 
 Uma das limitações deste modelo é a falta de liberdade para descrever as propriedades
 dos distúrbios sobre o sistema. Pode-se então adicionar certo grau de liberdade descrevendo a equação do erro 
-como uma média móvel do ruído branco, isso nos remete a (\ref{eq:si_modeling_armax}).
+como uma média móvel do ruído branco, o que nos remete a:
 
 \begin{equation}
 \begin{matrix}
@@ -113,7 +99,7 @@ y(t) & +a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)\\
 Define-se o polinômio que filtra o ruído como:
 
 \begin{equation}
-C(q)=1+c_1q^{-1}+...+c_{nc}q^{-n_c}
+C(q, \theta)=1+c_1q^{-1}+...+c_{nc}q^{-n_c}
 \nonumber
 \end{equation}
 
@@ -134,7 +120,7 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
 \end{equation}
 
 O modelo definido em (\ref{eq:si_modeling_armax}) também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
-a média móvel $C(q)$ do ruido $e(t)$.
+a média móvel $C(q)$ do ruído $e(t)$.
 
 Na figura (\ref{fig:si_models_diagram_narmax}) é apresentado o diagrama de blocos para o modelo {\bf{ARMAX}}.
 
@@ -251,6 +237,4 @@ As equações que descrevem a saída do sistema em função da entrada $u(t)$ e do ru
 em \eqref{eq:si_intro_system} e que podem ser caracterizados pela utilização de vários polinômios, nada mais
 são do que famílias ou conjuntos de modelos.
 Existe para cada conjunto de modelos uma infinidade de possíveis saídas para uma mesma entrada, bastando para
-isso que os parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente. O objetivo na
-identificação de sistemas é encontrar um conjunto de coeficientes que consiga melhor descrever os dados
-observados na saída, para o maior conjunto de sinais de entrada possíveis.
+isso que os parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente.

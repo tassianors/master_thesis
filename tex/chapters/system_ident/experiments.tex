@@ -7,10 +7,10 @@
 % persistência de excitação
 % não sobre modelagem
 
-Em aplicações de engenharia, deseja-se sempre que a solução do sistema seja única. Desta forma existem algumas
+Em aplicações de engenharia, deseja-se que a solução de um problema seja única. Desta forma existem algumas
 premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos.
 
-Devem ser levadas em consideração algumas caracteristicas sobre o sinal de excitação do sistema e sobre a escolha da
+Devem ser levadas em consideração algumas características sobre o sinal de excitação do sistema e sobre a escolha da
 classe de modelos que irá representar o sistema real $\mathcal{S}$.
 
 %===============================================================================
@@ -18,9 +18,6 @@ classe de modelos que irá representar o sistema real $\mathcal{S}$.
 \label{sec:si_data_persistently_excitation}
 % most part of it came from ljung pg 412
 %===============================================================================
-
-Um sinal é dito suficiente informativo se permite a distinção entre dois modelos 
-em um mesmo conjunto de modelos $\mathcal{M}$.
 
 Um sinal quasi-estacionário $u(t)$, com espectro $\Phi _u(\omega)$ é dito
 {\it{persistentemente excitante de ordem n}} se, para todos os filtros de forma:
@@ -59,7 +56,7 @@ unitário (desde que um zero esteja sempre na origem). Por isso $u(t)$ é persiste
 espectro do sinal de entrada, $\Phi _u(\omega)$, for diferente de de zero em pelo menos $n$ pontos no intervalo $-\pi<
 \omega \le \pi$. \cite{ljung} %page 413
 
-Se um sinal quasi-estacionário é filtrado foi uma função de transferência estável, então o sinal resultante 
+Se um sinal quasi-estacionário é filtrado por uma função de transferência estável, então o sinal resultante 
 também é um sinal quasi-estacionário e desta forma se ${ \left| { M }_{ n }({ e }^{ j\omega  }) \right|  }^{ 2
 }{ \Phi  }_{ u }(\omega )$ é o espectro do sinal $\nu (t)={ M }_{ n }(q)u(t)$ então este sinal não perde sua
 persistência de excitação se filtrado pelo filtro  ${ M }_{ n }(q)$.
@@ -106,7 +103,7 @@ parâmetros da família de modelos possam ser identificados.
 Um aspecto comumente indesejado para aplicações de engenharia é quando a solução do problema não possui apenas uma
 solução. A escolha de um conjunto de modelos $\mathcal{M}$ onde a ordem do modelo é maior do que a ordem do sistema real
 $\mathcal{S}$ faz com que existam infinitas combinações de $\theta$, resultando em infinitos modelos dentro do conjunto
-$\mathcal{M}$ que conseguem descrever o sistema $\mathcal{S}$.
+$\mathcal{M}$ que conseguem descrever exatamente o sistema $\mathcal{S}$.
 
 A escolha da classe de modelos deve ser feita com muita atenção para que não se recaia em problemas
 deste tipo. O que dificulta esta tarefa é o fato de nem sempre a ordem do sistema ser conhecida. É necessário
@@ -114,7 +111,7 @@ então por parte do executor da identificação, fazer uma estimativa sobre a ordem
 sempre a sobremodelagem, ou {\it{overmodeling}} também encontrado na literatura relacionada.
 
 Uma das primeiras justificativas para o desenvolvimento de métodos para a escolha de famílias de modelos é a
-grande dificuldade de trabalhar com modelos com muitos parametros, por tornarem-se desta forma complexos e
+grande dificuldade de trabalhar com modelos com muitos parâmetros, por tornarem-se desta forma complexos e
 grandes. Existe o problema destes modelos serem numericamente mal condicionados além da convicção de que estes
 modelos (com muitos parâmetros) são redundantes e poderiam ser removidos do modelo. Um modelo com um número
 excessivo de parâmetros pode exibir dinâmicas que não são observadas no sistema real, desta forma não existe

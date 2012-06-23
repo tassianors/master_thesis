@@ -8,11 +8,11 @@
 % Modelagem do ruído
 
 Identificação de sistemas é formado por três premissas básicas: o sistema real $\mathcal{S}$ a classe de modelos
-escolhida $\mathcal{M}$ e o critério que elenca qual é o melhor modelo dentro da classe, baseado em algum critério.
+escolhida $\mathcal{M}$ e o critério que determina qual é o melhor modelo dentro da classe.
 
-Métodos de identificação de sistemas nada mais são do que procedimentos, ou algoritmos, para encontrar o mínimo de uma
-função custo, chamada critério. Na seção \ref{sec:sys_ident_intro} foi apresentado o critério de minimização mais
-utilizado para a identificação:
+Métodos de identificação de sistemas envolvem procedimentos, ou algoritmos, para
+encontrar o mínimo de uma função custo, chamada critério. Na seção \ref{sec:sys_ident_intro} foi apresentado o critério
+de minimização mais utilizado para a identificação:
 
 \begin{equation}
 V(\theta)=\frac{1}{N}\sum_{t=1}^{N}\varepsilon ^2(t, \theta)=\frac{1}{N}\varepsilon^T\varepsilon=\frac{1}{N}\left \|
@@ -20,9 +20,7 @@ V(\theta)=\frac{1}{N}\sum_{t=1}^{N}\varepsilon ^2(t, \theta)=\frac{1}{N}\varepsi
 \label{eq:si_method_criteria}
 \end{equation}
 
-Nesta seção serão apresentados métodos que minimizam a função custo \eqref{eq:si_method_criteria}. A idéia central está
-em utilizar o método dos mínimos quadrados. Existem entretanto situações em que o uso dos mínimos quadrados acarreta
-erros na estimativa dos parametros, para isso serão apresentados algumas soluções e suas caracteristicas.
+Nesta seção serão apresentados métodos que minimizam a função custo \eqref{eq:si_method_criteria}. 
 
 %===============================================================================
 \subsection{Método dos mínimos quadrados}
@@ -31,18 +29,16 @@ erros na estimativa dos parametros, para isso serão apresentados algumas soluçõe
 
 Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, remete
 ao ano de 1809 utilizado por Gauss para determinação da órbita dos planetas. 
-\cite{system_identification}. Método este chamado de mínimos quadrados (MMQ).
+\cite{system_identification}, método este chamado de mínimos quadrados (MMQ).
 
-A regressão linear é tavez o tipo mais simples de modelo paramétrico. A estrutura do modelo
-pode ser descrita como abaixo. \cite{system_identification}
+Um preditor pode serdefinido como:
 
 \begin{equation}
 \hat{y}(t, \theta)=\varphi ^T(t)\theta
 \label{eq:si_obj_single_var}
 \end{equation}
 
-Onde $\hat{y}(t)$ é chamada de {\it{variável regredida}}.
-$\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor de
+Onde $\hat{y}(t)$ é a predição, $\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor de
 parâmetros a ser identificado.
 
 A partir do erro de predição (\ref{eq:si_estim_prediction_error}) e (\ref{eq:si_obj_single_var}) podemos
@@ -58,7 +54,7 @@ que minimiza a função custo (\ref{eq:si_method_criteria}). O valor de $\hat{\the
 esta função custo é dada por: \cite{system_identification}
 
 \begin{equation}
-\hat{\theta}=(\varphi ^T \varphi )^{-1}\varphi  ^T y
+\hat{\theta}=(\varphi ^T(t) \varphi(t) )^{-1}\varphi  ^T(t) y(t)
 \label{eq:si_par_etim_lsm_theta}
 \end{equation}
 
@@ -78,13 +74,6 @@ y(t)=\varphi^T(t)\theta^*+\nu(t)
 \label{eq:si_par_etim_lsm_true_sys}
 \end{equation}
 
-Onde $\theta^*$ proporciona:
-
-\begin{equation}
-G(q, \theta^*)=G_0(q)
-\nonumber
-\end{equation}
-
 Para que as estimativas de $\theta$ tendam a $\theta*$ quando o número de amostras tende a infinito é necessário que:
 
 \begin{enumerate}
@@ -92,23 +81,23 @@ Para que as estimativas de $\theta$ tendam a $\theta*$ quando o número de amostr
   \item $E \varphi(t)\nu(t) = 0$
 \end{enumerate} 
 
-A primeira condição é normalmente satisfeita. Algumas excessões são: \cite{system_identification}
+Para a primeira condição algumas exceções são apresentadas: \cite{system_identification}
 
 \begin{itemize}
-  \item Se a entrada não for persistentemente excitante.]
+  \item Se a entrada não for persistentemente excitante.
   \item Os dados não são afetados por ruído ($\nu(t) \equiv 0$) e a ordem da classe de modelos é escolhida com um valor
   muito alto. O que implica que $A_0(q)$ e $B_0(q)$ possuem fatores comuns.
   \item A entrada $u(t)$ é gerada por uma realimentação de saída linear de ordem baixa.
 \end{itemize}
 
-Ao contrario da condição (1), a condição (2) normalmente não é verdadeira. Uma importante excessão é quando $\nu(t)$ é
-ruído branco. Para este caso o $\nu(t)$ será descorrelacionado com todos os dados passados e em especial com
+Ao contrário da condição (1), a condição (2) normalmente não é verdadeira. Uma importante exceção é quando $\nu(t)$ é
+ruído branco. Para este caso $\nu(t)$ será descorrelacionado com todos os dados passados e em especial com
 $\varphi(t)$.\cite{system_identification}
 
 Quando o número de amostras tende ao infinito e a estimativa tende para um valor diferente de $\theta^*$, este erro é
 chamado de {\it{bias}} ou erro de polarização da estimativa.
 
-Para contornar este erro de {\it{bias}} existem algumas opções que serão abordadas em seguida: Utilização de variáveis
+Para contornar este erro de {\it{bias}} existem duas opções que serão abordadas em seguida: Utilização de variáveis
 instrumentais e modelagem do rúido.
 
 %===============================================================================
@@ -117,12 +106,12 @@ instrumentais e modelagem do rúido.
 %===============================================================================
 % bibliografia principal: aguirre e ljung
 
-Como foi visto anteriormente o método dos mínimos quadrados é simples de ser aplicado mas carece
-quando existe correlação entre o regressor $\varphi$ e o ruído estocástico $\nu(t)$ causando {\it{bias}} ou erro de
+Como foi visto anteriormente, o método dos mínimos quadrados é simples de ser aplicado mas carece de exatidão
+quando existe correlação entre o regressor $\varphi(t)$ e o ruído estocástico $\nu(t)$ causando {\it{bias}} ou erro de
 polarização. Nesta seção será apresentado uma breve discussão sobre um dos métodos que se propõe a sanar este
-inconveniente do método dos mínimos quadrados: método das vairáveis instrumentais.
+inconveniente do método dos mínimos quadrados: método das variáveis instrumentais.
 
-Assume-se que $Z(t)$ é uma matriz $n\times n$ que possuem sinais não correlacionados com o 
+Seja $Z(t)$ uma matriz $n\times n$ que possui sinais não correlacionados com o 
 distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \eqref{eq:si_par_estim_iv_theta}:
 
 \begin{equation}
@@ -141,7 +130,7 @@ variáveis instrumentais \eqref{eq:si_par_estim_iv}:
 Os elementos da matriz $Z(t)$ são normalmente chamados de instrumentos. O estimador das variáveis instrumentais 
 é uma generalização do estimador dos mínimos quadrados, quando $Z(t)=\varphi(t)$. \cite{system_identification}
 
-O estimador de variáveis instrumentais evita a polarização garantido  que o vetor de erro seja não correlacionado
+O estimador de variáveis instrumentais evita a polarização desde que o vetor de erro seja não correlacionado
 com as variáveis instrumentais. Esta condição e menos restritiva que a condição dos mínimos quadrados para que
 não haja erro de polarização. O valor a ser pago por isso envolve: \cite{aguirre}
 
@@ -156,10 +145,10 @@ devem ser tão correlacionadas quanto possível com os regressores do modelo, caso
 seria próxima a singular e sua inversa muito mal condicionada. Portanto os instrumentos devem ser, idealmente, 
 pouco correlacionados com o erro e muito correlacionados com os regressores do modelo. \cite{aguirre}
 
-A correção dos instrumentos com os regressores ($E\;Z(t)\varphi(t)^T$) sempre será inferior a correção dos mínimos
+A correção dos instrumentos com os regressores ($E\;Z(t)\varphi(t)^T$) sempre será inferior à correlação dos mínimos
 quadrados ($E\;\varphi(t)\varphi(t)^T$) onde temos o regressor correlacionado comsigo mesmo . Isso propicia que o uso de
-variáveis instrumentais trará uma estimativa com uma varância maior que o método dos minimos quadrados, pois a variância
-da estimativa está relacionada com o inverso de $E\;Z(t)\varphi(t)^T$.
+variáveis instrumentais trará uma estimativa com uma variância maior que o método dos minimos quadrados, pois a
+variância da estimativa está relacionada com o inverso de $E\;Z(t)\varphi(t)^T$.
 
 %===============================================================================
 \subsection{Modelagem do ruído}
