@@ -4,18 +4,18 @@
 % Aguirre 343
 %===============================================================================
 
-Os modelos {\it{NARX}} (do termo ingles {\it{nonlinear autoregressive model with
+Os modelos {\it{NARX}} (do termo inglês {\it{nonlinear autoregressive model with
 exogenous variables}}) são modelos discretos no tempo que caracterizam o valor da saída em função
-dos valor passados da entrada e da própria saída. Algumas vezes, para evitar a polarização da estimativa dos
-parâmetros adiciona-se termos do modelo do ruido ao modelo do sistema. Quando isso é feito o modelo passa a ser chamado
+dos valores passados da entrada e da própria saída. Algumas vezes, para evitar a polarização da estimativa dos
+parâmetros adiciona-se termos do modelo do ruído ao modelo do sistema. Quando isso é feito o modelo passa a ser chamado
 de modelo {\it{NARMAX}} (do termo inglês {\it{nonlinear autoregressive moving average model with
 exogenous variables}}), introduzido por \cite{leontaritis_billings1985}.
 
 Este modelo provê uma representação unificada para a descrição de sistemas discretos não lineares
 \cite{chen_billings_narmax}
 
-Leontaritis e Billings rigorosamente provaram que um sistema não linear de tempo discreto (LTI) pode sempre ser
-representado por um modelo do tipo \cite{chen_billings1989}:
+Leontaritis e Billings rigorosamente provaram que um sistema não linear invariante no tempo de tempo discreto pode
+ser sempre representado por um modelo do tipo \cite{chen_billings1989}:
 
 \begin{equation}
 y(t)=F(y(t-1), \cdots, y(t-n_y),u(t-1), \cdots, u(t-n_u) )
@@ -34,9 +34,8 @@ sistema for perturbado com uma amplitude pequena, em volta da região do ponto de
 sistema existe. \cite{chen_billings1989}
 
 O modelo {\it{NARMAX}} surgiu, ou foi motivado, pelo excessivo esforço para a estimativa dos
-parâmetros e pela dificuldade em interpretar os resultados obtidos com modelos baseados em series
-(Wienner, Hammerstein e Volterra). A necessidade do uso de entradas espaciais são também uma
-desvantagem destes modelos. \cite{leontaritis_billings1985}
+parâmetros e pela dificuldade em interpretar os resultados obtidos com modelos baseados em séries (Volterra). A
+necessidade do uso de entradas espaciais são também uma desvantagem destes modelos. \cite{leontaritis_billings1985}
 
 \begin{eqnarray}\nonumber
 y(t)&=&F [ y(t-1), ..., y(t-n_y), u(t-1), ... , u(t-n_u),\\
@@ -44,7 +43,7 @@ y(t)&=&F [ y(t-1), ..., y(t-n_y), u(t-1), ... , u(t-n_u),\\
 \label{eq:nl_model_narmax}
 \end{eqnarray}
 
-Onde $e(t)$ é o ruido e $n_e$ é o maior atraso no modelo do ruido. O modelo apresentado
+Onde $e(t)$ é o ruído e $n_e$ é o maior atraso no modelo do ruído. O modelo apresentado
 em \eqref{eq:nl_model_narmax} é bastante genérico, caracterizando uma dificuldade 
 para sua utilização. A caracterização da equação $F(\cdot)$ geralmente é feita pelas 
 representações polinomial e racional. 
@@ -69,8 +68,8 @@ y(t)=\frac{\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=
 \end{equation}
 
 Em função de terem uma estrutura mais flexível, os modelos racionais podem vir a ser
-mais eficientes na modelagem de certos sistemas quando comparados com modelos polinomiais.
-Entretanto, os modelos racionais são mais sensíveis ao ruido. \cite{aguirre}
+mais abrangentes na modelagem de certos sistemas quando comparados com modelos polinomiais.
+Entretanto, os modelos racionais são mais sensíveis ao ruído. \cite{aguirre}
 
 %===============================================================================
 %===============================================================================
@@ -88,7 +87,7 @@ duas considerações serão levadas em conta:
 \end{enumerate}
 
 A segunda consideração implica em tornar $F$ independente de $e(t)$. O que equivale a dizer
-que $q=1$ em \eqref{eq:nl_model_narmax_pol} resultando em  \eqref{eq:nl_model_narmax_pol_espec}.
+que $q=1$ em \eqref{eq:nl_model_narmax_pol} resultando em:
 
 \begin{eqnarray}\nonumber
 y(t) &=& F[ y(t-1), ..., y(t-n_y), u(t-\tau_d), ..., u(t-\tau_d-n_u+1),\\
@@ -96,13 +95,13 @@ y(t) &=& F[ y(t-1), ..., y(t-n_y), u(t-\tau_d), ..., u(t-\tau_d-n_u+1),\\
 \label{eq:nl_model_narmax_pol_espec}
 \end{eqnarray}
 
-$e(t)$ indica que todos os efeitos não podem ser bem representados. $F^l\left [ \cdot  \right ]$ é
+onde $e(t)$ indica que todos os efeitos não podem ser bem representados. $F^l\left [ \cdot  \right ]$ é
 uma função polinomial de $y(t)$, $u(t)$ e $e(t)$ com grau de não linearidade $l\in \mathbb{N}$. 
 Portanto a parte não determinística da equação \eqref{eq:nl_model_narmax_pol_espec} pode ser expandida como
 um somatório de termos com grau de não linearidade variando de $1 \le m \le l$. 
 Assim sendo, cada termo de grau $m$ poderá conter um valor de grau $p$ do tipo $y(t-i)$
 e um fator de grau $(m-p)$ do tipo $u(t-i)$ sendo multiplicado por um parâmetro representado 
-por $c_{p,m-p}(n_1, ..., n_m)$. Resultando em: \cite{aguirre}
+por $c_{p,m-p}(n_1, ..., n_m)$. Obtendo: \cite{aguirre}
 
 \begin{equation}
 y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
@@ -132,9 +131,8 @@ Onde:
 \end{equation}
 
 No modelo apresentado em \eqref{eq:nl_model_narmax_rat_simp}, as funções $a(\Upsilon)$ e $b(\Upsilon)$
-são polinômios, mas poderiam ser quaisquer funções. Assumindo que o modelo é formado pela razão de
-dois polinômios, é conveniente definir o numerador e denominador de \eqref{eq:nl_model_narmax_rat_simp}
-como em:
+são polinômios e assumindo que o modelo é formado pela razão de dois polinômios, é conveniente definir o numerador e
+denominador de \eqref{eq:nl_model_narmax_rat_simp} como em:
 
 \begin{equation}
 a(t-1)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(k-1)\theta_n
@@ -147,7 +145,7 @@ b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(k-1)\theta_d
 \label{eq:nl_model_narmax_rat_den}
 \end{equation}
 
-Sendo que $\theta_{nj}$ e $\theta_{dj}$ são os parâmetros dos regressores, possuindo informações até
+onde $\theta_{nj}$ e $\theta_{dj}$ são os parâmetros dos regressores, possuindo informações até
 o instante $t-1$. Desta forma o valor de parâmetros a ser estimados é $N_n + N_d$
 
 A equação \eqref{eq:nl_model_narmax_rat_simp} possui não linearidade nos parâmetros, tornando a
@@ -189,11 +187,11 @@ E\left [ \zeta(t) \right ]=E\left [ b(t) \right ]E\left [ e(t) \right ]=0
 \end{equation}
 
 A equação \eqref{eq:nl_model_narmax_rat_noise_var} mostra que todos os termos $y(t)p_{dj}(t)$
-incluem o termo de ruido $e(t)$ através de $y(t)$ que este por sua vez é altamente relacionado com
-$\zeta(t)$, o que resultará em polarização dos parâmetros, mesmo que $e(t)$ seja um ruido branco com
+incluem o termo de ruído $e(t)$ através de $y(t)$ que este por sua vez é relacionado com
+$\zeta(t)$, o que resultará em polarização dos parâmetros, mesmo que $e(t)$ seja um ruído branco com
 média zero. Este é de certa forma o preço que se paga ao linearizar os parâmetros para que seja
 possível utilizar o método dos mínimos quadrados. \cite{aguirre}
 
 Uma das maiores desvantagens da modelo racional quando comparado com o modelo polinomial é que o modelo polinomial é
-linear nos parâmetros. Muitos resultados para identificação de sistemas lineares podem ser entendidos para modelos
+linear nos parâmetros. Muitos resultados para identificação de sistemas lineares podem ser estendidos para modelos
 polinomiais não lineares e várias rotinas de determinação de estrutura foram desenvolvidas. \cite{chen_billings1989}

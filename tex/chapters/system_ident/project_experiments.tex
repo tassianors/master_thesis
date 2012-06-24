@@ -42,7 +42,7 @@ Um sinal binário por definição assume apenas dois valores (0 ou 1). Partindo des
 principio, um sinal binário randômico, é uma sequencia aleatória de zeros e uns, que
 formam o sinal.
 
-A forma mais simples para a gerar este sinal é, baseado em um ruido Gausiano branco
+A forma mais simples para a gerar este sinal é, baseado em um ruído Gausiano branco
 de média zero, aplicar um filtro linear previamente escolhido. Assim pode-se teoricamente
 gerar qualquer sinal binário de qualquer nível.
 
@@ -58,7 +58,7 @@ antes de aplicar o sinal no sistema, verificar o espectro gerado. \cite{ljung}
 % ref: ljung pages 418
 
 Um {\it{sinal binário pseudo-randômico}} é um sinal periódico com algumas propriedades
-semelhantes a de ruido branco. Este sinal é gerado pela equação \eqref{eq:si_project_signal_prbs}.
+semelhantes a de ruído branco. Este sinal é gerado pela equação \eqref{eq:si_project_signal_prbs}.
 
 \begin{equation}
 u(t)=rem(A(q)u(t), 2)=rem(a_1 u(t-1)+...+a_n u(t-n), 2)
@@ -113,7 +113,7 @@ Observa-se que este é um sinal persistentemente excitante de ordem $M-1$. Na Fig
 	\label{fig:si_project_prbs}
 \end{figure}
 
-As vantagens e desvantagens do sinal PRBS comparado com um ruido randômico binário pode ser
+As vantagens e desvantagens do sinal PRBS comparado com um ruído randômico binário pode ser
 listado: \cite{ljung}
 
 \begin{enumerate}[(I)]
@@ -130,7 +130,7 @@ seja utilizado, o que limita a escolha do tamanho do experimento.
 \label{sec:si_project_signal_input_wn_filtered}
 %===============================================================================
 
-Um das escolhas mais simples de sinais, é gerar um ruido Gausiano e então filtra-lo com 
+Um das escolhas mais simples de sinais, é gerar um ruído Gausiano e então filtra-lo com 
 algum filtro linear. Desta forma, teoricamente, é possível de se atingir qualquer espectro de
 sinal, bastando apenas a correta escolha do filtro. Como este sinal é gerado {\it{off-line}}, 
 é possível aplicar filtros não causais e eliminar efeitos transientes do sinal, o que

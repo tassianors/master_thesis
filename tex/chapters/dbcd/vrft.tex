@@ -241,13 +241,13 @@ $L(z)$ pode ser feita por:\cite{campi_leccini_savaresi2002}
 
 Obtém-se com a utilização do filtro, uma estimativa onde o erro de polarização é minimizado.
 %===============================================================================
-\subsection{Dados corrompidos por ruido}
+\subsection{Dados corrompidos por ruído}
 \label{sec:dbcd_vrft_framework_noise}
 %===============================================================================
 
 Todos os equacionamentos até aqui apresentados consideraram que o sistema não fosse afetado por
 ruído. Nesta seção será apresentado brevemente o comportamento do método quando o sinal $y(t)$ é
-corrompido por um ruido aditivo como:
+corrompido por um ruído aditivo como:
 
 \begin{equation}
 \tilde{y}(t)=G_0(z)u(t) + \nu(t)
@@ -273,7 +273,7 @@ C(\theta) \right |^2}{\left | G \right |^2 \left | C_0 \right |^2}\left | L \rig
 \label{eq:vrft_framework_noise_vr}
 \end{equation}
 
-Onde $\Phi_d$ é a densidade do espectro do ruido.
+Onde $\Phi_d$ é a densidade do espectro do ruído.
 
 Para que haja rejeição a este rudo no método, em \cite{campi_leccini_savaresi2002} foi sugerido a
 adição da variável instrumental $\zeta(t)$. Em \eqref{eq:vrft_framework_noise_iv} apresenta-se o
@@ -301,7 +301,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 
 \begin{itemize}
 	\item {\it{Experimento Repetido:}} Executa-se um segundo experimento com a mesma entrada $u(t)$,
-	adquirindo-se a saída $\tilde{y}(t)'$. Como o ruido entre um experimento e outro é independente,
+	adquirindo-se a saída $\tilde{y}(t)'$. Como o ruído entre um experimento e outro é independente,
 	$\tilde{y}(t)$ e $\tilde{y}(t)'$ serão diferentes. Obtém-se então a variável instrumental:
 	
 	\begin{equation}
@@ -374,7 +374,7 @@ C(z, \theta)=\frac { \theta_1 z +\theta_2}{ z-1 }
 \label{eq:vrft_methos_ex_bj_c}
 \end{equation}
 
-Utilizando o método do VRFT para identificação do controlador quando este está submetido a um ruido $\sigma
+Utilizando o método do VRFT para identificação do controlador quando este está submetido a um ruído $\sigma
 _\upsilon ^2=0.005$ obtém-se a estimativas dos parâmetro s $\theta_1$ e $\theta_2$ apresentados na Figura
 (\ref{fig:vrft_bj_M10_var005}) com um resultado de 100 simulações de 2540 amostras cada.
 
@@ -390,11 +390,11 @@ Os parâmetros reais esperados para o controlador (equação \eqref{eq:vrft_methos_
 as estimativas (valor representado por uma estrela na Figura (\ref{fig:vrft_bj_M10_var005})) não são os
 mesmos. Em uma situação onde o erro de polarização das estimativas não existe, o aumento de N (número de
 amostras) implica que esta diferença diminui, tendendo a zero. Em um cenário onde há erro de polarização, se 
-aumentarmos a variância do ruido do sistema, será observado um aumento desta diferença.
+aumentarmos a variância do ruído do sistema, será observado um aumento desta diferença.
 
-Na figura (\ref{fig:vrft_bj_M10_var02}) quadruplicou-se a variância do ruido inserido no sistema ($\sigma
+Na figura (\ref{fig:vrft_bj_M10_var02}) quadruplicou-se a variância do ruído inserido no sistema ($\sigma
 _\upsilon ^2=0.02$). Observa-se então que o erro de polarização existe na estimativa. Como descrito em
-\cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruido nas amostras, a estimativa é
+\cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruído nas amostras, a estimativa é
 inevitavelmente polarizada. Neste mesmo trabalho é sugerido a utilização de {\it{variáveis instrumentais}}
 (Seção (\ref{sec:si_par_estim_iv})) para que este erro de polarização seja minimizado.
 
@@ -402,12 +402,12 @@ inevitavelmente polarizada. Neste mesmo trabalho é sugerido a utilização de {\it
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02.eps}
 	\caption{100 estimativas Monte Carlo dos parâmetros $\theta_1$ e $\theta_2$ para o controlador apresentado em
-	\eqref{eq:vrft_methos_ex_bj_c} com variância do ruido de 0.02}
+	\eqref{eq:vrft_methos_ex_bj_c} com variância do ruído de 0.02}
 	\label{fig:vrft_bj_M10_var02}
 \end{figure}
 
-Utilizando o procedimento descrito na seção (\ref{sec:dbcd_vrft_framework_noise}) para dados corrompidos por ruido
-o resultado obtido, para a mesma variância de $\sigma_\upsilon ^2=0.02$ do ruido, é apresentado na Figura
+Utilizando o procedimento descrito na seção (\ref{sec:dbcd_vrft_framework_noise}) para dados corrompidos por ruído
+o resultado obtido, para a mesma variância de $\sigma_\upsilon ^2=0.02$ do ruído, é apresentado na Figura
 (\ref{fig:vrft_bj_M10_var02_iv}).
 
 \begin{figure}[htbp]
@@ -415,7 +415,7 @@ o resultado obtido, para a mesma variância de $\sigma_\upsilon ^2=0.02$ do ruido
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02_iv.eps}
 	\caption{Resultado das 100 estimativas de Monte Carlo dos parâmetros $\theta_1$ e $\theta_2$ para o
 	controlador apresentado em \eqref{eq:vrft_methos_ex_bj_c} com variância do
-	ruido de 0.02. Utilizando variáveis instrumentais para estimar os parâmetros.}
+	ruído de 0.02. Utilizando variáveis instrumentais para estimar os parâmetros.}
 	\label{fig:vrft_bj_M10_var02_iv}
 \end{figure}
 
@@ -426,7 +426,7 @@ $0.5495\times10^{-6}$ para $\theta_2$.
 A fim de comparar o método VRFT utilizando e não utilizando variáveis instrumentais são apresentados abaixo as
 Tabelas (\ref{table:vrft_method_bj}) e (\ref{table:vrft_method_bj_iv}) onde o custo $J_{MR}$ (equação
 \eqref{eq:vrft_method_cost_func}) e o custo $J_{VR}^N$ (equação \eqref{eq:vrft_method_filter_criter_assim})
-são apresentados para diferentes valores de variância do ruido para o mesmo sistema BJ.
+são apresentados para diferentes valores de variância do ruído para o mesmo sistema BJ.
 
 \begin{table*}[htbp]
 \begin{center}
@@ -524,21 +524,21 @@ respectivamente.
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_arx_M10_var005_.eps}
 	\caption{100 estimativas Monte Carlo dos parâmetros $\theta_1$, $\theta_2$ e $\theta_3$ para o controlador
-	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com variância do ruido $\sigma_\upsilon ^2=0.005$}
+	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com variância do ruído $\sigma_\upsilon ^2=0.005$}
 	\label{fig:vrft_arx_M10_var005}
 \end{figure}
 
 Como já foi observado a utilização de variáveis instrumentais melhora significativamente o erro de polarização existente
 nas estimativas. Desta forma as informações apresentadas a seguir serão feitas utilizando variáveis instrumentais.
 Na figura (\ref{fig:vrft_arx_M10_var05_iv}) é apresentado a estimativa dos parâmetros do controlador para um
-ruido com variância $\sigma_\upsilon ^2=0.05$. Observa-se que não há erro de polarização nas estimativas. 
+ruído com variância $\sigma_\upsilon ^2=0.05$. Observa-se que não há erro de polarização nas estimativas. 
 O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft_method_arx_iv}).
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_arx_M10_var05_iv.eps}
 	\caption{100 estimativas Monte Carlo dos parâmetros $\theta_1$, $\theta_2$ e $\theta_3$ para o controlador
-	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com variância do ruido $\sigma_\upsilon ^2=0.05$ utilizando
+	apresentado em \eqref{eq:vrft_methos_ex_arx_c} com variância do ruído $\sigma_\upsilon ^2=0.05$ utilizando
 	variáveis instrumentais}
 	\label{fig:vrft_arx_M10_var05_iv}
 \end{figure}
@@ -636,7 +636,7 @@ ao salto unitário para o sistema utilizando os dois controladores obtidos. O res
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_notinclass_step.eps}
 	\caption{Comparativo da resposta do sistema a um degrau unitário quando o controlador inserido é obtido pelo
 	método VRFT utilizando o filtro L e quando não se utiliza este artificio. O sistema foi simulado com um
-	ruido de variância $\sigma_\upsilon ^2=0.1$}
+	ruído de variância $\sigma_\upsilon ^2=0.1$}
 	\label{fig:vrft_notinclass_step}
 \end{figure}
 

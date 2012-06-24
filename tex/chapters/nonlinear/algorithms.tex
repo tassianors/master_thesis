@@ -1,5 +1,5 @@
 %===============================================================================
-\section{Algoritmos para identificação de modelos racionais}
+\section{Algoritmo para identificação de modelos racionais}
 \label{sec:nl_si_algorithms_rationals}
 %===============================================================================
 
@@ -16,7 +16,7 @@ y(t)&=&\frac
 \label{eq:nl_alg_rational}
 \end{eqnarray}
 
-Onde o ruido é modelado por um polinômio que pode ou não ser linear. A consideração básica 
+Onde o ruído é modelado por um polinômio que pode ou não ser linear. A consideração básica 
 por trás de \eqref{eq:nl_alg_rational} é que o erro de regressão pode ser representado por
 um modelo {\it{MA}}({\it{Move average}}), possivelmente não linear. Assim sendo sugere-se o 
 seguinte procedimento: \cite{aguirre}
@@ -36,7 +36,7 @@ o método dos mínimos quadrados.
 \label{nl_alg_rational_step_1}
 \end{equation}
 
-Onde o índice $i$ indica a iteração. Além disso a matriz de regressores $\Psi$ é 
+onde o índice $i$ indica a iteração. Além disso a matriz de regressores $\Psi$ é 
 formada tomando-se os vetores de regressores $\psi_n(t-1)$ e $\psi_{d1}(t-1)$ ao longo
 da janela de dados do tamanho $N$, ou seja:
 
@@ -71,7 +71,7 @@ y^{*T}=\left [ y^*(t), y^*(t+1), ..., y^*(t+N-1) \right ]
 \label{eq:nl_alg_rational_step2_var}
 \end{equation}
 
-Sendo que $N$ é o tamanho dos dados e $m_d=max(n_y, n_u, n_e)$.
+onde $N$ é o tamanho dos dados e $m_d=max(n_y, n_u, n_e)$.
 
 %==========================================================================
 % Step 3
@@ -88,7 +88,7 @@ usando \eqref{eq:nl_alg_rational_step3_psi}
 \label{eq:nl_alg_rational_step3_psi}
 \end{equation}
 
-Onde $\psi_{\xi }$ é o vetor de regressores do modelo do ruido. Pelo fato do ruido não ser medido,
+Onde $\psi_{\xi }$ é o vetor de regressores do modelo do ruído. Pelo fato do ruído não ser medido,
 os resíduos do passo (2) são utilizados.
 
 %==========================================================================
@@ -139,7 +139,7 @@ E estime novamente os parâmetros utilizando:
 \end{enumerate} % Aguirre algorithm for rational model identification pg 394
 
 
-Claramente a convergência do algoritmo depende da convergência da estimativa da sequencia do ruído.
+A convergência do algoritmo depende da convergência da estimativa da sequência do ruído.
 \cite{billings_zhu91} 
 
 %===============================================================================
@@ -151,12 +151,10 @@ Nesta seção serão apresentados alguns casos de uso do algoritmo descrito anterio
 Inicia-se com um exemplo simples, onde o sistema é racional e a classe de modelos escolhida consegue representar
 completamente este sistema ($\mathcal{S} \in \mathcal{M}$). Em seguida será apresentado um exemplo onde o sistema ainda
 é racional, mas a classe de modelos escolhida não consegue representar completamente o sistema em questão, ou seja,
-$\mathcal{S} \notin \mathcal{M}$.
+$\mathcal{S} \notin \mathcal{M}$. Por fim será apresentado um exemplo real de um conversor de corrente contínua para
+corrente contínua do tipo Buck.
 
-Por fim será apresentado um exemplo real de um conversor de corrente continua para corrente continua do tipo Buck. Será
-utilizado um conjunto de modelos $\mathcal{M}$ para representar este sistema.
-
-Serão apresentados os resultados obtidos afim de verificar a qualidade dos resultados obtidos e a confiabilidade do
+Serão apresentados os resultados obtidos a fim de verificar a qualidade dos resultados obtidos e a confiabilidade do
 algoritmo em questão.
 
 %===============================================================================
@@ -164,24 +162,22 @@ algoritmo em questão.
 \label{sec:nl_si_algorithms_rationals_ex1}
 %===============================================================================
 
-O sistema descrito abaixo será utilizado para a simulação. 
+Considere o sistema real:
 
 \begin{equation}
-y(t)=\frac{\theta_1y(t-1)+\theta_2y(t-1)u(t-1)+\theta_3u(t-1)}{1+\theta_4y^{2}(t-1)+\theta_5y^{2}(t-2)}
+y(t)=\frac{0.2 y(t-1)+0.1 y(t-1)u(t-1)+ u(t-1)}{1+y^{2}(t-1)+y^{2}(t-2)}+e(t)
 \label{eq:nl_rat_exemple2}
 \end{equation}
 
-Para o sistema real utilizou-se os valores de referência:
+O modelo escolhido para representar o sistema real é:
 
 \begin{equation}
-\theta = 
-\begin{bmatrix}
-0.2 & 0.1 & 1 & 1 & 1
-\end{bmatrix}
-\nonumber
+y(t)=\frac{\theta_1 y(t-1)+\theta_2 y(t-1)u(t-1)+ \theta_3u(t-1)}{1+\theta_4 y^{2}(t-1)+ \theta_5y^{2}(t-2)}
+\label{eq:nl_rat_exemple2_model}
 \end{equation}
 
-Utilizando par a simulação um sinal PRBS de 635 pontos e adicionando-se um ruído de variância $\sigma^2=0.005$ os
+
+Utilizando para simulação um sinal PRBS de 635 pontos e adicionando-se um ruído $e(t)$ de variância $\sigma^2=0.005$ os
 resultados da média de 100 estimativas de Monte Carlo foram:
 
 \begin{equation}
@@ -371,7 +367,7 @@ foi:
 
 Como pode ser observado, pelos resultados de $\theta$ obtidos e os valores esperados, existe polarização na
 estimativa obtida. Isso em parte se dá pela falta de capacidade da classe de modelos escolhida em representar
-o processo real e pela escolha do modelo de ruido que para este caso foi apenas utilizado o erro da
+o processo real e pela escolha do modelo de ruído que para este caso foi apenas utilizado o erro da
 estimativa, com relação a saída do sistema real obtido.
 
 Foram utilizadas amostras de 100 pontos para esta estimativa e realizados 100 experimentos de Monte Carlo.

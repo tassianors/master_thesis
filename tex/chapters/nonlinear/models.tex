@@ -8,8 +8,8 @@
 Famílias ou conjuntos de modelos para sistemas podem ser divididos em dois grupos principais, baseados na natureza de
 suas não linearidades: não linearidades estáticas, onde a dinâmica do sistema pode ser bem caracterizada por um modelo
 linear enquanto que a parte não linear está concentrada ou na entrada ou na saída do sistema de forma estática.
-Para estes sistemas a forma mais usual de caracterizar é utilizando a classe de modelos de Wiener para não linearidades
-na saída do processo ou a classe de Hammerstein, quando a não linearidade está na entrada do processo.
+Estes sistemas são chamadosde Wiener para não linearidades na saída do processo ou Hammerstein, quando a
+não linearidade está na entrada do processo.
 
 Para os demais casos, onde a não linearidade está na dinâmica do processo existem várias famílias de modelos
 que podem ser utilizados como será visto no decorrer deste capítulo. De forma geral todos estes conjuntos
@@ -23,7 +23,7 @@ afinidade em representar certos tipos de não linearidades.
 
 Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
 modelo. Quando este modelo é não linear, existe uma grande quantidade de opções e com isso o perigo
-de escolher um modelo desnecessariamente complexo é evidente. Isso baseia-se no {\it{principio
+de escolher um modelo desnecessariamente complexo é evidente. este perigo baseia-se no {\it{principio
 da parcimônia}} que basicamente determina que o modelo deve ser o mais simples possível.
 \cite{aguirre_maps}
 
@@ -39,8 +39,8 @@ da parcimônia}} que basicamente determina que o modelo deve ser o mais simples p
 %===============================================================================
 
 Modelos de Wiener e Hammerstein são normalmente utilizados em situações onde a dinâmica do sistema pode ser bem
-descrita por um sistema linear, mas existem algumas não linearidades estáticas atreladas a entrada
-e/ou a saída. Este será o caso de atuadores não lineares com características como saturação, zona morta, entre outros.
+descrita por um sistema linear, mas existem algumas não linearidades estáticas atreladas à entrada
+e/ou à saída. Este será o caso de atuadores não lineares com características como saturação, zona morta, entre outros.
 
 Um modelo com não linearidades na entrada é chamado de {\it{modelo de Hammerstein}} e 
 para não linearidades na saída chama-se {\it{modelo de Wiener}}. \cite{ljung}
@@ -100,7 +100,7 @@ de Hammerstein e Wiener.
 % Aguirre 334
 %===============================================================================
 
-Um sistema não linear pode ser descrito pela serie de Volterra \eqref{eq:nl_models_volterra}:
+Um sistema não linear pode ser descrito pela série de Volterra \eqref{eq:nl_models_volterra}:
 
 \begin{equation}
 y(t)=\sum_{j=1}^{\infty}\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}
@@ -108,13 +108,13 @@ h_j(\tau_1, ... ,\tau_j) \prod_{i=1}^{j}u(t-\tau_i)d\tau_i
 \label{eq:nl_models_volterra}
 \end{equation}
 
-Onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para
-um sistema linear com $j=1$ a equação de Volterra se reduz a integral de convolução.
+onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para
+um sistema linear com $j=1$ a equação de Volterra se reduz à integral de convolução.
 \cite{aguirre}
 
-As expansões funcionais em series de Volterra relacionam os sinais passados da entrada com o valor atual da saída do
-sistema e isso inevitavelmente significa que que um conjunto excessivo de parâmetros é necessário para descrever até mesmo
-simples sistemas não lineares e consequentemente apenas poucas aplicações práticas foram apresentadas.
+As expansões funcionais em séries de Volterra relacionam os sinais passados da entrada com o valor atual da saída do
+sistema e isso inevitavelmente significa que que um conjunto relativamete elevado de parâmetros é necessário para
+descrever até mesmo simples sistemas não lineares e consequentemente apenas poucas aplicações práticas foram apresentadas.
 \cite{chen_billings1989}
 
 %===============================================================================
@@ -123,14 +123,14 @@ simples sistemas não lineares e consequentemente apenas poucas aplicações prátic
 % TODO: Search for bib
 %===============================================================================
 As redes neurais artificiais são compostas por camadas de neurônios interconectados. A saída de um
-neurônio com $n$ entradas é apresentado na equação \eqref{eq:nl_models_neural}
+neurônio com $n$ entradas é apresentada na equação \eqref{eq:nl_models_neural}
 
 \begin{equation}
 x=\emph{f}\left ( \sum_{j=1}^{n}\omega_j x_j +b \right )
 \label{eq:nl_models_neural}
 \end{equation}
 
-Sendo $b$ (bias) e $\omega_j$ constantes. $\emph{f}(\cdot)$ é chamada função de ativação. A
+Sendo $b$ (bias) e $\omega_j$ constantes e $\emph{f}(\cdot)$ é chamada função de ativação. A
 função de ativação mais comum é: \cite{aguirre}
 
 \begin{equation}
@@ -144,8 +144,8 @@ função de ativação mais comum é: \cite{aguirre}
 \label{sec:nl_models_neurals_multilayer}
 %===============================================================================
 
-Uma tipica rede multi-camadas pode ser descrita como na Figura
-(\ref{fig:nl_models_neural_multilayer}).  Na pratica redes neurais multi-camadas tem grande apelo no
+Uma típica rede multi-camadas pode ser descrita como na Figura
+(\ref{fig:nl_models_neural_multilayer}).  Na prática redes neurais multi-camadas têm grande apelo no
 reconhecimento de padrões. Do ponto de vista teórico os sistemas de redes multi-camadas podem ser
 considerados como mapas não lineares onde os elementos das matrizes de peso são os parâmetros.
 \cite{narenda_parthasarathy}
@@ -249,8 +249,7 @@ considerados como mapas não lineares onde os elementos das matrizes de peso são 
 \label{fig:nl_models_neural_multilayer}
 \end{figure}
 
-A saída do sistema para uma rede multi-camadas pode ser descrito como em
-\eqref{eq:nl_models_neural_multilayer}.
+A saída do sistema para uma rede multi-camadas pode ser descrita como:
 
 \begin{equation}
 y(t)=f_s\left \{ \sum_{i=1}^{m} \omega_i f_i \left ( \sum_{j=1}^{n}\omega_{ij} x_j + b_i \right ) +
@@ -259,8 +258,8 @@ b_s \right \}
 \end{equation}
 
 Sendo que $f_s$ é a função de ativação do neurônio da camada de saída. Esta função não precisa ser
-igual a $f_i$, $i=1, \ldots , m$ que por sua vez não precisam ser iguais entre si. $b_s$ é o termo
-de polarização do neurônio da camada de saída, $\omega_i$ são os pesos da saída de cada neurônio da
+igual a $f_i$, $i=1, \ldots , m$ que por sua vez não precisam ser iguais entre si. As constantes $b_s$ são os termos
+de polarização dos neurônios da camada de saída, $\omega_i$ são os pesos da saída de cada neurônio da
 camada oculta e $\omega_{ij}$ são os pesos da entrada $j$, vista pelo $i-$ésimo neurônio da camada
 oculta. \cite{aguirre}
 
@@ -378,7 +377,7 @@ apenas uma camada adicionada de uma realimentação com um atraso de tempo como ap
 %===============================================================================
 
 Funções radiais de base  ({\it{RBF - Radial basis functions}})  são uma tradicional técnica para
-interpolação em espaços multidimensional \cite{chen_billings_narmax} e podem ser descritos como
+interpolação em espaços multidimensional \cite{chen_billings_narmax} e podem ser descritas como
 mapeamentos do tipo:
 
 \begin{equation}
@@ -396,7 +395,7 @@ $c_i \in \mathbb{R}^{d_e}$ são centros e $\phi(\cdot):\mathbb{R}^+ \to \mathbb{R
 \nonumber
 \end{equation}
 
-Outras funções de base usadas são apresentadas na Tabela \ref{table:nl_models_rbf}
+Outras funções de base usadas são apresentadas na Tabela (\ref{table:nl_models_rbf})
 
 \begin{table*}[htbp]
 \begin{center}
@@ -416,7 +415,7 @@ Outras funções de base usadas são apresentadas na Tabela \ref{table:nl_models_rb
 \end{center}
 \end{table*}
 
-Sendo que $r=\left \| y-c_i \right \|$ e $\sigma$ definem a largura do chapéu no caso de
+onde $r=\left \| y-c_i \right \|$ e $\sigma$ definem a largura do chapéu no caso de
 funções Gausianas e das multi-quadráticas, como pode ser visto na figura (\ref{fig:nl_models_rbf}).
 
 \begin{figure}[htbp]
