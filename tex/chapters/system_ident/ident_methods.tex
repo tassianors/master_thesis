@@ -70,7 +70,7 @@ erros de polarização na estimativa, a variável de regressão $\varphi(t)$ não pod
 distúrbio estocástico $\nu(t)$. Assume-se que o sistema real é dado por:
 
 \begin{equation}
-y(t)=\varphi^T(t)\theta^*+\nu(t)
+y(t)=\varphi^T(t)\theta_0+\nu(t)
 \label{eq:si_par_etim_lsm_true_sys}
 \end{equation}
 
@@ -94,7 +94,7 @@ Ao contrário da condição (1), a condição (2) normalmente não é verdadeira. Uma i
 ruído branco. Para este caso $\nu(t)$ será descorrelacionado com todos os dados passados e em especial com
 $\varphi(t)$.\cite{system_identification}
 
-Quando o número de amostras tende ao infinito e a estimativa tende para um valor diferente de $\theta^*$, este erro é
+Quando o número de amostras tende ao infinito e a estimativa tende para um valor diferente de $\theta_0s$, este erro é
 chamado de {\it{bias}} ou erro de polarização da estimativa.
 
 Para contornar este erro de {\it{bias}} existem duas opções que serão abordadas em seguida: Utilização de variáveis
@@ -155,22 +155,27 @@ variância da estimativa está relacionada com o inverso de $E\;Z(t)\varphi(t)^T$.
 \label{sec:si_par_estim_noise_modeling}
 %===============================================================================
 
-Como foi apresentado até aqui, tem-se que o método dos mínimos quadrados possui erro de polarização quando existe
-correção entre o regressor $\varphi(t)$ e $\nu(t)$, apresentou-se em seguida o método dos minimos quadrados que resolve
-este inconveniente ao custo da escolha de uma variável instrumental que não seja correlacionada com o ruído.
+O método dos mínimos quadrados possui erro de polarização quando existe correção entre o regressor $\varphi(t)$ e
+$\nu(t)$, apresentou-se em seguida uma alternativa ao método dos minimos quadrados que resolve este inconveniente ao
+custo da escolha de uma variável instrumental que não seja correlacionada com o ruído.
 
-Existe entretanto uma segunda forma para lidar com este erro de polarização: Modelagem do ruído. Conhecendo além da
-planta $G(q, \theta)$, o modelo do ruído tem-se um conjunto de modelos que melhor representa o sistema real, fazendo com
-que o sistema real $\mathcal{S}$ que antes não conseguia ser modelado complentamente apenas por $G(q, \theta)$ passe a
-ser representado pelo modelo do sistema completo.
+Existe entretanto uma segunda forma para lidar com este erro de polarização: modelagem do ruído. Em algumas aplicações,
+a modelagem do sistema é o objetivo principal da identificação, para tanto leva-se em conta apenas os parametros de
+$G(q, \theta)$. Desta forma é possível que haja polarização dos parâmetros, pois o sistema real $\mathcal{S}$ não
+consegue ser descrito pelo modelo apenas com $G(q, \theta)$. Como apresentado na equação \eqref{eq:si_intro_model} e
+aqui replicado:
 
 \begin{equation}
-\mathcal{M}: \;\;\left \{ y(t)=G(q, \theta)u(t)+ H(q, \theta)e(t) \right \}
-\nonumber
+\mathcal{M}: \;\;\left \{ G(q, \theta), H(q, \theta) | \theta \in D_{\mathcal{M}} \right \}
+\label{eq:si_intro_model}
 \end{equation}
 
-O inconveniente de utilizar a modelagem do rúido é que se o denominador de $G(q, \theta)$ for diferente do dominador de
-$H(q, \theta)$ então o sistema não é canonicamente parametrizavel e com isso a função custo não é convexa, adicionando
-um grau considerável aos algoritmos para encontrar o mínimo global da equação.
+O modelo so sistema deve conter o modelo do ruído para que o sistema possa ser completamente representado, evitando
+assim erro de polarização.
+
+Ao integrar ao modelo do sistema, os parametros de $H(q, \theta)$, surge o inconvenientede que se o denominador de
+$G(q, \theta)$ for diferente do dominador de $H(q, \theta)$ então o sistema não é canonicamente parametrizavel e com
+isso a função custo não é convexa, adicionando um grau considerável aos algoritmos para encontrar o mínimo global da
+equação. \cite{system_identification}
 
 

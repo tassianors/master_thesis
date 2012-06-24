@@ -44,10 +44,10 @@ H(q, \theta)=1+\sum_{k=1}^{\infty}h(k, \theta)q^{-k}
 
 O objetivo da identificação de sistemas é encontrar um valor para o vetor $\theta$ que faça com que $G(q,\theta)$ e
 $H(q,\theta)$  sejam o mais próximo possível de $G_0(q)$ e $H_0(q)$. .O vetor $\theta$ que faz com que estas duas
-funções de transferências sejam iguais é denotado por $\theta^*$. Segue então que:
+funções de transferências sejam iguais é denotado por $\theta_0$. Segue então que:
 
 \begin{equation}
-G(q, \theta^*)=G_0(q)
+G(q, \theta_0)=G_0(q)
 \label{eq:si_intro_true_theta}
 \end{equation}
 
@@ -60,13 +60,22 @@ finito quando o tamanho da amostra cresce, conforme definição a seguir:
 
 Um processo quasi-estacionário pode ser definido como:
 \begin{itemize}
-	\item $\bar{E}\left [ s(t) \right ] = \mid m_s(t) \mid \le C, \;\forall t$;
+	\item $\bar{E}\left [ s(t) \right ] = m_s(t), \;\; \left | m_s \right | \le C, \;\forall t$;
 	\item $\bar{E}\left [ s(t)s(r) \right ] = \mid R_s(t,s) \mid \le C, \;\forall t,r$;
 	\item $\lim_{N \to \infty}\frac{1}{N}\sum_{t=1}^{N}R_s(t, t-\tau)=R_s(\tau), \; \forall \tau$,
 \end{itemize}
-onde $\bar{E}[\cdot]$ é a esperança do valor, $m_s(t)$ é o valor médio de $s(t)$ e $R_s(t,r)$ é a covariância de $s$ nos
+onde $m_s(t)$ é o valor médio de $s(t)$ e $R_s(t,r)$ é a covariância de $s$ nos
 instantes $t$ e $r$.
 \end{defn}
+
+$\bar{E}[\cdot]$ é  denotado esperança e pode ser definido por: \cite{ljung}
+
+\begin{equation}
+\bar{E}\left [ f(t) \right ]\overset{\underset{\mathrm{\Delta}}{\,}}{=}\lim_{N \to \infty}
+\frac{1}{N}\sum_{t-1}^{N}E\left [ f(t) \right ]
+\label{eq:si_intro_E}
+\end{equation}
+
 
 %===============================================================================
 \subsection{Elementos da identificação}

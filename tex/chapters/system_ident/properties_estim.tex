@@ -3,28 +3,29 @@
 \label{sec:sys_ident_prop_estim}
 %===============================================================================
 % mains idea of this section:
-Durante a identificação de um sistema, o tipo de sinal aplicado, o número de dados utilizados proporcionam resultados
-diferentes para os esperimentos realizados. É importante entender o que e onde estes parametros afetam na resposta final
-da identificação, para que se consiga evita-los ou ao menos entendelos e saber o quão confiável foi a estimativa gerada. 
+Durante a identificação de um sistema, a ordem de excitação do sinal aplicado e a quantidade de dados que colata-se do
+sistema, podem proporcionar resultados diferentes para os esperimentos realizados. É importante entender o que e onde
+estes parametros afetam na resposta final da identificação, para que consiga-se evita-los ou ao menos entende-los e
+saber o quão confiável foi a estimativa obtida.
 
 As propriedades estatisticas das estimativas trazem consigo algumas informações extremamente úteis para a identificação
 de sistemas. Nesta seção serão abordadas algumas destas caracteristicas e o que elas dizem, ou permitem dizer sobre a
-estimativa dos parametros do sistema.
+identificação do sistema.
 
 %===============================================================================
-\subsection{Incertezas nos parâmetros estimados}
+\subsection{Incertezas mas estimativas dos parâmetros}
 \label{sec:si_par_estim_uncertanties}
 %===============================================================================
 
-O desejo principal para a estimativa de um sistema é que este não possua erros, ou ao menos que este erro, 
-se existir, seja o menor possível. Para tanto é necessário caracterizar este tipo de informação do sistema.
-Existem dois tipos principais de erros na estimativa de parâmetros. Um deles é o {\it{erro de variância}} e
-outro é o {\it{erro de polarização}}.
+O desejo principal para a identificação de sistemas é que este não possua erros, ou ao menos que este
+erro, se existir, seja o menor possível, ou limitado dentro de uma região conhecida. Para tanto é necessário
+caracterizar este tipo de informação do sistema. Existem dois tipos principais de erros na estimativa de parâmetros. Um
+deles é o {\it{erro de variância}} e outro é o {\it{erro de polarização}}.
 
-Seja, $\theta^*$ o limite de convergência para a minimização do erro de predição:
+Seja, $\theta_0$ o limite de convergência para a minimização do erro de predição:
 
 \begin{equation}
-\lim_{N \rightarrow \infty }\hat{\theta}_N = \theta^*
+\lim_{N \rightarrow \infty }\hat{\theta}_N = \theta_0
 \label{eq:si_par_estim_under_theta}
 \end{equation}
 
@@ -50,7 +51,7 @@ melhor sistema que o modelo pode atingir (quando a quantidade de dados é ilimita
 então a estimativa do modelo $G_N(q)$.\cite{campestrini, solari}
 
 \begin{equation}
-\Delta Q_N(q) \equiv \hat{Q}_N-Q(q)
+\Delta Q_N(q) \equiv \hat{Q}_N(q)-Q(q)
 \label{eq:si_par_estim_under_diff}
 \end{equation}
 
@@ -61,11 +62,11 @@ Q^*(q) = \left [ G(q, \theta^*) \; H(q, \theta^*) \right ]^T
 \label{eq:si_par_estim_under_q*}
 \end{equation}
 
-Entende-se por $Q^*(q)$ como a melhor aproximação que o método pode proporcionar (com $N \rightarrow \infty$) ou 
-como sendo a média de todas as estimativas efetuadas.
+Entende-se por $Q^*(q)$ como a melhor aproximação que o método pode proporcionar quando a quantidade de dados coletados
+$N \rightarrow \infty$.
 
 Adicionando e subtraindo a \eqref{eq:si_par_estim_under_q*} na equação \eqref{eq:si_par_estim_under_diff}
-chega-se a definição do erro de polarização e de variância \eqref{eq:si_par_estim_under_errors}.
+chega-se à definição dos erros de polarização e de variância:
 
 \begin{equation}
 \Delta Q_N(q) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N(q)-Q^*(q)}}+  \underset{\text{Erro de
@@ -75,9 +76,30 @@ polarização}}{\underbrace{Q^*(q)-Q(q)}}
 
 Onde $Q^*(q)=\left [ G(q, \theta^*) \;\;\; H(q, \theta^*)\right ]$.
 
-A partir da \eqref{eq:si_par_estim_under_errors} compreende-se o erro de polarização como sendo a distância
+A partir da equação  \eqref{eq:si_par_estim_under_errors} compreende-se o erro de polarização como sendo a distância
 entre a melhor aproximação possível e o valor real para o parâmetro. Já o erro de variância é a média que cada uma
-das estimativas está distante do valor ótimo possível para a estimativa.
+das estimativas está distante do valor ótimo possível para a estimativa, que é tão menor quanto mais dados forem usados
+para a identificação.
+
+Se o experiemnto é realizado em malha aberta, ou sej, quando $u(t)$ e $e(t)$ são descorrelacionados e se $G(z, \theta)$
+e $H(z, \theta)$ são parametrizados de forma indenpente, ou seja,
+
+\begin{equation}
+\theta=\begin{bmatrix}
+\rho\\ 
+\eta 
+\end{bmatrix},\;\; G(z, \theta) = G(z,\rho), \;\; H(z, \theta)=H(z, \eta)
+\nonumber
+\end{equation}
+
+então $G_0(z)$ pode ser estimada de forma consistente, independente de $H_0(z)$ pertencer ou não à classe de modelos
+\cite{ljung}. Neste caso, o erro entre o processo real e o modelo estimado é dado pelos erros de polarização e de
+variância da estimativa \cite{gevers2006, campestrini}, onde
+
+\begin{align*}
+\text{Erro de variância} &= G(z, \hat{\theta}_N)-G(z, \theta^*)\\ 
+\text{Erro de polarização}  &= G(z, \theta^*)-G_0(z) 
+\end{align*}
 
 %===============================================================================
 \subsubsection{Covariância nos parâmetros}
@@ -90,18 +112,26 @@ irão determinar a qualidade das estimativas obtidas.\cite{jansson}
 
 \begin{equation}
 \begin{matrix}
-\sqrt{N}(\hat{\theta}_N-\theta^*) \to \mathcal{N}(0,P) \;\; \text{quando} \;\; N\to \infty \\ \\
-\lim_{N\to \infty}N\;E(\hat{\theta}_N-\theta^*)()\hat{\theta}_N-\theta^*)^T=P\\\\
-P(\theta^*)=\lambda_0(E\left [ \psi (t,\theta^*)\psi^T(t,\theta^*) \right ])^{-1}\\ \\
-\psi (t,\theta^*)=\frac{\partial }{\partial \theta}\hat{y}(t,\theta)\mid_{\theta=\theta^*}
+\sqrt{N}(\hat{\theta}_N-\theta_0) \to \mathcal{N}(0,P) \;\; \text{quando} \;\; N\to \infty ,\\
+
+\lim_{N\to \infty}N\;E(\hat{\theta}_N-\theta_0)(\hat{\theta}_N-\theta_0)^T \overset{\underset{\mathrm{\Delta}}{\,}}{=} P(\theta_0),\\
+
+\text{onde } P(\theta_0)=\lambda_0(E\left [ \psi (t,\theta_0)\psi^T(t,\theta_0) \right ])^{-1},\\
+
+\psi (t,\theta_0)=\frac{\partial }{\partial \theta}\hat{y}(t,\theta)\mid_{\theta=\theta_0}
 \end{matrix}
 \label{eq:si_par_estim_conv_def}
 \end{equation}
 
-Não é apenas o tamanho ($N$) do experimento que irá influenciar na qualidade da estimativa.
-Na equação \eqref{eq:si_par_estim_cov_spectrum} apresenta-se o espectro onde $\Phi_u$ é o espectro da entrada $u(t)$, 
-$\Phi_{ue}$ é o espectro cruzado entre a entrada e o erro $e_0$. Esta distribuição do espectro, $\Phi_{\chi 0}$
-também influenciará na qualidade da estimativa, como pode ser visto no Lemma \ref{lemma:si_par_estim_covariance}.
+Neste caso, $\mathcal{N}(0, P_\theta)$ denota uma distribuição normal com média 0 e variância $P_\theta$. Asssim quando
+o sistema real pertence à classe  de modelos escolhida a estimatica converge para $\theta_0$ e a covariância da
+estimativa é dada por:
+
+\begin{equation}
+\text{Cov}\hat{\theta}_N \sim \frac{1}{N}P_\theta
+\end{equation}
+
+Não é apenas o tamanho ($N$) do experimento que irá influenciar na qualidade da estimativa. Introduz-se o espectro:
 
 \begin{equation}
 \Phi_{\chi 0}=\begin{bmatrix}
@@ -111,17 +141,22 @@ também influenciará na qualidade da estimativa, como pode ser visto no Lemma \re
 \label{eq:si_par_estim_cov_spectrum}
 \end{equation}
 
+
+onde $\Phi_u$ é o espectro da entrada $u(t)$, $\Phi_{ue}$ é o espectro cruzado entre a entrada $u(t)$ e o erro $e(t)$.
+A distribuição da frequência do espectro $\Phi_{\chi 0}$ também influenciará na qualidade da
+estimativa, como pode ser visto no Lemma \ref{lemma:si_par_estim_covariance}.
+
 \begin{lemma}
-A inversa da matriz de covariância, $P^{-1}(\theta^*)$, é uma função linear do espectro $\Phi_{\chi 0}$ dado por
+A inversa da matriz de covariância, $P^{-1}(\theta_0)$, é uma função linear do espectro $\Phi_{\chi 0}$ dado por
 \eqref{eq:si_par_estim_cov_lemma}.
 
 \begin{equation}
-P^{-1}(\theta^*)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta^*)
-\Phi_{\chi_0}(\theta^*)\mathcal{F}^*(\theta^*) d \omega
+P^{-1}(\theta_0)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta_0)
+\Phi_{\chi_0}(\theta_0)\mathcal{F}^*(\theta_0) d \omega
 \label{eq:si_par_estim_cov_lemma}
 \end{equation}
 
-Onde $\mathcal{F}(q, \theta^*)=\left [ \mathcal{F}_u(q, \theta^*) \;\;\;\mathcal{F}_e(q, \theta^*) \right ]$ e:
+Onde $\mathcal{F}(q, \theta_0)=\left [ \mathcal{F}_u(q, \theta_0) \;\;\;\mathcal{F}_e(q, \theta_0) \right ]$ e:
 
 \begin{equation}
 \mathcal{F}_u(\theta_0) = H^{-1}(\theta_0)\frac{\mathrm{d} G(\theta_0)}{\mathrm{d} \theta} 
@@ -154,14 +189,16 @@ A partir da distribuição assintótica normal em \eqref{eq:si_par_estim_conv_def} 
 Com $P_N=P/N$ e onde \eqref{eq:si_par_estim_confidence_region} é a região de confiança, onde assintoticamente
 inclui $\theta_0$ com probabilidade $\alpha$. Desta forma tem-se que as estimativas estarão centradas em
 $\hat{\theta}_N$ e com probabilidade $\alpha$ estarão contidas em uma esfera definida por $P_N$ e $\chi_{\alpha}^2(N)$
+\cite{jansson}:
 
 \begin{equation}
-U_\theta=\left \{ \theta \mid (\hat{\theta}_N-\theta^*)^T P^{-1}_{N}(\hat{\theta}_N-\theta^*) \le \chi^2_{\alpha}(n) \right \}
+U_\theta=\left \{ \theta \mid (\hat{\theta}_N-\theta_0)^T P^{-1}_{N}(\hat{\theta}_N-\theta_0) \le \chi^2_{\alpha}(n)
+\right \}
 \label{eq:si_par_estim_confidence_region}
 \end{equation}
 
-Na Figura (\ref{fig:si_covar_elipse}) é apresentado um exemplo de região de confiança para um $\chi$ de 95\%. O ponto em destaque
-é a média de todas as estimativas e está localizado no centro da região de confiança.
+Na Figura (\ref{fig:si_covar_elipse}) é apresentado um exemplo de região de confiança para um $\chi$ de 95\%. O ponto
+em destaque é a média de todas as estimativas e está localizado no centro da região de confiança.
 
 \begin{figure}[htbp]
 	\center

@@ -166,7 +166,7 @@ de resolver.
 \item Existem restrições que são de dimensão infinita, o que exigem um certo grau de cuidado no procedimento de
 otimização.
 \item Existe ainda o problema de encontrar um sinal realizável que tenha as propriedades desejadas para o espectro.
-\item A variância assintótica depende tipicamente dos parâmetros do sistema $\theta^*$, $P=P(\theta^*)$ que são
+\item A variância assintótica depende tipicamente dos parâmetros do sistema $\theta_0$, $P=P(\theta_0s)$ que são
 desconhecidos.
 \end{enumerate}
 
@@ -206,10 +206,10 @@ a matriz de covariância $P$. Esta matriz pode ser manipulada pelos espectros de 
 como apresentado em \eqref{eq:si_project_optimization_quality}.
 
 \begin{equation}
-P^{-1}(\theta^*)=\frac{1}{2 \pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(e^{j\omega}, \theta^*)\begin{bmatrix}
+P^{-1}(\theta_0)=\frac{1}{2 \pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(e^{j\omega}, \theta_0)\begin{bmatrix}
 \Phi_u(\omega) & \Phi_{ue}(\omega)\\ 
-\Phi_{ue}^{*}(\omega) & \lambda_0 
-\end{bmatrix}\mathcal{F}(e^{j\omega}, \theta^*)\;d\omega
+\Phi_{ue}^{0}(\omega) & \lambda_0 
+\end{bmatrix}\mathcal{F}(e^{j\omega}, \theta_0)\;d\omega
 \label{eq:si_project_optimization_quality}
 \end{equation}
 
