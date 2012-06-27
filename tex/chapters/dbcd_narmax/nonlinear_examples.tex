@@ -93,10 +93,10 @@ G'(z)=\frac{0.5}{z-0.9}
 \label{eq:vrft_nl_wiener_g}
 \end{equation} 
 
-O comportamento do sistema em malha fechada esperado é definido por $M(z)$:
+O comportamento do sistema em malha fechada esperado é definido por $T_d(z)$:
 
 \begin{equation}
-M(z)=\frac{0.4}{z-0.6}
+T_d(z)=\frac{0.4}{z-0.6}
 \label{eq:vrft_nl_wiener_m}
 \end{equation}  
 
@@ -108,7 +108,7 @@ descrito como abaixo:
 \label{eq:vrft_nl_wiener_phi}
 \end{equation}  
 
-Espera-se então que por $M(z)$ ser linear, que o controlador tenha um bloco que cancele o efeito não linear de
+Espera-se então que por $T_d(z)$ ser linear, que o controlador tenha um bloco que cancele o efeito não linear de
 $\zeta(t)$.
 
 Deseja-se que em malha fechada o sinal $v(t)$ seja tal que:
@@ -160,7 +160,7 @@ Define-se então $\gamma (t)$ como sendo:
 \end{equation}  
 
 Desconsiderando a parte não linear presente na planta, é simples de observar que o controlador ótimo que
-levaria a planta em malha fechada a ter o comportamento descrito por $M(z)$ é:
+levaria a planta em malha fechada a ter o comportamento descrito por $T_d(z)$ é:
 
 \begin{equation}
 C_d(z)= \frac{0.8z-0.72}{z-1}
@@ -213,17 +213,17 @@ Com um desvio padrão de:
 \nonumber
 \end{equation}
 
-O custo entre os sinais de saída do sistema obtido e o sistema esperado $M(z)$ foi de  $J_{MR}(\theta)=
+O custo entre os sinais de saída do sistema obtido e o sistema esperado $T_d(z)$ foi de  $J_{MR}(\theta)=
 0.3820$ e o custo dos sinais de saída do controlador ($u(t)$) esperado e obtido foi de $J_{VR}=1.0119$.
 
 Como a estimativa de $\gamma (\epsilon(t))$ é apenas uma aproximação do que espera-se ser a inversa de
 $\zeta(\omega(t))$, a classe de modelos escolhida para o controlador não consegue representar a totalidade do
 controlador ideal. Desta forma é esperado que a identificação não consiga atingir a totalidade da função
-$M(z)$ inicialmente escolhida. Para as estimativas foram utilizados sinais de entrada do tipo PRBS com 127 pontos para a
+$T_d(z)$ inicialmente escolhida. Para as estimativas foram utilizados sinais de entrada do tipo PRBS com 127 pontos para a
 excitação da planta.
 
 Na Figura (\ref{fig:vrft_nl_wiener_step}) é apresentado um comparativo entre o sinal de saída do sistema
-$M(z)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado é
+$T_d(z)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado é
 aplicado sobre a planta em malha fechada.
 
 \begin{figure}[htbp] 
@@ -263,7 +263,7 @@ Quando a não linearidade está na dinâmica do processo não há uma distinção entre
 apresentado no exeplo anterior (seção \ref{sec:dbnarmax_nl_wiener}). Serão apresentados aqui alguns exemplos de
 identificação de controladores que podem ser representados por modelos NARMAX racionais.
 
-Inicialmente um exemplo onde o controlador que leva a planta $G_0(z)$ a se comportar em malha fechada como em $M(z)$,
+Inicialmente um exemplo onde o controlador que leva a planta $G_0(z)$ a se comportar em malha fechada como em $T_d(z)$,
 será totalmente representado pelo modelo escolhido para o controlador. Em seguida será apresentado para esta mesma
 situação onde o controlador necessário é um pouco mais complexo, tendo mais variáveis para identificar.
 
@@ -288,7 +288,7 @@ y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
 Deseja-se que em malha fechada seu comportamento seja linear como em:
 
 \begin{equation}
-M(z)=\frac{0.4}{z-0.6}
+T_d(z)=\frac{0.4}{z-0.6}
 \label{eq:vrft_nl_dinamic_ex1_mz}
 \end{equation}
 
@@ -301,7 +301,7 @@ y(t)=0.4r(t-1)+0.6y(t-1)
 
 Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex1_y} com \eqref{eq:vrft_nl_dinamic_ex1_mt} e isolar o
 sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
-comportamento descrito por $M(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
+comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
 
 \begin{equation}
 u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
@@ -435,7 +435,7 @@ y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
 Deseja-se que em malha fechada seu comportamento seja linear como em:
 
 \begin{equation}
-M(z)=\frac{0.4}{z-0.6}
+T_d(z)=\frac{0.4}{z-0.6}
 \label{eq:vrft_nl_dinamic_ex3_mz}
 \end{equation}
 
@@ -448,7 +448,7 @@ y(t)=0.4r(t-1)+0.6y(t-1)
 
 Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex3_y} com \eqref{eq:vrft_nl_dinamic_ex3_mt} e isolar o
 sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
-comportamento descrito por $M(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
+comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
 
 \begin{equation}
 u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}

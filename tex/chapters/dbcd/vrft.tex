@@ -20,13 +20,13 @@ específicos. O procedimento procura pelo ponto ótimo do critério escolhido para 
 \cite{campi_savaresi2000}
 
 Diferentemente de métodos iterativos, o VRFT não recai sobre mínimos locais, sempre procurando o mínimo
-global do critério escolhido, sob condições ideais. Ele irá buscar o mínimo da função custo dentro das limitações de
-excitabilidade do sinal utilizado. Se o sinal utilizado para exitar o sistema for suficientemente informativo, então o
-minimo encontrado pelo método será um minimo global.
+global do critério escolhido, sob condições ideais:
 
-Assume-se que a planta do sistema é {\it{linear}} SISO ({\it{single input single output}}) de tempo discreto,
-descrito pela função de transferência racional $G_0(z)$. Tal que esta função de transferência é desconhecida e
-tem-se apenas acesso ao conjunto de dados coletados do experimento. \cite{campi_leccini_savaresi2002}
+\begin{itemize}
+  \item O sistema não é afetado por ruído, ou seja, $\sigma^2=0$.
+  \item O controlador ideal $C_d(z) \in c(z, \theta)$.
+  \item O controlador é parametrizado linearmente. 
+\end{itemize}
 
 O controlador a ser identificado pode ser parametrizado como abaixo:
 
@@ -36,21 +36,19 @@ C(z,\theta)=\beta^T(z)\theta
 \end{equation}
 
 Onde $\beta(z) = \left [ \beta_1(z)\;\; \beta_2(z)\;\; \cdots \;\; \beta_n(z)\right ]^T$ é um vetor
-linear de funções de transferências de tempo discreto e $\theta = \left [ \vartheta_1 \;\;
-\vartheta_2 \;\; \cdots \;\; \vartheta_n \right ]^T \in \mathcal{R}^n$ é um vetor $n$-dimensional de
-parâmetros a serem estimados.
+linear de funções de transferências de tempo discreto e $\theta$ é o vetor de parâmetros a ser estimado.
 
 O problema de identificação do controlador consiste em encontrar um $\hat{\theta}$ que minimize o
 critério performance \eqref{eq:vrft_method_cost_func} que é dependente do modelo de referência
 escolhido.
 
 \begin{equation}
-J_{MR}(\theta) = \left \| \left ( \frac{G(z)C(z,\theta)}{1+G(z)C(z,\theta)} -M(z) \right )W(z)
+J_{MR}(\theta) = \left \| \left ( \frac{G_0(z)C(z,\theta)}{1+G_0(z)C(z,\theta)} -T_d(z) \right )W(z)
 \right \|_2^2 
 \label{eq:vrft_method_cost_func}
 \end{equation} 
 
-Sendo $M(z)$ o modelo de referência a ser atingido em malha fechada quando o controlador
+Sendo $T_d(z)$ o modelo de referência a ser atingido em malha fechada quando o controlador
 obtido é aplicado sobre a planta e $W(z)$ é uma matriz para ponderação escolhida pelo usuário.
 
 Métodos diretos são conceitualmente mais naturais que os indiretos, mas mesmo com o apelo que possuem,
@@ -76,12 +74,12 @@ utilizando o método VRFT. Para maiores detalhes e discussões aprofundadas é indi
 \cite{campi_savaresi2000, campi_leccini_savaresi2002, campestrini_nonminumum_phase}.
 
 Suponha que o controlador $C(z, \theta)$ resulta um sistema em malha fechada cuja função de
-transferência é dada por $M(z)$. Desta forma, se $M(z)$ for excitado com qualquer sinal $r(t)$,
-sua saída será $M(z)r(t)$. Uma premissa para que o sistema em malha fechada tenha a mesma
+transferência é dada por $T_d(z)$. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$,
+sua saída será $T_d(z)r(t)$. Uma premissa para que o sistema em malha fechada tenha a mesma
 função de transferência que o modelo de referência é que a saída dos dois seja a mesma para um dado
 sinal $\bar{r}(t)$.
 
-Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $M(z)\bar{r}(t)=y(t)$.
+Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $T_d(z)\bar{r}(t)=y(t)$.
 Esta referência é conhecida como {\it{virtual}} pois ela não existe e não foi utilizada para gerar o
 sinal $y(t)$. A figura (\ref{fig:vrft_method_cl}) apresenta o sistema em malha fechada e os sinais
 utilizados.
@@ -149,10 +147,10 @@ y_L (t)=L(z)y(t), \;\;\; u_L (t)=L(z)u(t)
 \end{equation}
 
 \item Encontra-se um sinal de referência $\bar{r}_L (t)$ no qual a saída do modelo de referência
-$M(z)$ seja exatamente $y_L (t)$ quando alimentado pelo sinal:
+$T_d(z)$ seja exatamente $y_L (t)$ quando alimentado pelo sinal:
 
 \begin{equation}
-y_L (t)=M(z) \bar{r}_L (t)
+y_L (t)=T_d(z) \bar{r}_L (t)
 \label{eq:vrft_method_algorithm_ref}
 \end{equation}
 
@@ -193,7 +191,7 @@ propicia que estas duas equações tenham mínimos muito próximos.
 
 A utilização do filtro é de grande importância em situações onde a escolha do modelo $\mathcal{C}(z,
 \theta)$ não consegue representar a totalidade do controlador ótimo ($C_0(z)$) que quando aplicado em conjunto com a
-planta proporciona a exata resposta desejada pela escolha de $M(z)$.
+planta proporciona a exata resposta desejada pela escolha de $T_d(z)$.
 
 \begin{equation}
 C_0(z) \notin \mathcal{C}(z, \theta)
@@ -280,7 +278,7 @@ adição da variável instrumental $\zeta(t)$. Em \eqref{eq:vrft_framework_noise_iv
 regressor deste instrumento:
 
 \begin{equation}
-\tilde{\varphi }_L(t)=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\tilde{y}(t)
+\tilde{\varphi }_L(t)=\beta(z)L(z)\left ( T_d(z)^{-1}-1 \right )\tilde{y}(t)
 \label{eq:vrft_framework_noise_iv}
 \end{equation}
 
@@ -305,7 +303,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 	$\tilde{y}(t)$ e $\tilde{y}(t)'$ serão diferentes. Obtém-se então a variável instrumental:
 	
 	\begin{equation}
-	\zeta(y)=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\tilde{y}(t)'
+	\zeta(y)=\beta(z)L(z)\left ( T_d(z)^{-1}-1 \right )\tilde{y}(t)'
 	\nonumber
 	\end{equation}
 	
@@ -314,7 +312,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário.
 	sinal simulado $\hat{y}=\hat{G}(z)u(t)$, obtendo a variável instrumental como:
 
 	\begin{equation}
-	\zeta(y)=\beta(z)L(z)\left ( M(z)^{-1}-1 \right )\hat{y}(t)
+	\zeta(y)=\beta(z)L(z)\left ( T_d(z)^{-1}-1 \right )\hat{y}(t)
 	\nonumber
 	\end{equation}
 	
@@ -353,7 +351,7 @@ Este sistema pode ser compreendido como um sistema {\it{Box-Jenkins}} (BJ)
 fechada comporte-se o mais próximo possível do modelo apresentado em:
 
 \begin{equation}
-M(z)=\frac { 0.4 }{ z-0.6 }
+T_d(z)=\frac { 0.4 }{ z-0.6 }
 \label{eq:vrft_methos_ex_bj_M}
 \end{equation}
 
@@ -493,7 +491,7 @@ G_{ 0 }(z)=\frac { z }{ (z-0.9)(z-0.8) } ,\quad \quad \quad H_{ 0 }(z)=\frac { z
 Deseja-se que o sistema em malha fechada comporte-se o mais próximo possível do modelo apresentado em:
 
 \begin{equation}
-M(z)=\frac { 0.4 }{ z-0.6 }
+T_d(z)=\frac { 0.4 }{ z-0.6 }
 \label{eq:vrft_methos_ex_arx_M}
 \end{equation}
 
@@ -574,9 +572,9 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$ d
 %===============================================================================
 
 Até este ponto foram apresentados exemplos de uso do método VRFT quando o controlador que leva o sistema para
-o comportamento desejado $M(z)$ faz parte da classe escolhida para a identificação. Em outras palavras quando
+o comportamento desejado $T_d(z)$ faz parte da classe escolhida para a identificação. Em outras palavras quando
 $C_0(z) \in \mathcal{C(z, \theta)}$. Nesta seção será apresentado um exemplo onde o modelo do controlador escolhido
-para o sistema não consegue levar este para $M(z)$, ou seja, não consegue representar a totalidade das dinâmicas de
+para o sistema não consegue levar este para $T_d(z)$, ou seja, não consegue representar a totalidade das dinâmicas de
 $C_0(z)$.
 
 Considerando o sistema descrito por
@@ -588,7 +586,7 @@ G_{ 0 }(z)=\frac { 0.2(z-0.7) }{ (z-0.9)(z-0.5) } ,\quad \quad \quad H_{ 0 }(z)=
 Deseja-se que em malha fechada ele se comporte como em: 
 
 \begin{equation}
-M(z)=\frac { 0.16z }{ (z-0.6)^2 }
+T_d(z)=\frac { 0.16z }{ (z-0.6)^2 }
 \label{eq:vrft_methos_ex_pid_not_M}
 \end{equation}
 
@@ -627,7 +625,7 @@ Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro 
 \end{equation}
 
 Aplicando-se estes resultados ao controlador apresentado em \eqref{eq:vrft_methos_ex_pid_not_c} e de posse do
-comportamento desejado para o sistema em malha fechada ($M(z)$) é possível fazer um comparativo da resposta
+comportamento desejado para o sistema em malha fechada ($T_d(z)$) é possível fazer um comparativo da resposta
 ao salto unitário para o sistema utilizando os dois controladores obtidos. O resultado é apresentado na Figura
 (\ref{fig:vrft_notinclass_step}).
 
@@ -642,7 +640,7 @@ ao salto unitário para o sistema utilizando os dois controladores obtidos. O res
 
 Observa-se que para o sistema que utiliza o controlador estimado utilizando-se o filtro $L$, a resposta ao
 degrau unitário tem significativamente menos erro que o sistema utilizando o outro controlador. Ficando este
-primeiro muito mais próximo da função $M(z)$ desejada.
+primeiro muito mais próximo da função $T_d(z)$ desejada.
 
 Os custos destes dois sistemas é apresentado na Tabela (\ref{table:vrft_method_notinclass}).
 
