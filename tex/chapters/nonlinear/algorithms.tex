@@ -25,7 +25,7 @@ seguinte procedimento: \cite{aguirre}
 
 %==========================================================================
 % Step 1
-\item Faça $i=0$. Monte a matriz de regressão e estime os coeficiente usando
+\item Faça $i=0$. Monte a matriz $\Psi$ de regressão e estime os coeficiente usando
 o método dos mínimos quadrados.
 
 \begin{equation}
@@ -176,7 +176,6 @@ y(t)=\frac{\theta_1 y(t-1)+\theta_2 y(t-1)u(t-1)+ \theta_3u(t-1)}{1+\theta_4 y^{
 \label{eq:nl_rat_exemple2_model}
 \end{equation}
 
-
 Utilizando para simulação um sinal PRBS de 635 pontos e adicionando-se um ruído $e(t)$ de variância $\sigma^2=0.005$ os
 resultados da média de 100 estimativas de Monte Carlo foram:
 
@@ -233,25 +232,14 @@ estimativas dos parâmetros $\theta_1$ e $\theta_2$ e a elipse de confiança para 
 \label{sec:nl_si_algorithms_rationals_ex2}
 %===============================================================================
 
-O sistema descrito abaixo será utilizado para a simulação: 
+Considere o sistema real:
 
 \begin{equation}
-y(t)=\frac{\theta_1y(t-1)+\theta_2y(t-1)u(t-1)+\theta_3u(t-1)}{1+\theta_4y^{2}(t-1)+\theta_5y^{2}(t-2)}
+y(t)=\frac{0.2 y(t-1)+0.1 y(t-1)u(t-1)+u(t-1)}{1+y^{2}(t-1)+y^{2}(t-2)}
 \label{eq:nl_rat_exemple3}
 \end{equation}
 
-Para o sistema real utilizou-se os valores de referência:
-
-\begin{equation}
-\theta = 
-\begin{bmatrix}
-0.2 & 0.1 & 1 & 1 & 1
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-
-Escolheu-se um modelo que não consegue representar totalmente o comportamento do sistema \eqref{eq:nl_rat_exemple3}:
+O sistema real $\mathcal{S}$ não consegue ser representada pela classe de modelos escolhida:
 
 \begin{equation}
 y(t)=\frac{\theta_1y(t-1)+\theta_2u(t-1)}{1+\theta_3y^{2}(t-1)+\theta_4y^{2}(t-2)}
@@ -271,13 +259,13 @@ da média de 100 estimativas de Monte Carlo foram:
 A variância encontrada foi de:
 
 \begin{equation}
-\theta+{\text{variância}} =1.0\times 10^{-3} \begin{bmatrix}
+\theta_{\text{variância}} =1.0\times 10^{-3} \begin{bmatrix}
 0.0020  &  0.0535  &  0.3402  &	  0.3217
 \end{bmatrix}
 \nonumber
 \end{equation}
 
-A fim de comparar a qualidade dos resultados obtidos, na Figura (\ref{fig:nl_rat_example3}) é apresentado a resposta do
+A fim de comparar a qualidade dos resultados obtidos, na Figura (\ref{fig:nl_rat_example3}) é apresentadas a resposta do
 sistema real \eqref{eq:nl_rat_exemple3} e o sistema obtido pela estimativa utilizando o a classe de modelos
 \eqref{eq:nl_rat_exemple3_model} para uma entrada do tipo degrau unitário.
 
@@ -302,7 +290,7 @@ V(\theta)=1.1239
 % Aguirre 397
 % Tese do corrêa - pg 27
 %===============================================================================
-O conversor de corrente continua do tipo Buck possui um mapa que pode ser obtido a partir da equação do
+O conversor de corrente contínua do tipo Buck possui um mapa que pode ser obtido a partir da equação do
 circuito que tem a forma como em \eqref{eq:nl_alg_buck_circ}. O circuito do
 conversor é apresentado na Figura (\ref{fig:nl_models_buck_circuit}). \cite{tse_buck}
 

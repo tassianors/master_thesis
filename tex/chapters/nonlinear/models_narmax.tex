@@ -119,7 +119,7 @@ Um modelo racional {\it{NARMAX}} tem a seguinte forma geral apresentada em
 \eqref{eq:nl_model_narmax_rat_simp}.
 
 \begin{equation}
-y(k)=\frac{a(\Upsilon)}{b(\Upsilon)}+e(t)
+y(t)=\frac{a(\Upsilon)}{b(\Upsilon)}+e(t)
 \label{eq:nl_model_narmax_rat_simp}
 \end{equation}
 
@@ -135,13 +135,13 @@ são polinômios e assumindo que o modelo é formado pela razão de dois polinômios,
 denominador de \eqref{eq:nl_model_narmax_rat_simp} como em:
 
 \begin{equation}
-a(t-1)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(k-1)\theta_n
+a(t-1)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(t-1)\theta_n
 \label{eq:nl_model_narmax_rat_num}
 \end{equation}
 
 
 \begin{equation}
-b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(k-1)\theta_d
+b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(t-1)\theta_d
 \label{eq:nl_model_narmax_rat_den}
 \end{equation}
 
