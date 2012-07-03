@@ -7,11 +7,11 @@ Desde meados dos anos 1990  têm surgido na literatura uma variedade de projetos 
 diretamente sobre os dados de entrada e saída coletados do sistema. Estes métodos contrastam com os de projetos de
 controladores baseados em modelos em dois aspectos principais: eles não são baseados no conhecimento do modelo do
 processo e eles não tem a intenção de determinar livremente a função de transferência do modelo. Ao invéz disso usa-se
-diretamente o montante de informação carregada pelos dados coletados para ajustar os parametros de um conjunto de
+diretamente o montante de informação carregada pelos dados coletados para ajustar os parâmetros de um conjunto de
 modelos cuja estrutura é previamente especificada. \cite{bazanella_datadriven} 
 
-Estes métodos são conhecidos como projeto de controladores baseados em dados ou do ingles {\it{data-driven or data
-based controller design}}.
+Estes métodos são conhecidos como projetos de controladores baseados em dados ou do inglês {\it{data-driven }} ou
+{\it{data based controller design}}.
 
 Como apresentado na seção (\ref{sec:si_project_experiments}) estes dados podem ser obtidos de
 diversas formas. Algumas vezes estas informações podem vir da operação normal da planta em malha
@@ -20,7 +20,7 @@ industriais, onde a parada do processo, para levantamento de informações, é muit
 inviável. Se existe a possibilidade de parar a planta e aplicar sinais predeterminados, o projeto de experimentos pode
 trazer muitas vantagens (seção \ref{sec:si_project_experiments}).
 
-O projeto de controladores baseados em dados consiste em estimar os parametros da estrutura do controlador usando os
+O projeto de controladores baseados em dados consiste em estimar os parâmetros da estrutura do controlador usando os
 dados de entrada e saída coletados do sistema. A estimativa é feita de forma direta, ou seja, sem a necessidade de um
 passo intermediário para identificação da planta do processo. \cite{eckard_campestrini}
 
@@ -29,18 +29,18 @@ performance, com diferentes focos para diferentes critérios. Estes critérios exp
 fundamentais de controle: seguimento de referência, rejeição a ruído e uso economico da energia de controle.
 Em \cite{Kammer2000} um procedimento iterativo baseado na análise espectral chamado de {\it{Frequency Domain Tuning}}
 (FDT) foi proposto para a minimização do critério $H_2$ de performance para um sistema com referência zero, portanto
-sem nenhum objetivo de seguimento de referência é almejado. O método {\it{Virtual Reference Feedback Tuning}} (VRFT)
+nenhum objetivo de seguimento de referência é almejado. O método {\it{Virtual Reference Feedback Tuning}} (VRFT)
 \cite{campi_leccini_savaresi2002, campi_savaresi2006} é baseado na manipulação de variáveis que transformam um
-critério $H_2$ em algo quadrático nos parametros. A função custo quadrática resultante pode ser minimizado
+critério $H_2$ em algo quadrático nos parâmetros. A função custo quadrática resultante pode ser minimizado
 diretamente, sem que nenhuma iteração seja necessária. Entretanto apenas o objetivo de seguimento de referência é
-tratato (a não ser que um controlador com dois níveis de liberdade seja usado \cite{lecchini_campi_savaresi_2dof}) e o minimo
+tratato (a não ser que um controlador com dois níveis de liberdade seja usado \cite{lecchini_campi_savaresi_2dof}) e o mínimo
 global resultante desta função quadráica coincide com o do critério original somente sob condições ideais.
 {\it{Correlation-based Tuning}} (CbT) \cite{ Karimi_cbt2003, Karimi_cbt2004} não sofre desta segunda limitação, mas é
 um método iterativo que usa a ideia de variáveis instrumentais para remover o efeito indesejado do ruído enquanto
 busca seu objetivo de seguimento de referência. \cite{Bazanella_h2criteria2008} 
 
 Otimização baseada em dados para um critério de performance genérico $H_2$ foi proposto em \cite{Hjalmarsson1994}, onde
-um método para obter estimativas não polarizadas diretamente do gradiente da função custo, apartir de dados do sistema
+um método para obter estimativas não polarizadas diretamente do gradiente da função custo, a partir de dados do sistema
 em malha fechada, foi elaborado. Este método é chamado de {\it{Iterative Feedback Tuning}} (IFT). IFT é discutido a
 fundo em \cite{Hjalmarsson_ift1998, Hjalmarsson2002} e extendido em \cite{Prochazka2005} para critério de performances mais
 gerais, que contém melhorias em objetivos de robustes. \cite{Bazanella_h2criteria2008} 
@@ -127,7 +127,6 @@ y(t)=T(z, \theta)r(t)
 \label{eq:dbcd_def_yr}
 \end{equation}
 
-O comportamento desejado para o sistema em malha fechada é definido por $T_d(z)$.
 
 %===============================================================================
 \subsection{Critérios de performance}
@@ -135,7 +134,7 @@ O comportamento desejado para o sistema em malha fechada é definido por $T_d(z)$
 %===============================================================================
 
 Como já foi apresentado no capítulo sobre identificação de sistemas lineares (capítulo
-\ref{chapter:system_identification}), existe um critério para elencar qual é o melhor conjunto de parametros $\theta$
+\ref{chapter:system_identification}), existe um critério para elencar qual é o melhor conjunto de parâmetros $\theta$
 pra a classe de modelos escolhida. Para isso, foi apresentado a equação \eqref{eq:si_obj_etim_lsm_v} como um dos
 critérios mais utilizados. Para projeto de controladores existem desdobramentos deste critério em
 função dos objetivos básicos de controle:
@@ -155,7 +154,8 @@ J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d
 \label{eq:dbcd_def_track_error}
 \end{equation}
 
-Onde $y(t)$ é a saída medida do sistema e $y_d(t)$ é a saída desejada.
+onde $y(t)$ é a saída medida do sistema e $y_d(t)$ é a saída desejada, $T_d(z)$ é o comportamento desejado para o
+sistema em malha fechada.
 
 Com base nas equações \eqref{eq:dbcd_def_track_error} e \eqref{eq:vrft_db_closed_loop} é possível determinar o
 equacionamento para o controlador ideal. Aquele que irá fazer com que o sistema em malha fechada se comporte como o
@@ -199,11 +199,7 @@ J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ (S(z, \th
 \label{eq:dbcd_perf_je_relax}
 \end{equation}
 
-Onde $S_d(z,\theta)$ é a função sensibilidade desejada para o sistema.
-
-Como $J_y(\theta)$ em \eqref{eq:dbcd_def_track_error} é o critério para minimização da saída do sistema e como
-$J_e(\theta)$ é o critério para minimização do ruído sobre a saída, é simples compreender que $J_y(\theta)$ intégra  
-$J_e(\theta)$, ou seja, minimizando $J_y(\theta)$ é o equivalente a também minimizar a parte relativa ao ruído.
+onde $S_d(z,\theta)$ é a função sensibilidade desejada para o sistema.
 
 Assim como o controlador apresentado em \eqref{eq:dbcd_perf_tracking_cd} é o controlador ótimo para o critério de
 performance de seguimento de referência, para o critério de rejeição ao rúido o controlador ótimo pode ser obtido. Para

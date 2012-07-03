@@ -23,8 +23,8 @@ Diferentemente de métodos iterativos, o VRFT não recai sobre mínimos locais, sem
 global do critério escolhido, sob condições ideais:
 
 \begin{itemize}
-  \item O sistema não é afetado por ruído, ou seja, $\sigma^2=0$.
-  \item O controlador ideal $C_d(z) \in c(z, \theta)$.
+  \item O sistema não é afetado por ruído, ou seja, $\sigma^2(t)=0$.
+  \item O controlador ideal $C_d(z) \in C(z, \theta)$.
   \item O controlador é parametrizado linearmente. 
 \end{itemize}
 
@@ -35,33 +35,30 @@ C(z,\theta)=\beta^T(z)\theta
 \label{eq:vrft_method_controller}
 \end{equation}
 
-Onde $\beta(z) = \left [ \beta_1(z)\;\; \beta_2(z)\;\; \cdots \;\; \beta_n(z)\right ]^T$ é um vetor
+onde $\beta(z) = \left [ \beta_1(z)\;\; \beta_2(z)\;\; \cdots \;\; \beta_n(z)\right ]^T$ é um vetor
 linear de funções de transferências de tempo discreto e $\theta$ é o vetor de parâmetros a ser estimado.
 
 O problema de identificação do controlador consiste em encontrar um $\hat{\theta}$ que minimize o
-critério performance \eqref{eq:vrft_method_cost_func} que é dependente do modelo de referência
-escolhido.
+critério performance \eqref{eq:dbcd_def_track_error}, replicado abaixo:
 
 \begin{equation}
-J_{MR}(\theta) = \left \| \left ( \frac{G_0(z)C(z,\theta)}{1+G_0(z)C(z,\theta)} -T_d(z) \right )W(z)
-\right \|_2^2 
-\label{eq:vrft_method_cost_func}
-\end{equation} 
+J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d(t) \right ]^2 = \bar{E}\left [
+(T(z,\theta)-T_d(z))r(t) \right ]^2
+\nonumber
+\end{equation}
 
-Sendo $T_d(z)$ o modelo de referência a ser atingido em malha fechada quando o controlador
-obtido é aplicado sobre a planta e $W(z)$ é uma matriz para ponderação escolhida pelo usuário.
+que é dependente do modelo de referência escolhido. 
 
-Métodos diretos são conceitualmente mais naturais que os indiretos, mas mesmo com o apelo que possuem,
-apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT, mesmo
+Apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT, mesmo
 estes dois métodos pertencendo uma a mesma classe, algumas diferenças são ressaltadas: \cite{campi_savaresi2000}
 
 \begin{itemize}
 	\item {\it{IFT}} é baseado em um métodos de gradiente decrescente e além disso é uma técnica
-	iterativa. Usualmente este método converge para o minimo local mais próximo das condições iniciais.
-	Ele requer experimentos específicos sobre a planta, com entradas especificas.
-	\item {\it{VRFT}} é um procedimento não iterativo que procura pelo minimo global do critério de
-	performance \eqref{eq:vrft_method_cost_func}. Este método não requer experimentos específicos sobre
-	a planta, podendo inclusive utilizar os dados do funcionamento normal da planta.
+	iterativa. Usualmente este método converge para o mínimo local mais próximo das condições iniciais.
+	Ele requer experimentos específicos sobre a planta, com entradas específicas.
+	\item {\it{VRFT}} é um procedimento não iterativo que procura pelo mínimo global do critério de
+	performance \eqref{eq:dbcd_def_track_error}. Este método não requer experimentos específicos sobre
+	a planta, podendo inclusive utilizar os dados do funcionamento normal desta.
 \end{itemize}
 
 %===============================================================================
@@ -71,7 +68,7 @@ estes dois métodos pertencendo uma a mesma classe, algumas diferenças são ressal
 
 Nesta seção será apresentado uma breve descrição de como funciona o algoritmo para obtenção do controlador
 utilizando o método VRFT. Para maiores detalhes e discussões aprofundadas é indicada a leitura de
-\cite{campi_savaresi2000, campi_leccini_savaresi2002, campestrini_nonminumum_phase}.
+\cite{campi_savaresi2000, campi_leccini_savaresi2002, campestrini_nonminumum_phase, bazanella_datadriven}.
 
 Suponha que o controlador $C(z, \theta)$ resulta um sistema em malha fechada cuja função de
 transferência é dada por $T_d(z)$. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$,
@@ -146,6 +143,12 @@ y_L (t)=L(z)y(t), \;\;\; u_L (t)=L(z)u(t)
 \label{eq:vrft_method_algorithm_filter_io}
 \end{equation}
 
+\begin{equation}
+\varepsilon_L (t)=L(z)\varepsilon (t)=\bar{r}_L (t)-y_L (t) 
+\nonumber
+\end{equation}
+
+
 \item Encontra-se um sinal de referência $\bar{r}_L (t)$ no qual a saída do modelo de referência
 $T_d(z)$ seja exatamente $y_L (t)$ quando alimentado pelo sinal:
 
@@ -163,7 +166,7 @@ J_{VR}^N(\theta)=\frac{1}{N}\sum_{t=1}^{N}(u_L(t)-\varphi_L^T(t)\theta)^2
 \end{equation}
 
 \begin{equation}
-\varphi_L(t)=\beta(z)e_L(t)
+\varphi_L(t)=\beta(z)\varepsilon_L(t)
 \nonumber
 \end{equation}
 
@@ -178,32 +181,71 @@ $\hat{\theta}$ que minimiza esta função custo pode ser calculado por:
 
 \end{enumerate}
 
+Com o intúito de exemplificar, na Figura \ref{fig:vrft_cost_functions} é apresentado uma curva da função custo $J_y(\theta)$ de um
+sistema hipotético, e a função custo proposta pelo método VRFT $J_{VR}(\theta)$, a qual é quadrática em $\theta$.
+Ao tentar encontrar o ponto de mínimo da curva $J_y(\theta)$ pode-se recair em algum mínimo local, o que não é verdade
+para a curva  $J_{VR}(\theta)$.
+
+\begin{figure}[htbp]
+\center
+% Generated with LaTeXDraw 2.0.8
+% Mon Jul 02 22:05:15 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\scalebox{0.75} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-4.62)(11.799063,4.62)
+\psbezier[linewidth=0.04](0.9,3.3)(2.1,3.2)(2.0225368,2.3742967)(2.1565964,1.5166456)(2.290656,0.6589943)(2.616248,-1.3127834)(3.008854,-0.5402044)(3.4014597,0.23237456)(3.6584003,0.8693678)(3.811938,0.20167358)(3.9654756,-0.4660206)(4.5199084,-3.4794219)(5.1017394,-3.533306)(5.68357,-3.5871902)(8.0,1.8)(9.5,3.2)
+\psbezier[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm](0.4,2.2)(2.2,-2.6)(3.960841,-3.4989967)(5.12,-3.54)(6.279159,-3.5810034)(9.3,-1.9)(10.6,1.9)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 4.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.1,4.6)(1.2,-4.6)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 4.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,-3.9)(11.3,-3.9)
+\psline[linewidth=0.04cm,linestyle=dotted,dotsep=0.16cm](5.1,-4.0)(5.0,3.1)
+\usefont{T1}{ppl}{m}{n}
+\rput(5.114531,-4.19){$\theta_d$}
+\usefont{T1}{ppl}{m}{n}
+\rput(11.014531,-4.19){$\theta$}
+\usefont{T1}{ppl}{m}{n}
+\rput(0.5545313,4.01){$J(\theta)$}
+\usefont{T1}{ppl}{m}{n}
+\rput(2.5545313,2.71){$J_y$}
+\usefont{T1}{ppl}{m}{n}
+\rput(3.2145312,-1.79){$J_{VR}$}
+\end{pspicture} 
+}
+\caption{Gráfico da função custo de algum sistema hipotético e a respectiva função custo proposta plo método VRFT que é
+mais simples de encontrar o ponto de mínimo pois é quadrática em $\theta$, não recaindo em mínimos locais. O valor
+$\theta_d$ é o ponto de mínimo de ambas as funções custo, logo, minimizando a função custo $J_{VR}(\theta)$ é o
+equivalente a minimizar $J_y(\theta)$ sob condições ideais.}
+\label{fig:vrft_cost_functions}
+\end{figure}
+
 %===============================================================================
 \subsection{Utilização do Filtro $L(z)$}
 \label{sec:dbcd_vrft_framework_filter}
 %===============================================================================
 
-Considerando a função custo $J_{MR}(\theta)$ apresentada em \eqref{eq:vrft_method_cost_func} e o
-critério do método de referência virtual $J_{VR}(\theta)$ apresentado em
-\eqref{eq:vrft_method_algorithm_criter} serem diferentes. A escolha correta do filtro $L(z)$
-propicia que estas duas equações tenham mínimos muito próximos.
-\cite{campi_leccini_savaresi2002}
+Considerando a função custo $J_{y}(\theta)$ apresentada em \eqref{eq:dbcd_def_track_error} e o
+critério do método de referência virtual $J_{VR}(\theta)$ apresentado em \eqref{eq:vrft_method_algorithm_criter} serem
+diferentes fora de situações ideais. A escolha correta do filtro $L(z)$ propicia que estas duas equações tenham mínimos
+muito próximos \cite{campi_leccini_savaresi2002}.
 
 A utilização do filtro é de grande importância em situações onde a escolha do modelo $\mathcal{C}(z,
-\theta)$ não consegue representar a totalidade do controlador ótimo ($C_0(z)$) que quando aplicado em conjunto com a
+\theta)$ não consegue representar a totalidade do controlador ótimo ($C_d(z)$) que quando aplicado em conjunto com a
 planta proporciona a exata resposta desejada pela escolha de $T_d(z)$.
 
 \begin{equation}
-C_0(z) \notin \mathcal{C}(z, \theta)
+C_d(z) \notin \mathcal{C}(z, \theta)
 \nonumber
 \end{equation}
 
-O critério $J_{MR}(\theta)$ pode ser reescrito utilizando-se o controlador ótimo $C_0(z)$ como em:
+O critério $J_{y}(\theta)$ pode ser reescrito utilizando-se o controlador ótimo $C_d(z)$ como em:
 
 \begin{equation}
-J_{MR}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{\left | G \right |^2 \left | W \right |^2 }
+J_{y}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{\left | G \right |^2 \left | W \right |^2 }
 {\left | 1+GC(\theta) \right |^2} 
-\frac{\left |C(\theta)-C_0  \right |^2}{\left |1+GC_0 \right |^2}d\omega 
+\frac{\left |C(\theta)-C_d  \right |^2}{\left |1+GC_d \right |^2}d\omega 
 \label{eq:vrft_method_filter_cost_func}
 \end{equation}
 
@@ -215,19 +257,19 @@ J_{VR}^N(\theta) \to J_{VR}(\theta = E \left [ (u_L(t) - C(z, \theta)\varepsilon
 \label{eq:vrft_method_filter_criter_assim}
 \end{equation}
 
-Utilizando as definições de $u_L(t)$, $\varepsilon_L(t)$ e dada a definição de $C_0(z)$ juntamente com o
+Utilizando as definições de $u_L(t)$, $\varepsilon_L(t)$ e dada a definição de $C_d(z)$ juntamente com o
 teorema de Perseval \cite{ljung}, o critério assintótico \eqref{eq:vrft_method_filter_criter_assim}
 tem sua representação como em:
 
 \begin{equation}
-J_{VR}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \left | G \right |^2 \left | C(\theta)-C_0 \right
+J_{VR}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \left | G \right |^2 \left | C(\theta)-C_d \right
 |^2 \left | 1-M \right |^2 \frac{\left | L \right |^2}{\left | M \right |^2} \Phi_u \; d\omega
 \label{eq:vrft_method_filter_criter_vr}
 \end{equation}
 
-Onde $\Phi_u $ é a densidade do espectro do sinal $u(t)$.
+onde $\Phi_u $ é a densidade do espectro do sinal $u(t)$.
 
-Para o caso onde $C_0 \in C(z, \theta)$ a escolha de $L(z)$ não afeta o resultado, usualmente
+Para o caso onde $C_d \in C(z, \theta)$ a escolha de $L(z)$ não afeta o resultado, usualmente
 escolhe-se então $L(z)=1$. Caso o controlador não consiga ser representado pelo modelo, a escolha de
 $L(z)$ pode ser feita por:\cite{campi_leccini_savaresi2002}
 
@@ -237,14 +279,57 @@ $L(z)$ pode ser feita por:\cite{campi_leccini_savaresi2002}
 \label{eq:vrft_method_filter_l}
 \end{equation}
 
-Obtém-se com a utilização do filtro, uma estimativa onde o erro de polarização é minimizado.
+Obtém-se com a utilização do filtro, uma estimativa onde o erro de polarização é minimizado. Observa-se na figura
+\ref{fig:vrft_cost_functions_L} um exemplo hipotético, onde o valor de $\theta$ que minimiza $J_{VR}(\theta)$ se
+aproxima do valor de mínimo de $J_y(\theta)$ com a utilização do filtro $L(z)$. Também observa-se que a curva de
+$J_{VR}(\theta)$ quando o filtro é aplicado apresenta uma redução na sua concavidade, fazendo com que o valor de mínimo
+na curva encontrado pelo algoritmo seja menos preciso, aumentando o a variância das estimativas, enquanto reduz o erro
+de polarização.
+
+\begin{figure}[htbp]
+\center
+% Generated with LaTeXDraw 2.0.8
+% Tue Jul 03 00:08:46 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\scalebox{0.75} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-3.97)(11.489062,3.97)
+\psbezier[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm](0.59,-0.85)(1.39,-1.95)(3.950841,-2.6489966)(5.11,-2.69)(6.269159,-2.7310033)(8.69,-2.05)(9.69,-0.95)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 4.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.39,3.95)(1.39,-3.95)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 4.0,arrowlength=1.4,arrowinset=0.4]{->}(0.59,-3.25)(11.09,-3.25)
+\usefont{T1}{ppl}{m}{n}
+\rput(10.704532,-3.54){$\theta$}
+\usefont{T1}{ppl}{m}{n}
+\rput(0.88453126,3.36){$J(\theta)$}
+\usefont{T1}{ppl}{m}{n}
+\rput(1.9445312,-0.04){$J_y$}
+\usefont{T1}{ppl}{m}{n}
+\rput(4.804531,1.16){$J_{VR}$}
+\psbezier[linewidth=0.04](0.79,1.15)(0.79,0.35)(2.8950949,-2.049184)(3.89,-2.15)(4.884905,-2.2508159)(4.788093,-1.547449)(5.59,-0.95)(6.3919067,-0.35255104)(6.676079,-1.3078374)(7.19,-0.45)(7.7039213,0.40783736)(7.61,0.85)(8.01,1.71)(8.41,2.57)(9.09,2.89)(9.59,3.05)
+\psbezier[linewidth=0.04,linestyle=dotted,dotsep=0.16cm](3.69,1.55)(4.49,0.45)(5.950841,-1.8489966)(7.11,-1.89)(8.269159,-1.9310033)(10.09,0.75)(10.99,1.85)
+\usefont{T1}{ppl}{m}{n}
+\rput(7.8545313,-2.54){$J_{VR}^L$}
+\psdots[dotsize=0.24,dotstyle=asterisk](5.29,-2.71)
+\psdots[dotsize=0.24,dotstyle=asterisk](7.15,-1.91)
+\psdots[dotsize=0.24,dotstyle=asterisk](4.05,-2.17)
+\end{pspicture} 
+}
+\caption{Exemplo hipotético de funções custo na sitaução onde o controlador ideal não consegue ser representado pelo
+modelo. Situação esta que o uso do filtro $L(z)$ agrega valor reduzindo o erro de polarização da estimativa -
+Observa-se a aproximação do valor de mínimo das funções custo pelo uso do filtro ($J(\theta)_{VR}^L$).}
+\label{fig:vrft_cost_functions_L}
+\end{figure}
+
+
 %===============================================================================
 \subsection{Dados corrompidos por ruído}
 \label{sec:dbcd_vrft_framework_noise}
 %===============================================================================
 
-Todos os equacionamentos até aqui apresentados consideraram que o sistema não fosse afetado por
-ruído. Nesta seção será apresentado brevemente o comportamento do método quando o sinal $y(t)$ é
+Nesta seção será apresentado brevemente o comportamento do método quando o sinal $y(t)$ é
 corrompido por um ruído aditivo como:
 
 \begin{equation}
@@ -264,14 +349,14 @@ $\tilde{y}(t)$:
 
 
 \begin{equation}
-J_{VR}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \left [ \left | G \right |^2 \left | C(\theta)-C_0
+J_{VR}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \left [ \left | G \right |^2 \left | C(\theta)-C_d
 \right |^2 \left | 1-M \right |^2 \frac{\left | L \right |^2}{\left | M \right |^2} \Phi_u +\frac{\left | 
-C(\theta) \right |^2}{\left | G \right |^2 \left | C_0 \right |^2}\left | L \right |^2\Phi _d
+C(\theta) \right |^2}{\left | G \right |^2 \left | C_d \right |^2}\left | L \right |^2\Phi _d
 \right ] \; d\omega
 \label{eq:vrft_framework_noise_vr}
 \end{equation}
 
-Onde $\Phi_d$ é a densidade do espectro do ruído.
+onde $\Phi_d$ é a densidade do espectro do ruído.
 
 Para que haja rejeição a este rudo no método, em \cite{campi_leccini_savaresi2002} foi sugerido a
 adição da variável instrumental $\zeta(t)$. Em \eqref{eq:vrft_framework_noise_iv} apresenta-se o
@@ -422,13 +507,13 @@ Observa-se que o erro de polarização foi minimizado e que o resultado obtido pos
 $0.5495\times10^{-6}$ para $\theta_2$.
 
 A fim de comparar o método VRFT utilizando e não utilizando variáveis instrumentais são apresentados abaixo as
-Tabelas (\ref{table:vrft_method_bj}) e (\ref{table:vrft_method_bj_iv}) onde o custo $J_{MR}$ (equação
+Tabelas (\ref{table:vrft_method_bj}) e (\ref{table:vrft_method_bj_iv}) onde o custo $J_{y}$ (equação
 \eqref{eq:vrft_method_cost_func}) e o custo $J_{VR}^N$ (equação \eqref{eq:vrft_method_filter_criter_assim})
 são apresentados para diferentes valores de variância do ruído para o mesmo sistema BJ.
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
+\caption{Valor dos custos $J_{VR}^N$ e $J_{y}$ além da  variância das
 estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
 VRFT não utiliza variáveis instrumentais para a estimativa dos parâmetros
 $\theta$}
@@ -436,7 +521,7 @@ $\theta$}
 \begin{tabular}{cccc}
 \hline
         Variância $\sigma _\upsilon ^2$ & $J_{VR}^N(\theta)$ &
-        $J_{MR}(\theta)$ & Variância estimativas $\theta$   \\
+        $J_{y}(\theta)$ & Variância estimativas $\theta$   \\
 \hline
 	    0.06    & 1.7893$\times10^{-2}$ & 8.2367$\times10^{-3}$ & 1.0$\times10^{-5}$\;[0.4754    0.4434] \\
 	    0.05    & 1.2515$\times10^{-2}$ & 5.5366$\times10^{-3}$ & 1.0$\times10^{-5}$\;[0.2671    0.3244] \\
@@ -452,14 +537,14 @@ $\theta$}
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
+\caption{Valor dos custos $J_{VR}^N$ e $J_{y}$ além da  variância das
 estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
 VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$}
 \label{table:vrft_method_bj_iv}
 \begin{tabular}{cccc}
 \hline
         Variância $\sigma _\upsilon ^2$ & $J_{VR}^N(\theta)$ &
-        $J_{MR}(\theta)$ & Variância estimativas $\theta$   \\
+        $J_{y}(\theta)$ & Variância estimativas $\theta$   \\
 \hline
 	    0.06    & 45.1719  &  $9.7345\times10^{-5}$ & $1.0\times10^{-5}\;[0.5161    0.5332]$ \\
 	    0.05    & 33.2600  &  $2.0457\times10^{-5}$ & $1.0\times10^{-5}\;[0.2481    0.2652]$ \\
@@ -472,7 +557,7 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$}
 \end{center}
 \end{table*}
 
-Utilizando variáveis instrumentais observa-se que o custo $J_{MR}(\theta)$ é significativamente mais baixo
+Utilizando variáveis instrumentais observa-se que o custo $J_{y}(\theta)$ é significativamente mais baixo
 quando comparado com o método onde não são utilizadas variáveis instrumentais. Demonstrando assim que o
 comportamento desejado do sistema foi atingido com uma melhor aproximação.
 
@@ -514,7 +599,7 @@ C(z,\theta )=\frac { \theta _{ 1 }z^2+\theta _{ 2 }z+\theta _{ 3 } }{ z(z-1) }
 
 Na Figura (\ref{fig:vrft_arx_M10_var005}) é apresentado o resultado da estimativa dos parâmetros do
 controlador quando não são utilizados variáveis instrumentais. Obteve-se desta forma um custo
-$J_{VR}^N(\theta) = 2.5008\times10^{-5}$ e $J_{MR}(\theta) = 1.7746\times10^{-5}$ além de uma variância para as
+$J_{VR}^N(\theta) = 2.5008\times10^{-5}$ e $J_{y}(\theta) = 1.7746\times10^{-5}$ além de uma variância para as
 estimativas de $1.0\times10^{-7} \; [0.0364\;    0.1261\;    0.0377]$ para $\theta_1$, $\theta_2$ e $\theta_3$
 respectivamente.
 
@@ -544,7 +629,7 @@ O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ além da  variância das
+\caption{Valor dos custos $J_{VR}^N$ e $J_{y}$ além da  variância das
 estimativas para diferentes valores de $\sigma _\upsilon ^2$ quando o método
 VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$ do controlador
 \eqref{eq:vrft_methos_ex_arx_c}}
@@ -552,7 +637,7 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$ d
 \begin{tabular}{cccc}
 \hline
         Variância $\sigma _\upsilon ^2$ & $J_{VR}^N(\theta)$ &
-        $J_{MR}(\theta)$ & Variância estimativas $\theta$   \\
+        $J_{y}(\theta)$ & Variância estimativas $\theta$   \\
 \hline
    0.1     & $10.0743\times10^{-3}$ &  2.2871$\times10^{-3}$ & $1\times10^{-5}\;[0.1253 \; 0.4683 \; 0.1600]$ \\
    0.06    & $ 3.6093\times10^{-3}$ &  1.1279$\times10^{-3}$ & $1\times10^{-5}\;[0.0516 \; 0.1793 \; 0.0575]$ \\
@@ -573,9 +658,9 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$ d
 
 Até este ponto foram apresentados exemplos de uso do método VRFT quando o controlador que leva o sistema para
 o comportamento desejado $T_d(z)$ faz parte da classe escolhida para a identificação. Em outras palavras quando
-$C_0(z) \in \mathcal{C(z, \theta)}$. Nesta seção será apresentado um exemplo onde o modelo do controlador escolhido
+$C_d(z) \in \mathcal{C(z, \theta)}$. Nesta seção será apresentado um exemplo onde o modelo do controlador escolhido
 para o sistema não consegue levar este para $T_d(z)$, ou seja, não consegue representar a totalidade das dinâmicas de
-$C_0(z)$.
+$C_d(z)$.
 
 Considerando o sistema descrito por
 \begin{equation}
@@ -614,7 +699,7 @@ Monte Carlo e o resultado obtido para a média das estimativas foi:
 \nonumber
 \end{equation}
 
-Onde o índice $L$ indica que este resultado foi obtido utilizando-se o filtro $L$.
+onde o índice $L$ indica que este resultado foi obtido utilizando-se o filtro $L$.
 
 Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro $L$ descrito na seção
 (\ref{sec:dbcd_vrft_framework_noise}), obteve-se o resultado seguinte:
@@ -646,11 +731,11 @@ Os custos destes dois sistemas é apresentado na Tabela (\ref{table:vrft_method_n
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Valor dos custos $J_{VR}^N$ e $J_{MR}$ para o sistema controlado por $C(z)$ e $C_L(z)$}
+\caption{Valor dos custos $J_{VR}^N$ e $J_{y}$ para o sistema controlado por $C(z)$ e $C_L(z)$}
 \label{table:vrft_method_notinclass}
 \begin{tabular}{ccc}
 \hline
-        Controlador & $J_{VR}^N(\theta)$ & $J_{MR}(\theta)$ \\
+        Controlador & $J_{VR}^N(\theta)$ & $J_{y}(\theta)$ \\
 \hline
 	$C(z)$   & 0.2877 &  0.1270 \\
 	$C_L(z)$ & 0.4481 &  0.0542 \\

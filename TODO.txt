@@ -2,4 +2,4 @@ REVIEW:
 
 - Dizer que a função custo que eu estou usando agora é um critério de performance h2. achar o melhor lugar para colocar isso.
 
-
+- verificar a questão de acentuação nos eps
