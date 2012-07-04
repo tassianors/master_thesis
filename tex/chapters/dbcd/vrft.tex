@@ -79,7 +79,7 @@ sinal $\bar{r}(t)$.
 Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $T_d(z)\bar{r}(t)=y(t)$.
 Esta referência é conhecida como {\it{virtual}} pois ela não existe e não foi utilizada para gerar o
 sinal $y(t)$. A figura (\ref{fig:vrft_method_cl}) apresenta o sistema em malha fechada e os sinais
-utilizados.
+presentes.
 
 \begin{figure}[htbp]
 \center
@@ -122,14 +122,15 @@ utilizados.
 \end{pspicture} 
 %}
 \caption{Diagrama de blocos para o método VRFT. São destacados os sinais reais $u(t)$ e $y(t)$ além dos sinais virtuais
-$\varepsilon (t)$ e $\bar{r}(t)$.}
+$\varepsilon (t)$ e $\bar{r}(t)$. Em pontilhado está o controlador que quando aplicado sobre a malha, faz com que o
+sistema se comporte como desejado: $T_d(z)$.}
 \label{fig:vrft_method_cl}
 \end{figure}
 
 O sinal $\varepsilon(t)$ é o erro entre os sinais $y(t)$ e $\bar{r}(t)$. Sabe-se que quando a planta é
 excitada com o sinal $u(t)$, o sinal $y(t)$ é obtido. Analogamente para um controlador, quando este é
 excitado com o sinal $\varepsilon(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
-controlador, como os sinais $u(t)$ e $\varepsilon(t)$ são conhecidos, a tarefa reduz-se a um problema de
+controlador, com os sinais $u(t)$ e $\varepsilon(t)$ que são conhecidos, a tarefa reduz-se a um problema de
 identificação. Comumente, usa-se um pré-filtro nos dados coletados. A ideia principal do uso deste
 filtro será explicada posteriormente na seção (\ref{sec:dbcd_vrft_framework_filter}). 
 
@@ -157,8 +158,7 @@ y_L (t)=T_d(z) \bar{r}_L (t)
 \label{eq:vrft_method_algorithm_ref}
 \end{equation}
 
-\item Selecione o vetor de parâmetros do controlador $\hat{\theta}$ que minimize o critério
-\eqref{eq:vrft_method_algorithm_criter}
+\item Seleciona-se o vetor de parâmetros do controlador $\hat{\theta}$ que minimize o critério:
 
 \begin{equation}
 J_{VR}^N(\theta)=\frac{1}{N}\sum_{t=1}^{N}(u_L(t)-\varphi_L^T(t)\theta)^2
@@ -181,9 +181,9 @@ $\hat{\theta}$ que minimiza esta função custo pode ser calculado por:
 
 \end{enumerate}
 
-Com o intúito de exemplificar, na Figura \ref{fig:vrft_cost_functions} é apresentado uma curva da função custo $J_y(\theta)$ de um
-sistema hipotético, e a função custo proposta pelo método VRFT $J_{VR}(\theta)$, a qual é quadrática em $\theta$.
-Ao tentar encontrar o ponto de mínimo da curva $J_y(\theta)$ pode-se recair em algum mínimo local, o que não é verdade
+Com o intúito de exemplificar, na Figura (\ref{fig:vrft_cost_functions}) é apresentado uma curva da função custo
+$J_y(\theta)$ de um sistema hipotético, e a função custo proposta pelo método VRFT $J_{VR}(\theta)$, a qual é quadrática em $\theta$.
+Ao tentar encontrar o ponto de mínimo da curva $J_y(\theta)$ pode-se recair em algum mínimo local, o que não acontece 
 para a curva  $J_{VR}(\theta)$.
 
 \begin{figure}[htbp]
@@ -203,7 +203,7 @@ para a curva  $J_{VR}(\theta)$.
 \psline[linewidth=0.04cm,arrowsize=0.05291667cm 4.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,-3.9)(11.3,-3.9)
 \psline[linewidth=0.04cm,linestyle=dotted,dotsep=0.16cm](5.1,-4.0)(5.0,3.1)
 \usefont{T1}{ppl}{m}{n}
-\rput(5.114531,-4.19){$\theta_d$}
+\rput(5.114531,-4.19){$\theta^*$}
 \usefont{T1}{ppl}{m}{n}
 \rput(11.014531,-4.19){$\theta$}
 \usefont{T1}{ppl}{m}{n}
@@ -216,7 +216,7 @@ para a curva  $J_{VR}(\theta)$.
 }
 \caption{Gráfico da função custo de algum sistema hipotético e a respectiva função custo proposta plo método VRFT que é
 mais simples de encontrar o ponto de mínimo pois é quadrática em $\theta$, não recaindo em mínimos locais. O valor
-$\theta_d$ é o ponto de mínimo de ambas as funções custo, logo, minimizando a função custo $J_{VR}(\theta)$ é o
+$\theta^*$ é o ponto de mínimo de ambas as funções custo, logo, minimizando a função custo $J_{VR}(\theta)$ é o
 equivalente a minimizar $J_y(\theta)$ sob condições ideais.}
 \label{fig:vrft_cost_functions}
 \end{figure}
@@ -231,12 +231,12 @@ critério do método de referência virtual $J_{VR}(\theta)$ apresentado em \eqref{
 diferentes fora de situações ideais. A escolha correta do filtro $L(z)$ propicia que estas duas equações tenham mínimos
 muito próximos \cite{campi_leccini_savaresi2002}.
 
-A utilização do filtro é de grande importância em situações onde a escolha do modelo $\mathcal{C}(z,
-\theta)$ não consegue representar a totalidade do controlador ótimo ($C_d(z)$) que quando aplicado em conjunto com a
-planta proporciona a exata resposta desejada pela escolha de $T_d(z)$.
+A utilização do filtro é de grande importância em situações onde a escolha do modelo $C(z,\theta)$ não consegue
+representar a totalidade do controlador ótimo ($C_d(z)$) que quando aplicado em conjunto com a planta proporciona a
+exata resposta desejada pela escolha de $T_d(z)$.
 
 \begin{equation}
-C_d(z) \notin \mathcal{C}(z, \theta)
+C_d(z) \notin C(z, \theta)
 \nonumber
 \end{equation}
 
