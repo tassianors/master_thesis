@@ -240,47 +240,123 @@ C_d(z) \notin C(z, \theta)
 \nonumber
 \end{equation}
 
-O critério $J_{y}(\theta)$ pode ser reescrito utilizando-se o controlador ótimo $C_d(z)$ como em:
+Aplicando o teorema de Perseval  para a função custo de seguimento de referência:
 
 \begin{equation}
-J_{y}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{\left | G \right |^2 \left | W \right |^2 }
-{\left | 1+GC(\theta) \right |^2} 
-\frac{\left |C(\theta)-C_d  \right |^2}{\left |1+GC_d \right |^2}d\omega 
-\label{eq:vrft_method_filter_cost_func}
+J_y(\theta)=\bar{E}\left [ (T(z,\theta)-T_d(z))r(t) \right ]^2
+\nonumber
 \end{equation}
-
-Considerando que $J_{VR}^N$ seja conhecido, quando a quantidade de dados cresce: $N \to \infty$
-tem-se \eqref{eq:vrft_method_filter_criter_assim}. 
+e usando as relações de malha fechada:
 
 \begin{equation}
-J_{VR}^N(\theta) \to J_{VR}(\theta = E \left [ (u_L(t) - C(z, \theta)\varepsilon_L(t))^2\right ])
-\label{eq:vrft_method_filter_criter_assim}
+T_d(z)=\frac{C_d(z)G_0(z)}{1+C_d(z)G_0(z)}\;\;\;\; T(z, \theta)=\frac{C(z, \theta)G_0(z)}{1+C(z, \theta)G_0(z)}
+\nonumber
 \end{equation}
 
-Utilizando as definições de $u_L(t)$, $\varepsilon_L(t)$ e dada a definição de $C_d(z)$ juntamente com o
-teorema de Perseval \cite{ljung}, o critério assintótico \eqref{eq:vrft_method_filter_criter_assim}
-tem sua representação como em:
+Resultam na seguinte expressão no dominio da frequência para a função custo:
 
 \begin{equation}
-J_{VR}(\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} \left | G \right |^2 \left | C(\theta)-C_d \right
-|^2 \left | 1-M \right |^2 \frac{\left | L \right |^2}{\left | M \right |^2} \Phi_u \; d\omega
-\label{eq:vrft_method_filter_criter_vr}
+J_y(\theta)=\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | \frac{G_0(e^{j\omega})C(e^{j\omega},
+\theta)}{1+G_0(e^{j\omega})C(e^{j\omega},\theta)}-\frac{G_0(e^{j\omega})C_d(e^{j\omega})}{1+G_0(e^{j\omega})C_d(e^{j\omega})} \right |^2 \Phi_r(e^{j\omega})d\omega
+\nonumber
 \end{equation}
 
-onde $\Phi_u $ é a densidade do espectro do sinal $u(t)$.
+Desenvolvendo esta expressão, pode-se descreve-la mais compactamente como:
+
+\begin{eqnarray}\nonumber
+J_y(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | G_0(e^{j\omega}) \right |^2 \left | S(e^{j\omega},\theta) \right |^2\left | S_d(e^{j\omega}) \right |^2 \\
+&&  \times \left | C(e^{j\omega},\theta)-C_d(e^{j\omega}) \right |^2 \Phi_r(e^{j\omega})d\omega
+\label{eq:dbcd_vrft_jy_cost}
+\end{eqnarray}
+
+Adiciona-se o filtro $L(z)$ à função custo do VRFT, $J_{VR}(\theta)$:
+
+\begin{equation}
+J_{VR}(\theta)=\bar{E}\left [ L(z)(u(t)-C(z,\theta)\bar{\varepsilon}(t)) \right ]^2
+\nonumber
+\end{equation}
+e usando as relações:
+
+\begin{equation}
+1-T_d(e^{j\omega})=S_d(e^{j\omega})
+\nonumber
+\end{equation}
+e
+
+\begin{equation}
+\frac{T_d(e^{j\omega})}{G_0(e^{j\omega})}=C_d(e^{j\omega})S_d(e^{j\omega})
+\nonumber
+\end{equation}
+pode-se então reescrever a função custo do VRFT como :
+
+
+\begin{eqnarray}\nonumber
+J_{VR}(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | L(e^{j\omega}) \right |^2 \frac{\left | G_0(e^{j\omega}) \right
+|^2 \left | S_d(e^{j\omega}) \right |^2}{\left | T_d(e^{j\omega}) \right |^2}\\ 
+ && \times \left | C_d(e^{j\omega})- C(e^{j\omega},\theta) \right |^2 \Phi_u(e^{j\omega})d\omega  
+\label{eq:dbcd_vrft_jvr_cost}
+\end{eqnarray}
+
+Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(z) \in
+C(z,\theta)$ as duas funções custo são iguais, possuindo também o mesmo mínimo. Quando$C_d(z) \notin C(z,\theta)$ nenhum
+dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro dos dois
+integrandos são diferentes, não existe motivos para esperar que os dois custos dejam o mesmo.
+\cite{bazanella_datadriven}
+
+Existe entretanto o parametro livre que foi incluido à função custo do VRFT que pode ser escolhido a fim de aproximar
+estes dois integrandos: o filtro $L(z)$. Para fazer com que $J_{VR}(\theta)=J_y(\theta)$, é suficiente escolher
+$L(e^{j\omega})$ como:
+
+\begin{equation}
+\left | L(e^{j\omega}) \right |^2=\left | T_d(e^{j\omega}) \right |^2\left | S(e^{j\omega},\theta) \right
+|^2\frac{\Phi_r(e^{j\omega})}{\Phi_u(e^{j\omega})}, \;\;\;\; \forall\omega \in \left [ -\pi; \pi \right ]
+\label{eq:dbcd_vrft_filter_l}
+\end{equation}
+onde $\Phi_r(e^{j\omega})$ representa o espectro do sinal real da referência $r(t)$ e $\Phi_u(e^{j\omega})$ representa o
+espectro do sinal aplicado sobre o sistema, medido durante o experimento do VRFT.
+
+O cálculo do filtro apresentado em \eqref{eq:dbcd_vrft_filter_l} requer do conhecimento da função $S(z,\theta)$, que
+algumas vezes pode não ser conhecida. Então a implementação deste filtro irá recair em alguma aproximação desta função
+de transferência. Quanto melhor for a aproximação, mais próximos serão os mínimos das funções custo $J_y(\theta)$ e
+$J_{VR}(\theta)$. \cite{bazanella_datadriven}
+
+Entretanto esta não é a única escolha sensível para a aproximação de $S(z,\theta)$, VRFT usa invariavelmente o seguinte:
+
+\begin{equation}
+\left | S(e^{j\omega},\theta) \right |^2\approx \left | S_d(e^{j\omega}) \right |^2=\left | 1-T_d(e^{j\omega}) \right
+|^2
+\label{eq:dbcd_vrft_sensible_s}
+\end{equation}
+o que aparenta ser uma aproximação razoavel, uma vez que é esperado que as duas funções sensibilidades em
+\eqref{eq:dbcd_vrft_sensible_s} sejam próximas ao redor do ponto de mínimo. Usando esta aproximação, a função de
+transferência do filtro pode ser obtida por:
+
+\begin{equation}
+\left | L(e^{j\omega}) \right |^2=\left | T_d(e^{j\omega}) \right |^2\left | 1-T_d(e^{j\omega},\theta) \right
+|^2\frac{\Phi_r(e^{j\omega})}{\Phi_u(e^{j\omega})}, \;\;\;\; \forall\omega \in \left [ -\pi; \pi \right ]
+\label{eq:dbcd_vrft_filter_l_vrft}
+\end{equation}
 
 Para o caso onde $C_d \in C(z, \theta)$ a escolha de $L(z)$ não afeta o resultado, usualmente
-escolhe-se então $L(z)=1$. Caso o controlador não consiga ser representado pelo modelo, a escolha de
-$L(z)$ pode ser feita por:\cite{campi_leccini_savaresi2002}
+escolhe-se então $L(z)=1$.\cite{campi_leccini_savaresi2002}
+
+Com o fltro $L(z)$ calculado como em \eqref{eq:dbcd_vrft_filter_l_vrft}, o valor assintótico de $\theta$ pode ser
+escrito como:
 
 \begin{equation}
-\left | L \right | ^2 = \left | 1-M \right | ^2 \left | M \right | ^2 \left | W \right | ^2 \frac{1}
-{\Phi_u}, \;\;\; \forall \omega \in [-\pi; \pi].
-\label{eq:vrft_method_filter_l}
+\theta_*=\bar{E}\left [ \varphi_L(t)\varphi_L(t)^T  \right ]^{-1}\bar{E}\left [ \varphi_L(t)u_L(t)  \right ]
+\label{eq:dbcd_vrft_filter_estim}
 \end{equation}
+onde $\varphi_L(t)=L(z)\varphi(t)$ e $u_L(t)=L(z)u(t)$. O cálculo real para obter os parametros da estimativa é dado
+por:
 
-Obtém-se com a utilização do filtro, uma estimativa onde o erro de polarização é minimizado. Observa-se na figura
-\ref{fig:vrft_cost_functions_L} um exemplo hipotético, onde o valor de $\theta$ que minimiza $J_{VR}(\theta)$ se
+\begin{equation}
+\theta=\left [ \sum_{t=1}^{N}\varphi_L(t)\varphi_L^T(t) \right ]^{-1} \sum_{t=1}^{N}\varphi_L(t)u_L(t)
+\label{eq:dbcd_vrft_filter_estim_N}
+\end{equation}
+e na ausência de ruído, $\theta$ é igual ao valor de $\theta_*$ apresentado em \eqref{eq:dbcd_vrft_filter_estim}.
+
+Na figura \ref{fig:vrft_cost_functions_L} um exemplo hipotético, onde o valor de $\theta$ que minimiza $J_{VR}(\theta)$ se
 aproxima do valor de mínimo de $J_y(\theta)$ com a utilização do filtro $L(z)$. Também observa-se que a curva de
 $J_{VR}(\theta)$ quando o filtro é aplicado apresenta uma redução na sua concavidade, fazendo com que o valor de mínimo
 na curva encontrado pelo algoritmo seja menos preciso, aumentando o a variância das estimativas, enquanto reduz o erro
