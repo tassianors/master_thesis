@@ -316,8 +316,8 @@ u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 y^2(t-1)r(t)+ \theta_4 y(t)y^2
 \end{equation}
 
 Utilizando um sinal PRBS de tamanho 254 pontos e o método de referência virtual para gerar os sinais $r(t)$ e
-$\epsilon(t)$. Adicionando-se um ruído de variância $\sigma^2 = 0.005$ a saída do sistema, a média das estimativas para
-100 experimentos de Monte Carlo foi de:
+$\epsilon(t)$. Adicionando-se um ruído de variância $\sigma_e^2 = 0.005$ a saída do sistema, a média das estimativas
+para 100 experimentos de Monte Carlo foi de:
 
 \begin{equation}
 \theta_{\text{média}}=\begin{bmatrix}
@@ -384,7 +384,7 @@ esperado. Já o custo entre os sinais de saída do sistema em malha fechada estima
 $J_{MR}=0.0033$.
 
 Com o intuito de demonstrar o efeito do ruído sobre as estimativas obtidas o ruído foi aumentado em $4\times$ para
-$\sigma^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as estimativas:
+$\sigma_e^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as estimativas:
 
 \begin{equation}
 \theta_{\text{média}}=\begin{bmatrix}
@@ -465,8 +465,8 @@ u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 r(t)y(t-1)+ \theta_4 y(t-1)y(t
 \label{eq:vrft_nl_dinamic_ex3_c}
 \end{equation}
 
-Para as simulações foi adicionado um ruído com $\sigma^2 = 0.05$. Foram realizados 100 experimentos de Monte Carlo onde
-obteve-se as seguintes estimativas:
+Para as simulações foi adicionado um ruído com $\sigma_e^2 = 0.05$. Foram realizados 100 experimentos de Monte Carlo
+onde obteve-se as seguintes estimativas:
 
 \begin{equation}
 \theta_{\text{média}}=\begin{bmatrix}
