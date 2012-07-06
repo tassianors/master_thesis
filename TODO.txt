@@ -3,3 +3,9 @@ REVIEW:
 - Dizer que a função custo que eu estou usando agora é um critério de performance h2. achar o melhor lugar para colocar isso.
 
 - verificar a questão de acentuação nos eps
+
+- Adicionar equações e rescrever parte da seção sobre sobremodelagem.
+
+- reescrever modelagem do ruído.
+
+- propriedades estatisticas da estimativa: adicionar o teorema 8.3 do ljung

@@ -5,7 +5,7 @@ cd ..
 sudo cp -rf thesis thesis_bkp
 sudo chmod 755 -R thesis_bkp
 cd thesis_bkp
-git clean -fdxq
+git clean -fdx
 cd ..
 tar czf $filename.tar.gz thesis_bkp
 sudo rm -rf thesis_bkp
