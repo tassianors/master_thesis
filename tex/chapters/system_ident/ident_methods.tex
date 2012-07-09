@@ -67,7 +67,14 @@ Desta forma o mínimo da função custo fica como em:
 
 O método dos mínimos quadrados é simples de ser aplicado, mas tem o inconveniente de que para que não existam
 erros de polarização na estimativa, a variável de regressão $\varphi(t)$ não pode estar correlacionada com o
-distúrbio estocástico $\nu(t)$. Assume-se que o sistema real é dado por:
+distúrbio estocástico $\nu(t)$, como em:
+
+\begin{equation}
+E \left [  \varphi(t) \nu(t) \right ] = 0
+\end{equation}
+
+
+Assume-se que o sistema real é dado por:
 
 \begin{equation}
 y(t)=\varphi^T(t)\theta_0+\nu(t)
@@ -153,9 +160,17 @@ variância da estimativa está relacionada com o inverso de $E\;Z(t)\varphi(t)^T$.
 \label{sec:si_par_estim_noise_modeling}
 %===============================================================================
 
-O método dos mínimos quadrados possui erro de polarização quando existe correção entre o regressor $\varphi(t)$ e
-$\nu(t)$, apresentou-se em seguida uma alternativa ao método dos mínimos quadrados que resolve este inconveniente ao
-custo da escolha de uma variável instrumental que não seja correlacionada com o ruído.
+O método dos mínimos quadrados possui erro de polarização quando existe correlação entre o regressor $\varphi(t)$ e
+$\nu(t)$. Apresentou-se em seguida uma alternativa ao método dos mínimos quadrados que resolve este inconveniente ao
+custo da escolha de uma variável instrumental que não seja correlacionada com o ruído: método das variáveis
+instrumentais (VI).
+
+%TODO: reescrever isso melhor.. mas nao achei nada ainda que tivesse este tópico claramente explicado.
+
+
+
+
+
 
 Existe entretanto uma segunda forma para lidar com este erro de polarização: modelagem do ruído. Em algumas aplicações,
 a modelagem do sistema é o objetivo principal da identificação, para tanto leva-se em conta apenas os parâmetros de

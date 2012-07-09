@@ -4,7 +4,7 @@ REVIEW:
 
 - verificar a questão de acentuação nos eps
 
-- Adicionar equações e rescrever parte da seção sobre sobremodelagem.
+- Adicionar equações e rescrever parte da seção sobre sobremodelagem. OK
 
 - reescrever modelagem do ruído.
 

@@ -3,14 +3,111 @@
 \label{sec:sys_ident_prop_estim}
 %===============================================================================
 % mains idea of this section:
-Durante a identificação de um sistema, a ordem de excitação do sinal aplicado e a quantidade de dados que colata-se do
-sistema, podem proporcionar resultados diferentes para os esperimentos realizados. É importante entender o que e onde
-estes parâmetros afetam na resposta final da identificação, para que consiga-se evita-los ou ao menos entende-los e
-saber o quão confiável foi a estimativa obtida.
+%TODO: reescrever isso aqui
+ 
+%Durante a identificação de um sistema, a ordem de excitação do sinal aplicado e a quantidade de dados que colata-se do
+%sistema, podem proporcionar resultados diferentes para os esperimentos realizados. É importante entender o que e onde
+%estes parâmetros afetam na resposta final da identificação, para que consiga-se evita-los ou ao menos entende-los e
+%saber o quão confiável foi a estimativa obtida.
+%
+%As propriedades estatisticas das estimativas trazem consigo algumas informações extremamente úteis para a identificação
+%de sistemas. Nesta seção serão abordadas algumas destas caracteristicas e o que elas dizem, ou permitem dizer sobre a
+%identificação do sistema.
 
-As propriedades estatisticas das estimativas trazem consigo algumas informações extremamente úteis para a identificação
-de sistemas. Nesta seção serão abordadas algumas destas caracteristicas e o que elas dizem, ou permitem dizer sobre a
-identificação do sistema.
+
+%===============================================================================
+\subsection{Conjunto de dados}
+\label{sec:si_par_estim_data_z}
+%===============================================================================
+
+O conjunto de dados coletados do sistema pode ser descrito como em 
+
+\begin{equation}
+Z^N=\left \{ u(1),y(1),...,n(N),y(N) \right \}
+\label{eq:si_par_estim_data_set}
+\end{equation}
+é o ponto de partida básico para a identificação de sistemas. Análise equivale a assumir certas propriedades
+sobre os dados calculando as proprerties resultantes de $\hat{\theta}_N$. Desde que a análise de $\hat{\theta}_N$ será
+levado para $N \to \infty$, é natural que as condições para os dados, sejam relativos a um conjunto infinido
+$Z^{\infty}$. \cite{ljung}
+
+Assume-se que o conjunto de dados $Z^{\infty}$ é tal que para alguns filtros da forma $\left \{ d_t^{(i)}(k) \right \}$:
+
+\begin{align}\nonumber
+y(t)&=\sum_{k=1}^{\infty}d_t^{1}(k)r(t-k)+\sum_{k=0}^{\infty}d_t^{2}(k)e_0(t-k)\\
+\label{eq:si_properties_data_D1}\\
+\nonumber
+u(t)&=\sum_{k=0}^{\infty}d_t^{3}(k)r(t-k)+\sum_{k=0}^{\infty}d_t^{4}(k)e_0(t-k)
+\end{align}
+onde:
+
+\begin{enumerate}
+  \item $\left \{ r(t) \right \}$ é uma entrada externa, deterministica e limitada em amplitude.
+  \item $\left \{ e_0(t) \right \}$ é uma sequencia randômica independente com média zero, limitada em amplitude e
+  momentos com ordem $4+\delta$ para algum $\delta>0$.
+
+Alem disso:
+  \item a família de filtros $\left \{ d_t^{(i)}(k) \right \}_{k=1}^{\infty}$, $i=1 - 4$; $t=1,2,\ldots $ é
+  uniformemente estável.
+  \item Os sinais  $\left \{ y(t) \right \}$ e  $\left \{ u(t) \right \}$ são juntamente quasi-estacionarios.  
+\end{enumerate}
+
+%===============================================================================
+\subsection{Consistência e identificabilidade}
+\label{sec:si_par_estim_consistency}
+%===============================================================================
+
+Suponha que a o sistema real possa ser descrito por $\mathcal{S}$ (equação \eqref{eq:si_intro_true_system}) e o
+modelo $\mathcal{M}$ seja como apresentado em \eqref{eq:si_intro_model} e além disso que $\mathcal{S} \in \mathcal{M}$.
+
+Os resultados básicos de consistência são quase imediatos: \cite{ljung}
+
+\begin{theorem}
+Suponha que o conjunto de dados $Z^{\infty}$ está sugeito ao que foi apresentado na seção
+(\ref{sec:si_par_estim_data_z}) e que $\mathcal{S} \in \mathcal{M}$. Assume-se que $Z^{\infty}$ é suficientemente
+informativo com respeito a $\mathcal{M}$. Se o sinal de entrada contém a saída por realimentação então também se assume
+que exita um delay tanto em $G_0(z)$ e $G(z,\theta)$. Então:
+
+\begin{equation}
+D_c=D_T(\mathcal{S,M})
+\label{eq:si_par_estim_under_theta}
+\end{equation}
+onde 
+
+\begin{equation}
+D_c=\underset{\theta \in D_{\mathcal{M}}}{arg\;min}V(\theta)=\left \{ \theta \;|\; \theta \in D_{\mathcal{M}},
+\;\;V(\theta)=\underset{\theta' \in D_{\mathcal{M}}}{min} V(\theta') \right \}
+\label{eq:si_par_estim_dc}
+\end{equation}
+e
+
+\begin{align*}
+D_T(\mathcal{S,M})=\{ \theta \in D_{\mathcal{M}} \; |\;\; & G(e^{j\omega}, \theta)=G_0(e^{j\omega});\\
+ & H(e^{j\omega}, \theta)=H_0(e^{j\omega}); -\pi \le \omega \le \pi \}
+\end{align*}
+
+Se em adição, a classe de modelos é globalmente identificavel em $\theta_0 \in D_{\mathcal{M}}$, então:
+
+\begin{equation}
+D_c=\{\theta_0\}
+\end{equation}
+
+Desta forma e como 
+
+\begin{equation}
+\hat{\theta}_N\to D_c, \text{quando } N\to \infty
+\end{equation}
+tem-se que as funções de transferência obedecem a:
+
+\begin{align}\nonumber
+G(e^{j\omega}, \hat{\theta}_N) &\to G_0(e^{j\omega}), \\
+\\ \nonumber 
+H(e^{j\omega}, \hat{\theta}_N) &\to H_0(e^{j\omega}), \; \text{quando } N \to \infty
+\end{align}
+
+\label{theorem:si_ljung8.3}
+\end{theorem}
+
 
 %===============================================================================
 \subsection{Incertezas mas estimativas dos parâmetros}

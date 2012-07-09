@@ -97,23 +97,62 @@ de forma satisfatória. Inclui-se desta forma na identificação informações sufici
 parâmetros da família de modelos possam ser identificados.
 
 %===============================================================================
-\subsection{Sobremodelagem}
+\subsection{Escolha do modelo e sobremodelagem}
 %===============================================================================
 
 Um aspecto comumente indesejado para aplicações de engenharia é quando a solução do problema não possui apenas uma
 solução. A escolha de um conjunto de modelos $\mathcal{M}$ onde a ordem do modelo é maior do que a ordem do sistema real
 $\mathcal{S}$ faz com que existam infinitas combinações de $\theta$, resultando em infinitos modelos dentro do conjunto
-$\mathcal{M}$ que conseguem descrever exatamente o sistema $\mathcal{S}$.
+$\mathcal{M}$ que conseguem descrever exatamente o sistema $\mathcal{S}$:
 
-A escolha da classe de modelos deve ser feita com muita atenção para que não se recaia em problemas
-deste tipo. O que dificulta esta tarefa é o fato de nem sempre a ordem do sistema ser conhecida. É necessário
-então por parte do executor da identificação, fazer uma estimativa sobre a ordem do sistema, evitando
-sempre a sobremodelagem, ou {\it{overmodeling}} também encontrado na literatura relacionada.
+\begin{equation}
+\mathcal{S}\subset \mathcal{M}
+\label{eq:si_exper_overfit}
+\end{equation}
 
-Uma das primeiras justificativas para o desenvolvimento de métodos para a escolha de famílias de modelos é a
-grande dificuldade de trabalhar com modelos com muitos parâmetros, por tornarem-se desta forma complexos e
-grandes. Existe o problema destes modelos serem numericamente mal condicionados além da convicção de que estes
-modelos (com muitos parâmetros) são redundantes e poderiam ser removidos do modelo. Um modelo com um número
-excessivo de parâmetros pode exibir dinâmicas que não são observadas no sistema real, desta forma não existe
-apenas o problema numérico para estes sistemas, mas também um problema de dinâmica em utilizar um
-modelo sobre-estimado. \cite{aguirre_jacome}
+A escolha de uma classe de modelos $\mathcal{M}$ é o ponto mais crucial para que o processo de identificação de sistemas
+tenha sucesso. Esta escolha deve ser com base no entendimento do procedimento de identificação e das percepções e
+conhecimentos que se tem sobre o sistema a ser identificado. \cite{ljung}
+
+O preço ou custo de uma classe de modelos pode ser mensurada em alguns aspectos e a escolha da classe de modelos se dará
+por alguma ponderação sobre estes critérios, que podem ser: \cite{ljung}
+
+\begin{itemize}
+  \item Flexibilidade: Usando classes de modelos que tenham boas capacidades de descrever tipos diferentes de sistemas.
+  flexibilidade pode ser obtida usando-se vários parametros ou alocando-os em ``posições estratégicas''.
+  \item Parsimonia: Não usar desnecessáriamente uma quantidade elevada de parametros.
+  \item Complexidade do algoritmo: A complexidade de obter o erro de predição $\varepsilon (t, \theta)$ e as demais
+  informações necessárias a identificação são extremamente correlacionadas com a escolha de $\mathcal{M}$.
+  \item Propriedades da função critério. Dependendo do formato da curva, o algortimo para encontrar o mínimo pode ser
+  mais custoso no que diz respeito a iterações matemáticas.
+  \item O uso pretendido do modelo.
+\end{itemize}
+
+O uso de classes de modelos com diversos parâmetros só deve ser utilizado se modelos com menos parâmetros não passaram
+pelos testes de validação do modelo escolhido. Desta forma mantem-se a idéia de que quanto mais simples melhor,
+garantindo a parsimônia da classe escolhida e conseguindo cumprir com o uso pretendido do sistema.
+
+Uma das primeiras justificativas para o desenvolvimento de métodos para a escolha de classes de modelos é a
+dificuldade em trabalhar com classes de modelos com muitos parâmetros, pelas complexibilidade adicionada aos algoritmos
+e as incertezas matemáticas inseridas. Além disso existe o problema destes modelos serem numericamente mal
+condicionados além da convicção de que são redundantes e poderiam ser removidos do modelo (aplicando algum algoritmo de
+simplificação de modelo). Um modelo com um número excessivo de parâmetros pode exibir dinâmicas que não são observadas
+no sistema real, desta forma não existe apenas o problema numérico para a identificação, mas também um problema de
+dinâmica em utilizar um modelo sobre-estimado.
+\cite{aguirre_jacome}
+
+O procedimento que testa se a classe de modelos é simples e apropriada para descrever o sistema é aplicar alguma tecnica
+de redução a claase de modelos. Se a ordem da classe de modelos pode ser reduzida sem afetar as propriedades de etrada e
+saída do sistema, então a classe de modelos original era desnecessáriamente complexa. \cite{ljung}
+
+Por fim, ao escolher uma classe de modelos para a identificação, deve-se leavr em conta diversos pontos e informações.
+Depois de escolhido este modelo, um processo de validação do modelo é indicado a ser executado. Este procedimento é
+simples e concistem em algumas perguntas que o projetista do experimento de identificação deve fazer:
+
+\begin{itemize}
+  \item A classe de modelos escolhida consegue descrever suficientemente bem os dados observados?
+  \item A classe de modelos é boa suficiente para meus objetivos?
+  \item A classe de modelos descreve o sistema real ($\mathcal{S}$) ?
+\end{itemize}
+
+
