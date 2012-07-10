@@ -66,7 +66,7 @@ Os resultados básicos de consistência são quase imediatos: \cite{ljung}
 Suponha que o conjunto de dados $Z^{\infty}$ está sugeito ao que foi apresentado na seção
 (\ref{sec:si_par_estim_data_z}) e que $\mathcal{S} \in \mathcal{M}$. Assume-se que $Z^{\infty}$ é suficientemente
 informativo com respeito a $\mathcal{M}$. Se o sinal de entrada contém a saída por realimentação então também se assume
-que exita um delay tanto em $G_0(z)$ e $G(z,\theta)$. Então:
+que exita um atrazo de tempo tanto em $G_0(z)$ e $G(z,\theta)$. Então:
 
 \begin{equation}
 D_c=D_T(\mathcal{S,M})
@@ -92,7 +92,7 @@ Se em adição, a classe de modelos é globalmente identificavel em $\theta_0 \in D
 D_c=\{\theta_0\}
 \end{equation}
 
-Desta forma e como 
+Desta forma, e como:
 
 \begin{equation}
 \hat{\theta}_N\to D_c, \text{quando } N\to \infty
@@ -116,7 +116,6 @@ H(e^{j\omega}, \hat{\theta}_N) &\to H_0(e^{j\omega}), \; \text{quando } N \to \i
 
 O desejo principal para a identificação de sistemas é que este não possua erros, ou ao menos que este
 erro, se existir, seja o menor possível, ou limitado dentro de uma região conhecida. Para tanto é necessário
-caracterizar este tipo de informação do sistema. Existem dois tipos principais de erros na estimativa de parâmetros. Um
 deles é o {\it{erro de variância}} e outro é o {\it{erro de polarização}}.
 
 Seja, $\theta_0$ o limite de convergência para a minimização do erro de predição:
@@ -170,23 +169,41 @@ chega-se à definição dos erros de polarização e de variância:
 polarização}}{\underbrace{Q^*(q)-Q(q)}}
 \label{eq:si_par_estim_under_errors}
 \end{equation}
+onde 
 
-Onde $Q^*(q)=\left [ G(q, \theta^*) \;\;\; H(q, \theta^*)\right ]$.
+\begin{equation}
+Q^*(q)=\left [ G(q, \theta^*) \;\;\; H(q, \theta^*)\right ]
+\end{equation}
 
 A partir da equação  \eqref{eq:si_par_estim_under_errors} compreende-se o erro de polarização como sendo a distância
 entre a melhor aproximação possível e o valor real para o parâmetro. Já o erro de variância é a média que cada uma
 das estimativas está distante do valor ótimo possível para a estimativa, que é tão menor quanto mais dados forem usados
 para a identificação.
 
-Se o experiemnto é realizado em malha aberta, ou sej, quando $u(t)$ e $e(t)$ são descorrelacionados e se $G(z, \theta)$
-e $H(z, \theta)$ são parametrizados de forma indenpente, ou seja,
+Seguidamente é mais importante ter uma boa estimativa da função de transferência da planta $G(\cdot)$ do que do filtro
+do ruído $H(\cdot)$. O conjunto de modelos: \cite{ljung}
+
+\begin{equation}
+\mathcal{G}=\left \{ G(e^{j\omega},\theta) | \theta \in D_{\mathcal{M}} \right \}
+\nonumber
+\end{equation}
+é abrangente o suficiente pra que 
+
+\begin{equation}
+G_0(z) \in \mathcal{G}
+\end{equation}
+mas a função de transferência do filtro real do ruído $H_0(z)$ não consegue ser totalmete descrito pelo conjunto de
+modelos. Desta forma $\mathcal{S} \notin \mathcal{M}$ e supondo que o conjunto de dados $Z^{\infty}$ esteja sugeito ao
+que foi descrito na seção (\ref{sec:si_par_estim_data_z}) e que este seja suficientemente informativo.
+Se o experiemnto é realizado em malha aberta, ou seja, quando $u(t)$ e $e(t)$ são descorrelacionados
+e se $G(z, \theta)$ e $H(z, \theta)$ são parametrizados de forma indenpente:
 
 \begin{equation}
 \theta=\begin{bmatrix}
 \rho\\ 
 \eta 
 \end{bmatrix},\;\; G(z, \theta) = G(z,\rho), \;\; H(z, \theta)=H(z, \eta)
-\nonumber
+\label{eq:si_par_estim_independent_param}
 \end{equation}
 
 então $G_0(z)$ pode ser estimada de forma consistente, independente de $H_0(z)$ pertencer ou não à classe de modelos
@@ -198,8 +215,22 @@ variância da estimativa \cite{gevers2006, campestrini}, onde
 \text{Erro de polarização}  &= G(z, \theta^*)-G_0(z) 
 \end{align*}
 
+O caso da parametrização independente em \eqref{eq:si_par_estim_independent_param} cogre o caso do {\it{Output Error}}
+apresentado na tabela (\ref{table:si_modeling_models}) além de modelos com estruturas fixas para o filtro do ruido
+$H(z,\theta)$ como em:
+
+\begin{equation}
+y(t)=G(z,\theta)u(t)+H_*(z)e(t)
+\nonumber
+\end{equation}
+
+Este modelo também cobre o caso da estrutura de modelos Box-Jenkins (tabela (\ref{table:si_modeling_models})).
+consequentemente esta estrutura de modelos tem a vantagem de que a função de transferência $G(z, \theta)$ pode ser
+consistentemente estimada, mesmo quando o modelo do filtro do ruído é muito simples para admitir-se uma completa
+descrição do sistema. \cite{ljung}
+
 %===============================================================================
-\subsubsection{Covariância nos parâmetros}
+\subsection{Distribuição assintótica da estimativas dos parâmetros}
 \label{sec:si_par_estim_uncertanties_covariance}
 %===============================================================================
 
@@ -207,11 +238,57 @@ Um meio comum de medir a qualidade das estimativas é estudar suas propriedades a
 de $N$ (quantidade de dados) cresce muito, a estimativa pertencerá a alguma distribuição. As propriedades desta
 irão determinar a qualidade das estimativas obtidas.\cite{jansson}
 
+Uma vez tendo entendido as propriedades de convergência de $\hat{\theta}_N$, a pergunta que surge é o quão rápido esta
+estimativa chega ao limite. Se $\theta^*$ denota o limite, estamos interessados na variável $\hat{\theta}_N -\theta^*$
+que é uma variável randomica, e seu ``tamanho'' pode ser caracterizado pela sua matriz de covariancia, ou mais
+completamente, pela sua distribuição probabilistica. $\hat{\theta}_N -\theta^*$ típicamente decai a $1/\sqrt{N}$. então
+a distribuição da variável randica 
+
+\begin{equation}
+\sqrt{N}(\hat{\theta}_N -\theta^*)
+\nonumber
+\end{equation}
+irá convergir para uma distribuição bem definida Gausiana sobre suposições fracas. \cite{ljung}
+
+Assume-se que dentro do conjunto $D_{\mathcal{M}}$ exista apenas um $\theta^*$. Em \eqref{eq:si_par_estim_under_theta}
+foi apresentado que $\hat{\theta}_N \to \theta^*$ quando $N \to \infty$ e considerando que :
+
+\begin{equation}
+\sqrt{N}D_N \to 0, \;\text{quando } N\to \infty
+\nonumber
+\end{equation}
+onde:
+
+\begin{equation}
+D_N=E\left [ \frac{1}{N}\sum_{t=1}^{N}\left [ \psi (t, \theta^*)\varepsilon (t, \theta^*)-E\psi(t, \theta^*)
+\varepsilon(t, \theta^*) \right ] \right ]
+\end{equation}
+
+Então tem-se que:
+
+\begin{equation}
+\sqrt{N}(\hat{\theta}_N-\theta^*) \to \mathcal{N}(0,P) \;\; \text{quando} \;\; N\to \infty 
+\end{equation}
+
+onde $P(\theta)$ é dado por:
+
+\begin{equation}
+P(\theta_0)\overset{\underset{\mathrm{\Delta}}{\,}}{=}\lim_{N\to \infty}N\;E(\hat{\theta}_N-\theta^*)(\hat{\theta}_N-\theta^*)^T
+\label{eq:si_par_estim_P_theta}
+\end{equation}
+
+Assume-se ainda que $\varepsilon(t,\theta_0)=e_0(t)$ é uma sequencia randômica independênte de média zero e variância
+$\lambda_0$
+
+%preciso colocar a quação inicial do 9.3 a 9.6 no inicio deste capituklo para dai conseguir escrever a 9.17 que vailogo
+% em seguida.
+
+
+
+
+
 \begin{equation}
 \begin{matrix}
-\sqrt{N}(\hat{\theta}_N-\theta_0) \to \mathcal{N}(0,P) \;\; \text{quando} \;\; N\to \infty ,\\
-
-\lim_{N\to \infty}N\;E(\hat{\theta}_N-\theta_0)(\hat{\theta}_N-\theta_0)^T \overset{\underset{\mathrm{\Delta}}{\,}}{=} P(\theta_0),\\
 
 \text{onde } P(\theta_0)=\lambda_0(E\left [ \psi (t,\theta_0)\psi^T(t,\theta_0) \right ])^{-1},\\
 
@@ -220,8 +297,8 @@ irão determinar a qualidade das estimativas obtidas.\cite{jansson}
 \label{eq:si_par_estim_conv_def}
 \end{equation}
 
-Neste caso, $\mathcal{N}(0, P_\theta)$ denota uma distribuição normal com média 0 e variância $P_\theta$. Asssim quando
-o sistema real pertence à classe  de modelos escolhida a estimatica converge para $\theta_0$ e a covariância da
+Neste caso, $\mathcal{N}(0, P_\theta)$ denota uma distribuição normal com média 0 e matriz de covariância $P_\theta$.
+Asssim quando o sistema real pertence à classe  de modelos escolhida a estimatica converge para $\theta_0$ e a covariância da
 estimativa é dada por:
 
 \begin{equation}
