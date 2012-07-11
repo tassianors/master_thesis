@@ -5,15 +5,13 @@
 % mains idea of this section:
 %TODO: reescrever isso aqui
  
-%Durante a identificação de um sistema, a ordem de excitação do sinal aplicado e a quantidade de dados que colata-se do
-%sistema, podem proporcionar resultados diferentes para os esperimentos realizados. É importante entender o que e onde
-%estes parâmetros afetam na resposta final da identificação, para que consiga-se evita-los ou ao menos entende-los e
-%saber o quão confiável foi a estimativa obtida.
-%
-%As propriedades estatisticas das estimativas trazem consigo algumas informações extremamente úteis para a identificação
-%de sistemas. Nesta seção serão abordadas algumas destas caracteristicas e o que elas dizem, ou permitem dizer sobre a
-%identificação do sistema.
+Nesta seção tem-se o objetivo de descrever algumas das propriedades estatisticas relevantes para o identificação de
+sistemas. Tem-se o intuíto de formalizar quais são os erros que podem estar contidos nas estimativas obtidas e quais são
+as condições para evita-las, ou reduzi-las.
 
+Conhecer a qualidade das estimativas que são obtidas de um processo de identificação e suas propriedades estatisticas
+são de suma importância para aplicações de engenharia. O conhecimento do valor de $\theta$ sem a informação de
+quão confiável esta informação é, não é suficiente para a maioria das aplicações. 
 
 %===============================================================================
 \subsection{Conjunto de dados}
@@ -26,10 +24,9 @@ O conjunto de dados coletados do sistema pode ser descrito como em
 Z^N=\left \{ u(1),y(1),...,n(N),y(N) \right \}
 \label{eq:si_par_estim_data_set}
 \end{equation}
-é o ponto de partida básico para a identificação de sistemas. Análise equivale a assumir certas propriedades
-sobre os dados calculando as proprerties resultantes de $\hat{\theta}_N$. Desde que a análise de $\hat{\theta}_N$ será
-levado para $N \to \infty$, é natural que as condições para os dados, sejam relativos a um conjunto infinido
-$Z^{\infty}$. \cite{ljung}
+é o ponto de partida básico para a identificação de sistemas. As propriedades calculadas de $\hat{\theta}_N$ para um
+certo montante de dados serão levados para quando $N \to \infty$, é natural que as condições sobre os dados, sejam
+relativos a um conjunto infinido $Z^{\infty}$. \cite{ljung}
 
 Assume-se que o conjunto de dados $Z^{\infty}$ é tal que para alguns filtros da forma $\left \{ d_t^{(i)}(k) \right \}$:
 
@@ -118,10 +115,10 @@ O desejo principal para a identificação de sistemas é que este não possua erros,
 erro, se existir, seja o menor possível, ou limitado dentro de uma região conhecida. Para tanto é necessário
 deles é o {\it{erro de variância}} e outro é o {\it{erro de polarização}}.
 
-Seja, $\theta_0$ o limite de convergência para a minimização do erro de predição:
+Seja, $\theta^*$ o limite de convergência para a minimização do erro de predição:
 
 \begin{equation}
-\lim_{N \rightarrow \infty }\hat{\theta}_N = \theta_0
+\lim_{N \rightarrow \infty }\hat{\theta}_N = \theta^*
 \label{eq:si_par_estim_under_theta}
 \end{equation}
 
@@ -223,6 +220,7 @@ $H(z,\theta)$ como em:
 y(t)=G(z,\theta)u(t)+H_*(z)e(t)
 \nonumber
 \end{equation}
+onde $H_*(z)$ é um filtro do ruído que faz com que  $\mathcal{S} \notin \mathcal{M}$.
 
 Este modelo também cobre o caso da estrutura de modelos Box-Jenkins (tabela (\ref{table:si_modeling_models})).
 consequentemente esta estrutura de modelos tem a vantagem de que a função de transferência $G(z, \theta)$ pode ser
@@ -235,14 +233,14 @@ descrição do sistema. \cite{ljung}
 %===============================================================================
 
 Um meio comum de medir a qualidade das estimativas é estudar suas propriedades assintóticas. Quando o valor
-de $N$ (quantidade de dados) cresce muito, a estimativa pertencerá a alguma distribuição. As propriedades desta
+da quantidade de dados $N$ cresce muito, a estimativa pertencerá a alguma distribuição. As propriedades desta
 irão determinar a qualidade das estimativas obtidas.\cite{jansson}
 
 Uma vez tendo entendido as propriedades de convergência de $\hat{\theta}_N$, a pergunta que surge é o quão rápido esta
 estimativa chega ao limite. Se $\theta^*$ denota o limite, estamos interessados na variável $\hat{\theta}_N -\theta^*$
-que é uma variável randomica, e seu ``tamanho'' pode ser caracterizado pela sua matriz de covariancia, ou mais
-completamente, pela sua distribuição probabilistica. $\hat{\theta}_N -\theta^*$ típicamente decai a $1/\sqrt{N}$. então
-a distribuição da variável randica 
+que é uma variável randomica, e seu ``tamanho'' pode ser caracterizado pela sua matriz de covariancia, ou pela sua
+distribuição probabilistica. $\hat{\theta}_N -\theta^*$ típicamente decai a $1/\sqrt{N}$. então a distribuição da
+variável randomica:
 
 \begin{equation}
 \sqrt{N}(\hat{\theta}_N -\theta^*)
@@ -250,59 +248,55 @@ a distribuição da variável randica
 \end{equation}
 irá convergir para uma distribuição bem definida Gausiana sobre suposições fracas. \cite{ljung}
 
-Assume-se que dentro do conjunto $D_{\mathcal{M}}$ exista apenas um $\theta^*$. Em \eqref{eq:si_par_estim_under_theta}
-foi apresentado que $\hat{\theta}_N \to \theta^*$ quando $N \to \infty$ e considerando que :
+Assume-se que dentro do conjunto $D_{\mathcal{M}}$ exista apenas um ponto de convergência $\theta^*$. Em
+\eqref{eq:si_par_estim_under_theta} foi apresentado que $\hat{\theta}_N \to \theta^*$ quando $N \to \infty$ e considerando que :
 
 \begin{equation}
 \sqrt{N}D_N \to 0, \;\text{quando } N\to \infty
 \nonumber
 \end{equation}
-onde:
+onde $D_N$ pode ser definido como:
 
 \begin{equation}
 D_N=E\left [ \frac{1}{N}\sum_{t=1}^{N}\left [ \psi (t, \theta^*)\varepsilon (t, \theta^*)-E\psi(t, \theta^*)
 \varepsilon(t, \theta^*) \right ] \right ]
 \end{equation}
 
+e
+
+\begin{equation}
+\psi(t, \theta^*) = -\frac{\mathrm{d}}{\mathrm{d}\theta} \varepsilon (t,\theta) \mid_{\theta=\theta^*} =
+\frac{\mathrm{d}}{\mathrm{d} \theta}\hat{y}(t\mid \theta)\mid_{\theta=\theta^*}
+\nonumber
+\end{equation}
+
 Então tem-se que:
 
 \begin{equation}
-\sqrt{N}(\hat{\theta}_N-\theta^*) \to \mathcal{N}(0,P) \;\; \text{quando} \;\; N\to \infty 
+\sqrt{N}(\hat{\theta}_N-\theta^*) \to \mathcal{N}(0,P(\theta)) \;\; \text{quando} \;\; N\to \infty 
 \end{equation}
 
-onde $P(\theta)$ é dado por:
+onde $\mathcal{N}(0,P(\theta))$ denota uma distribuição normal e $P(\theta)$ é dado por:
 
 \begin{equation}
-P(\theta_0)\overset{\underset{\mathrm{\Delta}}{\,}}{=}\lim_{N\to \infty}N\;E(\hat{\theta}_N-\theta^*)(\hat{\theta}_N-\theta^*)^T
+P(\theta^*)\overset{\underset{\mathrm{\Delta}}{\,}}{=}\lim_{N\to
+\infty}N\;E(\hat{\theta}_N-\theta^*)(\hat{\theta}_N-\theta^*)^T
 \label{eq:si_par_estim_P_theta}
 \end{equation}
 
-Assume-se ainda que $\varepsilon(t,\theta_0)=e_0(t)$ é uma sequencia randômica independênte de média zero e variância
-$\lambda_0$
-
-%preciso colocar a quação inicial do 9.3 a 9.6 no inicio deste capituklo para dai conseguir escrever a 9.17 que vailogo
-% em seguida.
-
-
-
-
+Para o caso onde $\mathcal{S} \in \mathcal{M}$ e assumindo ainda que $\varepsilon(t,\theta_0)=e_0(t)$ é uma sequencia
+randômica independênte de média zero e variância $\lambda_0$. Desta forma tem-se
 
 \begin{equation}
-\begin{matrix}
-
-\text{onde } P(\theta_0)=\lambda_0(E\left [ \psi (t,\theta_0)\psi^T(t,\theta_0) \right ])^{-1},\\
-
-\psi (t,\theta_0)=\frac{\partial }{\partial \theta}\hat{y}(t,\theta)\mid_{\theta=\theta_0}
-\end{matrix}
-\label{eq:si_par_estim_conv_def}
+P(\theta)=\lambda_0\left [ E\;\psi (t,\theta_0)\psi^T(t,\theta_0)  \right ]^{-1}
+\label{eq:si_par_estim_P_theta_match}
 \end{equation}
 
-Neste caso, $\mathcal{N}(0, P_\theta)$ denota uma distribuição normal com média 0 e matriz de covariância $P_\theta$.
 Asssim quando o sistema real pertence à classe  de modelos escolhida a estimatica converge para $\theta_0$ e a covariância da
-estimativa é dada por:
+estimativa é dada por: \cite{ljung}
 
 \begin{equation}
-\text{Cov}\hat{\theta}_N \sim \frac{1}{N}P_\theta
+\text{Cov}\hat{\theta}_N \sim \frac{1}{N}P(\theta)
 \end{equation}
 
 Não é apenas o tamanho ($N$) do experimento que irá influenciar na qualidade da estimativa. Introduz-se o espectro:
@@ -314,23 +308,19 @@ Não é apenas o tamanho ($N$) do experimento que irá influenciar na qualidade da 
 \end{bmatrix}
 \label{eq:si_par_estim_cov_spectrum}
 \end{equation}
-
-
-onde $\Phi_u$ é o espectro da entrada $u(t)$, $\Phi_{ue}$ é o espectro cruzado entre a entrada $u(t)$ e o erro $e(t)$.
-A distribuição da frequência do espectro $\Phi_{\chi 0}$ também influenciará na qualidade da
+onde $\Phi_u$ é o espectro da entrada relativo ao sinal $u(t)$, $\Phi_{ue}$ é o espectro cruzado entre os sinais $u(t)$
+e $e(t)$. A distribuição da frequência do espectro $\Phi_{\chi 0}$ também influenciará na qualidade da
 estimativa, como pode ser visto no Lemma \ref{lemma:si_par_estim_covariance}.
 
 \begin{lemma}
-A inversa da matriz de covariância, $P^{-1}(\theta_0)$, é uma função linear do espectro $\Phi_{\chi 0}$ dado por
-\eqref{eq:si_par_estim_cov_lemma}.
+A inversa da matriz de covariância, $P^{-1}(\theta_0)$, é uma função linear do espectro $\Phi_{\chi 0}$ dado por:
 
 \begin{equation}
 P^{-1}(\theta_0)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta_0)
 \Phi_{\chi_0}(\theta_0)\mathcal{F}^*(\theta_0) d \omega
 \label{eq:si_par_estim_cov_lemma}
 \end{equation}
-
-Onde $\mathcal{F}(q, \theta_0)=\left [ \mathcal{F}_u(q, \theta_0) \;\;\;\mathcal{F}_e(q, \theta_0) \right ]$ e:
+onde $\mathcal{F}(q, \theta_0)=\left [ \mathcal{F}_u(q, \theta_0) \;\;\;\mathcal{F}_e(q, \theta_0) \right ]$ e:
 
 \begin{equation}
 \mathcal{F}_u(\theta_0) = H^{-1}(\theta_0)\frac{\mathrm{d} G(\theta_0)}{\mathrm{d} \theta} 
@@ -345,8 +335,11 @@ Onde $\mathcal{F}(q, \theta_0)=\left [ \mathcal{F}_u(q, \theta_0) \;\;\;\mathcal
 \end{lemma}
 
 Como $P$ é a medida do tamanho do erro nos parâmetros, o Lemma \ref{lemma:si_par_estim_covariance} mostra
-como este erro é relacionado com o espectro $\Phi_{\chi 0}$. O espectro cruzado $\Phi_{ue}$ é zero quando 
-o sistema esta operando em laço aberto. \cite{jansson}
+como este erro é relacionado com o espectro $\Phi_{\chi 0}$ e especialmente com o espectro de entrada $\Phi_{u}$ e 
+o espectro cruzado $\Phi_{ue}$. É interessante perceber que as únicas informações capazes de moldar a covariância
+$P(\theta)$ são exatamente os espectro de entrada e cruzado, todos os outros fatores são dependentes do desconhecido
+sistema real. Outro ponto a observar é que o espectro cruzado $\Phi_{ue}$ é zero quando o sistema esta operando em laço
+aberto. \cite{jansson}
 
 %===============================================================================
 \subsubsection{Margens de confiança das estimativas}

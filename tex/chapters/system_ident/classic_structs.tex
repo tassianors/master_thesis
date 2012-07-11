@@ -1,5 +1,5 @@
 %===============================================================================
-\section{Estruturas clássicas}
+\section{Estruturas clássicas  de modelos}
 \label{sec:sys_ident_classic_structs}
 %===============================================================================
 % mains idea of this section:
@@ -31,7 +31,7 @@ observando, um conjunto restrito de informações do sistema, deve-se então focar
 o modelo nestas características desejadas.
 
 %===============================================================================
-\subsection{Forma geral de famílias de modelos}
+\subsection{Forma geral de classes de modelos}
 \label{sec:si_modeling_family_models}
 %===============================================================================
 
@@ -208,8 +208,17 @@ pode-se facilmente generalizar para o equacionamento apresentado em:
 A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
 \label{eq:si_modeling_lti_det_global}
 \end{equation}
+onde os polinomios $A(q),\ldots, F(q)$ podem ser descritos como: 
 
-Quando usam-se apenas um conjunto dos polinômios de $A(q) \; \cdot \; F(q)$ obtemos as estruturas de modelos
+\begin{align*}
+A(q, \theta) &= 1+a_1q^{-1}+...+a_{na}q^{-n_a} \\ 
+B(q, \theta) &= b_1q^{-1}+...+b_{nb}q^{-n_b}\\ 
+C(q, \theta) &= 1+c_1q^{-1}+...+c_{nc}q^{-n_c}\\ 
+D(q, \theta) &= 1+d_1q^{-1}+...+d_{nd}q^{-n_d}\\ 
+F(q, \theta) &= 1+f_1q^{-1}+...+f_{nf}q^{-n_f}
+\end{align*}
+
+Quando usam-se apenas um conjunto dos polinômios de $A(q),\ldots, F(q)$ obtemos as estruturas de modelos
 da Tabela (\ref{table:si_modeling_models}).
 
 \begin{table*}[htbp]

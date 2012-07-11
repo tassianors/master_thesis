@@ -15,12 +15,11 @@ encontrar o mínimo de uma função custo, chamada critério. Na seção \ref{sec:sys_
 de minimização mais utilizado para a identificação:
 
 \begin{equation}
-V(\theta)=\frac{1}{N}\sum_{t=1}^{N}\varepsilon ^2(t, \theta)=\frac{1}{N}\varepsilon^T\varepsilon=\frac{1}{N}\left \|
-\varepsilon \right \|
+V(\theta)=\frac{1}{N}\sum_{t=1}^{N}\frac{1}{2} \varepsilon ^2(t, \theta)
 \label{eq:si_method_criteria}
 \end{equation}
 
-Nesta seção serão apresentados métodos que minimizam a função custo \eqref{eq:si_method_criteria}. 
+Nesta seção serão apresentados métodos que minimizam esta função custo, suas propriedades e caracteristicas. 
 
 %===============================================================================
 \subsection{Método dos mínimos quadrados}
@@ -37,9 +36,8 @@ Um preditor pode serdefinido como:
 \hat{y}(t, \theta)=\varphi ^T(t)\theta
 \label{eq:si_obj_single_var}
 \end{equation}
-
-Onde $\hat{y}(t)$ é a predição, $\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor de
-parâmetros a ser identificado.
+onde $\hat{y}(t)$ é a predição, $\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor
+de parâmetros a ser identificado.
 
 A partir do erro de predição (\ref{eq:si_estim_prediction_error}) e (\ref{eq:si_obj_single_var}) podemos
 redefinir o erro de predição como:
@@ -73,7 +71,6 @@ distúrbio estocástico $\nu(t)$, como em:
 E \left [  \varphi(t) \nu(t) \right ] = 0
 \end{equation}
 
-
 Assume-se que o sistema real é dado por:
 
 \begin{equation}
@@ -93,15 +90,17 @@ Para a primeira condição algumas exceções são apresentadas: \cite{system_identif
 \begin{itemize}
   \item Se a entrada não for persistentemente excitante.
   \item Os dados não são afetados por ruído ($\nu(t) \equiv 0$) e a ordem da classe de modelos é escolhida com um valor
-  muito alto. O que implica que $A_0(q)$ e $B_0(q)$ possuem fatores comuns.
-  \item A entrada $u(t)$ é gerada por uma realimentação de saída linear de ordem baixa.
+  muito alto. O que implica que $A_0(q)$ e $B_0(q)$ possuem fatores comuns. Podendo ocasionar dinâmicas no modelo que
+  não existem no sistema real.
+  \item A entrada $u(t)$ é gerada por uma realimentação de saída fazendo com que os regressores sejam diretamente
+  relacionado com o ruído por meio do sinal $y(t)$.
 \end{itemize}
 
 Ao contrário da condição (1), a condição (2) normalmente não é verdadeira. Uma importante exceção é quando $\nu(t)$ é
 ruído branco. Para este caso $\nu(t)$ será descorrelacionado com todos os dados passados e em especial com
 $\varphi(t)$.\cite{system_identification}
 
-Quando o número de amostras tende ao infinito e a estimativa tende para um valor diferente de $\theta_0s$, este erro é
+Quando o número de amostras tende ao infinito e a estimativa tende para um valor diferente de $\theta_0$, este erro é
 chamado de {\it{bias}} ou erro de polarização da estimativa. Para contornar este erro de {\it{bias}} existem duas opções
 que serão abordadas em seguida: Utilização de variáveis instrumentais e modelagem do rúido.
 
@@ -165,30 +164,50 @@ $\nu(t)$. Apresentou-se em seguida uma alternativa ao método dos mínimos quadrad
 custo da escolha de uma variável instrumental que não seja correlacionada com o ruído: método das variáveis
 instrumentais (VI).
 
-%TODO: reescrever isso melhor.. mas nao achei nada ainda que tivesse este tópico claramente explicado.
+Deve-se entretanto salientar que a escolha do instrumento não é o único inconveniente do método variáveis instrumentais.
+O aumento do erro de variância, como foi apresentado anteriormente, faz com que se busquem outras alternativas para a
+estimativa dos parâmetros, com um erro de polarização núlo, e com o menor erro de variância possível.
 
-
-
-
-
-
-Existe entretanto uma segunda forma para lidar com este erro de polarização: modelagem do ruído. Em algumas aplicações,
-a modelagem do sistema é o objetivo principal da identificação, para tanto leva-se em conta apenas os parâmetros de
-$G(q, \theta)$. Desta forma é possível que haja polarização dos parâmetros, pois o sistema real $\mathcal{S}$ não
-consegue ser descrito pelo modelo apenas com $G(q, \theta)$. Como apresentado na equação \eqref{eq:si_intro_model} e
-aqui replicado:
+Desta forma, tem-se a possíbilidade de incluír o modelo do ruído ao processo de identificação. A adição
+de $H(z,\theta)$ à identificação traz a vantagem de que quando a classe de modelos $\mathcal{M}$ consegue representar a
+totalidade das dinâmicas contidas no sistema real $\mathcal{S}$ então o erro de polarização é zerado. Deseja-se
+entretanto que seja possível a utilização do método dos mínimos quadrados, o que é possível quando o denominador de
+$G(z,\theta)$ e $H(z,\theta)$ são iguais. No caso da estrutura de modelos completa apresentada em
+\eqref{eq:si_modeling_lti_det_global} e replicado aqui
 
 \begin{equation}
-\mathcal{M}: \;\;\left \{ G(q, \theta), H(q, \theta) | \theta \in D_{\mathcal{M}} \right \}
-\label{eq:si_intro_model}
+A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
+\nonumber
+\end{equation}
+o sistema não é canonicamente parametrizavel quando todos os polinômios são diferentes do caso unitário ($A(q),\ldots,
+F(q) \ne 1$) e com isso a função custo não é convexa, adicionando um grau considerável aos algoritmos para encontrar
+o mínimo global da equação. \cite{system_identification}
+
+Para estes casos gerais de estruturas de modelos, usa-se o que é chamado de {\it{prediction error method}} (PEM) ou
+método do erro de predição. O preditor foi apresentado em \eqref{eq:si_par_estim_predictor} e pode ser reescrito como:
+
+\begin{equation}
+\hat{y}(t|t-1, \theta)= L_1(z,\theta)y(t)+ L_2(z,\theta)u(t)
+\label{eq:si_par_estim_pem}
+\end{equation}
+que é uma função de dados passados apenas se os filtros $L_1(z,\theta)$ e $L_2(z,\theta)$ forem construidos obedecendo
+a: \cite{system_identification}
+
+\begin{equation}
+L_1(0,\theta)=0, \;\;\; L_2(0,\theta)=0
+\label{eq:si_par_estim_pem_l_const}
+\end{equation}
+da onde então pode ser calculado o erro de predição como em: 
+
+\begin{equation}
+\varepsilon(t,\theta)=y(t)-\hat{y}(t\mid t-1, \theta)
+\label{eq:si_par_estim_pem_l_const}
 \end{equation}
 
-O modelo so sistema deve conter o modelo do ruído para que o sistema possa ser completamente representado, evitando
-assim erro de polarização.
+Percebe-se que o MMQ é um caso particular do PEM, existem também outros métodos que são casos particulares desta
+abordagem, mas nem todos possuem uma função custo quadrática para minimizar, fazendo com que o custo para encontrar este
+ponto de mínimo para a função custo seja proporcional a complexidade da curvatura da função custo.
 
-Ao integrar ao modelo do sistema, os parâmetros de $H(q, \theta)$, surge o inconvenientede que se o denominador de
-$G(q, \theta)$ for diferente do dominador de $H(q, \theta)$ então o sistema não é canonicamente parametrizavel e com
-isso a função custo não é convexa, adicionando um grau considerável aos algoritmos para encontrar o mínimo global da
-equação. \cite{system_identification}
+
 
 

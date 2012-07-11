@@ -3,37 +3,38 @@
 \label{sec:si_conclusions}
 %===============================================================================
 
-Neste capitulo foram apresentados os principais aspectos de um projeto para identificação 
-de sistemas. Partindo-se da escolha do sinal de excitação para o experimento onde podemos 
-determinar o que é de fundamental importância para a identificação e focar os esforços para
-reduzir ao máximo erros nestes aspectos.
+Neste capítulo foram introduzidos os principais conceitos para a identificação de sistemas LTI de tempo discreto. 
+Identificação de sistemas pode ser dividido em três partes distintas: O sistema real $\mathcal{S}$ e o conjunto de dados
+coletados deste sistema $Z^N$, a classe de modelos $\mathcal{M}$ escolhida para representar o sistema real e o critério
+que elenca qual é o modelo dentro da classe que melhor descreve o sistema real de acordo com alguma nota. 
 
-Apresentou-se neste quesito de projeto de experimento, a ideia de tornar a escolha do sinal, um
-problema de otimização, onde as restrições são as margens de qualidade que desejamos para as
-propriedades assintóticas da estimativa, limitações de sinais que conseguimos produzir e margens de 
-robustez.
+Com relação a classe de modelos, apresentou-se quais são as principais estruturas utilizadas para a identificação de
+sistemas discretos e como critério apresentou-se um dos mais comumente utilizados que avalia o erro quadrático entre o
+sistema estimado pela classe de modelos e o conjunto de dados coletados do sistema real.
 
-Apresentou-se conceitos sobre a escolha do modelo que será utilizado para caracterizar o sistema
-observado e as propriedades assintóticas da estimativa para casos onde o sistema real $\mathcal{S}$ não
-faz parte da família de modelos $\mathcal{M}$. Esta situação onde o sistema real não consegue ser
-representado completamente pelo modelo adotado, faz com que erros de polarização e de variância 
-recaiam sobre a estimativa atingida. Também foram apresentados os modelos mais comumente utilizados
-para a identificação de sistemas lineares.
+De posse do conjunto de dados, da classe de modelos, e do critério, apresentou-se o método mais comumente utilizado para
+identificação: Método dos mínimos quadrados. Foram apresentados suas caracteristicas e suas propriedades. Devido as
+incertezas da estimativa dos parâmetros quando o regressor está correlacionado com o ruído, foram introduzidos métodos
+alternativos a este para sanar este problema. Foram apresentados para isso os métodos das variáveis instrumentais e
+também o método de modelagem do ruído na identificação.
 
-De posse dos dados coletados e da família de modelos que acredita-se conter o sistema real, é possível, 
-com a ajuda de preditores, determinar os parâmetros do modelo que descrevem o comportamento do sistema
-observado.
+Apresentou-se as propriedades estátisticas das estimativas obtidas e quais são os erros esperados para situações onde a
+classe de modelos $\mathcal{M}$ consegue representar o sistema real $\mathcal{S}$e quando $\mathcal{S} \notin
+\mathcal{M}$. Em adição a estas propriedades discutiu-se quais são as condições que propiciam erro de polarização e
+quais influenciam no erro de variância das estimativas. Introduziu-se também o conceito de nível de confiança baseado
+nas caracteristicas do experimento realizado.
 
-Elege-se então uma função dependente do erro entre os dados coletados e os dados gerados pelo preditor. 
-Afim de que se tenha a melhor estimativa possível, métodos de minimização são utilizados para que esta 
-função dependente do erro, seja minimizada. Obtendo-se assim a melhor estimativa possível 
-para aquele conjunto de dados, modelo e critério de minimização escolhidos.
+Ao fim foram apresentados os principais aspectos de um projeto de identificação de sistemas. Partindo-se da escolha do
+sinal de excitação para o experimento onde pode-se determinar o que é de fundamental importância para a identificação e
+focar os esforços para reduzir ao máximo erros nestes aspectos.
 
-É perceptível que a identificação de um sistema é uma tarefa que depende de um grande conjunto
-relativamente grande de de fatores. De um lado isso é extremamente interessante, pois temos liberdade
-de escolha e a possibilidade de focar nosso projeto pontos que são mais interessantes, em detrimento
-de outros que não são relevantes para o sistema em questão. Por outro lado temos um conjunto de
-variáveis que, se não compreendidas corretamente, podem tornar este processo algo oneroso e muitas
-vezes até ineficiente.
+Apresentou-se neste quesito de projeto de experimento, a ideia de tornar a escolha do sinal, um problema de otimização,
+onde as restrições são as margens de qualidade que deseja-se para as propriedades assintóticas da estimativa,
+limitações de sinais e margens de robustez.
 
+É perceptível que a identificação de um sistema é uma tarefa que depende de um grande conjunto relativamente grande de
+de fatores. De um lado isso é extremamente interessante, pois tem-se liberdade de escolha e a possibilidade de focar
+o projeto em pontos que são mais interessantes e mportante, em detrimento de outros que não são relevantes para o
+sistema em questão. Por outro lado o conjunto de variáveis que, se não compreendidas corretamente, podem tornar este
+processo algo oneroso e muitas vezes até ineficiente.
 
