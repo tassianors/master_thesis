@@ -4,8 +4,4 @@ REVIEW:
 
 - verificar a questão de acentuação nos eps
 
-- Adicionar equações e rescrever parte da seção sobre sobremodelagem. OK
-
-- reescrever modelagem do ruído.
-
-- propriedades estatisticas da estimativa: adicionar o teorema 8.3 do ljung
+- consideracoes finais cap 4
