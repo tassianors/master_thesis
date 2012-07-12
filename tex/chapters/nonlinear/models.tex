@@ -5,10 +5,10 @@
 % ideia aqui é colocar uma pequena introdução sobre modelos.. no mesmo estilo
 % que foi para sistemas lineares.
 
-Famílias ou conjuntos de modelos para sistemas podem ser divididos em dois grupos principais, baseados na natureza de
-suas não linearidades: não linearidades estáticas, onde a dinâmica do sistema pode ser bem caracterizada por um modelo
+Famílias ou conjuntos de modelos para sistemas nãolineares podem ser divididos em dois grupos principais, baseados na
+natureza de suas não linearidades: não linearidades estáticas, onde a dinâmica do sistema pode ser bem caracterizada por um modelo
 linear enquanto que a parte não linear está concentrada ou na entrada ou na saída do sistema de forma estática.
-Estes sistemas são chamadosde Wiener para não linearidades na saída do processo ou Hammerstein, quando a
+Estes sistemas são chamados de Wiener para não linearidades na saída do processo ou Hammerstein, quando a
 não linearidade está na entrada do processo.
 
 Para os demais casos, onde a não linearidade está na dinâmica do processo existem várias famílias de modelos
@@ -19,17 +19,19 @@ parâmetros possível na identificação.
 
 Percebe-se então que um mesmo sistema pode ser representado por diversos destes modelos, mas dependendo das
 características deste sistema, uma das famílias será mais adequada, por sua base possuir mais
-afinidade em representar certos tipos de não linearidades.
+afinidade em representar certos tipos de não linearidades. Enende-se por afinidade a caracteristica de conseguir
+representar o sistema com um número de parêmetros menor que outro modelo com outra base e que use mais parametros para
+conseguir representar este sistema.
 
 Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
 modelo. Quando este modelo é não linear, existe uma grande quantidade de opções e com isso o perigo
-de escolher um modelo desnecessariamente complexo é evidente. este perigo baseia-se no {\it{principio
-da parcimônia}} que basicamente determina que o modelo deve ser o mais simples possível.
-\cite{aguirre_maps}
+de escolher um modelo desnecessariamente complexo é evidente. Este perigo baseia-se no {\it{principio
+da parcimônia}} que basicamente determina que o modelo deve ser o mais simples possível \cite{aguirre_maps}. Na seção 
+\ref{sec:si_exper_overfit} foram apresentadas algumas idéias relacionadas a este assunto.
 
-%TODO: achar onde por isso e se nao tem nada melhor no paper para adicionar
-%Um problema fundamental referente a modelos parametrizados refere-se ao fato do
-%parâmetro poder ou não ser determinado a partir dos valores medidos de entrada e saída. \cite{glad_ljung}
+Juntamente com a escolha do modelo para representar o sistema não linear, saber se este é identificável é de grande
+importância. Em \cite{glad_ljung} é apresentado um procedimento para determinar a identificabilidade de sismtena não
+lineares.
 
 % ===============================================================================
 \subsection{Modelos de Wiener e Hammerstein}
@@ -45,7 +47,7 @@ e/ou à saída. Este será o caso de atuadores não lineares com características com
 Um modelo com não linearidades na entrada é chamado de {\it{modelo de Hammerstein}} e 
 para não linearidades na saída chama-se {\it{modelo de Wiener}}. \cite{ljung}
 
-Na Figura (\ref{fig:nl_models_hammerstein_wiener}) observa-se o diagrama de bloco para os modelos
+Na Figura (\ref{fig:nl_models_hammerstein_wiener}) observa-se o diagrama de blocos para os modelos
 de Hammerstein e Wiener.
 
 
@@ -100,14 +102,13 @@ de Hammerstein e Wiener.
 % Aguirre 334
 %===============================================================================
 
-Um sistema não linear pode ser descrito pela série de Volterra \eqref{eq:nl_models_volterra}:
+Um sistema não linear pode ser descrito pela série de Volterra:
 
 \begin{equation}
 y(t)=\sum_{j=1}^{\infty}\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}
 h_j(\tau_1, ... ,\tau_j) \prod_{i=1}^{j}u(t-\tau_i)d\tau_i
 \label{eq:nl_models_volterra}
 \end{equation}
-
 onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para
 um sistema linear com $j=1$ a equação de Volterra se reduz à integral de convolução.
 \cite{aguirre}
@@ -129,8 +130,7 @@ neurônio com $n$ entradas é apresentada na equação \eqref{eq:nl_models_neural}
 x=\emph{f}\left ( \sum_{j=1}^{n}\omega_j x_j +b \right )
 \label{eq:nl_models_neural}
 \end{equation}
-
-Sendo $b$ (bias) e $\omega_j$ constantes e $\emph{f}(\cdot)$ é chamada função de ativação. A
+onde $b$ é conhecido como {\it{bias}} e $\omega_j$ são constantes e $\emph{f}(\cdot)$ é chamada função de ativação. A
 função de ativação mais comum é: \cite{aguirre}
 
 \begin{equation}
@@ -256,8 +256,7 @@ y(t)=f_s\left \{ \sum_{i=1}^{m} \omega_i f_i \left ( \sum_{j=1}^{n}\omega_{ij} x
 b_s \right \}
 \label{eq:nl_models_neural_multilayer}
 \end{equation}
-
-Sendo que $f_s$ é a função de ativação do neurônio da camada de saída. Esta função não precisa ser
+onde $f_s$ é a função de ativação do neurônio da camada de saída. Esta função não precisa ser
 igual a $f_i$, $i=1, \ldots , m$ que por sua vez não precisam ser iguais entre si. As constantes $b_s$ são os termos
 de polarização dos neurônios da camada de saída, $\omega_i$ são os pesos da saída de cada neurônio da
 camada oculta e $\omega_{ij}$ são os pesos da entrada $j$, vista pelo $i-$ésimo neurônio da camada
@@ -366,7 +365,8 @@ apenas uma camada adicionada de uma realimentação com um atraso de tempo como ap
 \psline[linewidth=0.04cm](0.0,4.8)(0.0,-4.8)
 \end{pspicture} 
 }
-\caption{Rede neural recorrentes.}
+\caption{Representação de redes neurais recorrentes. Onde $z^{-1}$ representa um atraso de tempo na realimentação do
+sistema.}
 \label{fig:nl_models_neural_recurrent}
 \end{figure}
 
@@ -384,8 +384,7 @@ mapeamentos do tipo:
 f(y)=w_0+\sum_{i}w_i \phi (\left \| y-c_i \right \|)
 \label{eq:nl_models_rbf}
 \end{equation}
-
-Sendo que $y \in \mathbb{R}^{d_e}$ ($d_e$ é conhecido como dimensão de imersão),
+onde $y \in \mathbb{R}^{d_e}$ ($d_e$ é conhecido como dimensão de imersão),
 $\left \| \cdot \right \|$ é a norma euclidiana, $w_i \in \mathbb{R}$ são pesos, 
 $c_i \in \mathbb{R}^{d_e}$ são centros e $\phi(\cdot):\mathbb{R}^+ \to \mathbb{R}$ 
 é uma função, normalmente escolhida a priori, como por exemplo: \cite{aguirre}
@@ -414,9 +413,8 @@ Outras funções de base usadas são apresentadas na Tabela (\ref{table:nl_models_r
 \end{tabular}
 \end{center}
 \end{table*}
-
 onde $r=\left \| y-c_i \right \|$ e $\sigma$ definem a largura do chapéu no caso de
-funções Gausianas e das multi-quadráticas, como pode ser visto na figura (\ref{fig:nl_models_rbf}).
+funções do tipo Gausianas e multi-quadráticas, como pode ser visto na figura (\ref{fig:nl_models_rbf}).
 
 \begin{figure}[htbp]
 	\center
@@ -427,7 +425,7 @@ funções Gausianas e das multi-quadráticas, como pode ser visto na figura (\ref{f
 
 Este tipo de representação tem boas propriedades locais e pode ser interpretada como 
 uma técnica de interpolação global. Funções radiais de base são casos particulares
-de redes neurais, porem neste caso lineares nos parâmetros $w_i$.\cite{aguirre} 
+de redes neurais, porem neste caso, lineares nos parâmetros $w_i$.\cite{aguirre} 
 
 No contexto de identificação de sistemas é comum adicionar termos auto-regressivos
 lineares, bem como termos de entrada à equação \eqref{eq:nl_models_rbf} resultando em:
@@ -436,7 +434,10 @@ lineares, bem como termos de entrada à equação \eqref{eq:nl_models_rbf} resultan
 y(k)=w_0 + \sum_{i}w_i \phi(\left \| \mathbf{y}(k-1)-c_i \right \|)+\sum_{i=1}^{n_y}a_i y(k-i)+\sum_{i=1}^{n_u}b_i u(k-i)+e(k)
 \nonumber
 \end{equation}
+onde
 
-Sendo $\mathbf{y}(k-1)=\begin{bmatrix}
-y(k-1) & ... & y(k-n_y) & u(k-1) & ... & u(k-n_u)
-\end{bmatrix}$.
+\begin{equation}
+\mathbf{y}(k-1)=\begin{bmatrix}y(k-1) & ... & y(k-n_y) & u(k-1) & ... & u(k-n_u)\end{bmatrix}
+\nonumber
+\end{equation}
+
