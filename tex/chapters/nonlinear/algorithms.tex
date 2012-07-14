@@ -153,8 +153,8 @@ completamente este sistema ($\mathcal{S} \in \mathcal{M}$). Em seguida será apre
 $\mathcal{S} \notin \mathcal{M}$. Por fim será apresentado um exemplo real de um conversor de corrente contínua para
 corrente contínua do tipo Buck.
 
-Serão apresentados os resultados obtidos a fim de verificar a qualidade dos resultados obtidos e a confiabilidade do
-algoritmo em questão.
+Serão apresentados os resultados obtidos a fim de verificar a qualidade e a confiabilidade do algoritmo de identificação
+de sistemas NARMAX, polinomial e racional.
 
 %===============================================================================
 \subsubsection{Sistemas originalmente racionais}
@@ -185,16 +185,16 @@ os resultados da média de 100 estimativas de Monte Carlo foram:
 \nonumber
 \end{equation}
 
-A variância encontrada foi de:
+%A variância encontrada foi de:
+%
+%\begin{equation}
+%\theta_{\text{variância}} =1.0\times 10^{-4} \begin{bmatrix}
+%0.0089  &  0.0073  &  0.1082  &  0.7179  &  0.7910
+%\end{bmatrix}
+%\nonumber
+%\end{equation}
 
-\begin{equation}
-\theta_{\text{variância}} =1.0\times 10^{-4} \begin{bmatrix}
-0.0089  &  0.0073  &  0.1082  &  0.7179  &  0.7910
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-E a matriz de covariância é:
+A matriz de covariância encontrada:
 
 \begin{equation}
 \theta_{\text{Covariância}} =1.0\times 10^{-4} \begin{bmatrix}
@@ -226,6 +226,9 @@ estimativas dos parâmetros $\theta_1$ e $\theta_2$ e a elipse de confiança para 
 	\label{fig:nl_rat_example2}
 \end{figure}
 
+Devido a presença de ruído e ao erro de polarização apresentado ser menor que a variância do ruído adicionado, sabese
+que com o aumento de $N$ o valor de $\hat{\theta}_N \to \theta_0$.
+
 %===============================================================================
 \subsubsection{Sistemas originalmente racionais, quando $\mathcal{S} \notin \mathcal{M}$}
 \label{sec:nl_si_algorithms_rationals_ex2}
@@ -255,14 +258,14 @@ da média de 100 estimativas de Monte Carlo foram:
 \nonumber
 \end{equation}
 
-A variância encontrada foi de:
-
-\begin{equation}
-\theta_{\text{variância}} =1.0\times 10^{-3} \begin{bmatrix}
-0.0020  &  0.0535  &  0.3402  &	  0.3217
-\end{bmatrix}
-\nonumber
-\end{equation}
+%A variância encontrada foi de:
+%
+%\begin{equation}
+%\theta_{\text{variância}} =1.0\times 10^{-3} \begin{bmatrix}
+%0.0020  &  0.0535  &  0.3402  &	  0.3217
+%\end{bmatrix}
+%\nonumber
+%\end{equation}
 
 A fim de comparar a qualidade dos resultados obtidos, na Figura (\ref{fig:nl_rat_example3}) é apresentadas a resposta do
 sistema real \eqref{eq:nl_rat_exemple3} e o sistema obtido pela estimativa utilizando o a classe de modelos
@@ -271,8 +274,8 @@ sistema real \eqref{eq:nl_rat_exemple3} e o sistema obtido pela estimativa utili
 \begin{figure}[htbp]
 	\center
 	\includegraphics[width=0.9\columnwidth]{figures/rat_example3.eps}
-	\caption{Comparação do sistema real e do sistema estimado do modelo \eqref{eq:nl_rat_exemple3_model}. Comparativo dos
-	sistemas para uma entrada do tipo degrau unitário.}
+	\caption{Exemplo 2 - Comparativo da resposta do sistema real e do modelo estimado para uma entrada do tipo degrau
+	unitário}
 	\label{fig:nl_rat_example3}
 \end{figure}
 
@@ -283,22 +286,24 @@ V(\theta)=1.1239
 \nonumber
 \end{equation}
 
+Como não há um valor de $\theta_0$ para comparação, visto que o sistema real não consegue ser presentado pelo modelo,
+optou-se por apresentar o resultado do sistema a uma resposta do tipo degrau unitário. Observa-se com isso que o sistema
+estimado é apenas semelhante ao real, possuindo um sobrepasso maior e possuindo um ganho em regime ligeiramente
+diferente que o sistema real. 
 %===============================================================================
 \subsubsection{Conversor CC-CC Buck}
 \label{sec:nl_si_algorithms_rationals_buck}
 % Aguirre 397
 % Tese do corrêa - pg 27
 %===============================================================================
-O conversor de corrente contínua do tipo Buck possui um mapa que pode ser obtido a partir da equação do
-circuito que tem a forma como em \eqref{eq:nl_alg_buck_circ}. O circuito do
-conversor é apresentado na Figura (\ref{fig:nl_models_buck_circuit}). \cite{tse_buck}
+O conversor de corrente contínua do tipo Buck possui um mapa não linear que pode ser obtido a partir da equação do
+circuito apresentado na Figura (\ref{fig:nl_models_buck_circuit}) e que tem a forma como em: \cite{tse_buck}
 
 \begin{equation}
 y(t)=\alpha y(t-1)+\frac{h(d_n)^2 \beta E\left [ E-y(t-1) \right ]}{y(t-1)}
 \label{eq:nl_alg_buck_circ}
 \end{equation}
-
-Sendo $\alpha = 0.8872$, $\beta = 1.2$ e $E=33$ constantes que dependem apenas dos componentes do
+onde $\alpha = 0.8872$, $\beta = 1.2$ e $E=33$ são constantes que dependem apenas dos componentes do
 circuito eletrônico. $d_n$ é um sinal de tensão que implementa a ação de controle e a saturação
 $h(d_n)$ é dada por :
 
@@ -326,20 +331,24 @@ conversor é: \cite{aguirre_maps}
 y(t)=O exp\left [ 22-y(t-1) \right ]+ \frac{a\; y(t-1)^2 -b\; y(t-1)+c}{y(t-1)}
 \nonumber
 \end{equation}
-
 onde $O=46.429$, $a=2.6204$, $b=99.875$ e $c=1.4171\times 10^3$. Por outro lado a 
 
 Para aplicar o algoritmo, escolhe-se inicialmente um modelo para o sistema em análise. O modelo
-racional \eqref{eq:nl_alg_buck_rational} aproxima bem a dinâmica em questão.
+racional
 
 \begin{equation}
 y(t)=\frac{8.658+0.1223\times10^{-2}y(t-1)^3-0.441\times10^{-1}y(t-1)^2}
 {1-0.8381\times10^{-1}y(t-1)+0.1766\times10^{-2}y(t-1)^2}
 \label{eq:nl_alg_buck_rational}
 \end{equation}
+aproxima bem a dinâmica em questão. \cite{aguirre}
 
-Tendo o modelo escolhido é possível aplicar o algoritmo apresentado na seção
-(\ref{sec:nl_si_algorithms_rationals}). 
+Para a utilização do algoritmo, escolheu-se um modelo com a forma:
+
+\begin{equation}
+y(t)=\frac{\theta_1+\theta_2y(t-1)^3+\theta_3(t-1)^2}{1+\theta_4y(t-1)+\theta_5y(t-1)^2}
+\label{eq:nl_alg_buck_rational_model}
+\end{equation}
 
 Os parâmetros da equação \eqref{eq:nl_alg_buck_rational} são os valores de referência para a utilização do
 métodos descrito em \cite{aguirre}. Utilizando o algoritmo previamente apresentado, o resultado da estimativa
@@ -364,16 +373,6 @@ Os resultados obtidos foram de uma média de:
 \text{média de }\;\theta =\begin{bmatrix}
 8.8976  &    8.6762\times 10^{-4}    & -0.0360 &  -0.0736  &  0.0013
 \end{bmatrix}
-\nonumber
-\end{equation}
-
-e uma variância de
-
-\begin{equation}
-\theta_{\text{variância}} =\begin{bmatrix}
-0.4842\times 10^{-3}  \\ 1.8004\times 10^{-12} \\ 3.5416\times 10^{-9} \\ 1.9850\times 10^{-9} \\ 2.4100\times
-10^{-12}
-\end{bmatrix}^T
 \nonumber
 \end{equation}
 

@@ -3,22 +3,17 @@
 \label{chapter:dbcd}
 %===============================================================================
 
-Este capítulo tem como objetivo introduzir o conceito de projeto de controladores baseados em dados, introduzir alguns
-dos principais metodos existentes e dar enfâse maior ao metodo {\it{Virtual reference feedback tuning}} - VRFT
-que utiliza referência virtual como uma de suas bases.
+Neste capitulo serão apresentados conceitos básicos sobre projetos de controladores baseados em dados. Iniciando pela
+seção \ref{sec:dbcd_definition} onde será abordado brevemente alguns dos mais conhecidos métodos para projetos de
+controladores baseados em dados e também os conceitos básicos que permeiam sua utilização.
 
-Inicialmente na seção \ref{sec:dbcd_definition} será introduzido o conceito de projeto de controlaodres baseados
-em dados. Alguns dos principais métodos e suas subdivisões em métodos diretos: onde não existe a necessidade de
-identificação da planta, para então identificar o controlador; métodos iterativos: onde a cada conjunto de dados
-coletados da planta um novo controlador é encontrado e aplicado sobre a planta até que se convirja para o valor mínimo
-da função custo.
+Na seção \ref{sec:dbcd_vrft} será apresentado o método VRFT ({\it{Virtual reference feedback tuning}}), pois este
+utiliza referência virtual para obtenção dos sinais necessários para o projeto do controlador e que será de grande valia
+para a proposta de trabalho apresentada no capítulo \ref{chapter:dbnarmax}.
 
-Deseja-se adicionar um enfoque ao método direto que utiliza referência virtual: VRFT (seção \ref{sec:dbcd_vrft}).
-Quer-se com isso introduzir e exeplificar a utilização de referência virtual para a obtenção dos sinais necessários para
-a identificação do controlador ideal para este sistema.
-
-Ao fim, na seção \ref{sec:dbcd_conclusions}, serão apresentadas as considerações finais a respeito do que foi visto
-neste capitulo.
+Na seção \ref{sec:dbcd_vrft_examples} serão apresentados alguns exemplos de uso do métod VRFT e os resultados obtidos.
+Ao fin, na seção \ref{sec:dbcd_conclusions} será apresentado uma breve conclusão sobre o que foi abordado neste
+capítulo.
 
 %===============================================================================
 \input{tex/chapters/dbcd/definitions}

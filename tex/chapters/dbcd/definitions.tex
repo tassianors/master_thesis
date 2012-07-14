@@ -1,28 +1,28 @@
-%===============================================================================
-\section{Definições}
-\label{sec:dbcd_definition}
-%===============================================================================
+	%===============================================================================
+	\section{Definições}
+	\label{sec:dbcd_definition}
+	%===============================================================================
 
 Desde meados dos anos 1990  têm surgido na literatura uma variedade de projetos de controladores que são construidos
 diretamente sobre os dados de entrada e saída coletados do sistema. Estes métodos contrastam com os de projetos de
 controladores baseados em modelos em dois aspectos principais: eles não são baseados no conhecimento do modelo do
 processo e não têm a intenção de determinar livremente a função de transferência do modelo. Ao invéz disso usa-se
 diretamente o montante de informação carregada pelos dados coletados para ajustar os parâmetros de um conjunto de
-modelos cuja estrutura é previamente especificada. \cite{bazanella_datadriven} 
+modelos cuja estrutura é previamente especificada \cite{bazanella_datadriven}. Estes métodos são conhecidos como
+projetos de controladores baseados em dados ou do inglês {\it{data-driven }} ou {\it{data based controller design}}.
 
-Estes métodos são conhecidos como projetos de controladores baseados em dados ou do inglês {\it{data-driven }} ou
-{\it{data based controller design}}.
-
-Como apresentado na seção (\ref{sec:si_project_experiments}) estes dados podem ser obtidos de
+Como apresentado na seção (\ref{sec:si_project_experiments}) os dados coletados do sistema podem ser obtidos de
 diversas formas. Algumas vezes estas informações podem vir da operação normal da planta em malha
 fechada com a presença de algum controlador. Situação esta que tem um grande apelo em plantas
-industriais, onde a parada do processo, para levantamento de informações, é muitas vezes indesejável e as vezes até
+industriais, onde a parada do processo, para levantamento de informações, é muitas vezes indesejável e por vezes até
 inviável. Se existe a possibilidade de parar a planta e aplicar sinais predeterminados, o projeto de experimentos pode
 trazer muitas vantagens como foi apresentado na seção (\ref{sec:si_project_experiments}).
 
 O projeto de controladores baseados em dados consiste em estimar os parâmetros da estrutura do controlador usando os
 dados de entrada e saída coletados do sistema. A estimativa é feita de forma direta, ou seja, sem a necessidade de um
 passo intermediário para identificação da planta do processo. \cite{eckard_campestrini}
+
+
 
 Existem na literatura diversos métodos de projetos de controladores baseados em dados que otimizam algum critério de
 performance, com diferentes focos para diferentes critérios. Estes critérios expressam um ou uma combinação de objetivos
@@ -133,11 +133,12 @@ y(t)=T(z, \theta)r(t)
 \label{sec:dbcd_performance_criteria}
 %===============================================================================
 
-Como já foi apresentado no capítulo sobre identificação de sistemas lineares (capítulo
-\ref{chapter:system_identification}), existe um critério para elencar qual é o melhor conjunto de parâmetros $\theta$
-pra a classe de modelos escolhida. Para isso, foi apresentado a equação \eqref{eq:si_obj_etim_lsm_v} como um dos
-critérios mais utilizados. Para projeto de controladores existem desdobramentos deste critério em
-função dos objetivos básicos de controle:
+Identificação de sistemas é dividido em três partes básicas: o sistema real, a classe de modelos escolhida e o critério
+de performance $V(\theta)$. No capítulo sobre identificação de sistemas lineares (capítulo
+\ref{chapter:system_identification}),  foi apresentado um dos critérios mais utilizados, que mede o custo de uma
+função baseado no erro entre os dados observados do sistema real e a saída do modelo. (equação
+\eqref{eq:si_obj_etim_lsm_v}). Para projeto de controladores existem desdobramentos deste critério em função dos
+objetivos básicos de controle:
 
 \begin{itemize}
   \item Seguimento de referência,
@@ -153,7 +154,6 @@ J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d
 (T(z,\theta)-T_d(z))r(t) \right ]^2
 \label{eq:dbcd_def_track_error}
 \end{equation}
-
 onde $y(t)$ é a saída medida do sistema e $y_d(t)$ é a saída desejada, $T_d(z)$ é o comportamento desejado para o
 sistema em malha fechada.
 
@@ -198,7 +198,6 @@ Relaxa-se então o critério de performance para:
 J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ (S(z, \theta)-S_d(z,\theta))\nu(t) \right ]^2 
 \label{eq:dbcd_perf_je_relax}
 \end{equation}
-
 onde $S_d(z,\theta)$ é a função sensibilidade desejada para o sistema.
 
 Assim como o controlador apresentado em \eqref{eq:dbcd_perf_tracking_cd} é o controlador ótimo para o critério de
@@ -220,7 +219,7 @@ C_e(z)=\frac{T_e(z)}{G_0(z)(1-T_e(z))}=\frac{H(z)-1}{G_0(z)}
 
 O controlador apresentado em \eqref{eq:dbcd_perf_ce} também é conhecido como controlador da minima variância.
 
-Neste trabalho os exemplos utilizados usam-se o critério de seguimento de referência, com o controlador ótimo desejado
+Neste trabalho os exemplos utilizados usam o critério de seguimento de referência, com o controlador ótimo desejado
 sendo representado por \eqref{eq:dbcd_perf_tracking_cd}.
 
 %%===============================================================================

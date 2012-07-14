@@ -34,7 +34,6 @@ O controlador a ser identificado pode ser parametrizado como abaixo:
 C(z,\theta)=\beta^T(z)\theta
 \label{eq:vrft_method_controller}
 \end{equation}
-
 onde $\beta(z) = \left [ \beta_1(z)\;\; \beta_2(z)\;\; \cdots \;\; \beta_n(z)\right ]^T$ é um vetor
 linear de funções de transferências de tempo discreto e $\theta$ é o vetor de parâmetros a ser estimado.
 
@@ -46,11 +45,11 @@ J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d
 (T(z,\theta)-T_d(z))r(t) \right ]^2
 \nonumber
 \end{equation}
-
 que é dependente do modelo de referência escolhido. 
 
-Apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT, mesmo
-estes dois métodos pertencendo uma a mesma classe, algumas diferenças são ressaltadas: \cite{campi_savaresi2000}
+Apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT. Mesmo
+estes dois métodos pertencendo uma a mesma classe, algumas diferênças significativas existem e podem ser ressaltadas:
+\cite{campi_savaresi2000}
 
 \begin{itemize}
 	\item {\it{IFT}} é baseado em um métodos de gradiente decrescente e além disso é uma técnica
@@ -58,7 +57,7 @@ estes dois métodos pertencendo uma a mesma classe, algumas diferenças são ressal
 	Ele requer experimentos específicos sobre a planta, com entradas específicas.
 	\item {\it{VRFT}} é um procedimento não iterativo que procura pelo mínimo global do critério de
 	performance \eqref{eq:dbcd_def_track_error}. Este método não requer experimentos específicos sobre
-	a planta, podendo inclusive utilizar os dados do funcionamento normal desta.
+	a planta, podendo inclusive utilizar os dados do funcionamento normal do sistema.
 \end{itemize}
 
 %===============================================================================
@@ -73,7 +72,7 @@ utilizando o método VRFT. Para maiores detalhes e discussões aprofundadas é indi
 Suponha que o controlador $C(z, \theta)$ resulta um sistema em malha fechada cuja função de
 transferência é dada por $T_d(z)$. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$,
 sua saída será $T_d(z)r(t)$. Uma premissa para que o sistema em malha fechada tenha a mesma
-função de transferência que o modelo de referência é que a saída dos dois seja a mesma para um dado
+função de transferência que o modelo de referência é que a saída dos dois sejaM a mesma para um dado
 sinal $\bar{r}(t)$.
 
 Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $T_d(z)\bar{r}(t)=y(t)$.
@@ -114,7 +113,7 @@ presentes.
 \rput(8.3,1.2707813){\small $y(t)$}
 \psframe[linewidth=0.04,dimen=outer](6.0,-0.62921876)(3.8,-1.4292188)
 \usefont{T1}{ptm}{m}{n}
-\rput(4.91,-1.0492188){\small $M^{-1}(z)$}
+\rput(4.91,-1.0492188){\small $T_d^{-1}(z)$}
 \psline[linewidth=0.04cm](9.0,0.97078127)(9.0,-1.0292188)
 \psline[linewidth=0.04cm](9.0,-1.0292188)(6.0,-1.0292188)
 \psline[linewidth=0.04cm](3.8,-1.0292188)(0.0,-1.0292188)
@@ -233,7 +232,7 @@ muito próximos \cite{campi_leccini_savaresi2002}.
 
 A utilização do filtro é de grande importância em situações onde a escolha do modelo $C(z,\theta)$ não consegue
 representar a totalidade do controlador ótimo ($C_d(z)$) que quando aplicado em conjunto com a planta proporciona a
-exata resposta desejada pela escolha de $T_d(z)$.
+exata resposta desejada pela escolha de $T_d(z)$, ou seja:
 
 \begin{equation}
 C_d(z) \notin C(z, \theta)
@@ -298,8 +297,8 @@ J_{VR}(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | L(e^{j\omega}) \right |^
 \end{eqnarray}
 
 Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(z) \in
-C(z,\theta)$ as duas funções custo são iguais, possuindo também o mesmo mínimo. Quando$C_d(z) \notin C(z,\theta)$ nenhum
-dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro dos dois
+C(z,\theta)$ as duas funções custo são iguais, possuindo também o mesmo mínimo. Quando $C_d(z) \notin C(z,\theta)$
+nenhum dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro dos dois
 integrandos são diferentes, não existe motivos para esperar que os dois custos dejam o mesmo.
 \cite{bazanella_datadriven}
 
@@ -449,8 +448,8 @@ Os parâmetros do controlador podem então ser calculados como em:
 \end{equation}
 
 São propostas duas alternativas para a escolha da variável instrumental. A primeira garante
-assintoticamente que $\theta_0^{IV}= \theta_0$, entretanto um experimento adicional é
-requisitado. O segundo não garante, rigorosamente, $\theta_0^{IV}= \theta_0$ mas o erro
+assintoticamente que $\theta_N^{IV}= \theta_0$, entretanto um experimento adicional é
+requisitado. O segundo não garante, rigorosamente, $\theta_N^{IV}= \theta_0$ mas o erro
 esperado é pequeno, além disso um segundo experimento não é necessário. \cite{campi_leccini_savaresi2002}
 
 \begin{itemize}
@@ -474,7 +473,6 @@ esperado é pequeno, além disso um segundo experimento não é necessário. \cite{ca
 	
 	Devido as incertezas na estimativa de $G(z,\theta_G)$, este segundo método não garante que a
 	estimativa tenda assintoticamente a $\theta_0$.
-	
 \end{itemize}
 
 %===============================================================================
@@ -487,7 +485,7 @@ lineares modelados pelas classes de modelos ARX e BJ quando o controlador $C(z, 
 controladores que representa completamente o controlador ideal e também um caso onde o controlador ideal $C_d(z)$ não
 consegue ser presentado pela classe de controlador escolhida.
 
-Nas identificações apresentadas a seguir será sempre utilizado um sina PRBS de ordem 7.
+Nas identificações apresentadas a seguir será sempre utilizado um sinal PRBS de ordem 7.
 
 %===============================================================================
 \subsubsection{Controlador PI - sistema Box-Jenkins}
@@ -511,22 +509,22 @@ T_d(z)=\frac { 0.4 }{ z-0.6 }
 \label{eq:vrft_methos_ex_bj_M}
 \end{equation}
 
-Tem-se assim que o controlador ideal, aquele que ao ser inserido no sistema em
-malha fechada apresentado na Figura (\ref{fig:vrft_db_control_loop}) propicia o
-comportamento descrito por \eqref{eq:vrft_methos_ex_bj_M} é:
+Tem-se assim que o controlador ideal pode ser definido por:
 
 \begin{equation}
 C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))} = \frac { 0.8(z - 0.85) }{ z-1 }
 \label{eq:vrft_methos_ex_bj_cd}
 \end{equation}
 
-Observa-se que este controlador pode ser representado como um controlador
-{\it{PI}} como em: 
+Observa-se que este controlador pode ser representado como um controlador {\it{PI}} como em: 
 
 \begin{equation}
 C(z, \theta)=\frac { \theta_1 z +\theta_2}{ z-1 }
 \label{eq:vrft_methos_ex_bj_c}
 \end{equation}
+
+Escolheu-se \eqref{eq:vrft_methos_ex_bj_c} como sendo a classe de modelos a ser utilizada para a identificação do
+controlador.
 
 Utilizando o método do VRFT para identificação do controlador quando este está submetido a um ruído $\sigma_e^2=0.005$
 obtém-se a estimativas dos parâmetro s $\theta_1$ e $\theta_2$ apresentados na Figura (\ref{fig:vrft_bj_M10_var005})
@@ -536,7 +534,7 @@ com um resultado de 100 simulações com $N=2540$ cada.
 	\center
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var005.eps}
 	\caption{Resultado das 100 estimativas de Monte Carlo dos parâmetros $\theta_1$ e $\theta_2$ para o controlador
-	apresentado em \eqref{eq:vrft_methos_ex_bj_c}.}
+	apresentado em \eqref{eq:vrft_methos_ex_bj_c}. Adicionado a simulação um ruído aditivo de variância $\sigma_e^2=0.005$}
 	\label{fig:vrft_bj_M10_var005}
 \end{figure}
 
@@ -552,7 +550,7 @@ aumentarmos a variância do ruído do sistema, será observado um aumento desta dif
 \end{equation}
 
 Na figura (\ref{fig:vrft_bj_M10_var02})  é apresentado o resultado para a estimativa de $\theta$ quando a variância do 
-ruído é quadruplicado ($\sigma_e^2=0.02$). Observa-se então que o erro de polarização existe na estimativa. Como
+ruído é quadruplicada ($\sigma_e^2=0.02$). Observa-se então que o erro de polarização existe na estimativa. Como
 descrito em \cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruído nas amostras, a estimativa
 é inevitavelmente polarizada. Na seção (\ref{sec:dbcd_vrft_framework_noise}) foi sugerido o uso de variáveis
 instrumentais par para que este erro de polarização seja minimizado. Utilizou-se então este método e para um ruído com
@@ -562,7 +560,7 @@ a mesma variância ($\sigma_e ^2=0.02$), o resultado óbtido é o apresentado na Fi
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_bj_M10_var02.eps}
 	\caption{100 estimativas Monte Carlo dos parâmetros $\theta_1$ e $\theta_2$ para o controlador apresentado em
-	\eqref{eq:vrft_methos_ex_bj_c} com variância do ruído de 0.02}
+	\eqref{eq:vrft_methos_ex_bj_c} com um ruído de variância de $\sigma_e^2=0.02$.}
 	\label{fig:vrft_bj_M10_var02}
 \end{figure}
 
@@ -588,16 +586,20 @@ apresentados para diferentes valores de variância do ruído para o mesmo sistema 
 \caption{Valor dos custos $J_{VR}^N$ e $J_{y}$ além da variância das estimativas para diferentes valores de $\sigma_e^2$
 quando o método VRFT não utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$}
 \label{table:vrft_method_bj}
-\begin{tabular}{cccc}
+\begin{tabular}{ccccc}
 \hline
-        Variância $\sigma_e^2$ & $J_{VR}^N(\theta)$ & $J_y(\theta)$ & Variância $\theta$   \\
+        Variância $\sigma_e^2$ & $J_{VR}^N(\theta)$ & $J_y(\theta)$ & Média $\theta_1$ & Média $\theta_2$  \\
 \hline
-	    0.06    & 1.7893$\times10^{-2}$ & 8.2367$\times10^{-3}$ & $1.0\times10^{-5}\;\left[ 0.4754\;\;0.4434\right ]$ \\
-	    0.05    & 1.2515$\times10^{-2}$ & 5.5366$\times10^{-3}$ & $1.0\times10^{-5}\;\left[ 0.2671\;\;0.3244\right ]$ \\
-        0.04    & 8.1897$\times10^{-3}$ & 3.6071$\times10^{-3}$ & $1.0\times10^{-5}\;\left[ 0.1534\;\;0.1583\right ]$ \\
-        0.01    & 4.9665$\times10^{-4}$ & 2.4402$\times10^{-4}$ & $1.0\times10^{-6}\;\left[ 0.0963\;\;0.1035\right ]$ \\
-        0.005   & 1.2515$\times10^{-4}$ & 5.6013$\times10^{-5}$ & $1.0\times10^{-7}\;\left[ 0.2999\;\;0.3114\right ]$ \\
-        0.001   & 5.0036$\times10^{-6}$ & 3.5734$\times10^{-6}$ & $1.0\times10^{-8}\;\left[ 0.1301\;\;0.1223\right ]$ \\
+	 0.1 	 & 	 4.87826e-02 	 & 	 2.15324e-02 	 & 	 0.76178 	 & 	 0.64466 \\ 
+	 0.08 	 & 	 3.26789e-02 	 & 	 1.35688e-02 	 & 	 0.7759 	 & 	 0.65765 \\ 
+	 0.06 	 & 	 1.80426e-02 	 & 	 7.86422e-03 	 & 	 0.78597 	 & 	 0.66715 \\ 
+	 0.05 	 & 	 1.19341e-02 	 & 	 5.52796e-03 	 & 	 0.79017 	 & 	 0.67088 \\ 
+	 0.04 	 & 	 7.54289e-03 	 & 	 3.65088e-03 	 & 	 0.79351 	 & 	 0.67396 \\ 
+	 0.01 	 & 	 4.89481e-04 	 & 	 2.11052e-04 	 & 	 0.79962 	 & 	 0.67965 \\ 
+	 0.008 	 & 	 3.25810e-04 	 & 	 1.83444e-04 	 & 	 0.79968 	 & 	 0.67969 \\ 
+	 0.005 	 & 	 1.20816e-04 	 & 	 5.42193e-05 	 & 	 0.7999 	 & 	 0.67991 \\ 
+	 0.003 	 & 	 4.73517e-05 	 & 	 2.28052e-05 	 & 	 0.79996 	 & 	 0.67996 \\ 
+	 0.001 	 & 	 5.02347e-06 	 & 	 2.77267e-06 	 & 	 0.8 	     & 	 0.68 \\ 
 \hline
 \end{tabular}
 \end{center}
@@ -609,23 +611,27 @@ quando o método VRFT não utiliza variáveis instrumentais para a estimativa dos p
 \caption{Valor dos custos $J_{VR}^N$ e $J_{y}$ além da  variância das estimativas para diferentes valores de
 $\sigma_e^2$ quando o método VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$}
 \label{table:vrft_method_bj_iv}
-\begin{tabular}{cccc}
+\begin{tabular}{ccccc}
 \hline
-        Variância $\sigma_e^2$ & $J_{VR}^N(\theta)$ & $J_{y}(\theta)$ & Variância $\theta$   \\
+        Variância $\sigma_e^2$ & $J_{VR}^N(\theta)$ & $J_{y}(\theta)$  & Média $\theta_1$ & Média $\theta_2$  \\
 \hline
-	    0.06    & 45.1719  &  $9.7345\times10^{-5}$ & $1.0\times10^{-5}\;\left[ 0.5161 \;\; 0.5332\right ]$ \\
-	    0.05    & 33.2600  &  $2.0457\times10^{-5}$ & $1.0\times10^{-5}\;\left[ 0.2481 \;\; 0.2652\right ]$ \\
-        0.04    & 21.2652  &  $1.1665\times10^{-4}$ & $1.0\times10^{-5}\;\left[ 0.2040 \;\; 0.2084\right ]$ \\
-        0.01    & 1.2956   &  $8.9695\times10^{-6}$ & $1.0\times10^{-6}\;\left[ 0.1246 \;\; 0.1138\right ]$ \\
-        0.005   & 0.3264   &  $7.4764\times10^{-6}$ & $1.0\times10^{-7}\;\left[ 0.3063 \;\; 0.2917\right ]$ \\
-        0.001   & 0.0126   &  $5.2443\times10^{-7}$ & $1.0\times10^{-8}\;\left[ 0.1059 \;\; 0.1017\right ]$ \\
+	 0.1 	 & 	 5.19132e-02 	 & 	 4.14964e-04 	 & 	 0.79936 	 & 	 0.67971 \\ 
+	 0.08 	 & 	 3.31577e-02 	 & 	 2.96000e-04 	 & 	 0.80037 	 & 	 0.68007 \\ 
+	 0.06 	 & 	 1.70932e-02 	 & 	 2.17256e-04 	 & 	 0.79989 	 & 	 0.67969 \\ 
+	 0.05 	 & 	 1.27803e-02 	 & 	 3.14017e-05 	 & 	 0.80006 	 & 	 0.68005 \\ 
+	 0.04 	 & 	 7.72145e-03 	 & 	 9.43578e-05 	 & 	 0.79996 	 & 	 0.68006 \\ 
+	 0.01 	 & 	 5.00316e-04 	 & 	 3.20694e-05 	 & 	 0.80005 	 & 	 0.68003 \\ 
+	 0.008 	 & 	 3.44326e-04 	 & 	 2.93508e-05 	 & 	 0.80001 	 & 	 0.68004 \\ 
+	 0.005 	 & 	 1.19855e-04 	 & 	 6.96916e-06 	 & 	 0.79999 	 & 	 0.68 \\ 
+	 0.003 	 & 	 4.22380e-05 	 & 	 6.33696e-06 	 & 	 0.80001 	 & 	 0.68001 \\ 
+	 0.001 	 & 	 5.08709e-06 	 & 	 1.18016e-06 	 & 	 0.8 	 	 & 	 0.68 \\ 
 \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
 Utilizando variáveis instrumentais observa-se que o custo $J_{y}(\theta)$ é significativamente mais baixo
-quando comparado com o método onde não são utilizadas variáveis instrumentais, cooroborando com o que foi apresentado na
+quando comparado com o método onde não são utilizadas variáveis instrumentais, corroborando com o que foi apresentado na
 seção (\ref{sec:dbcd_vrft_framework_noise}).
 
 %===============================================================================
