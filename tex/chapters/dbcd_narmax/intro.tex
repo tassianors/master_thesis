@@ -28,3 +28,124 @@ Na seção (\ref{sec:nl_si_algorithms_rationals}) foi apresentado o algoritmo impl
 apresentadas em seguida. Os resultados obtidos para identificação de sistemas não lineares que podem ser descritos por
 modelos NARMAX se mostrou eficiente. 
 
+%===============================================================================
+\section{Método}
+\label{sec:dbnarmax_method}
+%===============================================================================
+
+O método proposto neste trabalho consiste na idéia de utilizar referência virtual para, a partir dos dados coletados do
+sistema, determinar os sinais de entrada do controlador que faz com que o sistema em malha fechada se comporte como
+desejado: $T_d(z)$.
+
+Parte-se do pressuposto de que o sistema $G_0(z)$ é não linear, mas que o comportamento em malha fechada desejado é
+linear, portanto o controlador projetado deve cancelar as não linearidades da planta para que possa ser possível uma
+relação linear entre a entrada $r(t)$ e a saída $y(t)$.
+
+Não há necessidade aqui de atrelar o sistema $G_0(z)$  ou o controlador $C(z, \theta)$ à alguma classe de modelos
+predeterminada. Com os dados coletados da planta, é possível determinar os sinais de entrada do controlador fazendo:
+
+\begin{equation}
+\bar{r}(t)=T_d^{-1}(z)y(t)
+\label{eq:dbnarmax_method_r}
+\end{equation}
+e
+
+\begin{equation}
+\varepsilon(t)=\bar{r}(t)-y(t)
+\nonumber
+\end{equation}
+
+Na figura \ref{fig:dbnarmax_method_vr} são presentados os sinais envolvidos e como é feita a obtenção dos sinais
+necessários para a posterior identificação do controlador que leva o sistema a se comportar como esperado em malha
+fechada.
+
+\begin{figure}[htbp]
+\center
+% Generated with LaTeXDraw 2.0.8
+% Sun Jul 15 13:50:38 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\scalebox{1} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-1.4292188)(9.571875,1.4692189)
+\pscircle[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](1.951875,0.97078127){0.2}
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](5.351875,1.3707813)(3.551875,0.57078123)
+\psframe[linewidth=0.04,dimen=outer](8.151875,1.3707813)(6.551875,0.57078123)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.551875,0.97078127)(1.751875,0.97078127)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.151875,0.97078127)(3.551875,0.97078127)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.351875,0.97078127)(6.551875,0.97078127)
+\psline[linewidth=0.04cm](8.151875,0.97078127)(9.551875,0.97078127)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.951875,0.7707813)(1.951875,-0.02921875)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](1.951875,-0.02921875)(8.951875,-0.02921875)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](8.951875,-0.02921875)(8.951875,0.97078127)
+\usefont{T1}{ptm}{m}{n}
+\rput(1.6271875,1.2807813){+}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.1765625,0.68078125){-}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.991875,1.2707813){\small $\bar{r}(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.511875,0.97078127){\small $C(z, \theta)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.281875,0.9507812){\small $G_0(z)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(6.031875,1.2707813){\small $u(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.771875,1.2707813){\small $\varepsilon (t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.821875,1.2707813){\small $y(t)$}
+\psframe[linewidth=0.04,dimen=outer](6.551875,-0.62921876)(4.351875,-1.4292188)
+\usefont{T1}{ptm}{m}{n}
+\rput(5.431875,-1.0492188){\small $T_d^{-1}(z)$}
+\psline[linewidth=0.04cm](9.551875,0.97078127)(9.551875,-1.0292188)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.551875,-1.0292188)(6.551875,-1.0292188)
+\psline[linewidth=0.04cm](4.351875,-1.0292188)(0.551875,-1.0292188)
+\psline[linewidth=0.04cm](0.551875,-1.0292188)(0.551875,0.97078127)
+\end{pspicture} 
+}
+\caption{Representação em blocos do sistema em malha fechada para obtenção dos sinais $\varepsilon(t)$ e $\bar{r}(t)$
+utilizando referência virtual. Tracejado está a realimentação e o controlador, que não estão presentes no procedimento
+para obtenção dos sinais.}
+\label{fig:dbnarmax_method_vr}
+\end{figure}
+
+Fica a critério do projetista, assim como para métodos lineares, determinar a estrutura da classe de modelos a ser
+utilizada para a identificação do controlador. Neste momento é importante ter algum conhecimento da planta, mesmo que
+isso não seja mandatório para que o método possa ser aplicado. Para que o comportamento linear $T_d(z)$ possa ser obtido
+em malha fechada há a necessidade de que o controlador $C_d(z) \in C(z, \theta)$. $C_d(z)$ neste caso é o mesmo que o
+apresentado na equação \eqref{eq:dbcd_perf_tracking_cd} e aqui replicado:
+
+\begin{equation}
+C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))}
+\nonumber
+\end{equation}
+
+Desta forma é simples compreender que $G_0(z)$, ou uma parcela deste, estará presente na estrutura de $C(z,\theta)$.
+Neste trabalho optou-se por caracterizar o controlador por classes de modelos NARMAX. A necessidade da classe ser NARMAX
+polinomial:
+
+\begin{equation}
+y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
+\nonumber
+\end{equation}
+ou racional:
+
+\begin{align*}
+y(t) &=\frac{a(y(t-1), \ldots, y(t-n_y), u(t-1),\ldots, u(t-n_u), }{b(y(t-1), \ldots, y(t-n_y), u(t-1), \ldots, u(t-n_u),}\cdots \\ 
+& \cdots\frac{ e(t-1), \ldots, e(t-n_e))}{e(t-1), \ldots, e(t-n_e))} +e(t)
+\end{align*}
+depende do contexto da identificação e do sistema.
+
+Assumindo que o controlador tem a forma de uma classe de modelos NARMAX, o algoritmo proposto na seção
+\ref{sec:nl_si_algorithms_rationals} pode ser aplicado para a obtenção do controlador ideal.
+
+É  conveniente aqui observar que a escolha da classe NARMAX está bastante ligada ao uso do algoritmo de identificação
+destes modelos ter-se mostrado bastante eficiente, além dos motivos já citados da vasta gama de sistemas reais que
+modelos NARMAX conseguem representar. Todavia, a idéia aqui apresentada, poderia ser aplicada para qualquer classe de
+modelos de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe pudesse ser utilizado
+para obtenção dos valores de $\hat{\theta}$ que minimize algum critério de escolha.
+
+
+
