@@ -12,20 +12,17 @@ se comporte em malha fechada como um sistema linear. Para isso o controlador adi
 anular a não linearidade contida na planta, desta forma, forçozamente o controlador será não linear, sendo descrito por
 um modelo NARMAX racional ou polinomial.
 
-Os exemplos apresentados a seguir são divididos em duas categorias: uma delas onde a não linearidade da planta está
-acoplada de forma estática e outra quando a não linearidade está na dinâmica do processo.
-
 %===============================================================================
 \subsection{Não linearidades estáticas}
 \label{sec:dbnarmax_nl_wiener}
 %===============================================================================
 
-A planta do sistema utilizada neste exemplo possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
+Considere que a planta do sistema real possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
 encontra-se na saída do processo. Na Figura \ref{fig:vrft_nl_wiener} é apresentado o diagrama de blocos do sistema,
 sendo $\zeta(t)$ e $\gamma(t)$ os blocos não lineares da planta e do controlador respectivamente. Análogamente
 $G'(z)$ e $C'(z)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na
-entrda deste, pode ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe de modelos
-NARMAX racional.
+entrada, este poderia ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe
+de modelos NARMAX racional, não deixando entretanto de ``ser'' um modelo de Hammerstein.
 
 \begin{figure}[htbp]
 \center
@@ -86,141 +83,138 @@ NARMAX racional.
 \label{fig:vrft_nl_wiener}
 \end{figure}
 
-O sistema possui um boloco linear que pode ser descrito por:
+O bloco linear da planta pode ser descrito como abaixo:
 
 \begin{equation}
 G'(z)=\frac{0.5}{z-0.9}
 \label{eq:vrft_nl_wiener_g}
-\end{equation} 
-
-O comportamento do sistema em malha fechada esperado é definido por $T_d(z)$:
-
-\begin{equation}
-T_d(z)=\frac{0.4}{z-0.6}
-\label{eq:vrft_nl_wiener_m}
-\end{equation}  
-
-A não linearidade presente na planta do sistema foi escolhida como sendo um polinômio de terceira ordem
-descrito como abaixo:
+\end{equation}
+a não linearidade presente na planta do sistema pode ser descrita como um polinômio de terceira ordem:
 
 \begin{equation}
 \zeta(\omega(t))=y(t)=1.5\omega(t)+0.2\omega^3(t)
 \label{eq:vrft_nl_wiener_phi}
 \end{equation}  
+tem-se assim que a planta pode ser descrita pela concatenação dos blocos $G'(z)$ e $\zeta(t)$. Espera-se que o sistema
+em malha fechada se comporte como $T_d(z)$:
 
-Espera-se então que por $T_d(z)$ ser linear, que o controlador tenha um bloco que cancele o efeito não linear de
-$\zeta(t)$.
-
-Deseja-se que em malha fechada o sinal $v(t)$ seja tal que:
+\begin{equation}
+T_d(z)=\frac{0.4}{z-0.6}
+\label{eq:vrft_nl_wiener_m}
+\end{equation}  
+por $T_d(z)$ ser linear, o controlador ótimo $C_d(z)$ deve ser tal que possa cancelar o efeito não linear de
+$\zeta(t)$. Em outras palavras, espera-se que o sistema em malha fechada possua o sinal $v(t)$ como em:
 
 \begin{equation}
 v(t)=r(t)-\omega(t)
 \end{equation}
-
-Tem-se entretanto:
+desta forma, o efeito não linear presente na planta seria anulado pelo controlador. Tem-se todavia, que o sistema
+descrito na figura \ref{fig:vrft_nl_wiener} se comporta como:
 
 \begin{equation}
 v(t)=\epsilon(t)\gamma (t)
 \nonumber
 \end{equation}
-
-e que
+e sendo $\epsilon(t)$ descrito como:
 
 \begin{equation}
 \epsilon(t) = r(t) - y(t)
 \nonumber
 \end{equation}
- 
-Obtem-se então o relacionamento entre os sinais $\gamma (t) $ e $\zeta(t)$:
+pode-se obter então o relacionamento entre os sinais $\gamma(t) $ e $\zeta(t)$:
 
 \begin{equation}
-( r(t) - \omega(t) \zeta(t)) \gamma (t) = r(t) - \omega(t) 
+(r(t) - \omega(t) \zeta(t)) \gamma (t) = r(t) - \omega(t) 
 \nonumber
 \end{equation}
-
-Resultando:
+resultando em:
 
 \begin{equation}
 \gamma (t) = \frac{r(t)-\omega(t)}{r(t) - \omega(t)\zeta(t)} 
+\label{eq:dbnarmac_ex_wiener_gamma}
 \end{equation}
 
-Pecebe-se claramente que quando não há sinal de referência $r(t)$, o relacionamento entre os polinomios $\gamma (t) $
-e $\zeta(t)$ fica simplificado a:
+Pecebe-se claramente que quando não há sinal de referência $r(t)$, ou seja
+
+\begin{equation}
+r(t) \equiv 0
+\nonumber 
+\end{equation}
+o relacionamento entre os polinomios $\gamma(t) $ e $\zeta(t)$ fica simplificado a:
 
 \begin{equation}
 \gamma (t) = \frac{1}{\zeta(t)}
 \nonumber 
 \end{equation}
 
-Define-se então $\gamma (t)$ como sendo:
+Determinar análiticamente a equação de $\gamma (t)$ como descrito em \eqref{eq:dbnarmac_ex_wiener_gamma} é uma tarefa um
+tanto quando complexa. Por questões de simplificação optou-se por definir $\gamma(t)$ como sendo um outro polinômio,
+assim como $\zeta(t)$ em \eqref{eq:vrft_nl_wiener_phi}. O polinômio $\gamma(t)$ escolhido para a identificação é:
 
 \begin{equation}
 \gamma (\epsilon(t))= v(t) = a_1\epsilon (t) + a_2 \epsilon ^2(t) +a_3 \epsilon ^3(t) +a_4 \epsilon ^4(t)
-\label{eq:vrft_nl_wiener_phi_inv}
+\label{eq:dbnarmax_ex_wiener_gamma_choosen}
 \end{equation}  
 
-Desconsiderando a parte não linear presente na planta, é simples de observar que o controlador ótimo que
-levaria a planta em malha fechada a ter o comportamento descrito por $T_d(z)$ é:
+Se nenhum dos blocos não lineares existissem no sistema, o controlador ideal poderia ser descrito pela equação
+\eqref{eq:dbcd_perf_tracking_cd}, resultando em 
 
 \begin{equation}
 C_d(z)= \frac{0.8z-0.72}{z-1}
 \label{eq:vrft_nl_wiener_cd}
-\end{equation}  
+\end{equation}
+entretanto, o controlador ideal que leva o sistema a se comportar como definido por $T_d(z)$ é composto em parte por
+\eqref{eq:vrft_nl_wiener_cd} acrescido do polinômio \eqref{eq:dbnarmax_ex_wiener_gamma_choosen}.
 
 O controlador $C_d(z)$ possui uma integrador em sua estrutura. Para evitar problemas de seguimento de
 referência optou-se por não identificar esta parte do controlador. Mantendo o denominador como um integrador
-e identificando apenas o numerador. Juntamente com a identificação do controlador da porção linear $C_d(z)$ é
-necessário identificar o polinômio da equação \eqref{eq:vrft_nl_wiener_phi_inv}.
+e identificando apenas o numerador. 
 
-Fazendo-se as substituições matemáticas necessárias, chega-se a expressão do sinal de saída do controlador que
-se quer identificar:
+Fazendo-se as substituições necessárias, chega-se a expressão do sinal de saída do controlador que se quer identificar:
 
-\begin{equation}
-u(t)=\begin{bmatrix}
-\theta_1 & \theta_2 & \theta_3 & \theta_4 & \theta_5 & \theta_6 & \theta_7 & \theta_8
-\end{bmatrix}
-\begin{bmatrix}
-\epsilon (t)\\ 
-\epsilon ^2(t)\\ 
-\epsilon^3(t)\\ 
-\epsilon^4(t)\\ 
-\epsilon(t-1)\\ 
-\epsilon^2(t-1)\\ 
-\epsilon^3(t-1)\\ 
-\epsilon^4(t-1)
-\end{bmatrix}
-\label{eq:vrft_nl_wiener_u}
-\end{equation}  
+\begin{align}\nonumber
+u(t) =&  \theta_1 \epsilon (t)+ \theta_2 \epsilon ^2(t)+ \theta_3 \epsilon^3(t)+ \theta_4 \epsilon^4(t)+\\
+& \theta_5 \epsilon(t-1)+ \theta_6 \epsilon^2(t-1)+  \theta_7 \epsilon^3(t-1)+ \theta_8 \epsilon^4(t-1)
+\label{eq:dbnarmax_ex_wiener_controller}
+\end{align}
 
-Onserva-se que $u(t)$ em \eqref{eq:vrft_nl_wiener_u} é um modelo NARMAX polinomial. Foram realizados 100 experimentos
-de Monte Carlo utilizando o algoritmo para identificação de modelos NARMAX em conjunto com o procedimento de referência
-virtual para gerar os sinais $r(t)$ e $\epsilon(t)$ e a média das estimativas obtidas foi de:
+Onserva-se que $u(t)$ em \eqref{eq:dbnarmax_ex_wiener_controller} é um modelo NARMAX polinomial. Foram realizados 100
+experimentos de Monte Carlo adicionando um ruído com $\sigma_e^2=0.05$ e utilizando o algoritmo para identificação de
+modelos NARMAX em conjunto com o procedimento de referência virtual para gerar os sinais $r(t)$ e $\epsilon(t)$ e a
+média das estimativas obtidas foi de:
 
 \begin{equation}
-\text{média }\;\theta =\begin{bmatrix}
-0.4471 \\ 0.0020 \\ -6.5105\times10^{-4} \\ -1.5959\times10^{-5} \\ -0.4043 \\ -0.0016 \\ 6.1194\times10^{-4}
-\\ 1.4562\times10^{-5}
+\theta_{\text{média}} =\begin{bmatrix}
+0.44717 \\ 2.0216\times10^{-3} \\ -6.5181\times10^{-4} \\ -1.608\times10^{-5} \\ -0.40435 \\ -1.6163\times10^{-3} \\
+6.1265\times10^{-4}\\ 1.469\times10^{-5} 
 \end{bmatrix}^T
 \nonumber
 \end{equation}
-
-Com um desvio padrão de:
+com uma matriz de covariância de:
 
 \begin{equation}
-\text{média }\;\theta = 1\times10^{-3}\begin{bmatrix}
-0.2430 \\ 0.0246 \\ 0.0015 \\ 0.0001 \\ 0.2613 \\ 0.0259 \\ 0.0016 \\ 0.0001
-\end{bmatrix}^T
+\theta_{\text{Covariância}} =\begin{bmatrix}
+5.2065e-06 & 	 -9.7986e-08 & 	 -1.9078e-08 & 	 -3.2055e-10 & 	 -3.6186e-06 & 	 1.2798e-07 & 	 5.9285e-09 & 	 -2.0474e-10  \\ 
+-9.7986e-08 & 	 5.5494e-08 & 	 -5.4726e-10 & 	 -1.5158e-10 & 	 1.0123e-07 & 	 -4.4708e-08 & 	 3.9962e-10 & 	 1.2237e-10  \\ 
+-1.9078e-08 & 	 -5.4726e-10 & 	 2.1459e-10 & 	 9.3647e-12 & 	 4.4485e-09 & 	 3.1849e-10 & 	 -2.5329e-11 & 	 -2.0593e-12  \\ 
+-3.2055e-10 & 	 -1.5158e-10 & 	 9.3647e-12 & 	 8.0071e-13 & 	 -1.9028e-10 & 	 8.5314e-11 & 	 -1.6175e-12 & 	 -2.9308e-13  \\ 
+-3.6186e-06 & 	 1.0123e-07 & 	 4.4485e-09 & 	 -1.9028e-10 & 	 5.0042e-06 & 	 -8.9899e-08 & 	 -1.6759e-08 & 	 -1.5359e-10  \\ 
+1.2798e-07 & 	 -4.4708e-08 & 	 3.1849e-10 & 	 8.5314e-11 & 	 -8.9899e-08 & 	 6.9081e-08 & 	 -7.8269e-10 & 	 -2.0938e-10  \\ 
+5.9285e-09 & 	 3.9962e-10 & 	 -2.5329e-11 & 	 -1.6175e-12 & 	 -1.6759e-08 & 	 -7.8269e-10 & 	 1.5274e-10 & 	 7.6667e-12  \\ 
+-2.0474e-10 & 	 1.2237e-10 & 	 -2.0593e-12 & 	 -2.9308e-13 & 	 -1.5359e-10 & 	 -2.0938e-10 & 	 7.6667e-12 & 	 9.0946e-13  \\ 
+\end{bmatrix}
 \nonumber
 \end{equation}
 
-O custo entre os sinais de saída do sistema obtido e o sistema esperado $T_d(z)$ foi de  $J_{MR}(\theta)=
+
+O custo entre os sinais de saída do sistema obtido e o sistema esperado $T_d(z)$ foi de  $J_{y}(\theta)=
 0.3820$ e o custo dos sinais de saída do controlador ($u(t)$) esperado e obtido foi de $J_{VR}=1.0119$.
 
-Como a estimativa de $\gamma (\epsilon(t))$ é apenas uma aproximação do que espera-se ser a inversa de
-$\zeta(\omega(t))$, a classe de modelos escolhida para o controlador não consegue representar a totalidade do
-controlador ideal. Desta forma é esperado que a identificação não consiga atingir a totalidade da função
-$T_d(z)$ inicialmente escolhida. Para as estimativas foram utilizados sinais de entrada do tipo PRBS com 127 pontos para a
-excitação da planta.
+Como $\gamma(t)$ escolhido em \eqref{eq:dbnarmax_ex_wiener_gamma_choosen} é apenas uma aproximação do que esperava-se em
+\eqref{eq:dbnarmac_ex_wiener_gamma}, sabe-se que a classe de modelos escolhida para o controlador não consegue
+representar a totalidade do controlador ideal $C_d(t)$. Desta forma é esperado que a identificação não consiga atingir
+a totalidade da função $T_d(z)$ inicialmente escolhida. Para as estimativas foram utilizados sinais de entrada do tipo
+PRBS com 127 pontos para a excitação da planta.
 
 Na Figura (\ref{fig:vrft_nl_wiener_step}) é apresentado um comparativo entre o sinal de saída do sistema
 $T_d(z)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado é
@@ -229,7 +223,8 @@ aplicado sobre a planta em malha fechada.
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_step.eps}
-	\caption{resposta dos sistemas: desejado e obtido a um degrau unitário}
+	\caption{Comparativo da resposta à um degrau unitário do sistema desejado $T_d(t)$  o sistema real quando o controlador
+	controlador não linear representado por um modelo NARMAX polinômial é inserido na planta.}
 	\label{fig:vrft_nl_wiener_step}
 \end{figure}
 
@@ -239,13 +234,15 @@ não linearidades $\gamma(\epsilon(t))$ e $\zeta(\omega(t))$ respectivamente.
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_vw_step.eps}
-	\caption{sinais $v(t)$ e $\omega(t)$ quando o sistema é alimentado por um degrau unitário}
+	\caption{Sinais $v(t)$ e $\omega(t)$ do sistema apresentado na figura \ref{fig:vrft_nl_wiener} quando este é
+	excitado por um degrau unitário.}
 	\label{fig:vrft_nl_wiener_vw_step}
 \end{figure}
 
 A relação entre os sinais $v(t)$ e $\omega(t)$ é apresentado na Figura (\ref{fig:vrft_nl_wiener_vw}).
-Observa-se que a relação destes sinais é praticamente linear, garantido que a aproximação de $\gamma(\epsilon(t))$
-foi satisfatória para representar a inversa do sinal $\zeta(\omega(t))$.
+Observa-se que a relação destes sinais é praticamente linear, garantido desta forma que a aproximação feita em
+\eqref{eq:dbnarmax_ex_wiener_gamma_choosen} foi suficietne para representar com acuracidade o que era esperado para
+$\gamma(t)$ em \eqref{eq:dbnarmac_ex_wiener_gamma}.
 
 \begin{figure}[htbp] 
 	\center 
