@@ -49,8 +49,7 @@ Resultando em um sistema que pode ser descrito como abaixo:
 \begin{equation}
 y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
 \end{equation}
-
-Onde as funções de transferência $G(q, \theta)$ e $H(q, \theta)$  são parametrizadas por $\theta$ e para cada
+onde as funções de transferência $G(q, \theta)$ e $H(q, \theta)$  são parametrizadas por $\theta$ e para cada
 combinação de $\theta$, um novo modelo é definido. 
 
 Provavelmente o modelo mais simples para descrever a relação entre entrada e saída de um sistema seja obtido
@@ -102,16 +101,14 @@ Define-se o polinômio que filtra o ruído como:
 C(q, \theta)=1+c_1q^{-1}+...+c_{nc}q^{-n_c}
 \nonumber
 \end{equation}
-
-E as funções de transferência como abaixo:
+e as funções de transferência como abaixo:
 
 \begin{equation}
 G(q, \theta)=\frac{B(q)}{A(q)} , \;\;
 H(q, \theta)=\frac{C(q)}{A(q)}
 \label{eq:si_modeling_lti_det_armax}
 \end{equation}
-
-Tem-se então que os parâmetros à estimar são:
+tem-se então que os parâmetros à estimar são:
 
 \begin{equation}
 \theta = \begin{bmatrix}
@@ -122,7 +119,7 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
 O modelo definido em (\ref{eq:si_modeling_armax}) também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
 a média móvel $C(q)$ do ruído $e(t)$.
 
-Na figura (\ref{fig:si_models_diagram_narmax}) é apresentado o diagrama de blocos para o modelo {\bf{ARMAX}}.
+Na figura (\ref{fig:si_models_diagram_narmax}) é apresentado o diagrama de blocos para o modelo {\bf{ARMAX}}. Onde:
 
 \begin{figure}[htbp]
 \center
@@ -188,8 +185,6 @@ Na figura (\ref{fig:si_models_diagram_narmax}) é apresentado o diagrama de bloco
 \caption{Diagrama de blocos do conjunto ARMAX de modelos. Ambos os diagramas são equivalentes.}
 \label{fig:si_models_diagram_narmax}
 \end{figure}
-
-Onde:
 
 \begin{equation}
 G(q, \theta)=\frac{B(q)}{A(q)}

@@ -1,14 +1,23 @@
 %===============================================================================
-\chapter{Identificação de sistemas não lineares utilizando referência virtual}
+\chapter{Identificação de controladores não lineares utilizando referência virtual}
 \label{chapter:dbnarmax}
 %===============================================================================
 
-Este capítulo tem o intuito de apresentar a ideia e os resultados obtidos da utilização de referência virtual e
-identificação de sistemas não lineares.  Na seção \ref{sec:dbnarmax_nonlinear} introduz-se a idéia de utilização de
-métodos de projeto de controladores baseados em dados, juntamente com a utilziação de referência virtual para a obtenção
-dos sinais necessários. Esta seção utiliza o algoritmo apresentado na seção \ref{sec:nl_si_algorithms_rationals} para
-identificação de sistemas não lineares que podem ser descritos por classes de modelos NARMAX polinomiais ou racionais.
-Alguns exemplos serão apresentados para que se possa avaliar a qualidade das estimativas obtidas.
+Este capítulo apresenta a união das idéias de referência virtual para projeto de controladores e algoritmos de
+identificação de sistemas não lineares.
+
+No capítulo \ref{chapter:nlin_si_ident} apresentou-se diversas estruturas de classes de modelos e em especial a
+estrutura de modelos NARMAX, com suas representações polinômiais e racionais. Foi apresetado também (seção
+\ref{sec:nl_si_algorithms_rationals}) um algoritmo para identificação deste tipo de modelo. Naquele caítulo deu-se
+enfase ao uso deste algoritmo para identificação de sistemas não lineares. Na seção \ref{sec:dbnarmax_method} será
+apresentado o uso deste algoritmo para identificação de controladores.
+
+Para gerar os sinais de entrada e saída do algoritmo de identificação NARMAX, será utilizada a idéia de referência
+virtual, introduzida na seção \ref{sec:dbcd_vrft} com o método VRFT.
+
+Serão apresentados alguns resultados para a metodologia adotada na seção \ref{sec:dbnarmax_nonlinear_examples}. Os
+exeplos tem o intúito de cobrir as situações mais corriqueiras para identificação de controladores não lineares NARMAX
+além de prover os resultados para que possa ser validada a usabilidade do método.
 
 %===============================================================================
 \input{tex/chapters/dbcd_narmax/intro}

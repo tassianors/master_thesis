@@ -50,7 +50,6 @@ O inconveniente desta forma é que aplicando um filtro ao sinal Gausiano irá alte
 seu espectro, não sendo a forma desta alteração algo conhecido. Deve-se então sempre 
 antes de aplicar o sinal no sistema, verificar o espectro gerado. \cite{ljung}
 
-
 %===============================================================================
 \subsubsection{Sinal Binário Pseudo-Randômico - PRBS}
 \label{sec:si_project_signal_input_prbs}
@@ -64,8 +63,7 @@ semelhantes a de ruído branco. Este sinal é gerado pela equação \eqref{eq:si_pro
 u(t)=rem(A(q)u(t), 2)=rem(a_1 u(t-1)+...+a_n u(t-n), 2)
 \label{eq:si_project_signal_prbs}
 \end{equation}
-
-Onde $rem(x, 2)$ é o resto inteiro da divisão de $x$ por 2. O sinal $u(t)$ deve ser periódico 
+onde $rem(x, 2)$ é o resto inteiro da divisão de $x$ por 2. O sinal $u(t)$ deve ser periódico 
 de pelo menos $2^n$ valores diferentes, como uma sequencia de zeros não é um sinal válido, por ser nulo, 
 temos que o máximo período é de tamanho $M=2^n -1$. Na verdade o período vai depender da
 escolha de $A(q)$. Pode-se entretanto mostrar que para cada $n$ existem escolhas de $A(q)$ que 
