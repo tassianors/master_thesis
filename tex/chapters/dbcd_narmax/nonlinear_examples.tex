@@ -190,21 +190,21 @@ média das estimativas obtidas foi de:
 \end{bmatrix}^T
 \nonumber
 \end{equation}
-com uma matriz de covariância de:
-
-\begin{equation}
-\theta_{\text{Covariância}} =\begin{bmatrix}
-5.2065e-06 & 	 -9.7986e-08 & 	 -1.9078e-08 & 	 -3.2055e-10 & 	 -3.6186e-06 & 	 1.2798e-07 & 	 5.9285e-09 & 	 -2.0474e-10  \\ 
--9.7986e-08 & 	 5.5494e-08 & 	 -5.4726e-10 & 	 -1.5158e-10 & 	 1.0123e-07 & 	 -4.4708e-08 & 	 3.9962e-10 & 	 1.2237e-10  \\ 
--1.9078e-08 & 	 -5.4726e-10 & 	 2.1459e-10 & 	 9.3647e-12 & 	 4.4485e-09 & 	 3.1849e-10 & 	 -2.5329e-11 & 	 -2.0593e-12  \\ 
--3.2055e-10 & 	 -1.5158e-10 & 	 9.3647e-12 & 	 8.0071e-13 & 	 -1.9028e-10 & 	 8.5314e-11 & 	 -1.6175e-12 & 	 -2.9308e-13  \\ 
--3.6186e-06 & 	 1.0123e-07 & 	 4.4485e-09 & 	 -1.9028e-10 & 	 5.0042e-06 & 	 -8.9899e-08 & 	 -1.6759e-08 & 	 -1.5359e-10  \\ 
-1.2798e-07 & 	 -4.4708e-08 & 	 3.1849e-10 & 	 8.5314e-11 & 	 -8.9899e-08 & 	 6.9081e-08 & 	 -7.8269e-10 & 	 -2.0938e-10  \\ 
-5.9285e-09 & 	 3.9962e-10 & 	 -2.5329e-11 & 	 -1.6175e-12 & 	 -1.6759e-08 & 	 -7.8269e-10 & 	 1.5274e-10 & 	 7.6667e-12  \\ 
--2.0474e-10 & 	 1.2237e-10 & 	 -2.0593e-12 & 	 -2.9308e-13 & 	 -1.5359e-10 & 	 -2.0938e-10 & 	 7.6667e-12 & 	 9.0946e-13  \\ 
-\end{bmatrix}
-\nonumber
-\end{equation}
+%com uma matriz de covariância de:
+%
+%\begin{equation}
+%\theta_{\text{Covariância}} =\begin{bmatrix}
+%5.2065e-06 & 	 -9.7986e-08 & 	 -1.9078e-08 & 	 -3.2055e-10 & 	 -3.6186e-06 & 	 1.2798e-07 & 	 5.9285e-09 & 	 -2.0474e-10  \\ 
+%-9.7986e-08 & 	 5.5494e-08 & 	 -5.4726e-10 & 	 -1.5158e-10 & 	 1.0123e-07 & 	 -4.4708e-08 & 	 3.9962e-10 & 	 1.2237e-10  \\ 
+%-1.9078e-08 & 	 -5.4726e-10 & 	 2.1459e-10 & 	 9.3647e-12 & 	 4.4485e-09 & 	 3.1849e-10 & 	 -2.5329e-11 & 	 -2.0593e-12  \\ 
+%-3.2055e-10 & 	 -1.5158e-10 & 	 9.3647e-12 & 	 8.0071e-13 & 	 -1.9028e-10 & 	 8.5314e-11 & 	 -1.6175e-12 & 	 -2.9308e-13  \\ 
+%-3.6186e-06 & 	 1.0123e-07 & 	 4.4485e-09 & 	 -1.9028e-10 & 	 5.0042e-06 & 	 -8.9899e-08 & 	 -1.6759e-08 & 	 -1.5359e-10  \\ 
+%1.2798e-07 & 	 -4.4708e-08 & 	 3.1849e-10 & 	 8.5314e-11 & 	 -8.9899e-08 & 	 6.9081e-08 & 	 -7.8269e-10 & 	 -2.0938e-10  \\ 
+%5.9285e-09 & 	 3.9962e-10 & 	 -2.5329e-11 & 	 -1.6175e-12 & 	 -1.6759e-08 & 	 -7.8269e-10 & 	 1.5274e-10 & 	 7.6667e-12  \\ 
+%-2.0474e-10 & 	 1.2237e-10 & 	 -2.0593e-12 & 	 -2.9308e-13 & 	 -1.5359e-10 & 	 -2.0938e-10 & 	 7.6667e-12 & 	 9.0946e-13  \\ 
+%\end{bmatrix}
+%\nonumber
+%\end{equation}
 
 
 O custo entre os sinais de saída do sistema obtido e o sistema esperado $T_d(z)$ foi de  $J_{y}(\theta)=
@@ -256,26 +256,14 @@ $\gamma(t)$ em \eqref{eq:dbnarmac_ex_wiener_gamma}.
 \label{sec:dbnarmax_nl_dinamic}
 %===============================================================================
 
-Quando a não linearidade está na dinâmica do processo não há uma distinção entre um bloco linear e outro linear como
-apresentado no exeplo anterior (seção \ref{sec:dbnarmax_nl_wiener}). Serão apresentados aqui alguns exemplos de
-identificação de controladores que podem ser representados por modelos NARMAX racionais.
-
-Inicialmente um exemplo onde o controlador que leva a planta $G_0(z)$ a se comportar em malha fechada como em $T_d(z)$,
-será totalmente representado pelo modelo escolhido para o controlador. Em seguida será apresentado para esta mesma
-situação onde o controlador necessário é um pouco mais complexo, tendo mais variáveis para identificar.
-
-Ao fim será apresentado um exemplo onde o controlador ideal não consegue ser representado pela classe de modelos
-escolhida.
-
-Em todos os exemplos será utilizado para excitar o sistema, um sinal PRBS de ordem 7.
+%TODO: escrever isso melhor
 
 %===============================================================================
 \subsubsection{Controlador ideal sendo representado pela classe de modelos}
 \label{sec:dbnarmax_nl_dinamic_c_match}
 %===============================================================================
 
-Neste exemplo será abordado o caso onde o controlador $C(z, \theta) \in \mathcal{C}$. Fazendo com que o sistema em
-malha fechada se comporte como desejado. Considere a planta não linear descrita por:
+Considere o sistema não linear descrito por:
 
 \begin{equation}
 y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
@@ -298,22 +286,23 @@ y(t)=0.4r(t-1)+0.6y(t-1)
 
 Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex1_y} com \eqref{eq:vrft_nl_dinamic_ex1_mt} e isolar o
 sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
-comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
+comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal $C_d(z)$ descrito como
+em:
 
 \begin{equation}
 u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
 \label{eq:vrft_nl_dinamic_ex1_cd}
 \end{equation}
 
-Escolhendo uma classe de modelos que consegue representar o controlador ótimo:
+Optou-se por uma classe de modelos que consegue representar a totalidade das dinâmicas presentes em $C_d(z)$:
 
 \begin{equation}
 u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 y^2(t-1)r(t)+ \theta_4 y(t)y^2(t-1)}{1+ \theta_5 y(t)}
 \label{eq:vrft_nl_dinamic_ex1_c}
 \end{equation}
 
-Utilizando um sinal PRBS de tamanho 254 pontos e o método de referência virtual para gerar os sinais $r(t)$ e
-$\epsilon(t)$. Adicionando-se um ruído de variância $\sigma_e^2 = 0.005$ a saída do sistema, a média das estimativas
+Utilizando um sinal PRBS de $N=254$ e o método de referência virtual para gerar os sinais $r(t)$ e
+$\epsilon(t)$. Adicionando-se um ruído de variância $\sigma_e^2 = 0.005$ à saída do sistema, a média das estimativas
 para 100 experimentos de Monte Carlo foi de:
 
 \begin{equation}
@@ -322,26 +311,7 @@ para 100 experimentos de Monte Carlo foi de:
 \end{bmatrix}
 \nonumber
 \end{equation}
-
-Os valores reais utilizados na simulação foram:
-
-\begin{equation}
-\theta_0=\begin{bmatrix}
-0.4 & 0.6 & 0.1 & 0.15 & 0.5
-\end{bmatrix}
-\nonumber
-\end{equation} 
-
-Obte-se um desvio padrão para as estimativas de:
-
-\begin{equation}
-\theta_{\text{desvio padrão}}=1.0\times 10^{-3}\begin{bmatrix}
-0.2231 & 0.6866 & 0.2411 & 0.6817 & 0.3019
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-A matriz de covariância é descrita por:
+a matriz de covariância obtida neste experimento é descrita por:
 
 \begin{equation}
 \theta_{\text{Covariância}}=1.0\times 10^{-6}\begin{bmatrix}
@@ -361,7 +331,8 @@ desejado, o erro observado para um sinal de entrada do tipo degrau unitário é ap
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_dynamic_erro_step.eps}
-	\caption{Erro entre o a resposta esperada e obtida para uma entrada do tipo degrau unitário}
+	\caption{Erro entre o a resposta esperada e a obtida para o sismtema quando submetido a uma entrada do tipo degrau
+	unitário.}
 	\label{fig:vrft_nl_dynamic_step_erro}
 \end{figure}
 
@@ -378,7 +349,7 @@ para os parâmetros $\theta_1$ e $\theta_2$.
 
 O custo $J_{VR}=2.7291\times10{-8}$ foi obtido utilizando-se os sinais de saída do controlador obtido e
 esperado. Já o custo entre os sinais de saída do sistema em malha fechada estimado e desejado foi de
-$J_{MR}=0.0033$.
+$J_{y}=0.0033$.
 
 Com o intuito de demonstrar o efeito do ruído sobre as estimativas obtidas o ruído foi aumentado em $4\times$ para
 $\sigma_e^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as estimativas:
@@ -386,13 +357,6 @@ $\sigma_e^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as esti
 \begin{equation}
 \theta_{\text{média}}=\begin{bmatrix}
 0.3999 & 0.5996 & 0.1001 & 0.1502 & 0.4999
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-\begin{equation}
-\theta_{\text{Desvio padrão}}=\begin{bmatrix}
-0.0010 & 0.0027 & 0.0012 & 0.0027 & 0.0012
 \end{bmatrix}
 \nonumber
 \end{equation}
@@ -408,8 +372,10 @@ $\sigma_e^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as esti
 \nonumber
 \end{equation}
 
-Com os custos de $J_{VR}=1.0326\times10{-7}$ e $J_{MR}=0.0054$, corroborando para o fato de que os custos não
-foram significativamente afetados pelo aumento do ruído. Fazendo assim com que a estimativa ainda seja confiável.
+Com os custos de $J_{VR}=1.0326\times10{-7}$ e $J_{y}=0.0054$, corroborando para o fato de que os custos não
+foram significativamente afetados pelo aumento do ruído. Observa-se um aumento do erro de variância, pois a matriz de
+covariância que era da ordem de $\times10^{-6}$ passou para a ordem de $\times10^{-5}$, entretanto o valor médio das
+estimativas permaneceu praticamente inalterado, corroborando pela não existência de erro de polarização.
 
 %===============================================================================
 \subsubsection{Controlador ideal sendo representado pela classe de modelos 2}
@@ -455,14 +421,14 @@ u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
 No exemplo apresentado na seção \ref{sec:dbnarmax_nl_dinamic_c_match} foi apresentada a simulação para quando o controlador
 ótimo consegue ser descrito pelo modelo escolhido para representa-lo. Neste exeplo deseja-se o oposto: que a classe de
 modelos escolhida para o controlador não consiga representar completamente \eqref{eq:vrft_nl_dinamic_ex3_cd}. Para isso
-escolheu-se a seguinte classe de modelos para representar o controlador:
+escolheu-se a seguinte classe de modelos:
 
 \begin{equation}
 u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 r(t)y(t-1)+ \theta_4 y(t-1)y(t)}{1+ \theta_5 y(t)}
 \label{eq:vrft_nl_dinamic_ex3_c}
 \end{equation}
 
-Para as simulações foi adicionado um ruído com $\sigma_e^2 = 0.05$. Foram realizados 100 experimentos de Monte Carlo
+Para as simulações foi adicionado um ruído com $\sigma_e^2 = 0.05$ e foram realizados 100 experimentos de Monte Carlo
 onde obteve-se as seguintes estimativas:
 
 \begin{equation}
@@ -471,13 +437,7 @@ onde obteve-se as seguintes estimativas:
 \end{bmatrix}
 \label{eq:vr_rational_ex3_theta}
 \end{equation}
-
-\begin{equation}
-\theta_{\text{Desvio padrão}}=\begin{bmatrix}
-0.0017 & 0.0058 & 0.0020 & 0.0064 & 0.0025
-\end{bmatrix}
-\nonumber
-\end{equation}
+com uma covariância de:
 
 \begin{equation}
 \theta_{\text{Covariância}}=1.0\times 10^{-4}\begin{bmatrix}
@@ -490,17 +450,37 @@ onde obteve-se as seguintes estimativas:
 \nonumber
 \end{equation}
 
-Obte-se um custo para o comportamento do sistema em malha fechada de  $J_{MR}=1.0999$. Na Figura
-\ref{fig:vr_rational_notinclass_ex3_error} é apresentado o erro para o sistema desejado e o sistema obtido utilizando-se
-o modelo obtido com os valores de $\theta$ apresentados em \eqref{eq:vr_rational_ex3_theta} para uma referência do tipo
-degrau unitário.
+Obte-se um custo para o comportamento do sistema em malha fechada de  $J_{y}=1.0999$. Na Figura
+\ref{fig:vr_rational_notinclass_ex3_step} é apresentado a resposta do sistema em malha fechada quando submetido a um
+degrau unitário para o sistema desejado e para o sistema obtido com o controlador parametrizado por
+\eqref{eq:vr_rational_ex3_theta}.
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vr_rational_notinclass_ex3_step.eps}
+	\caption{Exemplo onde $C_d(z) \notin C(z,\theta)$: Resposta do sistema ao degrau unitário para o sistema desejado
+	$T_d(z)$ e o sistema quando o controlador parametrizado por $\theta$ como descrito em
+	\eqref{eq:vr_rational_ex3_theta}. Onde $T_d(t)$ é a resposta temporal para o comportamento esperado do sistema e
+	$T(t)$ é o comporamento temporal para o sistema quando está utilizando o controlador identificado.}
+	\label{fig:vr_rational_notinclass_ex3_step}
+\end{figure}
+
+Na Figura \ref{fig:vr_rational_notinclass_ex3_error} é apresentado o erro entre as respostas ao degrau
+unitário apresentado na figura \ref{fig:vr_rational_notinclass_ex3_step}. 
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vr_rational_notinclass_ex3_error.eps}
-	\caption{Erro entre o comportamento do sistema em malha fechada e o comportamento em malha fechada desejado.}
+	\caption{Exemplo onde $C_d(z) \notin C(z,\theta)$: Erro entre o comportamento do sistema em malha fechada e o
+	comportamento em malha fechada desejado.}
 	\label{fig:vr_rational_notinclass_ex3_error}
 \end{figure}
+
+Observa-se que mesmo quando não há uma completa capacidade da classe de modelos em representar o controlador ideal, o
+erro da estimativa é relativamente baixo, mas não insignificante, ficando em aproximadamente 6\% em regime e chegando a
+atingir quase 20\% durante o transitório. Em contrapartida, quando há capacidade do controlador ideal ser representado
+pela classe do controlador, o erro em regime ficou em 0.02\% como apresentado na figura
+\ref{fig:vrft_nl_dynamic_step_erro}.
 
 
 
