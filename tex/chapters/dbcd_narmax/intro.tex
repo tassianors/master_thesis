@@ -5,23 +5,23 @@
 
 Projeto de controladores descrito no capítulo (\ref{chapter:dbcd}) tem como base a identificação de controladores
 lineares. Encontram-se poucos trabalhos na literatura que abordam identificação de controladores não lineares. Em
-\cite{Guardabassi} é apresentado um procedimento para linearização de sistemas não lineares utilizando a idéia de
+\cite{Guardabassi} é apresentado um procedimento para linearização de sistemas não lineares utilizando a ideia de
 referência virtual. Em \cite{campi_savaresi2006} é apresentado uma generalização do método VRFT que envolve a
-identificação de controladores não lineares, mas existe a necessídade de algum conhecimento da planta e muito do sinal
+identificação de controladores não lineares, mas existe a necessidade de algum conhecimento da planta e muito do sinal
 aplicado. No trabalho de Billings em \cite{billings_nl_survey} são apresentadas diferentes metodologias para a
 identificação de sistemas não lineares.
 
 Seguindo nesta linha, existem diversos trabalhos propondo metodologias e algoritmos para a identificação de sistemas não
 lineares para inúmeras famílias de modelos. Em \cite{chen_billings1989Prediction} é apresentado uma metodologia para a
-estimativa de parâmetros de sistemas não lineares, de forma recurssiva. Os mesmos autores no mesmo ano apresentaram um
-trabalho sobre identificação de sistemas não lineares utilizando modelos NARMAX \cite {chen_billings1989}, modelos estes
+estimativa de parâmetros de sistemas não lineares, de forma recursiva. Os mesmos autores no mesmo ano apresentaram um
+trabalho sobre identificação de sistemas não lineares utilizando modelos NARMAX \cite{chen_billings1989}, modelos estes
 que podem representar uma grande quantidade de sistemas reais.
 
 Existem na literatura diversos tipos de aplicações para a ideia de referência virtual, para projeto de controladores
-baseados em dados, o método VRFT é talvez o mais conhecido. Neste trabalho tem-se o intúito de, baseado em referência
+baseados em dados, o método VRFT é talvez o mais conhecido. Neste trabalho tem-se o intuito de, baseado em referência
 virtual, determinar os sinais de entrada para a utilização de algum algoritmo de identificação de sistemas não lineares.
 Escolheu-se o algoritmo inicialmente proposto por \cite{billings_zhu} e que também é estudado em \cite{aguirre} por existir um
-grande número de sistemas físicos e aplicações práticas que podem ser representados por estes modelos chamadados de
+grande número de sistemas físicos e aplicações práticas que podem ser representados por estes modelos chamados de
 NARMAX.
 
 Na seção (\ref{sec:nl_si_algorithms_rationals}) foi apresentado o algoritmo implementado para as simulações que serão
@@ -33,7 +33,7 @@ modelos NARMAX se mostrou eficiente.
 \label{sec:dbnarmax_method}
 %===============================================================================
 
-O método proposto neste trabalho consiste na idéia de utilizar referência virtual para, a partir dos dados coletados do
+O método proposto neste trabalho consiste na ideia de utilizar referência virtual para, a partir dos dados coletados do
 sistema, determinar os sinais de entrada do controlador que faz com que o sistema em malha fechada se comporte como
 desejado: $T_d(z)$.
 
@@ -143,12 +143,12 @@ Assumindo que o controlador tem a forma de uma classe de modelos NARMAX, o algor
 
 É  conveniente aqui observar que a escolha da classe NARMAX está bastante ligada ao uso do algoritmo de identificação
 destes modelos ter-se mostrado bastante eficiente, além dos motivos já citados da vasta gama de sistemas reais que
-modelos NARMAX conseguem representar. Todavia, a idéia aqui apresentada, poderia ser aplicada para qualquer classe de
+modelos NARMAX conseguem representar. Todavia, a ideia aqui apresentada, poderia ser aplicada para qualquer classe de
 modelos de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe pudesse ser utilizado
 para obtenção dos valores de $\hat{\theta}$ que minimize algum critério de escolha.
 
 Para o caso onde $C_d(z) \notin C(z, \theta)$ recai-se no fato de que $T_d(z)$ não consegue ser completamente obtido,
-possuindo assim algum resquicio de comportamento não linear devido a planta $G_0(z)$. A influência do ruído sobre a
+possuindo assim algum resquício de comportamento não linear devido a planta $G_0(z)$. A influência do ruído sobre a
 qualidade das estimativas fica a cargo do algoritmo utilizado para identificação.
 
  

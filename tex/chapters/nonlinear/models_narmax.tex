@@ -21,7 +21,7 @@ onde $\Phi_{nl}(\cdot)$ denota uma equação não linear que depende dos sinais pas
 de $u(t)$ e $e(t)$. $\theta$ é o vetor de parâmetros a ser identificado.
 
 As classes de modelos NARMAX podem então ser compreendidas como um conjunto ou somatório de funções não lineares, que
-são parametrizados linearmente. Vale aqui esclarescer que a forma apresentada em \eqref{eq:nlin_models_narmax_generic}
+são parametrizados linearmente. Vale aqui esclarecer que a forma apresentada em \eqref{eq:nlin_models_narmax_generic}
 não é uma regressão linear. Para uma regressão linear:
 
 \begin{equation}
@@ -30,7 +30,7 @@ y(t)=\theta^T\phi(y(t), u(t))
 \end{equation}
 onde $\phi(\cdot)$ é dependente apenas dos sinais de entrada e saída do sistema, usualmente sendo uma matriz formada a
 partir dos dados coletados do sistema. Diferentemente do equacionamento apresentado em
-\eqref{eq:nlin_models_narmax_generic}, onde $\Phi_{nl}(\cdot)$ é dependente também do ruído. Outra diferênça está no
+\eqref{eq:nlin_models_narmax_generic}, onde $\Phi_{nl}(\cdot)$ é dependente também do ruído. Outra diferença está no
 fato de que em \eqref{eq:nlin_models_narmax_generic} é possível ter regressores não lineares. Ou seja, é possível ter
 combinações lineares e não lineares dos sinais $y(t)$ e $u(t)$ e do vetor de resíduos $e(t)$ até o instante $(t-1)$.
 \cite{aguirre}

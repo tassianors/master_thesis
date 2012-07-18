@@ -5,11 +5,11 @@
 % mains idea of this section:
 %TODO: reescrever isso aqui
  
-Nesta seção tem-se o objetivo de descrever algumas das propriedades estatisticas relevantes para o identificação de
-sistemas. Tem-se o intuíto de formalizar quais são os erros que podem estar contidos nas estimativas obtidas e quais são
+Nesta seção tem-se o objetivo de descrever algumas das propriedades estatísticas relevantes para o identificação de
+sistemas. Tem-se o intuito de formalizar quais são os erros que podem estar contidos nas estimativas obtidas e quais são
 as condições para evita-las, ou reduzi-las.
 
-Conhecer a qualidade das estimativas que são obtidas de um processo de identificação e suas propriedades estatisticas
+Conhecer a qualidade das estimativas que são obtidas de um processo de identificação e suas propriedades estatísticas
 são de suma importância para aplicações de engenharia. O conhecimento do valor de $\theta$ sem a informação de
 quão confiável esta informação é, não é suficiente para a maioria das aplicações. 
 
@@ -26,7 +26,7 @@ Z^N=\left \{ u(1),y(1),...,n(N),y(N) \right \}
 \end{equation}
 é o ponto de partida básico para a identificação de sistemas. As propriedades calculadas de $\hat{\theta}_N$ para um
 certo montante de dados serão levados para quando $N \to \infty$, é natural que as condições sobre os dados, sejam
-relativos a um conjunto infinido $Z^{\infty}$. \cite{ljung}
+relativos a um conjunto infinito $Z^{\infty}$. \cite{ljung}
 
 Assume-se que o conjunto de dados $Z^{\infty}$ é tal que para alguns filtros da forma $\left \{ d_t^{(i)}(k) \right \}$:
 
@@ -39,14 +39,14 @@ u(t)&=\sum_{k=0}^{\infty}d_t^{3}(k)r(t-k)+\sum_{k=0}^{\infty}d_t^{4}(k)e_0(t-k)
 onde:
 
 \begin{enumerate}
-  \item $\left \{ r(t) \right \}$ é uma entrada externa, deterministica e limitada em amplitude.
+  \item $\left \{ r(t) \right \}$ é uma entrada externa, determinística e limitada em amplitude.
   \item $\left \{ e_0(t) \right \}$ é uma sequencia randômica independente com média zero, limitada em amplitude e
   momentos com ordem $4+\delta$ para algum $\delta>0$.
 
 Alem disso:
   \item a família de filtros $\left \{ d_t^{(i)}(k) \right \}_{k=1}^{\infty}$, $i=1 - 4$; $t=1,2,\ldots $ é
   uniformemente estável.
-  \item Os sinais  $\left \{ y(t) \right \}$ e  $\left \{ u(t) \right \}$ são juntamente quasi-estacionarios.  
+  \item Os sinais  $\left \{ y(t) \right \}$ e  $\left \{ u(t) \right \}$ são juntamente quasi-estacionários.  
 \end{enumerate}
 
 %===============================================================================
@@ -60,10 +60,10 @@ modelo $\mathcal{M}$ seja como apresentado em \eqref{eq:si_intro_model} e além d
 Os resultados básicos de consistência são quase imediatos: \cite{ljung}
 
 \begin{theorem}
-Suponha que o conjunto de dados $Z^{\infty}$ está sugeito ao que foi apresentado na seção
+Suponha que o conjunto de dados $Z^{\infty}$ está sujeito ao que foi apresentado na seção
 (\ref{sec:si_par_estim_data_z}) e que $\mathcal{S} \in \mathcal{M}$. Assume-se que $Z^{\infty}$ é suficientemente
 informativo com respeito a $\mathcal{M}$. Se o sinal de entrada contém a saída por realimentação então também se assume
-que exita um atrazo de tempo tanto em $G_0(z)$ e $G(z,\theta)$. Então:
+que exita um atraso de tempo tanto em $G_0(z)$ e $G(z,\theta)$. Então:
 
 \begin{equation}
 D_c=D_T(\mathcal{S,M})
@@ -83,7 +83,7 @@ D_T(\mathcal{S,M})=\{ \theta \in D_{\mathcal{M}} \; |\;\; & G(e^{j\omega}, \thet
  & H(e^{j\omega}, \theta)=H_0(e^{j\omega}); -\pi \le \omega \le \pi \}
 \end{align*}
 
-Se em adição, a classe de modelos é globalmente identificavel em $\theta_0 \in D_{\mathcal{M}}$, então:
+Se em adição, a classe de modelos é globalmente identificável em $\theta_0 \in D_{\mathcal{M}}$, então:
 
 \begin{equation}
 D_c=\{\theta_0\}
@@ -187,11 +187,11 @@ do ruído $H(\cdot)$. O conjunto de modelos: \cite{ljung}
 \begin{equation}
 G_0(z) \in \mathcal{G}
 \end{equation}
-mas a função de transferência do filtro real do ruído $H_0(z)$ não consegue ser totalmete descrito pelo conjunto de
-modelos. Desta forma $\mathcal{S} \notin \mathcal{M}$ e supondo que o conjunto de dados $Z^{\infty}$ esteja sugeito ao
+mas a função de transferência do filtro real do ruído $H_0(z)$ não consegue ser totalmente descrito pelo conjunto de
+modelos. Desta forma $\mathcal{S} \notin \mathcal{M}$ e supondo que o conjunto de dados $Z^{\infty}$ esteja sujeito ao
 que foi descrito na seção (\ref{sec:si_par_estim_data_z}) e que este seja suficientemente informativo.
-Se o experiemnto é realizado em malha aberta, ou seja, quando $u(t)$ e $e(t)$ são descorrelacionados
-e se $G(z, \theta)$ e $H(z, \theta)$ são parametrizados de forma indenpente:
+Se o experimento é realizado em malha aberta, ou seja, quando $u(t)$ e $e(t)$ são descorrelacionados
+e se $G(z, \theta)$ e $H(z, \theta)$ são parametrizados de forma independente:
 
 \begin{equation}
 \theta=\begin{bmatrix}
@@ -209,7 +209,7 @@ variância da estimativa \cite{gevers2006, campestrini}, onde
 \text{Erro de polarização}  &= G(z, \theta^*)-G_0(z) 
 \end{align*}
 
-O caso da parametrização independente em \eqref{eq:si_par_estim_independent_param} cogre o caso do {\it{Output Error}}
+O caso da parametrização independente em \eqref{eq:si_par_estim_independent_param} cobre o caso do {\it{Output Error}}
 apresentado na tabela (\ref{table:si_modeling_models}) além de modelos com estruturas fixas para o filtro do ruido
 $H(z,\theta)$ como em:
 
@@ -220,7 +220,7 @@ y(t)=G(z,\theta)u(t)+H_*(z)e(t)
 onde $H_*(z)$ é um filtro do ruído que faz com que  $\mathcal{S} \notin \mathcal{M}$.
 
 Este modelo também cobre o caso da estrutura de modelos Box-Jenkins (tabela (\ref{table:si_modeling_models})).
-consequentemente esta estrutura de modelos tem a vantagem de que a função de transferência $G(z, \theta)$ pode ser
+Consequentemente esta estrutura de modelos tem a vantagem de que a função de transferência $G(z, \theta)$ pode ser
 consistentemente estimada, mesmo quando o modelo do filtro do ruído é muito simples para admitir-se uma completa
 descrição do sistema. \cite{ljung}
 
@@ -235,9 +235,9 @@ irão determinar a qualidade das estimativas obtidas.\cite{jansson}
 
 Uma vez tendo entendido as propriedades de convergência de $\hat{\theta}_N$, a pergunta que surge é o quão rápido esta
 estimativa chega ao limite. Se $\theta^*$ denota o limite, estamos interessados na variável $\hat{\theta}_N -\theta^*$
-que é uma variável randomica, e seu ``tamanho'' pode ser caracterizado pela sua matriz de covariancia, ou pela sua
-distribuição probabilistica. $\hat{\theta}_N -\theta^*$ típicamente decai a $1/\sqrt{N}$. então a distribuição da
-variável randomica:
+que é uma variável randômica, e seu ``tamanho'' pode ser caracterizado pela sua matriz de covariância, ou pela sua
+distribuição probabilística. $\hat{\theta}_N -\theta^*$ tipicamente decai a $1/\sqrt{N}$. Então a distribuição da
+variável randômica:
 
 \begin{equation}
 \sqrt{N}(\hat{\theta}_N -\theta^*)
@@ -280,14 +280,14 @@ P(\theta^*)\overset{\underset{\mathrm{\Delta}}{\,}}{=}\lim_{N\to
 \end{equation}
 
 Para o caso onde $\mathcal{S} \in \mathcal{M}$ e assumindo ainda que $\varepsilon(t,\theta_0)=e_0(t)$ é uma sequencia
-randômica independênte de média zero e variância $\lambda_0$. Desta forma tem-se
+randômica independente de média zero e variância $\lambda_0$. Desta forma tem-se
 
 \begin{equation}
 P(\theta)=\lambda_0\left [ E\;\psi (t,\theta_0)\psi^T(t,\theta_0)  \right ]^{-1}
 \label{eq:si_par_estim_P_theta_match}
 \end{equation}
 
-Asssim quando o sistema real pertence à classe  de modelos escolhida a estimatica converge para $\theta_0$ e a covariância da
+Assim quando o sistema real pertence à classe  de modelos escolhida a estimativa converge para $\theta_0$ e a covariância da
 estimativa é dada por: \cite{ljung}
 
 \begin{equation}

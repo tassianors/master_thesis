@@ -48,7 +48,7 @@ J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d
 que é dependente do modelo de referência escolhido. 
 
 Apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT. Mesmo
-estes dois métodos pertencendo uma a mesma classe, algumas diferênças significativas existem e podem ser ressaltadas:
+estes dois métodos pertencendo uma a mesma classe, algumas diferenças significativas existem e podem ser ressaltadas:
 \cite{campi_savaresi2000}
 
 \begin{itemize}
@@ -72,7 +72,7 @@ utilizando o método VRFT. Para maiores detalhes e discussões aprofundadas é indi
 Suponha que o controlador $C(z, \theta)$ resulta um sistema em malha fechada cuja função de
 transferência é dada por $T_d(z)$. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$,
 sua saída será $T_d(z)r(t)$. Uma premissa para que o sistema em malha fechada tenha a mesma
-função de transferência que o modelo de referência é que a saída dos dois sejaM a mesma para um dado
+função de transferência que o modelo de referência é que a saída dos dois sejam a mesma para um dado
 sinal $\bar{r}(t)$.
 
 Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $T_d(z)\bar{r}(t)=y(t)$.
@@ -180,7 +180,7 @@ $\hat{\theta}$ que minimiza esta função custo pode ser calculado por:
 
 \end{enumerate}
 
-Com o intúito de exemplificar, na Figura (\ref{fig:vrft_cost_functions}) é apresentado uma curva da função custo
+Com o intuito de exemplificar, na Figura (\ref{fig:vrft_cost_functions}) é apresentado uma curva da função custo
 $J_y(\theta)$ de um sistema hipotético, e a função custo proposta pelo método VRFT $J_{VR}(\theta)$, a qual é quadrática em $\theta$.
 Ao tentar encontrar o ponto de mínimo da curva $J_y(\theta)$ pode-se recair em algum mínimo local, o que não acontece 
 para a curva  $J_{VR}(\theta)$.
@@ -213,7 +213,7 @@ para a curva  $J_{VR}(\theta)$.
 \rput(3.2145312,-1.79){$J_{VR}$}
 \end{pspicture} 
 }
-\caption{Gráfico da função custo de algum sistema hipotético e a respectiva função custo proposta plo método VRFT que é
+\caption{Gráfico da função custo de algum sistema hipotético e a respectiva função custo proposta pelo método VRFT que é
 mais simples de encontrar o ponto de mínimo pois é quadrática em $\theta$, não recaindo em mínimos locais. O valor
 $\theta^*$ é o ponto de mínimo de ambas as funções custo, logo, minimizando a função custo $J_{VR}(\theta)$ é o
 equivalente a minimizar $J_y(\theta)$ sob condições ideais.}
@@ -252,7 +252,7 @@ T_d(z)=\frac{C_d(z)G_0(z)}{1+C_d(z)G_0(z)}\;\;\;\; T(z, \theta)=\frac{C(z, \thet
 \nonumber
 \end{equation}
 
-Resultam na seguinte expressão no dominio da frequência para a função custo:
+Resultam na seguinte expressão no domínio da frequência para a função custo:
 
 \begin{equation}
 J_y(\theta)=\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | \frac{G_0(e^{j\omega})C(e^{j\omega},
@@ -299,10 +299,10 @@ J_{VR}(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | L(e^{j\omega}) \right |^
 Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(z) \in
 C(z,\theta)$ as duas funções custo são iguais, possuindo também o mesmo mínimo. Quando $C_d(z) \notin C(z,\theta)$
 nenhum dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro dos dois
-integrandos são diferentes, não existe motivos para esperar que os dois custos dejam o mesmo.
+integrandos são diferentes, não existe motivos para esperar que os dois custos desejam o mesmo.
 \cite{bazanella_datadriven}
 
-Existe entretanto o parametro livre que foi incluido à função custo do VRFT que pode ser escolhido a fim de aproximar
+Existe entretanto o parâmetro livre que foi incluído à função custo do VRFT que pode ser escolhido a fim de aproximar
 estes dois integrandos: o filtro $L(z)$. Para fazer com que $J_{VR}(\theta)=J_y(\theta)$, é suficiente escolher
 $L(e^{j\omega})$ como:
 
@@ -326,7 +326,7 @@ Entretanto esta não é a única escolha sensível para a aproximação de $S(z,\theta
 |^2
 \label{eq:dbcd_vrft_sensible_s}
 \end{equation}
-o que aparenta ser uma aproximação razoavel, uma vez que é esperado que as duas funções sensibilidades em
+o que aparenta ser uma aproximação razoável, uma vez que é esperado que as duas funções sensibilidades em
 \eqref{eq:dbcd_vrft_sensible_s} sejam próximas ao redor do ponto de mínimo. Usando esta aproximação, a função de
 transferência do filtro pode ser obtida por:
 
@@ -339,7 +339,7 @@ transferência do filtro pode ser obtida por:
 Para o caso onde $C_d \in C(z, \theta)$ a escolha de $L(z)$ não afeta o resultado, usualmente
 escolhe-se então $L(z)=1$.\cite{campi_leccini_savaresi2002}
 
-Com o fltro $L(z)$ calculado como em \eqref{eq:dbcd_vrft_filter_l_vrft}, o valor assintótico de $\theta$ pode ser
+Com o filtro $L(z)$ calculado como em \eqref{eq:dbcd_vrft_filter_l_vrft}, o valor assintótico de $\theta$ pode ser
 escrito como:
 
 \begin{equation}
@@ -392,7 +392,7 @@ de polarização.
 \psdots[dotsize=0.24,dotstyle=asterisk](4.05,-2.17)
 \end{pspicture} 
 }
-\caption{Exemplo hipotético de funções custo na sitaução onde o controlador ideal não consegue ser representado pelo
+\caption{Exemplo hipotético de funções custo na situação onde o controlador ideal não consegue ser representado pelo
 modelo. Situação esta que o uso do filtro $L(z)$ agrega valor reduzindo o erro de polarização da estimativa -
 Observa-se a aproximação do valor de mínimo das funções custo pelo uso do filtro ($J(\theta)_{VR}^L$).}
 \label{fig:vrft_cost_functions_L}
@@ -414,7 +414,7 @@ corrompido por um ruído aditivo como:
 
 Assume-se que o sinal $u(t)$ e $\nu(t)$ sejam descorrelacionados e também que os dados são coletados
 com a planta trabalhando em laço aberto \cite{campi_leccini_savaresi2002}. A ideia estendida
-de dados coletados com a planta em laço fechado, podem ser encontradados em \cite{lecchini}.
+de dados coletados com a planta em laço fechado, podem ser encontrados em \cite{lecchini}.
 
 Ao aplicar o algoritmo descrito na seção (\ref{sec:dbcd_vrft_framework}) com dados sujeitos a ruídos, o
 resultado obtido possui erro de polarização. Isso pode ser compreendido analisando a expressão do critério
@@ -462,7 +462,7 @@ esperado é pequeno, além disso um segundo experimento não é necessário. \cite{ca
 	\nonumber
 	\end{equation}
 	
-	\item {\it{Identificação da planta:}} Identifica-se a planta $G_0(z)$ com uma familía de modelos como $G(z,\theta_G)$ a
+	\item {\it{Identificação da planta:}} Identifica-se a planta $G_0(z)$ com uma família de modelos como $G(z,\theta_G)$ a
 	partir do conjunto de dados $\left \{ u(t), \; \tilde{y}(t) \right \}_{t=1,..., N}$ e então gera-se o sinal simulado
 	$\hat{y}=G(z,\theta_G)u(t)$, obtendo a variável instrumental como:
 
@@ -554,7 +554,7 @@ ruído é quadruplicada ($\sigma_e^2=0.02$). Observa-se então que o erro de polari
 descrito em \cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruído nas amostras, a estimativa
 é inevitavelmente polarizada. Na seção (\ref{sec:dbcd_vrft_framework_noise}) foi sugerido o uso de variáveis
 instrumentais par para que este erro de polarização seja minimizado. Utilizou-se então este método e para um ruído com
-a mesma variância ($\sigma_e ^2=0.02$), o resultado óbtido é o apresentado na Figura (\ref{fig:vrft_bj_M10_var02_iv}).
+a mesma variância ($\sigma_e ^2=0.02$), o resultado obtido é o apresentado na Figura (\ref{fig:vrft_bj_M10_var02_iv}).
 
 \begin{figure}[htbp] 
 	\center 
@@ -639,7 +639,7 @@ seção (\ref{sec:dbcd_vrft_framework_noise}).
 \label{sec:dbcd_vrft_examples_pid_arx}
 %===============================================================================
 
-Considere o sistema real definido pefinido pelo modelo ARX:
+Considere o sistema real definido pelo modelo ARX:
 
 \begin{equation}
 G_{ 0 }(z)=\frac { z }{ (z-0.9)(z-0.8) } ,\quad \quad \quad H_{ 0 }(z)=\frac { z^2 }{ (z-0.9)(z-0.8) } 
@@ -667,7 +667,7 @@ C(z,\theta )=\frac { \theta _{ 1 }z^2+\theta _{ 2 }z+\theta _{ 3 } }{ z(z-1) }
 \label{eq:vrft_methos_ex_arx_c}
 \end{equation}
 
-Os parametros $\theta_0$ deste sistema é definido por $[ 0.4 \; -0.68 \; 0.288 ]$.
+Os parâmetros $\theta_0$ deste sistema é definido por $[ 0.4 \; -0.68 \; 0.288 ]$.
 
 Como já foi observado a utilização de variáveis instrumentais melhora significativamente o erro de polarização existente
 nas estimativas do método VRFT quando há presença de ruído. Desta forma as informações apresentadas a seguir serão
@@ -719,7 +719,7 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$ d
 
 Até este ponto foram apresentados exemplos de uso do método VRFT quando o controlador que leva o sistema para
 o comportamento desejado $T_d(z)$ faz parte da classe escolhida para a identificação. Nesta seção será apresentado um
-exemplo onde a classe de modelos do controlador escolhida não consegue represetar o controlador ideal $C_d(z)$.
+exemplo onde a classe de modelos do controlador escolhida não consegue representar o controlador ideal $C_d(z)$.
 
 Considere o sistema real descrito por:
 
