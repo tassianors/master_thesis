@@ -77,7 +77,7 @@ sinal $\bar{r}(t)$.
 
 Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $T_d(z)\bar{r}(t)=y(t)$.
 Esta referência é conhecida como {\it{virtual}} pois ela não existe e não foi utilizada para gerar o
-sinal $y(t)$. A figura (\ref{fig:vrft_method_cl}) apresenta o sistema em malha fechada e os sinais
+sinal $y(t)$. A Figura (\ref{fig:vrft_method_cl}) apresenta o sistema em malha fechada e os sinais
 presentes.
 
 \begin{figure}[htbp]
@@ -355,7 +355,7 @@ por:
 \end{equation}
 e na ausência de ruído, $\theta$ é igual ao valor de $\theta_*$ apresentado em \eqref{eq:dbcd_vrft_filter_estim}.
 
-Na figura \ref{fig:vrft_cost_functions_L} um exemplo hipotético, onde o valor de $\theta$ que minimiza $J_{VR}(\theta)$ se
+Na Figura \ref{fig:vrft_cost_functions_L} um exemplo hipotético, onde o valor de $\theta$ que minimiza $J_{VR}(\theta)$ se
 aproxima do valor de mínimo de $J_y(\theta)$ com a utilização do filtro $L(z)$. Também observa-se que a curva de
 $J_{VR}(\theta)$ quando o filtro é aplicado apresenta uma redução na sua concavidade, fazendo com que o valor de mínimo
 na curva encontrado pelo algoritmo seja menos preciso, aumentando o a variância das estimativas, enquanto reduz o erro
@@ -549,7 +549,7 @@ aumentarmos a variância do ruído do sistema, será observado um aumento desta dif
 \nonumber
 \end{equation}
 
-Na figura (\ref{fig:vrft_bj_M10_var02})  é apresentado o resultado para a estimativa de $\theta$ quando a variância do 
+Na Figura (\ref{fig:vrft_bj_M10_var02})  é apresentado o resultado para a estimativa de $\theta$ quando a variância do 
 ruído é quadruplicada ($\sigma_e^2=0.02$). Observa-se então que o erro de polarização existe na estimativa. Como
 descrito em \cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruído nas amostras, a estimativa
 é inevitavelmente polarizada. Na seção (\ref{sec:dbcd_vrft_framework_noise}) foi sugerido o uso de variáveis
@@ -671,7 +671,7 @@ Os parâmetros $\theta_0$ deste sistema é definido por $[ 0.4 \; -0.68 \; 0.288 ]
 
 Como já foi observado a utilização de variáveis instrumentais melhora significativamente o erro de polarização existente
 nas estimativas do método VRFT quando há presença de ruído. Desta forma as informações apresentadas a seguir serão
-feitas utilizando variáveis instrumentais. Na figura (\ref{fig:vrft_arx_M10_var05_iv}) é apresentado a estimativa dos
+feitas utilizando variáveis instrumentais. Na Figura (\ref{fig:vrft_arx_M10_var05_iv}) é apresentado a estimativa dos
 parâmetros do controlador para um ruído de variância $\sigma_e ^2=0.05$. Observa-se que não há erro de polarização nas
 estimativas. O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft_method_arx_iv}).
 
@@ -804,7 +804,7 @@ Os custos destes dois sistemas é apresentado na Tabela (\ref{table:vrft_method_n
 \end{center}
 \end{table*}
 
-A fim de comparar as duas estimativas, na figura (\ref{fig:vrft_notinclass_bode}) é apresentado o diagrama de
+A fim de comparar as duas estimativas, na Figura (\ref{fig:vrft_notinclass_bode}) é apresentado o diagrama de
 Bode dos controladores obtidos (utilizando a média das estimativas obtidas).
 
 \begin{figure}[htbp] 
