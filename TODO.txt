@@ -1,7 +1,3 @@
 REVIEW:
 
-- Dizer que a função custo que eu estou usando agora é um critério de performance h2. achar o melhor lugar para colocar isso.
-
-- verificar a questão de acentuação nos eps
-
-- consideracoes finais cap 4
+- erro de predição é igual ao sinal de enrtada do controlador. isso esta mto errado

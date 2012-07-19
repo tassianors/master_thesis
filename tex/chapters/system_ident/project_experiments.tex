@@ -60,19 +60,19 @@ Um {\it{sinal binário pseudo-randômico}} é um sinal periódico com algumas propri
 semelhantes a de ruído branco. Este sinal é gerado pela equação \eqref{eq:si_project_signal_prbs}.
 
 \begin{equation}
-u(t)=rem(A(q)u(t), 2)=rem(a_1 u(t-1)+...+a_n u(t-n), 2)
+u(t)=rem(A(z)u(t), 2)=rem(a_1 u(t-1)+...+a_n u(t-n), 2)
 \label{eq:si_project_signal_prbs}
 \end{equation}
 onde $rem(x, 2)$ é o resto inteiro da divisão de $x$ por 2. O sinal $u(t)$ deve ser periódico 
 de pelo menos $2^n$ valores diferentes, como uma sequencia de zeros não é um sinal válido, por ser nulo, 
 temos que o máximo período é de tamanho $M=2^n -1$. Na verdade o período vai depender da
-escolha de $A(q)$. Pode-se entretanto mostrar que para cada $n$ existem escolhas de $A(q)$ que 
+escolha de $A(z)$. Pode-se entretanto mostrar que para cada $n$ existem escolhas de $A(z)$ que 
 proporcionam o tamanho máximo. Tais escolhas são apresentadas na Tabela (\ref{table:si_project_input_prbs}).
 \cite{ljung}
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Polinômios $A(q)$ que geram o máximo período $M$ para sinais PRBS de ordem $n$. $a_k=1$ para os $k$
+\caption{Polinômios $A(z)$ que geram o máximo período $M$ para sinais PRBS de ordem $n$. $a_k=1$ para os $k$
    	indicados, 0 para os demais. Diversas outras escolhas existem para os mesmos $n$.}
 \label{table:si_project_input_prbs}
 \begin{tabular}{ccc}
@@ -117,7 +117,7 @@ listado: \cite{ljung}
 \begin{enumerate}[(I)]
 \item Se o PRBS possuir períodos inteiros a sua matriz de covariância terá alguns padrões bem específicos que permitem 
 analiticamente se faça uma inversão desta matriz. Isso facilita certas computações.
-\item Existem essencialmente apenas um PRBS para cada escolha de $A(q)$. Diferentes valores iniciais apenas deslocam a
+\item Existem essencialmente apenas um PRBS para cada escolha de $A(z)$. Diferentes valores iniciais apenas deslocam a
 sequencia.
 \item Para que as propriedades vantajosas do PRBS possam ser utilizadas, é necessário que um numero inteiro de períodos
 seja utilizado, o que limita a escolha do tamanho do experimento.

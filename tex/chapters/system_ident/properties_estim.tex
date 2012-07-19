@@ -124,50 +124,50 @@ Seja, $\theta^*$ o limite de convergência para a minimização do erro de predição
 Sejam os vetores:
 
 \begin{equation}
-Q(q)=\begin{bmatrix}
-G_0(q) & H_0(q)
+Q(z)=\begin{bmatrix}
+G_0(z) & H_0(z)
 \end{bmatrix}^T
 \nonumber
 \end{equation}
 
 \begin{equation}
-\hat{Q}_N(q)=\begin{bmatrix}
-G(q, \hat{\theta}_N) & H(q, \hat{\theta}_N)
+\hat{Q}_N(z)=\begin{bmatrix}
+G(z, \hat{\theta}_N) & H(z, \hat{\theta}_N)
 \end{bmatrix}^T
 \nonumber
 \end{equation}
 
-A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q_0(q)$ e o 
+A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q_0(z)$ e o 
 melhor sistema que o modelo pode atingir (quando a quantidade de dados é ilimitada ($N\rightarrow \infty$)) tem-se
-então a estimativa do modelo $G_N(q)$.\cite{campestrini, solari}
+então a estimativa do modelo $G_N(z)$.\cite{campestrini, solari}
 
 \begin{equation}
-\Delta Q_N(q) \equiv \hat{Q}_N(q)-Q(q)
+\Delta Q_N(z) \equiv \hat{z}_N(z)-Q(z)
 \label{eq:si_par_estim_under_diff}
 \end{equation}
 
 Define-se então:
 
 \begin{equation}
-Q^*(q) = \left [ G(q, \theta^*) \; H(q, \theta^*) \right ]^T
+Q^*(z) = \left [ G(z, \theta^*) \; H(z, \theta^*) \right ]^T
 \label{eq:si_par_estim_under_q*}
 \end{equation}
 
-Entende-se por $Q^*(q)$ como a melhor aproximação que o método pode proporcionar quando a quantidade de dados coletados
+Entende-se por $Q^*(z)$ como a melhor aproximação que o método pode proporcionar quando a quantidade de dados coletados
 $N \rightarrow \infty$.
 
 Adicionando e subtraindo a \eqref{eq:si_par_estim_under_q*} na equação \eqref{eq:si_par_estim_under_diff}
 chega-se à definição dos erros de polarização e de variância:
 
 \begin{equation}
-\Delta Q_N(q) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N(q)-Q^*(q)}}+  \underset{\text{Erro de
-polarização}}{\underbrace{Q^*(q)-Q(q)}}
+\Delta Q_N(z) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N(z)-Q^*(z)}}+  \underset{\text{Erro de
+polarização}}{\underbrace{Q^*(z)-Q(z)}}
 \label{eq:si_par_estim_under_errors}
 \end{equation}
 onde 
 
 \begin{equation}
-Q^*(q)=\left [ G(q, \theta^*) \;\;\; H(q, \theta^*)\right ]
+Q^*(z)=\left [ G(z, \theta^*) \;\;\; H(z, \theta^*)\right ]
 \end{equation}
 
 A partir da equação  \eqref{eq:si_par_estim_under_errors} compreende-se o erro de polarização como sendo a distância
@@ -315,7 +315,7 @@ P^{-1}(\theta_0)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta_0)
 \Phi_{\chi_0}(\theta_0)\mathcal{F}^*(\theta_0) d \omega
 \label{eq:si_par_estim_cov_lemma}
 \end{equation}
-onde $\mathcal{F}(q, \theta_0)=\left [ \mathcal{F}_u(q, \theta_0) \;\;\;\mathcal{F}_e(q, \theta_0) \right ]$ e:
+onde $\mathcal{F}(z, \theta_0)=\left [ \mathcal{F}_u(z, \theta_0) \;\;\;\mathcal{F}_e(z, \theta_0) \right ]$ e:
 
 \begin{equation}
 \mathcal{F}_u(\theta_0) = H^{-1}(\theta_0)\frac{\mathrm{d} G(\theta_0)}{\mathrm{d} \theta} 

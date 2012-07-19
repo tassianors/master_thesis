@@ -90,7 +90,7 @@ Para a primeira condição algumas exceções são apresentadas: \cite{system_identif
 \begin{itemize}
   \item Se a entrada não for persistentemente excitante.
   \item Os dados não são afetados por ruído ($\nu(t) \equiv 0$) e a ordem da classe de modelos é escolhida com um valor
-  muito alto. O que implica que $A_0(q)$ e $B_0(q)$ possuem fatores comuns. Podendo ocasionar dinâmicas no modelo que
+  muito alto. O que implica que $A_0(z)$ e $B_0(z)$ possuem fatores comuns. Podendo ocasionar dinâmicas no modelo que
   não existem no sistema real.
   \item A entrada $u(t)$ é gerada por uma realimentação de saída fazendo com que os regressores sejam diretamente
   relacionado com o ruído por meio do sinal $y(t)$.
@@ -176,11 +176,11 @@ $G(z,\theta)$ e $H(z,\theta)$ são iguais. No caso da estrutura de modelos comple
 \eqref{eq:si_modeling_lti_det_global} e replicado aqui
 
 \begin{equation}
-A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
+A(z)y(t)=\frac{B(z)}{F(z)}u(t)+\frac{C(z)}{D(z)}e(t)
 \nonumber
 \end{equation}
-o sistema não é canonicamente parametrizável quando todos os polinômios são diferentes do caso unitário ($A(q),\ldots,
-F(q) \ne 1$) e com isso a função custo não é convexa, adicionando um grau considerável aos algoritmos para encontrar
+o sistema não é canonicamente parametrizável quando todos os polinômios são diferentes do caso unitário ($A(z),\ldots,
+F(z) \ne 1$) e com isso a função custo não é convexa, adicionando um grau considerável aos algoritmos para encontrar
 o mínimo global da equação. \cite{system_identification}
 
 Para estes casos gerais de estruturas de modelos, usa-se o que é chamado de {\it{prediction error method}} (PEM) ou

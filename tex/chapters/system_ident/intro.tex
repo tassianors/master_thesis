@@ -11,45 +11,45 @@ invariant}}) de tempo discreto SISO ({\it{Single input single output}}). Este ti
 como:
 
 \begin{equation}
-y(t)=G_0(q)u(t)+H_0(q)e(t)
+y(t)=G_0(z)u(t)+H_0(z)e(t)
 \label{eq:si_intro_system}
 \end{equation}
-onde $G_0(q)$ é a função de transferência que descreve o comportamento da planta
-real, $H_0(q)$ é a função de transferência que atua sobre o ruído branco
+onde $G_0(z)$ é a função de transferência que descreve o comportamento da planta
+real, $H_0(z)$ é a função de transferência que atua sobre o ruído branco
 $e(t)$, $u(t)$ é o sinal de entrada aplicado sobre a planta e $y(t)$ o sinal
 de saída, ambos medidos e conhecidos.
 
 Para identificar o sistema apresentado em \eqref{eq:si_intro_system} utiliza-se uma família de modelos
-parametrizada por um vetor $\theta \in \mathbb{R}^d$ que genericamente pode ser
-representado como:
+parametrizada por um vetor $\theta \in \mathbb{R}^d$. Desta forma o sistema a ser identificado pode ser representado
+como:
 
 \begin{equation}
-y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
+y(t)=G(z, \theta)u(t)+H(z, \theta)e(t)
 \label{eq:si_intro_model}
 \end{equation}
-onde as funções de transferência $G(q, \theta)$ e $H(q, \theta)$ podem ser
+onde as funções de transferência $G(z, \theta)$ e $H(z, \theta)$ podem ser
 definidas como:
 
 \begin{equation}
-G(q, \theta)=\sum_{k=1}^{\infty}g(k, \theta)q^{-k}
+G(z, \theta)=\sum_{k=1}^{\infty}g(k, \theta)z^{-k}
 \nonumber
 \end{equation}
 
 \begin{equation}
-H(q, \theta)=1+\sum_{k=1}^{\infty}h(k, \theta)q^{-k}
+H(z, \theta)=1+\sum_{k=1}^{\infty}h(k, \theta)z^{-k}
 \nonumber
 \end{equation}
 
-O objetivo da identificação de sistemas é encontrar um valor para o vetor $\theta$ que faça com que $G(q,\theta)$ e
-$H(q,\theta)$  sejam o mais próximo possível de $G_0(q)$ e $H_0(q)$. .O vetor $\theta$ que faz com que estas duas
+O objetivo da identificação de sistemas é encontrar um valor para o vetor $\theta$ que faça com que $G(z,\theta)$ e
+$H(z,\theta)$  sejam o mais próximo possível de $G_0(z)$ e $H_0(z)$. .O vetor $\theta$ que faz com que estas duas
 funções de transferências sejam iguais é denotado por $\theta_0$. Segue então que:
 
 \begin{equation}
-G(q, \theta_0)=G_0(q)
+G(z, \theta_0)=G_0(z)
 \label{eq:si_intro_true_theta}
 \end{equation}
 
-Outra definição que acompanha tudo que aqui será abordado é a definição de 	sinal quasi-estacionário:
+Outra definição que acompanha o que aqui será abordado é a definição de sinal quasi-estacionário:
 Um sinal é dito quasi-estacionário se a média e a autocorrelação do mesmo convergem para um valor
 finito quando o tamanho da amostra cresce, conforme definição a seguir:
 
@@ -84,14 +84,14 @@ A identificação de sistemas é portanto dependente de três componentes básicas. P
 definido pelo símbolo $\mathcal{S}$ e que pode ser definido a partir de \eqref{eq:si_intro_system} como abaixo:
 
 \begin{equation}
-\mathcal{S}:\;\; y(t)=G_0(q)u(t)+H_0(q)e(t)
+\mathcal{S}:\;\; y(t)=G_0(z)u(t)+H_0(z)e(t)
 \label{eq:si_intro_true_system}
 \end{equation}
 
 Segunda componente é a classe de modelos escolhida, denotada por $\mathcal{M}$:
 
 \begin{equation}
-\mathcal{M}: \;\;\left \{ G(q, \theta), H(q, \theta) | \theta \in D_{\mathcal{M}} \right \}
+\mathcal{M}: \;\;\left \{ G(z, \theta), H(z, \theta) | \theta \in D_{\mathcal{M}} \right \}
 \label{eq:si_intro_model}
 \end{equation}
 
@@ -176,21 +176,21 @@ preditor $\hat{y}(t, \theta)$.
 Considerando o sistema linear:
 
 \begin{equation}
-y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
+y(t)=G(z, \theta)u(t)+H(z, \theta)e(t)
 \label{eq:si_par_estim_system}
 \end{equation}
 
-Assumindo que $G(0, \theta)=0$, $H(0,\theta)=1$ e que $H^{-1}(q, \theta)$ e $H^{-1}(q,\theta)
-G(q,\theta)$ são assintoticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$ não forem correlacionados,
+Assumindo que $G(0, \theta)=0$, $H(0,\theta)=1$ e que $H^{-1}(z, \theta)$ e $H^{-1}(z,\theta)
+G(z,\theta)$ são assintoticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$ não forem correlacionados,
 então o preditor ótimo pode ser apresentado como: \cite{system_identification}
 
 \begin{equation}
-\hat{y}(t|t-1, \theta)= H^{-1}(q, \theta)G(q, \theta)u(t)+\left \{ 1-H^{-1}(q, \theta) \right \}y(t)
+\hat{y}(t|t-1, \theta)= H^{-1}(z, \theta)G(z, \theta)u(t)+\left \{ 1-H^{-1}(z, \theta) \right \}y(t)
 \label{eq:si_par_estim_predictor}
 \end{equation}
 
 \begin{equation}
-\varepsilon (t,\theta)=e(t)=H^{-1}(q, \theta)\left \{ y(t)-G(q, \theta)u(t) \right \}
+\varepsilon (t,\theta)=e(t)=H^{-1}(z, \theta)\left \{ y(t)-G(z, \theta)u(t) \right \}
 \nonumber
 \end{equation}
 
