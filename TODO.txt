@@ -1,3 +1,6 @@
 REVIEW:
 
 - erro de predição é igual ao sinal de enrtada do controlador. isso esta mto errado
+
+- no exemplo do buck é necessário atualizar os valores para os que eu simulei outro dia..
+- seria bom apresentar a vairação na estimativa dos parametros quando o valor inicial é alterado, visto que o sistema nao tem alimentação externa.
