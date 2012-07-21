@@ -7,12 +7,12 @@
 % VI
 % Modelagem do ruído
 
-A identificação de sistemas é formada por três premissas básicas: o sistema real $\mathcal{S}$ a classe de modelos
+A identificação de sistemas é formada por três premissas básicas: o sistema real $\mathcal{S}$, a classe de modelos
 escolhida $\mathcal{M}$ e o critério que determina qual é o melhor modelo dentro da classe.
 
 Métodos de identificação de sistemas envolvem procedimentos, ou algoritmos, para encontrar o mínimo de uma função
-custo, chamada critério. Na seção \ref{sec:sys_ident_intro} foi apresentado o critério de minimização mais utilizado
-para a identificação:
+custo, conhecida também como critério. Na seção \ref{sec:sys_ident_intro} foi apresentado o critério de minimização mais
+utilizado para a identificação:
 
 \begin{equation}
 V(\theta)=\frac{1}{N}\sum_{t=1}^{N}\frac{1}{2} \varepsilon ^2(t, \theta)
@@ -30,7 +30,7 @@ Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, reme
 ao ano de 1809 utilizado por Gauss para determinação da órbita dos planetas \cite{system_identification}. Método este
 chamado de mínimos quadrados (MMQ).
 
-Define-se Um preditor como em:
+Define-se um preditor como em:
 
 \begin{equation}
 \hat{y}(t, \theta)=\varphi ^T(t)\theta
@@ -39,17 +39,17 @@ Define-se Um preditor como em:
 onde $\hat{y}(t)$ é a predição, $\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor
 de parâmetros a ser identificado.
 
-A partir do erro de predição (\ref{eq:si_estim_prediction_error}) e (\ref{eq:si_obj_single_var}) podemos
-redefinir o erro de predição como:
+A partir do erro de predição apresentado em \eqref{eq:si_estim_prediction_error} e a equação
+\eqref{eq:si_obj_single_var} podemos redefinir o erro de predição como:
 
 \begin{equation}
 \varepsilon (t, \theta)=y(t)-\varphi ^T(t)\theta
 \nonumber
 \end{equation}
 
-A {\it{estimativa dos mínimos quadrados}} é definido como o vetor $\hat{\theta}$ 
-que minimiza a função custo (\ref{eq:si_method_criteria}). O valor de $\hat{\theta}$ que minimiza
-esta função custo é dada por: \cite{system_identification}
+A estimativa dos mínimos quadrados é definido como o vetor $\hat{\theta}$ que minimiza a função custo
+\eqref{eq:si_method_criteria}. O valor de $\hat{\theta}$ que minimiza esta função custo é dada por:
+\cite{system_identification}
 
 \begin{equation}
 \hat{\theta}=(\varphi ^T(t) \varphi(t) )^{-1}\varphi  ^T(t) y(t)
@@ -90,10 +90,10 @@ Para a primeira condição algumas exceções são apresentadas: \cite{system_identif
 \begin{itemize}
   \item Se a entrada não for persistentemente excitante.
   \item Os dados não são afetados por ruído ($\nu(t) \equiv 0$) e a ordem da classe de modelos é escolhida com um valor
-  muito alto. O que implica que $A(z)$ e $B(z)$ possuem fatores comuns. Podendo ocasionar dinâmicas no modelo que
-  não existem no sistema real.
+  muito alto, com relação a ordem do sistema. O que implica que $A(z)$ e $B(z)$ possuem fatores comuns. Podendo
+  ocasionar dinâmicas no modelo que não existem no sistema real.
   \item A entrada $u(t)$ é gerada por uma realimentação de saída fazendo com que os regressores sejam diretamente
-  relacionado com o ruído por meio do sinal $y(t)$.
+  relacionados com o ruído por meio do sinal $y(t)$.
 \end{itemize}
 
 Ao contrário da condição (1), a condição (2) normalmente não é verdadeira. Uma importante exceção é quando $\nu(t)$ é
@@ -116,8 +116,8 @@ quando existe correlação entre o regressor $\varphi(t)$ e o ruído estocástico $\
 polarização. Nesta seção será apresentado uma breve discussão sobre um dos métodos que se propõe a sanar este
 inconveniente do método dos mínimos quadrados: método das variáveis instrumentais.
 
-Seja $Z(t)$ uma matriz $n\times n$ que possui sinais não correlacionados com o 
-distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \eqref{eq:si_par_estim_iv_theta}:
+Seja $Z(t)$ uma matriz $n\times n$ que possui sinais não correlacionados com o distúrbio $\nu(t)$. O parâmetro $\theta$
+deve obedecer a restrição da equação:
 
 \begin{equation}
 \frac{1}{N}\sum_{t=1}^{N}Z(t)\varepsilon (t)=\frac{1}{N}\sum_{t=1}^{N}Z(t)\left [ y(t)-\varphi^T(t)\theta \right ]= 0
@@ -125,7 +125,7 @@ distúrbio $\nu(t)$. O parâmetro $\theta$ deve obedecer a restrição da equação \e
 \end{equation}
 
 Se a dimensão da matriz $Z(t)$ for a mesma dimensão do vetor $\theta$ temos o estimador do método das 
-variáveis instrumentais \eqref{eq:si_par_estim_iv}:
+variáveis instrumentais:
 
 \begin{equation}
 \hat{\theta}=\left [ \sum_{t=1}^{N}Z(t)\varphi^T(t) \right ]^{-1}\left [  \sum_{t=1}^{N}Z(t)y(t) \right ]
@@ -141,16 +141,17 @@ não haja erro de polarização. O valor a ser pago por isso envolve: \cite{aguirre
 
 \begin{enumerate}[(I)]
 \item Escolha das variáveis instrumentais.
-\item O estimador resultante é assintoticamente não polarizado, ao invés de ser apenas não polarizado. 
+\item O estimador resultante é assintoticamente não polarizado, ao invés de ser apenas não polarizado. Ou seja, envolve
+a necessidade de um conjunto maior de dados para que a estimativa convirja para o valor de $\theta^*$.
 \end{enumerate}
 
 Ao escolher as variáveis instrumentais é importante notar que a escolha não deve ser apenas para evitar 
-a correlação entre o vetor de erro e os instrumentos. A razão para isso é que as variáveis instrumentais 
+a correlação entre o vetor de erro e os instrumentos. A razão para isso é que os intrumentos 
 devem ser tão correlacionadas quanto possível com os regressores do modelo, caso contrário $Z(t)\varphi(t)^T$ 
 seria próxima a singular e sua inversa muito mal condicionada. Portanto os instrumentos devem ser, idealmente, 
 pouco correlacionados com o erro e muito correlacionados com os regressores do modelo. \cite{aguirre}
 
-A correção dos instrumentos com os regressores ($E\;Z(t)\varphi(t)^T$) sempre será inferior à correlação dos mínimos
+A correlação dos instrumentos com os regressores ($E\;Z(t)\varphi(t)^T$) sempre será inferior à correlação dos mínimos
 quadrados ($E\;\varphi(t)\varphi(t)^T$) onde temos o regressor correlacionado consigo mesmo . Isso propicia que o uso de
 variáveis instrumentais trará uma estimativa com uma variância maior que o método dos mínimos quadrados, pois a
 variância da estimativa está relacionada com o inverso de $E\;Z(t)\varphi(t)^T$.
@@ -162,27 +163,27 @@ variância da estimativa está relacionada com o inverso de $E\;Z(t)\varphi(t)^T$.
 
 O método dos mínimos quadrados possui erro de polarização quando existe correlação entre o regressor $\varphi(t)$ e
 $\nu(t)$. Apresentou-se em seguida uma alternativa ao método dos mínimos quadrados que resolve este inconveniente ao
-custo da escolha de uma variável instrumental que não seja correlacionada com o ruído: método das variáveis
+custo da escolha de uma instrumento que não seja correlacionado com o ruído: método das variáveis
 instrumentais (do inglês {\it{intrumental variables - IV}}).
 
 Deve-se entretanto salientar que a escolha do instrumento não é o único inconveniente do método variáveis instrumentais.
-O aumento do erro de variância, como foi apresentado anteriormente, faz com que se busquem outras alternativas para a
-estimativa dos parâmetros, com um erro de polarização nulo, e com o menor erro de variância possível.
+O aumento do erro de variância, como foi apresentado anteriormente, justifica a busca por outras alternativas para a
+estimativa dos parâmetros, almejando um erro de polarização nulo e com o menor erro de variância possível.
 
 Desta forma, tem-se a possibilidade de incluir o modelo do ruído ao processo de identificação. A adição
 de $H(z,\theta)$ à identificação traz a vantagem de que quando a classe de modelos $\mathcal{M}$ consegue representar a
-totalidade das dinâmicas contidas no sistema real $\mathcal{S}$ então o erro de polarização é zerado. Deseja-se
-entretanto que seja possível a utilização do método dos mínimos quadrados, o que é possível quando o denominador de
-$G(z,\theta)$ e $H(z,\theta)$ são iguais. No caso da estrutura de modelos completa apresentada em
-\eqref{eq:si_modeling_lti_det_global} e replicado aqui
+totalidade das dinâmicas contidas no sistema real $\mathcal{S}$ então o erro de polarização é zerado. Por questões de
+simplicidade de implementação e utilização,  deseja-se que seja possível a utilização do método dos mínimos quadrados
+para a realização da estimativa, o que só é possível quando o denominador de $G(z,\theta)$ e $H(z,\theta)$ são iguais.
+No caso da estrutura de modelos completa apresentada em \eqref{eq:si_modeling_lti_det_global} e replicado aqui:
 
 \begin{equation}
 A(z)y(t)=\frac{B(z)}{F(z)}u(t)+\frac{C(z)}{D(z)}e(t)
 \nonumber
 \end{equation}
 o sistema não é canonicamente parametrizável quando todos os polinômios são diferentes do caso unitário ($A(z),\ldots,
-F(z) \ne 1$) e com isso a função custo não é convexa, adicionando um grau considerável aos algoritmos para encontrar
-o mínimo global da equação. \cite{system_identification}
+F(z) \ne 1$) e com isso a função custo não é convexa, adicionando um grau considerável de complexidade aos algoritmos
+para encontrar o mínimo global da equação. \cite{system_identification}
 
 Para estes casos gerais de estruturas de modelos, usa-se o que é chamado de {\it{prediction error method}} (PEM) ou
 método do erro de predição. O preditor foi apresentado em \eqref{eq:si_par_estim_predictor} e pode ser reescrito como:
@@ -207,8 +208,5 @@ da onde então pode ser calculado o erro de predição como em:
 
 Percebe-se que o MMQ é um caso particular do PEM, existem também outros métodos que são casos particulares desta
 abordagem, mas nem todos possuem uma função custo quadrática para minimizar, fazendo com que o custo para encontrar este
-ponto de mínimo para a função custo seja proporcional a complexidade da curvatura da função custo.
-
-
-
+ponto de mínimo da função custo seja proporcional a complexidade da curvatura da função.
 

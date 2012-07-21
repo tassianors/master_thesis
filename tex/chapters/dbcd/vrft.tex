@@ -77,7 +77,7 @@ sinal $\bar{r}(t)$.
 
 Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $T_d(z)\bar{r}(t)=y(t)$.
 Esta referência é conhecida como {\it{virtual}} pois ela não existe e não foi utilizada para gerar o
-sinal $y(t)$. A Figura (\ref{fig:vrft_method_cl}) apresenta o sistema em malha fechada e os sinais
+sinal $y(t)$. A Figura \ref{fig:vrft_method_cl} apresenta o sistema em malha fechada e os sinais
 presentes.
 
 \begin{figure}[htbp]
@@ -180,7 +180,7 @@ $\hat{\theta}$ que minimiza esta função custo pode ser calculado por:
 
 \end{enumerate}
 
-Com o intuito de exemplificar, na Figura (\ref{fig:vrft_cost_functions}) é apresentado uma curva da função custo
+Com o intuito de exemplificar, na Figura \ref{fig:vrft_cost_functions} é apresentado uma curva da função custo
 $J_y(\theta)$ de um sistema hipotético, e a função custo proposta pelo método VRFT $J_{VR}(\theta)$, a qual é quadrática em $\theta$.
 Ao tentar encontrar o ponto de mínimo da curva $J_y(\theta)$ pode-se recair em algum mínimo local, o que não acontece 
 para a curva  $J_{VR}(\theta)$.
@@ -501,7 +501,7 @@ z-0.4 }
 \end{equation}
 
 Este sistema pode ser compreendido como um sistema {\it{Box-Jenkins}} (BJ)
-(Tabela (\ref{table:si_modeling_models})). Deseja-se que o sistema em malha
+(Tabela \ref{table:si_modeling_models}). Deseja-se que o sistema em malha
 fechada comporte-se o mais próximo possível de:
 
 \begin{equation}
@@ -527,7 +527,7 @@ Escolheu-se \eqref{eq:vrft_methos_ex_bj_c} como sendo a classe de modelos a ser 
 controlador.
 
 Utilizando o método do VRFT para identificação do controlador quando este está submetido a um ruído $\sigma_e^2=0.005$
-obtém-se a estimativas dos parâmetro s $\theta_1$ e $\theta_2$ apresentados na Figura (\ref{fig:vrft_bj_M10_var005})
+obtém-se a estimativas dos parâmetro s $\theta_1$ e $\theta_2$ apresentados na Figura \ref{fig:vrft_bj_M10_var005}
 com um resultado de 100 simulações com $N=2540$ cada.
 
 \begin{figure}[htbp]
@@ -539,7 +539,7 @@ com um resultado de 100 simulações com $N=2540$ cada.
 \end{figure}
 
 Os parâmetros reais esperados para o controlador (equação \eqref{eq:vrft_methos_ex_bj_cd}) e a média de todas
-as estimativas $\hat{\theta}_N$ (valor representado por uma estrela na Figura (\ref{fig:vrft_bj_M10_var005})) não são os
+as estimativas $\hat{\theta}_N$ (valor representado por uma estrela na Figura \ref{fig:vrft_bj_M10_var005}) não são os
 mesmos. Em uma situação onde o erro de polarização das estimativas não existe, o aumento de N (número de
 amostras) implica que esta diferença diminui, tendendo a zero. Em um cenário onde há erro de polarização, se 
 aumentarmos a variância do ruído do sistema, será observado um aumento desta diferença.
@@ -549,12 +549,12 @@ aumentarmos a variância do ruído do sistema, será observado um aumento desta dif
 \nonumber
 \end{equation}
 
-Na Figura (\ref{fig:vrft_bj_M10_var02})  é apresentado o resultado para a estimativa de $\theta$ quando a variância do 
+Na Figura \ref{fig:vrft_bj_M10_var02}  é apresentado o resultado para a estimativa de $\theta$ quando a variância do 
 ruído é quadruplicada ($\sigma_e^2=0.02$). Observa-se então que o erro de polarização existe na estimativa. Como
 descrito em \cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruído nas amostras, a estimativa
 é inevitavelmente polarizada. Na seção (\ref{sec:dbcd_vrft_framework_noise}) foi sugerido o uso de variáveis
 instrumentais par para que este erro de polarização seja minimizado. Utilizou-se então este método e para um ruído com
-a mesma variância ($\sigma_e ^2=0.02$), o resultado obtido é o apresentado na Figura (\ref{fig:vrft_bj_M10_var02_iv}).
+a mesma variância ($\sigma_e ^2=0.02$), o resultado obtido é o apresentado na Figura \ref{fig:vrft_bj_M10_var02_iv}.
 
 \begin{figure}[htbp] 
 	\center 
@@ -578,7 +578,7 @@ Observa-se que o erro de polarização foi minimizado e que o resultado obtido pos
 $0.5495\times10^{-6}$ para $\theta_2$.
 
 A fim de comparar o método VRFT utilizando e não utilizando variáveis instrumentais são apresentados abaixo as
-Tabelas (\ref{table:vrft_method_bj}) e (\ref{table:vrft_method_bj_iv}) onde os custo $J_{y}$ e $J_{VR}^N$ são
+Tabelas \ref{table:vrft_method_bj} e \ref{table:vrft_method_bj_iv} onde os custo $J_{y}$ e $J_{VR}^N$ são
 apresentados para diferentes valores de variância do ruído para o mesmo sistema BJ.
 
 \begin{table*}[htbp]
@@ -671,9 +671,9 @@ Os parâmetros $\theta_0$ deste sistema é definido por $[ 0.4 \; -0.68 \; 0.288 ]
 
 Como já foi observado a utilização de variáveis instrumentais melhora significativamente o erro de polarização existente
 nas estimativas do método VRFT quando há presença de ruído. Desta forma as informações apresentadas a seguir serão
-feitas utilizando variáveis instrumentais. Na Figura (\ref{fig:vrft_arx_M10_var05_iv}) é apresentado a estimativa dos
+feitas utilizando variáveis instrumentais. Na Figura \ref{fig:vrft_arx_M10_var05_iv} é apresentado a estimativa dos
 parâmetros do controlador para um ruído de variância $\sigma_e ^2=0.05$. Observa-se que não há erro de polarização nas
-estimativas. O custo para esta, e outas, estimativas é apresentado na Tabela (\ref{table:vrft_method_arx_iv}).
+estimativas. O custo para esta, e outas, estimativas é apresentado na Tabela \ref{table:vrft_method_arx_iv}.
 
 \begin{figure}[htbp] 
 	\center 
@@ -772,7 +772,7 @@ Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro 
 Aplicando-se estes resultados ao controlador apresentado em \eqref{eq:vrft_methos_ex_pid_not_c} e de posse do
 comportamento desejado para o sistema em malha fechada ($T_d(z)$) é possível fazer um comparativo da resposta
 ao salto unitário para o sistema utilizando os dois controladores obtidos. O resultado é apresentado na Figura
-(\ref{fig:vrft_notinclass_step}).
+\ref{fig:vrft_notinclass_step}.
 
 \begin{figure}[htbp] 
 	\center 
@@ -787,7 +787,7 @@ Observa-se que para o sistema que utiliza o controlador estimado utilizando-se o
 degrau unitário tem significativamente menos erro que o sistema utilizando o outro controlador. Ficando este
 primeiro muito mais próximo da função $T_d(z)$ desejada.
 
-Os custos destes dois sistemas é apresentado na Tabela (\ref{table:vrft_method_notinclass}).
+Os custos destes dois sistemas é apresentado na Tabela \ref{table:vrft_method_notinclass}.
 
 \begin{table*}[htbp]
 \begin{center}
@@ -804,7 +804,7 @@ Os custos destes dois sistemas é apresentado na Tabela (\ref{table:vrft_method_n
 \end{center}
 \end{table*}
 
-A fim de comparar as duas estimativas, na Figura (\ref{fig:vrft_notinclass_bode}) é apresentado o diagrama de
+A fim de comparar as duas estimativas, na Figura \ref{fig:vrft_notinclass_bode} é apresentado o diagrama de
 Bode dos controladores obtidos (utilizando a média das estimativas obtidas).
 
 \begin{figure}[htbp] 

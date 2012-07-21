@@ -18,14 +18,14 @@ quão confiável esta informação é, não é suficiente para a maioria das aplicações
 \label{sec:si_par_estim_data_z}
 %===============================================================================
 
-O conjunto de dados coletados do sistema pode ser descrito como em 
+O conjunto de dados coletados do sistema pode ser descrito como em:
 
 \begin{equation}
 Z^N=\left \{ u(1),y(1),...,n(N),y(N) \right \}
 \label{eq:si_par_estim_data_set}
 \end{equation}
-é o ponto de partida básico para a identificação de sistemas. As propriedades calculadas de $\hat{\theta}_N$ para um
-certo montante de dados serão levados para quando $N \to \infty$, é natural que as condições sobre os dados, sejam
+e é o ponto de partida básico para a identificação de sistemas. As propriedades calculadas de $\hat{\theta}_N$ para um
+certo montante de dados serão levados junto para quando $N \to \infty$, é natural que as condições sobre os dados, sejam
 relativos a um conjunto infinito $Z^{\infty}$. \cite{ljung}
 
 Assume-se que o conjunto de dados $Z^{\infty}$ é tal que para alguns filtros da forma $\left \{ d_t^{(i)}(k) \right \}$:
@@ -106,13 +106,13 @@ H(e^{j\omega}, \hat{\theta}_N) &\to H_0(e^{j\omega}), \; \text{quando } N \to \i
 \end{theorem}
 
 %===============================================================================
-\subsection{Incertezas mas estimativas dos parâmetros}
+\subsection{Incertezas nas estimativas dos parâmetros}
 \label{sec:si_par_estim_uncertanties}
 %===============================================================================
 
 O desejo principal para a identificação de sistemas é que este não possua erros, ou ao menos que este
 erro, se existir, seja o menor possível, ou limitado dentro de uma região conhecida. Para tanto é necessário
-deles é o {\it{erro de variância}} e outro é o {\it{erro de polarização}}.
+introduzir o conceito de {\it{erro de variância}} e {\it{erro de polarização}}.
 
 Seja, $\theta^*$ o limite de convergência para a minimização do erro de predição:
 
@@ -139,10 +139,10 @@ G(z, \hat{\theta}_N) & H(z, \hat{\theta}_N)
 
 A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q_0(z)$ e o 
 melhor sistema que o modelo pode atingir (quando a quantidade de dados é ilimitada ($N\rightarrow \infty$)) tem-se
-então a estimativa do modelo $G_N(z)$.\cite{campestrini, solari}
+então a estimativa do modelo $Q_N(z)$.\cite{campestrini, solari}
 
 \begin{equation}
-\Delta Q_N(z) \equiv \hat{z}_N(z)-Q(z)
+\Delta Q_N(z) \equiv \hat{Q}_N(z)-Q(z)
 \label{eq:si_par_estim_under_diff}
 \end{equation}
 
@@ -156,18 +156,13 @@ Q^*(z) = \left [ G(z, \theta^*) \; H(z, \theta^*) \right ]^T
 Entende-se por $Q^*(z)$ como a melhor aproximação que o método pode proporcionar quando a quantidade de dados coletados
 $N \rightarrow \infty$.
 
-Adicionando e subtraindo a \eqref{eq:si_par_estim_under_q*} na equação \eqref{eq:si_par_estim_under_diff}
+Adicionando e subtraindo a equação \eqref{eq:si_par_estim_under_q*} na equação \eqref{eq:si_par_estim_under_diff}
 chega-se à definição dos erros de polarização e de variância:
 
 \begin{equation}
 \Delta Q_N(z) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N(z)-Q^*(z)}}+  \underset{\text{Erro de
 polarização}}{\underbrace{Q^*(z)-Q(z)}}
 \label{eq:si_par_estim_under_errors}
-\end{equation}
-onde 
-
-\begin{equation}
-Q^*(z)=\left [ G(z, \theta^*) \;\;\; H(z, \theta^*)\right ]
 \end{equation}
 
 A partir da equação  \eqref{eq:si_par_estim_under_errors} compreende-se o erro de polarização como sendo a distância
@@ -176,10 +171,10 @@ das estimativas está distante do valor ótimo possível para a estimativa, que é t
 para a identificação.
 
 Seguidamente é mais importante ter uma boa estimativa da função de transferência da planta $G(\cdot)$ do que do filtro
-do ruído $H(\cdot)$. O conjunto de modelos: \cite{ljung}
+do ruído $H(\cdot)$ \cite{ljung}. O conjunto de modelos: 
 
 \begin{equation}
-\mathcal{G}=\left \{ G(e^{j\omega},\theta) | \theta \in D_{\mathcal{M}} \right \}
+\mathcal{G}=\left \{ G(e^{j\omega},\theta) \;|\; \theta \in D_{\mathcal{M}} \right \}
 \nonumber
 \end{equation}
 é abrangente o suficiente pra que 
@@ -187,7 +182,7 @@ do ruído $H(\cdot)$. O conjunto de modelos: \cite{ljung}
 \begin{equation}
 G_0(z) \in \mathcal{G}
 \end{equation}
-mas a função de transferência do filtro real do ruído $H_0(z)$ não consegue ser totalmente descrito pelo conjunto de
+mas a função de transferência do filtro real do ruído $H_0(z)$ não consegue ser totalmente descrito pela classe de
 modelos. Desta forma $\mathcal{S} \notin \mathcal{M}$ e supondo que o conjunto de dados $Z^{\infty}$ esteja sujeito ao
 que foi descrito na seção (\ref{sec:si_par_estim_data_z}) e que este seja suficientemente informativo.
 Se o experimento é realizado em malha aberta, ou seja, quando $u(t)$ e $e(t)$ são descorrelacionados
@@ -210,16 +205,16 @@ variância da estimativa \cite{gevers2006, campestrini}, onde
 \end{align*}
 
 O caso da parametrização independente em \eqref{eq:si_par_estim_independent_param} cobre o caso do {\it{Output Error}}
-apresentado na tabela (\ref{table:si_modeling_models}) além de modelos com estruturas fixas para o filtro do ruido
+apresentado na Tabela \ref{table:si_modeling_models} além de modelos com estruturas fixas para o filtro do ruido
 $H(z,\theta)$ como em:
 
 \begin{equation}
 y(t)=G(z,\theta)u(t)+H_*(z)e(t)
 \nonumber
 \end{equation}
-onde $H_*(z)$ é um filtro do ruído que faz com que  $\mathcal{S} \notin \mathcal{M}$.
+onde $H_*(z)$ é um filtro do ruído fixo, onde $\mathcal{S} \notin \mathcal{M}$.
 
-Este modelo também cobre o caso da estrutura de modelos Box-Jenkins (tabela (\ref{table:si_modeling_models})).
+Este modelo também cobre o caso da estrutura de modelos Box-Jenkins (Tabela \ref{table:si_modeling_models}).
 Consequentemente esta estrutura de modelos tem a vantagem de que a função de transferência $G(z, \theta)$ pode ser
 consistentemente estimada, mesmo quando o modelo do filtro do ruído é muito simples para admitir-se uma completa
 descrição do sistema. \cite{ljung}
@@ -359,7 +354,7 @@ U_\theta=\left \{ \theta \mid (\hat{\theta}_N-\theta_0)^T P^{-1}_{N}(\hat{\theta
 \label{eq:si_par_estim_confidence_region}
 \end{equation}
 
-Na Figura (\ref{fig:si_covar_elipse}) é apresentado um exemplo de região de confiança para um $\chi$ de 95\%. O ponto
+Na Figura \ref{fig:si_covar_elipse} é apresentado um exemplo de região de confiança para um $\chi$ de 95\%. O ponto
 em destaque é a média de todas as estimativas e está localizado no centro da região de confiança.
 
 \begin{figure}[htbp]
