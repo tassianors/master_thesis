@@ -7,19 +7,19 @@
 % VI
 % Modelagem do ruído
 
-Identificação de sistemas é formado por três premissas básicas: o sistema real $\mathcal{S}$ a classe de modelos
+A identificação de sistemas é formada por três premissas básicas: o sistema real $\mathcal{S}$ a classe de modelos
 escolhida $\mathcal{M}$ e o critério que determina qual é o melhor modelo dentro da classe.
 
-Métodos de identificação de sistemas envolvem procedimentos, ou algoritmos, para
-encontrar o mínimo de uma função custo, chamada critério. Na seção \ref{sec:sys_ident_intro} foi apresentado o critério
-de minimização mais utilizado para a identificação:
+Métodos de identificação de sistemas envolvem procedimentos, ou algoritmos, para encontrar o mínimo de uma função
+custo, chamada critério. Na seção \ref{sec:sys_ident_intro} foi apresentado o critério de minimização mais utilizado
+para a identificação:
 
 \begin{equation}
 V(\theta)=\frac{1}{N}\sum_{t=1}^{N}\frac{1}{2} \varepsilon ^2(t, \theta)
 \label{eq:si_method_criteria}
 \end{equation}
 
-Nesta seção serão apresentados métodos que minimizam esta função custo, suas propriedades e características. 
+Nesta seção serão apresentados métodos que minimizam esta função custo, suas propriedades e principais características. 
 
 %===============================================================================
 \subsection{Método dos mínimos quadrados}
@@ -27,10 +27,10 @@ Nesta seção serão apresentados métodos que minimizam esta função custo, suas pro
 %===============================================================================
 
 Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, remete
-ao ano de 1809 utilizado por Gauss para determinação da órbita dos planetas. 
-\cite{system_identification}, método este chamado de mínimos quadrados (MMQ).
+ao ano de 1809 utilizado por Gauss para determinação da órbita dos planetas \cite{system_identification}. Método este
+chamado de mínimos quadrados (MMQ).
 
-Um preditor pode ser definido como:
+Define-se Um preditor como em:
 
 \begin{equation}
 \hat{y}(t, \theta)=\varphi ^T(t)\theta
@@ -65,7 +65,7 @@ Desta forma o mínimo da função custo fica como em:
 
 O método dos mínimos quadrados é simples de ser aplicado, mas tem o inconveniente de que para que não existam
 erros de polarização na estimativa, a variável de regressão $\varphi(t)$ não pode estar correlacionada com o
-distúrbio estocástico $\nu(t)$, como em:
+distúrbio estocástico $\nu(t)$, ou seja:
 
 \begin{equation}
 E \left [  \varphi(t) \nu(t) \right ] = 0
@@ -90,7 +90,7 @@ Para a primeira condição algumas exceções são apresentadas: \cite{system_identif
 \begin{itemize}
   \item Se a entrada não for persistentemente excitante.
   \item Os dados não são afetados por ruído ($\nu(t) \equiv 0$) e a ordem da classe de modelos é escolhida com um valor
-  muito alto. O que implica que $A_0(z)$ e $B_0(z)$ possuem fatores comuns. Podendo ocasionar dinâmicas no modelo que
+  muito alto. O que implica que $A(z)$ e $B(z)$ possuem fatores comuns. Podendo ocasionar dinâmicas no modelo que
   não existem no sistema real.
   \item A entrada $u(t)$ é gerada por uma realimentação de saída fazendo com que os regressores sejam diretamente
   relacionado com o ruído por meio do sinal $y(t)$.
@@ -101,8 +101,9 @@ ruído branco. Para este caso $\nu(t)$ será descorrelacionado com todos os dados 
 $\varphi(t)$.\cite{system_identification}
 
 Quando o número de amostras tende ao infinito e a estimativa tende para um valor diferente de $\theta_0$, este erro é
-chamado de {\it{bias}} ou erro de polarização da estimativa. Para contornar este erro de {\it{bias}} existem duas opções
-que serão abordadas em seguida: Utilização de variáveis instrumentais e modelagem do ruído.
+chamado de {\it{bias}} ou erro de polarização da estimativa. Para contornar este erro existem duas opções que serão
+abordadas em seguida: utilização de variáveis instrumentais e inclusão da modelagem do ruído à classe de modelos do
+sistema.
 
 %===============================================================================
 \subsection{Método das variáveis instrumentais}
@@ -110,7 +111,7 @@ que serão abordadas em seguida: Utilização de variáveis instrumentais e modelage
 %===============================================================================
 % bibliografia principal: aguirre e ljung
 
-Como foi visto anteriormente, o método dos mínimos quadrados é simples de ser aplicado mas carece de exatidão
+Como foi apresentado anteriormente, o método dos mínimos quadrados é simples de ser aplicado mas carece de exatidão
 quando existe correlação entre o regressor $\varphi(t)$ e o ruído estocástico $\nu(t)$ causando {\it{bias}} ou erro de
 polarização. Nesta seção será apresentado uma breve discussão sobre um dos métodos que se propõe a sanar este
 inconveniente do método dos mínimos quadrados: método das variáveis instrumentais.

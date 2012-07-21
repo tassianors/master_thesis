@@ -26,7 +26,7 @@ do sistema. Este tipo de técnica é também conhecida como {\it{modelagem empírica
 Algo importante a se destacar antes do processo de modelagem do sistema é a
 escolha do que deseja-se modelar deste sistema. Uma modelagem completa de todas
 as características é muitas vezes inviável e na maioria dos sistemas reais,
-desnecessário. Usualmente, temos a necessidade de interagir, seja controlando ou
+desnecessário. Usualmente, tem-se a necessidade de interagir, seja controlando ou
 observando, um conjunto restrito de informações do sistema, deve-se então focar
 o modelo nestas características desejadas.
 
@@ -35,9 +35,8 @@ o modelo nestas características desejadas.
 \label{sec:si_modeling_family_models}
 %===============================================================================
 
-Modelo de um sistema é a descrição matemática de {\it{algumas}} de suas propriedades. 
-
-Na seção (\ref{sec:sys_ident_intro}) apresentou-se a definição para um conjunto de modelos:
+Modelo de um sistema é a descrição matemática de {\it{algumas}} de suas propriedades. Na seção
+(\ref{sec:sys_ident_intro}) apresentou-se a definição para um conjunto de modelos:
 
 \begin{equation}
 \mathcal{M}: \;\;\left \{ G(z, \theta), H(z, \theta) | \theta \in D_{\mathcal{M}} \right \}
@@ -53,7 +52,7 @@ onde as funções de transferência $G(z, \theta)$ e $H(z, \theta)$  são parametriz
 combinação de $\theta$, um novo modelo é definido. 
 
 Provavelmente o modelo mais simples para descrever a relação entre entrada e saída de um sistema seja obtido
-descrevendo-o como uma equação linear (\ref{eq:si_modeling_arx}). \cite{ljung}
+descrevendo-o como uma equação linear: \cite{ljung}
 
 \begin{equation}
 y(t)+a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)+e(t)
@@ -119,7 +118,7 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
 O modelo definido em (\ref{eq:si_modeling_armax}) também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
 a média móvel $C(z)$ do ruído $e(t)$.
 
-Na Figura (\ref{fig:si_models_diagram_narmax}) é apresentado o diagrama de blocos para o modelo {\bf{ARMAX}}. Onde:
+Na Figura (\ref{fig:si_models_diagram_narmax}) é apresentado o diagrama de blocos para o modelo {\bf{ARMAX}}.
 
 \begin{figure}[htbp]
 \center
@@ -186,16 +185,6 @@ Na Figura (\ref{fig:si_models_diagram_narmax}) é apresentado o diagrama de bloco
 \label{fig:si_models_diagram_narmax}
 \end{figure}
 
-\begin{equation}
-G(z, \theta)=\frac{B(z)}{A(z)}
-\nonumber
-\end{equation}
-
-\begin{equation}
-H(z, \theta)=\frac{C(z)}{A(z)}
-\nonumber
-\end{equation}
-
 A partir do equacionamento do sistema apresentado em \eqref{eq:si_modeling_lti_det_armax} e \eqref{eq:si_intro_system}
 pode-se facilmente generalizar para o equacionamento apresentado em:
 
@@ -213,16 +202,16 @@ D(z, \theta) &= 1+d_1z^{-1}+...+d_{nd}z^{-n_d}\\
 F(z, \theta) &= 1+f_1z^{-1}+...+f_{nf}z^{-n_f}
 \end{align*}
 
-Quando usam-se apenas um conjunto dos polinômios de $A(z),\ldots, F(z)$ obtemos as estruturas de modelos
-da Tabela (\ref{table:si_modeling_models}).
+Quando apenas um conjunto dos polinômios de $A(z),\ldots, F(z)$ é utilizado, obte-se tiferentes tipos de estruturas
+de modelos. As mais conhecidas e utilizadas são apresentadas da Tabela \ref{table:si_modeling_models}.
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Alguns modelos comuns para sistemas SISO. Casos especias de \eqref{eq:si_modeling_lti_det_global}}
+\caption{Alguns modelos comuns para sistemas SISO. Casos especias da equação \eqref{eq:si_modeling_lti_det_global}.}
 \label{table:si_modeling_models}
 \begin{tabular}{cl}
 \hline
-        Polinômios usados em \eqref{eq:si_modeling_lti_det_global} & Mome da estrutura do modelo   \\
+        Polinômios diferentes de 1 & Nome da estrutura do modelo   \\
 \hline
         B                 & FIR (finite impulse response) \\ 
         AB                & ARX                           \\ 
@@ -242,5 +231,3 @@ em \eqref{eq:si_intro_system} e que podem ser caracterizados pela utilização de 
 são do que famílias ou conjuntos de modelos.
 Existe para cada conjunto de modelos uma infinidade de possíveis saídas para uma mesma entrada, bastando para
 isso que os parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente.
-
-

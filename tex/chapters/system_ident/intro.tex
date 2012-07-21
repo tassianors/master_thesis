@@ -14,21 +14,18 @@ como:
 y(t)=G_0(z)u(t)+H_0(z)e(t)
 \label{eq:si_intro_system}
 \end{equation}
-onde $G_0(z)$ é a função de transferência que descreve o comportamento da planta
-real, $H_0(z)$ é a função de transferência que atua sobre o ruído branco
-$e(t)$, $u(t)$ é o sinal de entrada aplicado sobre a planta e $y(t)$ o sinal
+onde $G_0(z)$ é a função de transferência que descreve o comportamento da planta real, $H_0(z)$ é a função de
+transferência que atua sobre o ruído branco $e(t)$, $u(t)$ é o sinal de entrada aplicado sobre a planta e $y(t)$ o sinal
 de saída, ambos medidos e conhecidos.
 
-Para identificar o sistema apresentado em \eqref{eq:si_intro_system} utiliza-se uma família de modelos
-parametrizada por um vetor $\theta \in \mathbb{R}^d$. Desta forma o sistema a ser identificado pode ser representado
-como:
+Para identificar o sistema apresentado em \eqref{eq:si_intro_system} utiliza-se uma família de modelos parametrizada
+por um vetor $\theta \in \mathbb{R}^d$. Desta forma o sistema a ser identificado pode ser representado como:
 
 \begin{equation}
 y(t)=G(z, \theta)u(t)+H(z, \theta)e(t)
 \label{eq:si_intro_model}
 \end{equation}
-onde as funções de transferência $G(z, \theta)$ e $H(z, \theta)$ podem ser
-definidas como:
+onde as funções de transferência $G(z, \theta)$ e $H(z, \theta)$ podem ser definidas como:
 
 \begin{equation}
 G(z, \theta)=\sum_{k=1}^{\infty}g(k, \theta)z^{-k}
@@ -41,8 +38,8 @@ H(z, \theta)=1+\sum_{k=1}^{\infty}h(k, \theta)z^{-k}
 \end{equation}
 
 O objetivo da identificação de sistemas é encontrar um valor para o vetor $\theta$ que faça com que $G(z,\theta)$ e
-$H(z,\theta)$  sejam o mais próximo possível de $G_0(z)$ e $H_0(z)$. .O vetor $\theta$ que faz com que estas duas
-funções de transferências sejam iguais é denotado por $\theta_0$. Segue então que:
+$H(z,\theta)$  sejam o mais próximos possíveis de $G_0(z)$ e $H_0(z)$. O vetor $\theta$ que faz com que estas duas
+funções de transferências sejam iguais é denotado por $\theta_0$:
 
 \begin{equation}
 G(z, \theta_0)=G_0(z)
@@ -55,15 +52,13 @@ finito quando o tamanho da amostra cresce, conforme definição a seguir:
 
 \begin{defn}
 \cite{ljung}
-
 Um processo quasi-estacionário pode ser definido como:
 \begin{itemize}
 	\item $\bar{E}\left [ s(t) \right ] = m_s(t), \;\; \left | m_s \right | \le C, \;\forall t$;
 	\item $\bar{E}\left [ s(t)s(r) \right ] = \mid R_s(t,s) \mid \le C, \;\forall t,r$;
 	\item $\lim_{N \to \infty}\frac{1}{N}\sum_{t=1}^{N}R_s(t, t-\tau)=R_s(\tau), \; \forall \tau$,
 \end{itemize}
-onde $m_s(t)$ é o valor médio de $s(t)$ e $R_s(t,r)$ é a covariância de $s$ nos
-instantes $t$ e $r$.
+onde $m_s(t)$ é o valor médio de $s(t)$ e $R_s(t,r)$ é a covariância de $s$ nos instantes $t$ e $r$.
 \end{defn}
 
 $\bar{E}[\cdot]$ é  denotado esperança e pode ser definido por: \cite{ljung}
@@ -80,30 +75,29 @@ $\bar{E}[\cdot]$ é  denotado esperança e pode ser definido por: \cite{ljung}
 \label{sec:sys_ident_elements}
 %===============================================================================
 
-A identificação de sistemas é portanto dependente de três componentes básicas. Primeiro delas é o sistema real,
-definido pelo símbolo $\mathcal{S}$ e que pode ser definido a partir de \eqref{eq:si_intro_system} como abaixo:
+A identificação de sistemas é dependente de três componentes básicas. Primeiro delas é o sistema real, definido pelo
+símbolo $\mathcal{S}$ e que pode ser definido a partir de \eqref{eq:si_intro_system} como abaixo:
 
 \begin{equation}
 \mathcal{S}:\;\; y(t)=G_0(z)u(t)+H_0(z)e(t)
 \label{eq:si_intro_true_system}
 \end{equation}
 
-Segunda componente é a classe de modelos escolhida, denotada por $\mathcal{M}$:
+Segundo componente é a classe de modelos escolhida, denotada por $\mathcal{M}$, onde:
 
 \begin{equation}
 \mathcal{M}: \;\;\left \{ G(z, \theta), H(z, \theta) | \theta \in D_{\mathcal{M}} \right \}
 \label{eq:si_intro_model}
 \end{equation}
 
-O terceiro componente é o critério de escolha que diz qual modelo, dentro da classe é melhor que outro, em
+O terceiro componente é o critério de escolha que diz qual modelo, dentro da classe é melhor que outro. Em
 outras palavras, qual modelo melhor representa o sistema real $\mathcal{S}$ de acordo com o critério escolhido.
-O critério mais utilizado é o de erro de predição, descrito a seguir. 
+Dentre os mais diversos critérios possíveis o mais utilizado é o de erro de predição, descrito a seguir. 
 
-Preditores são equações que predizem qual será o próximo valor de saída do sistema
-baseado no conjunto do modelo e nos valores de dados coletados até aquele momento.
-Os sinais $y(t)$ e $u(t)$ são os sinais da saída e entrada medidas do sistema real enquanto que o sinal
-$\hat{y}(t, \theta)$ é o sinal de saída do preditor. A diferença entre o valor do preditor e o valor do sistema real
-é conhecida como erro de predição:
+Preditores são equações que predizem qual será o próximo valor de saída do sistema baseado na classe do modelo e nos
+valores de dados coletados até aquele instante. Os sinais $y(t)$ e $u(t)$ são os sinais da saída e entrada medidas do
+sistema real enquanto que o sinal $\hat{y}(t, \theta)$ é o sinal de saída do preditor. A diferença entre o valor do
+preditor e o valor do sistema real é conhecida como erro de predição:
 
 \begin{equation}
 \varepsilon(t, \theta)=y(t) - \hat{y}(t, \theta)	
@@ -190,7 +184,7 @@ então o preditor ótimo pode ser apresentado como: \cite{system_identification}
 \end{equation}
 
 \begin{equation}
-\varepsilon (t,\theta)=e(t)=H^{-1}(z, \theta)\left \{ y(t)-G(z, \theta)u(t) \right \}
+\varepsilon (t,\theta)=H^{-1}(z, \theta)\left \{ y(t)-G(z, \theta)u(t) \right \}
 \nonumber
 \end{equation}
 

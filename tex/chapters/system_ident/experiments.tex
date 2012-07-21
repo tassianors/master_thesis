@@ -60,13 +60,14 @@ também é um sinal quasi-estacionário e desta forma se ${ \left| { M }_{ n }({ e 
 }{ \Phi  }_{ u }(\omega )$ é o espectro do sinal $\nu (t)={ M }_{ n }(z)u(t)$ então este sinal não perde sua
 persistência de excitação se filtrado pelo filtro  ${ M }_{ n }(z)$.
 
-Considere o somatório de senoides em \eqref{eq:si_data_persistently_sum_cos}. Cada uma possui duas linhas espectrais em
-$\pm \, \omega_k$. Este sinal é então persistentemente excitante de ordem $2n$.
-
+Considere o somatório de senoides:
 \begin{equation}
 u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \omega_k \neq 0, \; \omega_k \neq \pi
 \label{eq:si_data_persistently_sum_cos}
 \end{equation}
+
+Cada uma possui duas linhas espectrais em $\pm \, \omega_k$, fazendo com que este sinal seja persistentemente excitante
+de ordem $2n$.
 
 %===============================================================================
 \subsection{Experimentos Informativos}
@@ -76,39 +77,92 @@ u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \om
 Na Seção \ref{sec:si_data_persistently_excitation} foi visto como caracterizar
 sinais que são suficiente informativos. Considere um conjunto de modelos ($\mathcal{M}$) para um sistema 
 SISO descrito por (\ref{eq:si_intro_model}) tendo a função de transferência $G(z,\theta)$ a
-função racional apresentada em (\ref{eq:si_data_g_rational}):
+função racional:
 
 \begin{equation}
 G(z,\theta)=\frac{B(z,\theta)}{F(z,\theta)}=\frac{z^{n_k}(b_1+b_2z^{-1}+...+b_{nb}z^{-nb+1})}{1+f_1z^{-1}+...+f_{nf}z^{-nf}}
 \label{eq:si_data_g_rational}
 \end{equation}
 
-Um experimento em malha aberta com entrada persistentemente excitante de ordem $nb +nf$ é
-suficientemente informativo com relação a $\mathcal{M}$.
-
 Um experimento em malha aberta é informativo se a sua entrada for persistentemente excitante.
 Observa-se que é necessário que a ordem de excitação seja igual ao número de parâmetros a
-serem estimados. \cite{ljung}
+serem estimados. \cite{ljung} No caso de \eqref{eq:si_data_g_rational} esta ordem de excitação necessária é $nb+nf$.
 
 Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
 o sinal terá componentes de frequência suficientes para excitar o sistema ao ponto de ser possível observar sua dinâmica
 de forma satisfatória. Inclui-se desta forma na identificação informações suficientes para que todos os
-parâmetros da família de modelos possam ser identificados.
+parâmetros da classe de modelos possam ser identificados.
 
 %===============================================================================
 \subsection{Escolha do modelo e sobre-modelagem}
 \label{sec:si_exper_overfit}
 %===============================================================================
 
-Um aspecto comumente não desejado para aplicações de engenharia é quando a solução do problema não possui apenas uma
+Um aspecto comumente não desejado para aplicações de engenharia é quando um problema não possui apenas uma
 solução. A escolha de um conjunto de modelos $\mathcal{M}$ onde a ordem do modelo é maior do que a ordem do sistema real
 $\mathcal{S}$ faz com que existam infinitas combinações de $\theta$, resultando em infinitos modelos dentro do conjunto
-$\mathcal{M}$ que conseguem descrever exatamente o sistema $\mathcal{S}$:
+$\mathcal{M}$, que conseguem descrever exatamente o sistema $\mathcal{S}$.
+
+A Figura \ref{fig:si_exper_overfit} apresenta o que seria uma situação onde a classe de modelos é escolhida com uma
+ordem maior que a necessária para representar o sistema real $\mathcal{S}$. Considere como exemplo o seguinte sistema
+real:
 
 \begin{equation}
-\mathcal{S}\subset \mathcal{M}
-\label{eq:si_exper_overfit}
+\mathcal{S}: \;\;\; G_0(z)=\frac{a}{z-b}, \;\;\; H_0(z)=\frac{1}{z-b}
+\label{eq:si_exper_overfit_ex_s}
 \end{equation}
+e a classe de modelos:
+
+\begin{equation}
+\mathcal{M}: \;\;\; G(z, \theta)=\frac{\theta_1(z-\theta_2)}{(z-\theta_3)(z-\theta_4)}, \;\;\; H(z, \theta)=\frac{1}{z-\theta_5}
+\label{eq:si_exper_overfit_ex_m}
+\end{equation}
+
+Observa-se que existem infinitos conjuntos de parâmetros $\theta$ que fazem com que a classe de modelos em
+\eqref{eq:si_exper_overfit_ex_m} consiga representar o sistema real em \eqref{eq:si_exper_overfit_ex_s}:
+
+\begin{equation}
+\theta=\left [ \begin{matrix}
+a & X & X & b & b
+\end{matrix} \right ]
+\label{eq:si_exper_overfit_ex_theta}
+\end{equation}
+ou 
+
+\begin{equation}
+\theta=\left [ \begin{matrix}
+a & X & b & X & b
+\end{matrix} \right ]
+\nonumber
+\end{equation}
+com $X$ podendo assumir qualquer valor. Deve ficar claro que está situação apresentada, de sobre modelagem irá
+apresentar erros com relação ao sistema real no momento que houverem mínimas diferênças entre os valores estimados de
+$X$ no numerador e $X$ no denominador.
+
+\begin{figure}[htbp]
+\center
+% Generated with LaTeXDraw 2.0.8
+% Fri Jul 20 23:12:51 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\scalebox{1} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-2.6566103)(8.098205,2.6566098)
+\definecolor{color5b}{rgb}{0.8,0.7607843137254902,0.7607843137254902}
+\psbezier[linewidth=0.04](7.7619767,-1.6879265)(8.078204,-0.73924327)(2.70785,2.6366098)(1.7619767,2.3120735)(0.8161035,1.987537)(0.0,-0.4607735)(0.56197673,-1.2879266)(1.1239535,-2.1150796)(7.445749,-2.6366098)(7.7619767,-1.6879265)
+\psbezier[linewidth=0.04,fillstyle=solid,fillcolor=color5b](5.161977,-1.4879266)(5.8411145,-0.7539158)(5.321633,0.23089656)(4.3619766,0.51207346)(3.4023206,0.7932503)(3.9142723,-0.18274914)(2.9619768,-0.48792657)(2.0096812,-0.793104)(2.112841,0.50062793)(1.9619766,-0.48792657)(1.8111125,-1.4764811)(4.4828386,-2.2219374)(5.161977,-1.4879266)
+\usefont{T1}{ptm}{m}{n}
+\rput(2.686508,1.2220734){$\mathcal{M}$}
+\usefont{T1}{ptm}{m}{n}
+\rput(3.636508,-0.97792655){$\mathcal{S}$}
+\end{pspicture} 
+}
+\caption{Representação gráfica para uma classe de modelos onde o sistema real $\mathcal{S}$ é apenas um subconjunto do
+modelo escolhido para representa-lo.}
+\label{fig:si_exper_overfit}
+\end{figure}
 
 A escolha de uma classe de modelos $\mathcal{M}$ é o ponto mais crucial para que o processo de identificação de sistemas
 tenha sucesso. Esta escolha deve ser com base no entendimento do procedimento de identificação e das percepções e
@@ -138,16 +192,15 @@ e as incertezas matemáticas inseridas. Além disso existe o problema destes model
 condicionados além da convicção de que são redundantes e poderiam ser removidos do modelo (aplicando algum algoritmo de
 simplificação de modelo). Um modelo com um número excessivo de parâmetros pode exibir dinâmicas que não são observadas
 no sistema real, desta forma não existe apenas o problema numérico para a identificação, mas também um problema de
-dinâmica em utilizar um modelo sobre-estimado.
-\cite{aguirre_jacome}
+dinâmica em utilizar um modelo sobre dimensionado. \cite{aguirre_jacome}
 
 O procedimento que testa se a classe de modelos é simples e apropriada para descrever o sistema é aplicar alguma técnica
 de redução a classe de modelos. Se a ordem da classe de modelos pode ser reduzida sem afetar as propriedades de entrada e
 saída do sistema, então a classe de modelos original era desnecessariamente complexa. \cite{ljung}
 
 Por fim, ao escolher uma classe de modelos para a identificação, deve-se levar em conta diversos pontos e informações.
-Depois de escolhido este modelo, um processo de validação do modelo é indicado a ser executado. Este procedimento é
-simples e consistem em algumas perguntas que o projetista do experimento de identificação deve fazer:
+Depois de escolhido o modelo, um processo de validação é indicado a ser executado. Este procedimento é
+simples e consiste em algumas perguntas que o projetista do experimento de identificação deve fazer:
 
 \begin{itemize}
   \item A classe de modelos escolhida consegue descrever suficientemente bem os dados observados?
