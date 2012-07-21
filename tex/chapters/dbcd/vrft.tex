@@ -131,7 +131,7 @@ excitada com o sinal $u(t)$, o sinal $y(t)$ é obtido. Analogamente para um contr
 excitado com o sinal $\varepsilon(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
 controlador, com os sinais $u(t)$ e $\varepsilon(t)$ que são conhecidos, a tarefa reduz-se a um problema de
 identificação. Comumente, usa-se um pré-filtro nos dados coletados. A ideia principal do uso deste
-filtro será explicada posteriormente na seção (\ref{sec:dbcd_vrft_framework_filter}). 
+filtro será explicada posteriormente na Seção \ref{sec:dbcd_vrft_framework_filter}. 
 
 O algoritmo pode ser descrito pelos passos a seguir \cite{campi_savaresi2000}:
 
@@ -416,7 +416,7 @@ Assume-se que o sinal $u(t)$ e $\nu(t)$ sejam descorrelacionados e também que os
 com a planta trabalhando em laço aberto \cite{campi_leccini_savaresi2002}. A ideia estendida
 de dados coletados com a planta em laço fechado, podem ser encontrados em \cite{lecchini}.
 
-Ao aplicar o algoritmo descrito na seção (\ref{sec:dbcd_vrft_framework}) com dados sujeitos a ruídos, o
+Ao aplicar o algoritmo descrito na Seção \ref{sec:dbcd_vrft_framework} com dados sujeitos a ruídos, o
 resultado obtido possui erro de polarização. Isso pode ser compreendido analisando a expressão do critério
 $J_{VR}(\theta)$ quando utiliza-se o sinal $\tilde{y}(t)$:
 
@@ -552,7 +552,7 @@ aumentarmos a variância do ruído do sistema, será observado um aumento desta dif
 Na Figura \ref{fig:vrft_bj_M10_var02}  é apresentado o resultado para a estimativa de $\theta$ quando a variância do 
 ruído é quadruplicada ($\sigma_e^2=0.02$). Observa-se então que o erro de polarização existe na estimativa. Como
 descrito em \cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruído nas amostras, a estimativa
-é inevitavelmente polarizada. Na seção (\ref{sec:dbcd_vrft_framework_noise}) foi sugerido o uso de variáveis
+é inevitavelmente polarizada. Na Seção \ref{sec:dbcd_vrft_framework_noise} foi sugerido o uso de variáveis
 instrumentais par para que este erro de polarização seja minimizado. Utilizou-se então este método e para um ruído com
 a mesma variância ($\sigma_e ^2=0.02$), o resultado obtido é o apresentado na Figura \ref{fig:vrft_bj_M10_var02_iv}.
 
@@ -632,7 +632,7 @@ $\sigma_e^2$ quando o método VRFT utiliza variáveis instrumentais para a estimat
 
 Utilizando variáveis instrumentais observa-se que o custo $J_{y}(\theta)$ é significativamente mais baixo
 quando comparado com o método onde não são utilizadas variáveis instrumentais, corroborando com o que foi apresentado na
-seção (\ref{sec:dbcd_vrft_framework_noise}).
+Seção \ref{sec:dbcd_vrft_framework_noise}.
 
 %===============================================================================
 \subsubsection{Controlador PID - sistema ARX}
@@ -751,7 +751,7 @@ C(z,\theta )=\frac { \theta _{ 1 }z^2+\theta _{ 2 }z+\theta _{ 3 } }{ z(z-1) }
 
 Observa-se que \eqref{eq:vrft_methos_ex_pid_not_c} não consegue representar todas as dinâmicas apresentadas em
 \eqref{eq:vrft_methos_ex_pid_not_cd}. Utilizando o procedimento descrito na Seção
-(\ref{sec:dbcd_vrft_framework_noise}) e o procedimento de experimento repetido, foram feitos 100 experimentos de
+\ref{sec:dbcd_vrft_framework_noise} e o procedimento de experimento repetido, foram feitos 100 experimentos de
 Monte Carlo e o resultado obtido para a média das estimativas foi:
 
 \begin{equation}
@@ -761,8 +761,8 @@ Monte Carlo e o resultado obtido para a média das estimativas foi:
 
 onde o índice $L$ indica que este resultado foi obtido utilizando-se o filtro $L$.
 
-Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro $L$ descrito na seção
-(\ref{sec:dbcd_vrft_framework_noise}), obteve-se o resultado seguinte:
+Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro $L$ descrito na Seção
+\ref{sec:dbcd_vrft_framework_noise}, obteve-se o resultado seguinte:
 
 \begin{equation}
 \theta =\left[ 0.5846 \quad -0.2108  \quad -0.1525 \right]
