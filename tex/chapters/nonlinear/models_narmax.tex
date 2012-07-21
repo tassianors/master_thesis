@@ -88,7 +88,6 @@ y(t) &=& F[ y(t-1), ..., y(t-n_y), u(t-\tau_d), ..., u(t-\tau_d-n_u+1),\\
 && e(t-1), ..., e(t-n_e)] +e(t)
 \label{eq:nl_model_narmax_pol_espec}
 \end{eqnarray}
-
 onde $e(t)$ indica que todos os efeitos não podem ser bem representados. $F^l\left [ \cdot  \right ]$ é
 uma função polinomial de $y(t)$, $u(t)$ e $e(t)$ com grau de não linearidade $l\in \mathbb{N}$. 
 Portanto a parte não determinística da equação \eqref{eq:nl_model_narmax_pol_espec} pode ser expandida como
@@ -138,10 +137,10 @@ b(t-1)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(t-1)\theta_d
 \label{eq:nl_model_narmax_rat_den}
 \end{equation}
 onde $\theta_{nj}$ e $\theta_{dj}$ são os parâmetros dos regressores, possuindo informações até
-o instante $t-1$. Desta forma o valor de parâmetros a ser estimados é $N_n + N_d$
+o instante $t-1$. Desta forma o vetor de parâmetros a ser estimados possui tamanho $N_n + N_d$.
 
 A equação \eqref{eq:nl_model_narmax_rat_simp} possui não linearidade nos parâmetros, tornando a
-identificação mais complexa por não ser possível utilizar o método dos mínimos quadrados para a
+identificação mais complexa por não ser possível a utilização do método dos mínimos quadrados para a
 estimativa dos parâmetros. Uma alternativa para este problema é multiplicar a equação
 \eqref{eq:nl_model_narmax_rat_simp} pela equação \eqref{eq:nl_model_narmax_rat_den} em ambos os seus
 lados. \cite{billings_zhu91}
@@ -183,4 +182,5 @@ possível utilizar o método dos mínimos quadrados. \cite{aguirre}
 
 Uma das maiores desvantagens da modelo racional quando comparado com o modelo polinomial é que o modelo polinomial é
 linear nos parâmetros. Muitos resultados para identificação de sistemas lineares podem ser estendidos para modelos
-polinomiais não lineares e várias rotinas de determinação de estrutura já foram desenvolvidas. \cite{chen_billings1989}
+polinomiais não lineares e várias rotinas de determinação de estrutura já foram desenvolvidas para isso.
+\cite{chen_billings1989}

@@ -3,19 +3,9 @@
 \label{sec:dbcd_vrft}
 % ===============================================================================
 
-% Em aplicações práticas, a descrição matemática da planta não é disponível e o sistema deve ser identificado
-% baseado nas medidas obtidas deste sistema. Este assunto tem atraído a atenção de diversos engenheiros de
-% controle desde 1940 com o pioneiro trabalho de Ziegler e Nichols (1942) com ajuste de controladores PID
-% industriais. Depois do trabalho de Ziegler e Nichols diversos trabalhos surgiram, muitos em formas de
-% aperfeiçoamento e extensões das técnicas já apresentadas, e algumas com desenvolvimentos em novas direções
-% (\cite{mcmillan1983tuning}, \cite{Haalman1965}). A característica principal destes métodos é que eles podem
-% ser facilmente utilizados: simples experimentos sobre a planta são executados e simples regras 
-% são aplicadas sobre os dados obtidos. \cite{campi_leccini_savaresi2002}
-
-
 VRFT do inglês {\it{Virtual reference feedback tuning}} é um método direto para identificação de
 controladores, ou seja, não é necessário o conhecimento ou identificação da planta para que este método seja
-utilizado. O método se baseia na utilização de apenas um conjunto de dados, não necessitando de experimentos
+utilizado. O método baseia-se na utilização de apenas um conjunto de dados, não necessitando de experimentos
 específicos. O procedimento procura pelo ponto ótimo do critério escolhido para a identificação do controlador.
 \cite{campi_savaresi2000}
 
@@ -108,7 +98,7 @@ presentes.
 \usefont{T1}{ptm}{m}{n}
 \rput(5.51,1.2707813){\small $u(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(2.25,1.2707813){\small $\varepsilon (t)$}
+\rput(2.25,1.2707813){\small $\epsilon (t)$}
 \usefont{T1}{ptm}{m}{n}
 \rput(8.3,1.2707813){\small $y(t)$}
 \psframe[linewidth=0.04,dimen=outer](6.0,-0.62921876)(3.8,-1.4292188)
@@ -121,15 +111,15 @@ presentes.
 \end{pspicture} 
 %}
 \caption{Diagrama de blocos para o método VRFT. São destacados os sinais reais $u(t)$ e $y(t)$ além dos sinais virtuais
-$\varepsilon (t)$ e $\bar{r}(t)$. Em pontilhado está o controlador que quando aplicado sobre a malha, faz com que o
+$\epsilon (t)$ e $\bar{r}(t)$. Em pontilhado está o controlador que quando aplicado sobre a malha, faz com que o
 sistema se comporte como desejado: $T_d(z)$.}
 \label{fig:vrft_method_cl}
 \end{figure}
 
-O sinal $\varepsilon(t)$ é o erro entre os sinais $y(t)$ e $\bar{r}(t)$. Sabe-se que quando a planta é
+O sinal $\epsilon(t)$ é o erro entre os sinais $y(t)$ e $\bar{r}(t)$. Sabe-se que quando a planta é
 excitada com o sinal $u(t)$, o sinal $y(t)$ é obtido. Analogamente para um controlador, quando este é
-excitado com o sinal $\varepsilon(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
-controlador, com os sinais $u(t)$ e $\varepsilon(t)$ que são conhecidos, a tarefa reduz-se a um problema de
+excitado com o sinal $\epsilon(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
+controlador, com os sinais $u(t)$ e $\epsilon(t)$ que são conhecidos, a tarefa reduz-se a um problema de
 identificação. Comumente, usa-se um pré-filtro nos dados coletados. A ideia principal do uso deste
 filtro será explicada posteriormente na Seção \ref{sec:dbcd_vrft_framework_filter}. 
 
@@ -144,7 +134,7 @@ y_L (t)=L(z)y(t), \;\;\; u_L (t)=L(z)u(t)
 \end{equation}
 
 \begin{equation}
-\varepsilon_L (t)=L(z)\varepsilon (t)=\bar{r}_L (t)-y_L (t) 
+\epsilon_L (t)=L(z)\epsilon (t)=\bar{r}_L (t)-y_L (t) 
 \nonumber
 \end{equation}
 
@@ -165,7 +155,7 @@ J_{VR}^N(\theta)=\frac{1}{N}\sum_{t=1}^{N}(u_L(t)-\varphi_L^T(t)\theta)^2
 \end{equation}
 
 \begin{equation}
-\varphi_L(t)=\beta(z)\varepsilon_L(t)
+\varphi_L(t)=\beta(z)\epsilon_L(t)
 \nonumber
 \end{equation}
 
@@ -239,7 +229,7 @@ C_d(z) \notin C(z, \theta)
 \nonumber
 \end{equation}
 
-Aplicando o teorema de Perseval  para a função custo de seguimento de referência:
+Aplicando o teorema de Perseval a função custo de seguimento de referência:
 
 \begin{equation}
 J_y(\theta)=\bar{E}\left [ (T(z,\theta)-T_d(z))r(t) \right ]^2
@@ -271,7 +261,7 @@ J_y(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | G_0(e^{j\omega}) \right |^2
 Adiciona-se o filtro $L(z)$ à função custo do VRFT, $J_{VR}(\theta)$:
 
 \begin{equation}
-J_{VR}(\theta)=\bar{E}\left [ L(z)(u(t)-C(z,\theta)\bar{\varepsilon}(t)) \right ]^2
+J_{VR}(\theta)=\bar{E}\left [ L(z)(u(t)-C(z,\theta)\bar{\epsilon}(t)) \right ]^2
 \nonumber
 \end{equation}
 e usando as relações:

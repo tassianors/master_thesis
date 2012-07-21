@@ -92,7 +92,7 @@ $H_0(z)$ satisfaz $h_0(0)=1$. \cite{campestrini}
 \usefont{T1}{ptm}{m}{n}
 \rput(5.081875,-0.49921885){\small $u(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(1.941875,-0.49921885){\small $\varepsilon (t)$}
+\rput(1.941875,-0.49921885){\small $\epsilon (t)$}
 \usefont{T1}{ptm}{m}{n}
 \rput(8.851875,0.12078118){\small $\nu(t)$}
 \usefont{T1}{ptm}{m}{n}
@@ -105,7 +105,7 @@ $H_0(z)$ satisfaz $h_0(0)=1$. \cite{campestrini}
 \rput(8.871875,1.5807811){\small $e(t)$}
 \end{pspicture} 
 }
-\caption{Representação de um sistema de controle em malha fechada, com ruido aditivo na saída. São apresentados também
+\caption{Representação de um sistema de controle em malha fechada, com ruído aditivo na saída. São apresentados também
 os principais sinais referenciados.}
 \label{fig:vrft_db_control_loop}
 \end{figure}
@@ -132,13 +132,12 @@ y(t)=T(z, \theta)r(t)
 Identificação de sistemas é dividido em três partes básicas: o sistema real, a classe de modelos escolhida e o critério
 de performance $V(\theta)$. No capítulo sobre identificação de sistemas lineares (Capítulo
 \ref{chapter:system_identification}),  foi apresentado um dos critérios mais utilizados, que mede o custo de uma
-função baseado no erro entre os dados observados do sistema real e a saída do modelo. (equação
-\eqref{eq:si_obj_etim_lsm_v}). Para projeto de controladores existem desdobramentos deste critério em função dos
-objetivos básicos de controle:
+função baseado no erro entre os dados observados do sistema real e a saída do modelo. Para projeto de controladores
+existem desdobramentos deste critério em função dos objetivos básicos de controle:
 
 \begin{itemize}
   \item Seguimento de referência,
-  \item Rejeição a ruído e 
+  \item Rejeição ao ruído e 
   \item Uso reduzido de esforço de controle. 
 \end{itemize}
 
@@ -198,18 +197,18 @@ onde $S_d(z,\theta)$ é a função sensibilidade desejada para o sistema.
 
 Assim como o controlador apresentado em \eqref{eq:dbcd_perf_tracking_cd} é o controlador ótimo para o critério de
 performance de seguimento de referência, para o critério de rejeição ao ruido o controlador ótimo pode ser obtido. Para
-minimizar a função custo \eqref{eq:dbcd_perf_je} escolhe-se $T_e(z)$ como abaixo (Detalhes podem ser obtidos em
-\cite{bazanella_datadriven})
+minimizar a função custo \eqref{eq:dbcd_perf_je} escolhe-se $T_e(z)$ como abaixo (detalhes podem ser obtidos em
+\cite{bazanella_datadriven}):
 
 \begin{equation}
-T_e(z)= 1-\frac{1}{H(z)} 
+T_e(z)= 1-\frac{1}{H_0(z)} 
 \label{eq:dbcd_perf_te}
 \end{equation}
 
 Da onde obtém-se o controlador desejado para a rejeição ao ruído $C_e(z)$:
 
 \begin{equation}
-C_e(z)=\frac{T_e(z)}{G_0(z)(1-T_e(z))}=\frac{H(z)-1}{G_0(z)} 
+C_e(z)=\frac{T_e(z)}{G_0(z)(1-T_e(z))}=\frac{H_0(z)-1}{G_0(z)} 
 \label{eq:dbcd_perf_ce}
 \end{equation}
 

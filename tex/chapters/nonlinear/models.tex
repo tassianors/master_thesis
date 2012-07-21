@@ -1,27 +1,26 @@
 %===============================================================================
-\section{Modelos para sistemas não lineares}
+\section{Estruturas de modelos para sistemas não lineares}
 \label{sec:nl_models}
 %===============================================================================
 % ideia aqui é colocar uma pequena introdução sobre modelos.. no mesmo estilo
 % que foi para sistemas lineares.
 
-Famílias ou conjuntos de modelos para sistemas não lineares podem ser divididos em dois grupos principais, baseados na
+Famílias ou conjuntos de modelos para sistemas não lineares podem ser divididos em dois grupos principais baseados na
 natureza de suas não linearidades: não linearidades estáticas, onde a dinâmica do sistema pode ser bem caracterizada por um modelo
 linear enquanto que a parte não linear está concentrada ou na entrada ou na saída do sistema de forma estática.
 Estes sistemas são chamados de Wiener para não linearidades na saída do processo ou Hammerstein, quando a
 não linearidade está na entrada do processo.
 
-Para os demais casos, onde a não linearidade está na dinâmica do processo existem várias famílias de modelos
+Para os demais casos, onde a não linearidade está na dinâmica do processo existem várias estruturas de modelos
 que podem ser utilizados como será visto no decorrer deste capítulo. De forma geral todos estes conjuntos
 possuem em comum a ideia da escolha de uma base que seja representativa e que possa reduzir a quantidade de
 termos a ser identificado e com isso ter uma boa aproximação do sistema real com a menor quantidade de
-parâmetros possível na identificação.
+parâmetros possível.
 
 Percebe-se então que um mesmo sistema pode ser representado por diversos destes modelos, mas dependendo das
-características deste sistema, uma das famílias será mais adequada, por sua base possuir mais
-afinidade em representar certos tipos de não linearidades. Entende-se por afinidade a característica de conseguir
-representar o sistema com um número de parâmetros menor que outro modelo com outra base e que use mais parâmetros para
-conseguir representar este sistema.
+características deste sistema, uma das estruturas de modelos será mais adequada, por sua base possuir mais
+afinidade em representar certos tipos de não linearidades. Entende-se por ``maior afinidade'' a característica de
+conseguir representar o sistema com um número de parâmetros menor que outro modelo que use outra base.
 
 Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
 modelo. Quando este modelo é não linear, existe uma grande quantidade de opções e com isso o perigo
@@ -30,7 +29,7 @@ da parcimônia}} que basicamente determina que o modelo deve ser o mais simples p
 \ref{sec:si_exper_overfit} foram apresentadas algumas ideias relacionadas a este assunto.
 
 Juntamente com a escolha do modelo para representar o sistema não linear, saber se este é identificável é de grande
-	importância. Em \cite{glad_ljung} é apresentado um procedimento para determinar a identificabilidade de sistemas não
+importância. Em \cite{glad_ljung} é apresentado um procedimento para determinar a identificabilidade de sistemas não
 lineares.
 
 % ===============================================================================
@@ -49,7 +48,6 @@ para não linearidades na saída chama-se {\it{modelo de Wiener}}. \cite{ljung}
 
 Na Figura \ref{fig:nl_models_hammerstein_wiener} observa-se o diagrama de blocos para os modelos de Hammerstein e
 Wiener.
-
 
 \begin{figure}[htbp]
 \center
@@ -109,12 +107,11 @@ y(t)=\sum_{j=1}^{\infty}\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}
 h_j(\tau_1, ... ,\tau_j) \prod_{i=1}^{j}u(t-\tau_i)d\tau_i
 \label{eq:nl_models_volterra}
 \end{equation}
-onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para
-um sistema linear com $j=1$ a equação de Volterra se reduz à integral de convolução.
-\cite{aguirre}
+onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para um sistema linear com $j=1$ a equação
+de Volterra se reduz à integral de convolução. \cite{aguirre}
 
 As expansões funcionais em séries de Volterra relacionam os sinais passados da entrada com o valor atual da saída do
-sistema e isso inevitavelmente significa que que um conjunto tipicamente elevado de parâmetros é necessário para
+sistema e isso inevitavelmente significa que que um conjunto tipicamente elevado de parâmetros seja necessário para
 descrever até mesmo simples sistemas não lineares e consequentemente apenas poucas aplicações práticas foram apresentadas.
 \cite{chen_billings1989}
 
@@ -124,7 +121,7 @@ descrever até mesmo simples sistemas não lineares e consequentemente apenas pouc
 % TODO: Search for bib
 %===============================================================================
 As redes neurais artificiais são compostas por camadas de neurônios interconectados. A saída de um
-neurônio com $n$ entradas é apresentada na equação \eqref{eq:nl_models_neural}
+neurônio com $n$ entradas é apresentada na equação:
 
 \begin{equation}
 x=\emph{f}\left ( \sum_{j=1}^{n}\omega_j x_j +b \right )
@@ -138,16 +135,14 @@ função de ativação mais comum é: \cite{aguirre}
 \nonumber
 \end{equation}
 
-
 %===============================================================================
 \subsubsection{Redes Neurais multi-camadas}
 \label{sec:nl_models_neurals_multilayer}
 %===============================================================================
 
-Uma típica rede multi-camadas pode ser descrita como na Figura
-\ref{fig:nl_models_neural_multilayer}.  Na prática redes neurais multi-camadas têm grande apelo no
-reconhecimento de padrões. Do ponto de vista teórico os sistemas de redes multi-camadas podem ser
-considerados como mapas não lineares onde os elementos das matrizes de peso são os parâmetros.
+Uma típica rede multi-camadas pode ser descrita como na Figura \ref{fig:nl_models_neural_multilayer}.  Na prática redes
+neurais multi-camadas têm grande apelo no reconhecimento de padrões. Do ponto de vista teórico os sistemas de redes
+multi-camadas podem ser considerados como mapas não lineares onde os elementos das matrizes de peso são os parâmetros.
 \cite{narenda_parthasarathy}
 
 \begin{figure}[htbp]
@@ -244,8 +239,7 @@ considerados como mapas não lineares onde os elementos das matrizes de peso são 
 \rput(12.444531,-3.160625){$\text{Camada Saída}$}
 \end{pspicture} 
 }
-
-\caption{Rede neural multi-camadas.}
+\caption{Representação de uma rede neural multi-camadas.}
 \label{fig:nl_models_neural_multilayer}
 \end{figure}
 

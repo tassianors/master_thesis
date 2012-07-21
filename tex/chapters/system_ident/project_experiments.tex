@@ -48,7 +48,7 @@ gerar qualquer sinal binário de qualquer nível.
 
 O inconveniente desta forma é que aplicando um filtro ao sinal Gausiano irá alterar o
 seu espectro, não sendo a forma desta alteração algo conhecido. Deve-se então sempre 
-antes de aplicar o sinal no sistema, verificar o espectro gerado. \cite{ljung}
+antes de aplicar o sinal no sistema, deve-se verificar o espectro gerado. \cite{ljung}
 
 %===============================================================================
 \subsubsection{Sinal Binário Pseudo-Randômico - PRBS}
@@ -57,7 +57,7 @@ antes de aplicar o sinal no sistema, verificar o espectro gerado. \cite{ljung}
 % ref: ljung pages 418
 
 Um {\it{sinal binário pseudo-randômico}} é um sinal periódico com algumas propriedades
-semelhantes a de ruído branco. Este sinal é gerado pela equação \eqref{eq:si_project_signal_prbs}.
+semelhantes a de ruído branco. Este sinal é gerado pela equação:
 
 \begin{equation}
 u(t)=rem(A(z)u(t), 2)=rem(a_1 u(t-1)+...+a_n u(t-n), 2)
@@ -111,8 +111,7 @@ Observa-se que este é um sinal persistentemente excitante de ordem $M-1$. Na Fig
 	\label{fig:si_project_prbs}
 \end{figure}
 
-As vantagens e desvantagens do sinal PRBS comparado com um ruído randômico binário pode ser
-listado: \cite{ljung}
+As vantagens e desvantagens do sinal PRBS comparado com um sinal binário randômico pode ser listado: \cite{ljung}
 
 \begin{enumerate}[(I)]
 \item Se o PRBS possuir períodos inteiros a sua matriz de covariância terá alguns padrões bem específicos que permitem 
@@ -135,7 +134,7 @@ sinal, bastando apenas a correta escolha do filtro. Como este sinal é gerado {\i
 proporciona um comportamento espectral melhor. \cite{campestrini, ljung}
 
 %===============================================================================
-\subsection{Projeto de experimento como um problema de otimização}
+\subsection{Projeto de experimento visto como um problema de otimização}
 \label{sec:si_project_optimization}
 %===============================================================================
 
@@ -186,10 +185,10 @@ A escolha de usar uma parametrização finita do espectro ou uma parametrização pa
 aspectos:
 
 \begin{itemize}
-\item relativos a otimização
+\item Relativos a otimização
 \item Computacionais
-\item limitação de sinais
-\item robustez
+\item Limitação de sinais
+\item Robustez
 \end{itemize}
 
 A parametrização parcial da correlação é ótima e pode usar um número mínimo de parâmetros, utilizando assim, menos processamento

@@ -8,15 +8,14 @@ do tipo apresentado em \eqref{eq:nl_model_narmax_rat_simp}. Este algoritmo foi p
 \cite{correa} e é uma modificação do algoritmo originalmente proposto por
 \cite{billings_zhu}. Assume-se que o modelo pode ser aproximado por: \cite{aguirre}
 
-\begin{eqnarray}\nonumber
+\begin{eqnarray}\label{eq:nl_alg_rational}
 y(t)&=&\frac
 {a(y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u))}
-{b(y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u))}\\
+{b(y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u))}\\ \nonumber
 &&  +c(e(t-1), ... , e(t-n_e)) +e(t)
-\label{eq:nl_alg_rational}
 \end{eqnarray}
 
-Onde o ruído é modelado por um polinômio que pode ou não ser linear. A consideração básica 
+O ruído é modelado por um polinômio que pode ou não ser linear. A consideração básica 
 por trás de \eqref{eq:nl_alg_rational} é que o erro de regressão pode ser representado por
 um modelo {\it{MA}}({\it{Move average}}), possivelmente não linear. Assim sendo sugere-se o 
 seguinte procedimento: \cite{aguirre}
@@ -150,7 +149,7 @@ Nesta seção serão apresentados alguns casos de uso do algoritmo descrito anterio
 Inicia-se com um exemplo simples, onde o sistema é racional e a classe de modelos escolhida consegue representar
 completamente este sistema ($\mathcal{S} \in \mathcal{M}$). Em seguida será apresentado um exemplo onde o sistema ainda
 é racional, mas a classe de modelos escolhida não consegue representar completamente o sistema em questão, ou seja,
-$\mathcal{S} \notin \mathcal{M}$. Por fim será apresentado um exemplo real de um conversor de corrente contínua para
+$\mathcal{S} \notin \mathcal{M}$. Por fim será apresentado um exemplo de um conversor de corrente contínua para
 corrente contínua do tipo Buck.
 
 Serão apresentados os resultados obtidos a fim de verificar a qualidade e a confiabilidade do algoritmo de identificação
@@ -222,7 +221,7 @@ estimativas dos parâmetros $\theta_1$ e $\theta_2$ e a elipse de confiança para 
 	\center
 	\includegraphics[width=0.9\columnwidth]{figures/rat_example2_a1_a2.eps}
 	\caption{Estimativas obtidas nos 100 experimentos de Monte Carlo realizados para as variáveis $\theta_1$ e
-	$\theta_2$.}
+	$\theta_2$. Destaca-se a elipse de confiança para $\chi^2=95\%$}
 	\label{fig:nl_rat_example2}
 \end{figure}
 
@@ -274,7 +273,7 @@ sistema real \eqref{eq:nl_rat_exemple3} e o sistema obtido pela estimativa utili
 \begin{figure}[htbp]
 	\center
 	\includegraphics[width=0.9\columnwidth]{figures/rat_example3.eps}
-	\caption{Exemplo 2 - Comparativo da resposta do sistema real e do modelo estimado para uma entrada do tipo degrau
+	\caption{Comparativo da resposta do sistema real e do modelo estimado para uma entrada do tipo degrau
 	unitário}
 	\label{fig:nl_rat_example3}
 \end{figure}
@@ -364,7 +363,7 @@ foi:
 Como pode ser observado, pelos resultados de $\theta$ obtidos e os valores esperados, existe polarização na
 estimativa obtida. Isso em parte se dá pela falta de capacidade da classe de modelos escolhida em representar
 o processo real e pela escolha do modelo de ruído que para este caso foi apenas utilizado o erro da
-estimativa, com relação a saída do sistema real obtido.
+estimativa, com relação a saída do sistema real obtido (residuos do passo (2) do algoritmo).
 
 Foram utilizadas amostras de 100 pontos para esta estimativa e realizados 100 experimentos de Monte Carlo.
 Os resultados obtidos foram de uma média de:
