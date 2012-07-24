@@ -4,60 +4,60 @@
 %===============================================================================
 
 Neste trabalho diversos assuntos foram abordados para que fosse possível chegar a proposta de identificação de
-controladores não lineares utilizando referência virtual. Iniciou-se pela teoria básica de identiifcação de sistemas
-lineares no Capítulo \ref{chapter:system_identification}, neste capítulo foram apresentados os componentes principais
-que permeiam toda a teoria de identificação. Foram apresentados alguns dos pricipais métodos de identificação e quais
-são suas particularidades e quais são as propriedades estatísticas das estimativas obtidas.
+controladores não lineares utilizando referência virtual. Iniciou-se pela teoria básica de identificação de sistemas
+lineares no Capítulo \ref{chapter:system_identification} onde foram apresentados os componentes principais
+que permeiam toda a teoria de identificação. Foram apresentados alguns dos principais métodos de identificação e quais
+são suas particularidades e propriedades estatísticas das estimativas obtidas.
 
 No Capitulo \ref{chapter:nlin_si_ident} foram apresentados as principais classes de modelos para representar sistemas
 não lineares. Deu-se um enfoque maior para a classe de modelos NARMAX com a apresentação do algoritmo de identificação
 proposto para esta classe de modelos. Exemplos de uso foram apresentados e o que ficou evidenciado é o algoritmo é
-bastante eficiente para o que ele se propõem. Existe entretanto alguns pontos que podem ser tratados como trabalhos
+bastante eficiente ao que ele se propõem. Existe entretanto alguns pontos que podem ser tratados como trabalhos
 futuros: a convergência do algoritmo está atrelada a convergência do modelos do ruído. Nos exemplos estudados o ruído
 aplicado foi pouco representativo para fazer com que houvesse qualquer divergência de convergência do algoritmo, mas em
 situações onde a classe de modelos não consegue representar todas as dinâmicas do sistema real ($\mathcal{S} \notin
 \mathcal{M}$) o erro de polarização das estimativas era esperado, mas se um modelo de ruído mais complexo fosse
 adicionado, a percepção que se tem é que este erro seria reduzido e com isso uma melhor estimativa poderia ser obtida.
 Como nestes exemplos o escopo era apenas demonstrar o funcionamento do algoritmo em situações onde o conhecimento da
-planta é limitado e que o modelo escolhido foi subdimensionado, não se investiu no desenvolvimento desta melhoria ao
-algoritmo desenvolvido.
+planta é limitado e que o modelo escolhido não é subdimensionado, não se investiu no desenvolvimento desta melhoria para
+o algoritmo.
 
-Classes de modelos NARMAX possuem alguns diferênciais que os destacam de outras classes de modelos para sistemas não
+Classes de modelos NARMAX possuem alguns diferenciais que os destacam de outras classes de modelos para sistemas não
 lineares: este tipo de classe consegue representar uma grande quantidade de sistemas reais pois relaciona tanto os
-sinais passados da enrtada, saída e do ruído do sistema, além de que podem ser organizados de uma forma polinial ou
-racional, aumentando a possibilidades de combinações de classes formadas. Outro ponto de destaque é que este típo de
-classe é parametrizavel linearmente, isso torna o algoritmo de identificação mais simples além de assegurar várias
-propriedades estatísticas das estimativas feitas para sistemas lineares..
+sinais passados da entrada, saída e do ruído do sistema, além de que podem ser organizados de uma forma polinomial ou
+racional, aumentando a possibilidades de combinações de classes formadas. Outro ponto de destaque é que este tipo de
+classe é parametrizável linearmente, isso torna o algoritmo de identificação mais simples além de assegurar várias
+propriedades estatísticas das estimativas feitas para sistemas lineares.
 
-No Capítulo \ref{chapter:dbcd} foi apresentado a idéia básica para projetos de controladores baseados em dados. Foram
+No Capítulo \ref{chapter:dbcd} foi apresentado a ideia básica para projetos de controladores baseados em dados. Foram
 presentados brevemente alguns dos principais métodos existentes. O método VRFT foi mais detalhado e alguns exemplos de
-uso do método foram apresentados, pois o uso de referência virtual está muito relacionado a este método. Resultados
+uso do método foram apresentados. Resultados
 obtidos para os exemplos apresentados foram satisfatórios, observou-se que o método em sua concepção original possui
 erro de polarização quando os dados estão corrompidos por ruido, mesmo que este seja branco. Com a proposta de uso de
-variáveis instrumentais, mostou-se que este erro de polarização desaparece, ampliando os horizontes de utilização da
+variáveis instrumentais, mostrou-se que este erro de polarização desaparece, ampliando os horizontes de utilização da
 metodologia.
 
-No capiítulo \ref{chapter:dbnarmax} os resultados centrais deste trabalho foram apresentados. Uniu-se a ideia de
+No Capítulo \ref{chapter:dbnarmax} os resultados centrais deste trabalho foram apresentados. Uniu-se a ideia de
 referência virtual com o algoritmo de identificação de sistemas não lineares descritos por classe de modelos NARMAX
 apresentado no Capitulo \ref{chapter:nlin_si_ident}. Para esta situação, o sistema a ser identificado pelo algoritmo é o
-controlador que é projetado baseado nas necessídades de desempenho do sistema em malha fechada, determinadas pelo
+controlador que é projetado baseado nas necessidades de desempenho do sistema em malha fechada, determinadas pelo
 projetista.
 
 Um controlador não linear tipicamente será requerido quando a planta tiver comportamento não linear, mas o comportamento
-do sistema em malha fehcada desejado for linear. Desta forma o controlador será encarregado, além de cumprir os
+do sistema em malha fechada desejado for linear. Desta forma o controlador será encarregado, além de cumprir os
 requisitos de desempenho do sistema, de cancelar as não linearidades presentes na planta. A escolha de um comportamento
 linear em malha fechada normalmente é o caso para o método VRFT e neste trabalho todos os exemplos seguiram esta
-diretriz.
+característica.
 
 A escolha de um comportamento não linear para o sistema em malha fechada pode ser o caso de alguma aplicação, mas neste
-trabalho não foi abordado, mas poderia ser tratado como trabalho futuro, visto que algumas suposições para o uso de
+trabalho não foi abordado, poderia entretanto, ser tratado como trabalho futuro, visto que algumas suposições para o uso de
 referência virtual devam ser modificadas para cobrir esta situação e gerar os sinais necessários para a identificação.
 
 Os exemplos apresentados para sistemas com não linearidades estáticas e com não linearidades na dinâmica do processo
-apresentaos no Capítulo \ref{chapter:dbnarmax} se mostraram bem completas e em conjunto com situações onde o
-controlador ideal não consegue ser representado pela classe de modelos ( $\mathcal{S} \notin \mathcal{M}$), cobriram
+apresentados no Capítulo \ref{chapter:dbnarmax} mostraram-se bem completas e em conjunto com situações onde o
+controlador ideal não consegue ser representado pela classe de modelos ($\mathcal{S} \notin \mathcal{M}$), cobriram
 grande parte das situações comumente encontradas na prática.
 
 Desta forma é possível afirmar que a metodologia proposta é válida, mesmo que existam sugestões de trabalhos futuros
-vizlumbrados, o estágio atual de desenvolvimento propicia o uso desta metodologia em aplicações práticas.
+vislumbrados, o estágio atual de desenvolvimento propicia o uso desta metodologia em aplicações práticas.
 
