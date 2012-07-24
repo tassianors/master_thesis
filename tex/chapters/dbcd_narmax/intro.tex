@@ -28,6 +28,28 @@ Na Seção \ref{sec:nl_si_algorithms_rationals} foi apresentado o algoritmo implem
 apresentadas em seguida. Os resultados obtidos para identificação de sistemas não lineares que podem ser descritos por
 modelos NARMAX se mostrou eficiente. 
 
+
+%===============================================================================
+\section{Definições}
+\label{sec:dbnarmax_defines}
+%===============================================================================
+
+No Capítulo \ref{chapter:system_identification} foram apresentadas as definições para identificação de sistemas
+lineares. Definiu-se o sistema real pelo simbolo $\mathcal{S}$, vale aqui ressaltar que para o projeto de controladores,
+o sismtema real que se quer identificar é o controlador ideal definido por $C_d(z)$. Define-se desta forma a classe de
+controladores $\mathcal{C}$
+
+\begin{equation}
+\mathcal{C} = \left [ C(z,\theta)\;:\; \theta \in \mathcal{P} \right ]
+\end{equation}
+onde  $\mathcal{P} \subseteq \mathbb{R}^p$. Tem-se que o controlador ideal $C_d(z) \in \mathcal{C}$ se existir algum
+$\theta_0$ que:
+
+\begin{equation}
+C(z,\theta_0)=C_d(z)
+\end{equation}
+
+
 %===============================================================================
 \section{Método}
 \label{sec:dbnarmax_method}
@@ -150,6 +172,27 @@ para obtenção dos valores de $\hat{\theta}$ que minimize algum critério de escol
 Para o caso onde $C_d(z) \notin C(z, \theta)$ recai-se no fato de que $T_d(z)$ não consegue ser completamente obtido,
 possuindo assim algum resquício de comportamento não linear devido a planta $G_0(z)$. A influência do ruído sobre a
 qualidade das estimativas fica a cargo do algoritmo utilizado para identificação.
+
+%===============================================================================
+\subsection{Controlador}
+\label{sec:dbnarmax_controller}
+%===============================================================================
+
+Para a metodologia proposta neste trabalho, tem-se que a planta $G_0(z)$ é não linear e que o comportamento do sistema
+em malha fechada $T_d(z)$ escolhido para o sistema é linear. Tem-se desta forma que o controlador ideal $C_d(z)$ será
+obrigatóriamente não linear para fazer com que as não linearidades da planta não sejam observadas na saída do processo
+depois que este for posto para operar em malha fechada.
+
+Desta forma, para que a classe de controladores consiga representar a totalidade das dinâmicas de $C_d(z)$ é necessário
+que exista um conjunto de parametros $\theta_0$ tal que:
+
+\begin{equation}
+C(z,\theta_0)=C_d(z) 
+\nonumber
+\end{equation}
+se isso não for observado então a classe escolhida não é capaz de representar a totalidade das dinâmicas do controlador
+ideal e a sua estimativa será polarizada, assim como no caso de $\mathcal{S} \notin \mathcal{M}$ apresentado no
+Capítulo \ref{chapter:system_identification}.
 
  
 

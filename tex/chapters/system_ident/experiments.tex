@@ -80,13 +80,18 @@ SISO descrito por \eqref{eq:si_intro_model} tendo a função de transferência $G(z
 função racional:
 
 \begin{equation}
-G(z,\theta)=\frac{B(z,\theta)}{F(z,\theta)}=\frac{z^{n_k}(b_1+b_2z^{-1}+...+b_{nb}z^{-nb+1})}{1+f_1z^{-1}+...+f_{nf}z^{-nf}}
+G(z,\theta)=\frac{B(z,\theta)}{F(z,\theta)}=\frac{z^{n_k}(b_1+b_2z^{-1}+...+b_{nb}z^{-n_b+1})}{1+f_1z^{-1}+...+f_{n_f}z^{-nf}}
 \label{eq:si_data_g_rational}
 \end{equation}
 
 Um experimento em malha aberta é informativo se a sua entrada for persistentemente excitante.
 Observa-se que é necessário que a ordem de excitação seja igual ao número de parâmetros a
-serem estimados. \cite{ljung} No caso de \eqref{eq:si_data_g_rational} esta ordem de excitação necessária é $nb+nf$.
+serem estimados \cite{ljung}. No caso de \eqref{eq:si_data_g_rational} esta ordem de excitação necessária é $n_b+n_f$.
+
+Para um experimento em malha aberta e um sistema NARMAX e Box-Jenkins um sistema é suficientemente informativo se a
+ordem de excitação for  $n_b+n_a$. Em \cite{gevers_bazanella2009} foi apresentado que para uma estrutura ARMAX, é
+necessário que a ordem seja ao menos igual a $k=n_b+\text{min}\left \{ n_a, n_c \right \}$. Para um sistema BJ o valor
+mínimo necessário para a ordem é $k=n_b+n_f$.
 
 Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
 o sinal terá componentes de frequência suficientes para excitar o sistema ao ponto de ser possível observar sua dinâmica

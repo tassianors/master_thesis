@@ -1,11 +1,12 @@
 REVIEW:
 
-- erro de predição é igual ao sinal de enrtada do controlador. isso esta mto errado
-
 - no exemplo do buck é necessário atualizar os valores para os que eu simulei outro dia..
 - seria bom apresentar a vairação na estimativa dos parametros quando o valor inicial é alterado, visto que o sistema nao tem alimentação externa.
 
 cap das minhas contribuições:
 - poderia ter uma seçaõ falando da escolha do modelo em malha fechada. que escolher um comportamento linear ou nao linear não deve ser restritivo para a proposta.
 - dize explicitamente que o sistema a ser identificado é agora o controlador.. que \mathcal{M} representa o controlador, sem a planta ou outra coisa.
-- S é o Cd e M é a classe C(z, \theta).
+
+colocar que controlador nao linear não possui algumas vezes representacao no dominio freq.. e em t ele tbm vai precisar ter os parametros identificados e tal.. e que deve obedecer as limitações de Cd estar em C...
+
+0
