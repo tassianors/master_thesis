@@ -3,14 +3,15 @@
 \label{sec:dbnarmax_nonlinear_examples}
 %===============================================================================
 
-Neste trabalho o foco está em apresentar os resultados da identificação de sistemas que podem ser descritos por modelos
-NARMAX racionais ou polinomiais. Sendo que para isso serão apresentados exemplos de identificação de sistemas onde a
-linearidade é estática assim como quando a não linearidade está na dinâmica do sistema.
+Nesta seção serão apresentados os resultados obtidos para a identificação de sistemas que podem ser descritos por
+modelos NARMAX racionais ou polinomiais. Os sinais de enrtada do algoritmo de identificação serão obtidos por meio de
+referência virtual.
 
-Nos exemplos abordados a seguir as não linearidades estarão presentes na planta do sistema e deseja-se que este sistema
-se comporte em malha fechada como um sistema linear. Para isso o controlador adicionado na malha deverá ser capaz de
-anular a não linearidade contida na planta, desta forma, forçosamente o controlador será não linear, sendo descrito por
-um modelo NARMAX racional ou polinomial.
+Os exemplos se dividem de acordo com o típo de não linearidade. Na Seção \ref{sec:dbnarmax_nl_wiener} é apresentado um
+exemplo onde a não linearidade está acoplada estáticamente na saída da planta. Na Seção \ref{sec:dbnarmax_nl_dinamic}
+são apresentados exemplos onde a não linearidade está na dinâmica do processo. Os exemplos nesta seção estão divididos
+entre controladores ideias que conseguem ser representados pela classe de modelos escolhida ($C_d(z) \in C(z,\theta)$) e
+quando a classe de modelos não consegue representar a totalidade das dinâmicas presentes ($C_d(z) \notin C(z,\theta)$).
 
 %===============================================================================
 \subsection{Não linearidades estáticas}
@@ -264,7 +265,7 @@ Serão apresentados exemplos onde o controlador ideal está na classe de modelos e
 dinâmicas do controlador ideal não conseguem ser representadas totalmente pelo modelo escolhido.
 
 %===============================================================================
-\subsubsection{Controlador ideal sendo representado pela classe de modelos}
+\subsubsection{Controlador ideal representado pela classe de modelos: $C_d \in C(z,\theta)$}
 \label{sec:dbnarmax_nl_dinamic_c_match}
 %===============================================================================
 
@@ -388,7 +389,7 @@ estimativas permaneceu praticamente inalterado, corroborando pela não existência
 %%===============================================================================
 
 %===============================================================================
-\subsubsection{Controlador não sendo representado pelo modelo}
+\subsubsection{Controlador ideal não sendo representado pela classe de modelos: $C_d \notin C(z,\theta)$}
 \label{sec:dbnarmax_nl_dinamic_c_not_match}
 %===============================================================================
 

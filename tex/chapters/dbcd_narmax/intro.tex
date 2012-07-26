@@ -4,30 +4,25 @@
 %===============================================================================
 
 Projeto de controladores descrito no Capítulo \ref{chapter:dbcd} tem como base a identificação de controladores
-lineares. Encontram-se poucos trabalhos na literatura que abordam identificação de controladores não lineares. Em
-\cite{Guardabassi} é apresentado um procedimento para linearização de sistemas não lineares utilizando a ideia de
-referência virtual. Em \cite{campi_savaresi2006} é apresentado uma generalização do método VRFT que envolve a
-identificação de controladores não lineares, mas existe a necessidade de algum conhecimento da planta e muito do sinal
-aplicado. No trabalho de Billings em \cite{billings_nl_survey} são apresentadas diferentes metodologias para a
-identificação de sistemas não lineares.
+lineares. Encontram-se poucos trabalhos na literatura que abordam identificação de controladores não lineares baseados
+nos dados coletados da planta. Em \cite{Guardabassi} é apresentado um procedimento para linearização de sistemas não
+lineares utilizando a ideia de referência virtual. Em \cite{campi_savaresi2006} é apresentado uma generalização do
+método VRFT que envolve a identificação de controladores não lineares, mas existe a necessidade de algum conhecimento
+da planta e muito do sinal aplicado. O método IFT para sistemas não lineares é apresentado em
+\cite{hajalmson_ift_non_linear}. No trabalho de Billings em \cite{billings_nl_survey} são apresentadas diferentes
+metodologias para a identificação de sistemas não lineares.
 
 Seguindo nesta linha, existem diversos trabalhos propondo metodologias e algoritmos para a identificação de sistemas não
 lineares para inúmeras famílias de modelos. Em \cite{chen_billings1989Prediction} é apresentado uma metodologia para a
 estimativa de parâmetros de sistemas não lineares, de forma recursiva. Os mesmos autores no mesmo ano apresentaram um
-trabalho sobre identificação de sistemas não lineares utilizando modelos NARMAX \cite{chen_billings1989}, modelos estes
-que podem representar uma grande quantidade de sistemas reais.
+trabalho sobre identificação de sistemas não lineares utilizando classes de modelos NARMAX \cite{chen_billings1989}.
 
 Existem na literatura diversos tipos de aplicações para a ideia de referência virtual, para projeto de controladores
 baseados em dados, o método VRFT é talvez o mais conhecido. Neste trabalho tem-se o intuito de, baseado em referência
 virtual, determinar os sinais de entrada para a utilização de algum algoritmo de identificação de sistemas não lineares.
-Escolheu-se o algoritmo inicialmente proposto por \cite{billings_zhu} e que também é estudado em \cite{aguirre} por existir um
-grande número de sistemas físicos e aplicações práticas que podem ser representados por estes modelos chamados de
-NARMAX.
-
-Na Seção \ref{sec:nl_si_algorithms_rationals} foi apresentado o algoritmo implementado para as simulações que serão
-apresentadas em seguida. Os resultados obtidos para identificação de sistemas não lineares que podem ser descritos por
-modelos NARMAX se mostrou eficiente. 
-
+Escolheu-se o algoritmo inicialmente proposto por \cite{billings_zhu} e que também é estudado em \cite{aguirre} por
+existir um grande número de sistemas físicos e aplicações práticas que podem ser representados por esta classe de
+modelos chamada de NARMAX.
 
 %===============================================================================
 \section{Definições}
@@ -36,7 +31,7 @@ modelos NARMAX se mostrou eficiente.
 
 No Capítulo \ref{chapter:system_identification} foram apresentadas as definições para identificação de sistemas
 lineares. Definiu-se o sistema real pelo simbolo $\mathcal{S}$, vale aqui ressaltar que para o projeto de controladores,
-o sismtema real que se quer identificar é o controlador ideal definido por $C_d(z)$. Define-se desta forma a classe de
+o sistema real que se quer identificar é o controlador ideal definido por $C_d(z)$. Define-se desta forma a classe de
 controladores $\mathcal{C}$
 
 \begin{equation}
@@ -49,22 +44,27 @@ $\theta_0$ que:
 C(z,\theta_0)=C_d(z)
 \end{equation}
 
+Demais propriedades estatisticas e de convergência que foram apresentadas na Seção \ref{sec:sys_ident_prop_estim} podem
+ser generalizadas para $C(z,\theta)$.
+
+Para o desenvolvimento deste método supõem-se que a planta $G_0(z)$ seja não linear.
 
 %===============================================================================
 \section{Método}
 \label{sec:dbnarmax_method}
 %===============================================================================
 
-O método proposto neste trabalho consiste na ideia de utilizar referência virtual para, a partir dos dados coletados do
-sistema, determinar os sinais de entrada do controlador que faz com que o sistema em malha fechada se comporte como
+O método proposto consiste na ideia de utilizar referência virtual para, a partir dos dados coletados do
+sistema, determinar os sinais de entrada do controlador que fazem com que o sistema em malha fechada se comporte como
 desejado: $T_d(z)$.
 
-Parte-se do pressuposto de que o sistema $G_0(z)$ é não linear, mas que o comportamento em malha fechada desejado é
-linear, portanto o controlador projetado deve cancelar as não linearidades da planta para que possa ser possível uma
-relação linear entre a entrada $r(t)$ e a saída $y(t)$.
+Parte-se do pressuposto de que o processo $G_0(z)$ é não linear, mas que o comportamento em malha fechada desejado
+$T_d(z)$ seja linear, portanto o controlador projetado deve, além de cumprir com os objetivos de performance
+determinados, cancelar as não linearidades da planta para que possa ser possível uma relação linear entre a entrada
+$r(t)$ e a saída $y(t)$.
 
-Não há necessidade aqui de atrelar o sistema $G_0(z)$  ou o controlador $C(z, \theta)$ à alguma classe de modelos
-predeterminada. Com os dados coletados da planta, é possível determinar os sinais de entrada do controlador fazendo:
+Apartir dos dados coletados da planta, é possível determinar os sinais de entrada do controlador utilizando
+referência virtual, fazendo:
 
 \begin{equation}
 \bar{r}(t)=T_d^{-1}(z)y(t)
@@ -141,59 +141,51 @@ apresentado na equação \eqref{eq:dbcd_perf_tracking_cd} e aqui replicado:
 
 \begin{equation}
 C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))}
-\nonumber
+\label{eq:dbnarmax_perf_tracking_cd}
 \end{equation}
 
 Desta forma é simples compreender que $G_0(z)$, ou uma parcela deste, estará presente na estrutura de $C(z,\theta)$.
-Neste trabalho optou-se por caracterizar o controlador por classes de modelos NARMAX. A necessidade da classe ser NARMAX
-polinomial:
+Como foi suposto anteriormente na Seção \ref{sec:dbnarmax_defines}, a planta é não linear. Desta forma o controlador
+será também não linear, devido ao relacionamento apresentado em \eqref{eq:dbnarmax_perf_tracking_cd}. Supoem-se ainda
+que o controlador pode ser descrito por uma classe de modelos NARMAX.
+
+Não é apenas devido a planta ser não linear e o comportamento em malha fechada ser linear que o controlador ideal
+possuirá um comportamento não linear. Pode-se a partir de um comportamento em malha fechada não linear e com uma planta
+linear ou não, obter-se um controlador que também seja não linear linear, dependendo das especificações que o
+controlador é submetido. 
+
+A classe de modeos NARMAX é subdividida em dois grupos principais: polinomial
 
 \begin{equation}
 y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
 \nonumber
 \end{equation}
-ou racional:
+e racional:
 
 \begin{align*}
 y(t) &=\frac{a(y(t-1), \ldots, y(t-n_y), u(t-1),\ldots, u(t-n_u), }{b(y(t-1), \ldots, y(t-n_y), u(t-1), \ldots, u(t-n_u),}\cdots \\ 
 & \cdots\frac{ e(t-1), \ldots, e(t-n_e))}{e(t-1), \ldots, e(t-n_e))} +e(t)
 \end{align*}
-depende do contexto da identificação e do sistema.
 
-Assumindo que o controlador tem a forma de uma classe de modelos NARMAX, o algoritmo proposto na Seção
-\ref{sec:nl_si_algorithms_rationals} pode ser aplicado para a obtenção do controlador ideal.
-
-É  conveniente aqui observar que a escolha da classe NARMAX está bastante ligada ao uso do algoritmo de identificação
-destes modelos ter-se mostrado bastante eficiente, além dos motivos já citados da vasta gama de sistemas reais que
-modelos NARMAX conseguem representar. Todavia, a ideia aqui apresentada, poderia ser aplicada para qualquer classe de
-modelos de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe pudesse ser utilizado
-para obtenção dos valores de $\hat{\theta}$ que minimize algum critério de escolha.
-
-Para o caso onde $C_d(z) \notin C(z, \theta)$ recai-se no fato de que $T_d(z)$ não consegue ser completamente obtido,
-possuindo assim algum resquício de comportamento não linear devido a planta $G_0(z)$. A influência do ruído sobre a
-qualidade das estimativas fica a cargo do algoritmo utilizado para identificação.
+O algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} pode ser aplicado para a identificação do dontrolar
+que sobre as cirtunstâncias apresentadas será NARMAX.
 
 %===============================================================================
-\subsection{Controlador}
-\label{sec:dbnarmax_controller}
+\subsection{Outras classes}
+\label{sec:dbnarmax_other_classes}
 %===============================================================================
 
-Para a metodologia proposta neste trabalho, tem-se que a planta $G_0(z)$ é não linear e que o comportamento do sistema
-em malha fechada $T_d(z)$ escolhido para o sistema é linear. Tem-se desta forma que o controlador ideal $C_d(z)$ será
-obrigatóriamente não linear para fazer com que as não linearidades da planta não sejam observadas na saída do processo
-depois que este for posto para operar em malha fechada.
+É conveniente observar que a escolha da classe NARMAX está intimamente ligada ao uso do algoritmo de identificação
+destes modelos ter-se mostrado bastante eficiente, como foi apresentado nos exemplos da Seção
+\ref{sec:nl_si_algorithms_rationals_examples}, além dos motivos já citados da vasta gama de sistemas reais que modelos
+NARMAX conseguem representar. Todavia, a metodologia apresentada, poderia ser aplicada para qualquer classe de modelos
+de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe pudesse ser utilizado para
+obtenção dos valores de $\hat{\theta}$ que minimize algum critério de escolha. Uma das poucas limitações seria que este
+algoritmo deve identificar o controlador baseado nos dados de entrada e saída da planta e dos sinais virtuais gerados a
+partir destes dados.
 
-Desta forma, para que a classe de controladores consiga representar a totalidade das dinâmicas de $C_d(z)$ é necessário
-que exista um conjunto de parametros $\theta_0$ tal que:
-
-\begin{equation}
-C(z,\theta_0)=C_d(z) 
-\nonumber
-\end{equation}
-se isso não for observado então a classe escolhida não é capaz de representar a totalidade das dinâmicas do controlador
-ideal e a sua estimativa será polarizada, assim como no caso de $\mathcal{S} \notin \mathcal{M}$ apresentado no
-Capítulo \ref{chapter:system_identification}.
-
- 
-
+A qualidade das estimativas obtidas é bastante relacionada com a qualidade do algoritmo em estimar os valores de
+$\theta$ que minimizam alguma função custo. Entretanto tudo que foi abordado referente a identificabilidade de um
+experimento e a ordem de excitação de um sinal, determinam as condições básicas para que o resultado obtido seja livre
+de erro de polarização.
 
