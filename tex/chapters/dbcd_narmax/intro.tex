@@ -44,7 +44,7 @@ $\theta_0$ que:
 C(z,\theta_0)=C_d(z)
 \end{equation}
 
-Demais propriedades estatisticas e de convergência que foram apresentadas na Seção \ref{sec:sys_ident_prop_estim} podem
+Demais propriedades estatísticas e de convergência que foram apresentadas na Seção \ref{sec:sys_ident_prop_estim} podem
 ser generalizadas para $C(z,\theta)$.
 
 Para o desenvolvimento deste método supõem-se que a planta $G_0(z)$ seja não linear.
@@ -146,7 +146,7 @@ C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))}
 
 Desta forma é simples compreender que $G_0(z)$, ou uma parcela deste, estará presente na estrutura de $C(z,\theta)$.
 Como foi suposto anteriormente na Seção \ref{sec:dbnarmax_defines}, a planta é não linear. Desta forma o controlador
-será também não linear, devido ao relacionamento apresentado em \eqref{eq:dbnarmax_perf_tracking_cd}. Supoem-se ainda
+será também não linear, devido ao relacionamento apresentado em \eqref{eq:dbnarmax_perf_tracking_cd}. Supõem-se ainda
 que o controlador pode ser descrito por uma classe de modelos NARMAX.
 
 Não é apenas devido a planta ser não linear e o comportamento em malha fechada ser linear que o controlador ideal
@@ -154,7 +154,7 @@ possuirá um comportamento não linear. Pode-se a partir de um comportamento em ma
 linear ou não, obter-se um controlador que também seja não linear linear, dependendo das especificações que o
 controlador é submetido. 
 
-A classe de modeos NARMAX é subdividida em dois grupos principais: polinomial
+A classe de modelos NARMAX é subdividida em dois grupos principais: polinomial
 
 \begin{equation}
 y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
@@ -167,8 +167,8 @@ y(t) &=\frac{a(y(t-1), \ldots, y(t-n_y), u(t-1),\ldots, u(t-n_u), }{b(y(t-1), \l
 & \cdots\frac{ e(t-1), \ldots, e(t-n_e))}{e(t-1), \ldots, e(t-n_e))} +e(t)
 \end{align*}
 
-O algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} pode ser aplicado para a identificação do dontrolar
-que sobre as cirtunstâncias apresentadas será NARMAX.
+O algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} pode ser aplicado para a identificação do controlador
+que sobre as circunstâncias apresentadas será NARMAX.
 
 %===============================================================================
 \subsection{Outras classes}

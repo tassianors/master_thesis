@@ -66,8 +66,9 @@
 \usepackage{amsmath}
 \usepackage{pstricks,pst-node,pst-text,pst-3d}
 %\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
-\usepackage[breaklinks=true]{hyperref}
+%\usepackage[breaklinks=true]{hyperref}
 %\usepackage[brazil]{babel} %get everything translated properly
+\usepackage[brazilian]{babel} %get everything translated properly
 %\selectlanguage{brazil}
 %\usepackage[numbers]{natbib}
 \usepackage{enumerate}
@@ -120,76 +121,63 @@
 
 %%%\usepackage{german}            % Ermöglich die direkte Eingabe von Umlauten
 %%%\usepackage{bibgerm}           % Bitex: Deutscher Style der Literaturreferenzen
-\usepackage{caption}           % Überschriften für floating Umgebungen, %%z.B. für Tabellen und Bilder
+%\usepackage{caption}           % Überschriften für floating Umgebungen, %%z.B. für Tabellen und Bilder
 %%%\usepackage{pslatex,times}     % Setzt die Schriftart Times als Standardschriftart
 %%%\usepackage{nomencl}           % Legt eine Liste aller Symboldefinitionen (z.B. µP = ...) an
 %%%\usepackage{textcomp}          % Zusätzliche mathematische Symbole
 %%%\usepackage{amssymb}           % Americam mathematican Society -> Symbole
 
 
-\usepackage{amsfonts}% to get the \mathbb alphabet
-\newcommand{\field}[1]{\mathbb{#1}}
-\newcommand{\setc}[1]{\mathcal{#1}}
-\newcommand{\C}{\field{C}}
-\newcommand{\R}{\field{R}}
-\newcommand{\vect}{\mathbf}
-\newcommand{\matr}{\mathbf}
-\renewcommand\Re{\operatorname{Re}}
-\renewcommand\Im{\operatorname{Im}}
-\newcommand{\pderfrac}[2]{\frac{\partial#1}{\partial#2}}
-\providecommand{\trans}[1]{{#1}^\mathrm{T}}
+%\usepackage{amsfonts}% to get the \mathbb alphabet
+%\newcommand{\field}[1]{\mathbb{#1}}
+%\newcommand{\setc}[1]{\mathcal{#1}}
+%\newcommand{\C}{\field{C}}
+%\newcommand{\R}{\field{R}}
+%\newcommand{\vect}{\mathbf}
+%\newcommand{\matr}{\mathbf}
+%\renewcommand\Re{\operatorname{Re}}
+%\renewcommand\Im{\operatorname{Im}}
+%\newcommand{\pderfrac}[2]{\frac{\partial#1}{\partial#2}}
+%\providecommand{\trans}[1]{{#1}^\mathrm{T}}
 
-\hypersetup{
-	colorlinks,
-	debug=true,
-	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-	citecolor=red,  %%% cor do \cite
-	urlcolor=blue,   %%% cor do \url e \href
-	bookmarksopen=true,
-	pdftitle={Dissertação de Mestrado},
-	pdfauthor={Tassiano Neuhaus},
-	pdfsubject={Projeto de controladores não lineares representados por modelos NARMAX usando referência virtual.},
-	pdfkeywords={System identification, data-base control design, Virttual Reference, nonlinear systems, NARMAX models},
-	%pdfpagemode=FullScreen
-}
+%\hhhypersetup{
+%	colorlinks,
+%	debug=true,
+%	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+%	citecolor=red,  %%% cor do \cite
+%	urlcolor=blue,   %%% cor do \url e \href
+%	bookmarksopen=true,
+%	pdftitle={Dissertação de Mestrado},
+%	pdfauthor={Tassiano Neuhaus},
+%	pdfsubject={Projeto de controladores não lineares representados por modelos NARMAX usando referência virtual.},
+%	pdfkeywords={System identification, data-base control design, Virttual Reference, nonlinear systems, NARMAX models},
+%	%pdfpagemode=FullScreen
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-%\usepackage[pdftex,plainpages=true,pdfpagelabels,colorlinks=true,linkcolor=blue]{hyperref}
-%\usepackage[pageanchor,plainpages={true},colorlinks={true},linkcolor={blue},bookmarksnumbered]{hyperref}
-%\hypersetup{
-%	pdftitle={Universal 2011},
-%		pdfauthor={David Cemin},
-%		pdfsubject={Master Thesis},
-%		bookmarks,
-%		plainpages=fales,
-%		pdfpagelabels,
-%		pdffitwindow,
-%}
-
-
-
-%% Setings for Code Listing
-\lstset{%
-language=VHDL, %
-%%commentstyle=\ttfamily\color{green},%
-commentstyle=\ttfamily,%
-backgroundcolor=\color{CodeColor},%
-basicstyle=\small\ttfamily,%
-tabsize=3,%
-keywordstyle=\color{blue}\bfseries,%
-%showstringspaces=false,%
-numbers=left,%
-numberstyle=\tiny,%
-%stepnumber=5,%
-%numbersep=-5pt,%
-%texcl=true,%
-framexleftmargin=6mm,%%%%%%%%%%%%%%%%%%
-%framexrightmargin=-6mm,%
-xleftmargin=6mm,%%%%%%%%%%%%%%%%%%
-%xrightmargin=10mm,%
-escapechar=$}
+% Setings for Code Listing
+\lstset{
+	language=VHDL,
+	frame=single,
+	commentstyle=\footnotesize,
+	basicstyle=\footnotesize\ttfamily,
+	%basicstyle=\small\ttfamily,%
+	tabsize=1,%
+	keywordstyle=\color{blue}\bfseries,%
+	captionpos=b,  % caption position: bottom
+	showstringspaces=false,
+	numbers=left,%
+	numberstyle=\footnotesize,
+	%stepnumber=2,               % Abstand zwischen den Zeilennummern
+	numbersep=1pt,              % Abstand der Nummern zum Text
+	framexleftmargin=6mm,
+	framexrightmargin=-6mm,%
+	xleftmargin=6mm,
+	xrightmargin=10mm,
+	breaklines=true
+	escapechar=$
+}
 
 \usepackage{pdflscape}
 
@@ -202,20 +190,20 @@ escapechar=$}
 
 
 %%% Choosing arabic numbers for paging
-\pagenumbering{arabic}
-
-
-\begin{comment}
-%%% Setting Headers and Footers
-\pagestyle{fancy}
-\fancyhead{}
-\fancyfoot{}
-\fancyhead[RE]{\slshape \leftmark}
-\fancyhead[LE,RO]{\thepage}
-\fancyhead[LO]{\slshape \rightmark}
-%\renewcommand{\headrulewidth}{0.4pt}
-%%\renewcommand{\footrulewidth}{0.4pt}
-\end{comment}
+%\pagenumbering{arabic}
+%
+%
+%\begin{comment}
+%%%% Setting Headers and Footers
+%\pagestyle{fancy}
+%\fancyhead{}
+%\fancyfoot{}
+%\fancyhead[RE]{\slshape \leftmark}
+%\fancyhead[LE,RO]{\thepage}
+%\fancyhead[LO]{\slshape \rightmark}
+%%\renewcommand{\headrulewidth}{0.4pt}
+%%%\renewcommand{\footrulewidth}{0.4pt}
+%\end{comment}
 
 %%%% For the Paragraph indentationa and distance
 %\parindent 0pt
