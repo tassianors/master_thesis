@@ -7,8 +7,9 @@
 % VI
 % Modelagem do ruído
 
-A identificação de sistemas é formada por três premissas básicas: o sistema real $\mathcal{S}$, a classe de modelos
-escolhida $\mathcal{M}$ e o critério que determina qual é o melhor modelo dentro da classe.
+Identificação de sistemas é formada por três premissas básicas: o sistema real $\mathcal{S}$, a classe de modelos
+escolhida $\mathcal{M}$ e o critério que determina qual é o melhor modelo dentro da classe $\mathcal{M}$ para
+representar o sistema real $\mathcal{S}$.
 
 Métodos de identificação de sistemas envolvem procedimentos, ou algoritmos, para encontrar o mínimo de uma função
 custo, conhecida também como critério. Na Seção \ref{sec:sys_ident_intro} foi apresentado o critério de minimização
@@ -26,9 +27,9 @@ Nesta Seção serão apresentados métodos que minimizam esta função custo, suas pro
 \label{sec:si_par_estim_lsm}
 %===============================================================================
 
-Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, remete
-ao ano de 1809 utilizado por Gauss para determinação da órbita dos planetas \cite{system_identification}. Método este
-chamado de mínimos quadrados (MMQ).
+Existem diversos métodos para a estimativa de parâmetros. O mais conhecido, remete ao ano de 1809 utilizado por Gauss
+para determinação da órbita dos planetas \cite{system_identification}. Método este que veio a ser conhecido pelo nome de
+método dos mínimos quadrados (MMQ).
 
 Define-se um preditor como em:
 
@@ -39,7 +40,7 @@ Define-se um preditor como em:
 onde $\hat{y}(t)$ é a predição, $\varphi (t)$ é comumente chamado de {\it{variável de regressão}} e $\theta$ é o vetor
 de parâmetros a ser identificado.
 
-A partir do erro de predição apresentado em \eqref{eq:si_estim_prediction_error} e a equação
+A partir do erro de predição apresentado em \eqref{eq:si_estim_prediction_error} e a equação 
 \eqref{eq:si_obj_single_var} podemos redefinir o erro de predição como:
 
 \begin{equation}
@@ -78,7 +79,7 @@ y(t)=\varphi^T(t)\theta_0+\nu(t)
 \label{eq:si_par_etim_lsm_true_sys}
 \end{equation}
 
-Para que as estimativas de $\theta$ tendam a $\theta*$ quando o número de amostras tende a infinito é necessário que:
+Para que as estimativas de $\theta$ tendam a $\theta_0$ quando o número de amostras tende a infinito é necessário que:
 
 \begin{enumerate}
   \item $E \varphi(t)\varphi^T(t)$ seja não singular.
@@ -98,7 +99,7 @@ Para a primeira condição algumas exceções são apresentadas: \cite{system_identif
 
 Ao contrário da condição (1), a condição (2) normalmente não é verdadeira. Uma importante exceção é quando $\nu(t)$ é
 ruído branco. Para este caso $\nu(t)$ será descorrelacionado com todos os dados passados e em especial com
-$\varphi(t)$.\cite{system_identification}
+$\varphi(t)$. \cite{system_identification}
 
 Quando o número de amostras tende ao infinito e a estimativa tende para um valor diferente de $\theta_0$, este erro é
 chamado de {\it{bias}} ou erro de polarização da estimativa. Para contornar este erro existem duas opções que serão
@@ -112,9 +113,9 @@ sistema.
 % bibliografia principal: aguirre e ljung
 
 Como foi apresentado anteriormente, o método dos mínimos quadrados é simples de ser aplicado mas carece de exatidão
-quando existe correlação entre o regressor $\varphi(t)$ e o ruído estocástico $\nu(t)$ causando {\it{bias}} ou erro de
-polarização. Nesta seção será apresentado uma breve discussão sobre um dos métodos que se propõe a sanar este
-inconveniente do método dos mínimos quadrados: método das variáveis instrumentais.
+quando existe correlação entre a variável de regressão $\varphi(t)$ e o ruído estocástico $\nu(t)$ causando {\it{bias}}
+ou erro de polarização. Nesta seção será apresentado uma breve discussão sobre um dos métodos que se propõe a sanar este
+inconveniente: método das variáveis instrumentais.
 
 Seja $Z(t)$ uma matriz $n\times n$ que possui sinais não correlacionados com o distúrbio $\nu(t)$. O parâmetro $\theta$
 deve obedecer a restrição da equação:
@@ -139,10 +140,10 @@ O estimador de variáveis instrumentais evita a polarização desde que o vetor de 
 com as variáveis instrumentais. Esta condição e menos restritiva que a condição dos mínimos quadrados para que
 não haja erro de polarização. O valor a ser pago por isso envolve: \cite{aguirre}
 
-\begin{enumerate}[(I)]
+\begin{enumerate}
 \item Escolha das variáveis instrumentais.
 \item O estimador resultante é assintoticamente não polarizado, ao invés de ser apenas não polarizado. Ou seja, envolve
-a necessidade de um conjunto maior de dados para que a estimativa convirja para o valor de $\theta^*$.
+a necessidade de um conjunto maior de dados para que a estimativa convirja para o valor final de $\theta$.
 \end{enumerate}
 
 Ao escolher as variáveis instrumentais é importante notar que a escolha não deve ser apenas para evitar 

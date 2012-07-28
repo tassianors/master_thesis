@@ -295,6 +295,7 @@ diferente que o sistema real.
 % Aguirre 397
 % Tese do corrêa - pg 27
 %===============================================================================
+
 O conversor de corrente contínua do tipo Buck possui um mapa não linear que pode ser obtido a partir da equação do
 circuito apresentado na Figura \ref{fig:nl_models_buck_circuit} e que tem a forma como em: \cite{tse_buck}
 
@@ -350,33 +351,17 @@ y(t)=\frac{\theta_1+\theta_2y(t-1)^3+\theta_3(t-1)^2}{1+\theta_4y(t-1)+\theta_5y
 \end{equation}
 
 Os parâmetros da equação \eqref{eq:nl_alg_buck_rational} são os valores de referência para a utilização do
-métodos descrito em \cite{aguirre}. Utilizando o algoritmo previamente apresentado, o resultado da estimativa
-foi:
+métodos descrito em \cite{aguirre}. Utilizando o algoritmo previamente apresentado, e um valor inicial de $y(0)=24.5$, o
+resultado da estimativa foi de:
 
 \begin{equation}
 \theta =\begin{bmatrix}
-8.8807 & 8.6698\times 10^{-4} &-0.0359 &-0.0736 & 0.0013 
-\end{bmatrix}
-\nonumber
-\end{equation}
-
-Como pode ser observado, pelos resultados de $\theta$ obtidos e os valores esperados, existe polarização na
-estimativa obtida. Isso em parte se dá pela falta de capacidade da classe de modelos escolhida em representar
-o processo real e pela escolha do modelo de ruído que para este caso foi apenas utilizado o erro da
-estimativa, com relação a saída do sistema real obtido (resíduos do passo (2) do algoritmo).
-
-Foram utilizadas amostras de 100 pontos para esta estimativa e realizados 100 experimentos de Monte Carlo.
-Os resultados obtidos foram de uma média de:
-
-\begin{equation}
-\text{média de }\;\theta =\begin{bmatrix}
-8.8976  &    8.6762\times 10^{-4}    & -0.0360 &  -0.0736  &  0.0013
+8.7262 	 & 8.617\times10^{-4}  & -3.555\times10^{-2}  & -7.384\times10^{-2}  & 1.350\times10^{-3} 
 \end{bmatrix}
 \nonumber
 \end{equation}
 
 com uma covariância de 
-
 \begin{equation}
 \theta_{\text{Covariância}} = 1.0\times 10^{-3}\begin{bmatrix}
  0.4842 &  0.0000 & -0.0011 &  0.0007 &-0.0000 \\
@@ -388,3 +373,60 @@ com uma covariância de
 \nonumber
 \end{equation}
 
+Como pode ser observado, pelos resultados de $\theta$ obtidos e os valores esperados, existe polarização na
+estimativa obtida. Isso em parte se dá pela falta de capacidade da classe de modelos escolhida em representar
+o processo real e pela escolha do modelo de ruído que para este caso foi apenas utilizado o erro da
+estimativa, com relação a saída do sistema real obtido (resíduos do passo (2) do algoritmo).
+
+Para demonstrar a influência do valor inicial na resposta final obtida, a Tabela \ref{table:nl_alg_buck} apresenta os
+resultados das estimativas para valores distintos iniciais.
+
+\begin{table*}[htbp]
+\begin{center}
+\caption{Tabela com os valores das estimativas do conversor de corrente continua para diferentes valores de condições
+iniciais.}
+\label{table:nl_alg_buck}
+\begin{tabular}{cccccc}
+\hline
+        Valor inicial & $\theta_1$ &  $\theta_2 \times10^{-4}$ & $\theta_3 \times10^{-2}$ & $\theta_4
+        \times10^{-2}$ & $\theta_5 \times10^{-3}$  \\
+\hline
+23.5 	& 8.8755  & 8.65867  & -3.58989	 & -7.36001	 & 1.34005 \\ 
+23.75 	& 8.8543  & 8.67568  & -3.59064	 & -7.37090	 & 1.34443 \\ 
+24 		& 8.8409  & 8.67282  & -3.58794	 & -7.37346	 & 1.34538 \\ 
+24.25 	& 8.7997  & 8.70872  & -3.59081	 & -7.39129	 & 1.35256 \\ 
+24.5 	& 8.7773  & 8.64215  & -3.56919	 & -7.37901	 & 1.34809 \\ 
+24.75 	& 8.8864  & 8.69957  & -3.60144	 & -7.36905	 & 1.34379 \\ 
+25 		& 8.8802  & 8.67716  & -3.59598	 & -7.36686	 & 1.34233 \\ 
+25.25 	& 8.7399  & 8.69325  & -3.57763	 & -7.40532	 & 1.35794 \\ 
+25.5 	& 8.8118  & 8.74381  & -3.60140	 & -7.39639	 & 1.35474 \\ 
+25.75 	& 8.877   & 8.67760  & -3.59501	 & -7.36651	 & 1.34248 \\ 
+26 		& 8.8093  & 8.68611  & -3.58744	 & -7.38725	 & 1.35036 \\ 
+26.25 	& 8.8545  & 8.64299  & -3.58198	 & -7.36235	 & 1.34113 \\ 
+26.5 	& 8.8559  & 8.63632  & -3.57951	 & -7.35910	 & 1.34028 \\ 
+26.75 	& 8.93 	  & 8.67285  & -3.60116	 & -7.34955	 & 1.33624 \\ 
+27 		& 8.9061  & 8.66585  & -3.59666	 & -7.35854	 & 1.33913 \\ 
+27.25 	& 8.9185  & 8.65989  & -3.59710	 & -7.35609	 & 1.33798 \\ 
+27.5 	& 8.8748  & 8.65953  & -3.58863	 & -7.35959	 & 1.34044 \\ 
+27.75 	& 8.8751  & 8.62583  & -3.58075	 & -7.35532	 & 1.33819 \\ 
+28 		& 8.8467  & 8.74299  & -3.60747	 & -7.39024	 & 1.35180 \\ 
+28.25 	& 8.8131  & 8.62645  & -3.57133	 & -7.36907	 & 1.34376 \\ 
+28.5 	& 8.8567  & 8.72202  & -3.60307	 & -7.38180	 & 1.34870 \\ 
+28.75 	& 8.8731  & 8.66458  & -3.59033	 & -7.36269	 & 1.34136 \\ 
+29 		& 8.7832  & 8.68483  & -3.58193	 & -7.39031	 & 1.35220 \\ 
+29.25 	& 8.7995  & 8.64606  & -3.57517	 & -7.37868	 & 1.34717 \\ 
+29.5 	& 8.829   & 8.69314  & -3.59161	 & -7.38099	 & 1.34830 \\ 
+29.75 	& 8.9087  & 8.66313  & -3.59629	 & -7.35786	 & 1.33885 \\ 
+30	 	& 8.8353  & 8.71873  & -3.59990	 & -7.38863	 & 1.35093 \\ 
+30.25 	& 8.8821  & 8.69913  & -3.60137	 & -7.37016	 & 1.34397 \\ 
+30.5 	& 8.8354  & 8.65612  & -3.58360	 & -7.37290	 & 1.34471 \\ 
+30.75 	& 8.8369  & 8.71185  & -3.59759	 & -7.38531	 & 1.34996 \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+Outro ponto que justifica o grande erro de polarização apresentado pelas estimativas é a ausência de um modelo de ruído
+mais completo. No algoritmo foi utilizado apenas os residuos de cada iteração como ruído, sem um modelo mais completo, a
+convergência do algoritmo pode ficar comprometida como apresentado em \cite{billings_zhu91}. Como o sistema é autonomo,
+não possui entrada, apenas a variação do valor inicial tem condições de alterar os valores observados na saída.

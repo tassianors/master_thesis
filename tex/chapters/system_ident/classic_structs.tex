@@ -9,26 +9,22 @@ Modelos são formas ou representações de como vemos e entendemos os sistemas.
 Para um mesmo sistema podemos ter diversos modelos, portanto, modelos são
 fundamentais para o conhecimento, para a análise, para o controle de sistemas. \cite{aguirre}
 
-Existem dois principais ramos para modelagem de sistemas, um deles parte-se do
-conhecimento intrínseco do mesmo para obter-se o modelo, enquanto que o outro
-não possui este pré-requisito, focando-se em técnicas que tornem o processo de
-modelagem o mais independente possível da necessidade de se conhecer o sistema,
-antes de modelá-lo.  Estes dois processos são conhecidos como
-{\it{Modelagem caixa branca}} e {\it{Modelagem caixa preta}} respectivamente.
+Existem dois principais ramos para modelagem de sistemas, um deles parte-se do conhecimento intrínseco do mesmo para
+obter-se o modelo, enquanto que o outro não possui este pré-requisito, focando-se em técnicas que tornem o processo de 
+modelagem o mais independente possível da necessidade de se conhecer o sistema, antes de modelá-lo. Estes dois
+processos são conhecidos como {\it{Modelagem caixa branca}} e {\it{Modelagem caixa preta}} respectivamente.
 
-No caso de modelagem caixa branca, faz-se necessário conhecer a fundo o sistema
-modelado. Além de estar bem familiarizado com o sistema é necessário conhecer as
-relações matemáticas que descrevem os fenômenos envolvidos. \cite{aguirre}.
+No caso de modelagem caixa branca, faz-se necessário conhecer a fundo o sistema  modelado. Além de estar bem
+familiarizado com o sistema é necessário conhecer as relações matemáticas que descrevem os fenômenos envolvidos.
+\cite{aguirre}.
 
-Para o caso de modelagem caixa preta exige-se pouco ou nenhum conhecimento prévio
-do sistema. Este tipo de técnica é também conhecida como {\it{modelagem empírica}}.
+Para o caso de modelagem caixa preta exige-se pouco ou nenhum conhecimento prévio do sistema. Este tipo de técnica é
+também conhecida como {\it{modelagem empírica}}.
 
-Algo importante a se destacar antes do processo de modelagem do sistema é a
-escolha do que deseja-se modelar deste sistema. Uma modelagem completa de todas
-as características é muitas vezes inviável e na maioria dos sistemas reais,
-desnecessário. Usualmente, tem-se a necessidade de interagir, seja controlando ou
-observando, um conjunto restrito de informações do sistema, deve-se então focar
-o modelo nestas características desejadas.
+Algo importante a se destacar antes do processo de modelagem do sistema é a escolha do que deseja-se modelar deste
+sistema. Uma modelagem completa de todas as características é muitas vezes inviável e na maioria dos sistemas reais,
+desnecessário. Usualmente, tem-se a necessidade de interagir, seja controlando ou observando, um conjunto restrito de
+informações do sistema, deve-se então focar o modelo nestas características desejadas.
 
 %===============================================================================
 \subsection{Forma geral de classes de modelos}
@@ -84,7 +80,7 @@ O modelo definido em \eqref{eq:si_modeling_arx} também é conhecido como {\bf{ARX
 
 Uma das limitações deste modelo é a falta de liberdade para descrever as propriedades
 dos distúrbios sobre o sistema. Pode-se então adicionar certo grau de liberdade descrevendo a equação do erro 
-como uma média móvel do ruído branco, o que nos remete a:
+como uma média móvel do ruído branco, o que remete a:
 
 \begin{equation}
 \begin{matrix}
@@ -116,9 +112,8 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
 \end{equation}
 
 O modelo definido em \eqref{eq:si_modeling_armax} também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
-a média móvel $C(z)$ do ruído $e(t)$.
-
-Na Figura \ref{fig:si_models_diagram_narmax} é apresentado o diagrama de blocos para o modelo {\bf{ARMAX}}.
+a média móvel $C(z,\theta)$ do ruído $e(t)$. Na Figura \ref{fig:si_models_diagram_narmax} é apresentado o diagrama de
+blocos para o modelo {\bf{ARMAX}}.
 
 \begin{figure}[htbp]
 \center
@@ -228,6 +223,6 @@ de modelos. As mais conhecidas e utilizadas são apresentadas da Tabela \ref{tabl
 
 As equações que descrevem a saída do sistema em função da entrada $u(t)$ e do ruído $e(t)$ como apresentado
 em \eqref{eq:si_intro_system} e que podem ser caracterizados pela utilização de vários polinômios, nada mais
-são do que famílias ou conjuntos de modelos.
-Existe para cada conjunto de modelos uma infinidade de possíveis saídas para uma mesma entrada, bastando para
-isso que os parâmetros dos coeficientes dos polinômios sejam escolhidos apropriadamente.
+são do que famílias ou conjuntos de modelos. Existe para cada conjunto de modelos uma infinidade de possíveis saídas
+para uma mesma entrada, bastando para isso que os parâmetros dos coeficientes dos polinômios sejam escolhidos
+apropriadamente.

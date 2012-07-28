@@ -77,7 +77,7 @@ de ordem $2n$.
 %===============================================================================
 
 Na Seção \ref{sec:si_data_persistently_excitation} foi visto como caracterizar
-sinais que são suficiente informativos. Considere um conjunto de modelos ($\mathcal{M}$) para um sistema 
+sinais que são suficiente informativos. Considere um conjunto de modelos $\mathcal{M}$ para um sistema 
 SISO descrito por \eqref{eq:si_intro_model} tendo a função de transferência $G(z,\theta)$ a
 função racional:
 
@@ -88,10 +88,11 @@ G(z,\theta)=\frac{B(z,\theta)}{F(z,\theta)}=\frac{z^{n_k}(b_1+b_2z^{-1}+...+b_{n
 
 Um experimento em malha aberta é informativo se a sua entrada for persistentemente excitante.
 Observa-se que é necessário que a ordem de excitação seja igual ao número de parâmetros a
-serem estimados \cite{ljung}. No caso de \eqref{eq:si_data_g_rational} esta ordem de excitação necessária é $n_b+n_f$.
+serem estimados \cite{ljung}. No caso da equação apresentada em \eqref{eq:si_data_g_rational} a ordem de excitação
+necessária é $n_b+n_f$.
 
-Para um experimento em malha aberta e um sistema NARMAX e Box-Jenkins um sistema é suficientemente informativo se a
-ordem de excitação for  $n_b+n_a$. Em \cite{gevers_bazanella2009} foi apresentado que para uma estrutura ARMAX, é
+Para um experimento em malha aberta, considerando um sistema ARMAX e Box-Jenkins o experimento é suficientemente
+informativo se a ordem de excitação for  $n_b+n_a$. Em \cite{gevers_bazanella2009} foi apresentado que para uma estrutura ARMAX, é
 necessário que a ordem seja ao menos igual a $k=n_b+\text{min}\left \{ n_a, n_c \right \}$. Para um sistema BJ o valor
 mínimo necessário para a ordem é $k=n_b+n_f$.
 
@@ -142,8 +143,8 @@ a & X & b & X & b
 \end{matrix} \right ]
 \nonumber
 \end{equation}
-com $X$ podendo assumir qualquer valor. Deve ficar claro que está situação apresentada, de sobre modelagem irá
-apresentar erros com relação ao sistema real no momento que houverem mínimas diferenças entre os valores estimados de
+com $X$ podendo assumir qualquer valor. Deve ficar claro que esta situação apresentada de sobre modelagem irá
+apresentar erros com relação ao sistema real, no momento que houverem mínimas diferenças entre os valores estimados de
 $X$ no numerador e $X$ no denominador.
 
 \begin{figure}[htbp]
@@ -183,7 +184,7 @@ por alguma ponderação sobre estes critérios, que podem ser: \cite{ljung}
   Flexibilidade pode ser obtida usando-se vários parâmetros ou alocando-os em ``posições estratégicas''.
   \item Parcimônia: Não usar desnecessariamente uma quantidade elevada de parâmetros.
   \item Complexidade do algoritmo: A complexidade de obter o erro de predição $\varepsilon (t, \theta)$ e as demais
-  informações necessárias a identificação são extremamente correlacionadas com a escolha de $\mathcal{M}$.
+  informações necessárias a identificação são fortement correlacionadas com a escolha de $\mathcal{M}$ e a sua ordem.
   \item Propriedades da função critério. Dependendo do formato da curva, o algoritmo para encontrar o mínimo pode ser
   mais custoso no que diz respeito a iterações matemáticas.
   \item O uso pretendido do modelo.
@@ -206,8 +207,8 @@ de redução a classe de modelos. Se a ordem da classe de modelos pode ser reduzid
 saída do sistema, então a classe de modelos original era desnecessariamente complexa. \cite{ljung}
 
 Por fim, ao escolher uma classe de modelos para a identificação, deve-se levar em conta diversos pontos e informações.
-Depois de escolhido o modelo, um processo de validação é indicado a ser executado. Este procedimento é
-simples e consiste em algumas perguntas que o projetista do experimento de identificação deve fazer:
+Depois de escolhido o modelo, um processo de validação é indicado a ser executado. Este procedimento é simples e
+consiste em algumas perguntas que o projetista do experimento de identificação deve fazer:
 
 \begin{itemize}
   \item A classe de modelos escolhida consegue descrever suficientemente bem os dados observados?
@@ -215,3 +216,5 @@ simples e consiste em algumas perguntas que o projetista do experimento de ident
   \item A classe de modelos descreve o sistema real ($\mathcal{S}$) ?
 \end{itemize}
 
+Se todas as perguntas forem justificadas, então o processo de escolha do modelo é satisfatório para o processo de
+identificação.
