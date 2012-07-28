@@ -41,10 +41,10 @@ O objetivo da identificação de sistemas é encontrar um valor para o vetor $\thet
 $H(z,\theta)$  sejam o mais próximos possíveis de $G_0(z)$ e $H_0(z)$. O vetor $\theta$ que faz com que estas duas
 funções de transferências sejam iguais é denotado por $\theta_0$:
 
-\begin{equation}
-G(z, \theta_0)=G_0(z)
-\label{eq:si_intro_true_theta}
-\end{equation}
+\begin{align}\nonumber
+G(z, \theta_0) &= G_0(z) \\ \label{eq:si_intro_true_theta} 
+H(z, \theta_0) &= H_0(z) 
+\end{align}
 
 Outra definição que acompanha o que aqui será abordado é a definição de sinal quasi-estacionário:
 Um sinal é dito quasi-estacionário se a média e a autocorrelação do mesmo convergem para um valor
@@ -167,16 +167,9 @@ preditor $\hat{y}(t, \theta)$.
 \label{fig:si_estim_pem}
 \end{figure}
 
-Considerando o sistema linear:
-
-\begin{equation}
-y(t)=G(z, \theta)u(t)+H(z, \theta)e(t)
-\label{eq:si_par_estim_system}
-\end{equation}
-
-Assumindo que $G(0, \theta)=0$, $H(0,\theta)=1$ e que $H^{-1}(z, \theta)$ e $H^{-1}(z,\theta)
-G(z,\theta)$ são assintoticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$ não forem correlacionados,
-então o preditor ótimo pode ser apresentado como: \cite{system_identification}
+Considerando o sistema linear apresentado em \eqref{eq:si_intro_model} e assumindo que $G(0, \theta)=0$, $H(0,\theta)=1$
+e que $H^{-1}(z, \theta)$ e $H^{-1}(z,\theta) G(z,\theta)$ são assintoticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$
+não forem correlacionados, então o preditor ótimo pode ser apresentado como: \cite{system_identification}
 
 \begin{equation}
 \hat{y}(t|t-1, \theta)= H^{-1}(z, \theta)G(z, \theta)u(t)+\left \{ 1-H^{-1}(z, \theta) \right \}y(t)

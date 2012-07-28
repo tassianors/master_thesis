@@ -8,10 +8,13 @@
 % não sobre modelagem
 
 Em aplicações de engenharia, deseja-se que a solução de um problema seja única. Desta forma existem algumas
-premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos.
+premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos, obtendo um
+vetor $\theta$ que consiga representar melhor o sistema real $\mathcal{S}$ de acordo como critério de performance
+escolhido.
 
 Devem ser levadas em consideração algumas características sobre o sinal de excitação do sistema e sobre a escolha da
-classe de modelos que irá representar o sistema real $\mathcal{S}$.
+classe de modelos que irá representar o sistema real $\mathcal{S}$, para que o processo de identificação possa ser único
+e representativo, contendo o menor erro possível, além de que esta margem de erro seja conhecida.
 
 %===============================================================================
 \subsection{Persistência de Excitação}
@@ -33,7 +36,7 @@ a relação
 \label{eq:si_data_persistence_2}
 \end{equation}
 
-Outra caracterização pode ser dada em termos da função de covariância $R_u(\tau)$= $u(t)$ é um
+Outra caracterização pode ser dada em termos da função de covariância, onde $R_u(\tau)=u(t)$ é um
 sinal quasi-estacionário, e $\bar{R}_n$ uma matriz $n\times n$ definida como:
 
 \begin{equation}
@@ -65,8 +68,7 @@ Considere o somatório de senoides:
 u(t)=\sum_{k=1}^{n}\mu_k \cos (\omega_kt), \;\; \omega_k \neq \omega_j, \;\; \omega_k \neq 0, \; \omega_k \neq \pi
 \label{eq:si_data_persistently_sum_cos}
 \end{equation}
-
-Cada uma possui duas linhas espectrais em $\pm \, \omega_k$, fazendo com que este sinal seja persistentemente excitante
+cada uma possui duas linhas espectrais em $\pm \, \omega_k$, fazendo com que este sinal seja persistentemente excitante
 de ordem $2n$.
 
 %===============================================================================
