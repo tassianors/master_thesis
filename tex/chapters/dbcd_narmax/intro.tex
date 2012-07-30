@@ -63,7 +63,7 @@ $T_d(z)$ seja linear, portanto o controlador projetado deve, além de cumprir com
 determinados, cancelar as não linearidades da planta para que possa ser possível uma relação linear entre a entrada
 $r(t)$ e a saída $y(t)$.
 
-Apartir dos dados coletados da planta, é possível determinar os sinais de entrada do controlador utilizando
+A partir dos dados coletados da planta, é possível determinar os sinais de entrada do controlador utilizando
 referência virtual, fazendo:
 
 \begin{equation}
@@ -154,7 +154,8 @@ possuirá um comportamento não linear. Pode-se a partir de um comportamento em ma
 linear ou não, obter-se um controlador que também seja não linear linear, dependendo das especificações que o
 controlador é submetido. 
 
-A classe de modelos NARMAX é subdividida em dois grupos principais: polinomial
+A classe de modelos utilizada para a metodologia é NARMAX e esta pode ser subdividida em dois grupos principais:
+polinomial
 
 \begin{equation}
 y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
@@ -167,8 +168,8 @@ y(t) &=\frac{a(y(t-1), \ldots, y(t-n_y), u(t-1),\ldots, u(t-n_u), }{b(y(t-1), \l
 & \cdots\frac{ e(t-1), \ldots, e(t-n_e))}{e(t-1), \ldots, e(t-n_e))} +e(t)
 \end{align*}
 
-O algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} pode ser aplicado para a identificação do controlador
-que sobre as circunstâncias apresentadas será NARMAX.
+Aplica-se então o algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} para a identificação do controlador
+que levará o sistema a se comportar como desejado em malha fechada.
 
 %===============================================================================
 \subsection{Outras classes}
@@ -180,12 +181,14 @@ destes modelos ter-se mostrado bastante eficiente, como foi apresentado nos exem
 \ref{sec:nl_si_algorithms_rationals_examples}, além dos motivos já citados da vasta gama de sistemas reais que modelos
 NARMAX conseguem representar. Todavia, a metodologia apresentada, poderia ser aplicada para qualquer classe de modelos
 de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe pudesse ser utilizado para
-obtenção dos valores de $\hat{\theta}$ que minimize algum critério de escolha. Uma das poucas limitações seria que este
-algoritmo deve identificar o controlador baseado nos dados de entrada e saída da planta e dos sinais virtuais gerados a
-partir destes dados.
+obtenção dos valores de $\hat{\theta}$ que minimizem algum critério de escolha. Uma das poucas limitações seria que este
+algoritmo deveria identificar o controlador baseado nos dados de entrada e saída da planta e dos sinais virtuais gerados
+a partir destes dados.
 
 A qualidade das estimativas obtidas é bastante relacionada com a qualidade do algoritmo em estimar os valores de
 $\theta$ que minimizam alguma função custo. Entretanto tudo que foi abordado referente a identificabilidade de um
 experimento e a ordem de excitação de um sinal, determinam as condições básicas para que o resultado obtido seja livre
 de erro de polarização.
+
+
 

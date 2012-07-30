@@ -8,7 +8,7 @@ modelos NARMAX racionais ou polinomiais. Os sinais de entrada do algoritmo de id
 referência virtual.
 
 Os exemplos se dividem de acordo com o tipo de não linearidade. Na Seção \ref{sec:dbnarmax_nl_wiener} é apresentado um
-exemplo onde a não linearidade está acoplada estaticamente na saída da planta. Na Seção \ref{sec:dbnarmax_nl_dinamic}
+exemplo onde a não linearidade está acoplada estáticamente na saída da planta. Na Seção \ref{sec:dbnarmax_nl_dinamic}
 são apresentados exemplos onde a não linearidade está na dinâmica do processo. Os exemplos nesta seção estão divididos
 entre controladores ideias que conseguem ser representados pela classe de modelos escolhida ($C_d(z) \in C(z,\theta)$) e
 quando a classe de modelos não consegue representar a totalidade das dinâmicas presentes ($C_d(z) \notin C(z,\theta)$).
@@ -23,7 +23,7 @@ encontra-se na saída do processo. Na Figura \ref{fig:vrft_nl_wiener} é apresenta
 sendo $\zeta(t)$ e $\gamma(t)$ os blocos não lineares da planta e do controlador respectivamente. Analogamente
 $G'(z)$ e $C'(z)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na
 entrada, este poderia ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe
-de modelos NARMAX racional, não deixando entretanto de ``ser'' um modelo de Hammerstein.
+de modelos NARMAX racional, não deixando entretanto de ainda ser representável por um modelo de Hammerstein.
 
 \begin{figure}[htbp]
 \center
@@ -79,7 +79,6 @@ de modelos NARMAX racional, não deixando entretanto de ``ser'' um modelo de Hamm
 \rput(8.604531,0.71){G'(z)}
 \end{pspicture} 
 }
-
 \caption{Diagrama de blocos para um sistema não linear do tipo Wiener}
 \label{fig:vrft_nl_wiener}
 \end{figure}
@@ -161,13 +160,13 @@ Se nenhum dos blocos não lineares existissem no sistema, o controlador ideal pod
 \eqref{eq:dbcd_perf_tracking_cd}, resultando em 
 
 \begin{equation}
-C_d(z)= \frac{0.8z-0.72}{z-1}
+C_d'(z)= \frac{0.8z-0.72}{z-1}
 \label{eq:vrft_nl_wiener_cd}
 \end{equation}
 entretanto, o controlador ideal que leva o sistema a se comportar como definido por $T_d(z)$ é composto em parte por
 \eqref{eq:vrft_nl_wiener_cd} acrescido do polinômio \eqref{eq:dbnarmax_ex_wiener_gamma_choosen}.
 
-O controlador $C_d(z)$ possui uma integrador em sua estrutura. Para evitar problemas de seguimento de
+O controlador $C_d'(z)$ possui uma integrador em sua estrutura. Para evitar problemas de seguimento de
 referência optou-se por não identificar esta parte do controlador. Mantendo o denominador como um integrador
 e identificando apenas o numerador. 
 

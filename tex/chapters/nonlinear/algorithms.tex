@@ -329,104 +329,112 @@ conversor é: \cite{aguirre_maps}
 
 \begin{equation}
 y(t)=O exp\left [ 22-y(t-1) \right ]+ \frac{a\; y(t-1)^2 -b\; y(t-1)+c}{y(t-1)}
-\nonumber
+\label{eq:nl_alg_buck_rational}
 \end{equation}
 onde $O=46.429$, $a=2.6204$, $b=99.875$ e $c=1.4171\times 10^3$. Por outro lado a 
 
-Para aplicar o algoritmo, escolhe-se inicialmente um modelo para o sistema em análise. O modelo
-racional
-
-\begin{equation}
-y(t)=\frac{8.658+0.1223\times10^{-2}y(t-1)^3-0.441\times10^{-1}y(t-1)^2}
-{1-0.8381\times10^{-1}y(t-1)+0.1766\times10^{-2}y(t-1)^2}
-\label{eq:nl_alg_buck_rational}
-\end{equation}
-aproxima bem a dinâmica em questão. \cite{aguirre}
-
-Para a utilização do algoritmo, escolheu-se um modelo com a forma:
+Para aplicar o algoritmo, escolhe-se inicialmente uma classe de modelos para o sistema em análise:
 
 \begin{equation}
 y(t)=\frac{\theta_1+\theta_2y(t-1)^3+\theta_3(t-1)^2}{1+\theta_4y(t-1)+\theta_5y(t-1)^2}
 \label{eq:nl_alg_buck_rational_model}
 \end{equation}
 
-Os parâmetros da equação \eqref{eq:nl_alg_buck_rational} são os valores de referência para a utilização do
-métodos descrito em \cite{aguirre}. Utilizando o algoritmo previamente apresentado, e um valor inicial de $y(0)=24.5$, o
-resultado da estimativa foi de:
+Como o sistema não possui entrada, foram feitas diversas simulações com valores iniciais diferentes a fim de demonstrar
+a influência deste valor inicial sobre as estimativas e sobre tudo a qualidade destas estimativas obtidas. Na Tabela
+\ref{table:nl_alg_buck} é apresentado os valores estimados utilizando o algoritmo de identificação de sistemas racionais
+NARMAX para o sistema apresentado em \eqref{eq:nl_alg_buck_circ}. Ao utilizar-se 200 pontos e um valor inicial de $31.5$
+obteve-se o seguinte conjunto de parametros $\theta$:
 
 \begin{equation}
 \theta =\begin{bmatrix}
-8.7262 	 & 8.617\times10^{-4}  & -3.555\times10^{-2}  & -7.384\times10^{-2}  & 1.350\times10^{-3} 
+11.832 	 & 0.0019514 	 & -0.065624 	 & -0.095531 	 & 0.002306
 \end{bmatrix}
-\nonumber
+\label{eq:nl_rat_buck_theta_init31.5}
 \end{equation}
 
 com uma covariância de 
 \begin{equation}
-\theta_{\text{Covariância}} = 1.0\times 10^{-3}\begin{bmatrix}
- 0.4842 &  0.0000 & -0.0011 &  0.0007 &-0.0000 \\
- 0.0000 &  0.0000 & -0.0000 & -0.0000 & 0.0000 \\
--0.0011 & -0.0000 &  0.0000 & -0.0000 & 0.0000 \\
- 0.0007 & -0.0000 & -0.0000 &  0.0000 &-0.0000 \\
--0.0000 &  0.0000 &  0.0000 & -0.0000 & 0.0000 
+\theta_{\text{Cov}} =\begin{bmatrix}
+0.18146 	 		& 4.61\times10^{-5}  & -1.33\times10^{-3} 	 & -7.87\times10^{-4} & 3.58\times10^{-5} 	 \\
+4.61\times10^{-5}  & 1.17\times10^{-8} 	 & -3.40\times10^{-7} 	 & -2.\times10^{-7} 	 & 9.12\times10^{-9} 	 \\
+-1.33\times10^{-3} & -3.40\times10^{-7}  & 9.85\times10^{-6} 	 & 5.80\times10^{-6} 	 & -2.64\times10^{-7} \\
+-7.87\times10^{-4} & -2\times10^{-7} 	 & 5.80\times10^{-6} 	 & 3.41\times10^{-6} 	 & -1.55\times10^{-7}	 \\
+3.58\times10^{-5} & 9.12\times10^{-9}  & -2.64\times10^{-7} 	 & -1.55\times10^{-7} 	 & 7.08\times10^{-9} 	 
 \end{bmatrix}
 \nonumber
 \end{equation}
+e um custo $J_y(\theta)=9.1789$. Na Figura \ref{fig:nl_rat_buck_comp} é apresentado o comparativo entre o sinal obtido
+do sistema real definido por \ref{eq:nl_alg_buck_rational} e o sistema estimado com $\theta$ como em
+\eqref{eq:nl_rat_buck_theta_init31.5}.
 
-Como pode ser observado, pelos resultados de $\theta$ obtidos e os valores esperados, existe polarização na
-estimativa obtida. Isso em parte se dá pela falta de capacidade da classe de modelos escolhida em representar
-o processo real e pela escolha do modelo de ruído que para este caso foi apenas utilizado o erro da
-estimativa, com relação a saída do sistema real obtido (resíduos do passo (2) do algoritmo).
+\begin{figure}[htbp]
+	\center
+	\includegraphics[width=0.95\columnwidth]{figures/nl_rat_buck_comp.eps}
+	\caption{Comparativo entre a saída do sistema real descrito pela equação\eqref{eq:nl_alg_buck_rational} e a saída do
+	sistema NARMAX racional descrito pela classe de modelos apresentada em \eqref{eq:nl_alg_buck_rational_model}
+	quando os parâmetros estimados para um valor inicial de 31.5, como apresentado em \eqref{eq:nl_rat_buck_theta_init31.5}}
+	\label{fig:nl_rat_buck_comp}
+\end{figure}
 
-Para demonstrar a influência do valor inicial na resposta final obtida, a Tabela \ref{table:nl_alg_buck} apresenta os
-resultados das estimativas para valores distintos iniciais.
+Pelos resultados apresentados na Figura \ref{fig:nl_rat_buck_comp}, observa-se que a estimativa obtida consegue
+representar bem o sistema em questão. Na Tabela \ref{table:nl_alg_buck} são apresentados os valores obtidos de custo e
+de $\theta$ para diferentes valores iniciais.
 
 \begin{table*}[htbp]
 \begin{center}
 \caption{Tabela com os valores das estimativas do conversor de corrente continua para diferentes valores de condições
-iniciais.}
+iniciais. Todas as simulações utilizaram $N=100$.}
 \label{table:nl_alg_buck}
-\begin{tabular}{cccccc}
+\begin{tabular}{lcccccc}
 \hline
-        Valor inicial & $\theta_1$ &  $\theta_2 \times10^{-4}$ & $\theta_3 \times10^{-2}$ & $\theta_4
+        Valor inicial & $J_y(\theta)$ & $\theta_1$ &  $\theta_2 \times10^{-3}$ & $\theta_3 \times10^{-2}$ & $\theta_4
         \times10^{-2}$ & $\theta_5 \times10^{-3}$  \\
 \hline
-23.5 	& 8.8755  & 8.65867  & -3.58989	 & -7.36001	 & 1.34005 \\ 
-23.75 	& 8.8543  & 8.67568  & -3.59064	 & -7.37090	 & 1.34443 \\ 
-24 		& 8.8409  & 8.67282  & -3.58794	 & -7.37346	 & 1.34538 \\ 
-24.25 	& 8.7997  & 8.70872  & -3.59081	 & -7.39129	 & 1.35256 \\ 
-24.5 	& 8.7773  & 8.64215  & -3.56919	 & -7.37901	 & 1.34809 \\ 
-24.75 	& 8.8864  & 8.69957  & -3.60144	 & -7.36905	 & 1.34379 \\ 
-25 		& 8.8802  & 8.67716  & -3.59598	 & -7.36686	 & 1.34233 \\ 
-25.25 	& 8.7399  & 8.69325  & -3.57763	 & -7.40532	 & 1.35794 \\ 
-25.5 	& 8.8118  & 8.74381  & -3.60140	 & -7.39639	 & 1.35474 \\ 
-25.75 	& 8.877   & 8.67760  & -3.59501	 & -7.36651	 & 1.34248 \\ 
-26 		& 8.8093  & 8.68611  & -3.58744	 & -7.38725	 & 1.35036 \\ 
-26.25 	& 8.8545  & 8.64299  & -3.58198	 & -7.36235	 & 1.34113 \\ 
-26.5 	& 8.8559  & 8.63632  & -3.57951	 & -7.35910	 & 1.34028 \\ 
-26.75 	& 8.93 	  & 8.67285  & -3.60116	 & -7.34955	 & 1.33624 \\ 
-27 		& 8.9061  & 8.66585  & -3.59666	 & -7.35854	 & 1.33913 \\ 
-27.25 	& 8.9185  & 8.65989  & -3.59710	 & -7.35609	 & 1.33798 \\ 
-27.5 	& 8.8748  & 8.65953  & -3.58863	 & -7.35959	 & 1.34044 \\ 
-27.75 	& 8.8751  & 8.62583  & -3.58075	 & -7.35532	 & 1.33819 \\ 
-28 		& 8.8467  & 8.74299  & -3.60747	 & -7.39024	 & 1.35180 \\ 
-28.25 	& 8.8131  & 8.62645  & -3.57133	 & -7.36907	 & 1.34376 \\ 
-28.5 	& 8.8567  & 8.72202  & -3.60307	 & -7.38180	 & 1.34870 \\ 
-28.75 	& 8.8731  & 8.66458  & -3.59033	 & -7.36269	 & 1.34136 \\ 
-29 		& 8.7832  & 8.68483  & -3.58193	 & -7.39031	 & 1.35220 \\ 
-29.25 	& 8.7995  & 8.64606  & -3.57517	 & -7.37868	 & 1.34717 \\ 
-29.5 	& 8.829   & 8.69314  & -3.59161	 & -7.38099	 & 1.34830 \\ 
-29.75 	& 8.9087  & 8.66313  & -3.59629	 & -7.35786	 & 1.33885 \\ 
-30	 	& 8.8353  & 8.71873  & -3.59990	 & -7.38863	 & 1.35093 \\ 
-30.25 	& 8.8821  & 8.69913  & -3.60137	 & -7.37016	 & 1.34397 \\ 
-30.5 	& 8.8354  & 8.65612  & -3.58360	 & -7.37290	 & 1.34471 \\ 
-30.75 	& 8.8369  & 8.71185  & -3.59759	 & -7.38531	 & 1.34996 \\ 
+23 		& 50.089 &	 10.0202 	 & 0.763182  & -3.46527	 & -6.81581	 & 1.13627 \\ 
+23.25 	& 5.5352 &	 -0.81237 	 & -1.28468  & 2.79502e	 & -4.01844	 & -0.21438 \\ 
+23.5 	& 7.6047 &	 11.3058 	 & 1.78578 	 & -6.10171	 & -9.23685	 & 2.16415 \\ 
+23.75 	& 5.9539 &	 12.8959 	 & 2.20649 	 & -7.31006	 & -9.97201	 & 2.49790 \\ 
+24 		& 7.8558 &	 13.1524 	 & 2.26985 	 & -7.49464	 & -10.0780	 & 2.54633 \\ 
+24.5 	& 6.6557 &	 13.9802 	 & 2.49699 	 & -8.14400	 & -10.4804	 & 2.72801 \\ 
+24.75 	& 5.3027 &	 12.8416 	 & 2.20702 	 & -7.30300	 & -9.98869	 & 2.50449 \\ 
+25 		& 6.693  &	 12.4921 	 & 2.09369 	 & -6.98853	 & -9.77019	 & 2.40692 \\ 
+25.5 	& 5.2074 &	 12.7096 	 & 2.15963 	 & -7.17432	 & -9.89270	 & 2.46168 \\ 
+25.75 	& 5.9741 &	 12.5451 	 & 2.10720 	 & -7.02813	 & -9.79257	 & 2.41698 \\ 
+26 		& 7.4629 &	 12.8809 	 & 2.19478 	 & -7.27905	 & -9.94607	 & 2.48714 \\ 
+26.5 	& 6.9013 &	 13.6151 	 & 2.39946 	 & -7.86409	 & -10.3097	 & 2.65066 \\ 
+26.75 	& 5.4738 &	 13.4205 	 & 2.35664 	 & -7.73609	 & -10.2448	 & 2.62060 \\ 
+27 		& 8.4976 &	 11.8107 	 & 1.93084 	 & -6.51041	 & -9.50420	 & 2.28510 \\ 
+27.5 	& 6.983  &	 12.6303 	 & 2.14560 	 & -7.13057	 & -9.87420	 & 2.45267 \\ 
+27.75 	& 8.501  &	 12.2226 	 & 2.04532 	 & -6.83696	 & -9.70788	 & 2.37700 \\ 
+28 		& 7.575  &	 12.234 	 & 2.03861 	 & -6.82282	 & -9.68797	 & 2.36873 \\ 
+28.5 	& 5.5844 &	 12.6729 	 & 2.15105 	 & -7.14821	 & -9.88018	 & 2.45613 \\ 
+28.75 	& 6.5158 &	 12.8559 	 & 2.21262 	 & -7.31848	 & -9.99959	 & 2.50919 \\ 
+29 		& 7.8105 &	 12.8799 	 & 2.21777 	 & -7.33352	 & -10.0080	 & 2.51323 \\ 
+29.5 	& 6.4722 &	 12.8431 	 & 2.19824 	 & -7.28332	 & -9.96343	 & 2.49356 \\ 
+29.75 	& 7.5409 &	 11.823 	 & 1.91388 	 & -6.47248	 & -9.45460	 & 2.26415 \\ 
+30 		& 7.3062 &	 12.5771 	 & 2.12420 	 & -7.07062	 & -9.83379	 & 2.43552 \\ 
+30.5 	& 6.6314 &	 12.7644 	 & 2.16924 	 & -7.20325	 & -9.90581	 & 2.46835 \\ 
+30.75 	& 7.3702 &	 12.4053 	 & 2.07591 	 & -6.93389	 & -9.74557	 & 2.39560 \\ 
+31 		& 6.9049 &	 12.0157 	 & 1.96101 	 & -6.60985	 & -9.53295	 & 2.30004 \\ 
+31.5 	& 4.7764 &	 13.2659 	 & 2.30172 	 & -7.58446	 & -10.1352	 & 2.57236 \\ 
+31.75 	& 6.0537 &	 12.8071 	 & 2.16287 	 & -7.19490	 & -9.87593	 & 2.45604 \\ 
+32 		& 8.9643 &	 11.7958 	 & 1.89441 	 & -6.42284	 & -9.40820	 & 2.24413 \\ 
+32.5 	& 6.9209 &	 9.995 		 & 1.44211 	 & -5.11152	 & -8.64115	 & 1.89389 \\ 
+32.75 	& 9.9668 &	 8.6553 	 & 1.07533 	 & -4.06248	 & -7.99042	 & 1.60003 \\ 
+33 		& 5.5441 &	 6.0089 	 & 0.423059  & -2.16225	 & -6.89908	 & 1.10128 \\ 
+33.5 	& 5.9131 &	 2.6155 	 & -0.454214 & 0.370902  & -5.39045	 & 0.41545 \\ 
+33.75 	& 5.5792 &	 1.5481 	 & -0.751479  & 1.22007	 & -4.85755	 & 0.17591 \\ 
+34 		& 6.1125 &	 0.67708 	 & -0.951813  & 1.81111	 & -4.53803	 & 0.02826  \\ 
+34.5 	& 6.1698 &	 -0.61482 	 & -1.26130  & 2.71727	 & -4.03054	 & -0.20474 \\ 
+34.75 	& 6.8971 &	 -0.83524 	 & -1.31433  & 2.87267	 & -3.94360	 & -0.24457 \\ 
 \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
-Outro ponto que justifica o grande erro de polarização apresentado pelas estimativas é a ausência de um modelo de ruído
-mais completo. No algoritmo foi utilizado apenas os residuos de cada iteração como ruído, sem um modelo mais completo, a
-convergência do algoritmo pode ficar comprometida como apresentado em \cite{billings_zhu91}. Como o sistema é autonomo,
-não possui entrada, apenas a variação do valor inicial tem condições de alterar os valores observados na saída.
+É interessante observar que os parametros estimados $\theta$ variam considerávelmente com as alterações dos valores
+iniciais de $y(0)$, mas que o custo entre o sinal real e o estimado não tem uma variação tão pronunciada, fazendo com
+que todas estimativas feitas com valor inicial superior a $23.25$ convergissem para um custo próximo. Para valores
+inferiores a $23.25$ o custo da estimativa diverge, fazendo com que os parametros estimados não mais consigam
+representar o sistema real.

@@ -289,7 +289,7 @@ J_{VR}(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | L(e^{j\omega}) \right |^
 Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(z) \in
 C(z,\theta)$ as duas funções custo são iguais, possuindo também o mesmo mínimo. Quando $C_d(z) \notin C(z,\theta)$
 nenhum dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro dos dois
-integrandos são diferentes, não existe motivos para esperar que os dois custos desejam o mesmo.
+integrandos são diferentes, não existe motivos para esperar que os dois custos sejam os mesmos.
 \cite{bazanella_datadriven}
 
 Existe entretanto o parâmetro livre que foi incluído à função custo do VRFT que pode ser escolhido a fim de aproximar
@@ -384,7 +384,7 @@ de polarização.
 }
 \caption{Exemplo hipotético de funções custo na situação onde o controlador ideal não consegue ser representado pelo
 modelo. Situação esta que o uso do filtro $L(z)$ agrega valor reduzindo o erro de polarização da estimativa -
-Observa-se a aproximação do valor de mínimo das funções custo pelo uso do filtro ($J(\theta)_{VR}^L$).}
+Observa-se a aproximação do valor de mínimo das funções custo pelo uso do filtro ($J_{VR}^L(\theta)$).}
 \label{fig:vrft_cost_functions_L}
 \end{figure}
 
@@ -419,6 +419,18 @@ J_{VR}(\theta)&=&\frac{1}{2\pi} \int_{-\pi}^{\pi} \left | G_0(e^{j\omega}) \righ
 \label{eq:vrft_framework_noise_vr}
 \end{eqnarray}
 onde $\Phi_d$ é a densidade do espectro do ruído.
+
+Quando compara-se a equação \eqref{eq:vrft_framework_noise_vr} com a função custo do método sem a presença de ruído
+$J_{VR}(\theta)$ (equação \eqref{eq:dbcd_vrft_jvr_cost}) observa-se que há a adição de um termo dentro do integraor, 
+
+\begin{equation}
+\frac{\left | C(e^{j\omega},\theta) \right  |^2}{\left | G_0(e^{j\omega}) \right |^2 \left | C_d(e^{j\omega})
+\right |^2}\left | L(e^{j\omega}) \right |^2\Phi _d
+\nonumber
+\end{equation}
+e que este termo não decai a zero mesmo que $C_d(z) \in C(z,\theta)$. Desta forma é esperado que haja erro de
+polarização nas estimativas devido ao ruído mesmo quando a classe de controladores consegue descrever o controlador
+ideal.
 
 Para que haja rejeição a este rudo no método, em \cite{campi_leccini_savaresi2002} foi sugerido a
 adição da variável instrumental $\zeta(t)$. Em \eqref{eq:vrft_framework_noise_iv} apresenta-se o
@@ -471,9 +483,9 @@ esperado é pequeno, além disso um segundo experimento não é necessário. \cite{ca
 %===============================================================================
 
 Nesta seção serão apresentados alguns exemplos ilustrativos da utilização do método do VFRT. Serão utilizados sistemas
-lineares modelados pelas classes de modelos ARX e BJ quando o controlador $C(z, \theta)$ faz parte da classe de
-controladores que representa completamente o controlador ideal e também um caso onde o controlador ideal $C_d(z)$ não
-consegue ser presentado pela classe de controlador escolhida.
+lineares modelados pelas classes de modelos ARX e BJ quando o controlador ideal $C_d(z)$ faz parte da classe de
+controladores $C(z,\theta)$ e também um caso onde o controlador ideal não consegue ser presentado pela classe de
+controlador escolhida.
 
 Nas identificações apresentadas a seguir será sempre utilizado um sinal PRBS de ordem 7.
 
@@ -657,7 +669,7 @@ C(z,\theta )=\frac { \theta _{ 1 }z^2+\theta _{ 2 }z+\theta _{ 3 } }{ z(z-1) }
 \label{eq:vrft_methos_ex_arx_c}
 \end{equation}
 
-Os parâmetros $\theta_0$ deste sistema é definido por $[ 0.4 \; -0.68 \; 0.288 ]$.
+O vetor de parâmetros $\theta_0$ deste sistema é definido por $[ 0.4 \; -0.68 \; 0.288 ]$.
 
 Como já foi observado a utilização de variáveis instrumentais melhora significativamente o erro de polarização existente
 nas estimativas do método VRFT quando há presença de ruído. Desta forma as informações apresentadas a seguir serão
@@ -701,6 +713,9 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$ d
 \end{center}
 \end{table*}
 
+Na Tabela \ref{table:vrft_method_arx_iv} observa-se que o custo $J_{y}(\theta)$ aumenta com a quantidade de ruído
+inserido sobre o sistema, mas observa-se que não há erro de polarização nas estimativas. O valor médio das estimativas
+está em todas as simulações muito próximo ao valor real $\theta_0$ almejado.
 
 %===============================================================================
 \subsubsection{Controlador não pertence a classe}
@@ -709,9 +724,8 @@ VRFT utiliza variáveis instrumentais para a estimativa dos parâmetros $\theta$ d
 
 Até este ponto foram apresentados exemplos de uso do método VRFT quando o controlador que leva o sistema para
 o comportamento desejado $T_d(z)$ faz parte da classe escolhida para a identificação. Nesta seção será apresentado um
-exemplo onde a classe de modelos do controlador escolhida não consegue representar o controlador ideal $C_d(z)$.
-
-Considere o sistema real descrito por:
+exemplo onde a classe de modelos do controlador escolhida não consegue representar o controlador ideal $C_d(z)$. 
+Considere para isso o sistema real descrito por:
 
 \begin{equation}
 G_{ 0 }(z)=\frac { 0.2(z-0.7) }{ (z-0.9)(z-0.5) } ,\quad \quad \quad H_{ 0 }(z)=\frac { z }{ z-0.3 } 
@@ -748,7 +762,6 @@ Monte Carlo e o resultado obtido para a média das estimativas foi:
 \theta_L =\left[ 0.8101 \quad -0.1691  \quad -0.3358 \right]
 \nonumber
 \end{equation}
-
 onde o índice $L$ indica que este resultado foi obtido utilizando-se o filtro $L$.
 
 Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro $L$ descrito na Seção
@@ -775,9 +788,8 @@ ao salto unitário para o sistema utilizando os dois controladores obtidos. O res
 
 Observa-se que para o sistema que utiliza o controlador estimado utilizando-se o filtro $L$, a resposta ao
 degrau unitário tem significativamente menos erro que o sistema utilizando o outro controlador. Ficando este
-primeiro muito mais próximo da função $T_d(z)$ desejada.
-
-Os custos destes dois sistemas é apresentado na Tabela \ref{table:vrft_method_notinclass}.
+primeiro muito mais próximo da função $T_d(z)$ desejada. Os custos destes dois sistemas são apresentados na Tabela
+\ref{table:vrft_method_notinclass}.
 
 \begin{table*}[htbp]
 \begin{center}

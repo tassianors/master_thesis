@@ -12,12 +12,12 @@ específicas do sistema, uma classe de modelos não linear é mais apropriado.
 Apresentou-se alguns dos conjuntos de modelos mais utilizados para identificação de sistemas não lineares de tempo
 discreto e algumas de suas características. Destacou-se que a escolha de um modelo em detrimento de outro é um aspecto
 muito importante para a identificação de sistemas não lineares. A escolha de uma base e a ordem do modelo são muito
-importantes para que não sejam acrescidos ao modelo matemático dinâmicas que não existem no sistema real.
+importantes para que não sejam acrescidos ao modelo dinâmicas que não existem no sistema real.
 
 Deu-se especial atenção a classe de modelos NARMAX em suas duas formas mais conhecidas: polinomial e racional. Estes
 conjuntos de modelos conseguem representar uma grande variedade de sistemas não lineares utilizando uma estrutura
-simples de compreender e que por ser linear nos parâmetros a estimar com relação aos regressores, faz com que existam
-diversos algoritmos para a identificação de seus parâmetros.
+simples de compreender e que por ser linear nos parâmetros, faz com que os algoritmos para a identificação
+de seus parâmetros sejam mais simples.
 
 Apresentou-se um algoritmo para identificação de modelos racionais, que pode ser utilizado para modelos
 polinomiais sem dificuldades. Este algoritmo iterativo obteve bons resultados para os experimentos efetuados e estes
@@ -25,8 +25,12 @@ resultados foram apresentados para diversos tipos de classes de modelos escolhid
 
 Observou-se o desempenho deste algoritmo para situações onde a classe de modelo do sistema consegue representar
 totalmente o sistema real sob análise ($\mathcal{S} \in \mathcal{M}$), situação onde isso não é verdade ($\mathcal{S}
-\notin \mathcal{M}$) e um exemplo prático onde a classe de modelo escolhida para identificar o sistema real é racional.
+\notin \mathcal{M}$).
 
 O algoritmo implementado não contemplou a modelagem do ruído do sistema, sendo este um aspecto para ser desenvolvido em
 trabalhos futuros, visto que este fato é bastante importante para situações onde $\mathcal{S} \notin \mathcal{M}$,
-podendo o algoritmo nestas situações convergir para pontos onde os parâmetros identificados não sejam os reais.
+podendo o algoritmo nestas situações convergir para pontos onde os parâmetros identificados não sejam os reais. esta
+situação foi apresentada no exemplo do conversor de corrente continua do tipo Buck (Seção
+\ref{sec:nl_si_algorithms_rationals_buck}).
+
+
