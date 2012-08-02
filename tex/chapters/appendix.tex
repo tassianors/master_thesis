@@ -1,12 +1,19 @@
 %===============================================================================
 % Pode-se ter diversos apêndices
-\chapter{Título do Apêndice}
+\chapter{Algoritmo de identificação de sistemas não lineares}
 
-Nos apêndices aparecem textos ou documentos elaborados pelo autor  a fim de
-complementar sua argumentação sem prejuízo do trabalho. Eles sempre deverão
-estar depois das referências e antes dos anexos.
+Neste capítulo serão apresentados as rotinas criadas na ferramenta Matlab para a identificação de sistemas não lineares,
+como descrito na Seção \ref{sec:nl_si_algorithms_rationals}.
 
 \lstinputlisting[language=Matlab,
 				frame=box,
-				label=lst:MobileAgent,
-				caption=Exemplo de mobilidade de agentes com o Jade]{code/f_rational_model.m}
+				label=lst:rational_model,
+				caption=Laço principal do algoritmo implementado para identificação de
+				sistemas não lineares descritos por modelos NARMAX]{code/functions/rational/f_rational_model.m}
+
+\lstinputlisting[language=Matlab,
+				frame=box,
+				label=lst:rational_model,
+				caption=Laço principal do algoritmo implementado para identificação de
+				sistemas não lineares descritos por modelos NARMAX]{code/functions/rational/f_get_phy.m}
+				

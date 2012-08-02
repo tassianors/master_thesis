@@ -66,7 +66,7 @@
 \usepackage{amsmath}
 \usepackage{pstricks,pst-node,pst-text,pst-3d}
 %\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
-\usepackage[breaklinks=true]{hyperref}
+%\usepackage[breaklinks=true]{hyperref}
 %\usepackage[brazil]{babel} %get everything translated properly
 \usepackage[brazilian]{babel} %get everything translated properly
 %\selectlanguage{brazil}
@@ -169,27 +169,31 @@
 %\newcommand{\pderfrac}[2]{\frac{\partial#1}{\partial#2}}
 %\providecommand{\trans}[1]{{#1}^\mathrm{T}}
 
-\hypersetup{
-	colorlinks,
-	debug=true,
-	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-	citecolor=red,  %%% cor do \cite
-	urlcolor=blue,   %%% cor do \url e \href
-	bookmarksopen=true,
-	pdftitle={Dissertação de Mestrado},
-	pdfauthor={Tassiano Neuhaus},
-	pdfsubject={Projeto de controladores não lineares usando referência virtual.},
-	pdfkeywords={System identification, data-base control design, Virttual Reference, nonlinear systems},
-	%pdfpagemode=FullScreen
-}
+%\hypersetup{
+%	colorlinks,
+%	debug=true,
+%	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+%	citecolor=red,  %%% cor do \cite
+%	urlcolor=blue,   %%% cor do \url e \href
+%	bookmarksopen=true,
+%	pdftitle={Dissertação de Mestrado},
+%	pdfauthor={Tassiano Neuhaus},
+%	pdfsubject={Projeto de controladores não lineares usando referência virtual.},
+%	pdfkeywords={System identification, data-base control design, Virttual Reference, nonlinear systems},
+%	%pdfpagemode=FullScreen
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % Setings for Code Listing
+% This is the color used for MATLAB comments below
+\definecolor{DarkGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
 \lstset{
-	language=VHDL,
+	language=Matlab,
 	frame=single,
-	commentstyle=\footnotesize,
+	commentstyle=\footnotesize\color{DarkGreen},
+	%commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,
 	basicstyle=\footnotesize\ttfamily,
 	%basicstyle=\small\ttfamily,%
 	tabsize=1,%
@@ -197,9 +201,10 @@
 	captionpos=b,  % caption position: bottom
 	showstringspaces=false,
 	numbers=left,%
-	numberstyle=\footnotesize,
+	%numberstyle=\footnotesize,
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
 	%stepnumber=2,               % Abstand zwischen den Zeilennummern
-	numbersep=1pt,              % Abstand der Nummern zum Text
+	numbersep=5pt,              % Abstand der Nummern zum Text
 	framexleftmargin=6mm,
 	framexrightmargin=-6mm,%
 	xleftmargin=6mm,
