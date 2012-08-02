@@ -66,7 +66,7 @@
 \usepackage{amsmath}
 \usepackage{pstricks,pst-node,pst-text,pst-3d}
 %\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
-%\usepackage[breaklinks=true]{hyperref}
+\usepackage[breaklinks=true]{hyperref}
 %\usepackage[brazil]{babel} %get everything translated properly
 \usepackage[brazilian]{babel} %get everything translated properly
 %\selectlanguage{brazil}
@@ -74,8 +74,37 @@
 \usepackage{enumerate}
 %\usepackage{newclude}
 
-\usepackage{listings}           % Paket, um Listings schön einbinden zu können
-\lstloadlanguages{Matlab}
+
+\usepackage{listings}
+\usepackage{color}
+
+%\renewcommand{\lstlistlistingname}{My listings} %List of listings name
+\renewcommand{\lstlistingname}{Listagem} %Listings name
+
+% Setings for Code Listing
+\lstset{
+	language=Matlab,
+	frame=single,
+	commentstyle=\footnotesize,
+	basicstyle=\footnotesize\ttfamily,
+	%basicstyle=\small\ttfamily,%
+	tabsize=1,%
+	keywordstyle=\color{blue}\bfseries,%
+	captionpos=b,  % caption position: bottom
+	showstringspaces=false,
+	numbers=left,%
+	numberstyle=\footnotesize,
+	%stepnumber=2,               % Abstand zwischen den Zeilennummern
+	numbersep=1pt,              % Abstand der Nummern zum Text
+	framexleftmargin=6mm,
+	framexrightmargin=-6mm,%
+	xleftmargin=6mm,
+	xrightmargin=10mm,
+	breaklines=true
+	escapechar=$
+}
+
+
 %\usepackage[usenames,dvipsnames]{color}
 %\usepackage{thumbpdf}           % Thumbnails für Seitenvorschau
 %\usepackage{algorithm}
@@ -140,19 +169,19 @@
 %\newcommand{\pderfrac}[2]{\frac{\partial#1}{\partial#2}}
 %\providecommand{\trans}[1]{{#1}^\mathrm{T}}
 
-%\hhhypersetup{
-%	colorlinks,
-%	debug=true,
-%	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-%	citecolor=red,  %%% cor do \cite
-%	urlcolor=blue,   %%% cor do \url e \href
-%	bookmarksopen=true,
-%	pdftitle={Dissertação de Mestrado},
-%	pdfauthor={Tassiano Neuhaus},
-%	pdfsubject={Projeto de controladores não lineares representados por modelos NARMAX usando referência virtual.},
-%	pdfkeywords={System identification, data-base control design, Virttual Reference, nonlinear systems, NARMAX models},
-%	%pdfpagemode=FullScreen
-%}
+\hypersetup{
+	colorlinks,
+	debug=true,
+	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	citecolor=red,  %%% cor do \cite
+	urlcolor=blue,   %%% cor do \url e \href
+	bookmarksopen=true,
+	pdftitle={Dissertação de Mestrado},
+	pdfauthor={Tassiano Neuhaus},
+	pdfsubject={Projeto de controladores não lineares usando referência virtual.},
+	pdfkeywords={System identification, data-base control design, Virttual Reference, nonlinear systems},
+	%pdfpagemode=FullScreen
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

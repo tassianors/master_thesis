@@ -1,0 +1,241 @@
+%===============================================================================
+\section{Controladores Racionais}
+\label{sec:dbnarmax_rational_controllers}
+%===============================================================================
+
+Controladores que possuem não linearidade na dinâmica no projeto, podem ser representados por classes de modelos NARMAX.
+Esta aproximação será melhor quando mais este controlador for representavel em séries de Taylor, pois desta forma o
+polinômio converge monotônicamente, fazendo com que os coeficientes de ordem maior, possam ser descartados devido a
+contribuição destes termos decair monoticamente.
+
+Para controladores que podem ser descritos por classes de modelos NARMAX, a utilização do método proposto neste trabalho
+na Seção \ref{sec:dbnarmax_method} pode ser aplicado diretamente utilizando-se o algoritmo apresentado na Seção
+\ref{sec:nl_si_algorithms_rationals} para identificar este controlador.
+
+A seguir serão apresentados exemplos onde o controlador ideal está na classe de modelos escolhida e também um exemplo
+quando as dinâmicas do controlador ideal não conseguem ser representadas totalmente pela classe de modelos escolhida.
+
+%===============================================================================
+\subsubsection{Controlador ideal representado pela classe de modelos: $C_d \in C(z,\theta)$}
+\label{sec:dbnarmax_nl_dinamic_c_match}
+%===============================================================================
+
+Considere o sistema não linear $\mathcal{S}$ descrito por:
+
+\begin{equation}
+y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
+\label{eq:vrft_nl_dinamic_ex1_y}
+\end{equation}
+
+Deseja-se que em malha fechada seu comportamento seja linear como em:
+
+\begin{equation}
+T_d(z)=\frac{0.4}{z-0.6}
+\label{eq:vrft_nl_dinamic_ex1_mz}
+\end{equation}
+
+A equação \eqref{eq:vrft_nl_dinamic_ex1_mz} pode ser reescrita em função do tempo como em:
+
+\begin{equation}
+y(t)=0.4r(t-1)+0.6y(t-1)
+\label{eq:vrft_nl_dinamic_ex1_mt}
+\end{equation}
+
+Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex1_y} com \eqref{eq:vrft_nl_dinamic_ex1_mt} e isolar o
+sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
+comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal $C_d(z)$ descrito como
+em:
+
+\begin{equation}
+u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
+\label{eq:vrft_nl_dinamic_ex1_cd}
+\end{equation}
+
+Optou-se por uma classe de modelos que consegue representar a totalidade das dinâmicas presentes em $C_d(z)$:
+
+\begin{equation}
+u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 y^2(t-1)r(t)+ \theta_4 y(t)y^2(t-1)}{1+ \theta_5 y(t)}
+\label{eq:vrft_nl_dinamic_ex1_c}
+\end{equation}
+
+Utilizando um sinal PRBS de $N=254$ e o método de referência virtual para gerar os sinais $r(t)$ e
+$\epsilon(t)$. Adicionando-se um ruído de variância $\sigma_e^2 = 0.005$ à saída do sistema, a média das estimativas
+para 100 experimentos de Monte Carlo foi de:
+
+\begin{equation}
+\theta_{\text{média}}=\begin{bmatrix}
+0.4000 & 0.5999 & 0.1001 & 0.1501 & 0.5000
+\end{bmatrix}
+\nonumber
+\end{equation}
+a matriz de covariância obtida neste experimento é descrita por:
+
+\begin{equation}
+\theta_{\text{Covariância}}=1.0\times 10^{-6}\begin{bmatrix}
+ 0.0498 &  0.0585 & -0.0353 & -0.0362 & -0.0018 \\
+ 0.0585 &  0.4714 & -0.0449 & -0.3690 &  0.0057 \\
+-0.0353 & -0.0449 &  0.0581 &  0.0745 & -0.0040 \\
+-0.0362 & -0.3690 &  0.0745 &  0.4647 & -0.0070 \\
+-0.0018 &  0.0057 & -0.0040 & -0.0070 &  0.0911
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+Simulando o sistema com o controlador obtido pela média das estimativas e o sistema em malha fechada
+desejado, o erro observado para um sinal de entrada do tipo degrau unitário é apresentado na Figura
+\ref{fig:vrft_nl_dynamic_step_erro}.
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_dynamic_erro_step.eps}
+	\caption{Erro entre o a resposta esperada e a obtida para o sistema quando submetido a uma entrada do tipo degrau
+	unitário.}
+	\label{fig:vrft_nl_dynamic_step_erro}
+\end{figure}
+
+A fim de ilustrar as estimativas obtidas pelo método, na Figura \ref{fig:vrft_nl_dynamic_t1_t2} são
+apresentados as estimativas para os 100 experimentos realizados, além da elipse de confiança de $\chi^2=95\%$
+para os parâmetros $\theta_1$ e $\theta_2$.
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_dynamic_t1_t2.eps}
+	\caption{100 experimentos de Monte Carlo das variáveis $\theta_1$ e $\theta_2$}
+	\label{fig:vrft_nl_dynamic_t1_t2}
+\end{figure}
+
+O custo $J_{VR}=2.7291\times10{-8}$ foi obtido utilizando-se os sinais de saída do controlador obtido e
+esperado. Já o custo entre os sinais de saída do sistema em malha fechada estimado e desejado foi de
+$J_{y}=0.0033$.
+
+Com o intuito de demonstrar o efeito do ruído sobre as estimativas obtidas o ruído foi aumentado em $4\times$ para
+$\sigma_e^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as estimativas:
+
+\begin{equation}
+\theta_{\text{média}}=\begin{bmatrix}
+0.3999 & 0.5996 & 0.1001 & 0.1502 & 0.4999
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+\begin{equation}
+\theta_{\text{Covariância}}=1.0\times 10^{-5}\begin{bmatrix}
+    0.1061 &  0.1207 & -0.0894 & -0.1185 & -0.0310 \\
+    0.1207 &  0.7122 & -0.1048 & -0.5357 &  0.0038 \\
+   -0.0894 & -0.1048 &  0.1344 &  0.1972 & -0.0033 \\
+   -0.1185 & -0.5357 &  0.1972 &  0.7523 & -0.0571 \\ 
+   -0.0310 &  0.0038 & -0.0033 & -0.0571 &  0.1355
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+Com os custos de $J_{VR}=1.0326\times10{-7}$ e $J_{y}=0.0054$, corroborando para o fato de que os custos não
+foram significativamente afetados pelo aumento do ruído. Observa-se um aumento do erro de variância, pois a matriz de
+covariância que era da ordem de $\times10^{-6}$ passou para a ordem de $\times10^{-5}$, entretanto o valor médio das
+estimativas permaneceu praticamente inalterado, corroborando pela não existência de erro de polarização.
+
+%%===============================================================================
+%\subsubsection{Controlador ideal sendo representado pela classe de modelos 2}
+%\label{sec:dbnarmax_nl_dinamic_c_match2}
+%%===============================================================================
+
+%===============================================================================
+\subsubsection{Controlador ideal não sendo representado pela classe de modelos: $C_d \notin C(z,\theta)$}
+\label{sec:dbnarmax_nl_dinamic_c_not_match}
+%===============================================================================
+
+Neste exemplo será abordado o caso onde o controlador $C(z, \theta) \notin \mathcal{C}$. Fazendo com que o sistema em
+malha fechada não consiga ter a dinâmica esperada. Considere a planta não linear descrita por:
+
+\begin{equation}
+y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
+\label{eq:vrft_nl_dinamic_ex3_y}
+\end{equation}
+
+Deseja-se que em malha fechada seu comportamento seja linear como em:
+
+\begin{equation}
+T_d(z)=\frac{0.4}{z-0.6}
+\label{eq:vrft_nl_dinamic_ex3_mz}
+\end{equation}
+
+A equação \eqref{eq:vrft_nl_dinamic_ex3_mz} pode ser reescrita em função do tempo como em:
+
+\begin{equation}
+y(t)=0.4r(t-1)+0.6y(t-1)
+\label{eq:vrft_nl_dinamic_ex3_mt}
+\end{equation}
+
+Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex3_y} com \eqref{eq:vrft_nl_dinamic_ex3_mt} e isolar o
+sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
+comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
+
+\begin{equation}
+u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
+\label{eq:vrft_nl_dinamic_ex3_cd}
+\end{equation}
+
+No exemplo apresentado na Seção \ref{sec:dbnarmax_nl_dinamic_c_match} foi apresentada a simulação para quando o
+controlador ótimo consegue ser descrito pelo modelo escolhido para representa-lo. Neste exemplo deseja-se o oposto: que a classe de
+modelos escolhida para o controlador não consiga representar completamente \eqref{eq:vrft_nl_dinamic_ex3_cd}. Para isso
+escolheu-se a seguinte classe de modelos:
+
+\begin{equation}
+u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 r(t)y(t-1)+ \theta_4 y(t-1)y(t)}{1+ \theta_5 y(t)}
+\label{eq:vrft_nl_dinamic_ex3_c}
+\end{equation}
+
+Para as simulações foi adicionado um ruído com $\sigma_e^2 = 0.05$ e foram realizados 100 experimentos de Monte Carlo
+onde obteve-se as seguintes estimativas:
+
+\begin{equation}
+\theta_{\text{média}}=\begin{bmatrix}
+0.4696 & 0.7011 & 0.0083 & 0.0063 & 0.5013
+\end{bmatrix}
+\label{eq:vr_rational_ex3_theta}
+\end{equation}
+com uma covariância de:
+
+\begin{equation}
+\theta_{\text{Covariância}}=1.0\times 10^{-4}\begin{bmatrix}
+    0.0278 &  0.0396 &  0.0035 &  0.0146 & -0.0137 \\
+    0.0396 &  0.3328 &  0.0066 & -0.1651 &  0.0063 \\
+    0.0035 &  0.0066 &  0.0382 &  0.0688 & -0.0119 \\
+    0.0146 & -0.1651 &  0.0688 &  0.4130 & -0.0562 \\
+   -0.0137 &  0.0063 & -0.0119 & -0.0562 &  0.0646
+\end{bmatrix}
+\nonumber
+\end{equation}
+
+Obtém-se um custo para o comportamento do sistema em malha fechada de  $J_{y}=1.0999$. Na Figura
+\ref{fig:vr_rational_notinclass_ex3_step} é apresentado a resposta do sistema em malha fechada quando submetido a um
+degrau unitário para o sistema desejado e para o sistema obtido com o controlador parametrizado por
+\eqref{eq:vr_rational_ex3_theta}.
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vr_rational_notinclass_ex3_step.eps}
+	\caption{Exemplo onde $C_d(z) \notin C(z,\theta)$: Resposta do sistema ao degrau unitário para o sistema desejado
+	$T_d(z)$ e o sistema quando o controlador parametrizado por $\theta$ como descrito em
+	\eqref{eq:vr_rational_ex3_theta}. Onde $T_d(t)$ é a resposta temporal para o comportamento esperado do sistema e
+	$T(t)$ é o comportamento temporal para o sistema quando está utilizando o controlador identificado.}
+	\label{fig:vr_rational_notinclass_ex3_step}
+\end{figure}
+
+Na Figura \ref{fig:vr_rational_notinclass_ex3_error} é apresentado o erro entre as respostas ao degrau
+unitário apresentado na Figura \ref{fig:vr_rational_notinclass_ex3_step}. 
+
+\begin{figure}[htbp] 
+	\center 
+	\includegraphics[width=0.95\columnwidth]{figures/vr_rational_notinclass_ex3_error.eps}
+	\caption{Exemplo onde $C_d(z) \notin C(z,\theta)$: Erro entre o comportamento do sistema em malha fechada e o
+	comportamento em malha fechada desejado.}
+	\label{fig:vr_rational_notinclass_ex3_error}
+\end{figure}
+
+Observa-se que mesmo quando não há uma completa capacidade da classe de modelos em representar o controlador ideal, o
+erro da estimativa é relativamente baixo, mas não insignificante, ficando em aproximadamente 6\% em regime e chegando a
+atingir quase 20\% durante o transitório. Em contrapartida, quando há capacidade do controlador ideal ser representado
+pela classe do controlador, o erro em regime ficou em 0.02\% como apresentado na Figura
+\ref{fig:vrft_nl_dynamic_step_erro}.
+
