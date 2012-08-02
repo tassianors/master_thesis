@@ -4,21 +4,20 @@
 % Aguirre 343
 %===============================================================================
 
-Os modelos {\it{NARX}} (do termo inglês {\it{nonlinear autoregressive model with
-exogenous variables}}) são modelos discretos no tempo que caracterizam o valor da saída em função
-dos valores passados da entrada e da própria saída. Algumas vezes, para evitar a polarização da estimativa dos
-parâmetros adiciona-se termos do modelo do ruído ao modelo do sistema. Quando isso é feito o modelo passa a ser chamado
-de modelo {\it{NARMAX}} (do termo inglês {\it{nonlinear autoregressive moving average model with
-exogenous variables}}), introduzido por \cite{leontaritis_billings1985}.
+Os modelos {\it{NARX}} (do termo inglês {\it{nonlinear autoregressive model with exogenous variables}}) são modelos
+discretos no tempo que caracterizam o valor da saída em função dos valores passados da entrada e da própria saída.
+Algumas vezes, para evitar a polarização da estimativa dos parâmetros adiciona-se termos do modelo do ruído ao modelo
+do sistema. Quando isso é feito o modelo passa a ser chamado de modelo {\it{NARMAX}} (do termo inglês {\it{nonlinear
+autoregressive moving average model with exogenous variables}}), introduzido por \cite{leontaritis_billings1985}.
 
 Este modelo provê uma representação unificada para a descrição de sistemas discretos não lineares:
 
 \begin{equation}
-y(t)=\theta^T\Phi_{nl}(y, u, e)+e(t)
+y(t)=\theta^T\Phi_{nl}(y, u, e)
 \label{eq:nlin_models_narmax_generic}
 \end{equation}
-onde $\Phi_{nl}(\cdot)$ denota uma equação não linear que depende dos sinais passados de $y(t)$ e presente e passados
-de $u(t)$ e $e(t)$. $\theta$ é o vetor de parâmetros a ser identificado.
+onde $\Phi_{nl}(\cdot)$ denota um campo vetorial não linear de dominio $\mathbb{R}^3\to \mathbb{R}^n$, que depende dos
+sinais passados de $y(t)$ e presente e passados de $u(t)$ e $e(t)$. $\theta$ é o vetor de parâmetros a ser identificado.
 
 As classes de modelos NARMAX podem então ser compreendidas como um conjunto ou somatório de funções não lineares, que
 são parametrizados linearmente. Vale aqui esclarecer que a forma apresentada em \eqref{eq:nlin_models_narmax_generic}

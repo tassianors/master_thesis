@@ -1,0 +1,160 @@
+%===============================================================================
+\section{Definições}
+\label{sec:dbnarmax_defines}
+%===============================================================================
+
+No Capítulo \ref{chapter:system_identification} foram apresentadas as definições para identificação de sistemas
+lineares. Definiu-se o sistema real pelo simbolo $\mathcal{S}$, para este capítulo $\mathcal{S}$ é um sistema não liner,
+e para o projeto de controladores, o controlador ideal é definido por $\mathcal{C}_d$, sendo o controlador que consegue
+fazer com que o sistema em malha fechada se comporte como desejado.
+
+Define-se a classe de controladores não lineares como 
+
+\begin{equation}
+\mathcal{C}(\theta)
+\label{eq:dbnarmax_controller_class}
+\end{equation}
+
+Diz-se que o controlador ideal pode ser representado pela classe de modelos, ou seja, $\mathcal{C}_d \in
+\mathcal{C}(\theta)$ se existir um valor de $\theta_0$ que faça com que 
+
+\begin{equation}
+\mathcal{C}(\theta_0) = \mathcal{C}_d
+\end{equation}
+
+%===============================================================================
+\section{Método}
+\label{sec:dbnarmax_method}
+%===============================================================================
+
+O método proposto consiste na ideia de utilizar referência virtual para, a partir dos dados coletados do
+sistema, determinar os sinais de entrada do controlador que fazem com que o sistema em malha fechada se comporte como
+desejado: $T_d(z)$.
+
+Parte-se do pressuposto de que o processo $\mathcal{S}$ é não linear, mas que o comportamento em malha fechada
+desejado $T_d(z)$ seja linear, portanto o controlador projetado deve, além de cumprir com os objetivos de performance
+determinados, cancelar as não linearidades da planta para que possa ser possível uma relação linear entre a entrada
+$r(t)$ e a saída $y(t)$.
+
+Análogamente ao que foi apresentado na Seção \ref{sec:dbcd_vrft_framework} para controladores lineares, o controlador
+não linear $\mathcal{C}(\theta)$  quando operando em conjnto com o sistema não linear $\mathcal{S}$ resulta um sistema
+em malha fechada cuja função de transferência é dada por $T_d(z)$. Obta-se que este comportamento em malha fechada seja
+linear. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$, sua saída será $T_d(z)r(t)$. Uma premissa para
+que o sistema em malha fechada tenha a mesma função de transferência que o modelo de referência é que a saída dos dois
+sejam a mesma para um dado sinal $\bar{r}(t)$.
+
+Baseado no sinal $y(t)$ medido da saída do processo, considera-se um sinal $\bar{r}(t)$ tal que 
+$T_d(z)\bar{r}(t)=y(t)$. Esta referência, como já foi apresentada, é conhecida como {\it{virtual}} pois ela não existe e
+não foi utilizada para gerar o sinal $y(t)$. A Figura \ref{fig:dbnarmax_method_vr} apresenta o sistema em malha fechada e
+os sinais presentes.
+
+\begin{figure}[htbp]
+\center
+% Generated with LaTeXDraw 2.0.8
+% Wed Aug 01 22:46:20 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\scalebox{1} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-1.4292188)(9.601875,1.4692189)
+\pscircle[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](1.981875,0.97078127){0.2}
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](5.381875,1.3707813)(3.581875,0.57078123)
+\psframe[linewidth=0.04,dimen=outer](8.181875,1.3707813)(6.581875,0.57078123)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.581875,0.97078127)(1.781875,0.97078127)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.181875,0.97078127)(3.581875,0.97078127)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.381875,0.97078127)(6.581875,0.97078127)
+\psline[linewidth=0.04cm](8.181875,0.97078127)(9.581875,0.97078127)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.981875,0.7707813)(1.981875,-0.02921875)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](1.981875,-0.02921875)(8.981875,-0.02921875)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](8.981875,-0.02921875)(8.981875,0.97078127)
+\usefont{T1}{ptm}{m}{n}
+\rput(1.6198437,1.2807813){+}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.1839063,0.68078125){-}
+\usefont{T1}{ptm}{m}{n}
+\rput(0.991875,1.2707813){\small $\bar{r}(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.451875,0.97078127){\small $\mathcal{C}(\theta)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(7.341875,0.9907812){\small $\mathcal{S}$}
+\usefont{T1}{ptm}{m}{n}
+\rput(6.031875,1.2707813){\small $u(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.771875,1.2707813){\small $\epsilon (t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.821875,1.2707813){\small $y(t)$}
+\psframe[linewidth=0.04,dimen=outer](6.581875,-0.62921876)(4.381875,-1.4292188)
+\usefont{T1}{ptm}{m}{n}
+\rput(5.431875,-1.0492188){\small $T_d^{-1}(z)$}
+\psline[linewidth=0.04cm](9.581875,0.97078127)(9.581875,-1.0292188)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.581875,-1.0292188)(6.581875,-1.0292188)
+\psline[linewidth=0.04cm](4.381875,-1.0292188)(0.581875,-1.0292188)
+\psline[linewidth=0.04cm](0.581875,-1.0292188)(0.581875,0.97078127)
+\end{pspicture} 
+}
+\caption{Representação em blocos do sistema em malha fechada para obtenção dos sinais $\epsilon(t)$ e $\bar{r}(t)$
+utilizando referência virtual. Tracejado está a realimentação e o controlador, que não estão presentes no procedimento
+para obtenção dos sinais.}
+\label{fig:dbnarmax_method_vr}
+\end{figure}
+
+O sinal $\epsilon(t)$ é o erro entre os sinais $y(t)$ e $\bar{r}(t)$. Sabe-se que quando a planta é
+excitada com o sinal $u(t)$, o sinal $y(t)$ é então obtido. Analogamente para um controlador, quando este é
+excitado com o sinal $\epsilon(t)$, o sinal $u(t)$ é obtido. A metodologia proposta, analogamente ao método VRFT
+consiste em encontrar um controlador, com os sinais $u(t)$ e $\epsilon(t)$ que são conhecidos, a tarefa então reduz-se a
+um problema de identificação de sistemas não lineares.
+
+Fica a critério do projetista, assim como para métodos lineares, determinar a estrutura da classe de modelos a ser
+utilizada para a identificação do controlador. Para que o comportamento linear $T_d(z)$ possa ser obtido
+em malha fechada há a necessidade de que o controlador $\mathcal{C}_d \in \mathcal{C}(\theta)$. 
+
+Não é apenas devido a planta ser não linear e o comportamento em malha fechada ser linear que o controlador ideal
+possuirá um comportamento não linear. Pode-se a partir de um comportamento em malha fechada não linear e com uma planta
+linear, ou não, obter-se um controlador que também seja não linear, dependendo das especificações que ao qual
+o controlador é submetido.
+
+%===============================================================================
+\subsection{Classe de modelor}
+\label{sec:dbnarmax_other_classes}
+%===============================================================================
+
+A escolha da classe de modelos $\mathcal{C}(\theta)$ que irá representar o controlador ideal $\mathcal{C}_d$ é de grande
+importância para que haja sucesso no processo de identificação deste controlador. Neste trabalho optou-se pelo uso da
+classe de modelos NARMAX apresentada na Seção \ref{sec:nl_models_narmax} pela abrangência desta classe de modelos em
+representar sistemas reais e pelos bons resultados obtidos na identificação de sistemas não lineares apresentados na
+Seção \ref{sec:dbnarmax_nonlinear_examples}.
+
+Como foi apresentao, a classe de modelos NARMAX pode ser dividida em polinomial:
+
+\begin{equation}
+y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
+\nonumber
+\end{equation}
+e racional:
+
+\begin{align*}
+y(t) &=\frac{a(y(t-1), \ldots, y(t-n_y), u(t-1),\ldots, u(t-n_u), }{b(y(t-1), \ldots, y(t-n_y), u(t-1), \ldots, u(t-n_u),}\cdots \\ 
+& \cdots\frac{ e(t-1), \ldots, e(t-n_e))}{e(t-1), \ldots, e(t-n_e))} +e(t)
+\end{align*}
+
+Aplica-se então o algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} para a identificação do controlador
+$\mathcal{C}(\theta)$.
+
+É conveniente observar que a escolha da classe NARMAX está intimamente ligada ao uso do algoritmo de identificação
+destes modelos ter-se mostrado bastante eficiente, como foi apresentado nos exemplos da Seção
+\ref{sec:nl_si_algorithms_rationals_examples}, além dos motivos já citados da vasta gama de sistemas reais que modelos
+NARMAX conseguem representar. Todavia, a metodologia apresentada, poderia ser aplicada para qualquer classe de modelos
+de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe pudesse ser utilizado para
+obtenção dos valores de $\hat{\theta}$ que minimizem algum critério de escolha. Uma das poucas limitações seria que este
+algoritmo deveria identificar o controlador baseado nos dados de entrada e saída da planta e dos sinais virtuais gerados
+a partir destes dados.
+
+A qualidade das estimativas obtidas é bastante relacionada com a qualidade do algoritmo em estimar os valores de
+$\theta$ que minimizam alguma função custo. Entretanto tudo que foi abordado referente a identificabilidade de um
+experimento e a ordem de excitação de um sinal, determinam as condições básicas para que o resultado obtido seja livre
+de erro de polarização.
+
+
+
