@@ -5,6 +5,18 @@
 Neste capítulo serão apresentados as rotinas criadas na ferramenta Matlab para a identificação de sistemas não lineares,
 como descrito na Seção \ref{sec:nl_si_algorithms_rationals}.
 
+Na Listagem \ref{lst:rational_model} é apresentado o conjunto de funções principais que compõem o algoritmo de
+identificação de sistemas não lineares, descritos por modelos NARMAX. As funções auxiliares $\text{get phi}$ e
+$\text{get psi}$ são rotinas auxiliares para a obtenção das matrizes necessárias para a execução do algoritmo e são
+apresentadas nas Listagens \ref{lst:rational_model_get_phy} e \ref{lst:rational_model_get_psi}. 
+
+A rotina $\text{get phi}$, é responsável por retornar as matrizes apresentadas nas equações
+\eqref{eq:nl_alg_rational_step5_Phi_M} e \eqref{eq:nl_alg_rational_step5_phi}, enquanto a rotina $\text{get psi}$ é
+responsável por calcular a matriz apresentada na equação \eqref{eq:nl_alg_rational_step3_psi}.
+
+Na Listagem \ref{lst:rational_model_get_model_output} é apresentada a rotina responsável por, baseado na classe de
+modelo e nos sinais envolvidos na simulação, calcular a saída do sistema.
+
 \lstinputlisting[language=Matlab,
 				frame=box,
 				label=lst:rational_model,
@@ -13,7 +25,20 @@ como descrito na Seção \ref{sec:nl_si_algorithms_rationals}.
 
 \lstinputlisting[language=Matlab,
 				frame=box,
-				label=lst:rational_model,
-				caption=Laço principal do algoritmo implementado para identificação de
-				sistemas não lineares descritos por modelos NARMAX]{code/functions/rational/f_get_phy.m}
+				label=lst:rational_model_get_phy,
+				caption=Função auxiliar do aogoritmo de identificação de sistemas não lineares
+				que baseado no sinal de saída do sistema e da classe de modelos calcula a
+				matriz $\Psi$]{code/functions/rational/f_get_phi.m}
+				
+\lstinputlisting[language=Matlab,
+				frame=box,
+				label=lst:rational_model_get_psi,
+				caption=Função auxiliar do algoritmo de indentificação de sistemas não linearesque baseado nos sinais reais e
+				virtuais obtidos do sistema calcula a matriz $\Psi$]{code/functions/rational/f_get_psi.m}
+				
+\lstinputlisting[language=Matlab,
+				frame=box,
+				label=lst:rational_model_get_model_output,
+				caption=Função auxiliar que baseado na classe de modelos e no valor estimado
+				de $\theta$ determina a saída do sistema para uma determinada entrada.]{code/functions/rational/f_y_model.m}
 				
