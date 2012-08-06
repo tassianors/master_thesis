@@ -1,17 +1,18 @@
 %===============================================================================
-% Pode-se ter diversos apêndices
 \chapter{Algoritmo de identificação de sistemas não lineares}
+\label{appendix:rational_base_functions}
+%===============================================================================
 
 Neste capítulo serão apresentados as rotinas criadas na ferramenta Matlab para a identificação de sistemas não lineares,
 como descrito na Seção \ref{sec:nl_si_algorithms_rationals}.
 
 Na Listagem \ref{lst:rational_model} é apresentado o conjunto de funções principais que compõem o algoritmo de
-identificação de sistemas não lineares, descritos por modelos NARMAX. As funções auxiliares $\text{get phi}$ e
-$\text{get psi}$ são rotinas auxiliares para a obtenção das matrizes necessárias para a execução do algoritmo e são
-apresentadas nas Listagens \ref{lst:rational_model_get_phy} e \ref{lst:rational_model_get_psi}. 
+identificação de sistemas não lineares, descritos por modelos NARMAX. As funções auxiliares $\text{f get phi}$ e
+$\text{f get psi}$ são rotinas auxiliares para a obtenção das matrizes necessárias para a execução do algoritmo e são
+apresentadas nas Listagens \ref{lst:rational_model_get_phy} e \ref{lst:rational_model_get_psi} respectivamente. 
 
-A rotina $\text{get phi}$, é responsável por retornar as matrizes apresentadas nas equações
-\eqref{eq:nl_alg_rational_step5_Phi_M} e \eqref{eq:nl_alg_rational_step5_phi}, enquanto a rotina $\text{get psi}$ é
+A rotina $\text{f get phi}$, é responsável por retornar as matrizes apresentadas nas equações
+\eqref{eq:nl_alg_rational_step5_Phi_M} e \eqref{eq:nl_alg_rational_step5_phi}, enquanto a rotina $\text{f get psi}$ é
 responsável por calcular a matriz apresentada na equação \eqref{eq:nl_alg_rational_step3_psi}.
 
 Na Listagem \ref{lst:rational_model_get_model_output} é apresentada a rotina responsável por, baseado na classe de
@@ -20,25 +21,110 @@ modelo e nos sinais envolvidos na simulação, calcular a saída do sistema.
 \lstinputlisting[language=Matlab,
 				frame=box,
 				label=lst:rational_model,
-				caption=Laço principal do algoritmo implementado para identificação de
-				sistemas não lineares descritos por modelos NARMAX]{code/functions/rational/f_rational_model.m}
+				caption={Laço principal do algoritmo implementado para identificação de	sistemas não lineares descritos por modelos
+				NARMAX}]
+				{code/functions/rational/f_rational_model.m}
 
 \lstinputlisting[language=Matlab,
 				frame=box,
 				label=lst:rational_model_get_phy,
-				caption=Função auxiliar do aogoritmo de identificação de sistemas não lineares
-				que baseado no sinal de saída do sistema e da classe de modelos calcula a
-				matriz $\Psi$]{code/functions/rational/f_get_phi.m}
+				caption={Função auxiliar do aogoritmo de identificação de sistemas não lineares que baseado no sinal de saída do
+				sistema e da classe de modelos calcula a matriz $\Psi$}s]
+				{code/functions/rational/f_get_phi.m}
 				
 \lstinputlisting[language=Matlab,
 				frame=box,
 				label=lst:rational_model_get_psi,
-				caption=Função auxiliar do algoritmo de indentificação de sistemas não linearesque baseado nos sinais reais e
-				virtuais obtidos do sistema calcula a matriz $\Psi$]{code/functions/rational/f_get_psi.m}
+				caption={Função auxiliar do algoritmo de indentificação de sistemas não linearesque baseado nos sinais reais e
+				virtuais obtidos do sistema, calcula a matriz $\Psi$}s]
+				{code/functions/rational/f_get_psi.m}
 				
 \lstinputlisting[language=Matlab,
 				frame=box,
 				label=lst:rational_model_get_model_output,
-				caption=Função auxiliar que baseado na classe de modelos e no valor estimado
-				de $\theta$ determina a saída do sistema para uma determinada entrada.]{code/functions/rational/f_y_model.m}
+				caption={Função auxiliar que, baseado na classe de modelos e no valor estimado de $\theta$, determina a saída do
+				sistema para uma determinada entrada.}] 
+				{code/functions/rational/f_y_model.m}
+
+
+
+%===============================================================================
+\chapter{Rotinas para identificação classes de modelos NARMX}
+
+Neste capítulo serão apresentados rotinas que utilizam as rotinas de identificação de sistemas não lineares apresentdas
+no Apêndice \ref{appendix:rational_base_functions}.
+
+\section{Identificação de um conversor de corrente contínua do típo Buck}
 				
+Nesta seção será apresentada a rotina para a identificação do sistema de conversão de corrente contínua do tipo Buck,
+apresentado na Seção \ref{sec:nl_si_algorithms_rationals_buck}.
+
+ \lstinputlisting[language=Matlab,
+				frame=box,
+				label=lst:rational_model_buck,
+				caption={Rotina utilizada para a identificação de um conversor Buck. Exemplo de uso das rotinas apresentadas no
+				Apêndice \ref{appendix:rational_base_functions}}]
+				{code/rational_model/thesis_aguirre_dc_dc_converter.m}
+
+%===============================================================================
+\section{Identificação de uma classe de modelos Racionais}
+
+Nesta seção será apresentado a rotina para a identificação de um sistema que pode ser descrito por uma classe de modelos
+NARMAX racional. 
+
+\lstinputlisting[language=Matlab,
+				frame=box,
+				label=lst:rational_model_ex2,
+				caption={Rotina utilizada para a identificação de um sistema NARMAX racional}s]
+				{code/rational_model/thesis_rational_ex2.m}
+				
+%===============================================================================
+\chapter{Rotinas utilizadas para identificação de controladores não lineares com o uso de referência virtual}
+\label{appendix:vr_narmax}
+%===============================================================================
+Neste capítulo serão apresentadas algumas rotinas utilizadas para a identificação de controladores utilizando o método
+VRFT.
+
+%===============================================================================
+\section{Rotinas para uso do método VRFT em sistemas lineares}
+\label{appendix:vrft_linear}
+
+Na Listagem \ref{lst:linear_vrft_cd_not_in} é apresentado um exemplo de uso do VRFT com variáveis instrumentais onde o
+controlador ideal $C_d(z)$ não consegue ser descrito pela classe de controladores escolhida $C(z,\theta)$.
+
+\lstinputlisting[language=Matlab,
+				frame=box,
+				label=lst:linear_vrft_cd_not_in,
+				caption={Rotina para identificação de um controlador utilizando VRFT quando o controlador ideal $C_d(z)$ não
+				consegue ser descrito pela classe de modelos escolhida.}]
+				{code/vrft/thesis_vrft_cd_not_in_iv.m}
+
+
+%===============================================================================
+\section{Identificação de um controlador racional NARMAX para um processo do típo Wiener}
+\label{appendix:vr_narmax_wiener}
+
+Na Listagem \ref{lst:vr_narmax_wiener} é apresentada a rotina para identificação do controlador proposto na Seção
+\ref{sec:dbnarmax_wiener_hammerstein_exemple}, onde o processo é do típo Wiener e o controlador é do típo NARMAX.
+
+\lstinputlisting[language=Matlab,
+				frame=box,
+				label=lst:vr_narmax_wiener,
+				caption={Rotina para identificação de um controlador utilizando VRFT quando o controlador ideal $C_d(z)$ não
+				consegue ser descrito pela classe de modelos escolhida.}]
+				{code/vrft_nl/thesis_vrft_nl_wiener.m}
+
+%===============================================================================
+\section{Identificação de um controlador racional NARMAX para um processo também racional NARMAX}
+\label{appendix:vr_narmax_simple}
+
+Na Listagem \ref{lst:vr_narmax_simple} é apresentada a rotina para identificação do controlador proposto na Seção
+\ref{sec:dbnarmax_rational_controllers}, onde o processo e o controlador são do tipo racional NARMAX.
+
+
+\lstinputlisting[language=Matlab,
+				frame=box,
+				label=lst:vr_narmax_simple,
+				caption={Rotina para identificação de um controlador utilizando VRFT quando o controlador ideal $C_d(z)$ não
+				consegue ser descrito pela classe de modelos escolhida.}]
+				{code/vrft_nl/thesis_nl_vr_rational.m}
