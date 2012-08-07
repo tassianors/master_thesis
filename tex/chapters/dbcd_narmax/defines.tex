@@ -4,7 +4,7 @@
 %===============================================================================
 
 No Capítulo \ref{chapter:system_identification} foram apresentadas as definições para identificação de sistemas
-lineares. Definiu-se o sistema real pelo simbolo $\mathcal{S}$, para este capítulo $\mathcal{S}$ é um sistema não liner,
+lineares. Definiu-se o sistema real pelo símbolo $\mathcal{S}$, para este capítulo $\mathcal{S}$ é um sistema não linear,
 e para o projeto de controladores, o controlador ideal é definido por $\mathcal{C}_d$, sendo o controlador que consegue
 fazer com que o sistema em malha fechada se comporte como desejado.
 
@@ -36,9 +36,9 @@ desejado $T_d(z)$ seja linear, portanto o controlador projetado deve, além de cu
 determinados, cancelar as não linearidades da planta para que possa ser possível uma relação linear entre a entrada
 $r(t)$ e a saída $y(t)$.
 
-Análogamente ao que foi apresentado na Seção \ref{sec:dbcd_vrft_framework} para controladores lineares, o controlador
-não linear $\mathcal{C}(\theta)$  quando operando em conjnto com o sistema não linear $\mathcal{S}$ resulta um sistema
-em malha fechada cuja função de transferência é dada por $T_d(z)$. Obta-se que este comportamento em malha fechada seja
+Analogamente ao que foi apresentado na Seção \ref{sec:dbcd_vrft_framework} para controladores lineares, o controlador
+não linear $\mathcal{C}(\theta)$  quando operando em conjunto com o sistema não linear $\mathcal{S}$ resulta um sistema
+em malha fechada cuja função de transferência é dada por $T_d(z)$. Opta-se que este comportamento em malha fechada seja
 linear. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$, sua saída será $T_d(z)r(t)$. Uma premissa para
 que o sistema em malha fechada tenha a mesma função de transferência que o modelo de referência é que a saída dos dois
 sejam a mesma para um dado sinal $\bar{r}(t)$.
@@ -126,7 +126,7 @@ classe de modelos NARMAX apresentada na Seção \ref{sec:nl_models_narmax} pela ab
 representar sistemas reais e pelos bons resultados obtidos na identificação de sistemas não lineares apresentados na
 Seção \ref{sec:nl_si_algorithms_rationals_examples}.
 
-Como foi apresentao, a classe de modelos NARMAX pode ser dividida em polinomial:
+Como foi apresentado, a classe de modelos NARMAX pode ser dividida em polinomial:
 
 \begin{equation}
 y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
