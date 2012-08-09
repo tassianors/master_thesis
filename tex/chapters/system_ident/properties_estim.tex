@@ -4,13 +4,13 @@
 %===============================================================================
 % mains idea of this section:
  
-Nesta seção tem-se o objetivo de descrever algumas das propriedades estatísticas relevantes para o identificação de
+Nesta seção tem-se o objetivo de descrever algumas das propriedades estatísticas relevantes para a identificação de
 sistemas. Tem-se o intuito de formalizar quais são os erros que podem estar contidos nas estimativas obtidas e quais são
-as condições para evita-las, ou reduzi-las.
+as condições para evitá-las, ou reduzí-las.
 
 Conhecer a qualidade das estimativas que são obtidas de um processo de identificação e suas propriedades estatísticas
 são de suma importância para aplicações de engenharia. O conhecimento do valor de $\theta$ sem a informação de
-quão confiável esta informação é, não é suficiente para a maioria das aplicações. 
+quão confiável esta informação é pouco útil em muitas aplicações. 
 
 %===============================================================================
 \subsection{Conjunto de dados}
@@ -24,8 +24,8 @@ Z^N=\left \{ u(1), y(1), ... , u(N),y(N) \right \}
 \label{eq:si_par_estim_data_set}
 \end{equation}
 e é o ponto de partida básico para a identificação de sistemas. As propriedades calculadas de $\hat{\theta}_N$ para um
-certo montante de dados serão levados junto para quando $N \to \infty$, é natural que as condições sobre os dados, sejam
-relativos a um conjunto infinito $Z^{\infty}$. \cite{ljung}
+certo montante de dados serão levadas junto para quando $N \to \infty$, é natural que as condições sobre os dados,
+sejam relativos a um conjunto infinito $Z^{\infty}$. \cite{ljung}
 
 Assume-se que o conjunto de dados $Z^{\infty}$ é tal que para alguns filtros da forma $\left \{ d_t^{(i)}(k) \right \}$:
 
@@ -39,13 +39,13 @@ onde:
 
 \begin{enumerate}
   \item $\left \{ r(t) \right \}$ é uma entrada externa, determinística e limitada em amplitude.
-  \item $\left \{ e_0(t) \right \}$ é uma sequencia randômica independente com média zero, limitada em amplitude e
+  \item $\left \{ e_0(t) \right \}$ é uma sequência randômica independente com média zero, limitada em amplitude e
   momentos com ordem $4+\delta$ para algum $\delta>0$.
 
-Alem disso:
+Além disso:
   \item a família de filtros $\left \{ d_t^{(i)}(k) \right \}_{k=1}^{\infty}$, $i=1 - 4$; $t=1,2,\ldots $ é
   uniformemente estável.
-  \item Os sinais  $\left \{ y(t) \right \}$ e  $\left \{ u(t) \right \}$ são juntamente quasi-estacionários.  
+  \item os sinais  $\left \{ y(t) \right \}$ e  $\left \{ u(t) \right \}$ são juntamente quasi-estacionários.  
 \end{enumerate}
 
 %===============================================================================
@@ -61,7 +61,7 @@ Os resultados básicos de consistência são quase imediatos: \cite{ljung}
 Suponha que o conjunto de dados $Z^{\infty}$ está sujeito ao que foi apresentado na Seção
 \ref{sec:si_par_estim_data_z} e que $\mathcal{S} \in \mathcal{M}$. Assume-se que $Z^{\infty}$ é suficientemente
 informativo com respeito a $\mathcal{M}$. Se o sinal de entrada contém a saída por realimentação então também se assume
-que exita um atraso de tempo tanto em $G_0(z)$ e $G(z,\theta)$. Então:
+que exista um atraso de tempo tanto em $G_0(z)$ quanto em $G(z,\theta)$. Então:
 
 \begin{equation}
 D_c=D_T(\mathcal{S,M})
@@ -110,9 +110,9 @@ H(e^{j\omega}, \hat{\theta}_N) &\to H_0(e^{j\omega}), \; \text{quando } N \to \i
 
 Um dos principais desejos para a identificação de sistemas é que este não possua erros, ou ao menos que este
 erro, se existir, seja o menor possível e limitado dentro de uma região conhecida. Para tanto é necessário
-introduzir o conceito de {\it{erro de variância}} e {\it{erro de polarização}}.
+introduzir os conceitos de {\it{erro de variância}} e {\it{erro de polarização}}.
 
-Seja, $\theta^*$ o limite de convergência para a minimização do erro de predição:
+Seja $\theta^*$ o limite de convergência para a minimização do erro de predição:
 
 \begin{equation}
 \lim_{N \rightarrow \infty }\hat{\theta}_N = \theta^*
@@ -134,9 +134,8 @@ G(z, \hat{\theta}_N) & H(z, \hat{\theta}_N)
 \nonumber
 \end{equation}
 
-A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q_0(z)$ e o 
-melhor sistema que o modelo pode atingir (quando a quantidade de dados é ilimitada ($N\rightarrow \infty$)), tem-se
-então a estimativa do modelo $Q_N(z)$. \cite{campestrini, solari}
+A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q_0(z)$ e o melhor sistema
+que o modelo pode atingir (quando a quantidade de dados é ilimitada ($N\rightarrow \infty$)). \cite{campestrini, solari}
 
 \begin{equation}
 \Delta Q_N(z) \equiv \hat{Q}_N(z)-Q_0(z)
@@ -166,18 +165,18 @@ das estimativas está distante do valor ótimo possível para a estimativa, que é t
 para a identificação.
 
 Seguidamente é mais importante ter uma boa estimativa da função de transferência da planta $G(\cdot)$ do que do filtro
-do ruído $H(\cdot)$ \cite{ljung}. O conjunto de modelos: 
+do ruído $H(\cdot)$ \cite{ljung}. Suponha que o conjunto de modelos: 
 
 \begin{equation}
 \mathcal{G}=\left \{ G(e^{j\omega},\theta) \;|\; \theta \in D_{\mathcal{M}} \right \}
 \nonumber
 \end{equation}
-é abrangente o suficiente pra que 
+é abrangente o suficiente para que 
 
 \begin{equation}
 G_0(z) \in \mathcal{G}
 \end{equation}
-mas a função de transferência do filtro real do ruído $H_0(z)$ não consegue ser totalmente descrito pela classe de
+mas a função de transferência do filtro real do ruído $H_0(z)$ não consegue ser totalmente descrita pela classe de
 modelos. Desta forma $\mathcal{S} \notin \mathcal{M}$ e supondo que o conjunto de dados $Z^{\infty}$ esteja sujeito ao
 que foi descrito na Seção \ref{sec:si_par_estim_data_z} e que este seja suficientemente informativo.
 Se o experimento é realizado em malha aberta, ou seja, quando $u(t)$ e $e(t)$ são descorrelacionados
@@ -223,17 +222,17 @@ Um meio comum de medir a qualidade das estimativas é estudar suas propriedades a
 da quantidade de dados $N$ cresce muito, a estimativa pertencerá a alguma distribuição. As propriedades desta
 irão determinar a qualidade das estimativas obtidas. \cite{jansson}
 
-Uma vez tendo entendido as propriedades de convergência de $\hat{\theta}_N$, a pergunta que surge é o quão rápido esta
+Uma vez tendo entendido as propriedades de convergência de $\hat{\theta}_N$, a pergunta que surge é quão rápido esta
 estimativa chega ao limite. Se $\theta^*$ denota o limite, estamos interessados na variável $\hat{\theta}_N -\theta^*$
 que é uma variável randômica, e seu ``tamanho'' pode ser caracterizado pela sua matriz de covariância, ou pela sua
-distribuição probabilística. $\hat{\theta}_N -\theta^*$ tipicamente decai a $1/\sqrt{N}$. Então a distribuição da
-variável randômica:
+distribuição probabilística. $\hat{\theta}_N -\theta^*$ tipicamente decai a uma taxa $1/\sqrt{N}$. Então a distribuição
+da variável randômica:
 
 \begin{equation}
 \sqrt{N}(\hat{\theta}_N -\theta^*)
 \nonumber
 \end{equation}
-irá convergir para uma distribuição bem definida Gausiana sobre suposições fracas. \cite{ljung}
+irá convergir para uma distribuição bem definida Gausiana. \cite{ljung}
 
 Assume-se que dentro do conjunto $D_{\mathcal{M}}$ exista apenas um ponto de convergência $\theta^*$. Em
 \eqref{eq:si_par_estim_under_theta} foi apresentado que $\hat{\theta}_N \to \theta^*$ quando $N \to \infty$ e considerando que :
@@ -269,7 +268,7 @@ P(\theta^*)\overset{\underset{\mathrm{\Delta}}{\,}}{=}\lim_{N\to
 \label{eq:si_par_estim_P_theta}
 \end{equation}
 
-Para o caso onde $\mathcal{S} \in \mathcal{M}$ e assumindo ainda que $\varepsilon(t,\theta_0)=e_0(t)$ é uma sequencia
+Para o caso onde $\mathcal{S} \in \mathcal{M}$ e assumindo ainda que $\varepsilon(t,\theta_0)=e_0(t)$ é uma sequência
 randômica independente de média zero e variância $\lambda_0$. Desta forma tem-se
 
 \begin{equation}
@@ -298,7 +297,7 @@ e $e(t)$. A distribuição da frequência do espectro $\Phi_{\chi 0}$ também influe
 estimativa, como pode ser visto no Lemma \ref{lemma:si_par_estim_covariance}.
 
 \begin{lemma}
-A inversa da matriz de covariância, $P^{-1}(\theta_0)$, é uma função linear do espectro $\Phi_{\chi 0}$ dado por:
+A inversa da matriz de covariância, $P^{-1}(\theta_0)$, é uma função linear do espectro $\Phi_{\chi 0}$ dada por:
 
 \begin{equation}
 P^{-1}(\theta_0)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta_0)
@@ -345,9 +344,8 @@ U_\theta=\left \{ \theta \mid (\hat{\theta}_N-\theta_0)^T P^{-1}_{N}(\hat{\theta
 \right \}
 \label{eq:si_par_estim_confidence_region}
 \end{equation}
-é a região de confiança, onde assintoticamente inclui $\theta_0$ com probabilidade $\alpha$. Desta forma tem-se que as
-estimativas estarão centradas em $\hat{\theta}_N$ e com probabilidade $\alpha$ estarão contidas em um elipsoide definido
-por $P_N$ e $\chi_{\alpha}^2(N)$ \cite{jansson}.
+é a região de confiança, que assintoticamente inclui $\theta_0$ com probabilidade $\alpha$. Desta forma tem-se o
+valor real $\theta_0$ com probabilidade $\alpha$ estará contido no elipsóide $U_\theta$ \cite{jansson}.
 
 Na Figura \ref{fig:si_covar_elipse} é apresentado um exemplo de região de confiança para um $\chi$ de 99\%. O ponto
 em destaque é a média de todas as estimativas e está localizado no centro da região de confiança.

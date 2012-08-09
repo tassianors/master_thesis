@@ -3,45 +3,32 @@
 \label{chapter:intro}
 %===============================================================================
 
-A teoria de identificação de sistemas é foco de estudo a diversas décadas por inúmeros engenheiros e pesquisadores em
-diversas áreas. Muitas aplicações existentes se baseiam direta ou indiretamente no uso de identificação de sistemas,
-muitas outras aplicações estão em processo de desenvolvimento e outras ainda em processo de incipiência nesta área. Dentro deste
-contexto, o estudo da teoria de identificação de sistemas pode ser considerado amplo, neste trabalho tem-se o interesse
-em apresentar alguns pontos relativos a este assunto que são base para o desenvolvimento deste trabalho.
+A teoria de identificação de sistemas é foco de estudo há diversas décadas por inúmeros engenheiros e pesquisadores em
+diversas áreas. Muitas aplicações existentes se baseiam direta ou indiretamente no uso de identificação de sistemas e
+muitas outras aplicações estão em processo de desenvolvimento. Dentro deste contexto, o estudo da teoria de
+identificação de sistemas é muito vasto e neste trabalho tem-se o interesse em apresentar alguns pontos relativos a
+este assunto que são base para o desenvolvimento deste trabalho.
 
-Existem diferentes possíveis subdivisões em blocos de estudo para o tema identificação de sistemas. Neste trabalho optou-se
-por uma divisão em sistemas lineares e não lineares de tempo discreto, entretanto esta divisão em duas partes não é
-algo que possa ser estudado isoladamente. Existem muitos pontos comuns a estes dois blocos,
-principalmente no que diz respeito a ideia base para a identificação de sistemas.
-
-Basicamente identificar um sistema, ou uma parte de um sistema maior, pode ser dividido em três componentes principais:
-é necessário que exista um sistema real; uma classe de modelos, que pretende representar este sistema real; um critério
-que elenca dentre os infinitos modelos que podem ser obtidos a partir de uma classe, qual é o que melhor representa
-este sistema, baseado em algum critério. Do sistema real coletam-se os dados que serão utilizados para  proceder o
-processo de identificação, muitas das propriedades das estimativas obtidas são baseadas na qualidade e quantidade das
+Basicamente a identificação de um sistema, ou uma parte de um sistema maior, pode ser dividido em três componentes
+principais: é necessário que exista um sistema real; uma classe de modelos, que pretende representar este sistema real;
+um critério que elenca, dentre os infinitos modelos que podem ser obtidos a partir de uma classe, qual é o que melhor
+representa este sistema. Do sistema real coletam-se os dados que serão utilizados para  proceder o
+processo de identificação, e muitas das propriedades das estimativas obtidas são baseadas na qualidade e quantidade das
 informações que estes dados coletados conseguem trazer do sistema real.
 
 Nesta questão de informatividade existe uma grande e vasta quantidade de pesquisa desenvolvida e em desenvolvimento.
 Questões como projetos de experimentos que neste trabalho são abordados superficialmente e que para a identificação de
 sistemas são uma ferramenta formidável, possuem aplicabilidade em diversas áreas. Em engenharia, a escolha do sinal
-que será utilizado para excitar o sistema, pode entre outras características, reduzir erros da estimativa, reduzir tempo
-e custo do processo de identificação, aumentar a confiabilidade das estimativas obtidas entre outros.
+que será utilizado para excitar o sistema pode, entre outras características, reduzir erros da estimativa, reduzir tempo
+e custo do processo de identificação, aumentar a confiabilidade das estimativas obtidas.
 
-Entretanto não é apenas o sinal de entrada do sistema que determinam as propriedades estatísticas dos experimentos de
+Entretanto não é apenas o sinal de entrada do sistema que determina as propriedades estatísticas dos experimentos de
 identificação executados. A escolha da classe de modelos para identificar o sistema é de crucial importância para
-que haja sucesso no processo de identificação. A escolha desta classe deve ser tomada baseado em diversas diretrizes, o
-que torna sua escolha outro foco extremamente diversificado de estudo para a teoria de identificação de sistemas.
-
-Neste ponto é que talvez faça mais sentido um discernimento entre o que é chamado de identificação de sistemas
-``lineares'' e ``não lineares''. Se o modelo escolhido para representar o sistema real for linear, exite uma grande
-quantidade de propriedades bem definidas e métodos que asseguram as propriedades estatísticas das estimativas obtidas.
-Para o caso de identificação onde o modelo escolhido é não linear, existe uma gama talvez até maior de opções de
-escolha. Muitas vezes esta quantidade exorbitante de possibilidades acaba dificultando o entendimento do que é chamado
-de identificação de sistemas não lineares, além de que, devido a algumas características que permeiam estes sistemas,
-nem todas as afirmativas existentes para sistemas lineares são válidas, tornando algumas vezes seu uso mais restritivo.
+que haja sucesso no processo de identificação. A escolha desta classe deve ser tomada com base em diversas
+diretrizes, o que torna sua escolha outro foco extremamente diversificado de estudo para a teoria de identificação de sistemas.
 
 Observa-se com certa frequência que uma classe de modelos é mais performática para representar certos tipos de sistemas.
-Isso é devido ao fato de que uma classe de modelos ou estrutura de modelos se diferenciam umas das outras devido ao uso
+Isso é devido ao fato de que as classes de modelos ou estruturas de modelos se diferenciam umas das outras devido ao uso
 de bases diferentes para representar cada sistema. Desta forma, sistemas que possuem uma afinidade maior com certas
 bases são representados com um número menor de parâmetros do que quando uma base qualquer é utilizada. A busca por uma
 classe de modelos simples, mas que ainda assim consiga representar o sistema real é também foco de diversos estudos. A
@@ -49,58 +36,44 @@ identificação de um sistema que não possua um número desnecessário de parâmetros
 a possibilidade de existência de dinâmicas no modelo que não estão presentes no processo real, além de reduzir a
 complexidade dos algoritmos utilizados na identificação.
 
-Algoritmos para identificação são procedimentos matemáticos que em conjunto com a definição do critério de performance,
-determinam o conjunto de parâmetros da classe de modelos que melhor descrevem o sistema real. Neste aspecto existe uma
-considerável divisão: métodos que utilizam o método dos mínimos quadrados e aqueles que não utilizam.
-
-O método dos mínimos quadrados é tido como o mais simples e devido a suas propriedades conhecidas e bem definidas é
-talvez o método mais utilizado. Este método se baseia na minimização de uma função custo que relaciona o erro do
-sistema obtido com os dados coletados do sistema, minimizando o erro entre estes dois sinais. Entretanto nem todos os
-modelos existentes conseguem utilizar este método e para estes casos existem inúmeras propostas de alternativas. Para
-modelos que não são parametrizados linearmente exitem diversos algoritmos, muitos deles iterativos que com o custo
-de alguma complexidade extra atingem seus objetivos.
-
 Em se tratando de aplicações na área da engenharia, o controle de sistemas tem um destaque especial no uso da teoria de
 identificação de sistemas para a obtenção dos parâmetros do controlador desejado. Muitos dos projetos de controladores
 baseados em dados se utilizam desta teoria para firmar suas bases e determinar seu funcionamento.
 
 Assim como identificação de sistemas, projetos de controladores baseados em dados são foco de estudo em várias e diversas
-linhas de pesquisa há décadas. Neste trabalho será dado um enfoque maior ao uso de referência virtual para a obtenção
-dos sinais necessários para a identificação do controlador. Referência virtual, neste contexto é largamente utilizada
-pelo método VRFT que por ser um método direto, não requer que haja um conhecimento do modelo da planta, para que o
-controlador possa ser projetado. Este método propõem-se a encontrar o controlador ótimo com apenas um conjunto de dados
+linhas de pesquisa há décadas. Neste trabalho será dado enfoque ao uso de referência virtual para a obtenção
+dos sinais necessários para a identificação do controlador. Referência virtual é largamente utilizada
+pelo método VRFT que, por ser um método direto, não requer que haja um conhecimento do modelo da planta para que o
+controlador possa ser projetado. Este método propõe-se a encontrar o controlador ótimo com apenas um conjunto de dados
 proveniente do sistema. 
 
 Estas características são bastante atrativas para diversas aplicações, sobretudo àquelas onde a parada do processo para
 execução de testes e experimentos é indesejada, ou por vezes, inviável. Entretanto o uso do método VRFT possui algumas
-limitações, maioria deles já endereçados em diversos trabalhos. Contudo, o uso deste método para sistemas não lineares é
-ainda bastante incipiente e os trabalhos existentes nesta área exigem que haja um considerável conhecimento da planta e
+limitações, a maioria deles já apontadas em diversos trabalhos. Contudo, o uso deste método para sistemas
+não lineares é ainda bastante incipiente e os trabalhos existentes nesta área exigem que haja um considerável conhecimento da planta e
 do sinal aplicado para que as estimativas sejam realizadas com margens de erro conhecidas.
 
-O trabalho aqui apresentado tem por objetivo endereçar uma parte deste problema. O objetivo é propor uma forma de
-identificação de controladores não lineares. Para isso usou-se a ideia de referência virtual utilizada pelo método VRFT
-para determinar quais são os sinais necessários para identificar o controlador ideal, que leva o sistema a se comportar
-em malha fechada como especificado. De posse destes sinais obtidos de forma virtual além daqueles medidos diretamente do
-sistema, utilizam-se estas informações para alimentar um algoritmo de identificação de sistemas não lineares. Neste
-contexto, o sistema não linear que se quer identificar é o controlador que atuará sobre a planta.
+O trabalho aqui apresentado tem por objetivo endereçar uma parte deste problema. Para isso usou-se a ideia de
+referência virtual utilizada pelo método VRFT para determinar quais são os sinais necessários para identificar o
+controlador ideal, que leva o sistema a se comportar em malha fechada como especificado. De posse destes sinais obtidos
+de forma virtual além daqueles medidos diretamente do sistema, utilizam-se estas informações para alimentar um
+algoritmo de identificação de sistemas não lineares. Neste contexto, o sistema não linear que se quer identificar é o
+controlador que atuará sobre a planta.
 
 Para limitar o escopo do trabalho desenvolvido aqui, algumas decisões sobre estrutura de modelos foram tomadas: optou-se
-pela identificação de controladores não lineares que são representados por modelos NARMAX. Estes por sua vez são
-lineares nos parâmetros, o que simplifica a complexidade dos algoritmos requeridos para que a estimativa possa
-ser obtida, além de que grande parte das propriedades estatísticas de identificação de sistemas lineares são válidas e
-podem ser utilizadas para determinar a qualidade dos resultados obtidos.
+pela identificação de controladores não lineares que são representados por modelos NARMAX.
 
 Para demonstrar o funcionamento desta proposta de identificação de controladores não lineares, diversos exemplos serão
 abordados, tanto do algoritmo implementado quanto para o conjunto do uso de referência virtual e classes de modelos NARMAX.
-Os exemplos abordados tem o intuito de apresentar propriedades das estimativas e avaliar o desempenho da proposta em
+Os exemplos abordados têm o intuito de apresentar propriedades das estimativas e avaliar o desempenho da proposta em
 atingir seus objetivos.
 
 Este trabalho tem a seguinte organização: no Capítulo \ref{chapter:system_identification} serão abordados assuntos básicos
 da teoria de identificação de sistemas. Questões como a escolha da classe de modelos, do método de identificação, das
 propriedades estatísticas que as estimativas obtidas possuem e uma breve introdução ao que é conhecido como projeto de
 experimentos para determinar a escolha de sinais de entrada e de objetivos de identificação. No Capitulo
-\ref{chapter:nlin_si_ident} são introduzidos algumas características de sistemas não lineares. São apresentados as classes
-de modelos mais comumente utilizadas para descrição destes sistemas. Neste capítulo também é apresentado o algoritmo de
+\ref{chapter:nlin_si_ident} são introduzidas algumas características de sistemas não lineares. São apresentadas as
+classes de modelos mais comumente utilizadas para descrição destes sistemas. Neste capítulo também é apresentado o algoritmo de
 identificação de modelos NARMAX tanto racionais como polinomiais e alguns exemplos de uso.
 
 No Capítulo \ref{chapter:dbcd} são introduzidos alguns conceitos sobre projeto de controladores baseados em dados.
@@ -115,4 +88,10 @@ apresentados exemplos de uso para sistemas onde a não linearidade está na dinâmi
 forma estática na entrada ou na saída do processo. São apresentados também exemplos onde a classe de modelos não
 consegue representar a totalidade das dinâmicas do controlador desejado. Por fim no Capitulo \ref{chapter:conclusion}
 são apresentadas conclusões gerais sobre o que foi desenvolvido neste trabalho.
+
+No Apendice \ref{appendix:rational_base_functions} são apresentadas as rotinas desenvolvidas em Matlab do
+algoritmo de identificação de sistemas não lineares utilizando modelos NARMAX racionais ou polinömiais. Já no Apendice
+\ref{appendix:rational_examples} são apresentadas as rotinas desenvolvidas para simular os exemplos apresentados para
+identificação de sistemas não lineares. No Apendice \ref{appendix:vr_narmax} são apresentadas as rotinas utilizadas para
+o projeto de controladores não lineares utilizando referência virtual.
 

@@ -8,47 +8,24 @@ sinal de entrada para a identificação dos parâmetros desejados para o experiment
 Desta forma muitas variáveis podem ser levadas em consideração, refletindo em propriedades que
 podem ou não ser o foco do projeto de experimentos.
 
-Uma forma de organizar o projeto de experimentos é desenvolve-lo como um problema de otimização 
+Uma forma de organizar o projeto de experimentos é desenvolvê-lo como um problema de otimização 
 convexa, onde entre muitas vantagens está o fato de que é possível a utilização de métodos matemáticos
-para o cálculo e sua formulação pode ser feita por LMIs ({\it{Linear Matrix Inequality}}. Em \cite{jansson}
-este tópico é explorado em mais profundidade, sendo aqui apenas apresentado a sua ideia básica.
+para o cálculo e sua formulação pode ser feita por LMIs ({\it{Linear Matrix Inequality}}). Em \cite{jansson}
+este tópico é explorado em mais profundidade, sendo aqui apenas apresentada a sua ideia básica.
 
-O projeto de experimento é uma alternativa ao uso de sinais como PRBS ({\it{Pseudo Randon Binary Sequence}}).
 A escolha de um sinal mais apropriado para o experimento traz diversas vantagens, que podem ser bastante
 significativas para o tempo e esforço despendido sobre o projeto do controlador, ou da identificação do sistema.
-Uma destas vantagens é o tempo de dados coletados, aplicando-se sinais com componentes de frequência que são
-mais informativos, tem-se uma eficiência maior nos dados amostrados, bastando um montante menor de data, para que
-sejam obtidos os mesmos índices de qualidade, quando comparado com projetos utilizando sinais mais simples.
+Uma destas vantagens é o tempo de dados coletados; aplicando-se sinais com componentes de frequência que são
+mais informativos, tem-se uma eficiência maior nos dados amostrados, bastando um montante menor de dados, para que
+sejam obtidos os mesmos índices de qualidade.
 
 %===============================================================================
 \subsection{Sinais de entrada mais comumente utilizados}
 \label{sec:si_project_signal_input}
 %===============================================================================
 
-Como foi apresentado na Seção \ref{sec:si_data_persistently_excitation} é
-possível formar sinais persistentes, apenas adicionando um número suficiente de componentes
-de frequência a fim de que todos os parâmetros possam ser estimados. Não é estranho
-que se pense que quanto mais componentes tiver o sinal, melhor. 
-
-Desta maneira, vários sinais que podem ser gerados de maneira fácil e que possuem 
-um grande range de componentes de frequência foram elaborados.
-
-%===============================================================================
-\subsubsection{Sinal Binário Randômico}
-\label{sec:si_project_signal_input_rbs}
-%===============================================================================
-
-Um sinal binário por definição assume apenas dois valores (0 ou 1). Partindo deste
-principio, um sinal binário randômico, é uma sequencia aleatória de zeros e uns, que
-formam o sinal.
-
-A forma mais simples para a gerar este sinal é, baseado em um ruído Gausiano branco
-de média zero, aplicar um filtro linear previamente escolhido. Assim pode-se teoricamente
-gerar qualquer sinal binário de qualquer nível.
-
-O inconveniente desta forma é que aplicando um filtro ao sinal Gausiano irá alterar o
-seu espectro, não sendo a forma desta alteração algo conhecido. Deve-se então sempre 
-antes de aplicar o sinal no sistema, deve-se verificar o espectro gerado. \cite{ljung}
+Vários sinais que podem ser gerados de maneira fácil e que possuem um grande número de componentes de frequência foram
+elaborados.
 
 %===============================================================================
 \subsubsection{Sinal Binário Pseudo-Randômico - PRBS}
@@ -57,14 +34,14 @@ antes de aplicar o sinal no sistema, deve-se verificar o espectro gerado. \cite{
 % ref: ljung pages 418
 
 Um {\it{sinal binário pseudo-randômico}} é um sinal periódico com algumas propriedades
-semelhantes a de ruído branco. Este sinal é gerado pela equação:
+semelhantes à do ruído branco. Este sinal é gerado pela equação:
 
 \begin{equation}
 u(t)=rem(A(z)u(t), 2)=rem(a_1 u(t-1)+...+a_n u(t-n), 2)
 \label{eq:si_project_signal_prbs}
 \end{equation}
 onde $rem(x, 2)$ é o resto inteiro da divisão de $x$ por 2. O sinal $u(t)$ deve ser periódico 
-de pelo menos $2^n$ valores diferentes, como uma sequencia de zeros não é um sinal válido, por ser nulo, 
+de pelo menos $2^n$ valores diferentes. Como uma sequência de zeros não é um sinal válido, por ser nulo, 
 temos que o máximo período é de tamanho $M=2^n -1$. Na verdade o período vai depender da
 escolha de $A(z)$. Pode-se entretanto mostrar que para cada $n$ existem escolhas de $A(z)$ que 
 proporcionam o tamanho máximo. Tais escolhas são apresentadas na Tabela \ref{table:si_project_input_prbs}.
@@ -111,30 +88,19 @@ Observa-se que este é um sinal persistentemente excitante de ordem $M-1$. Na Fig
 	\label{fig:si_project_prbs}
 \end{figure}
 
-As vantagens e desvantagens do sinal PRBS comparado com um sinal binário randômico pode ser listado: \cite{ljung}
-
-\begin{enumerate}[(I)]
-\item Se o PRBS possuir períodos inteiros a sua matriz de covariância terá alguns padrões bem específicos que permitem 
-analiticamente se faça uma inversão desta matriz. Isso facilita certas computações.
-\item Existem essencialmente apenas um PRBS para cada escolha de $A(z)$. Diferentes valores iniciais apenas deslocam a
-sequencia.
-\item Para que as propriedades vantajosas do PRBS possam ser utilizadas, é necessário que um numero inteiro de períodos
-seja utilizado, o que limita a escolha do tamanho do experimento.
-\end{enumerate}
-
 %===============================================================================
 \subsubsection{Ruido Branco Filtrado}
 \label{sec:si_project_signal_input_wn_filtered}
 %===============================================================================
 
-Um das escolhas mais simples de sinais, é gerar um ruído Gausiano e então filtra-lo com 
-algum filtro linear. Desta forma, teoricamente, é possível de se atingir qualquer espectro de
+Um das escolhas mais simples de sinais, é gerar um ruído Gausiano e então filtrá-lo com 
+algum filtro linear. Desta forma, teoricamente, é possível atingir qualquer espectro de
 sinal, bastando apenas a correta escolha do filtro. Como este sinal é gerado {\it{off-line}}, 
 é possível aplicar filtros não causais e eliminar efeitos transientes do sinal, o que
 proporciona um comportamento espectral melhor. \cite{campestrini, ljung}
 
 %===============================================================================
-\subsection{Projeto de experimento visto como um problema de otimização}
+\subsection{Projeto de experimento}
 \label{sec:si_project_optimization}
 %===============================================================================
 
@@ -158,10 +124,8 @@ de banda que não são facilmente atingíveis em projetos reais.
 Típicos projetos de experimentos são intratáveis em sua forma original, pelos seguintes motivos: \cite{jansson}
 
 \begin{enumerate}[I]
-\item Algumas restrições são tipicamente não convexas, e problemas com estas características podem ser difíceis
-de resolver.
-\item Existem restrições que são de dimensão infinita, o que exigem um certo grau de cuidado no procedimento de
-otimização.
+\item Algumas restrições são tipicamente não convexas.
+\item Existem restrições que são de dimensão infinita.
 \item Existe ainda o problema de encontrar um sinal realizável que tenha as propriedades desejadas para o espectro.
 \item A variância assintótica depende tipicamente dos parâmetros do sistema $\theta_0$, $P=P(\theta_0)$ que são
 desconhecidos.

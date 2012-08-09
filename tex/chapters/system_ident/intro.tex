@@ -14,9 +14,9 @@ como:
 y(t)=G_0(z)u(t)+H_0(z)e(t)
 \label{eq:si_intro_system}
 \end{equation}
-onde $G_0(z)$ é a função de transferência que descreve o comportamento da planta real, $H_0(z)$ é a função de
-transferência que atua sobre o ruído branco $e(t)$, $u(t)$ é o sinal de entrada aplicado sobre a planta e $y(t)$ o sinal
-de saída, ambos medidos e conhecidos.
+onde $z$ é o operador de avanço de tempo $z*x(t)=x(t+1)$, $G_0(z)$ é a função de transferência que descreve o
+comportamento da planta real, $H_0(z)$ é a função de transferência que atua sobre o ruído branco $e(t)$; $u(t)$ é o
+sinal de entrada aplicado sobre a planta e $y(t)$ é o sinal de saída, ambos medidos e conhecidos.
 
 Para identificar o sistema apresentado em \eqref{eq:si_intro_system} utiliza-se uma família de modelos parametrizada
 por um vetor $\theta \in \mathbb{R}^d$. Desta forma o sistema a ser identificado pode ser representado como:
@@ -25,21 +25,11 @@ por um vetor $\theta \in \mathbb{R}^d$. Desta forma o sistema a ser identificado
 y(t)=G(z, \theta)u(t)+H(z, \theta)e(t)
 \label{eq:si_intro_model}
 \end{equation}
-onde as funções de transferência $G(z, \theta)$ e $H(z, \theta)$ podem ser definidas como:
-
-\begin{equation}
-G(z, \theta)=\sum_{k=1}^{\infty}g(k, \theta)z^{-k}
-\nonumber
-\end{equation}
-
-\begin{equation}
-H(z, \theta)=1+\sum_{k=1}^{\infty}h(k, \theta)z^{-k}
-\nonumber
-\end{equation}
+onde as funções de transferência $G(z, \theta)$ e $H(z, \theta)$ são funções racionais do operador $z$.
 
 O objetivo da identificação de sistemas é encontrar um valor para o vetor $\theta$ que faça com que $G(z,\theta)$ e
 $H(z,\theta)$  sejam o mais próximos possíveis de $G_0(z)$ e $H_0(z)$. O vetor $\theta$ que faz com que estas duas
-funções de transferências sejam iguais é denotado por $\theta_0$:
+funções de transferências sejam iguais, quando existir, é denotado por $\theta_0$:
 
 \begin{align}\nonumber
 G(z, \theta_0) &= G_0(z) \\ \label{eq:si_intro_true_theta} 
@@ -47,8 +37,6 @@ H(z, \theta_0) &= H_0(z)
 \end{align}
 
 Outra definição que acompanha o que aqui será abordado é a definição de sinal quasi-estacionário:
-Um sinal é dito quasi-estacionário se a média e a autocorrelação do mesmo convergem para um valor
-finito quando o tamanho da amostra cresce, conforme definição a seguir:
 
 \begin{defn}
 \cite{ljung}
@@ -61,7 +49,7 @@ Um processo quasi-estacionário pode ser definido como:
 onde $m_s(t)$ é o valor médio de $s(t)$ e $R_s(t,r)$ é a covariância de $s$ nos instantes $t$ e $r$.
 \end{defn}
 
-$\bar{E}[\cdot]$ é  denotado esperança e pode ser definido por: \cite{ljung}
+O operador $\bar{E}[\cdot]$ é definido por: \cite{ljung}
 
 \begin{equation}
 \bar{E}\left [ f(t) \right ]\overset{\underset{\mathrm{\Delta}}{\,}}{=}\lim_{N \to \infty}
@@ -75,7 +63,7 @@ $\bar{E}[\cdot]$ é  denotado esperança e pode ser definido por: \cite{ljung}
 \label{sec:sys_ident_elements}
 %===============================================================================
 
-A identificação de sistemas é dependente de três componentes básicas. Primeiro delas é o sistema real, definido pelo
+A identificação de sistemas é dependente de três componentes básicas. A primeira delas é o sistema real, definido pelo
 símbolo $\mathcal{S}$ e que pode ser definido a partir de \eqref{eq:si_intro_system} como abaixo:
 
 \begin{equation}
@@ -83,19 +71,19 @@ símbolo $\mathcal{S}$ e que pode ser definido a partir de \eqref{eq:si_intro_sys
 \label{eq:si_intro_true_system}
 \end{equation}
 
-Segundo componente é a classe de modelos escolhida, denotada por $\mathcal{M}$, onde:
+A segunda componente é a classe de modelos escolhida, denotada por $\mathcal{M}$, onde:
 
 \begin{equation}
 \mathcal{M}: \;\;\left \{ G(z, \theta), H(z, \theta) | \theta \in D_{\mathcal{M}} \right \}
 \label{eq:si_intro_model}
 \end{equation}
 
-O terceiro componente é o critério de escolha que diz qual modelo, dentro da classe é melhor que outro. Em
+A terceira componente é o critério de escolha que diz qual modelo, dentro da classe é melhor que outro. Em
 outras palavras, qual modelo melhor representa o sistema real $\mathcal{S}$ de acordo com o critério escolhido.
 Dentre os mais diversos critérios possíveis o mais utilizado é o de erro de predição, descrito a seguir. 
 
 Preditores são equações que predizem qual será o próximo valor de saída do sistema baseado na classe do modelo e nos
-valores de dados coletados até aquele instante. Os sinais $y(t)$ e $u(t)$ são os sinais da saída e entrada medidas do
+valores de dados coletados até aquele instante. Os sinais $y(t)$ e $u(t)$ são os sinais da saída e entrada medidos do
 sistema real enquanto que o sinal $\hat{y}(t, \theta)$ é o sinal de saída do preditor. A diferença entre o valor do
 preditor e o valor do sistema real é conhecida como erro de predição:
 
@@ -105,7 +93,7 @@ preditor e o valor do sistema real é conhecida como erro de predição:
 \end{equation}
 
 A Figura \ref{fig:si_estim_pem} apresenta um diagrama de blocos de como é organizado o método do erro de
-predição. Existe um processo o qual se deseja identificar, para isso escolhe-se uma classe de modelos onde os
+predição. Existe um processo que se deseja identificar, para isso escolhe-se uma classe de modelos onde os
 parâmetros a serem ajustados são representados por $\theta$. O preditor é então ajustado, baseado nas diferentes
 possibilidades de escolha de $\theta$. Este ajuste é feito a partir do erro entre o sistema real $y(t)$ e a saída do
 preditor $\hat{y}(t, \theta)$.
@@ -167,14 +155,12 @@ preditor $\hat{y}(t, \theta)$.
 \label{fig:si_estim_pem}
 \end{figure}
 
-Considerando o sistema linear apresentado em \eqref{eq:si_intro_model} e assumindo que $G(0, \theta)=0$, $H(0,\theta)=1$
-e que $H^{-1}(z, \theta)$ e $H^{-1}(z,\theta) G(z,\theta)$ são assintoticamente estáveis, se $u(t)$ e $e(p)$ para $p<t$
-não forem correlacionados, então o preditor ótimo pode ser apresentado como: \cite{system_identification}
-
+O preditor ótimo é dado por \cite{ljung}:
 \begin{equation}
 \hat{y}(t|t-1, \theta)= H^{-1}(z, \theta)G(z, \theta)u(t)+\left \{ 1-H^{-1}(z, \theta) \right \}y(t)
 \label{eq:si_par_estim_predictor}
 \end{equation}
+e portanto
 
 \begin{equation}
 \varepsilon (t,\theta)=H^{-1}(z, \theta)\left \{ y(t)-G(z, \theta)u(t) \right \}

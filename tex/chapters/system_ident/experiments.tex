@@ -9,7 +9,7 @@
 
 Em aplicações de engenharia, deseja-se que a solução de um problema seja única. Desta forma existem algumas
 premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos, obtendo um
-vetor $\theta$ que consiga representar melhor o sistema real $\mathcal{S}$ de acordo como critério de performance
+único vetor $\theta$ que consiga representar melhor o sistema real $\mathcal{S}$ de acordo como critério de performance
 escolhido.
 
 Devem ser levadas em consideração algumas características sobre o sinal de excitação do sistema e sobre a escolha da
@@ -49,7 +49,7 @@ R_u(n-1) & R_u(n-2) & ... & R_u(0)
 \label{eq:si_data_persistently_rn}
 \end{equation}
 
-Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se, $\bar{R}_n$ for não singular.
+Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se $\bar{R}_n$ for não singular.
 \cite{ljung}
 
 A partir da equação \eqref{eq:si_data_persistence_2} pode-se extrair interpretações mais explícitas.
@@ -92,9 +92,8 @@ serem estimados \cite{ljung}. No caso da equação apresentada em \eqref{eq:si_dat
 necessária é $n_b+n_f$.
 
 Para um experimento em malha aberta, considerando um sistema ARMAX e Box-Jenkins o experimento é suficientemente
-informativo se a ordem de excitação for  $n_b+n_a$. Em \cite{gevers_bazanella2009} foi apresentado que para uma estrutura ARMAX, é
-necessário que a ordem seja ao menos igual a $k=n_b+\text{min}\left \{ n_a, n_c \right \}$. Para um sistema BJ o valor
-mínimo necessário para a ordem é $k=n_b+n_f$.
+informativo se a ordem de excitação for  $n_b+n_a$. Em \cite{gevers_bazanella2009} foram apresentadas as condições
+necessárias e suficientes para informatividade em estruturas de modelos arbitrárias.
 
 Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
 o sinal terá componentes de frequência suficientes para excitar o sistema ao ponto de ser possível observar sua dinâmica
@@ -106,14 +105,11 @@ parâmetros da classe de modelos possam ser identificados.
 \label{sec:si_exper_overfit}
 %===============================================================================
 
-Um aspecto comumente não desejado para aplicações de engenharia é quando um problema não possui apenas uma
-solução. A escolha de um conjunto de modelos $\mathcal{M}$ onde a ordem do modelo é maior do que a ordem do sistema real
+A escolha de um conjunto de modelos $\mathcal{M}$ onde a ordem do modelo é maior do que a ordem do sistema real
 $\mathcal{S}$ faz com que existam infinitas combinações de $\theta$, resultando em infinitos modelos dentro do conjunto
 $\mathcal{M}$, que conseguem descrever exatamente o sistema $\mathcal{S}$.
 
-A Figura \ref{fig:si_exper_overfit} apresenta o que seria uma situação onde a classe de modelos é escolhida com uma
-ordem maior que a necessária para representar o sistema real $\mathcal{S}$. Considere como exemplo o seguinte sistema
-real:
+Considere como exemplo o seguinte sistema real:
 
 \begin{equation}
 \mathcal{S}: \;\;\; G_0(z)=\frac{a}{z-b}, \;\;\; H_0(z)=\frac{1}{z-b}
@@ -147,36 +143,11 @@ com $X$ podendo assumir qualquer valor. Deve ficar claro que esta situação apres
 apresentar erros com relação ao sistema real, no momento que houverem mínimas diferenças entre os valores estimados de
 $X$ no numerador e $X$ no denominador.
 
-\begin{figure}[htbp]
-\center
-% Generated with LaTeXDraw 2.0.8
-% Fri Jul 20 23:12:51 BRT 2012
-% \usepackage[usenames,dvipsnames]{pstricks}
-% \usepackage{epsfig}
-% \usepackage{pst-grad} % For gradients
-% \usepackage{pst-plot} % For axes
-\scalebox{1} % Change this value to rescale the drawing.
-{
-\begin{pspicture}(0,-2.6566103)(8.098205,2.6566098)
-\definecolor{color5b}{rgb}{0.8,0.7607843137254902,0.7607843137254902}
-\psbezier[linewidth=0.04](7.7619767,-1.6879265)(8.078204,-0.73924327)(2.70785,2.6366098)(1.7619767,2.3120735)(0.8161035,1.987537)(0.0,-0.4607735)(0.56197673,-1.2879266)(1.1239535,-2.1150796)(7.445749,-2.6366098)(7.7619767,-1.6879265)
-\psbezier[linewidth=0.04,fillstyle=solid,fillcolor=color5b](5.161977,-1.4879266)(5.8411145,-0.7539158)(5.321633,0.23089656)(4.3619766,0.51207346)(3.4023206,0.7932503)(3.9142723,-0.18274914)(2.9619768,-0.48792657)(2.0096812,-0.793104)(2.112841,0.50062793)(1.9619766,-0.48792657)(1.8111125,-1.4764811)(4.4828386,-2.2219374)(5.161977,-1.4879266)
-\usefont{T1}{ptm}{m}{n}
-\rput(2.686508,1.2220734){$\mathcal{M}$}
-\usefont{T1}{ptm}{m}{n}
-\rput(3.636508,-0.97792655){$\mathcal{S}$}
-\end{pspicture} 
-}
-\caption{Representação gráfica para uma classe de modelos onde o sistema real $\mathcal{S}$ é apenas um subconjunto do
-modelo escolhido para representa-lo.}
-\label{fig:si_exper_overfit}
-\end{figure}
-
 A escolha de uma classe de modelos $\mathcal{M}$ é o ponto mais crucial para que o processo de identificação de sistemas
-tenha sucesso. Esta escolha deve ser com base no entendimento do procedimento de identificação e das percepções e
+tenha sucesso. Esta escolha deve ser feita com base no entendimento do procedimento de identificação e das percepções e
 conhecimentos que se tem sobre o sistema a ser identificado. \cite{ljung}
 
-O preço ou custo de uma classe de modelos pode ser mensurada em alguns aspectos e a escolha da classe de modelos se dará
+O preço ou custo de uma classe de modelos pode ser mensurado em alguns aspectos e a escolha da classe de modelos se dará
 por alguma ponderação sobre estes critérios, que podem ser: \cite{ljung}
 
 \begin{itemize}
@@ -184,27 +155,27 @@ por alguma ponderação sobre estes critérios, que podem ser: \cite{ljung}
   Flexibilidade pode ser obtida usando-se vários parâmetros ou alocando-os em ``posições estratégicas''.
   \item Parcimônia: Não usar desnecessariamente uma quantidade elevada de parâmetros.
   \item Complexidade do algoritmo: A complexidade de obter o erro de predição $\varepsilon (t, \theta)$ e as demais
-  informações necessárias a identificação são fortemente correlacionadas com a escolha de $\mathcal{M}$ e a sua ordem.
+  informações necessárias à identificação são fortemente correlacionadas com a escolha de $\mathcal{M}$ e a sua ordem.
   \item Propriedades da função critério. Dependendo do formato da curva, o algoritmo para encontrar o mínimo pode ser
   mais custoso no que diz respeito a iterações matemáticas.
   \item O uso pretendido do modelo.
 \end{itemize}
 
 O uso de classes de modelos com diversos parâmetros só deve ser utilizado se modelos com menos parâmetros não passaram
-pelos testes de validação do modelo escolhido. Desta forma mantem-se a ideia de que quanto mais simples melhor,
+pelos testes de validação do modelo escolhido. Desta forma mantém-se a ideia de que quanto mais simples melhor,
 garantindo a parcimônia da classe escolhida e conseguindo cumprir com o uso pretendido do sistema.
 
 Uma das primeiras justificativas para o desenvolvimento de métodos para a escolha de classes de modelos é a
 dificuldade em trabalhar com classes de modelos com muitos parâmetros, pelas complexidades adicionadas aos algoritmos
 e as incertezas matemáticas inseridas. Além disso existe o problema destes modelos serem numericamente mal
-condicionados além da convicção de que são redundantes e poderiam ser removidos do modelo (aplicando algum algoritmo de
-simplificação de modelo). Um modelo com um número excessivo de parâmetros pode exibir dinâmicas que não são observadas
-no sistema real, desta forma não existe apenas o problema numérico para a identificação, mas também um problema de
-dinâmica em utilizar um modelo sobre dimensionado. \cite{aguirre_jacome}
+condicionados além da convicção de que alguns parâmetros são redundantes e poderiam ser removidos do modelo (aplicando
+algum algoritmo de simplificação de modelo). Um modelo com um número excessivo de parâmetros pode exibir dinâmicas que
+não são observadas no sistema real, desta forma não existe apenas o problema numérico para a identificação, mas também
+um problema de dinâmica em utilizar um modelo sobre dimensionado. \cite{aguirre_jacome}
 
 O procedimento que testa se a classe de modelos é simples e apropriada para descrever o sistema é aplicar alguma técnica
-de redução a classe de modelos. Se a ordem da classe de modelos pode ser reduzida sem afetar as propriedades de entrada e
-saída do sistema, então a classe de modelos original era desnecessariamente complexa. \cite{ljung}
+de redução à classe de modelos. Se a ordem da classe de modelos pode ser reduzida sem afetar as propriedades de entrada
+e saída do sistema, então a classe de modelos original era desnecessariamente complexa. \cite{ljung}
 
 Por fim, ao escolher uma classe de modelos para a identificação, deve-se levar em conta diversos pontos e informações.
 Depois de escolhido o modelo, um processo de validação é indicado a ser executado. Este procedimento é simples e
