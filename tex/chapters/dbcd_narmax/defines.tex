@@ -8,18 +8,18 @@ lineares. Definiu-se o sistema real pelo símbolo $\mathcal{S}$, para este capítu
 e para o projeto de controladores, o controlador ideal é definido por $\mathcal{C}_d$, sendo o controlador que consegue
 fazer com que o sistema em malha fechada se comporte como desejado.
 
-Define-se a classe de controladores não lineares como 
+Define-se a classe de controladores não lineares, parametrizável em $\theta$, como: 
 
 \begin{equation}
-\mathcal{C}(\theta)
+\mathcal{C}
 \label{eq:dbnarmax_controller_class}
 \end{equation}
 
 Diz-se que o controlador ideal pode ser representado pela classe de modelos, ou seja, $\mathcal{C}_d \in
-\mathcal{C}(\theta)$, se existir um valor de $\theta_0$ que faça com que:
+\mathcal{C}$, se existir um valor de $\theta_0$ que faça com que:
 
 \begin{equation}
-\mathcal{C}(\theta_0) = \mathcal{C}_d
+\mathcal{C} = \mathcal{C}_d
 \end{equation}
 
 %===============================================================================
@@ -37,7 +37,7 @@ determinados, cancelar as não linearidades da planta para que possa ser possível
 $r(t)$ e a saída $y(t)$.
 
 Analogamente ao que foi apresentado na Seção \ref{sec:dbcd_vrft_framework} para controladores lineares, o controlador
-não linear $\mathcal{C}(\theta)$  quando operando em conjunto com o sistema não linear $\mathcal{S}$ resulta um sistema
+não linear $\mathcal{C}$  quando operando em conjunto com o sistema não linear $\mathcal{S}$ resulta um sistema
 em malha fechada cuja função de transferência é dada por $T_d(z)$. Opta-se que este comportamento em malha fechada seja
 linear. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$, sua saída será $T_d(z)r(t)$. Uma premissa para
 que o sistema em malha fechada tenha a mesma função de transferência que o modelo de referência é que a saída dos dois
@@ -76,7 +76,7 @@ os sinais presentes.
 \usefont{T1}{ptm}{m}{n}
 \rput(0.991875,1.2707813){\small $\bar{r}(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(4.451875,0.97078127){\small $\mathcal{C}(\theta)$}
+\rput(4.451875,0.97078127){\small $\mathcal{C}$}
 \usefont{T1}{ptm}{m}{n}
 \rput(7.341875,0.9907812){\small $\mathcal{S}$}
 \usefont{T1}{ptm}{m}{n}
@@ -108,7 +108,7 @@ um problema de identificação de sistemas não lineares.
 
 Fica a critério do projetista, assim como para métodos lineares, determinar a estrutura da classe de modelos a ser
 utilizada para a identificação do controlador. Para que o comportamento linear $T_d(z)$ possa ser obtido
-em malha fechada há a necessidade de que o controlador $\mathcal{C}_d \in \mathcal{C}(\theta)$. 
+em malha fechada há a necessidade de que o controlador $\mathcal{C}_d \in \mathcal{C}$. 
 
 Não é apenas devido a planta ser não linear e o comportamento em malha fechada ser linear que o controlador ideal
 possuirá um comportamento não linear. Pode-se a partir de um comportamento em malha fechada não linear e com uma planta
@@ -120,7 +120,7 @@ o controlador é submetido.
 \label{sec:dbnarmax_classes}
 %===============================================================================
 
-A escolha da classe de modelos $\mathcal{C}(\theta)$ que irá representar o controlador ideal $\mathcal{C}_d$ é de grande
+A escolha da classe de modelos $\mathcal{C}$ que irá representar o controlador ideal $\mathcal{C}_d$ é de grande
 importância para que haja sucesso no processo de identificação deste controlador. Neste trabalho optou-se pelo uso da
 classe de modelos NARMAX apresentada na Seção \ref{sec:nl_models_narmax} pela abrangência desta classe de modelos em
 representar sistemas reais e pelos bons resultados obtidos na identificação de sistemas não lineares apresentados na
@@ -140,7 +140,7 @@ y(t) &=\frac{a(y(t-1), \ldots, y(t-n_y), u(t-1),\ldots, u(t-n_u), }{b(y(t-1), \l
 \end{align*}
 
 Aplica-se então o algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} para a identificação do controlador
-$\mathcal{C}(\theta)$.
+$\mathcal{C}$.
 
 É conveniente observar que a escolha da classe NARMAX está intimamente ligada ao uso do algoritmo de identificação
 destes modelos ter-se mostrado bastante eficiente, como foi apresentado nos exemplos da Seção

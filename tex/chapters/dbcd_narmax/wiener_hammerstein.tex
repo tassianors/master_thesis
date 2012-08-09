@@ -56,7 +56,7 @@ racional, não deixando entretanto de ainda ser representável por um modelo de Ha
 \psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](6.621719,1.7)(2.4217188,-0.3)
 \psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](11.821719,1.7)(7.621719,-0.3)
 \usefont{T1}{ppl}{m}{n}
-\rput(4.5507812,-0.59){$\mathcal{C}(\theta)$}
+\rput(4.5507812,-0.59){$\mathcal{C}$}
 \usefont{T1}{ppl}{m}{n}
 \rput(9.670782,-0.59){$\mathcal{S}$}
 \usefont{T1}{ppl}{m}{n}
@@ -84,7 +84,7 @@ desta forma, o efeito não linear presente na planta seria anulado pelo controlad
 descrito na Figura \ref{fig:vrft_nl_wiener} se comporta como:
 
 \begin{equation}
-v(t)=\epsilon(t)\gamma (\epsilon(t))
+v(t)=\gamma (\epsilon(t))
 \nonumber
 \end{equation}
 e sendo $\epsilon(t)$ descrito como:
@@ -96,13 +96,7 @@ e sendo $\epsilon(t)$ descrito como:
 pode-se obter então o relacionamento entre os sinais $\gamma(\cdot) $ e $\zeta(\cdot)$ como abaixo:
 
 \begin{equation}
-(r(t) - \omega(t) \zeta(\omega(t))) \gamma (\epsilon(t)) = r(t) - \omega(t) 
-\nonumber
-\end{equation}
-resultando em:
-
-\begin{equation}
-\gamma (\epsilon(t)) = \frac{r(t)-\omega(t)}{r(t) - \omega(t)\zeta(\omega(t))} 
+\gamma (r(t) - \zeta(\omega(t))) = r(t) - \omega(t) 
 \label{eq:dbnarmac_ex_wiener_gamma}
 \end{equation}
 
@@ -115,7 +109,7 @@ r(t) \equiv 0
 o relacionamento entre os polinômios $\gamma(\cdot) $ e $\zeta(\cdot)$ fica simplificado a:
 
 \begin{equation}
-\gamma (\epsilon(t)) = \frac{1}{\zeta(\omega(t))}
+\gamma (\epsilon(t)) = \zeta(\omega(t))^{-1}
 \nonumber 
 \end{equation}
 
@@ -157,7 +151,7 @@ $\gamma(\cdot)$ como abaixo:
 \end{equation}  
 
 Desta forma o controlador a ser identificado pode ser modelado por um modelo NARMAX, mesmo isso sendo uma aproximação do
-controlador ideal $\mathcal{C}_d$. Desta forma não é possível afirmar que $\mathcal{C}_d \in \mathcal{C}(\theta)$. 
+controlador ideal $\mathcal{C}_d$. Desta forma não é possível afirmar que $\mathcal{C}_d \in \mathcal{C}$. 
 
 Considerando entretanto que nenhum dos blocos não lineares existissem no sistema, o controlador ideal poderia ser descrito pela equação
 \eqref{eq:dbcd_perf_tracking_cd}, resultando em 
@@ -220,8 +214,8 @@ a identificação não consiga atingir a totalidade da função $T_d(z)$ inicialmente
 utilizados sinais de entrada do tipo PRBS com 127 pontos para a excitação da planta.
 
 Na Figura \ref{fig:vrft_nl_wiener_step} é apresentado um comparativo entre o sinal de saída do sistema
-$T_d(z)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado é
-aplicado sobre a planta em malha fechada.
+$T_d(z)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado com
+$\theta_{\text{médio}}$ é aplicado sobre a planta em malha fechada.
 
 \begin{figure}[htbp] 
 	\center 

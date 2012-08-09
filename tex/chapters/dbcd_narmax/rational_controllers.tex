@@ -16,7 +16,7 @@ A seguir serão apresentados exemplos onde o controlador ideal está na classe de 
 quando as dinâmicas do controlador ideal não conseguem ser representadas totalmente pela classe de modelos escolhida.
 
 %===============================================================================
-\subsubsection{Controlador ideal representado pela classe de modelos: $C_d \in C(z,\theta)$}
+\subsection{Controlador ideal representado pela classe de modelos: $\mathcal{C}_d \in \mathcal{C}$}
 \label{sec:dbnarmax_nl_dinamic_c_match}
 %===============================================================================
 
@@ -43,15 +43,15 @@ y(t)=0.4r(t-1)+0.6y(t-1)
 
 Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex1_y} com \eqref{eq:vrft_nl_dinamic_ex1_mt} e isolar o
 sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
-comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal $C_d(z)$ descrito como
-em:
+comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal $\mathcal{C}_d$ descrito
+como em:
 
 \begin{equation}
 u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
 \label{eq:vrft_nl_dinamic_ex1_cd}
 \end{equation}
 
-Optou-se por uma classe de modelos que consegue representar a totalidade das dinâmicas presentes em $C_d(z)$:
+Optou-se por uma classe de modelos que consegue representar a totalidade das dinâmicas presentes em $\mathcal{C}_d$:
 
 \begin{equation}
 u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 y^2(t-1)r(t)+ \theta_4 y(t)y^2(t-1)}{1+ \theta_5 y(t)}
@@ -129,10 +129,11 @@ $\sigma_e^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as esti
 \nonumber
 \end{equation}
 
-Com os custos de $J_{VR}=1.0326\times10{-7}$ e $J_{y}=0.0054$, corroborando para o fato de que os custos não
-foram significativamente afetados pelo aumento do ruído. Observa-se um aumento do erro de variância, pois a matriz de
-covariância que era da ordem de $\times10^{-6}$ passou para a ordem de $\times10^{-5}$, entretanto o valor médio das
-estimativas permaneceu praticamente inalterado, corroborando pela não existência de erro de polarização.
+Com os custos de $J_{VR}(\theta_{\text{média}})=1.0326\times10{-7}$ e $J_{y}(\theta_{\text{média}})=0.0054$,
+corroborando para o fato de que os custos não foram significativamente afetados pelo aumento do ruído. Observa-se um
+aumento do erro de variância, pois a matriz de covariância que era da ordem de $\times10^{-6}$ passou para a ordem de
+$\times10^{-5}$, entretanto o valor médio das estimativas permaneceu praticamente inalterado, corroborando pela não
+existência de erro de polarização.
 
 %%===============================================================================
 %\subsubsection{Controlador ideal sendo representado pela classe de modelos 2}
@@ -140,12 +141,12 @@ estimativas permaneceu praticamente inalterado, corroborando pela não existência
 %%===============================================================================
 
 %===============================================================================
-\subsubsection{Controlador ideal não sendo representado pela classe de modelos: $C_d \notin C(z,\theta)$}
+\subsection{Controlador ideal não sendo representado pela classe de modelos: $\mathcal{C}_d \notin \mathcal{C}$}
 \label{sec:dbnarmax_nl_dinamic_c_not_match}
 %===============================================================================
 
-Neste exemplo será abordado o caso onde o controlador $C(z, \theta) \notin \mathcal{C}$. Fazendo com que o sistema em
-malha fechada não consiga ter a dinâmica esperada. Considere a planta não linear descrita por:
+Neste exemplo será abordado o caso onde o controlador $\mathcal{C}_d \notin \mathcal{C}$. Fazendo com que o
+sistema em malha fechada não consiga ter a dinâmica esperada. Considere a planta não linear descrita por:
 
 \begin{equation}
 y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
@@ -207,7 +208,7 @@ com uma covariância de:
 \nonumber
 \end{equation}
 
-Obtém-se um custo para o comportamento do sistema em malha fechada de  $J_{y}=1.0999$. Na Figura
+Obtém-se um custo para o comportamento do sistema em malha fechada de  $J_{y}(\theta_{\text{médio}})=1.0999$. Na Figura
 \ref{fig:vr_rational_notinclass_ex3_step} é apresentado a resposta do sistema em malha fechada quando submetido a um
 degrau unitário para o sistema desejado e para o sistema obtido com o controlador parametrizado por
 \eqref{eq:vr_rational_ex3_theta}.
@@ -215,10 +216,10 @@ degrau unitário para o sistema desejado e para o sistema obtido com o controlado
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vr_rational_notinclass_ex3_step.eps}
-	\caption{Exemplo onde $C_d(z) \notin C(z,\theta)$: Resposta do sistema ao degrau unitário para o sistema desejado
-	$T_d(z)$ e o sistema quando o controlador parametrizado por $\theta$ como descrito em
-	\eqref{eq:vr_rational_ex3_theta}. Onde $T_d(t)$ é a resposta temporal para o comportamento esperado do sistema e
-	$T(t)$ é o comportamento temporal para o sistema quando está utilizando o controlador identificado.}
+	\caption{Exemplo onde $\mathcal{C}_d \notin \mathcal{C}$: Resposta do sistema ao degrau unitário para o
+	sistema desejado $T_d(z)$ e o sistema quando o controlador parametrizado por $\theta$ como descrito em
+	\eqref{eq:vr_rational_ex3_theta}. Onde $T_d(z)$ é a resposta temporal para o comportamento esperado do sistema e
+	$T(z)$ é o comportamento temporal para o sistema quando está utilizando o controlador identificado.}
 	\label{fig:vr_rational_notinclass_ex3_step}
 \end{figure}
 
@@ -228,8 +229,8 @@ unitário apresentado na Figura \ref{fig:vr_rational_notinclass_ex3_step}.
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vr_rational_notinclass_ex3_error.eps}
-	\caption{Exemplo onde $C_d(z) \notin C(z,\theta)$: Erro entre o comportamento do sistema em malha fechada e o
-	comportamento em malha fechada desejado.}
+	\caption{Exemplo onde $\mathcal{C}_d \notin \mathcal{C}$: Erro entre o comportamento do sistema em malha
+	fechada e o comportamento em malha fechada desejado.}
 	\label{fig:vr_rational_notinclass_ex3_error}
 \end{figure}
 

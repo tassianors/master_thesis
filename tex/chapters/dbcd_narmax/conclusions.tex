@@ -13,12 +13,12 @@ NARMAX apresentados no Capítulo \ref{chapter:nlin_si_ident}, optou-se por utiliz
 \ref{sec:nl_si_algorithms_rationals}) para determinar os parâmetros do controlador utilizando-se para isso entretanto
 dos sinais obtidos por meio do método de referência virtual.
 
-Na Seção \ref{sec:dbnarmax_nonlinear_examples} apresentou-se alguns exemplos para demonstrar a viabilidade da utilização
-da metodologia. Foram apresentados exemplos onde a classe de modelos consegue representar a totalidade das dinâmicas de
-$C_d(z)$ para que o sistema se comporte em malha fechada linearmente como escolhido por $T_d(z)$. Outro exemplo foi
-apresentado quando não existe uma completa descrição do controlador ideal pela classe de modelos, ou seja, $C_d(z)
-\notin C(z, \theta)$, apresentou-se um comparativo do sistema ideal e do obtido utilizando o controlador obtido quando o
-sistema é submetido a um degrau unitário.
+Nas Seções \ref{sec:dbnarmax_wiener_hammerstein} e \ref{sec:dbnarmax_rational_controllers} apresentou-se alguns
+exemplos para demonstrar a viabilidade da utilização da metodologia. Foram apresentados exemplos onde a classe de
+modelos consegue representar a totalidade das dinâmicas de $\mathcal{C}_d$ para que o sistema se comporte em malha
+fechada linearmente como escolhido por $T_d(z)$. Outro exemplo foi apresentado quando não existe uma completa descrição
+do controlador ideal pela classe de modelos, ou seja, $\mathcal{C}_d \notin \mathcal{C}$, apresentou-se um comparativo
+do sistema ideal e do obtido utilizando o controlador obtido quando o sistema é submetido a um degrau unitário.
 
 Também foi apresentado um exemplo onde o controlador é descrito por um modelo NARMAX polinomial, em um contexto onde a
 planta do sistema possui uma não linearidade estática na saída do processo, caso este onde o controlador ideal também
@@ -29,6 +29,4 @@ na Figura \ref{fig:vrft_nl_wiener_vw}.
 De forma geral, apresentou-se neste capítulo a utilização desta metodologia de identificação de controladores não
 lineares descritos por modelos NARMAX, polinomial ou racional e seus resultados. Os resultados obtidos mostram que a
 metodologia é válida e que em situações onde o controlador ideal pode ser bem representado pela classe de controladores,
-os resultados obtidos não possuem erro de polarização para experimentos executados em malha aberta. O estudo para
-experimentos em malha fechada não é escopo deste trabalho e pode ser encarado como um dos trabalhos futuros provenientes
-desta pesquisa.
+os resultados obtidos não possuem erro de polarização para experimentos executados em malha aberta. 
