@@ -8,7 +8,7 @@ lineares modelados por uma classe de modelos NARMAX quando a planta $\mathcal{S}
 Hammerstein, descritos na Seção \ref{sec:nl_models_wiener_hammerstein}. Será utilizado o conceito de referência virtual
 para a obtenção dos sinais necessários para que o projeto de identificação deste controlador possa ser realizado.
 
-Considere que a planta do sistema real possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
+Considere que o sistema real possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
 encontra-se na saída do processo. Na Figura \ref{fig:vrft_nl_wiener} é apresentado o diagrama de blocos do sistema,
 sendo $\zeta(\omega(t))$ e $\gamma(\epsilon(t))$ os blocos não lineares da planta e do controlador respectivamente.
 Analogamente $G'(z)$ e $C'(z)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na entrada,
@@ -141,8 +141,8 @@ e a não linearidade presente na planta do sistema pode ser descrita como um poli
 \end{equation}  
 tem-se assim que a planta pode ser descrita pela concatenação dos blocos $G'(z)$ e $\zeta(t)$.
 
-$\gamma(\cdot)$ foi previamente definido pela equação \eqref{eq:dbnarmac_ex_wiener_gamma} e por esta equação não ser
-parametrizável por um modelo NARMAX devido a $\zeta(\cdot)$ apresentado em \eqref{eq:vrft_nl_wiener_zeta}, aproxima-se
+A função $\gamma(\cdot)$ foi previamente definida pela equação \eqref{eq:dbnarmac_ex_wiener_gamma} e por esta equação
+não ser parametrizável por um modelo NARMAX devido a $\zeta(\cdot)$ apresentado em \eqref{eq:vrft_nl_wiener_zeta}, aproxima-se
 $\gamma(\cdot)$ como abaixo:
 
 \begin{equation}
@@ -163,11 +163,11 @@ C_d'(z)= \frac{0.8z-0.72}{z-1}
 entretanto, o controlador ideal que leva o sistema a se comportar como definido por $T_d(z)$ é composto em parte por
 \eqref{eq:vrft_nl_wiener_cd} acrescido do polinômio \eqref{eq:dbnarmax_ex_wiener_gamma_choosen}.
 
-O controlador $C_d'(z)$ possui uma integrador em sua estrutura. Para evitar problemas de seguimento de
-referência optou-se por não identificar esta parte do controlador. Mantendo o denominador como um integrador
+O controlador $C_d'(z)$ possui um integrador em sua estrutura. Para evitar problemas de seguimento de
+referência optou-se por não identificar esta parte do controlador, mantendo o denominador como um integrador
 e identificando apenas o numerador. 
 
-Fazendo-se as substituições necessárias, chega-se a expressão do sinal de saída do controlador que se quer identificar:
+Fazendo-se as substituições necessárias, chega-se à expressão do sinal de saída do controlador que se quer identificar:
 
 \begin{align}\nonumber
 u(t) =&  \theta_1 \epsilon (t)+ \theta_2 \epsilon ^2(t)+ \theta_3 \epsilon^3(t)+ \theta_4 \epsilon^4(t)+\\
@@ -220,8 +220,8 @@ $\theta_{\text{médio}}$ é aplicado sobre a planta em malha fechada.
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_step.eps}
-	\caption{Comparativo da resposta à um degrau unitário do sistema desejado $T_d(t)$  o sistema real quando o controlador
-	controlador não linear representado por um modelo NARMAX polinomial é inserido na planta.}
+	\caption{Comparativo da resposta a um degrau unitário do modelo de referência $T_d(z)$ com o sistema real quando o
+	controlador controlador não linear representado por um modelo NARMAX polinomial é inserido na planta.}
 	\label{fig:vrft_nl_wiener_step}
 \end{figure}
 
@@ -237,7 +237,7 @@ não linearidades $\gamma(\epsilon(t))$ e $\zeta(\omega(t))$ respectivamente.
 \end{figure}
 
 A relação entre os sinais $v(t)$ e $\omega(t)$ é apresentado na Figura \ref{fig:vrft_nl_wiener_vw}.
-Observa-se que a relação destes sinais é praticamente linear, garantido desta forma que a aproximação feita em
+Observa-se que a relação destes sinais é afim, garantido desta forma que a aproximação feita em
 \eqref{eq:dbnarmax_ex_wiener_gamma_choosen} foi suficiente para representar com acuracidade o que era esperado para
 $\gamma(t)$ em \eqref{eq:dbnarmac_ex_wiener_gamma}.
 

@@ -32,16 +32,14 @@ sistema, determinar os sinais de entrada do controlador que fazem com que o sist
 desejado: $T_d(z)$.
 
 Parte-se do pressuposto de que o processo $\mathcal{S}$ é não linear, mas que o comportamento em malha fechada
-desejado $T_d(z)$ seja linear, portanto o controlador projetado deve, além de cumprir com os objetivos de performance
+desejado $T_d(z)$ seja linear, portanto o controlador projetado deve, para cumprir com os objetivos de performance
 determinados, cancelar as não linearidades da planta para que possa ser possível uma relação linear entre a entrada
 $r(t)$ e a saída $y(t)$.
 
 Analogamente ao que foi apresentado na Seção \ref{sec:dbcd_vrft_framework} para controladores lineares, o controlador
-não linear $\mathcal{C}$  quando operando em conjunto com o sistema não linear $\mathcal{S}$ resulta um sistema
+não linear ideal $\mathcal{C}_d$ quando operando em conjunto com o sistema não linear $\mathcal{S}$ resulta um sistema
 em malha fechada cuja função de transferência é dada por $T_d(z)$. Opta-se que este comportamento em malha fechada seja
-linear. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$, sua saída será $T_d(z)r(t)$. Uma premissa para
-que o sistema em malha fechada tenha a mesma função de transferência que o modelo de referência é que a saída dos dois
-sejam a mesma para um dado sinal $\bar{r}(t)$.
+linear. Desta forma, se $T_d(z)$ for excitado com qualquer sinal $r(t)$, sua saída será $T_d(z)r(t)$. 
 
 Baseado no sinal $y(t)$ medido da saída do processo, considera-se um sinal $\bar{r}(t)$ tal que 
 $T_d(z)\bar{r}(t)=y(t)$. Esta referência, como já foi apresentada, é conhecida como {\it{virtual}} pois ela não existe e
@@ -126,35 +124,17 @@ classe de modelos NARMAX apresentada na Seção \ref{sec:nl_models_narmax} pela ab
 representar sistemas reais e pelos bons resultados obtidos na identificação de sistemas não lineares apresentados na
 Seção \ref{sec:nl_si_algorithms_rationals_examples}.
 
-Como foi apresentado, a classe de modelos NARMAX pode ser dividida em polinomial:
-
-\begin{equation}
-y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
-\nonumber
-\end{equation}
-e racional:
-
-\begin{align*}
-y(t) &=\frac{a(y(t-1), \ldots, y(t-n_y), u(t-1),\ldots, u(t-n_u), }{b(y(t-1), \ldots, y(t-n_y), u(t-1), \ldots, u(t-n_u),}\cdots \\ 
-& \cdots\frac{ e(t-1), \ldots, e(t-n_e))}{e(t-1), \ldots, e(t-n_e))} +e(t)
-\end{align*}
-
 Aplica-se então o algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} para a identificação do controlador
 $\mathcal{C}$.
 
 É conveniente observar que a escolha da classe NARMAX está intimamente ligada ao uso do algoritmo de identificação
-destes modelos ter-se mostrado bastante eficiente, como foi apresentado nos exemplos da Seção
+destes modelos ter-se mostrado eficiente, como foi apresentado nos exemplos da Seção 
 \ref{sec:nl_si_algorithms_rationals_examples}, além dos motivos já citados da vasta gama de sistemas reais que modelos
-NARMAX conseguem representar. Todavia, a metodologia apresentada, poderia ser aplicada para qualquer classe de modelos
-de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe pudesse ser utilizado para
-obtenção dos valores de $\hat{\theta}$ que minimizem algum critério de escolha. Uma das poucas limitações seria que este
-algoritmo deveria identificar o controlador baseado nos dados de entrada e saída da planta e dos sinais virtuais gerados
-a partir destes dados.
+NARMAX conseguem representar. Todavia, a abordagem por referência virtual apresentada poderia ser aplicada para
+qualquer classe de modelos de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe
+pudesse ser utilizado para obtenção dos valores de $\hat{\theta}$ que minimizem algum critério de escolha.
 
 A qualidade das estimativas obtidas é bastante relacionada com a qualidade do algoritmo em estimar os valores de
 $\theta$ que minimizam alguma função custo. Entretanto tudo que foi abordado referente a identificabilidade de um
 experimento e a ordem de excitação de um sinal, determinam as condições básicas para que o resultado obtido seja livre
 de erro de polarização.
-
-
-

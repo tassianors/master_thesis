@@ -3,17 +3,13 @@
 \label{sec:dbnarmax_rational_controllers}
 %===============================================================================
 
-Controladores que possuem não linearidade na dinâmica no projeto, podem ser representados por classes de modelos NARMAX.
-Esta aproximação será melhor quando mais este controlador for representável em séries de Taylor, pois desta forma o
-polinômio converge monotonicamente, fazendo com que os coeficientes de ordem maior, possam ser descartados devido a
-contribuição destes termos decair monotonicamente.
+Nesta seção serão apresentados exemplos de projeto de controladores não lineares utilizando a abordagem de referência
+virtual quando o controlador pode ser descrito por uma classe de modelos NARMAX racional. Desta forma é possível obter
+os sinais necessários para identificação do controlador utilizando referência virtual e então aplicar diretamente o
+algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals}.
 
-Para controladores que podem ser descritos por classes de modelos NARMAX, a utilização do método proposto neste trabalho
-na Seção \ref{sec:dbnarmax_method} pode ser aplicado diretamente utilizando-se o algoritmo apresentado na Seção
-\ref{sec:nl_si_algorithms_rationals} para identificar este controlador.
-
-A seguir serão apresentados exemplos onde o controlador ideal está na classe de modelos escolhida e também um exemplo
-quando as dinâmicas do controlador ideal não conseguem ser representadas totalmente pela classe de modelos escolhida.
+Serão apresentados exemplos onde a classe de controladores escolhida consegue representar o controlador ideal
+$\mathcal{C}_d$ e quando isso não é possível.
 
 %===============================================================================
 \subsection{Controlador ideal representado pela classe de modelos: $\mathcal{C}_d \in \mathcal{C}$}
@@ -88,13 +84,13 @@ desejado, o erro observado para um sinal de entrada do tipo degrau unitário é ap
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_dynamic_erro_step.eps}
-	\caption{Erro entre o a resposta esperada e a obtida para o sistema quando submetido a uma entrada do tipo degrau
+	\caption{Erro entre a resposta esperada e a obtida para o sistema quando submetido a uma entrada do tipo degrau
 	unitário.}
 	\label{fig:vrft_nl_dynamic_step_erro}
 \end{figure}
 
 A fim de ilustrar as estimativas obtidas pelo método, na Figura \ref{fig:vrft_nl_dynamic_t1_t2} são
-apresentados as estimativas para os 100 experimentos realizados, além da elipse de confiança de $\chi^2=95\%$
+apresentadas as estimativas para os 100 experimentos realizados, além da elipse de confiança de $\chi^2=95\%$
 para os parâmetros $\theta_1$ e $\theta_2$.
 
 \begin{figure}[htbp] 
@@ -104,9 +100,9 @@ para os parâmetros $\theta_1$ e $\theta_2$.
 	\label{fig:vrft_nl_dynamic_t1_t2}
 \end{figure}
 
-O custo $J_{VR}=2.7291\times10{-8}$ foi obtido utilizando-se os sinais de saída do controlador obtido e
-esperado. Já o custo entre os sinais de saída do sistema em malha fechada estimado e desejado foi de
-$J_{y}=0.0033$.
+O custo $J_{VR}(\theta_{\text{médio}})=2.7291\times10{-8}$ foi obtido utilizando-se os sinais de saída do controlador
+obtido e esperado. Já o custo entre os sinais de saída do sistema em malha fechada estimado e desejado foi de
+$J_{y}(\theta_{\text{médio}})=0.0033$.
 
 Com o intuito de demonstrar o efeito do ruído sobre as estimativas obtidas o ruído foi aumentado em $4\times$ para
 $\sigma_e^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as estimativas:
@@ -132,8 +128,8 @@ $\sigma_e^2 = 0.02$. Obteve-se desta forma os seguintes resultados paras as esti
 Com os custos de $J_{VR}(\theta_{\text{média}})=1.0326\times10{-7}$ e $J_{y}(\theta_{\text{média}})=0.0054$,
 corroborando para o fato de que os custos não foram significativamente afetados pelo aumento do ruído. Observa-se um
 aumento do erro de variância, pois a matriz de covariância que era da ordem de $\times10^{-6}$ passou para a ordem de
-$\times10^{-5}$, entretanto o valor médio das estimativas permaneceu praticamente inalterado, corroborando pela não
-existência de erro de polarização.
+$\times10^{-5}$, entretanto o valor médio das estimativas permaneceu praticamente inalterado, corroborando a
+inexistência de erro de polarização.
 
 %%===============================================================================
 %\subsubsection{Controlador ideal sendo representado pela classe de modelos 2}
@@ -145,7 +141,7 @@ existência de erro de polarização.
 \label{sec:dbnarmax_nl_dinamic_c_not_match}
 %===============================================================================
 
-Neste exemplo será abordado o caso onde o controlador $\mathcal{C}_d \notin \mathcal{C}$. Fazendo com que o
+Neste exemplo será abordado o caso onde o controlador $\mathcal{C}_d \notin \mathcal{C}$, fazendo com que o
 sistema em malha fechada não consiga ter a dinâmica esperada. Considere a planta não linear descrita por:
 
 \begin{equation}
@@ -176,10 +172,10 @@ u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
 \label{eq:vrft_nl_dinamic_ex3_cd}
 \end{equation}
 
-No exemplo apresentado na Seção \ref{sec:dbnarmax_nl_dinamic_c_match} foi apresentada a simulação para quando o
-controlador ótimo consegue ser descrito pelo modelo escolhido para representa-lo. Neste exemplo deseja-se o oposto: que a classe de
-modelos escolhida para o controlador não consiga representar completamente \eqref{eq:vrft_nl_dinamic_ex3_cd}. Para isso
-escolheu-se a seguinte classe de modelos:
+No exemplo apresentado na Seção \ref{sec:dbnarmax_nl_dinamic_c_match} foi apresentada a simulação para o caso em que o
+controlador ótimo consegue ser descrito pelo modelo escolhido para representa-lo. Neste exemplo ocorre o oposto: a
+classe de modelos escolhida para o controlador não consegue representar completamente \eqref{eq:vrft_nl_dinamic_ex3_cd},
+pois escolheu-se a seguinte classe de modelos:
 
 \begin{equation}
 u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 r(t)y(t-1)+ \theta_4 y(t-1)y(t)}{1+ \theta_5 y(t)}
@@ -218,8 +214,7 @@ degrau unitário para o sistema desejado e para o sistema obtido com o controlado
 	\includegraphics[width=0.95\columnwidth]{figures/vr_rational_notinclass_ex3_step.eps}
 	\caption{Exemplo onde $\mathcal{C}_d \notin \mathcal{C}$: Resposta do sistema ao degrau unitário para o
 	sistema desejado $T_d(z)$ e o sistema quando o controlador parametrizado por $\theta$ como descrito em
-	\eqref{eq:vr_rational_ex3_theta}. Onde $T_d(z)$ é a resposta temporal para o comportamento esperado do sistema e
-	$T(z)$ é o comportamento temporal para o sistema quando está utilizando o controlador identificado.}
+	\eqref{eq:vr_rational_ex3_theta}.}
 	\label{fig:vr_rational_notinclass_ex3_step}
 \end{figure}
 
