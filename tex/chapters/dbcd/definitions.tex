@@ -13,8 +13,8 @@ projetos de controladores baseados em dados ou do inglês {\it{data-driven }} ou 
 
 Como apresentado na Seção \ref{sec:si_project_experiments} os dados coletados do sistema podem ser obtidos de
 diversas formas. Algumas vezes estas informações podem vir da operação normal da planta em malha
-fechada com a presença de algum controlador. Situação esta que tem um grande apelo em plantas
-industriais, onde a parada do processo, para levantamento de informações, é muitas vezes indesejável e por vezes até
+fechada com a presença de algum controlador. esta situação tem um grande apelo em plantas
+industriais, onde a parada do processo para levantamento de informações é muitas vezes indesejável e por vezes até
 inviável. Se existe a possibilidade de parar a planta e aplicar sinais predeterminados, o projeto de experimentos pode
 trazer muitas vantagens como foi apresentado na Seção \ref{sec:si_project_experiments}.
 
@@ -129,11 +129,8 @@ y(t)=T(z, \theta)r(t)
 \label{sec:dbcd_performance_criteria}
 %===============================================================================
 
-Identificação de sistemas é dividido em três partes básicas: o sistema real, a classe de modelos escolhida e o critério
-de performance $V(\theta)$. No capítulo sobre identificação de sistemas lineares (Capítulo
-\ref{chapter:system_identification}),  foi apresentado um dos critérios mais utilizados, que mede o custo de uma
-função baseado no erro entre os dados observados do sistema real e a saída do modelo. Para projeto de controladores
-existem desdobramentos deste critério em função dos objetivos básicos de controle:
+Para projeto de controladores existem diferentes critérios de medida de desempenho em função dos objetivos básicos de
+controle:
 
 \begin{itemize}
   \item Seguimento de referência,
@@ -153,8 +150,8 @@ onde $y(t)$ é a saída medida do sistema e $y_d(t)$ é a saída desejada, $T_d(z)$ 
 sistema em malha fechada.
 
 Com base nas equações \eqref{eq:dbcd_def_track_error} e \eqref{eq:vrft_db_closed_loop} é possível determinar o
-equacionamento para o controlador ideal. Aquele que irá fazer com que o sistema em malha fechada se comporte como o
-desejado.
+equacionamento para o controlador ideal, que é aquele que irá fazer com que o sistema em malha fechada se comporte como
+o desejado:
 
 \begin{equation}
 C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))}
@@ -212,7 +209,7 @@ C_e(z)=\frac{T_e(z)}{G_0(z)(1-T_e(z))}=\frac{H_0(z)-1}{G_0(z)}
 \label{eq:dbcd_perf_ce}
 \end{equation}
 
-O controlador apresentado em \eqref{eq:dbcd_perf_ce} também é conhecido como controlador da minima variância.
+O controlador apresentado em \eqref{eq:dbcd_perf_ce} também é conhecido como controlador de minima variância.
 
 Neste trabalho os exemplos utilizados usam o critério de seguimento de referência, com o controlador ótimo desejado
 sendo representado por \eqref{eq:dbcd_perf_tracking_cd}.
