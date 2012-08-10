@@ -16,8 +16,8 @@ Este modelo provê uma representação unificada para a descrição de sistemas discr
 y(t)=\theta^T\Phi_{nl}(y, u, e)
 \label{eq:nlin_models_narmax_generic}
 \end{equation}
-onde $\Phi_{nl}(\cdot)$ denota um campo vetorial não linear de domínio $\mathbb{R}^3\to \mathbb{R}^n$, que depende dos
-sinais passados de $y(t)$ e presente e passados de $u(t)$ e $e(t)$. $\theta$ é o vetor de parâmetros a ser identificado.
+onde $\Phi_{nl}(\cdot)$ denota um campo vetorial que depende dos valores passados de $y(t)$ e presente e passados de
+$u(t)$ e $e(t)$; $\theta$ é o vetor de parâmetros a ser identificado.
 
 As classes de modelos NARMAX podem então ser compreendidas como um conjunto ou somatório de funções não lineares, que
 são parametrizados linearmente. Vale aqui esclarecer que a forma apresentada em \eqref{eq:nlin_models_narmax_generic}
@@ -30,16 +30,7 @@ y(t)=\theta^T\phi(y(t), u(t))
 onde $\phi(\cdot)$ é dependente apenas dos sinais de entrada e saída do sistema, usualmente sendo uma matriz formada a
 partir dos dados coletados do sistema. Diferentemente do equacionamento apresentado em
 \eqref{eq:nlin_models_narmax_generic}, onde $\Phi_{nl}(\cdot)$ é dependente também do ruído. Outra diferença está no
-fato de que em \eqref{eq:nlin_models_narmax_generic} é possível ter regressores não lineares. Ou seja, é possível ter
-combinações lineares e não lineares dos sinais $y(t)$ e $u(t)$ e do vetor de resíduos $e(t)$ até o instante $(t-1)$.
-\cite{aguirre}
-
-As funções radiais de base apresentadas na Seção \ref{sec:nl_models_radiais} por meio da
-equação \eqref{eq:nl_models_rbf} podem ser entendidas como um caso particular deste tipo de sistema.
-
-O modelo {\it{NARMAX}} surgiu, ou foi motivado, pelo típico excessivo esforço para a estimativa dos
-parâmetros e pela dificuldade em interpretar os resultados obtidos com modelos baseados em séries (Volterra). A
-necessidade do uso de entradas espaciais são também uma desvantagem destes modelos. \cite{leontaritis_billings1985}
+fato de que em \eqref{eq:nlin_models_narmax_generic} é possível ter regressores não lineares. 
 
 Quando o vetor $\Phi_{nl}(\cdot)$ é um conjunto de funções polinomiais, o modelo pode ser apresentado como em :
 
@@ -141,8 +132,8 @@ o instante $t-1$. Desta forma o vetor de parâmetros a ser estimados possui taman
 A equação \eqref{eq:nl_model_narmax_rat_simp} possui não linearidade nos parâmetros, tornando a
 identificação mais complexa por não ser possível a utilização do método dos mínimos quadrados para a
 estimativa dos parâmetros. Uma alternativa para este problema é multiplicar a equação
-\eqref{eq:nl_model_narmax_rat_simp} pela equação \eqref{eq:nl_model_narmax_rat_den} em ambos os seus
-lados. \cite{billings_zhu91}
+\eqref{eq:nl_model_narmax_rat_simp} pela equação \eqref{eq:nl_model_narmax_rat_den} em ambos os lados.
+\cite{billings_zhu91}
 
 \begin{equation}
 Y(t)=a(t)-y(t)\sum_{j=2}^{den}p_{dj}(t)\theta_{dj}+b(t)e(t)
@@ -179,7 +170,7 @@ $\zeta(t)$, o que resultará em polarização dos parâmetros, mesmo que $e(t)$ seja
 média zero. Este é de certa forma o preço que se paga ao linearizar os parâmetros para que seja
 possível utilizar o método dos mínimos quadrados. \cite{aguirre}
 
-Uma das maiores desvantagens da modelo racional quando comparado com o modelo polinomial é que o modelo polinomial é
+Uma das maiores desvantagens do modelo racional quando comparado com o modelo polinomial é que o modelo polinomial é
 linear nos parâmetros. Muitos resultados para identificação de sistemas lineares podem ser estendidos para modelos
 polinomiais não lineares e várias rotinas de determinação de estrutura já foram desenvolvidas para isso.
 \cite{chen_billings1989}

@@ -4,17 +4,17 @@
 %===============================================================================
 
 Neste capítulo apresentou-se conceitos básicos de identificação de sistemas não lineares. Inicialmente foram
-apresentados os tipos de linearidades existentes. Muitas vezes os sistemas comportam-se de forma linear entorno da
+apresentados os tipos de linearidades existentes. Muitas vezes os sistemas comportam-se de forma linear em torno da
 região de operação do sistema, desta forma identificar um sistema com um modelo linear é o que normalmente se utiliza.
 Para os casos onde há necessidade de modelar a dinâmica não linear, ou que se deseja modelar características
-específicas do sistema, uma classe de modelos não linear é mais apropriado.
+específicas do sistema, uma classe de modelos não linear é mais apropriada.
 
 Apresentou-se alguns dos conjuntos de modelos mais utilizados para identificação de sistemas não lineares de tempo
 discreto e algumas de suas características. Destacou-se que a escolha de um modelo em detrimento de outro é um aspecto
 muito importante para a identificação de sistemas não lineares. A escolha de uma base e a ordem do modelo são muito
 importantes para que não sejam acrescidos ao modelo dinâmicas que não existem no sistema real.
 
-Deu-se especial atenção a classe de modelos NARMAX em suas duas formas mais conhecidas: polinomial e racional. Estes
+Deu-se especial atenção à classe de modelos NARMAX em suas duas formas mais conhecidas: polinomial e racional. Estes
 conjuntos de modelos conseguem representar uma grande variedade de sistemas não lineares utilizando uma estrutura
 simples de compreender e que por ser linear nos parâmetros, faz com que os algoritmos para a identificação
 de seus parâmetros sejam mais simples.
@@ -30,7 +30,7 @@ totalmente o sistema real sob análise ($\mathcal{S} \in \mathcal{M}$), situação 
 O algoritmo implementado não contemplou a modelagem do ruído do sistema, sendo este um aspecto para ser desenvolvido em
 trabalhos futuros, visto que este fato é bastante importante para situações onde $\mathcal{S} \notin \mathcal{M}$,
 podendo o algoritmo nestas situações convergir para pontos onde os parâmetros identificados não sejam os reais. Esta
-situação foi apresentada no exemplo do conversor de corrente continua do tipo Buck (Seção
+situação foi apresentada no exemplo do conversor de corrente contínua do tipo Buck (Seção
 \ref{sec:nl_si_algorithms_rationals_buck}).
 
 

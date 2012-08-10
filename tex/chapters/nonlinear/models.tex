@@ -24,7 +24,7 @@ conseguir representar o sistema com um número de parâmetros menor que outro mode
 
 Um dos passos mais desafiadores na construção de modelos não lineares é a escolha da estrutura de
 modelo. Quando este modelo é não linear, existe uma grande quantidade de opções e com isso o perigo
-de escolher um modelo desnecessariamente complexo é evidente. Este perigo baseia-se no {\it{principio
+de escolher um modelo desnecessariamente complexo é evidente. Este perigo baseia-se no {\it{princípio
 da parcimônia}} que basicamente determina que o modelo deve ser o mais simples possível \cite{aguirre_maps}. Na Seção 
 \ref{sec:si_exper_overfit} foram apresentadas algumas ideias relacionadas a este assunto.
 
@@ -39,15 +39,12 @@ lineares.
 % ljung 143
 %===============================================================================
 
-Modelos de Wiener e Hammerstein são normalmente utilizados em situações onde a dinâmica do sistema pode ser bem
-descrita por um sistema linear, mas existem algumas não linearidades estáticas atreladas à entrada
-e/ou à saída. Este será o caso de atuadores não lineares com características como saturação, zona morta, entre outros.
-
-Um modelo com não linearidades na entrada é chamado de {\it{modelo de Hammerstein}} e 
-para não linearidades na saída chama-se {\it{modelo de Wiener}}. \cite{ljung}
-
-Na Figura \ref{fig:nl_models_hammerstein_wiener} observa-se o diagrama de blocos para os modelos de Hammerstein e
-Wiener.
+Modelos de Wiener e Hammerstein são normalmente utilizados em situações onde a dinâmica do sistema pode ser bem descrita
+por um sistema linear, mas existem algumas não linearidades estáticas atreladas à entrada e/ou à saída. Este será o
+caso de atuadores não lineares com características como saturação, zona morta, entre outros. Um modelo com não
+linearidades na entrada é chamado de {\it{modelo de Hammerstein}} e para não linearidades na saída chama-se {\it{modelo
+de Wiener}} \cite{ljung}. Na Figura \ref{fig:nl_models_hammerstein_wiener} observa-se o diagrama de blocos para os
+modelos de Hammerstein e Wiener.
 
 \begin{figure}[htbp]
 \center
@@ -95,7 +92,7 @@ Wiener.
 \end{figure}
 
 %===============================================================================
-\subsection{Serie de Volterra}
+\subsection{Série de Volterra}
 \label{sec:nl_models_volterra}
 % Aguirre 334
 %===============================================================================
@@ -437,7 +434,7 @@ funções do tipo Gausianas e multi-quadráticas, como pode ser visto na Figura \re
 
 Este tipo de representação tem boas propriedades locais e pode ser interpretada como 
 uma técnica de interpolação global. Funções radiais de base são casos particulares
-de redes neurais, porem neste caso, lineares nos parâmetros $w_i$. \cite{aguirre} 
+de redes neurais, porém neste caso, lineares nos parâmetros $w_i$. \cite{aguirre} 
 
 No contexto de identificação de sistemas é comum adicionar termos auto-regressivos
 lineares, bem como termos de entrada à equação \eqref{eq:nl_models_rbf} resultando em:

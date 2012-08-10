@@ -24,7 +24,7 @@ seguinte procedimento: \cite{aguirre}
 
 %==========================================================================
 % Step 1
-\item Faça $i=0$. Monte a matriz $\Psi$ de regressão e estime os coeficiente usando
+\item Faça $i=0$. Monte a matriz $\Psi$ de regressão e estime os parâmetros usando
 o método dos mínimos quadrados:
 
 \begin{equation}
@@ -174,8 +174,8 @@ y(t)=\frac{\theta_1 y(t-1)+\theta_2 y(t-1)u(t-1)+ \theta_3u(t-1)}{1+\theta_4 y^{
 \label{eq:nl_rat_exemple2_model}
 \end{equation}
 
-Utilizando para simulação um sinal PRBS de 635 pontos e adicionando-se um ruído $e(t)$ de variância $\sigma_e^2=0.005$
-os resultados da média de 100 estimativas de Monte Carlo foram:
+Utilizando para simulação como entrada $u(t)$ um sinal PRBS de 635 pontos e adicionando-se um ruído $e(t)$ de variância
+$\sigma_e^2=0.005$ os resultados da média de 100 estimativas de Monte Carlo foram:
 
 \begin{equation}
 \theta_{\text{média}} =\begin{bmatrix}
@@ -225,7 +225,7 @@ estimativas dos parâmetros $\theta_1$ e $\theta_2$ e a elipse de confiança para 
 	\label{fig:nl_rat_example2}
 \end{figure}
 
-Devido a presença de ruído e ao erro de polarização apresentado ser menor que a variância do ruído adicionado, sabe-se
+Devido à presença de ruído e ao erro de polarização apresentado ser menor que a variância do ruído adicionado, sabe-se
 que com o aumento de $N$ o valor de $\hat{\theta}_N \to \theta_0$.
 
 %===============================================================================
@@ -240,14 +240,14 @@ y(t)=\frac{0.2 y(t-1)+0.1 y(t-1)u(t-1)+u(t-1)}{1+y^{2}(t-1)+y^{2}(t-2)}
 \label{eq:nl_rat_exemple3}
 \end{equation}
 
-O sistema real $\mathcal{S}$ não consegue ser representada pela classe de modelos escolhida:
+O sistema real $\mathcal{S}$ não consegue ser representado pela classe de modelos escolhida:
 
 \begin{equation}
 y(t)=\frac{\theta_1y(t-1)+\theta_2u(t-1)}{1+\theta_3y^{2}(t-1)+\theta_4y^{2}(t-2)}
 \label{eq:nl_rat_exemple3_model}
 \end{equation}
 
-Utilizando par a simulação um sinal PRBS de 635 pontos e um ruído de variância $\sigma_e^2=0.005$ os resultados
+Utilizando para simulação um sinal PRBS de 635 pontos e um ruído de variância $\sigma_e^2=0.005$ os resultados
 da média de 100 estimativas de Monte Carlo foram:
 
 \begin{equation}
@@ -266,8 +266,8 @@ da média de 100 estimativas de Monte Carlo foram:
 %\nonumber
 %\end{equation}
 
-A fim de comparar a qualidade dos resultados obtidos, na Figura \ref{fig:nl_rat_example3} é apresentadas a resposta do
-sistema real \eqref{eq:nl_rat_exemple3} e o sistema obtido pela estimativa utilizando o a classe de modelos
+A fim de comparar a qualidade dos resultados obtidos, na Figura \ref{fig:nl_rat_example3} são apresentadas as respostas
+do sistema real \eqref{eq:nl_rat_exemple3} e do sistema obtido pela estimativa utilizando a classe de modelos
 \eqref{eq:nl_rat_exemple3_model} para uma entrada do tipo degrau unitário.
 
 \begin{figure}[htbp]
@@ -285,10 +285,10 @@ V(\theta)=1.1239
 \nonumber
 \end{equation}
 
-Como não há um valor de $\theta_0$ para comparação, visto que o sistema real não consegue ser presentado pelo modelo,
+Como não há um valor de $\theta_0$ para comparação, visto que o sistema real não consegue ser representado pelo modelo,
 optou-se por apresentar o resultado do sistema a uma resposta do tipo degrau unitário. Observa-se com isso que o sistema
 estimado é apenas semelhante ao real, possuindo um sobrepasso maior e possuindo um ganho em regime ligeiramente
-diferente que o sistema real. 
+diferente do sistema real. 
 %===============================================================================
 \subsubsection{Conversor CC-CC Buck}
 \label{sec:nl_si_algorithms_rationals_buck}
@@ -324,14 +324,14 @@ d_n & \text{caso contrario.}
 \end{figure}
 
 Modelos polinomiais não resultam em bons modelos para a dinâmica de \eqref{eq:nl_alg_buck_circ}. Um
-modelo com estrutura {\it{ad rock}}, que aproxima relativamente bem a característica estática do
+modelo com estrutura {\it{ad hock}}, que aproxima relativamente bem a característica estática do
 conversor é: \cite{aguirre_maps}
 
 \begin{equation}
 y(t)=O exp\left [ 22-y(t-1) \right ]+ \frac{a\; y(t-1)^2 -b\; y(t-1)+c}{y(t-1)}
 \label{eq:nl_alg_buck_rational}
 \end{equation}
-onde $O=46.429$, $a=2.6204$, $b=99.875$ e $c=1.4171\times 10^3$. Por outro lado a 
+onde $O=46.429$, $a=2.6204$, $b=99.875$ e $c=1.4171\times 10^3$. 
 
 Para aplicar o algoritmo, escolhe-se inicialmente uma classe de modelos para o sistema em análise:
 
@@ -342,8 +342,8 @@ y(t)=\frac{\theta_1+\theta_2y(t-1)^3+\theta_3(t-1)^2}{1+\theta_4y(t-1)+\theta_5y
 
 Como o sistema não possui entrada, foram feitas diversas simulações com valores iniciais diferentes a fim de demonstrar
 a influência deste valor inicial sobre as estimativas e sobre tudo a qualidade destas estimativas obtidas. Na Tabela
-\ref{table:nl_alg_buck} é apresentado os valores estimados utilizando o algoritmo de identificação de sistemas racionais
-NARMAX para o sistema apresentado em \eqref{eq:nl_alg_buck_circ}. Ao utilizar-se 200 pontos e um valor inicial de $31.5$
+\ref{table:nl_alg_buck} são apresentados os valores estimados utilizando o algoritmo de identificação de sistemas
+racionais NARMAX para o sistema apresentado em \eqref{eq:nl_alg_buck_circ}. Ao utilizar-se 200 pontos e um valor inicial de $31.5$
 obteve-se o seguinte conjunto de parâmetros $\theta$:
 
 \begin{equation}
@@ -383,7 +383,7 @@ de $\theta$ para diferentes valores iniciais.
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Tabela com os valores das estimativas do conversor de corrente continua para diferentes valores de condições
+\caption{Tabela com os valores das estimativas do conversor de corrente contínua para diferentes valores de condições
 iniciais. Todas as simulações utilizaram $N=100$.}
 \label{table:nl_alg_buck}
 \begin{tabular}{lcccccc}
