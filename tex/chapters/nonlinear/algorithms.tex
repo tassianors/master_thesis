@@ -136,7 +136,6 @@ E estime novamente os parâmetros utilizando:
 \item Volte ao passo 2 até atingir convergência (de parâmetro ou de variância de resíduo).
 \end{enumerate} % Aguirre algorithm for rational model identification pg 394
 
-
 A convergência do algoritmo depende da convergência da estimativa da sequência do ruído.
 \cite{billings_zhu91} 
 
@@ -305,7 +304,7 @@ y(t)=\alpha y(t-1)+\frac{h(d_n)^2 \beta E\left [ E-y(t-1) \right ]}{y(t-1)}
 \end{equation}
 onde $\alpha = 0.8872$, $\beta = 1.2$ e $E=33$ são constantes que dependem apenas dos componentes do
 circuito eletrônico. $d_n$ é um sinal de tensão que implementa a ação de controle e a saturação
-$h(d_n)$ é dada por :
+$h(d_n)$ é dada por:
 
 \begin{equation}
 h(d_n)=\left\{\begin{matrix}
@@ -373,7 +372,8 @@ do sistema real definido por \ref{eq:nl_alg_buck_rational} e o sistema estimado 
 	\includegraphics[width=0.95\columnwidth]{figures/nl_rat_buck_comp.eps}
 	\caption{Comparativo entre a saída do sistema real descrito pela equação\eqref{eq:nl_alg_buck_rational} e a saída do
 	sistema NARMAX racional descrito pela classe de modelos apresentada em \eqref{eq:nl_alg_buck_rational_model}
-	quando os parâmetros estimados para um valor inicial de 31.5, como apresentado em \eqref{eq:nl_rat_buck_theta_init31.5}}
+	quando os parâmetros estimados para um valor inicial de 31.5, como apresentado em
+	\eqref{eq:nl_rat_buck_theta_init31.5}.}
 	\label{fig:nl_rat_buck_comp}
 \end{figure}
 
