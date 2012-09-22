@@ -814,7 +814,7 @@ FUNCTION {extract.proceedings.type}
 		{s #23 global.max$ substring$}{
 	pop$ s #1 #11 substring$ duplicate$ "Tagungsband" =
 		{s #12 global.max$ substring$}
-		{pop$ "Anais" s} if$
+		{pop$ "Proceedings" s} if$
 	} if$
 	} if$
 	} if$
