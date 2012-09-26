@@ -104,7 +104,7 @@ y(t)=\sum_{j=1}^{\infty}\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}
 h_j(\tau_1, ... ,\tau_j) \prod_{i=1}^{j}u(t-\tau_i)d\tau_i
 \label{eq:nl_models_volterra}
 \end{equation}
-onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Para um sistema linear com $j=1$ a equação
+onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Quando $j=1$ a equação
 de Volterra se reduz à integral de convolução. \cite{aguirre}
 
 As expansões funcionais em séries de Volterra relacionam os sinais passados da entrada com o valor atual da saída do
@@ -116,15 +116,16 @@ descrever até mesmo simples sistemas não lineares e consequentemente apenas pouc
 \subsection{Redes Neurais}
 \label{sec:nl_models_neurals}
 %===============================================================================
-As redes neurais artificiais são compostas por camadas de neurônios interconectados. A saída de um
-neurônio com $n$ entradas é apresentada na equação:
+As redes neurais artificiais são nada mais do que um tipo de base em particular que podem ser usadas para modelagem. As
+redes neurais são compostas por camadas de neurônios interconectados. A saída de um neurônio com $n$ entradas é
+apresentada na equação:
 
 \begin{equation}
 x=\emph{f}\left ( \sum_{j=1}^{n}\omega_j x_j +b \right )
 \label{eq:nl_models_neural}
 \end{equation}
-onde $b$ é conhecido como {\it{bias}} e $\omega_j$ são constantes e $\emph{f}(\cdot)$ é chamada função de ativação. A
-função de ativação mais comum é: \cite{aguirre}
+onde $b$ é conhecido como {\it{bias}} e $\omega_j$ são constantes e $\emph{f}(\cdot)$ é chamada função de ativação.
+$\omega_j$ e $b$ são os parametros a serem identificados. A função de ativação mais comum é: \cite{aguirre}
 
 \begin{equation}
 \emph{f}(q)=\frac{1}{1+e^{-q}}
@@ -450,3 +451,88 @@ onde
 \nonumber
 \end{equation}
 
+%===============================================================================
+\subsection{Modelos NARMAX}
+\label{sec:nl_models_narmax}
+% Aguirre 343
+%===============================================================================
+
+Os modelos {\it{NARX}} (do termo inglês {\it{nonlinear autoregressive model with exogenous variables}}) são modelos
+discretos no tempo que caracterizam o valor da saída em função dos valores passados da entrada e da própria saída.
+Algumas vezes, para evitar a polarização da estimativa dos parâmetros adiciona-se termos do modelo do ruído ao modelo
+do sistema. Quando isso é feito o modelo passa a ser chamado de modelo {\it{NARMAX}} (do termo inglês {\it{nonlinear
+autoregressive moving average model with exogenous variables}}), introduzido por \cite{leontaritis_billings1985}.
+
+Este modelo provê uma representação unificada para a descrição de sistemas discretos não lineares:
+
+\begin{equation}
+y(t)=\theta^T\Phi_{nl}(y, u, e)
+\label{eq:nlin_models_narmax_generic}
+\end{equation}
+onde $\Phi_{nl}(\cdot)$ denota um campo vetorial que depende dos valores passados de $y(t)$ e presente e passados de
+$u(t)$ e $e(t)$; $\theta$ é o vetor de parâmetros a ser identificado.
+
+As classes de modelos NARMAX podem então ser compreendidas como um conjunto ou somatório de funções não lineares, que
+são parametrizados linearmente. Vale aqui esclarecer que a forma apresentada em \eqref{eq:nlin_models_narmax_generic}
+não é uma regressão linear. Para uma regressão linear:
+
+\begin{equation}
+y(t)=\theta^T\phi(y(t), u(t))
+\label{eq:nlin_models_narmax_reg}
+\end{equation}
+onde $\phi(\cdot)$ é dependente apenas dos sinais de entrada e saída do sistema, usualmente sendo uma matriz formada a
+partir dos dados coletados do sistema. Diferentemente do equacionamento apresentado em
+\eqref{eq:nlin_models_narmax_generic}, onde $\Phi_{nl}(\cdot)$ é dependente também do ruído. Outra diferença está no
+fato de que em \eqref{eq:nlin_models_narmax_generic} é possível ter regressores não lineares. 
+
+%===============================================================================
+%===============================================================================
+\subsection{Modelo polinomial}
+\label{sec:nl_models_narmax_pol}
+% Aguirre 343
+%===============================================================================
+
+Um modelo polinomial pode ser representado como 
+
+\begin{equation}
+y(t)=\sum_{i}c_i \prod_{j=1}^{n_y}y(t-j) \prod_{r=1}^{n_u}u(t-r) \prod_{q=0}^{n_e}e(t-q)
+\label{eq:nl_model_narmax_pol}
+\end{equation}
+para este caso duas considerações serão levadas em conta:
+
+\begin{enumerate}
+\item O sistema tem um atraso puro de tempo $\tau _d$.
+\item Nenhum termo cujo parâmetro tenha que ser estimado pode depender de $e(t)$.
+\end{enumerate}
+
+A segunda consideração implica em tornar a equação independente de $e(t)$. O que equivale a dizer
+que $q=1$ em \eqref{eq:nl_model_narmax_pol} resultando em:
+
+\begin{eqnarray}\nonumber
+y(t) &=& F[ y(t-1), ..., y(t-n_y), u(t-\tau_d), ..., u(t-\tau_d-n_u+1),\\
+&& e(t-1), ..., e(t-n_e)] +e(t)
+\label{eq:nl_model_narmax_pol_espec}
+\end{eqnarray}
+onde $e(t)$ indica que todos os efeitos não podem ser bem representados. $F^l\left [ \cdot  \right ]$ é
+uma função polinomial de $y(t)$, $u(t)$ e $e(t)$ com grau de não linearidade $l\in \mathbb{N}$. 
+Portanto a parte não determinística da equação \eqref{eq:nl_model_narmax_pol_espec} pode ser expandida como
+um somatório de termos com grau de não linearidade variando de $1 \le m \le l$. 
+Assim sendo, cada termo de grau $m$ poderá conter um valor de grau $p$ do tipo $y(t-i)$
+e um fator de grau $(m-p)$ do tipo $u(t-i)$ sendo multiplicado por um parâmetro representado 
+por $c_{p,m-p}(n_1, ..., n_m)$. Obtendo: \cite{aguirre}
+
+\begin{equation}
+y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)
+\end{equation}
+sendo que
+
+\begin{equation}
+\sum_{n1,n_m}^{n_y,n_u}\equiv \sum_{n_1=1}^{n_y}\cdots\sum_{n_m=1}^{n_y}
+\nonumber
+\end{equation}
+e o limite superior é $n_y$ se o somatório de refere a fatores do tipo $y(t-n_i)$ ou $n_u$ se os fatores forem do tipo
+$u(t-n_i)$. 
+
+Os modelos racionais tratados em seguida são diferenciados dos demais apresentados neste trabalho, pois são foto de
+estudo posterior nos capítulos seguintes e necessita de um algoritmo especial para a identificação de seus parâmetros,
+por isso será tratado em uma seção própria, separado dos outros modelos não lineares, aqui apresentados.

@@ -55,7 +55,7 @@ Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se $\bar{R}_
 A partir da equação \eqref{eq:si_data_persistence_2} pode-se extrair interpretações mais explícitas.
 Uma delas é que a função $M_n(q)$ pode ter no máximo $n-1$ zeros diferentes dentro do círculo 
 unitário (desde que um zero esteja sempre na origem). Por isso $u(t)$ é persistentemente excitante de ordem $n$, se o
-espectro do sinal de entrada, $\Phi _u(\omega)$, for diferente de de zero em pelo menos $n$ pontos no intervalo $-\pi<
+espectro do sinal de entrada, $\Phi _u(\omega)$, for diferente de zero em pelo menos $n$ pontos no intervalo $-\pi<
 \omega \le \pi$. \cite{ljung} %page 413
 
 Se um sinal quasi-estacionário é filtrado por uma função de transferência estável, então o sinal resultante 
@@ -91,9 +91,10 @@ Observa-se que é necessário que a ordem de excitação seja igual ao número de par
 serem estimados \cite{ljung}. No caso da equação apresentada em \eqref{eq:si_data_g_rational} a ordem de excitação
 necessária é $n_b+n_f$.
 
-Para um experimento em malha aberta, considerando um sistema ARMAX e Box-Jenkins o experimento é suficientemente
-informativo se a ordem de excitação for  $n_b+n_a$. Em \cite{gevers_bazanella2009} foram apresentadas as condições
-necessárias e suficientes para informatividade em estruturas de modelos arbitrárias.
+Para um experimento em malha aberta, considerando um sistema ARMAX ({\it{Autoregressive, autoregressive model with
+exogenous input}}) e {\it{Box-Jenkins}} o experimento é suficientemente informativo se a ordem de excitação for 
+$n_b+n_a$. Em \cite{gevers_bazanella2009} foram apresentadas as condições necessárias e suficientes para informatividade
+em estruturas de modelos arbitrárias.
 
 Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
 o sinal terá componentes de frequência suficientes para excitar o sistema ao ponto de ser possível observar sua dinâmica
@@ -115,7 +116,7 @@ Considere como exemplo o seguinte sistema real:
 \mathcal{S}: \;\;\; G_0(q)=\frac{a}{q-b}, \;\;\; H_0(q)=\frac{1}{q-b}
 \label{eq:si_exper_overfit_ex_s}
 \end{equation}
-e a classe de modelos:
+e a estrutura de modelos:
 
 \begin{equation}
 \mathcal{M}: \;\;\; G(q, \theta)=\frac{\theta_1(q-\theta_2)}{(q-\theta_3)(q-\theta_4)}, \;\;\; H(q, \theta)=\frac{1}{q-\theta_5}

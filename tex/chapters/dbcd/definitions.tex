@@ -43,7 +43,7 @@ em malha fechada, foi elaborado. Este método é chamado de {\it{Iterative Feedbac
 fundo em \cite{Hjalmarsson_ift1998, Hjalmarsson2002} e estendido em \cite{Prochazka2005} para critério de performances mais
 gerais, que contém melhorias em objetivos de robustez. \cite{Bazanella_h2criteria2008} 
 
-Na Figura \ref{fig:vrft_db_control_loop} é apresentado um usual sistema com realimentação de saída onde são
+Na Figura \ref{fig:vrft_db_control_loop} é apresentado um sistema com realimentação de saída onde são
 destacados os blocos do controlador, da planta e da função que modifica o ruído branco $e(t)$.
 
 O ruído é um processo quasi-estacionário, que pode ser descrito como $\nu(t)=H_0(q)e(t)$, onde
@@ -129,8 +129,24 @@ y(t)=T(q, \theta)r(t)
 \label{sec:dbcd_performance_criteria}
 %===============================================================================
 
-Para projeto de controladores existem diferentes critérios de medida de desempenho em função dos objetivos básicos de
-controle:
+Análogamente ao que foi apresentado para identificação de sistemas no Capítulo \ref{chapter:system_identification}, a
+classe de modelos que representa o controlador do sistema, é definido por
+
+\begin{equation}
+\mathcal{C}: \;\;\left \{ C(q, \theta) \; | \; \theta \in D_{\mathcal{C}} \right \}
+\label{eq:dbcd_controller_class}
+\end{equation}
+
+Se existir um conjunto $\theta$ que consiga descrever o controlador ideal $C_d(q)$, então este conjunto é denotado por
+$\theta_0$, sendo que:
+
+\begin{equation}
+C(q, \theta_0)  = C_d(q) 
+\nonumber
+\end{equation}
+
+Existem vários critérios que podem ser utilizados para elecar qual será o melhor conjunto $\theta$ do controlador.
+Alguns dos mais conhecidos são :
 
 \begin{itemize}
   \item Seguimento de referência,
@@ -138,11 +154,10 @@ controle:
   \item Uso reduzido de esforço de controle. 
 \end{itemize}
 
-Para o objetivo de seguimento de referência, a performance por este ponto de vista pode ser avaliada pela norma:
-\cite{bazanella_datadriven}
+Para o objetivo de seguimento de referência, a performance pode ser avaliada pela norma \cite{bazanella_datadriven}:
 
 \begin{equation}
-J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d(t) \right ]^2 = \bar{E}\left [
+J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  E \left [ y(t)-y_d(t) \right ]^2 = \bar{E}\left [
 (T(q,\theta)-T_d(q))r(t) \right ]^2
 \label{eq:dbcd_def_track_error}
 \end{equation}

@@ -1,12 +1,10 @@
 %===============================================================================
-\section{Algoritmo para identificação de modelos racionais}
-\label{sec:nl_si_algorithms_rationals}
+\section{Modelo Racional}
+\label{sec:nl_models_narmax_rat}
+% Aguirre 345
 %===============================================================================
 
-Esta seção descreve um algoritmo para determinar os parâmetros de modelos racionais
-do tipo apresentado em \eqref{eq:nl_model_narmax_rat_simp}. Este algoritmo foi proposto por
-\cite{correa} e é uma modificação do algoritmo originalmente proposto por
-\cite{billings_zhu}. Assume-se que o modelo pode ser aproximado por: \cite{aguirre}
+Um modelo racional tem a seguinte forma geral: 
 
 \begin{eqnarray}\label{eq:nl_alg_rational}
 y(t)&=&\frac
@@ -14,6 +12,39 @@ y(t)&=&\frac
 {b(y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u))}\\ \nonumber
 &&  +c(e(t-1), ... , e(t-n_e)) +e(t)
 \end{eqnarray}
+onde  $a(\cdot)$ e $b(\cdot)$ são polinômios e é conveniente definir o numerador e denominador de
+como em:
+
+\begin{equation}
+a(\cdot)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(t-1)\theta_n
+\label{eq:nl_model_narmax_rat_num}
+\end{equation}
+
+\begin{equation}
+b(\cdot)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(t-1)\theta_d
+\label{eq:nl_model_narmax_rat_den}
+\end{equation}
+onde $\theta_{nj}$ e $\theta_{dj}$ são os parâmetros dos regressores, possuindo informações até
+o instante $t-1$. Desta forma o vetor de parâmetros a ser estimados possui tamanho $N_n + N_d$.
+
+A equação \eqref{eq:nl_alg_rational} possui não linearidade nos parâmetros, tornando a
+identificação mais complexa por não ser possível a utilização do método dos mínimos quadrados para a
+estimativa dos parâmetros. Para isso será apresentado a seguir um algoritmo iterativo que fará a identificação dos
+parâmetros do sistema.
+
+Uma das maiores desvantagens do modelo racional quando comparado com o modelo polinomial é que o modelo polinomial é
+linear nos parâmetros. Muitos resultados para identificação de sistemas lineares podem ser estendidos para modelos
+polinomiais não lineares e várias rotinas de determinação de estrutura já foram desenvolvidas para isso.
+\cite{chen_billings1989}
+
+%===============================================================================
+\subsection{Algoritmo para identificação de modelos racionais}
+\label{sec:nl_si_algorithms_rationals}
+%===============================================================================
+
+Esta seção descreve um algoritmo para determinar os parâmetros de modelos racionais \eqref{eq:nl_alg_rational}. Este
+algoritmo foi proposto por \cite{correa} e é uma modificação do algoritmo originalmente proposto por 
+\cite{billings_zhu}. 
 
 O ruído é modelado por um polinômio que pode ou não ser linear. A consideração básica 
 por trás de \eqref{eq:nl_alg_rational} é que o erro de regressão pode ser representado por
@@ -235,7 +266,7 @@ que com o aumento de $N$ o valor de $\hat{\theta}_N \to \theta_0$.
 Considere o sistema real:
 
 \begin{equation}
-y(t)=\frac{0.2 y(t-1)+0.1 y(t-1)u(t-1)+u(t-1)}{1+y^{2}(t-1)+y^{2}(t-2)}
+y(t)=\frac{0.2 y(t-1)+0.1 y(t-1)u(t-1)+u(t-1)}{1+y^{2}(t-1)+y^{2}(t-2)}+e(t)
 \label{eq:nl_rat_exemple3}
 \end{equation}
 
@@ -335,7 +366,7 @@ onde $O=46.429$, $a=2.6204$, $b=99.875$ e $c=1.4171\times 10^3$.
 Para aplicar o algoritmo, escolhe-se inicialmente uma classe de modelos para o sistema em análise:
 
 \begin{equation}
-y(t)=\frac{\theta_1+\theta_2y(t-1)^3+\theta_3(t-1)^2}{1+\theta_4y(t-1)+\theta_5y(t-1)^2}
+y(t)=\frac{\theta_1+\theta_2y(t-1)^3+\theta_3y(t-1)^2}{1+\theta_4y(t-1)+\theta_5y(t-1)^2}
 \label{eq:nl_alg_buck_rational_model}
 \end{equation}
 

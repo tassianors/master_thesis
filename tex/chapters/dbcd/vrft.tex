@@ -37,8 +37,8 @@ J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d
 \end{equation}
 que é dependente do modelo de referência escolhido. 
 
-Apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT. Mesmo
-estes dois métodos pertencendo a uma mesma classe, algumas diferenças significativas existem e podem ser ressaltadas:
+Apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT ({\it{Iterative
+Feedback Tuning}}). Mesmo estes dois métodos pertencendo a uma mesma classe, algumas diferenças significativas existem e podem ser ressaltadas:
 \cite{campi_savaresi2000}
 
 \begin{itemize}
@@ -279,7 +279,7 @@ J_{VR}(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | L(e^{j\omega}) \right |^
 \end{eqnarray}
 
 Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(q) \in
-\mathcal{C}$ as duas funções custo são iguais, possuindo também o mesmo mínimo. Quando $C_d(q) \notin \mathcal{C}$
+\mathcal{C}$ as duas funções custopossuem o mesmo mínimo. Quando $C_d(q) \notin \mathcal{C}$
 nenhum dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro
 dos dois integrandos são diferentes, não existe motivos para esperar que os dois custos sejam os mesmos.
 \cite{bazanella_datadriven}
@@ -539,7 +539,7 @@ Na Figura \ref{fig:vrft_bj_M10_var02} é apresentado o resultado para a estimativ
 ruído é quadruplicada ($\sigma_e^2=0.02$). Observa-se então que o erro de polarização existe na estimativa. Como
 descrito em \cite{campi_leccini_savaresi2002} quando o método do VRFT é utilizado com ruído nas amostras, a estimativa
 é inevitavelmente polarizada. Na Seção \ref{sec:dbcd_vrft_framework_noise} foi sugerido o uso de variáveis
-instrumentais par para que este erro de polarização seja minimizado. Utilizou-se então este método e para um ruído com
+instrumentais para que este erro de polarização seja minimizado. Utilizou-se então este método e para um ruído com
 a mesma variância ($\sigma_e ^2=0.02$), o resultado obtido é o apresentado na Figura \ref{fig:vrft_bj_M10_var02_iv}.
 
 \begin{figure}[htbp] 
@@ -763,8 +763,7 @@ ao salto unitário para o sistema utilizando os dois controladores obtidos. O res
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_notinclass_step.eps}
 	\caption{Comparativo da resposta do sistema a um degrau unitário quando o controlador inserido é obtido pelo
-	método VRFT utilizando o filtro L e quando não se utiliza este artificio. O sistema foi simulado com um
-	ruído de variância $\sigma_e ^2=0.1$}
+	método VRFT utilizando o filtro L e quando não se utiliza este artifício.}
 	\label{fig:vrft_notinclass_step}
 \end{figure}
 
