@@ -61,7 +61,7 @@ Os resultados básicos de consistência são quase imediatos: \cite{ljung}
 Suponha que o conjunto de dados $Z^{\infty}$ está sujeito ao que foi apresentado na Seção
 \ref{sec:si_par_estim_data_z} e que $\mathcal{S} \in \mathcal{M}$. Assume-se que $Z^{\infty}$ é suficientemente
 informativo com respeito a $\mathcal{M}$. Se o sinal de entrada contém a saída por realimentação então também se assume
-que exista um atraso de tempo tanto em $G_0(z)$ quanto em $G(z,\theta)$. Então:
+que exista um atraso de tempo tanto em $G_0(q)$ quanto em $G(q,\theta)$. Então:
 
 \begin{equation}
 D_c=D_T(\mathcal{S,M})
@@ -121,41 +121,41 @@ Seja $\theta^*$ o limite de convergência para a minimização do erro de predição:
 e sejam os vetores:
 
 \begin{equation}
-Q_0(z)=\begin{bmatrix}
-G_0(z) & H_0(z)
+Q_0(q)=\begin{bmatrix}
+G_0(q) & H_0(q)
 \end{bmatrix}^T
 \nonumber
 \end{equation}
 
 \begin{equation}
-\hat{Q}_N(z)=\begin{bmatrix}
-G(z, \hat{\theta}_N) & H(z, \hat{\theta}_N)
+\hat{Q}_N(q)=\begin{bmatrix}
+G(q, \hat{\theta}_N) & H(q, \hat{\theta}_N)
 \end{bmatrix}^T
 \nonumber
 \end{equation}
 
-A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q_0(z)$ e o melhor sistema
+A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q_0(q)$ e o melhor sistema
 que o modelo pode atingir (quando a quantidade de dados é ilimitada ($N\rightarrow \infty$)). \cite{campestrini, solari}
 
 \begin{equation}
-\Delta Q_N(z) \equiv \hat{Q}_N(z)-Q_0(z)
+\Delta Q_N(q) \equiv \hat{Q}_N(q)-Q_0(q)
 \label{eq:si_par_estim_under_diff}
 \end{equation}
 
 Define-se então:
 
 \begin{equation}
-Q^*(z) = \left [ G(z, \theta^*) \; H(z, \theta^*) \right ]^T
+Q^*(q) = \left [ G(q, \theta^*) \; H(q, \theta^*) \right ]^T
 \label{eq:si_par_estim_under_q*}
 \end{equation}
 
-Entende-se por $Q^*(z)$ como a melhor aproximação que o método pode proporcionar quando a quantidade de dados coletados
+Entende-se por $Q^*(q)$ como a melhor aproximação que o método pode proporcionar quando a quantidade de dados coletados
 $N \rightarrow \infty$.  Adicionando e subtraindo a equação \eqref{eq:si_par_estim_under_q*} na equação
 \eqref{eq:si_par_estim_under_diff} chega-se à definição dos erros de polarização e de variância:
 
 \begin{equation}
-\Delta Q_N(z) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N(z)-Q^*(z)}}+  \underset{\text{Erro de
-polarização}}{\underbrace{Q^*(z)-Q_0(z)}}
+\Delta Q_N(q) \equiv \underset{\text{Erro de variância}}{\underbrace{\hat{Q}_N(q)-Q^*(q)}}+  \underset{\text{Erro de
+polarização}}{\underbrace{Q^*(q)-Q_0(q)}}
 \label{eq:si_par_estim_under_errors}
 \end{equation}
 
@@ -174,42 +174,42 @@ do ruído $H(\cdot)$ \cite{ljung}. Suponha que o conjunto de modelos:
 é abrangente o suficiente para que 
 
 \begin{equation}
-G_0(z) \in \mathcal{G}
+G_0(q) \in \mathcal{G}
 \end{equation}
-mas a função de transferência do filtro real do ruído $H_0(z)$ não consegue ser totalmente descrita pela classe de
+mas a função de transferência do filtro real do ruído $H_0(q)$ não consegue ser totalmente descrita pela classe de
 modelos. Desta forma $\mathcal{S} \notin \mathcal{M}$ e supondo que o conjunto de dados $Z^{\infty}$ esteja sujeito ao
 que foi descrito na Seção \ref{sec:si_par_estim_data_z} e que este seja suficientemente informativo.
 Se o experimento é realizado em malha aberta, ou seja, quando $u(t)$ e $e(t)$ são descorrelacionados
-e se $G(z, \theta)$ e $H(z, \theta)$ são parametrizados de forma independente:
+e se $G(q, \theta)$ e $H(q, \theta)$ são parametrizados de forma independente:
 
 \begin{equation}
 \theta=\begin{bmatrix}
 \rho\\ 
 \eta 
-\end{bmatrix},\;\; G(z, \theta) = G(z,\rho), \;\; H(z, \theta)=H(z, \eta)
+\end{bmatrix},\;\; G(q, \theta) = G(q,\rho), \;\; H(q, \theta)=H(q, \eta)
 \label{eq:si_par_estim_independent_param}
 \end{equation}
-então $G_0(z)$ pode ser estimada de forma consistente, independente de $H_0(z)$ pertencer ou não à classe de modelos
+então $G_0(q)$ pode ser estimada de forma consistente, independente de $H_0(q)$ pertencer ou não à classe de modelos
 \cite{ljung}. Neste caso, o erro entre o processo real e o modelo estimado é dado pelos erros de polarização e de
 variância da estimativa \cite{gevers2006, campestrini}, onde:
 
 \begin{align*}
-\text{Erro de variância} &= G(z, \hat{\theta}_N)-G(z, \theta^*)\\ 
-\text{Erro de polarização}  &= G(z, \theta^*)-G_0(z) 
+\text{Erro de variância} &= G(q, \hat{\theta}_N)-G(q, \theta^*)\\ 
+\text{Erro de polarização}  &= G(q, \theta^*)-G_0(q) 
 \end{align*}
 
 O caso da parametrização independente em \eqref{eq:si_par_estim_independent_param} cobre o caso do {\it{Output Error}}
 apresentado na Tabela \ref{table:si_modeling_models} além de modelos com estruturas fixas para o filtro do ruido
-$H(z,\theta)$ como em:
+$H(q,\theta)$ como em:
 
 \begin{equation}
-y(t)=G(z,\theta)u(t)+H_*(z)e(t)
+y(t)=G(q,\theta)u(t)+H_*(q)e(t)
 \nonumber
 \end{equation}
-onde $H_*(z)$ é um filtro do ruído fixo, onde $\mathcal{S} \notin \mathcal{M}$.
+onde $H_*(q)$ é um filtro do ruído fixo, onde $\mathcal{S} \notin \mathcal{M}$.
 
 Este modelo também cobre o caso da estrutura de modelos Box-Jenkins (Tabela \ref{table:si_modeling_models}).
-Consequentemente esta estrutura de modelos tem a vantagem de que a função de transferência $G(z, \theta)$ pode ser
+Consequentemente esta estrutura de modelos tem a vantagem de que a função de transferência $G(q, \theta)$ pode ser
 consistentemente estimada, mesmo quando o modelo do filtro do ruído é muito simples para admitir-se uma completa
 descrição do sistema. \cite{ljung}
 
@@ -304,7 +304,7 @@ P^{-1}(\theta_0)=\frac{1}{2\pi \lambda_0}\int_{-\pi}^{\pi}\mathcal{F}(\theta_0)
 \Phi_{\chi_0}(\theta_0)\mathcal{F}^*(\theta_0) d \omega
 \label{eq:si_par_estim_cov_lemma}
 \end{equation}
-onde $\mathcal{F}(z, \theta_0)=\left [ \mathcal{F}_u(z, \theta_0) \;\;\;\mathcal{F}_e(z, \theta_0) \right ]$ e:
+onde $\mathcal{F}(q, \theta_0)=\left [ \mathcal{F}_u(q, \theta_0) \;\;\;\mathcal{F}_e(q, \theta_0) \right ]$ e:
 
 \begin{equation}
 \mathcal{F}_u(\theta_0) = H^{-1}(\theta_0)\frac{\mathrm{d} G(\theta_0)}{\mathrm{d} \theta} 

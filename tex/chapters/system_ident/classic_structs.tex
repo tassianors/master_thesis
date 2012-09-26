@@ -35,16 +35,16 @@ Modelo de um sistema é a descrição matemática de {\it{algumas}} de suas propried
 \ref{sec:sys_ident_intro} apresentou-se a definição para um conjunto de modelos:
 
 \begin{equation}
-\mathcal{M}: \;\;\left \{ G(z, \theta), H(z, \theta) | \theta \in D_{\mathcal{M}} \right \}
+\mathcal{M}: \;\;\left \{ G(q, \theta), H(q, \theta) | \theta \in D_{\mathcal{M}} \right \}
 \nonumber
 \end{equation}
 
 Resultando em um sistema que pode ser descrito como abaixo: 
 
 \begin{equation}
-y(t)=G(z, \theta)u(t)+H(z, \theta)e(t)
+y(t)=G(q, \theta)u(t)+H(q, \theta)e(t)
 \end{equation}
-onde as funções de transferência $G(z, \theta)$ e $H(z, \theta)$  são parametrizadas por $\theta$ e para cada
+onde as funções de transferência $G(q, \theta)$ e $H(q, \theta)$  são parametrizadas por $\theta$ e para cada
 combinação de $\theta$ um novo modelo é definido. 
 
 Provavelmente o modelo mais simples para descrever a relação entre entrada e saída de um sistema seja obtido
@@ -66,17 +66,17 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb}
 Definem-se os polinômios:
 
 \begin{equation}
-A(z, \theta)=1+a_1z^{-1}+...+a_{na}z^{-n_a}
+A(q, \theta)=1+a_1q^{-1}+...+a_{na}q^{-n_a}
 \nonumber
 \end{equation}
 
 \begin{equation}
-B(z, \theta)=b_1z^{-1}+...+b_{nb}z^{-n_b}
+B(q, \theta)=b_1q^{-1}+...+b_{nb}q^{-n_b}
 \nonumber
 \end{equation}
 
 O modelo definido em \eqref{eq:si_modeling_arx} também é conhecido como {\bf{ARX}}, onde {\it{AR}} refere-se 
-à parte de $A(z)y(t)$ auto-regressiva, e {\it{X}} como a entrada extra $B(z)u(t)$.
+à parte de $A(q)y(t)$ auto-regressiva, e {\it{X}} como a entrada extra $B(q)u(t)$.
 
 Uma das limitações deste modelo é a falta de liberdade para descrever as propriedades
 dos distúrbios sobre o sistema. Pode-se então adicionar certo grau de liberdade descrevendo a equação do erro 
@@ -93,14 +93,14 @@ y(t) & +a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)\\
 Define-se o polinômio que filtra o ruído como:
 
 \begin{equation}
-C(z, \theta)=1+c_1z^{-1}+...+c_{nc}z^{-n_c}
+C(q, \theta)=1+c_1q^{-1}+...+c_{nc}q^{-n_c}
 \nonumber
 \end{equation}
 e as funções de transferência como abaixo:
 
 \begin{equation}
-G(z, \theta)=\frac{B(z)}{A(z)} , \;\;
-H(z, \theta)=\frac{C(z)}{A(z)}
+G(q, \theta)=\frac{B(q)}{A(q)} , \;\;
+H(q, \theta)=\frac{C(q)}{A(q)}
 \label{eq:si_modeling_lti_det_armax}
 \end{equation}
 tem-se então que os parâmetros à estimar são:
@@ -112,7 +112,7 @@ a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
 \end{equation}
 
 O modelo definido em \eqref{eq:si_modeling_armax} também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
-a média móvel $C(z,\theta)$ do ruído $e(t)$. Na Figura \ref{fig:si_models_diagram_narmax} é apresentado o diagrama de
+a média móvel $C(q,\theta)$ do ruído $e(t)$. Na Figura \ref{fig:si_models_diagram_narmax} é apresentado o diagrama de
 blocos para o modelo {\bf{ARMAX}}.
 
 \begin{figure}[htbp]
@@ -158,15 +158,15 @@ blocos para o modelo {\bf{ARMAX}}.
 \usefont{T1}{ppl}{m}{n}
 \rput(5.594531,1.21){$\sum$}
 \usefont{T1}{ppl}{m}{n}
-\rput(1.8245312,-3.81){$B(z)$}
+\rput(1.8245312,-3.81){$B(q)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(7.114531,-3.79){$1/A(z)$}
+\rput(7.114531,-3.79){$1/A(q)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(4.3745313,-1.89){$C(z)$}
+\rput(4.3745313,-1.89){$C(q)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(2.7645311,1.21){$\frac{B(z)}{A(z)}$}
+\rput(2.7645311,1.21){$\frac{B(q)}{A(q)}$}
 \usefont{T1}{ppl}{m}{n}
-\rput(5.574531,3.11){$\frac{C(z)}{A(z)}$}
+\rput(5.574531,3.11){$\frac{C(q)}{A(q)}$}
 \psframe[linewidth=0.04,dimen=outer](5.0,-1.4)(3.8,-2.4)
 \psframe[linewidth=0.04,dimen=outer](2.4,-3.2)(1.2,-4.4)
 \psframe[linewidth=0.04,dimen=outer](6.4,3.6)(4.8,2.6)
@@ -184,20 +184,20 @@ A partir do equacionamento do sistema apresentado em \eqref{eq:si_modeling_lti_d
 pode-se facilmente generalizar para o equacionamento apresentado em:
 
 \begin{equation}
-A(z)y(t)=\frac{B(z)}{F(z)}u(t)+\frac{C(z)}{D(z)}e(t)
+A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
 \label{eq:si_modeling_lti_det_global}
 \end{equation}
-onde os polinômios $A(z),\ldots, F(z)$ podem ser descritos como: 
+onde os polinômios $A(q),\ldots, F(q)$ podem ser descritos como: 
 
 \begin{align*}
-A(z, \theta) &= 1+a_1z^{-1}+...+a_{na}z^{-n_a} \\ 
-B(z, \theta) &= b_1z^{-1}+...+b_{nb}z^{-n_b}\\ 
-C(z, \theta) &= 1+c_1z^{-1}+...+c_{nc}z^{-n_c}\\ 
-D(z, \theta) &= 1+d_1z^{-1}+...+d_{nd}z^{-n_d}\\ 
-F(z, \theta) &= 1+f_1z^{-1}+...+f_{nf}z^{-n_f}
+A(q, \theta) &= 1+a_1q^{-1}+...+a_{na}q^{-n_a} \\ 
+B(q, \theta) &= b_1q^{-1}+...+b_{nb}q^{-n_b}\\ 
+C(q, \theta) &= 1+c_1q^{-1}+...+c_{nc}q^{-n_c}\\ 
+D(q, \theta) &= 1+d_1q^{-1}+...+d_{nd}q^{-n_d}\\ 
+F(q, \theta) &= 1+f_1q^{-1}+...+f_{nf}q^{-n_f}
 \end{align*}
 
-Quando apenas um conjunto dos polinômios de $A(z),\ldots, F(z)$ é utilizado, obtém-se diferentes tipos de estruturas
+Quando apenas um conjunto dos polinômios de $A(q),\ldots, F(q)$ é utilizado, obtém-se diferentes tipos de estruturas
 de modelos. As mais conhecidas e utilizadas são apresentadas da Tabela \ref{table:si_modeling_models}.
 
 \begin{table*}[htbp]

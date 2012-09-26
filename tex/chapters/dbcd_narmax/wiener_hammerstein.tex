@@ -11,7 +11,7 @@ para a obtenção dos sinais necessários para que o projeto de identificação deste
 Considere que o sistema real possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
 encontra-se na saída do processo. Na Figura \ref{fig:vrft_nl_wiener} é apresentado o diagrama de blocos do sistema,
 sendo $\zeta(\omega(t))$ e $\gamma(\epsilon(t))$ os blocos não lineares da planta e do controlador respectivamente.
-Analogamente $G'(z)$ e $C'(z)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na entrada,
+Analogamente $G'(q)$ e $C'(q)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na entrada,
 este poderia ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe de modelos NARMAX
 racional, não deixando entretanto de ainda ser representável por um modelo de Hammerstein.
 
@@ -64,16 +64,16 @@ racional, não deixando entretanto de ainda ser representável por um modelo de Ha
 \usefont{T1}{ppl}{m}{n}
 \rput(10.820781,0.71){$\zeta(\cdot)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(5.610781,0.71){$C'(z)$}
+\rput(5.610781,0.71){$C'(q)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(8.620781,0.71){$G'(z)$}
+\rput(8.620781,0.71){$G'(q)$}
 \end{pspicture} 
 }
 \caption{Diagrama de blocos para um sistema não linear do tipo Wiener}
 \label{fig:vrft_nl_wiener}
 \end{figure}
 
-Espera-se que o sistema em malha fechada se comporte linearmente como $T_d(z)$, desta forma o controlador ótimo
+Espera-se que o sistema em malha fechada se comporte linearmente como $T_d(q)$, desta forma o controlador ótimo
 $\mathcal{C}_d$ deve ser tal que possa cancelar o efeito não linear de $\zeta(\omega(t))$. Em outras palavras, espera-se
 que o sistema em malha fechada possua o sinal $v(t)$ como em:
 
@@ -130,7 +130,7 @@ Considere uma planta não linear $\mathcal{S}$ do tipo Wiener como apresentado na
 Considere ainda que o bloco linear desta planta pode ser descrito como abaixo:
 
 \begin{equation}
-G'(z)=\frac{0.5}{z-0.9}
+G'(q)=\frac{0.5}{q-0.9}
 \label{eq:vrft_nl_wiener_g}
 \end{equation}
 e a não linearidade presente na planta do sistema pode ser descrita como um polinômio de terceira ordem:
@@ -139,7 +139,7 @@ e a não linearidade presente na planta do sistema pode ser descrita como um poli
 \zeta(\omega(t))=y(t)=1.5\omega(t)+0.2\omega^3(t)
 \label{eq:vrft_nl_wiener_zeta}
 \end{equation}  
-tem-se assim que a planta pode ser descrita pela concatenação dos blocos $G'(z)$ e $\zeta(t)$.
+tem-se assim que a planta pode ser descrita pela concatenação dos blocos $G'(q)$ e $\zeta(t)$.
 
 A função $\gamma(\cdot)$ foi previamente definida pela equação \eqref{eq:dbnarmac_ex_wiener_gamma} e por esta equação
 não ser parametrizável por um modelo NARMAX devido a $\zeta(\cdot)$ apresentado em \eqref{eq:vrft_nl_wiener_zeta}, aproxima-se
@@ -157,13 +157,13 @@ Considerando entretanto que nenhum dos blocos não lineares existissem no sistema
 \eqref{eq:dbcd_perf_tracking_cd}, resultando em 
 
 \begin{equation}
-C_d'(z)= \frac{0.8z-0.72}{z-1}
+C_d'(q)= \frac{0.8q-0.72}{q-1}
 \label{eq:vrft_nl_wiener_cd}
 \end{equation}
-entretanto, o controlador ideal que leva o sistema a se comportar como definido por $T_d(z)$ é composto em parte por
+entretanto, o controlador ideal que leva o sistema a se comportar como definido por $T_d(q)$ é composto em parte por
 \eqref{eq:vrft_nl_wiener_cd} acrescido do polinômio \eqref{eq:dbnarmax_ex_wiener_gamma_choosen}.
 
-O controlador $C_d'(z)$ possui um integrador em sua estrutura. Para evitar problemas de seguimento de
+O controlador $C_d'(q)$ possui um integrador em sua estrutura. Para evitar problemas de seguimento de
 referência optou-se por não identificar esta parte do controlador, mantendo o denominador como um integrador
 e identificando apenas o numerador. 
 
@@ -210,17 +210,17 @@ obtido foi $J_{VR}(\theta_{\text{média}}=1.0119$.
 Como $\gamma(\cdot)$ escolhido em \eqref{eq:dbnarmax_ex_wiener_gamma_choosen} é apenas uma aproximação do que
 esperava-se em \eqref{eq:dbnarmac_ex_wiener_gamma}, sabe-se que a classe de modelos escolhida para o controlador pode
 não conseguir representar a totalidade das dinâmicas do controlador ideal $\mathcal{C}_d$. Desta forma é esperado que
-a identificação não consiga atingir a totalidade da função $T_d(z)$ inicialmente escolhida. Para as estimativas foram
+a identificação não consiga atingir a totalidade da função $T_d(q)$ inicialmente escolhida. Para as estimativas foram
 utilizados sinais de entrada do tipo PRBS com 127 pontos para a excitação da planta.
 
 Na Figura \ref{fig:vrft_nl_wiener_step} é apresentado um comparativo entre o sinal de saída do sistema
-$T_d(z)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado com
+$T_d(q)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado com
 $\theta_{\text{médio}}$ é aplicado sobre a planta em malha fechada.
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_step.eps}
-	\caption{Comparativo da resposta a um degrau unitário do modelo de referência $T_d(z)$ com o sistema real quando o
+	\caption{Comparativo da resposta a um degrau unitário do modelo de referência $T_d(q)$ com o sistema real quando o
 	controlador controlador não linear representado por um modelo NARMAX polinomial é inserido na planta.}
 	\label{fig:vrft_nl_wiener_step}
 \end{figure}

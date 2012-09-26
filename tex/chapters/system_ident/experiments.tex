@@ -26,7 +26,7 @@ Um sinal quasi-estacionário $u(t)$, com espectro $\Phi _u(\omega)$ é dito
 {\it{persistentemente excitante de ordem n}} se, para todos os filtros de forma:
 
 \begin{equation}
-M_n(z)=m_1z^{-1}+...+m_nz^{-n}
+M_n(q)=m_1q^{-1}+...+m_nq^{-n}
 \label{eq:si_data_persistence}
 \end{equation}
 a relação
@@ -53,15 +53,15 @@ Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se $\bar{R}_
 \cite{ljung}
 
 A partir da equação \eqref{eq:si_data_persistence_2} pode-se extrair interpretações mais explícitas.
-Uma delas é que a função $M_n(z)$ pode ter no máximo $n-1$ zeros diferentes dentro do círculo 
+Uma delas é que a função $M_n(q)$ pode ter no máximo $n-1$ zeros diferentes dentro do círculo 
 unitário (desde que um zero esteja sempre na origem). Por isso $u(t)$ é persistentemente excitante de ordem $n$, se o
 espectro do sinal de entrada, $\Phi _u(\omega)$, for diferente de de zero em pelo menos $n$ pontos no intervalo $-\pi<
 \omega \le \pi$. \cite{ljung} %page 413
 
 Se um sinal quasi-estacionário é filtrado por uma função de transferência estável, então o sinal resultante 
 também é um sinal quasi-estacionário e desta forma se ${ \left| { M }_{ n }({ e }^{ j\omega  }) \right|  }^{ 2
-}{ \Phi  }_{ u }(\omega )$ é o espectro do sinal $\nu (t)={ M }_{ n }(z)u(t)$ então este sinal não perde sua
-persistência de excitação se filtrado pelo filtro  ${ M }_{ n }(z)$.
+}{ \Phi  }_{ u }(\omega )$ é o espectro do sinal $\nu (t)={ M }_{ n }(q)u(t)$ então este sinal não perde sua
+persistência de excitação se filtrado pelo filtro  ${ M }_{ n }(q)$.
 
 Considere o somatório de senoides:
 \begin{equation}
@@ -78,11 +78,11 @@ de ordem $2n$.
 
 Na Seção \ref{sec:si_data_persistently_excitation} foi visto como caracterizar
 sinais que são suficiente informativos. Considere um conjunto de modelos $\mathcal{M}$ para um sistema 
-SISO descrito por \eqref{eq:si_intro_model} tendo a função de transferência $G(z,\theta)$ a
+SISO descrito por \eqref{eq:si_intro_model} tendo a função de transferência $G(q,\theta)$ a
 função racional:
 
 \begin{equation}
-G(z,\theta)=\frac{B(z,\theta)}{F(z,\theta)}=\frac{z^{n_k}(b_1+b_2z^{-1}+...+b_{nb}z^{-n_b+1})}{1+f_1z^{-1}+...+f_{n_f}z^{-nf}}
+G(q,\theta)=\frac{B(q,\theta)}{F(q,\theta)}=\frac{q^{n_k}(b_1+b_2q^{-1}+...+b_{nb}q^{-n_b+1})}{1+f_1q^{-1}+...+f_{n_f}q^{-nf}}
 \label{eq:si_data_g_rational}
 \end{equation}
 
@@ -112,13 +112,13 @@ $\mathcal{M}$, que conseguem descrever exatamente o sistema $\mathcal{S}$.
 Considere como exemplo o seguinte sistema real:
 
 \begin{equation}
-\mathcal{S}: \;\;\; G_0(z)=\frac{a}{z-b}, \;\;\; H_0(z)=\frac{1}{z-b}
+\mathcal{S}: \;\;\; G_0(q)=\frac{a}{q-b}, \;\;\; H_0(q)=\frac{1}{q-b}
 \label{eq:si_exper_overfit_ex_s}
 \end{equation}
 e a classe de modelos:
 
 \begin{equation}
-\mathcal{M}: \;\;\; G(z, \theta)=\frac{\theta_1(z-\theta_2)}{(z-\theta_3)(z-\theta_4)}, \;\;\; H(z, \theta)=\frac{1}{z-\theta_5}
+\mathcal{M}: \;\;\; G(q, \theta)=\frac{\theta_1(q-\theta_2)}{(q-\theta_3)(q-\theta_4)}, \;\;\; H(q, \theta)=\frac{1}{q-\theta_5}
 \label{eq:si_exper_overfit_ex_m}
 \end{equation}
 

@@ -44,9 +44,9 @@
 	\item [$A^{T}$] transposto de A
 	\item [$E(\cdot)$] valor esperado estimado
 	\item [$res(x, 2)$] resíduo de x dividido por 2
-	\item [$G_0(z)$] Função de transferência que representa a planta real do sistema.
+	\item [$G_0(q)$] Função de transferência que representa a planta real do sistema.
 	\item [$G(q, \theta)$] Função de transferência que representa a planta a ser estimada na identificação.
-	\item [$H_0(z)$] filtro do ruído branco que atua sobre o sistema.
+	\item [$H_0(q)$] filtro do ruído branco que atua sobre o sistema.
 	\item [$H(q, \theta)$] filtro do ruído branco que atua sobre o sistema,	a qual se quer identificar.
 	\item [$\theta_0$] conjunto de parâmetros que faz com que o modelo identificado seja igual ao sistema real.
 	\item [$\theta^*$] conjunto de parêmetros quando a quantidade de dados $N \to \infty$
@@ -55,24 +55,24 @@
 	\item [$\mathcal{S}$] sistema real sob análise.
 	\item [$\mathcal{M}$] classe de modelos utilizada para identificar o sistema real.
 	\item [$\mathcal{C}$] classe de modelos utilizada para identificar o controlador do sistema.
-	\item [$T(z)$] comportamento do sistema em malha fechada.
-	\item [$T_d(z)$] comportamento do sistema em malha fechada desejado.
+	\item [$T(q)$] comportamento do sistema em malha fechada.
+	\item [$T_d(q)$] comportamento do sistema em malha fechada desejado.
 	\item [$u(t)$] sinal de saída do controlador ou sinal de entrada da planta.
 	\item [$y(t)$] sinal de saída da planta.
 	\item [$e(t)$] euido branco.
-	\item [$\nu(t)$] ruído resultante depois de alterado pelo filtro $H_0(z)$
+	\item [$\nu(t)$] ruído resultante depois de alterado pelo filtro $H_0(q)$
 	\item [$\phi$] variável de regressão utilizada para identificação do sistema.
 	\item [$Z(t)$] instrumento utilizado no método de variáveis instrumentais.
 	\item [$\Phi_{a}$ ] espectro do sinal $a$.
 	\item [$\prod$] produtório
 	\item [$\sum$] somatório
-	\item [$L(z)$] filtro utilizado no método VRFT.
+	\item [$L(q)$] filtro utilizado no método VRFT.
 	\item [$\sigma_e^2$] variância do ruído.
 	\item [$\chi^2(n)$] distribuição Qui-quadrado com n graus de liberdade
 	\item [$J_y(\cdot)$] função custo para critério de seguimento de referência.
 	\item [$\mathbb{R}$] conjunto dos números reais
 	\item [$\mathbb{R}^n$] espaço euclidiano de ordem n
-	\item [$z$] operador de avanço
+	\item [$q$] operador de avanço
 	\item [$\varepsilon(t,\theta)$] erro de predição
 	\item [$\epsilon(t)$] sinal de entrada do controlador, erro entre a saída $y(t)$ e a referência $r(t)$
 	\item [$Z^N$] conjunto de dados de tamanho $N$

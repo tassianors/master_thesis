@@ -14,17 +14,17 @@ global do critério escolhido, sob condições ideais:
 
 \begin{itemize}
   \item O sistema não é afetado por ruído, ou seja, $\sigma_e^2(t)=0$.
-  \item O controlador ideal $C_d(z) \in C(z, \theta)$.
+  \item O controlador ideal $C_d(q) \in C(q, \theta)$.
   \item O controlador é parametrizado linearmente. 
 \end{itemize}
 
 O controlador a ser identificado pode ser parametrizado como abaixo:
 
 \begin{equation}
-C(z,\theta)=\beta^T(z)\theta
+C(q,\theta)=\beta^T(q)\theta
 \label{eq:vrft_method_controller}
 \end{equation}
-onde $\beta(z) = \left [ \beta_1(z)\;\; \beta_2(z)\;\; \cdots \;\; \beta_n(z)\right ]^T$ é um vetor
+onde $\beta(q) = \left [ \beta_1(q)\;\; \beta_2(q)\;\; \cdots \;\; \beta_n(q)\right ]^T$ é um vetor
 linear de funções de transferências de tempo discreto e $\theta$ é o vetor de parâmetros a ser estimado.
 
 O problema de identificação do controlador consiste em encontrar um $\hat{\theta}$ que minimize o
@@ -32,7 +32,7 @@ critério performance \eqref{eq:dbcd_def_track_error}, replicado abaixo:
 
 \begin{equation}
 J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d(t) \right ]^2 = \bar{E}\left [
-(T(z,\theta)-T_d(z))r(t) \right ]^2
+(T(q,\theta)-T_d(q))r(t) \right ]^2
 \nonumber
 \end{equation}
 que é dependente do modelo de referência escolhido. 
@@ -58,7 +58,7 @@ Nesta seção será apresentada uma breve descrição de como funciona o algoritmo pa
 utilizando o método VRFT. Para maiores detalhes e discussões aprofundadas é indicada a leitura de
 \cite{campi_savaresi2000, campi_leccini_savaresi2002, campestrini_nonminumum_phase, bazanella_datadriven}.
 
-Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $T_d(z)\bar{r}(t)=y(t)$.
+Baseado no sinal medido $y(t)$, considera-se um sinal $\bar{r}(t)$ tal que $T_d(q)\bar{r}(t)=y(t)$.
 Esta referência é conhecida como {\it{virtual}} pois ela não existe e não foi utilizada para gerar o
 sinal $y(t)$. A Figura \ref{fig:vrft_method_cl} apresenta o sistema em malha fechada e os sinais
 presentes.
@@ -85,9 +85,9 @@ presentes.
 \usefont{T1}{ptm}{m}{n}
 \rput(0.47,1.2707813){\small $\bar{r}(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(3.99,0.97078127){\small $C(z, \theta)$}
+\rput(3.99,0.97078127){\small $C(q, \theta)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(6.76,0.9507812){\small $G_0(z)$}
+\rput(6.76,0.9507812){\small $G_0(q)$}
 \usefont{T1}{ptm}{m}{n}
 \rput(5.51,1.2707813){\small $u(t)$}
 \usefont{T1}{ptm}{m}{n}
@@ -96,7 +96,7 @@ presentes.
 \rput(8.3,1.2707813){\small $y(t)$}
 \psframe[linewidth=0.04,dimen=outer](6.0,-0.62921876)(3.8,-1.4292188)
 \usefont{T1}{ptm}{m}{n}
-\rput(4.91,-1.0492188){\small $T_d^{-1}(z)$}
+\rput(4.91,-1.0492188){\small $T_d^{-1}(q)$}
 \psline[linewidth=0.04cm](9.0,0.97078127)(9.0,-1.0292188)
 \psline[linewidth=0.04cm](9.0,-1.0292188)(6.0,-1.0292188)
 \psline[linewidth=0.04cm](3.8,-1.0292188)(0.0,-1.0292188)
@@ -105,7 +105,7 @@ presentes.
 %}
 \caption{Diagrama de blocos para o método VRFT. São destacados os sinais reais $u(t)$ e $y(t)$ além dos sinais virtuais
 $\epsilon (t)$ e $\bar{r}(t)$. Em pontilhado está o controlador que quando aplicado sobre a malha, faz com que o
-sistema se comporte como desejado: $T_d(z)$.}
+sistema se comporte como desejado: $T_d(q)$.}
 \label{fig:vrft_method_cl}
 \end{figure}
 
@@ -119,24 +119,24 @@ filtro será explicada posteriormente na Seção \ref{sec:dbcd_vrft_framework_filte
 O algoritmo pode ser descrito pelos passos a seguir \cite{campi_savaresi2000}:
 
 \begin{enumerate}
-	\item Filtram-se os sinais de entrada e saída com algum filtro $L(z)$:
+	\item Filtram-se os sinais de entrada e saída com algum filtro $L(q)$:
 
 \begin{equation}
-y_L (t)=L(z)y(t), \;\;\; u_L (t)=L(z)u(t) 
+y_L (t)=L(q)y(t), \;\;\; u_L (t)=L(q)u(t) 
 \label{eq:vrft_method_algorithm_filter_io}
 \end{equation}
 
 \begin{equation}
-\epsilon_L (t)=L(z)\epsilon (t)=\bar{r}_L (t)-y_L (t) 
+\epsilon_L (t)=L(q)\epsilon (t)=\bar{r}_L (t)-y_L (t) 
 \nonumber
 \end{equation}
 
 
 \item Encontra-se um sinal de referência $\bar{r}_L (t)$ no qual a saída do modelo de referência
-$T_d(z)$ seja exatamente $y_L (t)$ quando alimentado pelo sinal:
+$T_d(q)$ seja exatamente $y_L (t)$ quando alimentado pelo sinal:
 
 \begin{equation}
-y_L (t)=T_d(z) \bar{r}_L (t)
+y_L (t)=T_d(q) \bar{r}_L (t)
 \label{eq:vrft_method_algorithm_ref}
 \end{equation}
 
@@ -148,7 +148,7 @@ J_{VR}^N(\theta)=\frac{1}{N}\sum_{t=1}^{N}(u_L(t)-\varphi_L^T(t)\theta)^2
 \end{equation}
 
 \begin{equation}
-\varphi_L(t)=\beta(z)\epsilon_L(t)
+\varphi_L(t)=\beta(q)\epsilon_L(t)
 \nonumber
 \end{equation}
 
@@ -204,33 +204,33 @@ equivalente a minimizar $J_y(\theta)$ sob condições ideais.}
 \end{figure}
 
 %===============================================================================
-\subsection{Utilização do Filtro $L(z)$}
+\subsection{Utilização do Filtro $L(q)$}
 \label{sec:dbcd_vrft_framework_filter}
 %===============================================================================
 
 Considerando a função custo $J_{y}(\theta)$ apresentada em \eqref{eq:dbcd_def_track_error} e o
 critério do método de referência virtual $J_{VR}(\theta)$ apresentado em \eqref{eq:vrft_method_algorithm_criter} serem
-diferentes fora de situações ideais. A escolha correta do filtro $L(z)$ propicia que estas duas equações tenham mínimos
+diferentes fora de situações ideais. A escolha correta do filtro $L(q)$ propicia que estas duas equações tenham mínimos
 muito próximos \cite{campi_leccini_savaresi2002}.
 
-A utilização do filtro é de grande importância em situações onde a escolha do modelo $C(z,\theta)$ não consegue
-representar exatamente o controlador ótimo ($C_d(z)$), ou seja:
+A utilização do filtro é de grande importância em situações onde a escolha do modelo $C(q,\theta)$ não consegue
+representar exatamente o controlador ótimo ($C_d(q)$), ou seja:
 
 \begin{equation}
-C_d(z) \notin \mathcal{C}
+C_d(q) \notin \mathcal{C}
 \nonumber
 \end{equation}
 
 Aplicando o teorema de Parseval a função custo de seguimento de referência:
 
 \begin{equation}
-J_y(\theta)=\bar{E}\left [ (T(z,\theta)-T_d(z))r(t) \right ]^2
+J_y(\theta)=\bar{E}\left [ (T(q,\theta)-T_d(q))r(t) \right ]^2
 \nonumber
 \end{equation}
 e usando as relações de malha fechada:
 
 \begin{equation}
-T_d(z)=\frac{C_d(z)G_0(z)}{1+C_d(z)G_0(z)}\;\;\;\; T(z, \theta)=\frac{C(z, \theta)G_0(z)}{1+C(z, \theta)G_0(z)}
+T_d(q)=\frac{C_d(q)G_0(q)}{1+C_d(q)G_0(q)}\;\;\;\; T(q, \theta)=\frac{C(q, \theta)G_0(q)}{1+C(q, \theta)G_0(q)}
 \nonumber
 \end{equation}
 
@@ -250,10 +250,10 @@ J_y(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | G_0(e^{j\omega}) \right |^2
 \label{eq:dbcd_vrft_jy_cost}
 \end{eqnarray}
 
-Adiciona-se o filtro $L(z)$ à função custo do VRFT, $J_{VR}(\theta)$:
+Adiciona-se o filtro $L(q)$ à função custo do VRFT, $J_{VR}(\theta)$:
 
 \begin{equation}
-J_{VR}(\theta)=\bar{E}\left [ L(z)(u(t)-C(z,\theta)\bar{\epsilon}(t)) \right ]^2
+J_{VR}(\theta)=\bar{E}\left [ L(q)(u(t)-C(q,\theta)\bar{\epsilon}(t)) \right ]^2
 \nonumber
 \end{equation}
 e usando as relações:
@@ -278,14 +278,14 @@ J_{VR}(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | L(e^{j\omega}) \right |^
 \label{eq:dbcd_vrft_jvr_cost}
 \end{eqnarray}
 
-Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(z) \in
-\mathcal{C}$ as duas funções custo são iguais, possuindo também o mesmo mínimo. Quando $C_d(z) \notin \mathcal{C}$
+Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(q) \in
+\mathcal{C}$ as duas funções custo são iguais, possuindo também o mesmo mínimo. Quando $C_d(q) \notin \mathcal{C}$
 nenhum dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro
 dos dois integrandos são diferentes, não existe motivos para esperar que os dois custos sejam os mesmos.
 \cite{bazanella_datadriven}
 
 Existe entretanto o parâmetro livre que foi incluído à função custo do VRFT que pode ser escolhido a fim de aproximar
-estes dois integrandos: o filtro $L(z)$. Para fazer com que $J_{VR}(\theta)=J_y(\theta)$, é suficiente escolher
+estes dois integrandos: o filtro $L(q)$. Para fazer com que $J_{VR}(\theta)=J_y(\theta)$, é suficiente escolher
 $L(e^{j\omega})$ como:
 
 \begin{equation}
@@ -296,12 +296,12 @@ $L(e^{j\omega})$ como:
 onde $\Phi_r(e^{j\omega})$ representa o espectro do sinal real da referência $r(t)$ e $\Phi_u(e^{j\omega})$ representa o
 espectro do sinal aplicado sobre o sistema, medido durante o experimento do VRFT.
 
-O cálculo do filtro apresentado em \eqref{eq:dbcd_vrft_filter_l} requer do conhecimento da função $S(z,\theta)$, que
+O cálculo do filtro apresentado em \eqref{eq:dbcd_vrft_filter_l} requer do conhecimento da função $S(q,\theta)$, que
 não é conhecida. Então a implementação deste filtro irá recair em alguma aproximação desta função
 de transferência. Quanto melhor for a aproximação, mais próximos serão os mínimos das funções custo $J_y(\theta)$ e
 $J_{VR}(\theta)$. \cite{bazanella_datadriven}
 
-Entretanto esta não é a única escolha para a aproximação de $S(z,\theta)$; o método VRFT usa invariavelmente o seguinte:
+Entretanto esta não é a única escolha para a aproximação de $S(q,\theta)$; o método VRFT usa invariavelmente o seguinte:
 
 \begin{equation}
 \left | S(e^{j\omega},\theta) \right |^2\approx \left | S_d(e^{j\omega}) \right |^2=\left | 1-T_d(e^{j\omega}) \right
@@ -318,17 +318,17 @@ transferência do filtro pode ser obtida por:
 \label{eq:dbcd_vrft_filter_l_vrft}
 \end{equation}
 
-Para o caso onde $C_d \in C(z, \theta)$ a escolha de $L(z)$ não afeta o resultado, usualmente
-escolhe-se então $L(z)=1$. \cite{campi_leccini_savaresi2002}
+Para o caso onde $C_d \in C(q, \theta)$ a escolha de $L(q)$ não afeta o resultado, usualmente
+escolhe-se então $L(q)=1$. \cite{campi_leccini_savaresi2002}
 
-Com o filtro $L(z)$ calculado como em \eqref{eq:dbcd_vrft_filter_l_vrft}, o valor assintótico de $\theta$ pode ser
+Com o filtro $L(q)$ calculado como em \eqref{eq:dbcd_vrft_filter_l_vrft}, o valor assintótico de $\theta$ pode ser
 escrito como:
 
 \begin{equation}
 \theta_*=\bar{E}\left [ \varphi_L(t)\varphi_L(t)^T  \right ]^{-1}\bar{E}\left [ \varphi_L(t)u_L(t)  \right ]
 \label{eq:dbcd_vrft_filter_estim}
 \end{equation}
-onde $\varphi_L(t)=L(z)\varphi(t)$ e $u_L(t)=L(z)u(t)$. O cálculo real para obter os parâmetros da estimativa é dado
+onde $\varphi_L(t)=L(q)\varphi(t)$ e $u_L(t)=L(q)u(t)$. O cálculo real para obter os parâmetros da estimativa é dado
 por:
 
 \begin{equation}
@@ -338,7 +338,7 @@ por:
 e na ausência de ruído, $\theta$ é igual ao valor de $\theta_*$ apresentado em \eqref{eq:dbcd_vrft_filter_estim}.
 
 Na Figura \ref{fig:vrft_cost_functions_L} um exemplo hipotético é apresentado onde o valor de $\theta$ que minimiza
-$J_{VR}(\theta)$ se aproxima do valor de mínimo de $J_y(\theta)$ com a utilização do filtro $L(z)$. Também observa-se que a curva de
+$J_{VR}(\theta)$ se aproxima do valor de mínimo de $J_y(\theta)$ com a utilização do filtro $L(q)$. Também observa-se que a curva de
 $J_{VR}(\theta)$ quando o filtro é aplicado apresenta uma redução na sua concavidade, fazendo com que o valor de mínimo
 na curva encontrado pelo algoritmo seja menos preciso, aumentando o a variância das estimativas, enquanto reduz o erro
 de polarização.
@@ -375,7 +375,7 @@ de polarização.
 \end{pspicture} 
 }
 \caption{Exemplo hipotético de funções custo na situação onde o controlador ideal não consegue ser representado pelo
-modelo. O uso do filtro $L(z)$ reduz o erro de polarização.}
+modelo. O uso do filtro $L(q)$ reduz o erro de polarização.}
 \label{fig:vrft_cost_functions_L}
 \end{figure}
 
@@ -388,7 +388,7 @@ Nesta seção será apresentado brevemente o comportamento do método quando o sinal
 corrompido por um ruído aditivo como:
 
 \begin{equation}
-\tilde{y}(t)=G_0(z)u(t) + \nu(t)
+\tilde{y}(t)=G_0(q)u(t) + \nu(t)
 \label{eq:vrft_framework_noise_y}
 \end{equation}
 
@@ -417,7 +417,7 @@ $J_{VR}(\theta)$ (equação \eqref{eq:dbcd_vrft_jvr_cost}) observa-se que há a adi
 \right |^2}\left | L(e^{j\omega}) \right |^2\Phi _d
 \nonumber
 \end{equation}
-e que este termo não decai a zero mesmo que $C_d(z) \in \mathcal{C}$. Desta forma é esperado que haja erro de
+e que este termo não decai a zero mesmo que $C_d(q) \in \mathcal{C}$. Desta forma é esperado que haja erro de
 polarização nas estimativas devido ao ruído mesmo quando a classe de controladores consegue descrever o controlador
 ideal.
 
@@ -426,7 +426,7 @@ adição da variável instrumental $\zeta(t)$. Em \eqref{eq:vrft_framework_noise_iv
 regressor deste instrumento:
 
 \begin{equation}
-\tilde{\varphi }_L(t)=\beta(z)L(z)\left ( T_d(z)^{-1}-1 \right )\tilde{y}(t)
+\tilde{\varphi }_L(t)=\beta(q)L(q)\left ( T_d(q)^{-1}-1 \right )\tilde{y}(t)
 \label{eq:vrft_framework_noise_iv}
 \end{equation}
 
@@ -449,20 +449,20 @@ esperado é pequeno, além disso um segundo experimento não é necessário. \cite{ca
 	$\tilde{y}(t)$ e $\tilde{y}(t)'$ serão diferentes. Obtém-se então a variável instrumental:
 	
 	\begin{equation}
-	\zeta(y)=\beta(z)L(z)\left ( T_d(z)^{-1}-1 \right )\tilde{y}(t)'
+	\zeta(y)=\beta(q)L(q)\left ( T_d(q)^{-1}-1 \right )\tilde{y}(t)'
 	\nonumber
 	\end{equation}
 	
-	\item {\it{Identificação da planta:}} Identifica-se a planta $G_0(z)$ com uma família de modelos como $G(z,\theta_G)$ a
+	\item {\it{Identificação da planta:}} Identifica-se a planta $G_0(q)$ com uma família de modelos como $G(q,\theta_G)$ a
 	partir do conjunto de dados $\left \{ u(t), \; \tilde{y}(t) \right \}_{t=1,..., N}$ e então gera-se o sinal simulado
-	$\hat{y}=G(z,\theta_G)u(t)$, obtendo a variável instrumental como:
+	$\hat{y}=G(q,\theta_G)u(t)$, obtendo a variável instrumental como:
 
 	\begin{equation}
-	\zeta(y)=\beta(z)L(z)\left ( T_d(z)^{-1}-1 \right )\hat{y}(t)
+	\zeta(y)=\beta(q)L(q)\left ( T_d(q)^{-1}-1 \right )\hat{y}(t)
 	\nonumber
 	\end{equation}
 	
-	Devido às incertezas na estimativa de $G(z,\theta_G)$, este segundo método não garante que a
+	Devido às incertezas na estimativa de $G(q,\theta_G)$, este segundo método não garante que a
 	estimativa tenda assintoticamente a $\theta_0$.
 \end{itemize}
 
@@ -472,8 +472,8 @@ esperado é pequeno, além disso um segundo experimento não é necessário. \cite{ca
 %===============================================================================
 
 Nesta seção serão apresentados alguns exemplos ilustrativos da utilização do método do VFRT. Serão utilizados sistemas
-lineares modelados pelas classes de modelos ARX e BJ quando o controlador ideal $C_d(z)$ faz parte da classe de
-controladores $C(z,\theta)$ e também um caso onde o controlador ideal não consegue ser presentado pela classe de
+lineares modelados pelas classes de modelos ARX e BJ quando o controlador ideal $C_d(q)$ faz parte da classe de
+controladores $C(q,\theta)$ e também um caso onde o controlador ideal não consegue ser presentado pela classe de
 controlador escolhida.
 
 Nas identificações apresentadas a seguir será sempre utilizado um sinal PRBS de ordem 7.
@@ -486,8 +486,8 @@ Nas identificações apresentadas a seguir será sempre utilizado um sinal PRBS de 
 Considere o sistema real definido como:
 
 \begin{equation}
-G_{ 0 }(z)=\frac { 0.5 }{ z-0.85 } ,\quad \quad \quad H_{ 0 }(z)=\frac { z }{
-z-0.4 } 
+G_{ 0 }(q)=\frac { 0.5 }{ q-0.85 } ,\quad \quad \quad H_{ 0 }(q)=\frac { q }{
+q-0.4 } 
 \nonumber
 \end{equation}
 
@@ -496,21 +496,21 @@ Este sistema pode ser compreendido como um sistema {\it{Box-Jenkins}} (BJ)
 fechada comporte-se de acordo com:
 
 \begin{equation}
-T_d(z)=\frac { 0.4 }{ z-0.6 }
+T_d(q)=\frac { 0.4 }{ q-0.6 }
 \label{eq:vrft_methos_ex_bj_M}
 \end{equation}
 
 Tem-se assim que o controlador ideal é dado por:
 
 \begin{equation}
-C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))} = \frac { 0.8(z - 0.85) }{ z-1 }
+C_d(q)=\frac{T_d(q)}{G_0(q)(1-T_d(q))} = \frac { 0.8(q - 0.85) }{ q-1 }
 \label{eq:vrft_methos_ex_bj_cd}
 \end{equation}
 
 Observa-se que este controlador pode ser representado como um controlador {\it{PI}} como em: 
 
 \begin{equation}
-C(z, \theta)=\frac { \theta_1 z +\theta_2}{ z-1 }
+C(q, \theta)=\frac { \theta_1 q +\theta_2}{ q-1 }
 \label{eq:vrft_methos_ex_bj_c}
 \end{equation}
 
@@ -628,28 +628,28 @@ Seção \ref{sec:dbcd_vrft_framework_noise}.
 Considere o sistema real definido pelo modelo ARX:
 
 \begin{equation}
-G_{ 0 }(z)=\frac { z }{ (z-0.9)(z-0.8) } ,\quad \quad \quad H_{ 0 }(z)=\frac { z^2 }{ (z-0.9)(z-0.8) } 
+G_{ 0 }(q)=\frac { q }{ (q-0.9)(q-0.8) } ,\quad \quad \quad H_{ 0 }(q)=\frac { q^2 }{ (q-0.9)(q-0.8) } 
 \nonumber
 \end{equation}
 
 Deseja-se que o sistema em malha fechada comporte-se como:
 
 \begin{equation}
-T_d(z)=\frac { 0.4 }{ z-0.6 }
+T_d(q)=\frac { 0.4 }{ q-0.6 }
 \label{eq:vrft_methos_ex_arx_M}
 \end{equation}
 
 Tem-se assim que o controlador ideal é definido por:
 
 \begin{equation}
-C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))}=\frac { 0.4(z - 0.9)(z-0.8) }{ z(z-1) }
+C_d(q)=\frac{T_d(q)}{G_0(z)(1-T_d(q))}=\frac { 0.4(q - 0.9)(q-0.8) }{ q(q-1) }
 \label{eq:vrft_methos_ex_arx_cd}
 \end{equation}
 
 Observa-se que este controlador pode ser representado como um controlador {\it{PID}} como em: 
 
 \begin{equation}
-C(z,\theta )=\frac { \theta _{ 1 }z^2+\theta _{ 2 }z+\theta _{ 3 } }{ z(z-1) } 
+C(q,\theta )=\frac { \theta _{ 1 }q^2+\theta _{ 2 }q+\theta _{ 3 } }{ q(q-1) } 
 \label{eq:vrft_methos_ex_arx_c}
 \end{equation}
 
@@ -707,33 +707,33 @@ está em todas as simulações muito próximo ao valor real $\theta_0$ almejado.
 %===============================================================================
 
 Até este ponto foram apresentados exemplos de uso do método VRFT quando o controlador que leva o sistema para
-o comportamento desejado $T_d(z)$ faz parte da classe escolhida para a identificação. Nesta seção será apresentado um
-exemplo onde a classe de modelos do controlador escolhida não consegue representar o controlador ideal $C_d(z)$. 
+o comportamento desejado $T_d(q)$ faz parte da classe escolhida para a identificação. Nesta seção será apresentado um
+exemplo onde a classe de modelos do controlador escolhida não consegue representar o controlador ideal $C_d(q)$. 
 Considere para isso o sistema real descrito por:
 
 \begin{equation}
-G_{ 0 }(z)=\frac { 0.2(z-0.7) }{ (z-0.9)(z-0.5) } ,\quad \quad \quad H_{ 0 }(z)=\frac { z }{ z-0.3 } 
+G_{ 0 }(q)=\frac { 0.2(q-0.7) }{ (q-0.9)(q-0.5) } ,\quad \quad \quad H_{ 0 }(q)=\frac { q }{ q-0.3 } 
 \nonumber
 \end{equation}
 
 Deseja-se que em malha fechada ele se comporte como em: 
 
 \begin{equation}
-T_d(z)=\frac { 0.16z }{ (z-0.6)^2 }
+T_d(q)=\frac { 0.16q }{ (q-0.6)^2 }
 \label{eq:vrft_methos_ex_pid_not_M}
 \end{equation}
 
 Neste caso o controlador ideal é definido por
 
 \begin{equation}
-C_{ d }(z)=\frac { 0.8z(z-0.9)(z-0.5) }{ (z-1)(z-0.36)(z-0.7) } 
+C_{ d }(q)=\frac { 0.8q(q-0.9)(q-0.5) }{ (q-1)(q-0.36)(q-0.7) } 
 \label{eq:vrft_methos_ex_pid_not_cd}
 \end{equation}
 
 Para esta identificação optou-se por um controlador do tipo PID como em:
  
 \begin{equation}
-C(z,\theta )=\frac { \theta _{ 1 }z^2+\theta _{ 2 }z+\theta _{ 3 } }{ z(z-1) } 
+C(q,\theta )=\frac { \theta _{ 1 }q^2+\theta _{ 2 }q+\theta _{ 3 } }{ q(q-1) } 
 \label{eq:vrft_methos_ex_pid_not_c}
 \end{equation}
 
@@ -755,7 +755,7 @@ Repetindo a simulação, mas agora sem que o procedimento da utilização do filtro 
 \end{equation}
 
 Aplicando-se estes resultados ao controlador apresentado em \eqref{eq:vrft_methos_ex_pid_not_c} e de posse do
-comportamento desejado para o sistema em malha fechada ($T_d(z)$) é possível fazer um comparativo da resposta
+comportamento desejado para o sistema em malha fechada ($T_d(q)$) é possível fazer um comparativo da resposta
 ao salto unitário para o sistema utilizando os dois controladores obtidos. O resultado é apresentado na Figura
 \ref{fig:vrft_notinclass_step}.
 
@@ -770,18 +770,18 @@ ao salto unitário para o sistema utilizando os dois controladores obtidos. O res
 
 Observa-se que para o sistema que utiliza o controlador estimado utilizando-se o filtro $L$, a resposta ao
 degrau unitário tem menos erro que o sistema utilizando o outro controlador, ficando este primeiro muito mais próximo da
-função $T_d(z)$ desejada. Os custos destes dois sistemas são apresentados na Tabela \ref{table:vrft_method_notinclass}.
+função $T_d(q)$ desejada. Os custos destes dois sistemas são apresentados na Tabela \ref{table:vrft_method_notinclass}.
 
 \begin{table*}[htbp]
 \begin{center}
-\caption{Valor dos custos $J_{VR}^N$ e $J_{y}$ para o sistema controlado por $C(z)$ e $C_L(z)$}
+\caption{Valor dos custos $J_{VR}^N$ e $J_{y}$ para o sistema controlado por $C(q)$ e $C_L(q)$}
 \label{table:vrft_method_notinclass}
 \begin{tabular}{ccc}
 \hline
         Controlador & $J_{VR}^N(\theta)$ & $J_{y}(\theta)$ \\
 \hline
-	$C(z)$   & 0.2877 &  0.1270 \\
-	$C_L(z)$ & 0.4481 &  0.0542 \\
+	$C(q)$   & 0.2877 &  0.1270 \\
+	$C_L(q)$ & 0.4481 &  0.0542 \\
 \hline
 \end{tabular}
 \end{center}
@@ -794,7 +794,7 @@ Bode dos controladores obtidos (utilizando a média das estimativas obtidas).
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_notinclass_bode.eps}
 	\caption{Diagrama de Bode para as funções de transferência dos controladores estimados utilizando VRFT com e
-	sem o filtro $L(z)$ e variáveis instrumentais.}
+	sem o filtro $L(q)$ e variáveis instrumentais.}
 	\label{fig:vrft_notinclass_bode}
 \end{figure}
 

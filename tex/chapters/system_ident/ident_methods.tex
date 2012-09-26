@@ -91,7 +91,7 @@ Para a primeira condição algumas exceções são apresentadas: \cite{system_identif
 \begin{itemize}
   \item Se a entrada não for persistentemente excitante.
   \item Os dados não são afetados por ruído ($\nu(t) \equiv 0$) e a ordem da classe de modelos é escolhida com um valor
-  muito alto, com relação a ordem do sistema o que implica que $A(z)$ e $B(z)$ possuem fatores comuns. 
+  muito alto, com relação a ordem do sistema o que implica que $A(q)$ e $B(q)$ possuem fatores comuns. 
   \item A entrada $u(t)$ é gerada por uma realimentação de saída fazendo com que os regressores sejam diretamente
   relacionados com o ruído por meio do sinal $y(t)$.
 \end{itemize}
@@ -167,16 +167,16 @@ O aumento do erro de variância, como foi apresentado anteriormente, justifica a 
 estimativa dos parâmetros, almejando um erro de polarização nulo e com o menor erro de variância possível.
 
 Desta forma, tem-se a possibilidade de incluir o modelo do ruído ao processo de identificação. A adição
-de $H(z,\theta)$ à identificação traz a vantagem de que quando a classe de modelos $\mathcal{M}$ consegue representar a
+de $H(q,\theta)$ à identificação traz a vantagem de que quando a classe de modelos $\mathcal{M}$ consegue representar a
 totalidade das dinâmicas contidas no sistema real $\mathcal{S}$ então o erro de polarização é zerado. Por questões de
 simplicidade de implementação e utilização,  deseja-se que seja possível a utilização do método dos mínimos quadrados
-para a realização da estimativa, o que só é possível quando o denominador de $G(z,\theta)$ e $H(z,\theta)$ são iguais.
+para a realização da estimativa, o que só é possível quando o denominador de $G(q,\theta)$ e $H(q,\theta)$ são iguais.
 No caso da estrutura de modelos completa apresentada em \eqref{eq:si_modeling_lti_det_global} e replicado aqui:
 
 \begin{equation}
-A(z)y(t)=\frac{B(z)}{F(z)}u(t)+\frac{C(z)}{D(z)}e(t)
+A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
 \nonumber
 \end{equation}
-o sistema não é linearmente parametrizável quando todos os polinômios são diferentes do caso unitário ($A(z),\ldots,
-F(z) \ne 1$) e com isso a função custo não é convexa, adicionando um grau considerável de complexidade aos algoritmos
+o sistema não é linearmente parametrizável quando todos os polinômios são diferentes do caso unitário ($A(q),\ldots,
+F(q) \ne 1$) e com isso a função custo não é convexa, adicionando um grau considerável de complexidade aos algoritmos
 para encontrar o mínimo global da equação. \cite{system_identification}

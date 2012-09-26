@@ -26,7 +26,7 @@ y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
 Deseja-se que em malha fechada seu comportamento seja linear como em:
 
 \begin{equation}
-T_d(z)=\frac{0.4}{z-0.6}
+T_d(q)=\frac{0.4}{q-0.6}
 \label{eq:vrft_nl_dinamic_ex1_mz}
 \end{equation}
 
@@ -39,7 +39,7 @@ y(t)=0.4r(t-1)+0.6y(t-1)
 
 Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex1_y} com \eqref{eq:vrft_nl_dinamic_ex1_mt} e isolar o
 sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
-comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal $\mathcal{C}_d$ descrito
+comportamento descrito por $T_d(q)$ em malha fechada. Obtém-se desta forma um controlador ideal $\mathcal{C}_d$ descrito
 como em:
 
 \begin{equation}
@@ -152,7 +152,7 @@ y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}
 Deseja-se que em malha fechada seu comportamento seja linear como em:
 
 \begin{equation}
-T_d(z)=\frac{0.4}{z-0.6}
+T_d(q)=\frac{0.4}{q-0.6}
 \label{eq:vrft_nl_dinamic_ex3_mz}
 \end{equation}
 
@@ -165,7 +165,7 @@ y(t)=0.4r(t-1)+0.6y(t-1)
 
 Ao igualar a equação \eqref{eq:vrft_nl_dinamic_ex3_y} com \eqref{eq:vrft_nl_dinamic_ex3_mt} e isolar o
 sinal $u(t)$ tem-se a equação que descreve o comportamento do controlador que levará a planta a ter o
-comportamento descrito por $T_d(z)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
+comportamento descrito por $T_d(q)$ em malha fechada. Obtém-se desta forma um controlador ideal como em:
 
 \begin{equation}
 u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
@@ -213,7 +213,7 @@ degrau unitário para o sistema desejado e para o sistema obtido com o controlado
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vr_rational_notinclass_ex3_step.eps}
 	\caption{Exemplo onde $\mathcal{C}_d \notin \mathcal{C}$: Resposta do sistema ao degrau unitário para o
-	sistema desejado $T_d(z)$ e o sistema quando o controlador parametrizado por $\theta$ como descrito em
+	sistema desejado $T_d(q)$ e o sistema quando o controlador parametrizado por $\theta$ como descrito em
 	\eqref{eq:vr_rational_ex3_theta}.}
 	\label{fig:vr_rational_notinclass_ex3_step}
 \end{figure}

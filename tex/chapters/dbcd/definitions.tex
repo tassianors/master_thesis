@@ -46,10 +46,10 @@ gerais, que contém melhorias em objetivos de robustez. \cite{Bazanella_h2criteri
 Na Figura \ref{fig:vrft_db_control_loop} é apresentado um usual sistema com realimentação de saída onde são
 destacados os blocos do controlador, da planta e da função que modifica o ruído branco $e(t)$.
 
-O ruído é um processo quasi-estacionário, que pode ser descrito como $\nu(t)=H_0(z)e(t)$, onde
-$e(t)$ é ruído branco com variância $\sigma_e^2(t)$. Ambas funções de transferência, $G_0(z)$ e $H_0(z)$,
+O ruído é um processo quasi-estacionário, que pode ser descrito como $\nu(t)=H_0(q)e(t)$, onde
+$e(t)$ é ruído branco com variância $\sigma_e^2(t)$. Ambas funções de transferência, $G_0(q)$ e $H_0(q)$,
 são racionais e causais. Assume-se que $H_0(\infty)=1$, ou seja, a resposta impulsiva do filtro
-$H_0(z)$ satisfaz $h_0(0)=1$. \cite{campestrini}
+$H_0(q)$ satisfaz $h_0(0)=1$. \cite{campestrini}
 
 \begin{figure}[htbp]
 \center
@@ -86,9 +86,9 @@ $H_0(z)$ satisfaz $h_0(0)=1$. \cite{campestrini}
 \usefont{T1}{ptm}{m}{n}
 \rput(0.441875,-0.49921885){\small $r(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(3.561875,-0.79921883){\small $C(z, \theta)$}
+\rput(3.561875,-0.79921883){\small $C(q, \theta)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(6.331875,-0.8192189){\small $G_0(z)$}
+\rput(6.331875,-0.8192189){\small $G_0(q)$}
 \usefont{T1}{ptm}{m}{n}
 \rput(5.081875,-0.49921885){\small $u(t)$}
 \usefont{T1}{ptm}{m}{n}
@@ -99,7 +99,7 @@ $H_0(z)$ satisfaz $h_0(0)=1$. \cite{campestrini}
 \rput(9.271875,-0.49921885){\small $y(t)$}
 \psframe[linewidth=0.04,dimen=outer](9.231875,1.2007811)(7.631875,0.40078118)
 \usefont{T1}{ptm}{m}{n}
-\rput(8.411875,0.7807812){\small $H_0(z)$}
+\rput(8.411875,0.7807812){\small $H_0(q)$}
 \psline[linewidth=0.04cm](8.43,1.1992186)(8.43,1.7992188)
 \usefont{T1}{ptm}{m}{n}
 \rput(8.871875,1.5807811){\small $e(t)$}
@@ -113,14 +113,14 @@ os principais sinais referenciados.}
 A equação: 
 
 \begin{equation}
-T(z, \theta)=\frac{C(z,\theta)G_0(z)}{1+C(z,\theta)G_0(z)}
+T(q, \theta)=\frac{C(q,\theta)G_0(q)}{1+C(q,\theta)G_0(q)}
 \label{eq:vrft_db_closed_loop}
 \end{equation}
 descreve a relação entre entrada e saída do sistema apresentado na Figura \ref{fig:vrft_db_control_loop}. Desta
 forma pode se escrever o sinal de saída do sistema como:
 
 \begin{equation}
-y(t)=T(z, \theta)r(t)
+y(t)=T(q, \theta)r(t)
 \label{eq:dbcd_def_yr}
 \end{equation}
 
@@ -143,10 +143,10 @@ Para o objetivo de seguimento de referência, a performance por este ponto de vis
 
 \begin{equation}
 J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d(t) \right ]^2 = \bar{E}\left [
-(T(z,\theta)-T_d(z))r(t) \right ]^2
+(T(q,\theta)-T_d(q))r(t) \right ]^2
 \label{eq:dbcd_def_track_error}
 \end{equation}
-onde $y(t)$ é a saída medida do sistema e $y_d(t)$ é a saída desejada, $T_d(z)$ é o comportamento desejado para o
+onde $y(t)$ é a saída medida do sistema e $y_d(t)$ é a saída desejada, $T_d(q)$ é o comportamento desejado para o
 sistema em malha fechada.
 
 Com base nas equações \eqref{eq:dbcd_def_track_error} e \eqref{eq:vrft_db_closed_loop} é possível determinar o
@@ -154,15 +154,15 @@ equacionamento para o controlador ideal, que é aquele que irá fazer com que o si
 o desejado:
 
 \begin{equation}
-C_d(z)=\frac{T_d(z)}{G_0(z)(1-T_d(z))}
+C_d(q)=\frac{T_d(q)}{G_0(q)(1-T_d(q))}
 \label{eq:dbcd_perf_tracking_cd}
 \end{equation}
 
 Outro objetivo fundamental é minimizar o efeito do ruído sobre a saída do sistema. Descreve-se a função sensibilidade
-$S(z, \theta)$ como:
+$S(q, \theta)$ como:
 
 \begin{equation}
-S(z, \theta)=\frac{1}{1+C(z, \theta)G_0(z)}
+S(q, \theta)=\frac{1}{1+C(q, \theta)G_0(q)}
 \label{eq:dbcd_perf_sensitiv}
 \end{equation}
 
@@ -170,42 +170,42 @@ A saída do sistema em malha fechada referente apenas ao ruído, ou seja, sem leva
 é dada por: \cite{bazanella_datadriven}
 
 \begin{equation}
-y_e(t, \theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} S(z, \theta)\nu(t)
+y_e(t, \theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} S(q, \theta)\nu(t)
 \label{eq:dbcd_perf_ye}
 \end{equation}
 
 O critério que determina a performance do sistema na rejeição ao ruído é dado por:
 
 \begin{equation}
-J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ y_e(t) \right ]^2 = \bar{E}\left [  S(z,
+J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ y_e(t) \right ]^2 = \bar{E}\left [  S(q,
 \theta)\nu(t) \right ]^2
 \label{eq:dbcd_perf_je}
 \end{equation}
 
-Para fazer com que $J_e(\theta)=0$ seria necessário que $S(z,\theta)=0 \;\;\forall z$, o que demandaria que $C(z,
-\theta)G_0(z) \to \infty \;\;\forall z$, tornando desta forma impossível de atingir o objetivo do critério ser zero.
+Para fazer com que $J_e(\theta)=0$ seria necessário que $S(q,\theta)=0 \;\;\forall q$, o que demandaria que $C(q,
+\theta)G_0(q) \to \infty \;\;\forall q$, tornando desta forma impossível de atingir o objetivo do critério ser zero.
 Relaxa-se então o critério de performance para:   
 
 \begin{equation}
-J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ (S(z, \theta)-S_d(z,\theta))\nu(t) \right ]^2 
+J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ (S(q, \theta)-S_d(q,\theta))\nu(t) \right ]^2 
 \label{eq:dbcd_perf_je_relax}
 \end{equation}
-onde $S_d(z,\theta)$ é a função sensibilidade desejada para o sistema.
+onde $S_d(q,\theta)$ é a função sensibilidade desejada para o sistema.
 
 Assim como o controlador apresentado em \eqref{eq:dbcd_perf_tracking_cd} é o controlador ótimo para o critério de
 performance de seguimento de referência, para o critério de rejeição ao ruido o controlador ótimo pode ser obtido. Para
-minimizar a função custo \eqref{eq:dbcd_perf_je} escolhe-se $T_e(z)$ como abaixo (detalhes podem ser obtidos em
+minimizar a função custo \eqref{eq:dbcd_perf_je} escolhe-se $T_e(q)$ como abaixo (detalhes podem ser obtidos em
 \cite{bazanella_datadriven}):
 
 \begin{equation}
-T_e(z)= 1-\frac{1}{H_0(z)} 
+T_e(q)= 1-\frac{1}{H_0(q)} 
 \label{eq:dbcd_perf_te}
 \end{equation}
 
-Da onde obtém-se o controlador desejado para a rejeição ao ruído $C_e(z)$:
+Da onde obtém-se o controlador desejado para a rejeição ao ruído $C_e(q)$:
 
 \begin{equation}
-C_e(z)=\frac{T_e(z)}{G_0(z)(1-T_e(z))}=\frac{H_0(z)-1}{G_0(z)} 
+C_e(q)=\frac{T_e(q)}{G_0(q)(1-T_e(q))}=\frac{H_0(q)-1}{G_0(q)} 
 \label{eq:dbcd_perf_ce}
 \end{equation}
 
