@@ -15,7 +15,7 @@ global do critério escolhido, sob condições ideais:
 
 \begin{itemize}
   \item O sistema não é afetado por ruído, ou seja, $\sigma_e^2(t)=0$.
-  \item O controlador ideal $C_d(q) \in C(q, \theta)$.
+  \item O controlador ideal $C_d(q) \in \mathcal{C}$.
   \item O controlador é parametrizado linearmente. 
 \end{itemize}
 
@@ -210,10 +210,10 @@ equivalente a minimizar $J_y(\theta)$ sob condições ideais.}
 \label{sec:dbcd_vrft_framework_filter}
 %===============================================================================
 
-Considerando a função custo $J_{y}(\theta)$ apresentada em \eqref{eq:dbcd_def_track_error} e o
-critério do método de referência virtual $J_{VR}(\theta)$ apresentado em \eqref{eq:vrft_method_algorithm_criter} serem
-diferentes fora de situações ideais. A escolha correta do filtro $L(q)$ propicia que estas duas equações tenham mínimos
-muito próximos \cite{campi_leccini_savaresi2002}.
+Considerando que a função custo $J_{y}(\theta)$ apresentada em \eqref{eq:dbcd_def_track_error} e o
+critério do método de referência virtual $J_{VR}(\theta)$ apresentado em \eqref{eq:vrft_method_algorithm_criter} são
+diferentes fora de situações ideais, a escolha correta do filtro $L(q)$ propicia que estas duas equações tenham
+mínimos próximos \cite{campi_leccini_savaresi2002}.
 
 A utilização do filtro é de grande importância em situações onde a escolha do modelo $C(q,\theta)$ não consegue
 representar exatamente o controlador ótimo ($C_d(q)$), ou seja:
@@ -343,7 +343,7 @@ e na ausência de ruído, $\theta$ é igual ao valor de $\theta_*$ apresentado em \
 Na Figura \ref{fig:vrft_cost_functions_L} um exemplo hipotético é apresentado onde o valor de $\theta$ que minimiza
 $J_{VR}(\theta)$ se aproxima do valor de mínimo de $J_y(\theta)$ com a utilização do filtro $L(q)$. Também observa-se que a curva de
 $J_{VR}(\theta)$ quando o filtro é aplicado apresenta uma redução na sua concavidade, fazendo com que o valor de mínimo
-na curva encontrado pelo algoritmo seja menos preciso, aumentando o a variância das estimativas, enquanto reduz o erro
+na curva encontrado pelo algoritmo seja menos preciso, aumentando a variância das estimativas, enquanto reduz o erro
 de polarização.
 
 \begin{figure}[htbp]
@@ -520,9 +520,9 @@ C(q, \theta)=\frac { \theta_1 q +\theta_2}{ q-1 }
 Escolheu-se \eqref{eq:vrft_methos_ex_bj_c} como sendo a classe de modelos a ser utilizada para a identificação do
 controlador.
 
-Utilizando o método do VRFT para identificação do controlador quando este está submetido a um ruído $\sigma_e^2=0.005$
-obtém-se as estimativas dos parâmetros $\theta_1$ e $\theta_2$ apresentados na Figura \ref{fig:vrft_bj_M10_var005}
-com um resultado de 100 simulações com $N=2540$ cada.
+Utilizando o método do VRFT para identificação do controlador quando este está submetido a um ruído
+com variância $\sigma_e^2=0.005$ obtém-se as estimativas dos parâmetros $\theta_1$ e $\theta_2$ apresentados na Figura
+\ref{fig:vrft_bj_M10_var005} com um resultado de 100 simulações com $N=2540$ cada.
 
 \begin{figure}[htbp]
 	\center
@@ -662,7 +662,7 @@ Como já foi observado, a utilização de variáveis instrumentais elimina o erro de
 existente nas estimativas do método VRFT quando há presença de ruído. Desta forma as informações apresentadas a seguir serão
 feitas utilizando variáveis instrumentais. Na Figura \ref{fig:vrft_arx_M10_var05_iv} é apresentada a estimativa dos
 parâmetros do controlador para um ruído de variância $\sigma_e ^2=0.05$. Observa-se que não há erro de polarização nas
-estimativas. O custo para esta e outra, estimativas é apresentado na Tabela \ref{table:vrft_method_arx_iv}.
+estimativas. O custo para estas e outras, estimativas são apresentados na Tabela \ref{table:vrft_method_arx_iv}.
 
 \begin{figure}[htbp] 
 	\center 
@@ -705,7 +705,7 @@ inserido sobre o sistema, mas observa-se que não há erro de polarização nas esti
 está em todas as simulações muito próximo ao valor real $\theta_0$ almejado.
 
 %===============================================================================
-\subsubsection{Controlador não pertence a classe}
+\subsubsection{Controlador não pertence à classe}
 \label{sec:dbcd_vrft_examples_not_in_class}
 %===============================================================================
 

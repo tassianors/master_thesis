@@ -86,12 +86,8 @@ G(q,\theta)=\frac{B(q,\theta)}{F(q,\theta)}=\frac{q^{n_k}(b_1+b_2q^{-1}+...+b_{n
 Um experimento em malha aberta é informativo se a sua entrada for persistentemente excitante.
 Observa-se que é necessário que a ordem de excitação seja igual ao número de parâmetros a
 serem estimados \cite{ljung}. No caso da equação apresentada em \eqref{eq:si_data_g_rational} a ordem de excitação
-necessária é $n_b+n_f$.
-
-Para um experimento em malha aberta, considerando um sistema ARMAX ({\it{Autoregressive, autoregressive model with
-exogenous input}}) e {\it{Box-Jenkins}} o experimento é suficientemente informativo se a ordem de excitação for 
-$n_b+n_a$. Em \cite{gevers_bazanella2009} foram apresentadas as condições necessárias e suficientes para informatividade
-em estruturas de modelos arbitrárias.
+necessária é $n_b+n_f$. Em \cite{gevers_bazanella2009} foram apresentadas as condições necessárias e suficientes para
+informatividade em estruturas de modelos arbitrárias.
 
 Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
 o sinal terá componentes de frequência suficientes para excitar o sistema ao ponto de ser possível observar sua dinâmica
@@ -159,7 +155,7 @@ por alguma ponderação sobre estes critérios, que podem ser \cite{ljung}:
   \item O uso pretendido do modelo.
 \end{itemize}
 
-O uso de classes de modelos com diversos parâmetros só deve ser utilizado se modelos com menos parâmetros não passaram
+O uso de classes de modelos com diversos parâmetros só deve ser utilizado se modelos com menos parâmetros não passarem
 pelos testes de validação do modelo escolhido. Desta forma mantém-se a ideia de que quanto mais simples melhor,
 garantindo a parcimônia da classe escolhida e conseguindo cumprir com o uso pretendido do sistema.
 
@@ -168,8 +164,8 @@ dificuldade em trabalhar com classes de modelos com muitos parâmetros, pelas com
 e as incertezas matemáticas inseridas. Além disso existe o problema destes modelos serem numericamente mal
 condicionados além da convicção de que alguns parâmetros são redundantes e poderiam ser removidos do modelo (aplicando
 algum algoritmo de simplificação de modelo). Um modelo com um número excessivo de parâmetros pode exibir dinâmicas que
-não são observadas no sistema real, desta forma não existe apenas o problema numérico para a identificação, mas também
-um problema de dinâmica em utilizar um modelo sobre dimensionado \cite{aguirre_jacome}.
+não são observadas no sistema real. Desta forma não existe apenas o problema numérico para a identificação, mas também
+um problema de dinâmica em utilizar um modelo sobredimensionado \cite{aguirre_jacome}.
 
 O procedimento que testa se a classe de modelos é simples e apropriada para descrever o sistema é aplicar alguma técnica
 de redução à classe de modelos. Se a ordem da classe de modelos pode ser reduzida sem afetar as propriedades de entrada

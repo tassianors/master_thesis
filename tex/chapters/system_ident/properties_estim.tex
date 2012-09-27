@@ -55,7 +55,9 @@ Além disso:
 
 Suponha que a o sistema real possa ser descrito por $\mathcal{S}$ (equação \eqref{eq:si_intro_true_system}) e o
 modelo $\mathcal{M}$ seja como apresentado em \eqref{eq:si_intro_model} e além disso que $\mathcal{S} \in \mathcal{M}$.
-Os resultados básicos de consistência são quase imediatos \cite{ljung}:
+Os resultados básicos de consistência são quase imediatos e consistem em determinar que quando o sistema real consegue
+ser representado pela classe de modelos, então não haverá erro de polarização nas estimativas obtidas. O teorema a
+seguir apresenta estas conclusões \cite{ljung}:
 
 \begin{theorem}
 Suponha que o conjunto de dados $Z^{\infty}$ está sujeito ao que foi apresentado na Seção
@@ -81,7 +83,7 @@ D_T(\mathcal{S,M})=\{ \theta \in D_{\mathcal{M}} \; |\;\; & G(e^{j\omega}, \thet
  & H(e^{j\omega}, \theta)=H_0(e^{j\omega}); -\pi \le \omega \le \pi \}
 \end{align*}
 
-Se em adição, a classe de modelos é globalmente identificável em $\theta_0 \in D_{\mathcal{M}}$, então:
+Se além disso, a classe de modelos é globalmente identificável em $\theta_0 \in D_{\mathcal{M}}$, então:
 
 \begin{equation}
 D_c=\{\theta_0\}

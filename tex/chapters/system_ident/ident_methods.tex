@@ -147,10 +147,10 @@ devem ser tão correlacionadas quanto possível com os regressores do modelo, caso
 seria próxima a singular e sua inversa muito mal condicionada. Portanto os instrumentos devem ser, idealmente, 
 pouco correlacionados com o erro e muito correlacionados com os regressores do modelo \cite{aguirre}.
 
-A correlação dos instrumentos com os regressores ($E\;Z(t)\varphi(t)^T$) sempre será inferior à correlação dos mínimos
-quadrados ($E\;\varphi(t)\varphi(t)^T$) onde temos o regressor correlacionado consigo mesmo . Isso propicia que o uso de
-variáveis instrumentais trará uma estimativa com uma variância maior que o método dos mínimos quadrados, pois a
-variância da estimativa está relacionada com o inverso de $E\;Z(t)\varphi(t)^T$.
+A correlação dos instrumentos com os regressores ($E\;\left [ Z(t)\varphi(t)^T \right ]$) sempre será inferior à
+correlação dos mínimos quadrados ($E\;\left[ \varphi(t)\varphi(t)^T \right ]$) onde temos o regressor correlacionado consigo mesmo .
+Isso propicia que o uso de variáveis instrumentais trará uma estimativa com uma variância maior que o método dos mínimos quadrados, pois a
+variância da estimativa está relacionada com o inverso de $E\;\left [Z(t)\varphi(t)^T \right ]$.
 
 %===============================================================================
 \subsection{Modelagem do ruído}
@@ -167,11 +167,12 @@ O aumento do erro de variância, como foi apresentado anteriormente, justifica a 
 estimativa dos parâmetros, almejando um erro de polarização nulo e com o menor erro de variância possível.
 
 Desta forma, tem-se a possibilidade de incluir o modelo do ruído ao processo de identificação. A adição
-de $H(q,\theta)$ à identificação traz a vantagem de que quando a classe de modelos $\mathcal{M}$ consegue representar a
-totalidade das dinâmicas contidas no sistema real $\mathcal{S}$ então o erro de polarização é zerado. Por questões de
-simplicidade de implementação e utilização,  deseja-se que seja possível a utilização do método dos mínimos quadrados
-para a realização da estimativa, o que só é possível quando o denominador de $G(q,\theta)$ e $H(q,\theta)$ são iguais.
-No caso da estrutura de modelos completa apresentada em \eqref{eq:si_modeling_lti_det_global} e replicado aqui:
+de $H(q,\theta)$ (com denominador diferente de $G(q,\theta)$) à identificação traz a vantagem de que quando a classe de
+modelos $\mathcal{M}$ consegue representar a totalidade das dinâmicas contidas no sistema real $\mathcal{S}$ então o
+erro de polarização é zerado. Por questões de simplicidade de implementação e utilização,  deseja-se que seja possível
+a utilização do método dos mínimos quadrados para a realização da estimativa, o que só é possível quando o denominador
+de $G(q,\theta)$ e $H(q,\theta)$ são iguais. No caso da estrutura de modelos completa apresentada em
+\eqref{eq:si_modeling_lti_det_global} e replicado aqui:
 
 \begin{equation}
 A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
