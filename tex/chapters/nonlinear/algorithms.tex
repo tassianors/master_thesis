@@ -35,7 +35,7 @@ parâmetros do sistema.
 Uma das maiores desvantagens do modelo racional quando comparado com o modelo polinomial é que o modelo polinomial é
 linear nos parâmetros. Muitos resultados para identificação de sistemas lineares podem ser estendidos para modelos
 polinomiais não lineares e várias rotinas de determinação de estrutura já foram desenvolvidas para isso
-\cite{chen_billings1989}.
+\cite{chen_billings1989, billings_zhu}.
 
 
 %===============================================================================
@@ -45,7 +45,7 @@ polinomiais não lineares e várias rotinas de determinação de estrutura já foram 
 
 Esta seção descreve um algoritmo para determinar os parâmetros de modelos racionais \eqref{eq:nl_alg_rational}. Este
 algoritmo foi proposto por \cite{correa} e é uma modificação do algoritmo originalmente proposto por 
-\cite{billings_zhu}. 
+\cite{billings_zhu91}. 
 
 O ruído é modelado por um polinômio que pode ou não ser linear. A consideração básica 
 por trás de \eqref{eq:nl_alg_rational} é que o erro de regressão pode ser representado por
@@ -183,7 +183,7 @@ $\mathcal{S} \notin \mathcal{M}$. Por fim será apresentado um exemplo de um conv
 corrente contínua do tipo Buck.
 
 Serão apresentados os resultados obtidos a fim de verificar a qualidade e a confiabilidade do algoritmo de identificação
-de sistemas NARMAX, polinomial e racional.
+de sistemas polinomial e racional.
 
 %===============================================================================
 \subsubsection{Sistemas originalmente racionais}
@@ -373,7 +373,7 @@ y(t)=\frac{\theta_1+\theta_2y(t-1)^3+\theta_3y(t-1)^2}{1+\theta_4y(t-1)+\theta_5
 Como o sistema não possui entrada, foram feitas diversas simulações com valores iniciais diferentes a fim de demonstrar
 a influência deste valor inicial sobre as estimativas e sobre tudo a qualidade destas estimativas obtidas. Na Tabela
 \ref{table:nl_alg_buck} são apresentados os valores estimados utilizando o algoritmo de identificação de sistemas
-racionais NARMAX para o sistema apresentado em \eqref{eq:nl_alg_buck_circ}. Ao utilizar-se 200 pontos e um valor inicial de $31.5$
+racionais para o sistema apresentado em \eqref{eq:nl_alg_buck_circ}. Ao utilizar-se 200 pontos e um valor inicial de $31.5$
 obteve-se o seguinte conjunto de parâmetros $\theta$:
 
 \begin{equation}
@@ -402,7 +402,7 @@ do sistema real definido por \ref{eq:nl_alg_buck_rational} e o sistema estimado 
 	\center
 	\includegraphics[width=0.95\columnwidth]{figures/nl_rat_buck_comp.eps}
 	\caption{Comparativo entre a saída do sistema real descrito pela equação\eqref{eq:nl_alg_buck_rational} e a saída do
-	sistema NARMAX racional descrito pela classe de modelos apresentada em \eqref{eq:nl_alg_buck_rational_model}
+	sistema racional descrito pela classe de modelos apresentada em \eqref{eq:nl_alg_buck_rational_model}
 	quando os parâmetros estimados para um valor inicial de 31.5, como apresentado em
 	\eqref{eq:nl_rat_buck_theta_init31.5}.}
 	\label{fig:nl_rat_buck_comp}

@@ -4,8 +4,8 @@
 %===============================================================================
 
 No Capítulo \ref{chapter:system_identification} foram apresentadas as definições para identificação de sistemas
-lineares. Definiu-se o sistema real pelo símbolo $\mathcal{S}$, para este capítulo $\mathcal{S}$ é um sistema não linear,
-e para o projeto de controladores, o controlador ideal é definido por $\mathcal{C}_d$, sendo o controlador que consegue
+lineares. Definiu-se o sistema real pelo símbolo $\mathcal{S}$, neste este capítulo $\mathcal{S}_{nl}$ é um sistema não
+linear e para o projeto de controladores, o controlador ideal é definido por $\mathcal{C}_d$, sendo o controlador que consegue
 fazer com que o sistema em malha fechada se comporte como desejado.
 
 Define-se a classe de controladores não lineares, parametrizável em $\theta$, como: 
@@ -31,14 +31,14 @@ O método proposto consiste na ideia de utilizar referência virtual para, a parti
 sistema, determinar os sinais de entrada do controlador que fazem com que o sistema em malha fechada se comporte como
 desejado: $T_d(q)$.
 
-Parte-se do pressuposto de que o processo $\mathcal{S}$ é não linear, mas que o comportamento em malha fechada
+Parte-se do pressuposto de que o processo $\mathcal{S}_{nl}$ é não linear, mas que o comportamento em malha fechada
 desejado $T_d(q)$ seja linear, portanto o controlador projetado deve, para cumprir com os objetivos de desempenho
 determinados, cancelar as não linearidades da planta para que possa ser possível uma relação linear entre a entrada
 $r(t)$ e a saída $y(t)$.
 
 Analogamente ao que foi apresentado na Seção \ref{sec:dbcd_vrft_framework} para controladores lineares, o controlador
-não linear ideal $\mathcal{C}_d$ quando operando em conjunto com o sistema não linear $\mathcal{S}$ resulta um sistema
-em malha fechada cuja função de transferência é dada por $T_d(q)$. Opta-se que este comportamento em malha fechada seja
+não linear ideal $\mathcal{C}_d$ quando operando em conjunto com o sistema não linear $\mathcal{S}_{nl}$ resulta um
+sistema em malha fechada cuja função de transferência é dada por $T_d(q)$. Opta-se que este comportamento em malha fechada seja
 linear. Desta forma, se $T_d(q)$ for excitado com qualquer sinal $r(t)$, sua saída será $T_d(q)r(t)$. 
 
 Baseado no sinal $y(t)$ medido da saída do processo, considera-se um sinal $\bar{r}(t)$ tal que 
@@ -76,7 +76,7 @@ os sinais presentes.
 \usefont{T1}{ptm}{m}{n}
 \rput(4.451875,0.97078127){\small $\mathcal{C}$}
 \usefont{T1}{ptm}{m}{n}
-\rput(7.341875,0.9907812){\small $\mathcal{S}$}
+\rput(7.341875,0.9907812){\small $\mathcal{S}_{nl}$}
 \usefont{T1}{ptm}{m}{n}
 \rput(6.031875,1.2707813){\small $u(t)$}
 \usefont{T1}{ptm}{m}{n}
@@ -120,17 +120,17 @@ o controlador é submetido.
 
 A escolha da classe de modelos $\mathcal{C}$ que irá representar o controlador ideal $\mathcal{C}_d$ é de grande
 importância para que haja sucesso no processo de identificação deste controlador. Neste trabalho optou-se pelo uso da
-classe de modelos NARMAX apresentada na Seção \ref{sec:nl_models_narmax} pela abrangência desta classe de modelos em
+classe de modelos racional apresentada na Seção \ref{sec:nl_models_narmax} pela abrangência desta classe de modelos em
 representar sistemas reais e pelos bons resultados obtidos na identificação de sistemas não lineares apresentados na
 Seção \ref{sec:nl_si_algorithms_rationals_examples}.
 
 Aplica-se então o algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals} para a identificação do controlador
 $\mathcal{C}$.
 
-É conveniente observar que a escolha da classe NARMAX está intimamente ligada ao uso do algoritmo de identificação
+É conveniente observar que a escolha da classe está intimamente ligada ao uso do algoritmo de identificação
 destes modelos ter-se mostrado eficiente, como foi apresentado nos exemplos da Seção 
 \ref{sec:nl_si_algorithms_rationals_examples}, além dos motivos já citados da vasta gama de sistemas reais que modelos
-NARMAX conseguem representar. Todavia, a abordagem por referência virtual apresentada poderia ser aplicada para
+racionais conseguem representar. Todavia, a abordagem por referência virtual apresentada poderia ser aplicada para
 qualquer classe de modelos de sistemas não lineares, onde algum algoritmo para identificação deste tipo de classe
 pudesse ser utilizado para obtenção dos valores de $\hat{\theta}$ que minimizem algum critério de escolha.
 

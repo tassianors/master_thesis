@@ -69,7 +69,7 @@ como uma média móvel do ruído branco, o que remete a:
 \begin{equation}
 \begin{matrix}
 y(t) & +a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)\\ 
- & +e(t) +c_1 e(t-1)+...+c_{nc} e(t-n_c)
+ & +e(t) +k_1 e(t-1)+...+k_{nk} e(t-n_k)
 \end{matrix}
 \label{eq:si_modeling_armax}
 \end{equation}
@@ -77,26 +77,26 @@ y(t) & +a_1 y(t-1)+...+a_{na} y(t-n_a)= b_1 u(t-1)+...+b_{nb} u(t-n_b)\\
 Define-se o polinômio que filtra o ruído como:
 
 \begin{equation}
-C(q, \theta)=1+c_1q^{-1}+...+c_{nc}q^{-n_c}
+K(q, \theta)=1+k_1q^{-1}+...+k_{nk}q^{-n_k}
 \nonumber
 \end{equation}
 e as funções de transferência como abaixo:
 
 \begin{equation}
 G(q, \theta)=\frac{B(q)}{A(q)} , \;\;
-H(q, \theta)=\frac{C(q)}{A(q)}
+H(q, \theta)=\frac{K(q)}{A(q)}
 \label{eq:si_modeling_lti_det_armax}
 \end{equation}
 tem-se então que os parâmetros à estimar são:
 
 \begin{equation}
 \theta = \begin{bmatrix}
-a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & c_1 & ... & c_{nc}
+a_1 & a_2 & ... & a_{na} & b_1 & ... & b_{nb} & k_1 & ... & k_{nk}
 \end{bmatrix}^T
 \end{equation}
 
 O modelo definido em \eqref{eq:si_modeling_armax} também é conhecido como {\bf{ARMAX}}, onde {\it{MA}} define 
-a média móvel $C(q,\theta)$ do ruído $e(t)$. Na Figura \ref{fig:si_models_diagram_narmax} é apresentado o diagrama de
+a média móvel $K(q,\theta)$ do ruído $e(t)$. Na Figura \ref{fig:si_models_diagram_narmax} é apresentado o diagrama de
 blocos para o modelo {\bf{ARMAX}}.
 
 \begin{figure}[htbp]
@@ -146,11 +146,11 @@ blocos para o modelo {\bf{ARMAX}}.
 \usefont{T1}{ppl}{m}{n}
 \rput(7.114531,-3.79){$1/A(q)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(4.3745313,-1.89){$C(q)$}
+\rput(4.3745313,-1.89){$K(q)$}
 \usefont{T1}{ppl}{m}{n}
 \rput(2.7645311,1.21){$\frac{B(q)}{A(q)}$}
 \usefont{T1}{ppl}{m}{n}
-\rput(5.574531,3.11){$\frac{C(q)}{A(q)}$}
+\rput(5.574531,3.11){$\frac{K(q)}{A(q)}$}
 \psframe[linewidth=0.04,dimen=outer](5.0,-1.4)(3.8,-2.4)
 \psframe[linewidth=0.04,dimen=outer](2.4,-3.2)(1.2,-4.4)
 \psframe[linewidth=0.04,dimen=outer](6.4,3.6)(4.8,2.6)
@@ -168,7 +168,7 @@ A partir do equacionamento do sistema apresentado em \eqref{eq:si_modeling_lti_d
 pode-se facilmente generalizar para o equacionamento apresentado em:
 
 \begin{equation}
-A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
+A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{K(q)}{D(q)}e(t)
 \label{eq:si_modeling_lti_det_global}
 \end{equation}
 onde os polinômios $A(q),\ldots, F(q)$ podem ser descritos como: 
@@ -176,7 +176,7 @@ onde os polinômios $A(q),\ldots, F(q)$ podem ser descritos como:
 \begin{align*}
 A(q, \theta) &= 1+a_1q^{-1}+...+a_{na}q^{-n_a} \\ 
 B(q, \theta) &= b_1q^{-1}+...+b_{nb}q^{-n_b}\\ 
-C(q, \theta) &= 1+c_1q^{-1}+...+c_{nc}q^{-n_c}\\ 
+K(q, \theta) &= 1+k_1q^{-1}+...+k_{nk}q^{-n_k}\\ 
 D(q, \theta) &= 1+d_1q^{-1}+...+d_{nd}q^{-n_d}\\ 
 F(q, \theta) &= 1+f_1q^{-1}+...+f_{nf}q^{-n_f}
 \end{align*}
@@ -194,12 +194,12 @@ obtém-se diferentes tipos de estruturas de modelos. As mais conhecidas e utiliza
 \hline
         B                 & FIR (finite impulse response) \\ 
         AB                & ARX                           \\ 
-        ABC               & ARMAX                         \\ 
-        AC                & ARMA                          \\ 
+        ABK               & ARMAX                         \\ 
+        AK                & ARMA                          \\ 
         ABD               & ARARX                         \\ 
-        ABCD              & ARARMAX                       \\ 
+        ABKD              & ARARMAX                       \\ 
         BF                & OE (output error)             \\ 
-        BFCD              & Box-Jenkins                   \\
+        BFKD              & Box-Jenkins                   \\
 \hline
 \end{tabular}
 \end{center}

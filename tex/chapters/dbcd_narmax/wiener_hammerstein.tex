@@ -4,16 +4,16 @@
 %===============================================================================
 
 Nesta seção serão apresentados os resultados obtidos e os procedimentos para a identificação de controladores não
-lineares modelados por uma classe de modelos NARMAX quando a planta $\mathcal{S}$ é um sistema do tipo Wiener ou
-Hammerstein, descritos na Seção \ref{sec:nl_models_wiener_hammerstein}. Será utilizado o conceito de referência virtual
+lineares modelados por uma classe de modelos polinomiais quando a planta $\mathcal{S}_{nl}$ é um sistema do tipo Wiener
+ou Hammerstein, descritos na Seção \ref{sec:nl_models_wiener_hammerstein}. Será utilizado o conceito de referência virtual
 para a obtenção dos sinais necessários para que o projeto de identificação deste controlador possa ser realizado.
 
 Considere que o sistema real possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
 encontra-se na saída do processo. Na Figura \ref{fig:vrft_nl_wiener} é apresentado o diagrama de blocos do sistema,
 sendo $\zeta(\omega(t))$ e $\gamma(\epsilon(t))$ os blocos não lineares da planta e do controlador respectivamente.
 Analogamente $G'(q)$ e $C'(q)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na entrada,
-este poderia ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe de modelos NARMAX
-racional, não deixando entretanto de ainda ser representável por um modelo de Hammerstein.
+este poderia ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe de modelos
+polinomial, não deixando entretanto de ainda ser representável por um modelo de Hammerstein.
 
 \begin{figure}[htbp]
 \center
@@ -58,7 +58,7 @@ racional, não deixando entretanto de ainda ser representável por um modelo de Ha
 \usefont{T1}{ppl}{m}{n}
 \rput(4.5507812,-0.59){$\mathcal{C}$}
 \usefont{T1}{ppl}{m}{n}
-\rput(9.670782,-0.59){$\mathcal{S}$}
+\rput(9.670782,-0.59){$\mathcal{S}_{nl}$}
 \usefont{T1}{ppl}{m}{n}
 \rput(3.3407812,0.71){$\gamma(\cdot)$}
 \usefont{T1}{ppl}{m}{n}
@@ -113,8 +113,8 @@ o relacionamento entre os polinômios $\gamma(\cdot) $ e $\zeta(\cdot)$ fica simp
 \nonumber 
 \end{equation}
 
-$\gamma (\cdot)$ como descrito em \eqref{eq:dbnarmac_ex_wiener_gamma} pode não ser parametrizável por um modelo NARMAX.
-Aproxima-se $\gamma (\cdot)$ então por uma classe de modelos NARMAX a fim de tornar a identificação do controlador
+$\gamma (\cdot)$ como descrito em \eqref{eq:dbnarmac_ex_wiener_gamma} pode não ser parametrizável por um modelo
+polinomial. Aproxima-se $\gamma (\cdot)$ então por uma classe de modelos NARMAX a fim de tornar a identificação do controlador
 ideal, a identificação de uma classe NARMAX, onde o algoritmo apresentado na Seção \ref{sec:nl_si_algorithms_rationals}
 pode ser utilizado.
 
@@ -126,7 +126,7 @@ $\gamma(\cdot)$ e $\zeta(\cdot)$ são polinômios não lineares.
 \label{sec:dbnarmax_wiener_hammerstein_exemple}
 %===============================================================================
  
-Considere uma planta não linear $\mathcal{S}$ do tipo Wiener como apresentado na Figura \ref{fig:vrft_nl_wiener}.
+Considere uma planta não linear $\mathcal{S}_{nl}$ do tipo Wiener como apresentado na Figura \ref{fig:vrft_nl_wiener}.
 Considere ainda que o bloco linear desta planta pode ser descrito como abaixo:
 
 \begin{equation}

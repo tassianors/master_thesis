@@ -24,7 +24,7 @@ experimento, como limites de iterações, quantidade de ruído adicionado sobre os 
 				frame=box,
 				label=lst:rational_model,
 				caption={Laço principal do algoritmo implementado para identificação de	sistemas não lineares descritos por modelos
-				NARMAX}]
+				Racionais}]
 				{code/functions/rational/f_rational_model.m}
 
 %===============================================================================
@@ -62,7 +62,7 @@ modelo e nos sinais envolvidos na simulação, calcular a saída do sistema.
 				{code/functions/rational/f_y_model.m}
 
 %===============================================================================
-\chapter{Rotinas para identificação classes de modelos NARMAX}
+\chapter{Rotinas para identificação classes de modelos Racionais}
 \label{appendix:rational_examples}
 %===============================================================================
 
@@ -72,7 +72,7 @@ identificação de sistemas racionais. Na Seção \ref{appendix:rational_examples_bu
 identificação de um sistema conversor de corrente contínua extraido de \cite{tse_buck}.
 
 Na Seção \ref{appendix:rational_examples_rational} é apresentado um exemplo onde o sistema é nativamente um sistema não
-linear NARMAX racional.
+linear racional.
 
 As rotinas aqui apresentadas estão disponíveis em \cite{neuhaus_github}.
 %===============================================================================
@@ -96,12 +96,12 @@ apresentado na Seção \ref{sec:nl_si_algorithms_rationals_buck}.
 %===============================================================================
 
 Nesta seção será apresentado a rotina para a identificação de um sistema que pode ser descrito por uma classe de modelos
-NARMAX racional. 
+racional.
 
 \lstinputlisting[language=Matlab,
 				frame=box,
 				label=lst:rational_model_ex2,
-				caption={Rotina utilizada para a identificação de um sistema NARMAX racional}s]
+				caption={Rotina utilizada para a identificação de um sistema racional}]
 				{code/rational_model/thesis_rational_ex2.m}
 				
 %===============================================================================
@@ -134,12 +134,12 @@ controlador ideal $C_d(z)$ não consegue ser descrito pela classe de controladore
 				{code/vrft/thesis_vrft_cd_not_in_iv.m}
 
 %===============================================================================
-\section{Identificação de um controlador racional NARMAX para um planta do tipo Wiener}
+\section{Identificação de um controlador polinomial para um planta do tipo Wiener}
 \label{appendix:vr_narmax_wiener}
 %===============================================================================
 
 Na Listagem \ref{lst:vr_narmax_wiener} é apresentada a rotina para identificação do controlador proposto na Seção
-\ref{sec:dbnarmax_wiener_hammerstein_exemple}, onde o processo é do tipo Wiener e o controlador é do tipo NARMAX.
+\ref{sec:dbnarmax_wiener_hammerstein_exemple}, onde o processo é do tipo Wiener e o controlador é do tipo polinomial.
 
 \lstinputlisting[language=Matlab,
 				frame=box,
@@ -149,16 +149,16 @@ Na Listagem \ref{lst:vr_narmax_wiener} é apresentada a rotina para identificação
 				{code/vrft_nl/thesis_vrft_nl_wiener.m}
 
 %===============================================================================
-\section{Identificação de um controlador racional NARMAX para uma planta também racional NARMAX}
+\section{Identificação de um controlador racional para uma planta também racional}
 \label{appendix:vr_narmax_simple}
 %===============================================================================
 
 Na Listagem \ref{lst:vr_narmax_simple} é apresentada a rotina para identificação do controlador proposto na Seção
-\ref{sec:dbnarmax_rational_controllers}, onde o processo e o controlador são do tipo racional NARMAX.
+\ref{sec:dbnarmax_rational_controllers}, onde o processo e o controlador são do tipo racional.
 
 \lstinputlisting[language=Matlab,
 				frame=box,
 				label=lst:vr_narmax_simple,
-				caption={Rotina para identificação de um controlador racional NARMAX quando a planta do sistema é também um modelo
+				caption={Rotina para identificação de um controlador racional quando a planta do sistema é também um modelo
 				racional e o comportamento desejado do sistema em malha fechada é linear.}
 				]{code/vrft_nl/thesis_nl_vr_rational.m}

@@ -61,12 +61,12 @@ algoritmo de identificação de sistemas não lineares. Neste contexto, o sistema n
 controlador que atuará sobre a planta.
 
 Para limitar o escopo do trabalho desenvolvido aqui, algumas decisões sobre estrutura de modelos foram tomadas: optou-se
-pela identificação de controladores não lineares que são representados por modelos NARMAX.
+pela identificação de controladores não lineares que são representados por modelos racionais e polinomiais.
 
 Para demonstrar o funcionamento desta proposta de identificação de controladores não lineares, diversos exemplos serão
-abordados, tanto do algoritmo implementado quanto para o conjunto do uso de referência virtual e classes de modelos NARMAX.
-Os exemplos abordados têm o intuito de apresentar propriedades das estimativas e avaliar o desempenho da proposta em
-atingir seus objetivos.
+abordados, tanto do algoritmo implementado quanto para o conjunto do uso de referência virtual e classes de modelos
+racional. Os exemplos abordados têm o intuito de apresentar propriedades das estimativas e avaliar o desempenho da
+proposta em atingir seus objetivos.
 
 Este trabalho tem a seguinte organização: no Capítulo \ref{chapter:system_identification} serão abordados assuntos básicos
 da teoria de identificação de sistemas. Questões como a escolha da classe de modelos, do método de identificação, das
@@ -74,7 +74,7 @@ propriedades estatísticas que as estimativas obtidas possuem e uma breve introdu
 experimentos para determinar a escolha de sinais de entrada e de objetivos de identificação. No Capítulo
 \ref{chapter:nlin_si_ident} são introduzidas algumas características de sistemas não lineares. São apresentadas as
 classes de modelos mais comumente utilizadas para descrição destes sistemas. Neste capítulo também é apresentado o algoritmo de
-identificação de modelos NARMAX tanto racionais como polinomiais e alguns exemplos de uso.
+identificação de modelos tanto racionais como polinomiais e alguns exemplos de uso.
 
 No Capítulo \ref{chapter:dbcd} são introduzidos alguns conceitos sobre projeto de controladores baseados em dados.
 Apresentam-se brevemente alguns dos principais métodos conhecidos e estende-se a discussão para apresentar o método VRFT
@@ -83,14 +83,14 @@ suas propriedades para situações onde o sistema é corrompido por ruído ou quando
 representar o controlador ideal desejado.
 
 No Capítulo \ref{chapter:dbnarmax} são apresentadas as contribuições deste trabalho com a união de referência virtual e
-o algoritmo de identificação de sistemas não lineares que podem ser descritos por classes de modelos NARMAX. São
+o algoritmo de identificação de sistemas não lineares que podem ser descritos por classes de modelos racionais. São
 apresentados exemplos de uso para sistemas onde a não linearidade está na dinâmica do processo e quando está acoplada de
 forma estática na entrada ou na saída do processo. São apresentados também exemplos onde a classe de modelos não
 consegue representar a totalidade das dinâmicas do controlador desejado. Por fim no Capítulo \ref{chapter:conclusion}
 são apresentadas conclusões gerais sobre o que foi desenvolvido neste trabalho.
 
 No Apendice \ref{appendix:rational_base_functions} são apresentadas as rotinas desenvolvidas em Matlab do
-algoritmo de identificação de sistemas não lineares utilizando modelos NARMAX racionais ou polinömiais. Já no Apendice
+algoritmo de identificação de sistemas não lineares utilizando modelos racionais ou polinömiais. Já no Apendice
 \ref{appendix:rational_examples} são apresentadas as rotinas desenvolvidas para simular os exemplos apresentados para
 identificação de sistemas não lineares. No Apendice \ref{appendix:vr_narmax} são apresentadas as rotinas utilizadas para
 o projeto de controladores não lineares utilizando referência virtual.

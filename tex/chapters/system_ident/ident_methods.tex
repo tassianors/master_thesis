@@ -60,8 +60,7 @@ A estimativa dos mínimos quadrados é definido como o vetor $\hat{\theta}$ que mi
 Desta forma o mínimo da função custo fica como em:
 
 \begin{equation}
-\underset{\theta}{min}\;V(\theta)=V(\hat{\theta})=\frac{1}{N}\left [ y^Ty-y^T\varphi (\varphi ^T \varphi )^{-1}\varphi
-^T y \right ]
+\underset{\theta}{min}\;V(\theta)=V(\hat{\theta})=\frac{1}{N}\left [ y-\varphi (\varphi \varphi^T )^{-1}\varphi y \right ]
 \end{equation}
 
 O método dos mínimos quadrados é simples de ser aplicado, mas tem o inconveniente de que para que não existam

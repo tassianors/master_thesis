@@ -4,7 +4,7 @@
 %===============================================================================
 
 Nesta seção serão apresentados exemplos de projeto de controladores não lineares utilizando a abordagem de referência
-virtual quando o controlador pode ser descrito por uma classe de modelos NARMAX racional. Desta forma é possível obter
+virtual quando o controlador pode ser descrito por uma classe de modelos racional. Desta forma é possível obter
 os sinais necessários para identificação do controlador utilizando referência virtual e então aplicar diretamente o
 algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals}.
 
@@ -16,7 +16,7 @@ $\mathcal{C}_d$ e quando isso não é possível.
 \label{sec:dbnarmax_nl_dinamic_c_match}
 %===============================================================================
 
-Considere o sistema não linear $\mathcal{S}$ descrito por:
+Considere o sistema não linear $\mathcal{S}_{nl}$ descrito por:
 
 \begin{equation}
 y(t)=\frac{0.5u(t-1)y(t-1)+u(t-1)}{1+0.25y^2(t-2)}

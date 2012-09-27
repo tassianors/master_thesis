@@ -10,8 +10,8 @@ que permeiam toda a teoria de identificação. Foram apresentados alguns dos princ
 são suas particularidades e propriedades estatísticas das estimativas obtidas.
 
 No Capítulo \ref{chapter:nlin_si_ident} foram apresentados as principais classes de modelos para representar sistemas
-não lineares. Deu-se um enfoque maior para a classe de modelos NARMAX com a apresentação do algoritmo de identificação
-proposto para esta classe de modelos. Exemplos de uso foram apresentados e o que ficou evidenciado é que o algoritmo é
+não lineares. Deu-se um enfoque maior para a classe de modelos racionais com a apresentação do algoritmo de
+identificação proposto para esta classe de modelos. Exemplos de uso foram apresentados e o que ficou evidenciado é que o algoritmo é
 bastante eficiente ao que ele se propõem. Existe entretanto alguns pontos que podem ser tratados como trabalhos
 futuros: a convergência do algoritmo está atrelada à convergência do modelos do ruído. Nos exemplos estudados o ruído
 aplicado foi pouco representativo para fazer com que houvesse qualquer divergência de convergência do algoritmo, mas em
@@ -22,12 +22,12 @@ Como nestes exemplos o escopo era apenas demonstrar o funcionamento do algoritmo
 planta é limitado e que o modelo escolhido não é subdimensionado, não se investiu no desenvolvimento desta melhoria para
 o algoritmo.
 
-Classes de modelos NARMAX possuem alguns diferenciais que os destacam de outras classes de modelos para sistemas não
+Classes de modelos racionais possuem alguns diferenciais que os destacam de outras classes de modelos para sistemas não
 lineares: este tipo de classe consegue representar uma grande quantidade de sistemas reais pois relaciona tanto os
-sinais passados da entrada, saída e do ruído do sistema, além de que podem ser organizados de uma forma polinomial ou
-racional, aumentando a possibilidades de combinações de classes formadas. Outro ponto de destaque é que este tipo de
-classe é parametrizável linearmente. Isso torna o algoritmo de identificação mais simples além de assegurar várias
-propriedades estatísticas das estimativas feitas para sistemas lineares.
+sinais passados da entrada, saída e do ruído do sistema. Outro ponto de destaque é que este tipo de
+classe é parametrizável linearmente, no caso de modelo polinomial, podendo para isso ser utilizado o método dos mínimos
+quadrados para a identificação. Para modelos racionais o algoritmo é iterativo, mas ainda assim simples de ser
+desenvolvido.
 
 No Capítulo \ref{chapter:dbcd} foi apresentada a ideia básica para projetos de controladores baseados em dados. Foram
 presentados brevemente alguns dos principais métodos existentes. O método VRFT foi mais detalhado e alguns exemplos de
@@ -38,7 +38,7 @@ variáveis instrumentais, mostrou-se que este erro de polarização desaparece, amp
 metodologia.
 
 No Capítulo \ref{chapter:dbnarmax} os resultados centrais deste trabalho foram apresentados. Uniu-se a ideia de
-referência virtual com o algoritmo de identificação de sistemas não lineares descritos por classe de modelos NARMAX
+referência virtual com o algoritmo de identificação de sistemas não lineares descritos por classe de modelos racional
 apresentado no Capítulo \ref{chapter:nlin_si_ident}. Para esta situação, o sistema a ser identificado pelo algoritmo é o
 controlador que é projetado baseado nas necessidades de desempenho do sistema em malha fechada, determinadas pelo
 projetista.
