@@ -330,10 +330,10 @@ O conversor de corrente contínua do tipo Buck possui um mapa não linear que pode
 circuito apresentado na Figura \ref{fig:nl_models_buck_circuit} e que tem a forma como em \cite{tse_buck}:
 
 \begin{equation}
-y(t)=\alpha y(t-1)+\frac{h(d_n)^2 \beta E\left [ E-y(t-1) \right ]}{y(t-1)}
+y(t)=\alpha y(t-1)+\frac{h(d_n)^2 \beta R\left [ R-y(t-1) \right ]}{y(t-1)}
 \label{eq:nl_alg_buck_circ}
 \end{equation}
-onde $\alpha = 0.8872$, $\beta = 1.2$ e $E=33$ são constantes que dependem apenas dos componentes do
+onde $\alpha = 0.8872$, $\beta = 1.2$ e $R=33$ são constantes que dependem apenas dos componentes do
 circuito eletrônico. $d_n$ é um sinal de tensão que implementa a ação de controle e a saturação
 $h(d_n)$ é dada por:
 

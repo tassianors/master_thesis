@@ -29,7 +29,7 @@ onde $\beta(q) = \left [ \beta_1(q)\;\; \beta_2(q)\;\; \cdots \;\; \beta_n(q)\ri
 linear de funções de transferências de tempo discreto e $\theta$ é o vetor de parâmetros a ser estimado.
 
 O problema de identificação do controlador consiste em encontrar um $\hat{\theta}$ que minimize o
-critério performance \eqref{eq:dbcd_def_track_error}, replicado abaixo:
+critério de desempenho \eqref{eq:dbcd_def_track_error}, replicado abaixo:
 
 \begin{equation}
 J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d(t) \right ]^2 = \bar{E}\left [
@@ -47,7 +47,7 @@ podem ser ressaltadas \cite{campi_savaresi2000}:
 	\item {\it{IFT}} é um técnica iterativa. Usualmente este método converge para o mínimo local mais próximo das
 	condições iniciais. Ele requer experimentos específicos sobre a planta, com entradas específicas.
 	\item {\it{VRFT}} é um procedimento não iterativo que procura pelo mínimo global do critério de
-	performance \eqref{eq:dbcd_def_track_error}. Este método não requer experimentos específicos sobre
+	desempenho \eqref{eq:dbcd_def_track_error}. Este método não requer experimentos específicos sobre
 	a planta, podendo inclusive utilizar os dados do funcionamento normal do sistema.
 \end{itemize}
 
@@ -165,7 +165,7 @@ $\hat{\theta}$ que minimiza esta função custo pode ser calculado por:
 
 \end{enumerate}
 
-Com o intuito de exemplificar, na Figura \ref{fig:vrft_cost_functions} é apresentadqa uma curva da função custo
+Com o intuito de exemplificar, na Figura \ref{fig:vrft_cost_functions} é apresentada uma curva da função custo
 $J_y(\theta)$ de um sistema hipotético, e a função custo proposta pelo método VRFT $J_{VR}(\theta)$, a qual é quadrática em $\theta$.
 Ao tentar encontrar o ponto de mínimo da curva $J_y(\theta)$ pode-se recair em algum mínimo local, o que não acontece 
 para a curva  $J_{VR}(\theta)$.
@@ -424,7 +424,7 @@ e que este termo não decai a zero mesmo que $C_d(q) \in \mathcal{C}$. Desta form
 polarização nas estimativas devido ao ruído mesmo quando a classe de controladores consegue descrever o controlador
 ideal.
 
-Para que haja rejeição a este rudo no método, em \cite{campi_leccini_savaresi2002} foi sugerido a
+Para que haja rejeição a este ruído no método, em \cite{campi_leccini_savaresi2002} foi sugerido a
 adição da variável instrumental $\zeta(t)$. Em \eqref{eq:vrft_framework_noise_iv} apresenta-se o
 regressor deste instrumento:
 

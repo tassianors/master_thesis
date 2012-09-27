@@ -13,7 +13,7 @@ projetos de controladores baseados em dados ou do inglês {\it{data-driven }} ou 
 
 Como apresentado na Seção \ref{sec:si_project_experiments} os dados coletados do sistema podem ser obtidos de
 diversas formas. Algumas vezes estas informações podem vir da operação normal da planta em malha
-fechada com a presença de algum controlador. esta situação tem um grande apelo em plantas
+fechada com a presença de algum controlador. Esta situação tem um grande apelo em plantas
 industriais, onde a parada do processo para levantamento de informações é muitas vezes indesejável e por vezes até
 inviável. Se existe a possibilidade de parar a planta e aplicar sinais predeterminados, o projeto de experimentos pode
 trazer muitas vantagens como foi apresentado na Seção \ref{sec:si_project_experiments}.
@@ -23,13 +23,13 @@ dados de entrada e saída coletados do sistema. A estimativa é feita de forma dir
 passo intermediário para identificação da planta do processo  \cite{eckard_campestrini}.
 
 Existem na literatura diversos métodos de projetos de controladores baseados em dados que otimizam algum critério de
-performance, com diferentes focos para diferentes critérios. Estes critérios expressam um ou uma combinação de objetivos
+desempenho, com diferentes focos para diferentes critérios. Estes critérios expressam um ou uma combinação de objetivos
 fundamentais de controle: seguimento de referência, rejeição a ruído e uso econômico da energia de controle.
 Em \cite{Kammer2000} um procedimento iterativo baseado na análise espectral chamado de {\it{Frequency Domain Tuning}}
-(FDT) foi proposto para a minimização do critério $H_2$ de performance para um sistema com referência zero, portanto
+(FDT) foi proposto para a minimização do critério $H_2$ de desempenho para um sistema com referência zero, portanto
 nenhum objetivo de seguimento de referência é almejado. O método {\it{Virtual Reference Feedback Tuning}} (VRFT)
 \cite{campi_leccini_savaresi2002, campi_savaresi2006} é baseado na manipulação de variáveis que transformam um
-critério $H_2$ em algo quadrático nos parâmetros. A função custo quadrática resultante pode ser minimizado
+critério $H_2$ em algo quadrático nos parâmetros. A função custo quadrática resultante pode ser minimizada
 diretamente, sem que nenhuma iteração seja necessária. Entretanto apenas o objetivo de seguimento de referência é
 tratado (a não ser que um controlador com dois níveis de liberdade seja usado \cite{lecchini_campi_savaresi_2dof}) e o mínimo
 global resultante desta função quadrática coincide com o do critério original somente sob condições ideais.
@@ -37,11 +37,11 @@ global resultante desta função quadrática coincide com o do critério original so
 um método iterativo que usa a ideia de variáveis instrumentais para remover o efeito não desejado do ruído enquanto
 busca seu objetivo de seguimento de referência \cite{Bazanella_h2criteria2008}.  
 
-Otimização baseada em dados para um critério de performance genérico $H_2$ foi proposto em \cite{Hjalmarsson1994}, onde
+Otimização baseada em dados para um critério de desempenho genérico $H_2$ foi proposto em \cite{Hjalmarsson1994}, onde
 um método para obter estimativas não polarizadas diretamente do gradiente da função custo, a partir de dados do sistema
 em malha fechada, foi elaborado. Este método é chamado de {\it{Iterative Feedback Tuning}} (IFT). IFT é discutido a
-fundo em \cite{Hjalmarsson_ift1998, Hjalmarsson2002} e estendido em \cite{Prochazka2005} para critério de performances mais
-gerais, que contém melhorias em objetivos de robustez \cite{Bazanella_h2criteria2008}.  
+fundo em \cite{Hjalmarsson_ift1998, Hjalmarsson2002} e estendido em \cite{Prochazka2005} para critério de desempenhos
+mais gerais, que contém melhorias em objetivos de robustez \cite{Bazanella_h2criteria2008}.  
 
 Na Figura \ref{fig:vrft_db_control_loop} é apresentado um sistema com realimentação de saída onde são
 destacados os blocos do controlador, da planta e da função que modifica o ruído branco $e(t)$.
@@ -125,7 +125,7 @@ y(t)=T(q, \theta)r(t)
 \end{equation}
 
 %===============================================================================
-\subsection{Critérios de performance}
+\subsection{Critérios de Desempenho}
 \label{sec:dbcd_performance_criteria}
 %===============================================================================
 
@@ -154,7 +154,7 @@ Alguns dos mais conhecidos são :
   \item Uso reduzido de esforço de controle. 
 \end{itemize}
 
-Para o objetivo de seguimento de referência, a performance pode ser avaliada pela norma \cite{bazanella_datadriven}:
+Para o objetivo de seguimento de referência, o desempenho pode ser avaliado pela norma \cite{bazanella_datadriven}:
 
 \begin{equation}
 J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  E \left [ y(t)-y_d(t) \right ]^2 = \bar{E}\left [
@@ -189,7 +189,7 @@ y_e(t, \theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} S(q, \theta)\nu(t)
 \label{eq:dbcd_perf_ye}
 \end{equation}
 
-O critério que determina a performance do sistema na rejeição ao ruído é dado por:
+O critério que determina o desempenho do sistema na rejeição ao ruído é dado por:
 
 \begin{equation}
 J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ y_e(t) \right ]^2 = \bar{E}\left [  S(q,
@@ -199,7 +199,7 @@ J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ y_e(t) \r
 
 Para fazer com que $J_e(\theta)=0$ seria necessário que $S(q,\theta)=0 \;\;\forall q$, o que demandaria que $C(q,
 \theta)G_0(q) \to \infty \;\;\forall q$, tornando desta forma impossível de atingir o objetivo do critério ser zero.
-Relaxa-se então o critério de performance para:   
+Relaxa-se então o critério de desempenho para:   
 
 \begin{equation}
 J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ (S(q, \theta)-S_d(q,\theta))\nu(t) \right ]^2 
@@ -208,7 +208,7 @@ J_e(\theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} \bar{E}\left [ (S(q, \th
 onde $S_d(q,\theta)$ é a função sensibilidade desejada para o sistema.
 
 Assim como o controlador apresentado em \eqref{eq:dbcd_perf_tracking_cd} é o controlador ótimo para o critério de
-performance de seguimento de referência, para o critério de rejeição ao ruido o controlador ótimo pode ser obtido. Para
+desempenho de seguimento de referência, para o critério de rejeição ao ruido o controlador ótimo pode ser obtido. Para
 minimizar a função custo \eqref{eq:dbcd_perf_je} escolhe-se $T_e(q)$ como abaixo (detalhes podem ser obtidos em
 \cite{bazanella_datadriven}):
 
