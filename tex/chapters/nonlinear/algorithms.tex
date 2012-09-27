@@ -34,8 +34,9 @@ parâmetros do sistema.
 
 Uma das maiores desvantagens do modelo racional quando comparado com o modelo polinomial é que o modelo polinomial é
 linear nos parâmetros. Muitos resultados para identificação de sistemas lineares podem ser estendidos para modelos
-polinomiais não lineares e várias rotinas de determinação de estrutura já foram desenvolvidas para isso.
-\cite{chen_billings1989}
+polinomiais não lineares e várias rotinas de determinação de estrutura já foram desenvolvidas para isso
+\cite{chen_billings1989}.
+
 
 %===============================================================================
 \subsection{Algoritmo para identificação de modelos racionais}
@@ -49,7 +50,7 @@ algoritmo foi proposto por \cite{correa} e é uma modificação do algoritmo origin
 O ruído é modelado por um polinômio que pode ou não ser linear. A consideração básica 
 por trás de \eqref{eq:nl_alg_rational} é que o erro de regressão pode ser representado por
 um modelo {\it{MA}}({\it{Move average}}), possivelmente não linear. Assim sendo sugere-se o 
-seguinte procedimento: \cite{aguirre}
+seguinte procedimento \cite{aguirre}: 
 
 \begin{enumerate}
 
@@ -167,8 +168,7 @@ E estime novamente os parâmetros utilizando:
 \item Volte ao passo 2 até atingir convergência (de parâmetro ou de variância de resíduo).
 \end{enumerate} % Aguirre algorithm for rational model identification pg 394
 
-A convergência do algoritmo depende da convergência da estimativa da sequência do ruído.
-\cite{billings_zhu91} 
+A convergência do algoritmo depende da convergência da estimativa da sequência do ruído \cite{billings_zhu91}.
 
 %===============================================================================
 \subsection{Exemplos ilustrativos}
@@ -327,7 +327,7 @@ diferente do sistema real.
 %===============================================================================
 
 O conversor de corrente contínua do tipo Buck possui um mapa não linear que pode ser obtido a partir da equação do
-circuito apresentado na Figura \ref{fig:nl_models_buck_circuit} e que tem a forma como em: \cite{tse_buck}
+circuito apresentado na Figura \ref{fig:nl_models_buck_circuit} e que tem a forma como em \cite{tse_buck}:
 
 \begin{equation}
 y(t)=\alpha y(t-1)+\frac{h(d_n)^2 \beta E\left [ E-y(t-1) \right ]}{y(t-1)}
@@ -355,7 +355,7 @@ d_n & \text{caso contrario.}
 
 Modelos polinomiais não resultam em bons modelos para a dinâmica de \eqref{eq:nl_alg_buck_circ}. Um
 modelo com estrutura {\it{ad hock}}, que aproxima relativamente bem a característica estática do
-conversor é: \cite{aguirre_maps}
+conversor é \cite{aguirre_maps}: 
 
 \begin{equation}
 y(t)=O exp\left [ 22-y(t-1) \right ]+ \frac{a\; y(t-1)^2 -b\; y(t-1)+c}{y(t-1)}

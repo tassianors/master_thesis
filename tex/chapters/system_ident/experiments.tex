@@ -9,7 +9,7 @@
 
 Em aplicações de engenharia, deseja-se que a solução de um problema seja única. Desta forma existem algumas
 premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos, obtendo um
-único vetor $\theta$ que consiga representar melhor o sistema real $\mathcal{S}$ de acordo como critério de performance
+único vetor $\theta$ que consiga representar melhor o sistema real $\mathcal{S}$ de acordo com o critério de performance
 escolhido.
 
 Devem ser levadas em consideração algumas características sobre o sinal de excitação do sistema e sobre a escolha da
@@ -49,18 +49,15 @@ R_u(n-1) & R_u(n-2) & ... & R_u(0)
 \label{eq:si_data_persistently_rn}
 \end{equation}
 
-Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se $\bar{R}_n$ for não singular.
-\cite{ljung}
+Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se $\bar{R}_n$ for não singular \cite{ljung}.
 
 A partir da equação \eqref{eq:si_data_persistence_2} pode-se extrair interpretações mais explícitas.
-Uma delas é que a função $M_n(q)$ pode ter no máximo $n-1$ zeros diferentes dentro do círculo 
-unitário (desde que um zero esteja sempre na origem). Por isso $u(t)$ é persistentemente excitante de ordem $n$, se o
-espectro do sinal de entrada, $\Phi _u(\omega)$, for diferente de zero em pelo menos $n$ pontos no intervalo $-\pi<
-\omega \le \pi$. \cite{ljung} %page 413
+Uma delas é que para que o sinal seja persistentemente excitante de ordem $n$, ele precisa ter $n$ componentes de
+freqüência distintas no intervalo $-\pi< \omega \le \pi$.
 
 Se um sinal quasi-estacionário é filtrado por uma função de transferência estável, então o sinal resultante 
 também é um sinal quasi-estacionário e desta forma se ${ \left| { M }_{ n }({ e }^{ j\omega  }) \right|  }^{ 2
-}{ \Phi  }_{ u }(\omega )$ é o espectro do sinal $\nu (t)={ M }_{ n }(q)u(t)$ então este sinal não perde sua
+}{ \Phi  }_{ u }(\omega )$ é o espectro do sinal $\varrho (t)={ M }_{ n }(q)u(t)$ então este sinal não perde sua
 persistência de excitação se filtrado pelo filtro  ${ M }_{ n }(q)$.
 
 Considere o somatório de senoides:
@@ -146,10 +143,10 @@ $X$ no numerador e $X$ no denominador.
 
 A escolha de uma classe de modelos $\mathcal{M}$ é o ponto mais crucial para que o processo de identificação de sistemas
 tenha sucesso. Esta escolha deve ser feita com base no entendimento do procedimento de identificação e das percepções e
-conhecimentos que se tem sobre o sistema a ser identificado. \cite{ljung}
+conhecimentos que se tem sobre o sistema a ser identificado \cite{ljung}.
 
 O preço ou custo de uma classe de modelos pode ser mensurado em alguns aspectos e a escolha da classe de modelos se dará
-por alguma ponderação sobre estes critérios, que podem ser: \cite{ljung}
+por alguma ponderação sobre estes critérios, que podem ser \cite{ljung}:
 
 \begin{itemize}
   \item Flexibilidade: Usando classes de modelos que tenham boas capacidades de descrever tipos diferentes de sistemas.
@@ -172,11 +169,11 @@ e as incertezas matemáticas inseridas. Além disso existe o problema destes model
 condicionados além da convicção de que alguns parâmetros são redundantes e poderiam ser removidos do modelo (aplicando
 algum algoritmo de simplificação de modelo). Um modelo com um número excessivo de parâmetros pode exibir dinâmicas que
 não são observadas no sistema real, desta forma não existe apenas o problema numérico para a identificação, mas também
-um problema de dinâmica em utilizar um modelo sobre dimensionado. \cite{aguirre_jacome}
+um problema de dinâmica em utilizar um modelo sobre dimensionado \cite{aguirre_jacome}.
 
 O procedimento que testa se a classe de modelos é simples e apropriada para descrever o sistema é aplicar alguma técnica
 de redução à classe de modelos. Se a ordem da classe de modelos pode ser reduzida sem afetar as propriedades de entrada
-e saída do sistema, então a classe de modelos original era desnecessariamente complexa. \cite{ljung}
+e saída do sistema, então a classe de modelos original era desnecessariamente complexa \cite{ljung}.
 
 Por fim, ao escolher uma classe de modelos para a identificação, deve-se levar em conta diversos pontos e informações.
 Depois de escolhido o modelo, um processo de validação é indicado a ser executado. Este procedimento é simples e

@@ -105,12 +105,12 @@ h_j(\tau_1, ... ,\tau_j) \prod_{i=1}^{j}u(t-\tau_i)d\tau_i
 \label{eq:nl_models_volterra}
 \end{equation}
 onde $h_j$ são generalizações não lineares da resposta ao impulso $h_1(t)$ . Quando $j=1$ a equação
-de Volterra se reduz à integral de convolução. \cite{aguirre}
+de Volterra se reduz à integral de convolução \cite{aguirre}.
 
 As expansões funcionais em séries de Volterra relacionam os sinais passados da entrada com o valor atual da saída do
 sistema e isso inevitavelmente significa que que um conjunto tipicamente elevado de parâmetros seja necessário para
-descrever até mesmo simples sistemas não lineares e consequentemente apenas poucas aplicações práticas foram apresentadas.
-\cite{chen_billings1989}
+descrever até mesmo simples sistemas não lineares e consequentemente apenas poucas aplicações práticas foram
+apresentadas \cite{chen_billings1989}.
 
 %===============================================================================
 \subsection{Redes Neurais}
@@ -125,7 +125,7 @@ x=\emph{f}\left ( \sum_{j=1}^{n}\omega_j x_j +b \right )
 \label{eq:nl_models_neural}
 \end{equation}
 onde $b$ é conhecido como {\it{bias}} e $\omega_j$ são constantes e $\emph{f}(\cdot)$ é chamada função de ativação.
-$\omega_j$ e $b$ são os parametros a serem identificados. A função de ativação mais comum é: \cite{aguirre}
+$\omega_j$ e $b$ são os parametros a serem identificados. A função de ativação mais comum é \cite{aguirre}:
 
 \begin{equation}
 \emph{f}(q)=\frac{1}{1+e^{-q}}
@@ -139,8 +139,9 @@ $\omega_j$ e $b$ são os parametros a serem identificados. A função de ativação m
 
 Uma típica rede multi-camadas pode ser descrita como na Figura \ref{fig:nl_models_neural_multilayer}.  Na prática redes
 neurais multi-camadas têm grande apelo no reconhecimento de padrões. Do ponto de vista teórico os sistemas de redes
-multi-camadas podem ser considerados como mapas não lineares onde os elementos das matrizes de peso são os parâmetros.
-\cite{narenda_parthasarathy}
+multi-camadas podem ser considerados como mapas não lineares onde os elementos das matrizes de peso são os parâmetros
+\cite{narenda_parthasarathy}.
+
 
 \begin{figure}[htbp]
 \center
@@ -264,7 +265,7 @@ onde $f_s$ é a função de ativação do neurônio da camada de saída. Esta função nã
 igual a $f_i$, $i=1, \ldots , m$ que por sua vez não precisam ser iguais entre si. As constantes $b_s$ são os termos
 de polarização dos neurônios da camada de saída, $\omega_i$ são os pesos da saída de cada neurônio da
 camada oculta e $\omega_{ij}$ são os pesos da entrada $j$, vista pelo $i-$ésimo neurônio da camada
-oculta. \cite{aguirre}
+oculta \cite{aguirre}.
 
 %===============================================================================
 \subsubsection{Redes Neurais recorrentes}
@@ -397,7 +398,7 @@ f(y)=w_0+\sum_{i}w_i \phi (\left \| y-c_i \right \|)
 onde $y \in \mathbb{R}^{d_e}$ ($d_e$ é conhecido como dimensão de imersão),
 $\left \| \cdot \right \|$ é a norma euclidiana, $w_i \in \mathbb{R}$ são pesos, 
 $c_i \in \mathbb{R}^{d_e}$ são centros e $\phi(\cdot):\mathbb{R}^+ \to \mathbb{R}$ 
-é uma função, normalmente escolhida a priori, como por exemplo: \cite{aguirre}
+é uma função, normalmente escolhida a priori, como por exemplo \cite{aguirre}:
 
 \begin{equation}
 \phi(\left \| y-c_i \right \|)= exp\left ( -\frac{\left \| y-c_i \right \|^2}{\sigma_i^2} \right )
@@ -435,7 +436,7 @@ funções do tipo Gausianas e multi-quadráticas, como pode ser visto na Figura \re
 
 Este tipo de representação tem boas propriedades locais e pode ser interpretada como 
 uma técnica de interpolação global. Funções radiais de base são casos particulares
-de redes neurais, porém neste caso, lineares nos parâmetros $w_i$. \cite{aguirre} 
+de redes neurais, porém neste caso, lineares nos parâmetros $w_i$ \cite{aguirre}. 
 
 No contexto de identificação de sistemas é comum adicionar termos auto-regressivos
 lineares, bem como termos de entrada à equação \eqref{eq:nl_models_rbf} resultando em:
@@ -519,7 +520,7 @@ Portanto a parte não determinística da equação \eqref{eq:nl_model_narmax_pol_esp
 um somatório de termos com grau de não linearidade variando de $1 \le m \le l$. 
 Assim sendo, cada termo de grau $m$ poderá conter um valor de grau $p$ do tipo $y(t-i)$
 e um fator de grau $(m-p)$ do tipo $u(t-i)$ sendo multiplicado por um parâmetro representado 
-por $c_{p,m-p}(n_1, ..., n_m)$. Obtendo: \cite{aguirre}
+por $c_{p,m-p}(n_1, ..., n_m)$. Obtendo \cite{aguirre}:
 
 \begin{equation}
 y(t)=\sum_{m=0}^{l}\sum_{p=0}^{m}\sum_{n1, n_m}^{n_y, n_u}c_{p,m-p}(n_1,...,n_m)\prod_{i=1}^{p}y(t-n_i)\prod_{i=p+1}^{m}u(t-n_i)

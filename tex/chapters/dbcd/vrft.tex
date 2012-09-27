@@ -6,8 +6,9 @@
 VRFT do inglês {\it{Virtual reference feedback tuning}} é um método direto para identificação de
 controladores, ou seja, não é necessário o conhecimento ou identificação da planta para que este método seja
 utilizado. O método baseia-se na utilização de apenas um conjunto de dados, não necessitando de experimentos
-específicos. O procedimento procura pelo ponto ótimo do critério escolhido para a identificação do controlador.
-\cite{campi_savaresi2000}
+específicos. O procedimento procura pelo ponto ótimo do critério escolhido para a identificação do controlador
+\cite{campi_savaresi2000}.
+
 
 Diferentemente de métodos iterativos, o VRFT não recai sobre mínimos locais, sempre procurando o mínimo
 global do critério escolhido, sob condições ideais:
@@ -38,8 +39,9 @@ J_y(\theta)\overset{\underset{\mathrm{\Delta}}{\,}}{=}  \bar{E} \left [ y(t)-y_d
 que é dependente do modelo de referência escolhido. 
 
 Apenas alguns métodos genuinamente diretos são encontrados na literatura, dois destes são VRFT e IFT ({\it{Iterative
-Feedback Tuning}}). Mesmo estes dois métodos pertencendo a uma mesma classe, algumas diferenças significativas existem e podem ser ressaltadas:
-\cite{campi_savaresi2000}
+Feedback Tuning}}). Mesmo estes dois métodos pertencendo a uma mesma classe, algumas diferenças significativas existem e
+podem ser ressaltadas \cite{campi_savaresi2000}:
+
 
 \begin{itemize}
 	\item {\it{IFT}} é um técnica iterativa. Usualmente este método converge para o mínimo local mais próximo das
@@ -281,8 +283,9 @@ J_{VR}(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | L(e^{j\omega}) \right |^
 Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(q) \in
 \mathcal{C}$ as duas funções custopossuem o mesmo mínimo. Quando $C_d(q) \notin \mathcal{C}$
 nenhum dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro
-dos dois integrandos são diferentes, não existe motivos para esperar que os dois custos sejam os mesmos.
-\cite{bazanella_datadriven}
+dos dois integrandos são diferentes, não existe motivos para esperar que os dois custos sejam os mesmos
+\cite{bazanella_datadriven}.
+
 
 Existe entretanto o parâmetro livre que foi incluído à função custo do VRFT que pode ser escolhido a fim de aproximar
 estes dois integrandos: o filtro $L(q)$. Para fazer com que $J_{VR}(\theta)=J_y(\theta)$, é suficiente escolher
@@ -299,7 +302,7 @@ espectro do sinal aplicado sobre o sistema, medido durante o experimento do VRFT
 O cálculo do filtro apresentado em \eqref{eq:dbcd_vrft_filter_l} requer do conhecimento da função $S(q,\theta)$, que
 não é conhecida. Então a implementação deste filtro irá recair em alguma aproximação desta função
 de transferência. Quanto melhor for a aproximação, mais próximos serão os mínimos das funções custo $J_y(\theta)$ e
-$J_{VR}(\theta)$. \cite{bazanella_datadriven}
+$J_{VR}(\theta)$ \cite{bazanella_datadriven}.
 
 Entretanto esta não é a única escolha para a aproximação de $S(q,\theta)$; o método VRFT usa invariavelmente o seguinte:
 
@@ -319,7 +322,7 @@ transferência do filtro pode ser obtida por:
 \end{equation}
 
 Para o caso onde $C_d \in C(q, \theta)$ a escolha de $L(q)$ não afeta o resultado, usualmente
-escolhe-se então $L(q)=1$. \cite{campi_leccini_savaresi2002}
+escolhe-se então $L(q)=1$ \cite{campi_leccini_savaresi2002}.
 
 Com o filtro $L(q)$ calculado como em \eqref{eq:dbcd_vrft_filter_l_vrft}, o valor assintótico de $\theta$ pode ser
 escrito como:
@@ -441,7 +444,7 @@ Os parâmetros do controlador podem então ser calculados como em:
 São propostas duas alternativas para a escolha da variável instrumental. A primeira garante
 assintoticamente que $\theta_N^{IV}= \theta_0$, entretanto um experimento adicional é
 requisitado. O segundo não garante, rigorosamente, $\theta_N^{IV}= \theta_0$ mas o erro
-esperado é pequeno, além disso um segundo experimento não é necessário. \cite{campi_leccini_savaresi2002}
+esperado é pequeno, além disso um segundo experimento não é necessário \cite{campi_leccini_savaresi2002}. 
 
 \begin{itemize}
 	\item {\it{Experimento Repetido:}} Executa-se um segundo experimento com a mesma entrada $u(t)$,

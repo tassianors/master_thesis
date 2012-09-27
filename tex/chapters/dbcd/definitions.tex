@@ -20,7 +20,7 @@ trazer muitas vantagens como foi apresentado na Seção \ref{sec:si_project_experi
 
 O projeto de controladores baseados em dados consiste em estimar os parâmetros da estrutura do controlador usando os
 dados de entrada e saída coletados do sistema. A estimativa é feita de forma direta, ou seja, sem a necessidade de um
-passo intermediário para identificação da planta do processo. \cite{eckard_campestrini}
+passo intermediário para identificação da planta do processo  \cite{eckard_campestrini}.
 
 Existem na literatura diversos métodos de projetos de controladores baseados em dados que otimizam algum critério de
 performance, com diferentes focos para diferentes critérios. Estes critérios expressam um ou uma combinação de objetivos
@@ -35,13 +35,13 @@ tratado (a não ser que um controlador com dois níveis de liberdade seja usado \c
 global resultante desta função quadrática coincide com o do critério original somente sob condições ideais.
 {\it{Correlation-based Tuning}} (CbT) \cite{ Karimi_cbt2003, Karimi_cbt2004} não sofre desta segunda limitação, mas é
 um método iterativo que usa a ideia de variáveis instrumentais para remover o efeito não desejado do ruído enquanto
-busca seu objetivo de seguimento de referência. \cite{Bazanella_h2criteria2008} 
+busca seu objetivo de seguimento de referência \cite{Bazanella_h2criteria2008}.  
 
 Otimização baseada em dados para um critério de performance genérico $H_2$ foi proposto em \cite{Hjalmarsson1994}, onde
 um método para obter estimativas não polarizadas diretamente do gradiente da função custo, a partir de dados do sistema
 em malha fechada, foi elaborado. Este método é chamado de {\it{Iterative Feedback Tuning}} (IFT). IFT é discutido a
 fundo em \cite{Hjalmarsson_ift1998, Hjalmarsson2002} e estendido em \cite{Prochazka2005} para critério de performances mais
-gerais, que contém melhorias em objetivos de robustez. \cite{Bazanella_h2criteria2008} 
+gerais, que contém melhorias em objetivos de robustez \cite{Bazanella_h2criteria2008}.  
 
 Na Figura \ref{fig:vrft_db_control_loop} é apresentado um sistema com realimentação de saída onde são
 destacados os blocos do controlador, da planta e da função que modifica o ruído branco $e(t)$.
@@ -49,7 +49,7 @@ destacados os blocos do controlador, da planta e da função que modifica o ruído 
 O ruído é um processo quasi-estacionário, que pode ser descrito como $\nu(t)=H_0(q)e(t)$, onde
 $e(t)$ é ruído branco com variância $\sigma_e^2(t)$. Ambas funções de transferência, $G_0(q)$ e $H_0(q)$,
 são racionais e causais. Assume-se que $H_0(\infty)=1$, ou seja, a resposta impulsiva do filtro
-$H_0(q)$ satisfaz $h_0(0)=1$. \cite{campestrini}
+$H_0(q)$ satisfaz $h_0(0)=1$ \cite{campestrini}.
 
 \begin{figure}[htbp]
 \center
@@ -182,7 +182,7 @@ S(q, \theta)=\frac{1}{1+C(q, \theta)G_0(q)}
 \end{equation}
 
 A saída do sistema em malha fechada referente apenas ao ruído, ou seja, sem levar em conta a parte relativa a referência
-é dada por: \cite{bazanella_datadriven}
+é dada por \cite{bazanella_datadriven}:
 
 \begin{equation}
 y_e(t, \theta) \overset{\underset{\mathrm{\Delta}}{\,}}{=} S(q, \theta)\nu(t)
@@ -244,7 +244,7 @@ sendo representado por \eqref{eq:dbcd_perf_tracking_cd}.
 %
 %Na Figura \ref{fig:vrft_db_ift} é apresentado a organização dos blocos dos controladores
 %de \eqref{eq:vrft_db_ift_controller}, $C_r(z)$ e $C_y(z)$. O controlador pode ser
-%entendido como o conjunto destes dois: \cite{Hjalmarsson_ift1998}
+%entendido como o conjunto destes dois \cite{Hjalmarsson_ift1998}: 
 %
 %\begin{equation}
 %C(z) \equiv  \left \{ C_r(z),\, C_y(z)  \right \} 

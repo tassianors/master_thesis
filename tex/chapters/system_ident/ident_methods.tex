@@ -49,8 +49,8 @@ A partir do erro de predição apresentado em \eqref{eq:si_estim_prediction_error}
 \end{equation}
 
 A estimativa dos mínimos quadrados é definido como o vetor $\hat{\theta}$ que minimiza a função custo
-\eqref{eq:si_method_criteria}. O valor de $\hat{\theta}$ que minimiza esta função custo é dado por:
-\cite{system_identification}
+\eqref{eq:si_method_criteria}. O valor de $\hat{\theta}$ que minimiza esta função custo é dado por
+\cite{system_identification}:
 
 \begin{equation}
 \hat{\theta}=(\varphi ^T(t) \varphi(t) )^{-1}\varphi  ^T(t) y(t)
@@ -86,7 +86,7 @@ Para que as estimativas de $\theta$ tendam a $\theta_0$ quando o número de amost
   \item $E \left [ \varphi(t)\nu(t)  \right ]  = 0$
 \end{enumerate} 
 
-Para a primeira condição algumas exceções são apresentadas: \cite{system_identification}
+Para a primeira condição algumas exceções são apresentadas \cite{system_identification}:
 
 \begin{itemize}
   \item Se a entrada não for persistentemente excitante.
@@ -129,11 +129,11 @@ variáveis instrumentais:
 \end{equation}
 
 Os elementos da matriz $Z(t)$ são normalmente chamados de instrumentos. O estimador das variáveis instrumentais 
-é uma generalização do estimador dos mínimos quadrados, quando $Z(t)=\varphi(t)$. \cite{system_identification}
+é uma generalização do estimador dos mínimos quadrados, quando $Z(t)=\varphi(t)$ \cite{system_identification}.
 
 O estimador de variáveis instrumentais evita a polarização desde que o vetor de erro seja não correlacionado
 com as variáveis instrumentais. Esta condição é menos restritiva que a condição dos mínimos quadrados para que
-não haja erro de polarização. O custo a ser pago por isso envolve: \cite{aguirre}
+não haja erro de polarização. O custo a ser pago por isso envolve \cite{aguirre}:
 
 \begin{enumerate}
 \item Escolha das variáveis instrumentais.
@@ -145,7 +145,7 @@ Ao escolher as variáveis instrumentais é importante notar que a escolha não deve
 a correlação entre o vetor de erro e os instrumentos. A razão para isso é que os instrumentos 
 devem ser tão correlacionadas quanto possível com os regressores do modelo, caso contrário $Z(t)\varphi(t)^T$ 
 seria próxima a singular e sua inversa muito mal condicionada. Portanto os instrumentos devem ser, idealmente, 
-pouco correlacionados com o erro e muito correlacionados com os regressores do modelo. \cite{aguirre}
+pouco correlacionados com o erro e muito correlacionados com os regressores do modelo \cite{aguirre}.
 
 A correlação dos instrumentos com os regressores ($E\;Z(t)\varphi(t)^T$) sempre será inferior à correlação dos mínimos
 quadrados ($E\;\varphi(t)\varphi(t)^T$) onde temos o regressor correlacionado consigo mesmo . Isso propicia que o uso de
@@ -179,4 +179,4 @@ A(q)y(t)=\frac{B(q)}{F(q)}u(t)+\frac{C(q)}{D(q)}e(t)
 \end{equation}
 o sistema não é linearmente parametrizável quando todos os polinômios são diferentes do caso unitário ($A(q),\ldots,
 F(q) \ne 1$) e com isso a função custo não é convexa, adicionando um grau considerável de complexidade aos algoritmos
-para encontrar o mínimo global da equação. \cite{system_identification}
+para encontrar o mínimo global da equação \cite{system_identification}.

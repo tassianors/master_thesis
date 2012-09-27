@@ -25,7 +25,7 @@ Z^N=\left \{ u(1), y(1), ... , u(N),y(N) \right \}
 \end{equation}
 e é o ponto de partida básico para a identificação de sistemas. As propriedades calculadas de $\hat{\theta}_N$ para um
 certo montante de dados serão levadas junto para quando $N \to \infty$, é natural que as condições sobre os dados,
-sejam relativos a um conjunto infinito $Z^{\infty}$. \cite{ljung}
+sejam relativos a um conjunto infinito $Z^{\infty}$ \cite{ljung}.
 
 Assume-se que o conjunto de dados $Z^{\infty}$ é tal que para alguns filtros da forma $\left \{ d_t^{(i)}(k) \right \}$:
 
@@ -55,7 +55,7 @@ Além disso:
 
 Suponha que a o sistema real possa ser descrito por $\mathcal{S}$ (equação \eqref{eq:si_intro_true_system}) e o
 modelo $\mathcal{M}$ seja como apresentado em \eqref{eq:si_intro_model} e além disso que $\mathcal{S} \in \mathcal{M}$.
-Os resultados básicos de consistência são quase imediatos: \cite{ljung}
+Os resultados básicos de consistência são quase imediatos \cite{ljung}:
 
 \begin{theorem}
 Suponha que o conjunto de dados $Z^{\infty}$ está sujeito ao que foi apresentado na Seção
@@ -135,7 +135,7 @@ G(q, \hat{\theta}_N) & H(q, \hat{\theta}_N)
 \end{equation}
 
 A qualidade da estimativa pode ser calculada em termos da diferença entre o processo real $Q_0(q)$ e o melhor sistema
-que o modelo pode atingir (quando a quantidade de dados é ilimitada ($N\rightarrow \infty$)). \cite{campestrini, solari}
+que o modelo pode atingir (quando a quantidade de dados é ilimitada ($N\rightarrow \infty$)) \cite{campestrini, solari}.
 
 \begin{equation}
 \Delta Q_N(q) \equiv \hat{Q}_N(q)-Q_0(q)
@@ -211,7 +211,7 @@ onde $H_*(q)$ é um filtro do ruído fixo, onde $\mathcal{S} \notin \mathcal{M}$.
 Este modelo também cobre o caso da estrutura de modelos Box-Jenkins (Tabela \ref{table:si_modeling_models}).
 Consequentemente esta estrutura de modelos tem a vantagem de que a função de transferência $G(q, \theta)$ pode ser
 consistentemente estimada, mesmo quando o modelo do filtro do ruído é muito simples para admitir-se uma completa
-descrição do sistema. \cite{ljung}
+descrição do sistema \cite{ljung}.
 
 %===============================================================================
 \subsection{Distribuição assintótica das estimativas dos parâmetros}
@@ -220,7 +220,7 @@ descrição do sistema. \cite{ljung}
 
 Um meio comum de medir a qualidade das estimativas é estudar suas propriedades assintóticas. Quando o valor
 da quantidade de dados $N$ cresce muito, a estimativa pertencerá a alguma distribuição. As propriedades desta
-irão determinar a qualidade das estimativas obtidas. \cite{jansson}
+irão determinar a qualidade das estimativas obtidas \cite{jansson}.
 
 Uma vez tendo entendido as propriedades de convergência de $\hat{\theta}_N$, a pergunta que surge é quão rápido esta
 estimativa chega ao limite. Se $\theta^*$ denota o limite, estamos interessados na variável $\hat{\theta}_N -\theta^*$
@@ -232,7 +232,7 @@ da variável randômica:
 \sqrt{N}(\hat{\theta}_N -\theta^*)
 \nonumber
 \end{equation}
-irá convergir para uma distribuição bem definida Gausiana. \cite{ljung}
+irá convergir para uma distribuição bem definida Gausiana \cite{ljung}.
 
 Assume-se que dentro do conjunto $D_{\mathcal{M}}$ exista apenas um ponto de convergência $\theta^*$. Em
 \eqref{eq:si_par_estim_under_theta} foi apresentado que $\hat{\theta}_N \to \theta^*$ quando $N \to \infty$ e considerando que :
@@ -277,7 +277,7 @@ P(\theta)=\lambda_0\left [ E\;\psi (t,\theta_0)\psi^T(t,\theta_0)  \right ]^{-1}
 \end{equation}
 
 Assim quando o sistema real pertence à classe  de modelos escolhida a estimativa converge para $\theta_0$ e a covariância da
-estimativa é dada por: \cite{ljung}
+estimativa é dada por \cite{ljung}:
 
 \begin{equation}
 \text{Cov}\hat{\theta}_N \sim \frac{1}{N}P(\theta)
@@ -323,7 +323,7 @@ como este erro é relacionado com o espectro $\Phi_{\chi 0}$ e especialmente com 
 o espectro cruzado $\Phi_{ue}$. É interessante perceber que as únicas informações capazes de moldar a covariância
 $P(\theta)$ são exatamente os espectro de entrada e cruzado, todos os outros fatores são dependentes do desconhecido
 sistema real. Outro ponto a observar é que o espectro cruzado $\Phi_{ue}$ é zero quando o sistema esta operando em malha
-aberta. \cite{jansson}
+aberta \cite{jansson}.
 
 %===============================================================================
 \subsubsection{Margens de confiança das estimativas}
