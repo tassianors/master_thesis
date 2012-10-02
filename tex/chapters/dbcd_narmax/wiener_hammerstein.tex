@@ -4,122 +4,279 @@
 %===============================================================================
 
 Nesta seção serão apresentados os resultados obtidos e os procedimentos para a identificação de controladores não
-lineares modelados por uma classe de modelos polinomiais quando a planta $\mathcal{S}_{nl}$ é um sistema do tipo Wiener
-ou Hammerstein, descritos na Seção \ref{sec:nl_models_wiener_hammerstein}. Será utilizado o conceito de referência virtual
-para a obtenção dos sinais necessários para que o projeto de identificação deste controlador possa ser realizado.
+lineares modelados por uma classe de modelos polinomiais quando a planta $\mathcal{S}_{nl}$ é um sistema do tipo Wiener,
+descritos na Seção \ref{sec:nl_models_wiener_hammerstein}. Será utilizado o conceito de referência virtual para a
+obtenção dos sinais necessários para que o projeto de identificação deste controlador possa ser realizado.
 
 Considere que o sistema real possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
-encontra-se na saída do processo. Na Figura \ref{fig:vrft_nl_wiener} é apresentado o diagrama de blocos do sistema,
-sendo $\zeta(\omega(t))$ e $\gamma(\epsilon(t))$ os blocos não lineares da planta e do controlador respectivamente.
-Analogamente $G'(q)$ e $C'(q)$ são os blocos lineares da planta e do controlador. Como a não linearidade do controlador está na entrada,
-este poderia ser caracterizado como uma classe de Hammerstein, mas será identificado por uma classe de modelos
-polinomial, não deixando entretanto de ainda ser representável por um modelo de Hammerstein.
+encontra-se na saída do processo. Como descrito em:
+
+\begin{eqnarray}
+z(t) & = & G_0(q) u(t) + H_0 (q) e(t) \label{eq:wiener_z} \\
+y(t) & = & \phi( z(t)) \label{eq:wiener_y}
+\end{eqnarray}
+onde $G_0(z)$ e $H_0(z)$ são funções de transferência racionais e o mapa  $\phi(\cdot ):
+{\cal D}\rightarrow \cal D$, com $\cal D\subset \Re$, é analitico. A Figura \ref{fig:Wiener} representa este sismtea.
 
 \begin{figure}[htbp]
 \center
 % Generated with LaTeXDraw 2.0.8
-% Wed Aug 01 23:38:43 BRT 2012
+% Tue Sep 04 00:22:08 BRT 2012
 % \usepackage[usenames,dvipsnames]{pstricks}
 % \usepackage{epsfig}
 % \usepackage{pst-grad} % For gradients
 % \usepackage{pst-plot} % For axes
 \scalebox{1} % Change this value to rescale the drawing.
 {
-\begin{pspicture}(0,-1.72)(13.241718,1.7)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.02171875,0.7)(1.0217187,0.7)
-\pscircle[linewidth=0.04,dimen=outer](1.2217188,0.7){0.2}
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.4217187,0.7)(2.8217187,0.7)
-\psframe[linewidth=0.04,dimen=outer](4.021719,1.1)(2.8217187,0.3)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.021719,0.7)(5.021719,0.7)
-\psframe[linewidth=0.04,dimen=outer](6.221719,1.1)(5.021719,0.3)
-\psframe[linewidth=0.04,dimen=outer](9.221719,1.1)(8.021719,0.3)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.221719,0.7)(10.221719,0.7)
-\psframe[linewidth=0.04,dimen=outer](11.421719,1.1)(10.221719,0.3)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.221719,0.7)(8.021719,0.7)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(11.421719,0.7)(13.221719,0.7)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.2217188,0.5)(1.2217188,-1.7)
-\psline[linewidth=0.04cm](1.2217188,-1.7)(12.421719,-1.7)
-\psline[linewidth=0.04cm](12.421719,-1.7)(12.421719,0.7)
+\begin{pspicture}(0,-1.0367187)(6.8690624,1.0767188)
+\pscircle[linewidth=0.04,dimen=outer](3.17,-0.63671875){0.2}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.37,-0.63671875)(1.17,-0.63671875)
+\psframe[linewidth=0.04,dimen=outer](2.37,-0.23671874)(1.17,-1.0367187)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.37,-0.63671875)(4.37,-0.63671875)
+\psframe[linewidth=0.04,dimen=outer](5.57,-0.23671874)(4.37,-1.0367187)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.37,-0.63671875)(2.97,-0.63671875)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.57,-0.63671875)(6.37,-0.63671875)
 \usefont{T1}{ppl}{m}{n}
-\rput(0.45453125,1.01){$r(t)$}
+\rput(3.7245312,-0.32671875){$z(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(1.9407812,1.01){$\epsilon (t)$}
+\rput(0.48453125,-0.32671875){$u(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(4.510781,1.01){$v(t)$}
+\rput(6.284531,-0.32671875){$y(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(7.085625,1.01){$u(t)$}
+\rput(4.934531,-0.62671876){$\phi(\cdot)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(9.660782,1.01){$\omega(t)$}
+\rput(1.7345313,-0.62671876){$G_0(q)$}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.37,0.56328124)(1.17,0.56328124)
+\psframe[linewidth=0.04,dimen=outer](2.37,0.9632813)(1.17,0.16328125)
+\psline[linewidth=0.04cm](2.37,0.56328124)(3.17,0.56328124)
 \usefont{T1}{ppl}{m}{n}
-\rput(12.495625,1.01){$y(t)$}
-\psline[linewidth=0.04cm](1.6217188,0.5)(1.8217187,0.5)
-\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](6.621719,1.7)(2.4217188,-0.3)
-\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](11.821719,1.7)(7.621719,-0.3)
+\rput(0.48453125,0.87328124){$e(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(4.5507812,-0.59){$\mathcal{C}$}
+\rput(1.7345313,0.59328127){$H_0(q)$}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.17,0.56328124)(3.17,-0.43671876)
+\end{pspicture} 
+}
+\caption{Um sistema do tipo Wiener como descrito por \eqref{eq:wiener_z} e \eqref{eq:wiener_y}}
+\label{fig:Wiener}
+\end{figure}
+
+Além disso é assumido que o mapa $\phi(\cdot )$ é inversível em todo range $\cal D$, ou seja, existe um mapa
+$\phi_R^{-1}(\cdot )$ tal que $\phi(\phi_R^{-1}(x)) = x \quad \forall x \in {\cal D}$.
+
+Não é dificil de perceber que para este caso o controlador ideal é um sistema Hammerstein, ou seja:
+
+\begin{eqnarray}
+u(t) & = & C_d'(z) v(t)  \label{eq:hammer_u}\\
+v(t) & = & r(t) - \psi( y(t) )\label{eq:hammer_v}
+\end{eqnarray}
+
+\begin{figure}[htbp]
+\center
+% Generated with LaTeXDraw 2.0.8
+% Sun Sep 02 10:59:53 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\scalebox{1} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-1.0367187)(4.6990623,1.0767188)
+\pscircle[linewidth=0.04,dimen=outer](1.2,0.56328124){0.2}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,0.56328124)(1.0,0.56328124)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.4,0.56328124)(2.2,0.56328124)
+\psframe[linewidth=0.04,dimen=outer](3.4,0.9632813)(2.2,0.16328125)
+\psline[linewidth=0.04cm](1.2,-0.63671875)(2.2,-0.63671875)
+\psframe[linewidth=0.04,dimen=outer](3.4,-0.23671874)(2.2,-1.0367187)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.2,-0.63671875)(1.2,0.36328125)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.4,0.56328124)(4.2,0.56328124)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(3.4,-0.63671875)(4.2,-0.63671875)
+\usefont{T1}{ptm}{m}{n}
+\rput(0.48453125,0.87328124){$r(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.114531,0.87328124){$u(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(4.114531,-0.32671875){$y(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.7145313,0.87328124){$v(t)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.7645311,-0.62671876){$\psi(\cdot)$}
+\usefont{T1}{ptm}{m}{n}
+\rput(2.7745314,0.5732812){$C_d'(z)$}
+\psline[linewidth=0.04cm](1.38,0.34328124)(1.54,0.34328124)
+\end{pspicture} 
+}
+\caption{Um controlador do tipo Hammerstein como descrito por \eqref{eq:hammer_u} e \eqref{eq:hammer_v}}
+\label{fig:dbnarmax_method_vr}
+\end{figure}
+
+Realmente, se $\psi(\cdot ) = \phi_R^{-1}(\cdot )$ e 
+\begin{equation}
+C_d' (q)= \frac{T_d(q)}{G_0(q)(1-T_d(q))}
+\label{eq:dbcd_perf_tracking_cd}
+\end{equation}
+
+Então o sismtema em malha fechada é linear com uma função de transferência $T_d(q)$.
+
+Na prática esta é uma solução padrão de controle, pois controladores comerciais normalmente incluen customizáveis
+funções de linearização  $\psi(\cdot )$  no laço de realimentação. Fica claro que nesmo neste caso padrão o controlador
+ideal não é uma função do erro de referência $r(t)-y(t)$, mas sim uma função de  $r(t)$ e de $y(t)$ separadamente. 
+
+Assumindo que a referência é uma constante conhecida, uma topologia alternativa pode ser elaborada com um controlador
+que é dependente apenas do erro de referência. A classe de modelos deste controlador pode ser definido como:
+
+\begin{eqnarray}
+u(t) & = & C'(z,\rho) v(t) \label{eq:track_error_controller_u}\\
+v(t) & = & \psi( r(t) - y(t),\eta )\label{eq:track_error_controller_v}
+\end{eqnarray}
+onde a função $\psi(\cdot,\cdot )$ deve ser tal que o sistema com o controlador em malha fechada deveria se comportar
+como se nenhuma das não linearidades estivesse presente, ou seja:
+
+\begin{equation}
+\psi ( r(t) - y(t) ) = \alpha [r(t)-z(t)]
+\label{vzlinear}
+\end{equation}
+para algum $\alpha\in\Re^+$. A Figura \ref{fig:vrft_nl_wiener} mostra um sistema com uma não linearidade do tipo
+Wiener e um controlador descrito como anteriormente.
+
+\begin{figure}[htbp]
+\center
+% Generated with LaTeXDraw 2.0.8
+% Sat Aug 25 13:00:53 BRT 2012
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\scalebox{0.95} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-2.12)(12.480156,2.1)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0471875,0.3)(1.0471874,0.3)
+\pscircle[linewidth=0.04,dimen=outer](1.2471875,0.3){0.2}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.4471874,0.3)(2.36,0.3)
+\psframe[linewidth=0.04,dimen=outer](3.56,0.7)(2.36,-0.1)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.56,0.3)(4.36,0.3)
+\psframe[linewidth=0.04,dimen=outer](5.56,0.7)(4.36,-0.1)
+\psframe[linewidth=0.04,dimen=outer](8.36,0.7)(7.16,-0.1)
+\psframe[linewidth=0.04,dimen=outer](10.96,0.7)(9.76,-0.1)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.447188,0.3)(7.16,0.3)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{<-}(1.2471875,0.1)(1.2471875,-2.1)
+\psline[linewidth=0.04cm](1.2471875,-2.1)(11.56,-2.1)
 \usefont{T1}{ppl}{m}{n}
-\rput(9.670782,-0.59){$\mathcal{S}_{nl}$}
+\rput(0.45453125,0.61){$r(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(3.3407812,0.71){$\gamma(\cdot)$}
+\rput(1.5807812,0.61){$\epsilon (t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(10.820781,0.71){$\zeta(\cdot)$}
+\rput(3.930781,0.57){$v(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(5.610781,0.71){$C'(q)$}
+\rput(6.365625,0.61){$u(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(8.620781,0.71){$G'(q)$}
+\rput(9.460782,0.61){$z(t)$}
+\usefont{T1}{ppl}{m}{n}
+\rput(11.895625,0.61){$y(t)$}
+\psline[linewidth=0.04cm](1.4671875,0.08)(1.6671875,0.08)
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](5.96,1.3)(1.96,-0.7)
+\psframe[linewidth=0.04,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](11.36,2.1)(6.76,-0.7)
+\usefont{T1}{ppl}{m}{n}
+\rput(3.950781,-0.99){$\mathcal{C}$}
+\usefont{T1}{ppl}{m}{n}
+\rput(8.870782,-0.99){$\mathcal{S}$}
+\usefont{T1}{ppl}{m}{n}
+\rput(2.9207811,0.31){$\psi(\cdot)$}
+\usefont{T1}{ppl}{m}{n}
+\rput(10.320781,0.31){$\phi(\cdot)$}
+\usefont{T1}{ppl}{m}{n}
+\rput(4.910781,0.31){$C'(q)$}
+\usefont{T1}{ppl}{m}{n}
+\rput(7.720781,0.31){$G_0(q)$}
+\psframe[linewidth=0.04,dimen=outer](8.36,1.7)(7.16,0.9)
+\usefont{T1}{ppl}{m}{n}
+\rput(7.720781,1.29){$H_0(q)$}
+\psline[linewidth=0.04cm](8.36,1.3)(8.96,1.3)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.96,1.3)(8.96,0.5)
+\pscircle[linewidth=0.04,dimen=outer](8.96,0.3){0.2}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.36,0.3)(8.76,0.3)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.16,0.3)(9.76,0.3)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.36,1.3)(7.16,1.3)
+\usefont{T1}{ppl}{m}{n}
+\rput(6.285625,1.61){$e(t)$}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(10.96,0.3)(12.16,0.3)
+\psline[linewidth=0.04cm](11.56,-2.1)(11.56,0.3)
 \end{pspicture} 
 }
 \caption{Diagrama de blocos para um sistema não linear do tipo Wiener}
 \label{fig:vrft_nl_wiener}
 \end{figure}
 
-Espera-se que o sistema em malha fechada se comporte linearmente como $T_d(q)$, desta forma o controlador ótimo
-$\mathcal{C}_d$ deve ser tal que possa cancelar o efeito não linear de $\zeta(\omega(t))$. Em outras palavras, espera-se
-que o sistema em malha fechada possua o sinal $v(t)$ como em:
+Ao fazê-lo, o controlador ideal depende apenas do erro de referência, mas a função  $\psi(\cdot )$ depende do valor de
+referência, e será uma função diferente para cada valor diferente da referência. Além disso, para valores não
+constantes, a não linearidade inversa $\psi(\cdot)$ pode não ser autonoma, violando outra pressuposição da formulação
+não linear do VRFT proposta em \cite{campi_savaresi2006}.
+
+Agora, entretanto é desejado que o sistem se comporte linearmente em malha fechada como $T_d(q)$. Para obter-se isso o
+controlador deve cancelar todos os efeitos não lineares de $\phi(z(t))$. Em outras palavras, é desejado que em malha
+fechada o sinal $v(t)$ obedeça a equação (\ref{vzlinear}). Entretanto o sistema apresentado na Figura
+\ref{fig:vrft_nl_wiener} se comporta como em:
 
 \begin{equation}
-v(t)=r(t)-\omega(t)
-\end{equation}
-desta forma, o efeito não linear presente na planta seria anulado pelo controlador. Tem-se todavia, que o sistema
-descrito na Figura \ref{fig:vrft_nl_wiener} se comporta como:
-
-\begin{equation}
-v(t)=\gamma (\epsilon(t))
+v(t)=\psi (r(t) - y(t))
 \nonumber
 \end{equation}
-e sendo $\epsilon(t)$ descrito como:
+e assim podemos obter a relação entre $\psi(\cdot) $ e $\phi(\cdot)$ como:
 
 \begin{equation}
-\epsilon(t) = r(t) - y(t)
-\nonumber
-\end{equation}
-pode-se obter então o relacionamento entre os sinais $\gamma(\cdot) $ e $\zeta(\cdot)$ como abaixo:
-
-\begin{equation}
-\gamma (r(t) - \zeta(\omega(t))) = r(t) - \omega(t) 
-\label{eq:dbnarmac_ex_wiener_gamma}
+\psi (r(t) - \phi(z(t))) = \alpha [r(t) - z(t)] .
+\label{eq:dbnarmac_ex_wiener_psi}
 \end{equation}
 
-Percebe-se claramente que quando não há sinal de referência $r(t)$, ou seja
+Fica claro que qunado não existe um sinal de referência, $r(t) \equiv 0$, a relação entre os polinomios $\psi(\cdot)$ e
+$\phi(\cdot)$ fica simplificada a:
 
 \begin{equation}
-r(t) \equiv 0
+\psi (\phi(z(t))) = -\alpha z(t)
 \nonumber 
 \end{equation}
-o relacionamento entre os polinômios $\gamma(\cdot) $ e $\zeta(\cdot)$ fica simplificado a:
+então neste caso (mas apenas neste caso) $\psi(\cdot )$ deve ser a inversa de  $\phi(\cdot)$, a menos de uma
+constante.
+
+\subsection{Convexidade}
+
+O ponto principal do paradigma de referência virtual é de deixar o problema de modelo de referência convexo. Isso é
+obtido no VRFT por meio de uma parametrização linear do controlador e o projeto do controlador é obtido por meio da
+solução de um problema de mínimos quadrados.
+
+The main point of the virtual reference paradigm is to convexify the model reference problem. This is
+obtained in VRFT by means of a linear parameterization of the controller and the 
+controller design is performed by the solution of a least squares problem.
+A fim de aproveitar esta virtude computacional, é necessario ter um controlador parametrizavel linearmente. Desde que a
+inversa é assumidamente analitica, ela pode ser espandida em serie de Taylor e então truncada:
+
+$$
+\phi_R^{-1} ( x ) \cong  \sum_{i=0}^{k} \frac{1}{i!}\frac{\partial^i \phi_R^{-1} }{\partial x^i}( 0 ) x^i 
+$$%\\ & \bydef & \sum_{i=0}^{k} \alpha_i x^i \eeqan
+
+Se o controlador e a função não linear forem ambos parametrizaveis linearmente, ou seja, 
+
+\begin{eqnarray}
+C'(z,\theta ) & = & \frac{1}{D(z)} \theta^T N(z) \label{um} \\
+\psi(\epsilon(t)) & = & \eta^T E(t) \label{dois}
+\end{eqnarray}
+com $D(z)$ sendo um polinomio mônico conhecido, $N(z)\bydef [1 \quad z^{-1} z^{-2} \ldots
+z^{-p}]^T$, e $E(t) \bydef [\epsilon (t) \quad \epsilon^2 (t) \ldots \epsilon^k (t)]^T$.
+Então, definindo  $u_f(t) = D(z) u(t)$ e substituindo as equações \eqref{um} e \eqref{dois} em
+\eqref{eq:hammer_u} leva a:
 
 \begin{equation}
-\gamma (\epsilon(t)) = \zeta(\omega(t))^{-1}
-\nonumber 
+u_f(t) = \sum_{i=0}^{p} \sum_{j=1}^k \rho_{i+j} \epsilon^j(t-i)
 \end{equation}
+ou
+\begin{equation}
+u_f(t) = \rho^T \varpi(t)
+\end{equation}
+onde $\rho_{i+j} \bydef \theta_i\eta_j$ e o vetor $\rho=\left[ \rho_1 \ldots \rho_{pk}\right]^T$ são os parâmetros a
+serem identificados. Note que um preço precisa ser pago para se obter uma parametrização linear: o número de parametros
+que inicialmente era igual a $p+k$, é agora $p\times k$.
 
-$\gamma (\cdot)$ como descrito em \eqref{eq:dbnarmac_ex_wiener_gamma} pode não ser parametrizável por um modelo
-polinomial. Aproxima-se $\gamma (\cdot)$ então por uma classe de modelos NARMAX a fim de tornar a identificação do controlador
-ideal, a identificação de uma classe NARMAX, onde o algoritmo apresentado na Seção \ref{sec:nl_si_algorithms_rationals}
-pode ser utilizado.
+O exemplo numérico abaixo visa demonstrar este método proposto para o projeto de controladores do tipo Hammerstein.
 
-O exemplo apresentado a seguir tem como objetivo demonstrar o funcionamento da metodologia proposta para quando
-$\gamma(\cdot)$ e $\zeta(\cdot)$ são polinômios não lineares.
 
 %===============================================================================
 \subsection{Exemplo numérico}
