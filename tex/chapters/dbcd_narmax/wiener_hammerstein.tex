@@ -4,19 +4,19 @@
 %===============================================================================
 
 Nesta seção serão apresentados os resultados obtidos e os procedimentos para a identificação de controladores não
-lineares modelados por uma classe de modelos polinomiais quando a planta $\mathcal{S}_{nl}$ é um sistema do tipo Wiener,
-descritos na Seção \ref{sec:nl_models_wiener_hammerstein}. Será utilizado o conceito de referência virtual para a
-obtenção dos sinais necessários para que o projeto de identificação deste controlador possa ser realizado.
+lineares modelados por classe de modelos polinomiais quando a planta $\mathcal{S}_{nl}$ é um sistema não linear do tipo
+Wiener. Será utilizado o conceito de referência virtual para a obtenção dos sinais necessários para que o projeto de
+identificação deste controlador possa ser realizado.
 
 Considere que o sistema real possui uma não linearidade estática do tipo Wiener, onde o bloco não linear
 encontra-se na saída do processo. Como descrito em:
 
 \begin{eqnarray}
 z(t) & = & G_0(q) u(t) + H_0 (q) e(t) \label{eq:wiener_z} \\
-y(t) & = & \phi( z(t)) \label{eq:wiener_y}
+y(t) & = & \zeta( z(t)) \label{eq:wiener_y}
 \end{eqnarray}
-onde $G_0(z)$ e $H_0(z)$ são funções de transferência racionais e o mapa  $\phi(\cdot ):
-{\cal D}\rightarrow \cal D$, com $\cal D\subset \Re$, é analitico. A Figura \ref{fig:Wiener} representa este sismtea.
+onde $G_0(q)$ e $H_0(q)$ são funções de transferência racionais e o mapa  $\zeta(\cdot ):
+{\cal D}\rightarrow \cal D$, com $\cal D\subset \Re$, é analitico. A Figura \ref{fig:Wiener} representa este sistema.
 
 \begin{figure}[htbp]
 \center
@@ -43,7 +43,7 @@ onde $G_0(z)$ e $H_0(z)$ são funções de transferência racionais e o mapa  $\phi(
 \usefont{T1}{ppl}{m}{n}
 \rput(6.284531,-0.32671875){$y(t)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(4.934531,-0.62671876){$\phi(\cdot)$}
+\rput(4.934531,-0.62671876){$\zeta(\cdot)$}
 \usefont{T1}{ppl}{m}{n}
 \rput(1.7345313,-0.62671876){$G_0(q)$}
 \psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.37,0.56328124)(1.17,0.56328124)
@@ -60,14 +60,14 @@ onde $G_0(z)$ e $H_0(z)$ são funções de transferência racionais e o mapa  $\phi(
 \label{fig:Wiener}
 \end{figure}
 
-Além disso é assumido que o mapa $\phi(\cdot )$ é inversível em todo range $\cal D$, ou seja, existe um mapa
-$\phi_R^{-1}(\cdot )$ tal que $\phi(\phi_R^{-1}(x)) = x \quad \forall x \in {\cal D}$.
+Além disso é assumido que a função $\zeta(\cdot )$ é inversível em todo range $\cal D$, ou seja, existe uma função
+$\zeta_R^{-1}(\cdot )$ tal que $\zeta(\zeta_R^{-1}(x)) = x \quad \forall x \in {\cal D}$.
 
 Não é dificil de perceber que para este caso o controlador ideal é um sistema Hammerstein, ou seja:
 
 \begin{eqnarray}
-u(t) & = & C_d'(z) v(t)  \label{eq:hammer_u}\\
-v(t) & = & r(t) - \psi( y(t) )\label{eq:hammer_v}
+u(t) & = & C_d'(q) v(t)  \label{eq:hammer_u}\\
+v(t) & = & r(t) - \gamma( y(t) )\label{eq:hammer_v}
 \end{eqnarray}
 
 \begin{figure}[htbp]
@@ -99,7 +99,7 @@ v(t) & = & r(t) - \psi( y(t) )\label{eq:hammer_v}
 \usefont{T1}{ptm}{m}{n}
 \rput(1.7145313,0.87328124){$v(t)$}
 \usefont{T1}{ptm}{m}{n}
-\rput(2.7645311,-0.62671876){$\psi(\cdot)$}
+\rput(2.7645311,-0.62671876){$\gamma(\cdot)$}
 \usefont{T1}{ptm}{m}{n}
 \rput(2.7745314,0.5732812){$C_d'(z)$}
 \psline[linewidth=0.04cm](1.38,0.34328124)(1.54,0.34328124)
@@ -109,34 +109,35 @@ v(t) & = & r(t) - \psi( y(t) )\label{eq:hammer_v}
 \label{fig:dbnarmax_method_vr}
 \end{figure}
 
-Realmente, se $\psi(\cdot ) = \phi_R^{-1}(\cdot )$ e 
+Realmente, se $\gamma(\cdot ) = \zeta_R^{-1}(\cdot )$ e 
 \begin{equation}
 C_d' (q)= \frac{T_d(q)}{G_0(q)(1-T_d(q))}
 \label{eq:dbcd_perf_tracking_cd}
 \end{equation}
+então o sismtema em malha fechada é linear com uma função de transferência $T_d(q)$.
 
-Então o sismtema em malha fechada é linear com uma função de transferência $T_d(q)$.
-
-Na prática esta é uma solução padrão de controle, pois controladores comerciais normalmente incluen customizáveis
-funções de linearização  $\psi(\cdot )$  no laço de realimentação. Fica claro que nesmo neste caso padrão o controlador
+Na prática esta é uma solução padrão de controle, pois controladores comerciais normalmente incluem customizáveis
+funções de linearização  $\gamma(\cdot )$  no laço de realimentação. Fica claro que mesmo neste caso padrão o controlador
 ideal não é uma função do erro de referência $r(t)-y(t)$, mas sim uma função de  $r(t)$ e de $y(t)$ separadamente. 
 
 Assumindo que a referência é uma constante conhecida, uma topologia alternativa pode ser elaborada com um controlador
 que é dependente apenas do erro de referência. A classe de modelos deste controlador pode ser definido como:
 
 \begin{eqnarray}
-u(t) & = & C'(z,\rho) v(t) \label{eq:track_error_controller_u}\\
-v(t) & = & \psi( r(t) - y(t),\eta )\label{eq:track_error_controller_v}
+u(t) & = & C'(q,\theta) v(t) \label{eq:track_error_controller_u}\\
+v(t) & = & \gamma( r(t) - y(t),\eta )\label{eq:track_error_controller_v}
 \end{eqnarray}
-onde a função $\psi(\cdot,\cdot )$ deve ser tal que o sistema com o controlador em malha fechada deveria se comportar
+onde a função $\gamma(\cdot,\cdot )$ deve ser tal que o sistema com o controlador em malha fechada deve se comportar
 como se nenhuma das não linearidades estivesse presente, ou seja:
 
 \begin{equation}
-\psi ( r(t) - y(t) ) = \alpha [r(t)-z(t)]
+\gamma ( r(t) - y(t) ) = \alpha [r(t)-z(t)]
 \label{vzlinear}
 \end{equation}
-para algum $\alpha\in\Re^+$. A Figura \ref{fig:vrft_nl_wiener} mostra um sistema com uma não linearidade do tipo
-Wiener e um controlador descrito como anteriormente.
+para algum $\alpha\in\Re^+$. 
+
+A Figura \ref{fig:vrft_nl_wiener} mostra um sistema com uma não linearidade do tipo Wiener e um controlador descrito
+como anteriormente.
 
 \begin{figure}[htbp]
 \center
@@ -178,11 +179,11 @@ Wiener e um controlador descrito como anteriormente.
 \usefont{T1}{ppl}{m}{n}
 \rput(3.950781,-0.99){$\mathcal{C}$}
 \usefont{T1}{ppl}{m}{n}
-\rput(8.870782,-0.99){$\mathcal{S}$}
+\rput(8.870782,-0.99){$\mathcal{S}_{nl}$}
 \usefont{T1}{ppl}{m}{n}
-\rput(2.9207811,0.31){$\psi(\cdot)$}
+\rput(2.9207811,0.31){$\gamma(\cdot)$}
 \usefont{T1}{ppl}{m}{n}
-\rput(10.320781,0.31){$\phi(\cdot)$}
+\rput(10.320781,0.31){$\zeta(\cdot)$}
 \usefont{T1}{ppl}{m}{n}
 \rput(4.910781,0.31){$C'(q)$}
 \usefont{T1}{ppl}{m}{n}
@@ -206,77 +207,73 @@ Wiener e um controlador descrito como anteriormente.
 \label{fig:vrft_nl_wiener}
 \end{figure}
 
-Ao fazê-lo, o controlador ideal depende apenas do erro de referência, mas a função  $\psi(\cdot )$ depende do valor de
+Ao fazê-lo, o controlador ideal depende apenas do erro de referência, mas a função  $\gamma(\cdot )$ depende do valor de
 referência, e será uma função diferente para cada valor diferente da referência. Além disso, para valores não
-constantes, a não linearidade inversa $\psi(\cdot)$ pode não ser autonoma, violando outra pressuposição da formulação
+constantes, a não linearidade inversa $\gamma(\cdot)$ pode não ser autonoma, violando outra pressuposição da formulação
 não linear do VRFT proposta em \cite{campi_savaresi2006}.
 
 Agora, entretanto é desejado que o sistem se comporte linearmente em malha fechada como $T_d(q)$. Para obter-se isso o
-controlador deve cancelar todos os efeitos não lineares de $\phi(z(t))$. Em outras palavras, é desejado que em malha
+controlador deve cancelar todos os efeitos não lineares de $\zeta(z(t))$. Em outras palavras, é desejado que em malha
 fechada o sinal $v(t)$ obedeça a equação (\ref{vzlinear}). Entretanto o sistema apresentado na Figura
 \ref{fig:vrft_nl_wiener} se comporta como em:
 
 \begin{equation}
-v(t)=\psi (r(t) - y(t))
+v(t)=\gamma (r(t) - y(t))
 \nonumber
 \end{equation}
-e assim podemos obter a relação entre $\psi(\cdot) $ e $\phi(\cdot)$ como:
+e assim pode-se obter a relação entre $\gamma(\cdot) $ e $\zeta(\cdot)$ como:
 
 \begin{equation}
-\psi (r(t) - \phi(z(t))) = \alpha [r(t) - z(t)] .
+\gamma (r(t) - \zeta(z(t))) = \alpha [r(t) - z(t)] .
 \label{eq:dbnarmac_ex_wiener_psi}
 \end{equation}
 
-Fica claro que qunado não existe um sinal de referência, $r(t) \equiv 0$, a relação entre os polinomios $\psi(\cdot)$ e
-$\phi(\cdot)$ fica simplificada a:
+Fica claro que qunado não existe um sinal de referência, $r(t) \equiv 0$, a relação entre os polinomios $\gamma(\cdot)$ e
+$\zeta(\cdot)$ fica simplificada a:
 
 \begin{equation}
-\psi (\phi(z(t))) = -\alpha z(t)
+\gamma (\zeta(z(t))) = -\alpha z(t)
 \nonumber 
 \end{equation}
-então neste caso (mas apenas neste caso) $\psi(\cdot )$ deve ser a inversa de  $\phi(\cdot)$, a menos de uma
+então neste caso (mas apenas neste caso) $\gamma(\cdot )$ deve ser a inversa de  $\zeta(\cdot)$, a menos de uma
 constante.
 
 \subsection{Convexidade}
 
 O ponto principal do paradigma de referência virtual é de deixar o problema de modelo de referência convexo. Isso é
-obtido no VRFT por meio de uma parametrização linear do controlador e o projeto do controlador é obtido por meio da
-solução de um problema de mínimos quadrados.
+obtido no método VRFT por meio de uma parametrização linear do controlador e o projeto do controlador é obtido por
+meio da solução de um problema de mínimos quadrados.
 
-The main point of the virtual reference paradigm is to convexify the model reference problem. This is
-obtained in VRFT by means of a linear parameterization of the controller and the 
-controller design is performed by the solution of a least squares problem.
-A fim de aproveitar esta virtude computacional, é necessario ter um controlador parametrizavel linearmente. Desde que a
-inversa é assumidamente analitica, ela pode ser espandida em serie de Taylor e então truncada:
+Para aproveitar esta virtude computacional é necessario ter um controlador parametrizavel linearmente. Desde
+que a inversa é assumidamente analitica, ela pode ser espandida em serie de Taylor e então truncada:
 
 $$
-\phi_R^{-1} ( x ) \cong  \sum_{i=0}^{k} \frac{1}{i!}\frac{\partial^i \phi_R^{-1} }{\partial x^i}( 0 ) x^i 
+\zeta_R^{-1} ( x ) \cong  \sum_{i=0}^{k} \frac{1}{i!}\frac{\partial^i \zeta_R^{-1} }{\partial x^i}( 0 ) x^i 
 $$%\\ & \bydef & \sum_{i=0}^{k} \alpha_i x^i \eeqan
 
 Se o controlador e a função não linear forem ambos parametrizaveis linearmente, ou seja, 
 
 \begin{eqnarray}
-C'(z,\theta ) & = & \frac{1}{D(z)} \theta^T N(z) \label{um} \\
-\psi(\epsilon(t)) & = & \eta^T E(t) \label{dois}
+C'(q,\rho ) & = & \frac{1}{D(q)} \rho^T N(q) \label{um} \\
+\gamma(\epsilon(t)) & = & \eta^T E(t) \label{dois}
 \end{eqnarray}
-com $D(z)$ sendo um polinomio mônico conhecido, $N(z)\bydef [1 \quad z^{-1} z^{-2} \ldots
-z^{-p}]^T$, e $E(t) \bydef [\epsilon (t) \quad \epsilon^2 (t) \ldots \epsilon^k (t)]^T$.
-Então, definindo  $u_f(t) = D(z) u(t)$ e substituindo as equações \eqref{um} e \eqref{dois} em
+com $D(q)$ sendo um polinomio mônico conhecido, $N(q)\bydef [1 \quad q^{-1} q^{-2} \ldots
+q^{-p}]^T$, e $E(t) \bydef [\epsilon (t) \quad \epsilon^2 (t) \ldots \epsilon^k (t)]^T$.
+Então, definindo  $u_f(t) = D(q) u(t)$ e substituindo as equações \eqref{um} e \eqref{dois} em
 \eqref{eq:hammer_u} leva a:
 
 \begin{equation}
-u_f(t) = \sum_{i=0}^{p} \sum_{j=1}^k \rho_{i+j} \epsilon^j(t-i)
+u_f(t) = \sum_{i=0}^{p} \sum_{j=1}^k \theta_{i+j} \epsilon^j(t-i)
 \end{equation}
 ou
 \begin{equation}
-u_f(t) = \rho^T \varpi(t)
+u_f(t) = \theta^T \varpi(t)
 \end{equation}
-onde $\rho_{i+j} \bydef \theta_i\eta_j$ e o vetor $\rho=\left[ \rho_1 \ldots \rho_{pk}\right]^T$ são os parâmetros a
-serem identificados. Note que um preço precisa ser pago para se obter uma parametrização linear: o número de parametros
-que inicialmente era igual a $p+k$, é agora $p\times k$.
+onde $\theta_{i+j} \bydef \rho_i\eta_j$ e o vetor $\theta=\left[ \theta_1 \ldots \theta_{pk}\right]^T$ são os parâmetros a
+serem identificados. Note que um preço precisa ser pago para obter-se uma parametrização linear: o número de parâmetros
+que inicialmente era igual a $p+k$, agora é $p\times k$.
 
 O exemplo numérico abaixo visa demonstrar este método proposto para o projeto de controladores do tipo Hammerstein.
-
 
 %===============================================================================
 \subsection{Exemplo numérico}
@@ -284,31 +281,39 @@ O exemplo numérico abaixo visa demonstrar este método proposto para o projeto de
 %===============================================================================
  
 Considere uma planta não linear $\mathcal{S}_{nl}$ do tipo Wiener como apresentado na Figura \ref{fig:vrft_nl_wiener}.
-Considere ainda que o bloco linear desta planta pode ser descrito como abaixo:
+Considere ainda que o bloco linear e não linear desta planta pode ser descrito como:
 
 \begin{equation}
 G'(q)=\frac{0.5}{q-0.9}
 \label{eq:vrft_nl_wiener_g}
 \end{equation}
-e a não linearidade presente na planta do sistema pode ser descrita como um polinômio de terceira ordem:
+e
 
 \begin{equation}
-\zeta(\omega(t))=y(t)=1.5\omega(t)+0.2\omega^3(t)
+\zeta(z(t))=y(t)=1.5z(t)+0.2z^3(t)
 \label{eq:vrft_nl_wiener_zeta}
 \end{equation}  
-tem-se assim que a planta pode ser descrita pela concatenação dos blocos $G'(q)$ e $\zeta(t)$.
 
-A função $\gamma(\cdot)$ foi previamente definida pela equação \eqref{eq:dbnarmac_ex_wiener_gamma} e por esta equação
-não ser parametrizável por um modelo NARMAX devido a $\zeta(\cdot)$ apresentado em \eqref{eq:vrft_nl_wiener_zeta}, aproxima-se
-$\gamma(\cdot)$ como abaixo:
+Deseja-se que esta planta seja controlada para que o comportamento em malha fechada possa ser descrito como em:
+
+\begin{equation}
+T_d(q)=\frac{0.4}{q-0.6}
+\label{eq:vrft_nl_wiener_td}
+\end{equation}
+
+O controlador é definido pela forma apresentada em \eqref{eq:track_error_controller_u} e
+\eqref{eq:track_error_controller_v} com $C(\theta, q)$ como um controlador do tió proporcional integral (PI).
+
+\begin{equation}
+C(\theta, q)=\theta_1\frac{1}{q-1}+\theta_2\frac{q}{q-1}
+\label{eq:dbnarmax_ex_wiener_controller_class_pi}
+\end{equation}  
+e a função não linear sendo representada por um polinomio de quarta ordem como:
 
 \begin{equation}
 \gamma (\epsilon(t))= v(t) = a_1\epsilon (t) + a_2 \epsilon ^2(t) +a_3 \epsilon ^3(t) +a_4 \epsilon ^4(t)
 \label{eq:dbnarmax_ex_wiener_gamma_choosen}
 \end{equation}  
-
-Desta forma o controlador a ser identificado pode ser modelado por um modelo NARMAX, mesmo isso sendo uma aproximação do
-controlador ideal $\mathcal{C}_d$. Desta forma não é possível afirmar que $\mathcal{C}_d \in \mathcal{C}$. 
 
 Considerando entretanto que nenhum dos blocos não lineares existissem no sistema, o controlador ideal poderia ser descrito pela equação
 \eqref{eq:dbcd_perf_tracking_cd}, resultando em 
@@ -317,25 +322,32 @@ Considerando entretanto que nenhum dos blocos não lineares existissem no sistema
 C_d'(q)= \frac{0.8q-0.72}{q-1}
 \label{eq:vrft_nl_wiener_cd}
 \end{equation}
-entretanto, o controlador ideal que leva o sistema a se comportar como definido por $T_d(q)$ é composto em parte por
-\eqref{eq:vrft_nl_wiener_cd} acrescido do polinômio \eqref{eq:dbnarmax_ex_wiener_gamma_choosen}.
+o qual pode ser exatamente descrito pela classe de controladores apresentada em
+\eqref{eq:dbnarmax_ex_wiener_controller_class_pi}.
+
+A parte não linear do controlador ideal é a inversa da função não linear $\zeta(\cdot )$ dada em
+\eqref{eq:vrft_nl_wiener_zeta}. Esta função será aproximada por uma série de Taylor truncada como em
+\eqref{eq:dbnarmax_ex_wiener_gamma_choosen}, o que significa, rigorosamente falando, que $C_d(q)$ não pode ser
+representado por $C(\theta, q)$, ou seja, $C_d(q) \notin C(\theta, q)$. Se pro ventura o desempenho do controlador
+encontrado não for satisfatório, pode-se aumentar a ordem da série de Taylor utilizada para a aproximação, o que pode
+ser arbitrariamente feito até obter-se um desempenho próximo ao desejado.
 
 O controlador $C_d'(q)$ possui um integrador em sua estrutura. Para evitar problemas de seguimento de
 referência optou-se por não identificar esta parte do controlador, mantendo o denominador como um integrador
 e identificando apenas o numerador. 
 
-Fazendo-se as substituições necessárias, chega-se à expressão do sinal de saída do controlador que se quer identificar:
+Fazendo-se as substituições necessárias, chega-se à expressão do sinal de saída do controlador:
 
 \begin{align}\nonumber
-u(t) =&  \theta_1 \epsilon (t)+ \theta_2 \epsilon ^2(t)+ \theta_3 \epsilon^3(t)+ \theta_4 \epsilon^4(t)+\\
+u_f(t) =&  \theta_1 \epsilon (t)+ \theta_2 \epsilon ^2(t)+ \theta_3 \epsilon^3(t)+ \theta_4 \epsilon^4(t)+\\
 & \theta_5 \epsilon(t-1)+ \theta_6 \epsilon^2(t-1)+  \theta_7 \epsilon^3(t-1)+ \theta_8 \epsilon^4(t-1)
 \label{eq:dbnarmax_ex_wiener_controller}
 \end{align}
+onde $u_f(t)$ denota que $u(t)$ foi filtrado pelo denominador de $C_d'(q)$ em \eqref{eq:vrft_nl_wiener_cd}.
 
-Observa-se que $u(t)$ em \eqref{eq:dbnarmax_ex_wiener_controller} é um modelo NARMAX polinomial. Foram realizados 100
-experimentos de Monte Carlo adicionando um ruído com $\sigma_e^2=0.05$ e utilizando o algoritmo para identificação de
-modelos NARMAX em conjunto com o procedimento de referência virtual para gerar os sinais $r(t)$ e $\epsilon(t)$ e a
-média das estimativas obtidas foi de:
+Foram realizados 100 experimentos de Monte Carlo adicionando um ruído com $\sigma_e^2=0.05$ e utilizando o algoritmo
+proposto em conjunto com o procedimento de referência virtual para obter os sinais $r(t)$ e $\epsilon(t)$ e a média das
+estimativas obtidas foi de:
 
 \begin{equation}
 \theta_{\text{média}} =\begin{bmatrix}
@@ -360,48 +372,40 @@ média das estimativas obtidas foi de:
 %\nonumber
 %\end{equation}
 
-
-O custo obtido $J_{y}(\theta_{\text{média}})=0.3820$ e o custo dos sinais de saída do controlador ($u(t)$) esperado e
-obtido foi $J_{VR}(\theta_{\text{média}}=1.0119$.
-
-Como $\gamma(\cdot)$ escolhido em \eqref{eq:dbnarmax_ex_wiener_gamma_choosen} é apenas uma aproximação do que
-esperava-se em \eqref{eq:dbnarmac_ex_wiener_gamma}, sabe-se que a classe de modelos escolhida para o controlador pode
-não conseguir representar a totalidade das dinâmicas do controlador ideal $\mathcal{C}_d$. Desta forma é esperado que
-a identificação não consiga atingir a totalidade da função $T_d(q)$ inicialmente escolhida. Para as estimativas foram
-utilizados sinais de entrada do tipo PRBS com 127 pontos para a excitação da planta.
-
-Na Figura \ref{fig:vrft_nl_wiener_step} é apresentado um comparativo entre o sinal de saída do sistema
-$T_d(q)$ quando submetido a um degrau unitário e o sinal do sistema real quando o controlador identificado com
-$\theta_{\text{médio}}$ é aplicado sobre a planta em malha fechada.
+O custo obtido  foi $J_{y}(\theta_{\text{média}})=3.0078\times10^{-3}$; isso significa que, a cada amostra, esta é a
+média da diferênça entre o sinal de saída obtido e o desejado. Para as estimativas foram utilizados sinais de entrada do
+tipo PRBS com 127 pontos para a excitação da planta.  Na Figura \ref{fig:vrft_nl_wiener_step} é apresentado um
+comparativo entre o sinal de saída do sistema $T_d(q)$ quando submetido a um degrau unitário e o sinal do sistema real
+quando o controlador identificado com $\theta_{\text{médio}}$ é aplicado sobre a planta em malha fechada.
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_step.eps}
 	\caption{Comparativo da resposta a um degrau unitário do modelo de referência $T_d(q)$ com o sistema real quando o
-	controlador não linear representado por um modelo NARMAX polinomial é inserido na planta.}
+	controlador não linear é inserido na planta.}
 	\label{fig:vrft_nl_wiener_step}
 \end{figure}
 
 Na Figura \ref{fig:vrft_nl_wiener_vw_step} é apresentado o comportamento dos sinais de saída e entrada das
-não linearidades $\gamma(\epsilon(t))$ e $\zeta(\omega(t))$ respectivamente.
+não linearidades $\gamma(\epsilon(t))$ e $\zeta(z(t))$ respectivamente.
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_vw_step.eps}
-	\caption{Sinais $v(t)$ e $\omega(t)$ do sistema apresentado na Figura \ref{fig:vrft_nl_wiener} quando este é
+	\caption{Sinais $v(t)$ e $z(t)$ do sistema apresentado na Figura \ref{fig:vrft_nl_wiener} quando este é
 	excitado por um degrau unitário.}
 	\label{fig:vrft_nl_wiener_vw_step}
 \end{figure}
 
-A relação entre os sinais $v(t)$ e $\omega(t)$ é apresentado na Figura \ref{fig:vrft_nl_wiener_vw}.
+A relação entre os sinais $v(t)$ e $z(t)$ é apresentado na Figura \ref{fig:vrft_nl_wiener_vw}.
 Observa-se que a relação destes sinais é afim, garantido desta forma que a aproximação feita em
 \eqref{eq:dbnarmax_ex_wiener_gamma_choosen} foi suficiente para representar com acuracidade o que era esperado para
-$\gamma(t)$ em \eqref{eq:dbnarmac_ex_wiener_gamma}.
+$\gamma(t)$ em \eqref{eq:dbnarmac_ex_wiener_psi}.
 
 \begin{figure}[htbp] 
 	\center 
 	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_vw.eps}
-	\caption{Relação entre os sinais $v(t)$ e $\omega(t)$ quando o sistema é alimentado por um degrau unitário}
+	\caption{Relação entre os sinais $v(t)$ e $z(t)$ quando o sistema é alimentado por um degrau unitário}
 	\label{fig:vrft_nl_wiener_vw}
 \end{figure}
 
