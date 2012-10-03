@@ -8,8 +8,38 @@ virtual quando o controlador pode ser descrito por uma classe de modelos raciona
 os sinais necessários para identificação do controlador utilizando referência virtual e então aplicar diretamente o
 algoritmo proposto na Seção \ref{sec:nl_si_algorithms_rationals}.
 
-Serão apresentados exemplos onde a classe de controladores escolhida consegue representar o controlador ideal
-$\mathcal{C}_d$ e quando isso não é possível.
+Um modelo racional é descrito pela razão entre dois polinomios como:
+
+\begin{eqnarray}\label{eq:dbcdnl_alg_rational}
+y(t)&=&\frac
+{a(y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u))}
+{b(y(t-1), ..., y(t-n_y), u(t-1), ..., u(t-n_u))}\\ \nonumber
+&&  +c(e(t-1), ... , e(t-n_e)) +e(t)
+\end{eqnarray}
+onde  $a(\cdot)$ e $b(\cdot)$ são polinômios como em:
+
+\begin{equation}
+a(\cdot)=\sum_{j=1}^{N_n}p_{nj}\theta_{nj}=\psi _n^T(t-1)\theta_n
+\label{eq:dbcdnl_model_narmax_rat_num}
+\end{equation}
+
+\begin{equation}
+b(\cdot)=\sum_{j=1}^{N_d}p_{dj}\theta_{dj}=\psi _d^T(t-1)\theta_d
+\label{eq:dbcdnl_model_narmax_rat_den}
+\end{equation}
+e onde $\theta_{nj}$ e $\theta_{dj}$ são os parâmetros dos regressores, possuindo informações da entrada e saída do
+dos instantes passados de tempo do processo.
+
+Quando o comportamento em malha fechada desejado é linear e a planta é racional, o controlador também será racional. A
+proposta desta seção é apresentar o paradigma de referência virtual para a identificação deste controlador modelado por
+uma classe racional. Neste caso a parametrização do controlador será não linear, para isso será utilizado o algoritmo
+iterativo apresentado na Seção \ref{sec:nl_si_algorithms_rationals}.
+
+Na Seção \ref{sec:nl_si_algorithms_rationals_examples} foram apresentados alguns resultados da utilziação do algoritmo
+iterativo para a identificação de sistemas racionais. Aqui serão apresentados resultados da utilização deste algoritmo
+em conjunto com o paradigma de referência virtual para a obtenção do controlador ideal que leva o sistema a se
+comportar linearmente em malha fechada, como desejado. Serão apresentados exemplos onde a classe de controladores
+escolhida consegue representar o controlador ideal $\mathcal{C}_d$ e quando isso não é possível.
 
 %===============================================================================
 \subsection{Controlador ideal representado pela classe de modelos: $\mathcal{C}_d \in \mathcal{C}$}
@@ -172,10 +202,7 @@ u(t)=\frac{0.4r(t)+0.6y(t)+0.1y^2(t-1)r(t)+0.15y(t)y^2(t-1)}{1+0.5y(t)}
 \label{eq:vrft_nl_dinamic_ex3_cd}
 \end{equation}
 
-No exemplo apresentado na Seção \ref{sec:dbnarmax_nl_dinamic_c_match} foi apresentada a simulação para o caso em que o
-controlador ótimo consegue ser descrito pelo modelo escolhido para representa-lo. Neste exemplo ocorre o oposto: a
-classe de modelos escolhida para o controlador não consegue representar completamente \eqref{eq:vrft_nl_dinamic_ex3_cd},
-pois escolheu-se a seguinte classe de modelos:
+Escolhe-se uma classe de modelos que não consegue representar completamente \eqref{eq:vrft_nl_dinamic_ex3_cd}:
 
 \begin{equation}
 u(t)=\frac{\theta_1 r(t)+ \theta_2 y(t)+ \theta_3 r(t)y(t-1)+ \theta_4 y(t-1)y(t)}{1+ \theta_5 y(t)}
@@ -204,8 +231,8 @@ com uma covariância de:
 \nonumber
 \end{equation}
 
-Obtém-se um custo para o comportamento do sistema em malha fechada de  $J_{y}(\theta_{\text{médio}})=1.0999$. Na Figura
-\ref{fig:vr_rational_notinclass_ex3_step} é apresentado a resposta do sistema em malha fechada quando submetido a um
+Obtém-se um custo para o comportamento do sistema em malha fechada de  $J_{y}(\theta_{\text{médio}})=8.66\times10^{-3}$.
+Na Figura \ref{fig:vr_rational_notinclass_ex3_step} é apresentado a resposta do sistema em malha fechada quando submetido a um
 degrau unitário para o sistema desejado e para o sistema obtido com o controlador parametrizado por
 \eqref{eq:vr_rational_ex3_theta}.
 
@@ -231,7 +258,12 @@ unitário apresentado na Figura \ref{fig:vr_rational_notinclass_ex3_step}.
 
 Observa-se que mesmo quando não há uma completa capacidade da classe de modelos em representar o controlador ideal, o
 erro da estimativa é relativamente baixo, mas não insignificante, ficando em aproximadamente 6\% em regime e chegando a
-atingir quase 20\% durante o transitório. Em contrapartida, quando há capacidade do controlador ideal ser representado
+atingir quase 10\% durante o transitório. Em contrapartida, quando há capacidade do controlador ideal ser representado
 pela classe do controlador, o erro em regime ficou em 0.02\% como apresentado na Figura
-\ref{fig:vrft_nl_dynamic_step_erro}.
+\ref{fig:vrft_nl_dynamic_step_erro}. Este erro poderia ser reduzido, principalmente o erro em regime, que poderia ser
+reduzido a zero, se a planta possuisse um integrador em sua estrutura, ou se, fosse adicionado um integrador ao
+controlador e esta parcela da estrutura não fosse identificada em conjnto com o restante do controlador, evitando assim
+erros de seguimento de referência em regime permanente. Este, entretanto não é o objetivo da apresentação deste exemplo,
+deseja-se apresentar a qualidade das estimativas utilizando a metodologia quando a classe escolhida para o controlador
+não é semelhante ao controlador ideal. 
 
