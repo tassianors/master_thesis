@@ -115,7 +115,7 @@ O sinal $\epsilon(t)$ é o erro entre os sinais $y(t)$ e $\bar{r}(t)$. Sabe-se qu
 excitada com o sinal $u(t)$, o sinal $y(t)$ é obtido. Analogamente para um controlador, quando este é
 excitado com o sinal $\epsilon(t)$, o sinal $u(t)$ é obtido. A tarefa do método VRFT é encontrar este
 controlador, com os sinais $u(t)$ e $\epsilon(t)$ que são conhecidos, a tarefa reduz-se a um problema de
-identificação. Comumente, usa-se um pré-filtro nos dados coletados. A ideia principal do uso deste
+identificação. Comumente, usa-se um pré filtro nos dados coletados. A ideia principal do uso deste
 filtro será explicada posteriormente na Seção \ref{sec:dbcd_vrft_framework_filter}. 
 
 O algoritmo pode ser descrito pelos passos a seguir \cite{campi_savaresi2000}:
@@ -281,7 +281,7 @@ J_{VR}(\theta)&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left | L(e^{j\omega}) \right |^
 \end{eqnarray}
 
 Comparando agora \eqref{eq:dbcd_vrft_jy_cost} e \eqref{eq:dbcd_vrft_jvr_cost}, observa-se que quando $C_d(q) \in
-\mathcal{C}$ as duas funções custopossuem o mesmo mínimo. Quando $C_d(q) \notin \mathcal{C}$
+\mathcal{C}$ as duas funções custo possuem o mesmo mínimo. Quando $C_d(q) \notin \mathcal{C}$
 nenhum dos critérios desaparece e o ponto de mínimo depende de vários fatores dentro da integral. Se os fatores dentro
 dos dois integrandos são diferentes, não existe motivos para esperar que os dois custos sejam os mesmos
 \cite{bazanella_datadriven}.

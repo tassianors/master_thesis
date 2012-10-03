@@ -4,10 +4,10 @@
 %===============================================================================
 
 A teoria de identificação de sistemas é foco de estudo há diversas décadas por inúmeros engenheiros e pesquisadores em
-diversas áreas. Muitas aplicações existentes se baseiam direta ou indiretamente no uso de identificação de sistemas e
-muitas outras aplicações estão em processo de desenvolvimento. Dentro deste contexto, o estudo da teoria de
-identificação de sistemas é muito vasto e neste trabalho tem-se o interesse em apresentar alguns pontos relativos a
-este assunto que são base para o desenvolvimento deste trabalho.
+diversas áreas \cite{system_identification, ljung, aguirre} . Muitas aplicações existentes se baseiam direta ou
+indiretamente no uso de identificação de sistemas e muitas outras aplicações estão em processo de desenvolvimento.
+Dentro deste contexto, o estudo da teoria de identificação de sistemas é muito vasto e neste trabalho tem-se o
+interesse em apresentar alguns pontos relativos a este assunto que são base para o desenvolvimento deste trabalho.
 
 Basicamente a identificação de um sistema, ou uma parte de um sistema maior, pode ser dividido em três componentes
 principais: é necessário que exista um sistema real; uma classe de modelos, que pretende representar este sistema real;
@@ -16,15 +16,15 @@ representa este sistema. Do sistema real coletam-se os dados que serão utilizado
 processo de identificação, e muitas das propriedades das estimativas obtidas são baseadas na qualidade e quantidade das
 informações que estes dados coletados conseguem trazer do sistema real.
 
-Nesta questão de informatividade existe uma grande e vasta quantidade de pesquisa desenvolvida e em desenvolvimento.
-Questões como projetos de experimentos que neste trabalho são abordados superficialmente e que para a identificação de
-sistemas são uma ferramenta formidável, possuem aplicabilidade em diversas áreas. Em engenharia, a escolha do sinal
-que será utilizado para excitar o sistema pode, entre outras características, reduzir erros da estimativa, reduzir tempo
+Nesta questão de informatividade existe uma grande e vasta quantidade de pesquisa desenvolvida e em desenvolvimento
+\cite{gevers_bazanella2009}. Questões como projetos de experimentos que neste trabalho são abordados superficialmente e que para a identificação de
+sistemas são uma ferramenta formidável, possuem aplicabilidade em diversas áreas \cite{jansson}. Em engenharia, a
+escolha do sinal que será utilizado para excitar o sistema pode, entre outras características, reduzir erros da estimativa, reduzir tempo
 e custo do processo de identificação, aumentar a confiabilidade das estimativas obtidas.
 
 Entretanto não é apenas o sinal de entrada do sistema que determina as propriedades estatísticas dos experimentos de
 identificação executados. A escolha da classe de modelos para identificar o sistema é de crucial importância para
-que haja sucesso no processo de identificação. A escolha desta classe deve ser tomada com base em diversas
+que haja sucesso no processo de identificação \cite{ljung}. A escolha desta classe deve ser tomada com base em diversas
 diretrizes, o que torna sua escolha outro foco extremamente diversificado de estudo para a teoria de identificação de sistemas.
 
 Observa-se com certa frequência que uma classe de modelos é mais performática para representar certos tipos de sistemas.
@@ -38,27 +38,28 @@ complexidade dos algoritmos utilizados na identificação.
 
 Em se tratando de aplicações na área da engenharia, o controle de sistemas tem um destaque especial no uso da teoria de
 identificação de sistemas para a obtenção dos parâmetros do controlador desejado. Muitos dos projetos de controladores
-baseados em dados se utilizam desta teoria para firmar suas bases e determinar seu funcionamento.
+baseados em dados se utilizam desta teoria para firmar suas bases e determinar seu funcionamento
+\cite{campi_leccini_savaresi2002, billings_zhu91, Hjalmarsson_ift1998, eckard_campestrini}.
 
 Assim como identificação de sistemas, projetos de controladores baseados em dados são foco de estudo em várias e diversas
-linhas de pesquisa há décadas. Neste trabalho será dado enfoque ao uso de referência virtual para a obtenção
-dos sinais necessários para a identificação do controlador. Referência virtual é largamente utilizada
-pelo método VRFT que, por ser um método direto, não requer que haja um conhecimento do modelo da planta para que o
-controlador possa ser projetado. Este método propõe-se a encontrar o controlador ótimo com apenas um conjunto de dados
-proveniente do sistema. 
+linhas de pesquisa há décadas \cite{Bazanella_h2criteria2008, bazanella_datadriven, eccini_savaresi2002}. Neste
+trabalho será dado enfoque ao uso de referência virtual para a obtenção dos sinais necessários para a identificação do controlador. Referência virtual é largamente utilizada
+pelo método VRFT ({\it{Virtual Reference Feedback Tuning}}) que, por ser um método direto, não requer que haja um
+conhecimento do modelo da planta para que o controlador possa ser projetado. Este método propõe-se a encontrar o controlador ótimo com apenas um conjunto de dados
+proveniente do sistema \cite{campi_savaresi2000, campi_leccini_savaresi2002}.
 
 Estas características são bastante atrativas para diversas aplicações, sobretudo àquelas onde a parada do processo para
 execução de testes e experimentos é indesejada, ou por vezes, inviável. Entretanto o uso do método VRFT possui algumas
-limitações, a maioria deles já apontadas em diversos trabalhos. Contudo, o uso deste método para sistemas
-não lineares é ainda bastante incipiente e os trabalhos existentes nesta área exigem que haja um considerável conhecimento da planta e
-do sinal aplicado para que as estimativas sejam realizadas com margens de erro conhecidas.
+limitações, a maioria deles já apontadas em diversos trabalhos \cite{campestrini_nonminumum_phase,
+bazanella_datadriven, campestrini}. Contudo, o uso deste método para sistemas não lineares é ainda bastante incipiente
+e os trabalhos existentes nesta área exigem que haja um considerável conhecimento da planta e do sinal aplicado para que
+as estimativas sejam realizadas com margens de erro conhecidas \cite{campi_savaresi2006}.
 
 O trabalho aqui apresentado tem por objetivo endereçar uma parte deste problema. Para isso usou-se a ideia de
 referência virtual utilizada pelo método VRFT para determinar quais são os sinais necessários para identificar o
 controlador ideal, que leva o sistema a se comportar em malha fechada como especificado. De posse destes sinais obtidos
 de forma virtual além daqueles medidos diretamente do sistema, utilizam-se estas informações para alimentar um
-algoritmo de identificação de sistemas não lineares. Neste contexto, o sistema não linear que se quer identificar é o
-controlador que atuará sobre a planta.
+algoritmo de identificação de sistemas não lineares.
 
 Para limitar o escopo do trabalho desenvolvido aqui, algumas decisões sobre estrutura de modelos foram tomadas: optou-se
 pela identificação de controladores não lineares que são representados por modelos racionais e polinomiais.
@@ -89,9 +90,9 @@ forma estática na entrada ou na saída do processo. São apresentados também exemp
 consegue representar a totalidade das dinâmicas do controlador desejado. Por fim no Capítulo \ref{chapter:conclusion}
 são apresentadas conclusões gerais sobre o que foi desenvolvido neste trabalho.
 
-No Apendice \ref{appendix:rational_base_functions} são apresentadas as rotinas desenvolvidas em Matlab do
-algoritmo de identificação de sistemas não lineares utilizando modelos racionais ou polinömiais. Já no Apendice
+No Apêndice \ref{appendix:rational_base_functions} são apresentadas as rotinas desenvolvidas em Matlab do
+algoritmo de identificação de sistemas não lineares utilizando modelos racionais ou polinomiais. Já no Apêndice
 \ref{appendix:rational_examples} são apresentadas as rotinas desenvolvidas para simular os exemplos apresentados para
-identificação de sistemas não lineares. No Apendice \ref{appendix:vr_narmax} são apresentadas as rotinas utilizadas para
+identificação de sistemas não lineares. No Apêndice \ref{appendix:vr_narmax} são apresentadas as rotinas utilizadas para
 o projeto de controladores não lineares utilizando referência virtual.
 

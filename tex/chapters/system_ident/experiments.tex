@@ -2,10 +2,6 @@
 \section{Premissas para o sucesso do experimento de identificação}
 \label{sec:sys_ident_experiments}
 %===============================================================================
-% mains idea of this section:
-% unicidade da solução
-% persistência de excitação
-% não sobre modelagem
 
 Em aplicações de engenharia, deseja-se que a solução de um problema seja única. Desta forma existem algumas
 premissas que devem ser satisfeitas para que o processo de identificação consiga atingir seus objetivos, obtendo um
@@ -53,7 +49,7 @@ Então $u(t)$ é persistentemente excitante de ordem $n$ se e somente se $\bar{R}_
 
 A partir da equação \eqref{eq:si_data_persistence_2} pode-se extrair interpretações mais explícitas.
 Uma delas é que para que o sinal seja persistentemente excitante de ordem $n$, ele precisa ter $n$ componentes de
-freqüência distintas no intervalo $-\pi< \omega \le \pi$.
+frequência distintas no intervalo $-\pi< \omega \le \pi$.
 
 Se um sinal quasi-estacionário é filtrado por uma função de transferência estável, então o sinal resultante 
 também é um sinal quasi-estacionário e desta forma se ${ \left| { M }_{ n }({ e }^{ j\omega  }) \right|  }^{ 2
@@ -91,7 +87,7 @@ informatividade em estruturas de modelos arbitrárias.
 
 Garantir a persistência de excitação para um sinal utilizado na identificação de um sistema é garantir que
 o sinal terá componentes de frequência suficientes para excitar o sistema ao ponto de ser possível observar sua dinâmica
-de forma satisfatória. Inclui-se desta forma na identificação informações suficientes para que todos os
+de forma satisfatória. Inclui-se, desta forma, na identificação informações suficientes para que todos os
 parâmetros da classe de modelos possam ser identificados.
 
 %===============================================================================
@@ -165,7 +161,7 @@ e as incertezas matemáticas inseridas. Além disso existe o problema destes model
 condicionados além da convicção de que alguns parâmetros são redundantes e poderiam ser removidos do modelo (aplicando
 algum algoritmo de simplificação de modelo). Um modelo com um número excessivo de parâmetros pode exibir dinâmicas que
 não são observadas no sistema real. Desta forma não existe apenas o problema numérico para a identificação, mas também
-um problema de dinâmica em utilizar um modelo sobredimensionado \cite{aguirre_jacome}.
+um problema de dinâmica em utilizar um modelo sobre dimensionado \cite{aguirre_jacome}.
 
 O procedimento que testa se a classe de modelos é simples e apropriada para descrever o sistema é aplicar alguma técnica
 de redução à classe de modelos. Se a ordem da classe de modelos pode ser reduzida sem afetar as propriedades de entrada

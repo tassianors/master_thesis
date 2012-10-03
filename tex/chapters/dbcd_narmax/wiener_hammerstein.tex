@@ -16,7 +16,7 @@ z(t) & = & G_0(q) u(t) + H_0 (q) e(t) \label{eq:wiener_z} \\
 y(t) & = & \zeta( z(t)) \label{eq:wiener_y}
 \end{eqnarray}
 onde $G_0(q)$ e $H_0(q)$ são funções de transferência racionais e o mapa  $\zeta(\cdot ):
-{\cal D}\rightarrow \cal D$, com $\cal D\subset \Re$, é analitico. A Figura \ref{fig:Wiener} representa este sistema.
+{\cal D}\rightarrow \cal D$, com $\cal D\subset \Re$, é analítico. A Figura \ref{fig:Wiener} representa este sistema.
 
 \begin{figure}[htbp]
 \center
@@ -63,7 +63,7 @@ onde $G_0(q)$ e $H_0(q)$ são funções de transferência racionais e o mapa  $\zeta
 Além disso é assumido que a função $\zeta(\cdot )$ é inversível em todo range $\cal D$, ou seja, existe uma função
 $\zeta_R^{-1}(\cdot )$ tal que $\zeta(\zeta_R^{-1}(x)) = x \quad \forall x \in {\cal D}$.
 
-Não é dificil de perceber que para este caso o controlador ideal é um sistema Hammerstein, ou seja:
+Não é difícil de perceber que para este caso o controlador ideal é um sistema Hammerstein, ou seja:
 
 \begin{eqnarray}
 u(t) & = & C_d'(q) v(t)  \label{eq:hammer_u}\\
@@ -114,7 +114,7 @@ Realmente, se $\gamma(\cdot ) = \zeta_R^{-1}(\cdot )$ e
 C_d' (q)= \frac{T_d(q)}{G_0(q)(1-T_d(q))}
 \label{eq:dbcd_perf_tracking_cd}
 \end{equation}
-então o sismtema em malha fechada é linear com uma função de transferência $T_d(q)$.
+então o sistema em malha fechada é linear com uma função de transferência $T_d(q)$.
 
 Na prática esta é uma solução padrão de controle, pois controladores comerciais normalmente incluem customizáveis
 funções de linearização  $\gamma(\cdot )$  no laço de realimentação. Fica claro que mesmo neste caso padrão o controlador
@@ -209,10 +209,10 @@ como anteriormente.
 
 Ao fazê-lo, o controlador ideal depende apenas do erro de referência, mas a função  $\gamma(\cdot )$ depende do valor de
 referência, e será uma função diferente para cada valor diferente da referência. Além disso, para valores não
-constantes, a não linearidade inversa $\gamma(\cdot)$ pode não ser autonoma, violando outra pressuposição da formulação
+constantes, a não linearidade inversa $\gamma(\cdot)$ pode não ser autónoma, violando outra pressuposição da formulação
 não linear do VRFT proposta em \cite{campi_savaresi2006}.
 
-Agora, entretanto é desejado que o sistem se comporte linearmente em malha fechada como $T_d(q)$. Para obter-se isso o
+Agora, entretanto é desejado que o sistema se comporte linearmente em malha fechada como $T_d(q)$. Para obter-se isso o
 controlador deve cancelar todos os efeitos não lineares de $\zeta(z(t))$. Em outras palavras, é desejado que em malha
 fechada o sinal $v(t)$ obedeça a equação (\ref{vzlinear}). Entretanto o sistema apresentado na Figura
 \ref{fig:vrft_nl_wiener} se comporta como em:
@@ -228,7 +228,7 @@ e assim pode-se obter a relação entre $\gamma(\cdot) $ e $\zeta(\cdot)$ como:
 \label{eq:dbnarmac_ex_wiener_psi}
 \end{equation}
 
-Fica claro que qunado não existe um sinal de referência, $r(t) \equiv 0$, a relação entre os polinomios $\gamma(\cdot)$ e
+Fica claro que quando não existe um sinal de referência, $r(t) \equiv 0$, a relação entre os polinômios $\gamma(\cdot)$ e
 $\zeta(\cdot)$ fica simplificada a:
 
 \begin{equation}
@@ -244,20 +244,20 @@ O ponto principal do paradigma de referência virtual é de deixar o problema de m
 obtido no método VRFT por meio de uma parametrização linear do controlador e o projeto do controlador é obtido por
 meio da solução de um problema de mínimos quadrados.
 
-Para aproveitar esta virtude computacional é necessario ter um controlador parametrizavel linearmente. Desde
-que a inversa é assumidamente analitica, ela pode ser espandida em serie de Taylor e então truncada:
+Para aproveitar esta virtude computacional é necessário ter um controlador parametrizável linearmente. Desde
+que a inversa é assumidamente analítica, ela pode ser expandida em serie de Taylor e então truncada:
 
 $$
 \zeta_R^{-1} ( x ) \cong  \sum_{i=0}^{k} \frac{1}{i!}\frac{\partial^i \zeta_R^{-1} }{\partial x^i}( 0 ) x^i 
 $$%\\ & \bydef & \sum_{i=0}^{k} \alpha_i x^i \eeqan
 
-Se o controlador e a função não linear forem ambos parametrizaveis linearmente, ou seja, 
+Se o controlador e a função não linear forem ambos parametrizáveis linearmente, ou seja, 
 
 \begin{eqnarray}
 C'(q,\rho ) & = & \frac{1}{D(q)} \rho^T N(q) \label{um} \\
 \gamma(\epsilon(t)) & = & \eta^T E(t) \label{dois}
 \end{eqnarray}
-com $D(q)$ sendo um polinomio mônico conhecido, $N(q)\bydef [1 \quad q^{-1} q^{-2} \ldots
+com $D(q)$ sendo um polinômio mônico conhecido, $N(q)\bydef [1 \quad q^{-1} q^{-2} \ldots
 q^{-p}]^T$, e $E(t) \bydef [\epsilon (t) \quad \epsilon^2 (t) \ldots \epsilon^k (t)]^T$.
 Então, definindo  $u_f(t) = D(q) u(t)$ e substituindo as equações \eqref{um} e \eqref{dois} em
 \eqref{eq:hammer_u} leva a:
@@ -302,13 +302,13 @@ T_d(q)=\frac{0.4}{q-0.6}
 \end{equation}
 
 O controlador é definido pela forma apresentada em \eqref{eq:track_error_controller_u} e
-\eqref{eq:track_error_controller_v} com $C(\theta, q)$ como um controlador do tió proporcional integral (PI).
+\eqref{eq:track_error_controller_v} com $C(q, \theta)$ como um controlador do tipo proporcional integral (PI).
 
 \begin{equation}
-C(\theta, q)=\theta_1\frac{1}{q-1}+\theta_2\frac{q}{q-1}
+C(q, \theta)=\theta_1\frac{1}{q-1}+\theta_2\frac{q}{q-1}
 \label{eq:dbnarmax_ex_wiener_controller_class_pi}
 \end{equation}  
-e a função não linear sendo representada por um polinomio de quarta ordem como:
+e a função não linear sendo representada por um polinômio de quarta ordem como:
 
 \begin{equation}
 \gamma (\epsilon(t))= v(t) = a_1\epsilon (t) + a_2 \epsilon ^2(t) +a_3 \epsilon ^3(t) +a_4 \epsilon ^4(t)
@@ -328,7 +328,7 @@ o qual pode ser exatamente descrito pela classe de controladores apresentada em
 A parte não linear do controlador ideal é a inversa da função não linear $\zeta(\cdot )$ dada em
 \eqref{eq:vrft_nl_wiener_zeta}. Esta função será aproximada por uma série de Taylor truncada como em
 \eqref{eq:dbnarmax_ex_wiener_gamma_choosen}, o que significa, rigorosamente falando, que $C_d(q)$ não pode ser
-representado por $C(\theta, q)$, ou seja, $C_d(q) \notin C(\theta, q)$. Se pro ventura o desempenho do controlador
+	representado por $C(q, \theta)$, ou seja, $C_d(q) \notin C(q, \theta)$. Se pro ventura o desempenho do controlador
 encontrado não for satisfatório, pode-se aumentar a ordem da série de Taylor utilizada para a aproximação, o que pode
 ser arbitrariamente feito até obter-se um desempenho próximo ao desejado.
 
@@ -373,7 +373,7 @@ estimativas obtidas foi de:
 %\end{equation}
 
 O custo obtido  foi $J_{y}(\theta_{\text{média}})=3.0078\times10^{-3}$; isso significa que, a cada amostra, esta é a
-média da diferênça entre o sinal de saída obtido e o desejado. Para as estimativas foram utilizados sinais de entrada do
+média da diferença entre o sinal de saída obtido e o desejado. Para as estimativas foram utilizados sinais de entrada do
 tipo PRBS com 127 pontos para a excitação da planta.  Na Figura \ref{fig:vrft_nl_wiener_step} é apresentado um
 comparativo entre o sinal de saída do sistema $T_d(q)$ quando submetido a um degrau unitário e o sinal do sistema real
 quando o controlador identificado com $\theta_{\text{médio}}$ é aplicado sobre a planta em malha fechada.
