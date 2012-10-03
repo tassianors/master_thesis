@@ -106,13 +106,13 @@ v(t) & = & r(t) - \gamma( y(t) )\label{eq:hammer_v}
 \end{pspicture} 
 }
 \caption{Um controlador do tipo Hammerstein como descrito por \eqref{eq:hammer_u} e \eqref{eq:hammer_v}}
-\label{fig:dbnarmax_method_vr}
+\label{fig:dbnarmax_controller_hammerstein}
 \end{figure}
 
 Realmente, se $\gamma(\cdot ) = \zeta_R^{-1}(\cdot )$ e 
 \begin{equation}
 C_d' (q)= \frac{T_d(q)}{G_0(q)(1-T_d(q))}
-\label{eq:dbcd_perf_tracking_cd}
+\label{eq:dbcdnl_wiener_lin_cd}
 \end{equation}
 então o sistema em malha fechada é linear com uma função de transferência $T_d(q)$.
 
@@ -316,7 +316,7 @@ e a função não linear sendo representada por um polinômio de quarta ordem como:
 \end{equation}  
 
 Considerando entretanto que nenhum dos blocos não lineares existissem no sistema, o controlador ideal poderia ser descrito pela equação
-\eqref{eq:dbcd_perf_tracking_cd}, resultando em 
+\eqref{eq:dbcdnl_wiener_lin_cd}, resultando em 
 
 \begin{equation}
 C_d'(q)= \frac{0.8q-0.72}{q-1}
@@ -380,18 +380,18 @@ quando o controlador identificado com $\theta_{\text{médio}}$ é aplicado sobre a
 
 \begin{figure}[htbp] 
 	\center 
-	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_step.eps}
+	\includegraphics[width=0.95\columnwidth]{figures/wiener_step.eps}
 	\caption{Comparativo da resposta a um degrau unitário do modelo de referência $T_d(q)$ com o sistema real quando o
 	controlador não linear é inserido na planta.}
 	\label{fig:vrft_nl_wiener_step}
 \end{figure}
 
 Na Figura \ref{fig:vrft_nl_wiener_vw_step} é apresentado o comportamento dos sinais de saída e entrada das
-não linearidades $\gamma(\epsilon(t))$ e $\zeta(z(t))$ respectivamente.
+não linearidades $\gamma(\epsilon(t))$ e $\zeta(z(t))$ quando o sistema é alimentado por uma referência unitária.
 
 \begin{figure}[htbp] 
 	\center 
-	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_vw_step.eps}
+	\includegraphics[width=0.95\columnwidth]{figures/wiener_v_and_z_signals.eps}
 	\caption{Sinais $v(t)$ e $z(t)$ do sistema apresentado na Figura \ref{fig:vrft_nl_wiener} quando este é
 	excitado por um degrau unitário.}
 	\label{fig:vrft_nl_wiener_vw_step}
@@ -404,7 +404,7 @@ $\gamma(t)$ em \eqref{eq:dbnarmac_ex_wiener_psi}.
 
 \begin{figure}[htbp] 
 	\center 
-	\includegraphics[width=0.95\columnwidth]{figures/vrft_nl_wiener_vw.eps}
+	\includegraphics[width=0.95\columnwidth]{figures/wiener_vxz.eps}
 	\caption{Relação entre os sinais $v(t)$ e $z(t)$ quando o sistema é alimentado por um degrau unitário}
 	\label{fig:vrft_nl_wiener_vw}
 \end{figure}
